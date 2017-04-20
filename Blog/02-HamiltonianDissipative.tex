@@ -1,0 +1,228 @@
+\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+	
+\section{Can Hamiltonian mechanics describe dissipative systems?}
+
+In a previous post we saw how Hamiltonian and Newtonian mechanics are different as the first cannot describe dissipative systems. Yet, if we allow the Hamiltonian to be time dependent, the system would appear to change its energy. Shouldn't that allow us to describe dissipative systems?
+
+In fact, in the literature one can find time dependent Hamiltonians for damped harmonic oscillators. What is going on? Can Hamiltonian mechanics describe dissipative systems or not? If not, what does it mean when the Hamiltonian changes in time?
+
+As we'll see, with time dependent systems it is easy to get confused. Changes of the time variable may introduce effects that are not usually discussed and therefore expected. We'll work on three different systems: particle under air friction (i.e. linear drag), a system whose mass increases in time and a free particle trajectory under a non-linear time transformation. We'll see that all three system have the same trajectories, so they look the same, but only the last two admit Hamiltonian formulation that matches the predictions for momentum and energy.
+
+\section{Quick refresh}
+
+Let's go over some key definitions first. We'll use Newton's second law:
+\begin{equation}
+\label{Fm_0a}
+F=m_0a
+\end{equation}
+as it applies to a constant mass $m_0$ and a force $F(x,v)$. We reserve the symbol $m$ for the case of variable mass.
+
+We'll use Hamilton's equations:
+\begin{equation}
+\begin{aligned}
+\frac{dx}{dt} &= \frac{\partial H}{\partial p} \\
+\frac{dp}{dt} &= - \frac{\partial H}{\partial x}
+\end{aligned}
+\label{Hamilton}
+\end{equation}
+where $H(x,p)$ is the Hamiltonian for the system.
+
+\section{A Hamiltonian for particle under linear drag}
+
+Suppose we have a massive particle subject to air friction, modeled by linear drag. In this case $F=-bv$ and we have:
+\begin{equation}
+\label{dragEq}
+m_0a+bv=0
+\end{equation}
+This equation admits solutions of the type:
+\begin{equation}
+\begin{aligned}
+x &= x_0+v_0\frac{m_0}{b}(1-e^{-\frac{b}{m_0}t}) \\
+v &= v_0 e^{-\frac{b}{m_0}t} \\
+a &= -\frac{b}{m_0} v_0 e^{-\frac{b}{m_0}t}
+\end{aligned}
+\label{dragSol}
+\end{equation}
+
+Consider now the Hamiltonian:
+\begin{equation}
+\label{dragHam}
+H = \frac{1}{2} \frac{p^2}{m_0} e^{-\frac{b}{m_0}t}
+\end{equation}
+
+If we apply \eqref{Hamilton} we have:
+\begin{equation*}
+\begin{aligned}
+\frac{dx}{dt} &= \frac{\partial H}{\partial p} = \frac{p}{m_0} e^{-\frac{b}{m_0}t} \\ 
+\frac{dp}{dt} &= - \frac{\partial H}{\partial x} = 0
+\end{aligned}
+\end{equation*}
+Note how the expression for the velocity in \eqref{dragSol} matches the equation above. The solution therefore is
+\begin{equation}
+\begin{aligned}
+p &= p_0 \equiv m_0 v_0 \\
+x &= x_0+\frac{p_0}{m_0}\frac{m_0}{b}(1-e^{-\frac{b}{m_0}t})
+\end{aligned}
+\label{dragHamSol}
+\end{equation}
+which looks equivalent to the solution for a massive particle under linear drag.
+
+But there is something not quite right. First of all, the momentum is constant. As the mass is constant and the velocity decreases, we would have expected the momentum to be:
+\begin{equation}
+\label{dragExpMom}
+p = m_0 v = m_0 v_0 e^{-\frac{b}{m_0}t}
+\end{equation}
+
+For the energy, we would have expected:
+\begin{equation*}
+E = \frac{1}{2} m_0 v^2 = \frac{1}{2} m_0 v_0^2 e^{-2\frac{b}{m}t}
+\end{equation*}
+Since $p = p_0 = m_0 v_0$ we have:
+\begin{equation*}
+E = \frac{1}{2} \frac{p^2}{m_0} e^{-2\frac{b}{m_0}t}
+\end{equation*}
+which does not match \eqref{dragHam}.
+
+It seems that we have the right kinematics, the right trajectory in space, but it looks like the dynamics, the momentum and the energy, is off. Are we describing the correct system?
+
+\section{Variable mass system}
+
+If we stare at \eqref{dragExpMom} we may get an idea: if the mass were not a constant, but increased in time at the same exact rate the velocity decreased, the momentum would be constant. Maybe the Hamiltonian in \eqref{dragHam} is really  describing such a system?
+
+Suppose we have a massive body. Suppose all around little tiny specs precipitate on the body, making it more massive. Suppose they would come from all directions equally such that the total contribution to the momentum is zero. What would be the equation of motion for such system?
+
+As time passes, the body increases in mass but the momentum is unchanged. We can write:
+\begin{equation}
+\label{accFma}
+\frac{d}{dt}(m v) = 0 = \frac{dm}{dt}v + m \frac{dv}{dt}
+\end{equation}
+Note already how similar it is similar to \eqref{dragEq}. As the mass changes, we can write it as:
+\begin{equation}
+m = m_0 \hat{m}(t)
+\end{equation}
+so that $m_0$ is the initial mass and $\hat{m}(t)$ is the increase factor (i.e. equal to $1$ at $t_0$). We can rewrite the equation as:
+\begin{equation*}
+\frac{1}{\hat{m}} (\frac{dm}{dt}v + m \frac{dv}{dt}) = \frac{m_0}{m}\frac{dm}{dt}v + m_0 a
+\end{equation*}
+
+Suppose that the rate of accretion, as a fraction of the total mass, is constant. We can call $\lambda$ such constant and have:
+\begin{equation}
+\label{accMass}
+\frac{dm}{dt} \frac{1}{m} = \lambda \equiv \frac{b}{m_0}
+\end{equation}
+We now have the same equation as \eqref{dragEq}.
+
+While the equation is the same, the physical system we are describing is totally different. They both will describe the same trajectory, they are kinematically equivalent, but the first is losing momentum as it slows down while the second is not. So let's see how the dynamical variables compare.
+
+We can solve \eqref{accMass} to find:
+\begin{equation}
+\label{accMassSol}
+m = m_0 e^{\frac{b}{m} t}
+\end{equation}
+We can combine this with the velocity from \eqref{dragSol} and have:
+\begin{equation}
+p = m v = m_0 e^{\frac{b}{m} t} v_0 e^{-\frac{b}{m}t} = m_0 v_0 = p_0
+\end{equation}
+The momentum is now constant and equal to the initial momentum. This is consistent with \eqref{dragHamSol}.
+
+How about the energy? We have:
+\begin{equation}
+H = \frac{1}{2} \frac{p^2}{m} = \frac{1}{2} \frac{p^2}{m_0 e^{\frac{b}{m} t}} = \frac{1}{2} \frac{p^2}{m_0} e^{-\frac{b}{m} t}
+\end{equation}
+which is consistent with \eqref{dragHam}.
+
+The predictions, therefore, seems to be more in line with the variable mass system than with the massive particle under drag. We should be inclined to conclude that the Hamiltonian describes the former and not the latter.
+
+\section{Non-linear time transformations}
+
+There is another interested case: one where system is actually closed (i.e. no exchange of matter and energy). Suppose we have a massive particle with no forces acting on it, and let $\hat{t}$ be the time as measured by an inertial observer:
+\begin{equation*}
+F=m_0\frac{d^2x}{d\hat{t}^2}=0
+\end{equation*}
+Suppose we change the time variable without changing position:
+\begin{equation}
+t=t(\hat{t})
+\end{equation}
+The new variable only depends on the old time variable and the transformation is locally invertible. What happens to the equation of motion?
+
+We have:
+\begin{equation*}
+m_0\frac{d^2x}{d\hat{t}^2}= m_0 \frac{d}{d\hat{t}} \frac{dx}{d\hat{t}} =0 = m_0 \frac{dt}{d\hat{t}}\frac{d}{dt} (\frac{dt}{d\hat{t}}\frac{dx}{dt})
+\end{equation*}
+Which can be rewritten as:
+\begin{equation}
+\begin{aligned}
+m &= m_0 \frac{dt}{d\hat{t}} \equiv m_0 \hat{m}(t) \\
+\frac{d}{dt} (m\hat{v}) &= 0
+\end{aligned}
+\label{transMass}
+\end{equation}
+Note that is formally identical to \eqref{accFma}. What is going on?
+
+As the time transformation is non-linear, the body velocity and acceleration will appear to change. In fact, it may appear to be harder or easier to accelerate it: the effective mass changes in time according to the time transformation. This is just an effect of the new time variable: the mass is not actually increasing.
+
+What time transformation will give us the motion in \eqref{dragSol}? In the inertial frame, the solution will be
+\begin{equation}
+x=x_0+v_0\hat{t}
+\end{equation}
+which means
+\begin{equation}
+\hat{t} = \frac{m}{b}(1-e^{-\frac{b}{m}t})
+\end{equation}
+Note that the new time variable cannot describe any moment in time after $\hat{t} = \frac{m}{b}$. The body may appear to stop, but it's really the time variable that is converging to a particular instant of time. We can calculate the effective mass combining this with \eqref{transMass}. We have:
+\begin{align*}
+\hat{t} &= \frac{m}{b}(1-e^{-\frac{b}{m}t}) \\
+\hat{t} &- \frac{m}{b} = -\frac{m}{b}e^{-\frac{b}{m}t} \\
+(1&- \frac{b}{m}\hat{t}) = e^{-\frac{b}{m}t} \\
+\log(1&- \frac{b}{m}\hat{t})= -\frac{b}{m}t \\
+t&= -\frac{m}{b}\log(1- \frac{b}{m}\hat{t}) \\
+\frac{dt}{d\hat{t}} &= -\frac{m}{b} \frac{1}{1- \frac{b}{m}\hat{t}} (-\frac{m}{b})  \\
+&= \frac{1}{1- \frac{b}{m}\hat{t}}
+= \frac{1}{1- \frac{b}{m}\frac{m}{b}(1-e^{-\frac{b}{m}t})} \\
+&=\frac{1}{1-1-e^{-\frac{b}{m}t}} =e^{\frac{b}{m}t} \\
+m&=m_0\frac{dt}{d\hat{t}}=m_0e^{\frac{b}{m}t}
+\end{align*}
+which is the same expression as \eqref{accMassSol}
+
+In other words, the two cases of non-linear time transformation and variable mass are indistinguishable: they share the same kinematics and dynamics. In reality, they are as we could look at the motion of other objects around us: that would tell us if we are in an inertial frame or not.
+
+\section{Conclusion}
+
+So, can Hamiltonian mechanics describe dissipative systems? What does the Hamiltonian \eqref{dragHam} describe?
+
+While the kinematics, the position and velocity, agrees with a particle under linear drag, the dynamics, the momentum and energy, does not. I would be inclined to rule it out.
+
+The two other system match in both kinematics and dynamics. The key is they still conserve momentum, even its definition changes in time (i.e. the effective mass is changing). While the energy is changing in time, there is still something conserved by the system.
+
+Between these two, I would be inclined to consider the last one, the non-linear time transformation, to hold physical relevance. The variable mass is just constructed to look the same, but would not hold in the relativistic case: at that point gravity allows to tell the difference.
+
+And the physical insight is the following: a time dependent Hamiltonian system does not allow us to describe an arbitrary system that is changing energy in time. Instead, it provides the correct coordinate independent generalization of non-dissipative systems.
+
+Energy is not invariant under time transformations. From special relativity we know that it is the time component of a covector. Therefore, under time transformation, it changes like:
+\begin{equation}
+H=\frac{d\hat{t}}{dt}\hat{H}
+\end{equation}
+Note that this is exactly what the Hamiltonian \eqref{dragHam} is: the free particle Hamiltonian multiplied by the time derivative.
+
+There is a way to rewrite Hamilton's equation in a different but equivalent form, that is manifestly relativistic and introduces an invariant Hamiltonian. But that is a topic for another time.
+
+\end{document}

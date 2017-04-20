@@ -1,0 +1,158 @@
+\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+
+\begin{document}
+
+\section{Newtonian, Lagrangian and Hamiltonian mechanics are not equivalent}
+	
+After taking a course in advanced mechanics, one is often left with the impression that Netwonian, Lagrangian and Hamiltonian mechanics are all equivalent. Unfortunately, while this is often what a books would say, I don't think that's the case. And you shouldn't take my word for it, or you would make the same mistake I made when I believed everything that was written in my mechanics book.
+
+Textbooks typically stress systems that can be described by all three. We'll go through two counter examples: a body affected by air friction (which is Newtonian but neither Lagrangian or Hamiltonian) and the photon as a particle (which is Hamiltonian but neither Lagrangian or Newtonian). 
+
+We are going to be only looking at time independent (i.e. force/Hamiltonian/Lagrangian does not depend on time) particle mechanics (not field theories). In those cases you get slightly different conclusions.
+
+\section{Quick refresh}
+
+Let's go over some key definitions first, so that we have a precise idea of what we are talking about.
+
+A system is Netwonian if there is a mass $m$ and a force $F(x,v)$ such that Newton's second law applies:
+\begin{equation}
+\label{Fma}
+F=ma
+\end{equation}
+
+A system is Lagrangian if there is a function $L(x,v)$ such that the system obeys the Euler-Lagrange equations:
+\begin{equation}
+\label{EulerLagrange}
+\frac{\partial L}{\partial x} - \frac{d}{dt} \frac{\partial L}{\partial v} = 0
+\end{equation}
+Note that, using the chain rule, we have:
+\begin{align*}
+\frac{d}{dt} \frac{\partial L}{\partial v} &= \frac{\partial}{\partial x} \frac{\partial L}{\partial v} \frac{dx}{dt} + \frac{\partial}{\partial v}  \frac{\partial L}{\partial v} \frac{dv}{dt} \\
+&= \frac{\partial^2 L}{\partial x \partial v} v + \frac{\partial^2 L}{\partial^2 v} a
+\end{align*}
+We can then rewrite the Euler-Lagrange equations as:
+\begin{equation}
+\label{EulerLagrangeMod}
+\frac{\partial^2 L}{\partial^2 v} a + \frac{\partial^2 L}{\partial x \partial v} v - \frac{\partial L}{\partial x}=0
+\end{equation}
+Which will make our job easier.
+
+A system is Hamiltonian if there is a function $H(x,p)$ such that the system follows Hamilton's equations:
+\begin{equation}
+\begin{aligned}
+\frac{dx}{dt} &= \frac{\partial H}{\partial p} \\
+\frac{dp}{dt} &= - \frac{\partial H}{\partial x}
+\end{aligned}
+\label{Hamilton}
+\end{equation}
+
+In many cases, the same system admits all three descriptions. A free particle is such a system, as
+\begin{equation}
+\begin{aligned}
+F&=0 \\
+L&=\frac{1}{2}mv^2 \\
+H&=\frac{1}{2}\frac{p^2}{m}
+\end{aligned}
+\end{equation}
+yield the same trajectories. The claim is that the following two systems do not.
+
+\section{Massive particle under linear drag}
+
+Suppose we have a massive particle subject to air friction, modeled by linear drag. In this case $F=-bv$ and we have:
+\begin{equation}
+\label{dragEq}
+ma+bv=0
+\end{equation}
+Is this compatible with Lagrangian and Hamiltonian mechanics?
+
+For \eqref{EulerLagrangeMod} to give us \eqref{dragEq}, we must have
+\begin{align}
+\label{dragMass}
+&\frac{\partial^2 L}{\partial^2 v} = m \\
+\label{dragVelocity}
+&\frac{\partial^2 L}{\partial x \partial v} v - \frac{\partial L}{\partial x} = bv
+\end{align}
+
+Integrating \eqref{dragMass}, the form of the Lagrangian is restricted to:
+\begin{equation*}
+L = \frac{1}{2} m v^2 + f_1(x) v + f_2 (x)
+\end{equation*}
+where $f_1(x)$ and $f_2 (x)$ are arbitrary functions of position. We substitute this into \eqref{dragVelocity} and have:
+\begin{align*}
+\frac{\partial^2 L}{\partial x \partial v} v - \frac{\partial L}{\partial x} &= (\frac{\partial f_1}{\partial x}) v - \frac{\partial f_1}{\partial x} v -  \frac{\partial f_2}{\partial x} \\
+&= -  \frac{\partial f_2}{\partial x} \\
+&= bv
+\end{align*}
+which is impossible as $f_2$ is only a function of position. Therefore there is no Lagrangian that would give us \eqref{dragEq} as equations of motion: a massive particle under linear drag is not a Lagrangian system.
+
+We can intuitively understand that the system is not Hamiltonian either: it is dissipative, it does not conserve energy. As Hamiltonian mechanics can only describe systems that conserve energy (i.e. the Hamiltonian), a massive particle under linear drag is not a Hamiltonian system.
+
+Mathematically, Hamiltonian mechanics does not have attractors. That is, it cannot have regions of phase space, like equilibrium point, toward which the motions tends to go. Suppose it had an equilibrium point, then the volume around it would shrink and shrink during the evolution. This violates Louisville's theorem which states that the phase space volume of an Hamiltonian system is conserved. In this specific case, the region with zero velocity is an attractor for the system: whatever velocity you start with, you end up at rest. This means the system is not Hamiltonian.
+
+Writing down the math for the general case is a bit involved, so we just show that if we assume $p=mv$ Hamilton's equations \eqref{Hamilton} cannot give \eqref{dragEq}. We have:
+\begin{equation*}
+\frac{p}{m}=v= \frac{dx}{dt} = \frac{\partial H}{\partial p}
+\end{equation*}
+Integrating, the form of the Hamiltonian must be
+\begin{equation*}
+H=\frac{1}{2}\frac{p^2}{m} + V(x)
+\end{equation*}
+where $V$ is an arbitrary function of position. Substitute in the second equation:
+\begin{equation*}
+\frac{dp}{dt}= ma = - \frac{\partial H}{\partial x} = - \frac{\partial V}{\partial x}
+\end{equation*}
+$V$ is only a function of position, therefore we cannot obtain a force that is a function of velocity.
+
+A massive particle under drag is not a Lagrangian or a Hamiltonian system.
+
+\section{Photon as a free particle}
+
+Suppose we have a photon traveling in space. It's trajectory is a line, traveled at constant speed $c$. It's momentum $p=\frac{\hbar}{\lambda}$ is conserved, where $\lambda$ is the wavelength. The system is not Newtonian: the mass is zero therefore \eqref{Fma} does not apply. Is it Hamiltonian?
+
+The energy of the particle is $E=\hbar \nu$ where $\nu$ is the frequency. The product of the magnitude of the frequency and wavelength is euqal to the speed: $|\nu \lambda| = c$. Therefore we have:
+\begin{equation*}
+E=\hbar \nu = c \frac{\hbar}{|\lambda|} = c|p| \end{equation*}
+This is the energy as a function of position and momentum: it's the Hamiltonian of the system.
+
+Let's verify that Hamilton's equations \eqref{Hamilton} give us the correct equations.
+\begin{align*}
+H &= c|p| \\
+\frac{dx}{dt} &= \frac{\partial H}{\partial p} = c \frac{\partial |p|}{\partial p} = c \frac{|p|}{p} \\
+\frac{dp}{dt} &= - \frac{\partial H}{\partial x} = 0
+\end{align*}
+The momentum cannot be zero, since $H$ is discontinuous there. The velocity is $c$ in the direction of momentum. The momentum is conserved. The system is correctly described by Hamiltonian mechanics.
+
+Since we have the Hamiltonian, we would be tempted to write:
+\begin{equation}
+\label{Legendre}
+L = pv - H
+\end{equation}
+Unfortunately, this does not work because $L$ cannot be expressed as a function of $x$ and $v$ ($H$ is not hyperregular). Because the velocity is always constant and is only a function of the direction of $p$, the change from momentum to velocity loses information. In other words: position and velocity are not enough to describe the state of the system.
+
+The photon treated as a particles is not a Lagrangian or Newtonian system.
+
+\section{Conclusion}
+
+Since we were able to find counter examples, Netwonian, Lagrangian and Hamiltonian are not equivalent: they describe different types of systems. Newtonian and Lagrangian mechanics are restricted to massive systems, the ones for which position and velocity are enough to identify the state of the system. Lagrangian and Hamiltonian mechanics are restricted to conservative systems, where no energy and no information is exchanged with the outside, where isolation holds and the system is deterministic and reversible.
+
+``But wait!" You may say. ``This was only for the time independent case! In the time dependent case I can write a Hamiltonian that describes dissipative systems! Thus what you said it's wrong and you don't know what you are talking about." That may be true, but the time dependent case needs to be looked at with care as it is easy to get confused. It will be the topic for another time.
+
+\end{document}
