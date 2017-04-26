@@ -1,4 +1,4 @@
-\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
 
 \usepackage{bbm}
 \usepackage{amsmath}
@@ -21,11 +21,13 @@
 	
 \section{Can Hamiltonian mechanics describe dissipative systems?}
 
+TL;DR Time dependent Hamiltonian mechanics is for conservative forces in non inertial frames, not for non-conservative forces.
+
 In a previous post we saw how Hamiltonian and Newtonian mechanics are different as the first cannot describe dissipative systems. Yet, if we allow the Hamiltonian to be time dependent, the system would appear to change its energy. Shouldn't that allow us to describe dissipative systems?
 
 In fact, in the literature one can find time dependent Hamiltonians for damped harmonic oscillators. What is going on? Can Hamiltonian mechanics describe dissipative systems or not? If not, what does it mean when the Hamiltonian changes in time?
 
-As we'll see, with time dependent systems it is easy to get confused. Changes of the time variable may introduce effects that are not usually discussed and therefore expected. We'll work on three different systems: particle under air friction (i.e. linear drag), a system whose mass increases in time and a free particle trajectory under a non-linear time transformation. We'll see that all three system have the same trajectories, so they look the same, but only the last two admit Hamiltonian formulation that matches the predictions for momentum and energy.
+As we'll see, with time dependent systems it is easy to get confused. Changes of the time variable may introduce effects that are not usually discussed and therefore expected. We'll work on three different systems: particle under air friction (i.e. linear drag), a system whose mass increases in time and a free particle trajectory under a non-linear time transformation. We'll see that all three system have the same trajectories, so they look the same, but only the last two admit Hamiltonian formulation that matches the predictions for momentum and energy. In both those cases inertia is conserved but the mass changes, or appears to change in time, making the Hamiltonian time dependent.
 
 \section{Quick refresh}
 
@@ -178,7 +180,7 @@ m &= m_0 \frac{dt}{d\hat{t}} \equiv m_0 \hat{m}(t) \\
 \end{equation}
 Note that is formally identical to \eqref{accFma}. What is going on?
 
-As the time transformation is non-linear, the body velocity and acceleration will appear to change. In fact, it may appear to be harder or easier to accelerate it: the effective mass changes in time according to the time transformation. This is just an effect of the new time variable: the mass is not actually increasing.
+As the time transformation is non-linear, the body's velocity and acceleration will appear to change. In fact, it may appear to be harder or easier to accelerate it: the effective mass changes in time according to the time transformation. This is just an effect of the new time variable: the mass is not actually increasing.
 
 What time transformation will give us the motion in \eqref{dragSol}? In the inertial frame, the solution will be
 \begin{equation}
@@ -203,7 +205,7 @@ m&=m_0\frac{dt}{d\hat{t}}=m_0e^{\frac{b}{m}t}
 \end{align*}
 which is the same expression as \eqref{accMassSol}
 
-In other words, the two cases of non-linear time transformation and variable mass are indistinguishable: they share the same kinematics and dynamics. In reality, they are as we could look at the motion of other objects around us: that would tell us if we are in an inertial frame or not.
+In other words, the two cases of non-linear time transformation and variable mass are indistinguishable: they share the same kinematics and dynamics. Well, we could distinguish between them by looking at the motion of other objects around us: that would tell us if we are in an inertial frame or not.
 
 \section{Conclusion}
 
@@ -213,11 +215,9 @@ While the kinematics, the position and velocity, agrees with a particle under li
 
 The two other system match in both kinematics and dynamics. The key is they still conserve momentum, even its definition changes in time (i.e. the effective mass is changing). While the energy is changing in time, there is still something conserved by the system.
 
-Between these two, I would be inclined to consider the last one, the non-linear time transformation, to hold physical relevance. The variable mass is just constructed to look the same, but would not hold in the relativistic case: at that point gravity allows to tell the difference.
+Note that if we added gravity (i.e. general relativity), we might be able to notice that at some point the exponentially increasing mass turns into a black hole. The third case, though, would remain the same. Therefore, I would be inclined to consider the last one, the non-linear time transformation, to hold the most physical relevance.
 
-And the physical insight is the following: a time dependent Hamiltonian system does not allow us to describe an arbitrary system that is changing energy in time. Instead, it provides the correct coordinate independent generalization of non-dissipative systems.
-
-Energy is not invariant under time transformations. From special relativity we know that it is the time component of a covector. Therefore, under time transformation, it changes like:
+The physical insight is the following: a time dependent Hamiltonian system does not allow us to describe an arbitrary system that is changing energy in time. Only Newtonian mechanics can do that. Instead, it provides the correct coordinate independent generalization for conservative forces. Energy is not invariant under time transformations. From special relativity we know that it is the time component of a covector. Therefore, under time transformation, it changes like:
 \begin{equation}
 H=\frac{d\hat{t}}{dt}\hat{H}
 \end{equation}
