@@ -1,0 +1,89 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+	
+\section{Lagrangian mechanics is a subset of Hamiltonian mechanics}
+
+TL;DR Lagrangians must be convex while Hamiltonians may not. Lagrangian systems are Hamiltonian systems where the momentum is a function $p=p(x,v)$ of position and velocity, strictly increasing with respect to velocity.
+
+In a previous post we saw how the photon, as a particle, is a Hamiltonian system but not a Lagrangian system, which shows how the two concepts are not equivalent. So, what is the relationship between Hamiltonian and Lagrangian mechanics? How do they overlap?
+
+We'll see that all the Lagrangians that lead to solvable equations of motion admit a Hamiltonian (i.e. they must be convex/hyper-regular) but not all Hamiltonians that lead to solvable equations of motions admit a Lagrangian (i.e. they may not be convex/hyper-regular). This means that every Lagrangian system is also a Hamiltonian system, but not vice-versa.
+
+
+\section{Lagrangians systems are Hamiltonian}
+
+Let's refresh our math. We have a Lagrangian
+\begin{equation}
+\label{Lagrangian}
+L(x^i,v^i)
+\end{equation} 
+function of position and velocity. We define conjugate momentum as
+\begin{equation}
+\label{MomentumFromLagrangian}
+p_i = \frac{\partial L}{\partial v^i} = p_i(x^j,v^j)
+\end{equation}
+where each component is a function of position and velocity. We define the Hamiltonian as
+\begin{equation}
+\label{HamiltonianFromLagrangian}
+H = v^i p_i - L = H(x^j, p_j)
+\end{equation}
+expressed as a function of position and momentum. One can then show that the Euler-Lagrange equations are equivalent to Hamilton equations.
+
+Now the question is: when can we actually do this? When are we allowed to define a Hamiltonian for a Lagrangian?
+
+First of all, the derivatives of the Lagrangian with respect to velocity must exist and be non-zero or we can't even define momentum. Not only that, we need to be able to relate changes in momentum to the ones in position and velocity: the transformation must be differentiable, the Lagrangian is twice differentiable. Then we must be able to express the Hamiltonian as a function of position and momentum. To be able to do that, we must be able to write the velocity in terms of position and momentum: \eqref{MomentumFromLagrangian} must be invertible at every point. This means that the  Jacobian $\left| \dfrac{\partial p_i}{\partial v^j} \right| = \left| \dfrac{\partial^2 L}{\partial v^i \partial v^j} \right| \neq 0$, which is the Hessian of the Lagrangian over velocity, must be non-singular.
+
+But for the minimization of the action to be locally well defined, as we saw in a previous post, the Lagrangian must be convex in $v^i$. This means that the Jacobian of the transformation between velocity and momentum is positive at every point: we can write the Hamiltonian. So each twice differentiable Lagrangian that admits unique solutions also admits a corresponding Hamiltonian. Each Lagrangian system is also a Hamiltonian system.
+
+The fact that the Lagrangian is convex will also mean that the Hamiltonian will be convex as well: this is a property of the Legendre transformation \eqref{HamiltonianFromLagrangian} that provides the link between them. So the question is: are all Hamiltonian convex?
+
+\section{Not all Hamiltonian systems are Lagrangian}
+
+Let's refresh our math again. We have a Hamiltonian
+\begin{equation}
+\label{Hamiltonian}
+H(x^i, p_i)
+\end{equation}
+and the equations of motion
+\begin{equation}
+\begin{aligned}
+\frac{dx}{dt} &= \frac{\partial H}{\partial p} \\
+\frac{dp}{dt} &= - \frac{\partial H}{\partial x}
+\end{aligned}
+\label{HamiltonEquations}
+\end{equation}
+We assume the Hamiltonian to be twice differentiable: this allows phase space volumes to remain well defined during the evolution and, therefore, densities over phase space.
+
+Under what conditions does this set of equations have a unique solution?
+
+This is a set of ordinary differential equations so the Picard Lindelöf theorem applies: if the right side is Lipschitz continuous then the solution exists and it is unique. But the right side are just the derivatives of $H$, which are differentiable because we assumed $H$ is twice differentiable. All differentiable functions are Lipschitz continuous therefore if $H$ is twice differentiable the initial value problem is always defined.
+
+This means: the Hamiltonian does not have to be convex. In fact, we can set the Hamiltonian to be zero (i.e. $H=0$): we simply get $x(t)=x_0$ and $p(t)=p_0$. Contrast this with setting the Lagrangian to zero. The action for all paths would be equal to $0$, all paths minimize it: there is no unique solution.
+
+\section{Conclusion}
+
+All Lagrangian systems can be reformulated as Hamiltonian systems while not all Hamiltonian systems can be reformulated as Lagrangian systems. This means that Lagrangian systems are a subset of Hamiltonian system. But which one exactly?
+
+It's the one in which the velocity can be expressed as an invertible function of position and momentum (we can always calculate one form the other) and the function is strictly increasing in momentum (a positive increase in momentum always yields a positive increase in velocity and vice-versa). This means that a positive volume in momentum is a positive volume in velocity: positive densities in position and momentum are positive densities in position and velocity. If these conditions are met, the Hamiltonian is convex in momentum and admits a Lagrangian.
+
+An intuitive way to remember this: Lagrangian systems are those Hamiltonian system for which each state can be recognized just by looking at its trajectory. If two states have the same trajectory (e.g. the velocity of a photon is always the same no matter the magnitude of momentum) then the system is not Lagrangian.
+
+\end{document}
