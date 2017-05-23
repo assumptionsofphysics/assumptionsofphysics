@@ -25,13 +25,13 @@ TL;DR Only convex Lagrangians can give unique solutions when the action is minim
 
 This is the kind of post I do mainly for my future self. Sometimes it takes far longer than I would have expected to nail down a detail and I want a record of the solution so that I can take it out of my head but still be able to look at it later.
 
-For a long time, I couldn't quite understand whether Lagrangians must be convex in velocity (or hyper-regular depending on your mathematical training) or it just happened that the ones we are interested in are. Physics textbook always assume, one way or the other, that the Lagrangian is of a particular form which is indeed convex: kinetic energy minus potential energy. But they don't seem to investigate the more general questions. Are all Lagrangians convex? If so, why? What happens if they are not?
+For a long time, I couldn't quite understand whether Lagrangians must be convex in velocity (or hyper-regular depending on your mathematical training) or it just happened that the ones we are interested in are. Physics textbooks always assume, one way or the other, that the Lagrangian is of a particular form which is indeed convex: kinetic energy minus potential energy. But they don't seem to investigate the more general questions. Are all Lagrangians convex? If so, why? What happens if they are not?
 
-The answer is clear cut, as it usually is once one figures out the details. The Lagrangian must be convex or the problem of minimizing the action is not well posed. To understand the gist, let's see what happens when you want to find the minimum of a differentiable function $f(x)$. You first look for stationary points, where $\dfrac{df}{dx} = 0$. Not all these are minimums: they could maximums or inflection points as well. So you look at the second derivative. If it is positive, $\dfrac{d^2f}{dx^2} > 0$, then it is a maximum. If it's zero, you continue until either you get a non-zero odd derivative (not a maximum) or a positive even derivative (a maximum).
+The answer is clear cut, as it usually is once one figures out the details. The Lagrangian must be convex or the problem of minimizing the action is not well posed. To understand the gist, let's see what happens when you want to find the minimum of a differentiable function $f(x)$. You first look for stationary points, where $\dfrac{df}{dx} = 0$. Not all these are minima: they could be maxima or inflection points as well. So you look at the second derivative. If it is positive, $\dfrac{d^2f}{dx^2} > 0$, then it is a minimum. If it's zero, you continue until either you get a non-zero odd derivative (not a minimum) or a positive even derivative (a minimum).
 
-If it's a function of multiple variables, the first derivative is replaced by the gradient $\nabla f \equiv \dfrac{\partial f}{\partial x^i} = 0$; the second derivative is replaced by the Hessian, $\textrm{Hess}(f) \equiv \nabla \nabla f = \left[\frac{d^2f}{dx^i dx^j}\right]$, which must be positive definite, $\frac{d^2f}{dx^i dx^j} x^i x^j > 0$, meaning that the second derivative along any direction is positive and we have a minimum along any direction (i.e. all eigenvalues positive).
+If it's a function of multiple variables, the first derivative is replaced by the gradient $\nabla f \equiv \dfrac{\partial f}{\partial x^i} = 0$; the second derivative is replaced by the Hessian, $\textrm{Hess}(f) \equiv \nabla \nabla f = \left[\frac{\partial^2f}{\partial x^i \partial x^j}\right]$, which must be positive definite, $\frac{\partial^2f}{\partial x^i \partial x^j} x^i x^j > 0$, meaning that the second derivative along any direction is positive and we have a minimum along any direction (i.e. all eigenvalues positive).
 
-To minimize the action, something similar needs to happen. We first want the action to be stationary, $\delta S = 0$. But this is not sufficient: we need to check that we are in an actual maximum. To do that, we look at the second variation and see whether it is positive, $\delta S > 0$. We'll see that this leads to the requirement $\frac{d^2L}{dv^i dv^j} v^i v^j > 0$. Which means the matrix
+To minimize the action, something similar needs to happen. We first want the action to be stationary, $\delta S = 0$. But this is not sufficient: we need to check that we are in an actual minimum. To do that, we look at the second variation and see whether it is positive, $\delta^2 S > 0$. We'll see that this leads to the requirement $\frac{\partial^2L}{\partial v^i \partial v^j} v^i v^j > 0$. Which means the matrix
 \begin{equation}
 \begin{bmatrix}
 \dfrac{\partial^2 L}{\partial v_1^2} & \dfrac{\partial^2 L}{\partial v_1\,\partial v_2} & \cdots & \dfrac{\partial^2 L}{\partial v_1\,\partial v_n} \\[2.2ex]
@@ -43,10 +43,10 @@ To minimize the action, something similar needs to happen. We first want the act
 \end{equation}
 is positive definite everywhere and the Lagrangian is convex.
 
-The reason that only the mixed derivatives with respect to velocity appear is that one can always create arbitrary small variations in position with arbitrarily large variations in velocity. As such, the Lagrangian needs to be convex in velocity or we can always create a variation that reduces the action.
+The reason that only the mixed derivatives with respect to velocity appear is that one can always create arbitrarily small variations in position with arbitrarily large variations in velocity. As such, the Lagrangian needs to be convex in velocity or we can always create a variation that reduces the action.
 
-But before we begin, a rant if I may. Textbooks seem to skimp on these details and most seem to cite results from Galfand and Fomin ``Calculus of Variation" and suggest to look there for details. %http://users.uoa.gr/~pjioannou/mech2/READING/Gelfand_Fomin_Calculus_of_Variations.pdf
-The single degree of freedom was straightforward enough to figure out by myself, but I didn't seem to be able to generalize it to the multidimensional case mainly because $\dfrac{d^2L}{dx^i dv^j}$ is not symmetric. To my surprise, Galfand and Fomin used the same trick I used and simply assumed $\dfrac{d^2L}{dx^i dv^j}$ to be symmetric. And in a footnote they add ``Without this assumption, which is unnecessarily restrictive, equations (54) and (55) become more complicated, but it can be shown that Theorems 1 and 2 remain valid (H. Niemeyer, private communication)." Well, no sh*t Sherlock! The assumption \textbf{is} too restrictive and the math \textbf{does} get more complicated: that's why I couldn't figure it out! So, yeah: all the textbooks that refer to Galfand and Fomin for this they are referring to their private communication! Anyway, I was able to find a way that is simple enough and this is what I present here.
+But before we begin, a rant if I may. Textbooks seem to skimp on these details and most seem to cite results from Galfand and Fomin ``Calculus of Variations" and suggest to look there for details. %http://users.uoa.gr/~pjioannou/mech2/READING/Gelfand_Fomin_Calculus_of_Variations.pdf
+The single degree of freedom was straightforward enough to figure out by myself, but I didn't seem to be able to generalize it to the multidimensional case mainly because $\dfrac{\partial^2L}{\partial x^i \partial v^j}$ is not symmetric. To my surprise, Galfand and Fomin used the same trick I used and simply assumed $\dfrac{\partial^2L}{\partial x^i \partial v^j}$ to be symmetric. And in a footnote they add, ``Without this assumption, which is unnecessarily restrictive, equations (54) and (55) become more complicated, but it can be shown that Theorems 1 and 2 remain valid (H. Niemeyer, private communication)." Well, no sh*t Sherlock! The assumption \textbf{is} too restrictive and the math \textbf{does} get more complicated: that's why I couldn't figure it out! So, yeah: all the textbooks that refer to Galfand and Fomin for this are referring to their private communication! Anyway, I was able to find a way that is simple enough and this is what I present here.
 
 \section{Lagrangians must be convex}
 
@@ -84,7 +84,7 @@ The first element in the equation is the matrix we saw in \eqref{lagHessian}. Fo
 \left|\frac{\partial^2 L}{\partial v^i \partial v^j}\right| \neq 0
 \end{equation}
 
-To be sure that the action at a minimum (e.g. not maximum or at a saddle point) we must make sure that variations can only produce greater values. We want to make sure, then, that the second variation cannot create a negative change. That is:
+To be sure that the action is at a minimum (e.g. not a maximum or at a saddle point) we must make sure that variations can only produce greater values. We want to make sure, then, that the second variation cannot create a negative change. That is:
 \begin{equation}
 \delta^2 S \geq 0
 \end{equation}
@@ -96,7 +96,7 @@ We have:
 \label{secvar}
 \end{align}
 
-This has to be greater or equal to zero for any variation. In particular we consider this family of variations: oscillation of $\hat{n}$ cycles between two instants $\hat{t}_0$ and $\hat{t}_1$ along the direction given by the vector with components $\hat{x}^i$. For example, $3$ oscillation from $1.2s$ and $1.3s$ along the $x^1$ direction. The variation can be written as:
+This has to be greater or equal to zero for any variation. In particular we consider this family of variations: oscillation of $\hat{n}$ cycles between two instants $\hat{t}_0$ and $\hat{t}_1$ along the direction given by the vector with components $\hat{x}^i$. For example, $3$ oscillations from $1.2$ s and $1.3$ s along the $x^1$ direction. The variation can be written as:
 \begin{equation}
 \label{posvar}
 \delta x^i = \left\{
@@ -116,14 +116,14 @@ Note that the change for the velocity:
 \end{array}
 \right.
 \end{equation}
-depends linearly on $\hat{n}$. As we increase the number of oscillations in the same interval, the velocity at which those oscillations are preformed increases. That is: even if the change in position remains bounded, the change in velocity can be made arbitrarily large.  If we substitute \eqref{posvar} and \eqref{velvar} into \eqref{secvar} we have:
+depends linearly on $\hat{n}$. As we increase the number of oscillations in the same interval, the velocity at which those oscillations are performed increases. That is: even if the change in position remains bounded, the change in velocity can be made arbitrarily large.  If we substitute \eqref{posvar} and \eqref{velvar} into \eqref{secvar} we have:
 \begin{align*}
 \delta^2 S &= \int_{\hat{t}_0}^{\hat{t}_1} \left[ \frac{\partial^2 L}{\partial x^i\partial x^j} \hat{x}^i \hat{x}^j \sin^2\left(\frac{2\pi \hat{n}}{\hat{t}_1 - \hat{t}_0} (t-\hat{t}_0)\right) \right. \\
 & + \left. 2 \frac{\partial^2 L}{\partial x^i\partial v^j} \hat{x}^i \hat{x}^j \frac{2\pi \hat{n}}{\hat{t}_1 - \hat{t}_0} \sin\left(\frac{2\pi \hat{n}}{\hat{t}_1 - \hat{t}_0} (t-\hat{t}_0)\right) \cos\left(\frac{2\pi \hat{n}}{\hat{t}_1 - \hat{t}_0} (t-\hat{t}_0)\right) \right. \\
 & + \left.  \frac{\partial^2 L}{\partial v^i\partial v^j} \hat{x}^i \hat{x}^j \frac{4\pi^2 \hat{n}^2}{(\hat{t}_1 - \hat{t}_0)^2} \cos^2\left(\frac{2\pi \hat{n}}{\hat{t}_1 - \hat{t}_0} (t-\hat{t}_0)\right) \right]dt > 0
 \end{align*}
 
-The integral is now restricted only where the variation is non-zero. As $\hat{n}$ increases, the third term is the one that dominates: it increases as $\hat{n}^2$. The third term, then, cannot be negative as the variation would net a negative contribution to the action: the path would not be minimizing the action. We have:
+The integral is now restricted only where the variation is non-zero. As $\hat{n}$ increases, the third term is the one that dominates: it increases as $\hat{n}^2$. The third term, then, cannot be negative as the variation would get a negative contribution to the action: the path would not be minimizing the action. We have:
 \begin{equation}
 \int_{\hat{t}_0}^{\hat{t}_1} \frac{\partial^2 L}{\partial v^i\partial v^j} \hat{x}^i \hat{x}^j \frac{4\pi^2 \hat{n}^2}{(\hat{t}_1 - \hat{t}_0)^2} \cos^2\left(\frac{2\pi \hat{n}}{\hat{t}_1 - \hat{t}_0} (t-\hat{t}_0)\right) dt \geq 0
 \end{equation}
@@ -142,9 +142,9 @@ is positive definite. Since we assumed the Lagrangian to be twice differentiable
 
 \section{Conclusion}
 
-As we have seen, the convexity of the Lagrangian is a constraint that is necessary for the existence of the solution of the minimization problem. Essentially: a non convex Lagrangian is not a well posed problem. Also note that this is just a necessary condition: it is not sufficient.
+As we have seen, the convexity of the Lagrangian is a constraint that is necessary for the existence of the solution of the minimization problem. Essentially: a non-convex Lagrangian is not a well posed problem. Also note that this is just a necessary condition: it is not sufficient.
 
-Consider a free particle on a sphere. If you take to points, the trajectory that minimizes the action is the shortest arc traveled at constant speed. Now take two opposite points: all arcs are of the same length, all of them will give the same action. There is no single minimum. The convexity of the Lagrangian is a local condition. One still needs to make sure that the global problem is solvable.
+Consider a free particle on a sphere. If you take two points, the trajectory that minimizes the action is the shortest arc traveled at constant speed. Now take two opposite points: all arcs are of the same length, all of them will give the same action. There is no single minimum. The convexity of the Lagrangian is a local condition. One still needs to make sure that the global problem is solvable.
 
 But it is enough to make the Euler-Lagrange equations solvable. That is: given initial position and velocity on a sphere, we can calculate the trajectory. For this reason, I am not convinced the global minimization problem is of physical significance. I do think the local minimization problem is, though. But this is a topic for another time.
 
