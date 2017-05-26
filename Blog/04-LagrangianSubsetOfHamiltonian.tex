@@ -21,11 +21,11 @@
 	
 \section{Lagrangian mechanics is a subset of Hamiltonian mechanics}
 
-TL;DR Lagrangians must be convex while Hamiltonians may not. Lagrangian systems are Hamiltonian systems where the momentum is a function $p=p(x,v)$ of position and velocity, strictly increasing with respect to velocity.
+TL;DR Lagrangians must be convex while Hamiltonians may not. Lagrangian systems are Hamiltonian systems where the momentum is a function $p=p(x,v)$ strictly increasing with respect to velocity (i.e. an increase in momentum yields an increase in velocity).
 
 In a previous post we saw how the photon, as a particle, is a Hamiltonian system but not a Lagrangian system, which shows how the two concepts are not equivalent. So, what is the relationship between Hamiltonian and Lagrangian mechanics? How do they overlap?
 
-We'll see that all the Lagrangians that lead to solvable equations of motion admit a Hamiltonian (i.e. they must be convex/hyper-regular) but not all Hamiltonians that lead to solvable equations of motions admit a Lagrangian (i.e. they may not be convex/hyper-regular). This means that every Lagrangian system is also a Hamiltonian system, but not vice-versa.
+What happens is that that all the Lagrangians that lead to solvable equations of motion admit a Hamiltonian (i.e. they must be convex/hyper-regular) but not all Hamiltonians that lead to solvable equations of motions admit a Lagrangian (i.e. they may not be convex/hyper-regular). This means that every Lagrangian system is also a Hamiltonian system, but not vice-versa.
 
 
 \section{Lagrangians systems are Hamiltonian}
@@ -74,9 +74,9 @@ We assume the Hamiltonian to be twice differentiable: this allows phase space vo
 
 Under what conditions does this set of equations have a unique solution?
 
-This is a set of ordinary differential equations so the Picard Lindelöf theorem applies: if the right side is Lipschitz continuous then the solution exists and it is unique. But the right side are just the derivatives of $H$, which are differentiable because we assumed $H$ is twice differentiable. All differentiable functions are Lipschitz continuous therefore if $H$ is twice differentiable the initial value problem is always defined.
+This is a set of ordinary differential equations so the Picard Lindelöf theorem applies: if the right side is Lipschitz continuous then the solution exists and it is unique. But the right side are just the derivatives of $H$, which are differentiable because we assumed $H$ is twice differentiable. All differentiable functions are Lipschitz continuous therefore if $H$ is twice differentiable the equations have a unique solution.
 
-This means: the Hamiltonian does not have to be convex. In fact, we can set the Hamiltonian to be zero (i.e. $H=0$): we simply get $x(t)=x_0$ and $p(t)=p_0$. Contrast this with setting the Lagrangian to zero. The action for all paths would be equal to $0$, all paths minimize it: there is no unique solution.
+This means: the Hamiltonian does not have to be convex. In fact, we can set the Hamiltonian to be zero (i.e. $H=0$): we simply get $x(t)=x_0$ and $p(t)=p_0$. The Legendre transformation would give a zero Lagrangian (i.e. $L=0$). The action for all paths would be equal to $0$, all paths minimize it: there is no unique solution.
 
 \section{Conclusion}
 
@@ -84,6 +84,6 @@ All Lagrangian systems can be reformulated as Hamiltonian systems while not all 
 
 It's the one in which the velocity can be expressed as an invertible function of position and momentum (we can always calculate one form the other) and the function is strictly increasing in momentum (a positive increase in momentum always yields a positive increase in velocity and vice-versa). This means that a positive volume in momentum is a positive volume in velocity: positive densities in position and momentum are positive densities in position and velocity. If these conditions are met, the Hamiltonian is convex in momentum and admits a Lagrangian.
 
-An intuitive way to remember this: Lagrangian systems are those Hamiltonian system for which each state can be recognized just by looking at its trajectory. If two states have the same trajectory (e.g. the velocity of a photon is always the same no matter the magnitude of momentum) then the system is not Lagrangian.
+An intuitive way to remember this: Lagrangian systems are those Hamiltonian system for which each state can be recognized just by looking at its trajectory. If two different states have the same trajectory (e.g. the velocity of a photon is always the same no matter the magnitude of momentum) then the system is not Lagrangian.
 
 \end{document}
