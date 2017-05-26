@@ -22,9 +22,9 @@
 	
 \section{Classical mechanics in one post}
 
-TL;DR Classical mechanics describes a divergence free flow of states. The Hamiltonian is the time component of its vector potential. The Lagrangian is the scalar product between the flow and the vector potential.
+TL;DR Classical mechanics describes a divergence-free flow of states. The Hamiltonian is the time component of its vector potential. The Lagrangian is the scalar product between the flow and the vector potential.
 
-For the longest time I didn't know what the Lagrangian was and why its integral is minimized along trajectories. A couple of months ago I went through TODO and found some insights in differential geometry that got me going and finally worked out a satisfactory answer. I unpacked that understanding in a way that only needs differential calculus, so that it's more understandable and gives direct physics intuition. If you have studied magnetostatic (i.e. the magnetic field and its vector potential) you should be able to fully follow this.
+For the longest time I didn't know what the Lagrangian was and why its integral is minimized along trajectories. A couple of months ago I went through Mathematical Methods of Classical Mechanics by V.I. Arnold and found some insights in differential geometry that got me going and finally worked out a satisfactory answer. I unpacked that understanding in a way that only needs differential calculus, so that it's more understandable and gives direct physics intuition. If you have studied magnetostatics (i.e. the magnetic field and its vector potential) you should be able to fully follow this.
 
 \section{Deterministic and reversible flow}
 
@@ -40,23 +40,23 @@ The evolution of a state in time is represented by a line in this space. If we h
 \end{equation}
  on the extended phase space, which we call flow. $e_x$, $e_p$ and $e_t$ are the unit vectors along each direction, which are multiplied by the respective components of $\vec{S}$.
 
-Note that, since we are using time both as a coordinate and as the parametrization of the curve, the time component of $\vec{S}$ is unitary: $S^t = \dfrac{dt}{dt} = 1$. Also, we are going to assume that the surface integral of $\vec{S}$ on a closed curve is zero: the density of states that flows in is equal to the density of states that flows out. In this sense, I call this deterministic and reversible flow. Well, there are a dozen of other reasons to call it that, but we will see them some other time.
+Note that, since we are using time both as a coordinate and as the parametrization of the curve, the time component of $\vec{S}$ is unitary: $S^t = \dfrac{dt}{dt} = 1$. Also, we are going to assume that the surface integral of $\vec{S}$ on a closed curve is zero: the density of states that flows in is equal to the density of states that flows out. In this sense, I call this deterministic and reversible flow. Well, there are a dozen other reasons to call it that, but we will see them some other time.
 
 If you remember your vector calculus, you know that we can define a vector potential for a divergence free field. We therefore define
 \begin{equation}
 \begin{aligned}
-\vec{\theta} &= p e_x + 0 e_p - H(x,p,t) e_t \\ 
+\vec{\theta} &= p \, e_x + 0 \, e_p - H(x,p,t) \, e_t \\ 
 &= \theta^x e_x + \theta^p e_p + \theta^t e_t 
 \end{aligned}
 \label{flow}
 \end{equation}
-This is actually the opposite of vector potential: we need an annoying minus sign to match with existing conventions. We have
+This is actually the opposite of the vector potential: we need an annoying minus sign to match with existing conventions. We have
 \begin{equation}
 \begin{aligned}
-\vec{S} &= \mathrm{curl}(-\theta) = - \nabla \times \vec{\theta} \\
+\vec{S} &= \mathrm{curl}(-\vec{\theta}) = - \nabla \times \vec{\theta} \\
 S^x &= \dfrac{dx}{dt} = - \partial_p \theta^t + \partial_t \theta^p = \partial_p H + \partial_t 0 = \partial_p H \\
-S^p &= \dfrac{dp}{dt} = - \partial_t \theta^q + \partial_q \theta^t = \partial_t p - \partial_q H = - \partial_q H \\
-S^t &= \dfrac{dt}{dt} = - \partial_q \theta^p + \partial_p \theta^q = - \partial_q 0 + \partial_p p = 1
+S^p &= \dfrac{dp}{dt} = - \partial_t \theta^x + \partial_x \theta^t = -\partial_t p - \partial_x H = - \partial_x H \\
+S^t &= \dfrac{dt}{dt} = - \partial_x \theta^p + \partial_p \theta^x = - \partial_x 0 + \partial_p p = 1
 \end{aligned}
 \label{HamiltonEquations}
 \end{equation}
@@ -65,7 +65,7 @@ We recognize Hamilton's equations. Geometrically, the Hamiltonian is the time co
 
 \section{Line integral of the vector potential}
 
-The line integral of a vector field $\vec{\theta}$ has an interesting, yet little known property: it is stationary stationary along the field lines $\gamma$ of the curl. That is: if we make a small change in the line $\gamma$, the line integral $\int \vec{\theta} \cdot d\vec{\gamma}$ does not change. In other words:
+The line integral of a vector field $\vec{\theta}$ has an interesting, yet little known property: it is stationary along the field lines $\gamma$ of the curl. That is: if we make a small change in the line $\gamma$, the line integral $\int \vec{\theta} \cdot d\vec{\gamma}$ does not change. In other words:
 
 \begin{equation}
 \delta \int \vec{\theta} \cdot d\vec{\gamma} = 0
@@ -109,13 +109,19 @@ The line integral of a vector field $\vec{\theta}$ has an interesting, yet littl
 \draw [-latex](-1.5,-1.5) -- (-1.2,-1.1);
 \draw [-latex](-2.5,-1.5) -- (-2.2,-1.1);
 
-\node at (-1.5, 1.25) {$\vec{S} = -\,$curl $\vec{\theta}$};
+\node at (-1.5, 1.25) {$\nabla \times \vec{\theta}$};
 
 
 \end{tikzpicture}
 \end{figure}
 
-A way to intuitively understand this is the following. Take a field line $\gamma$, a line that is always tangent to the vector field $\vec{S}$. Between two point, make a small change to it $\gamma'$. Take $\Sigma$ to be a surface enclosed by these lines. The line integral of $-\vec{\theta}$ over its contour is given by the flow of its curl $\vec{S}$ through $\Sigma$. If the variation is small enough, the surface $\Sigma$ is tangent to the vector field $\vec{S}$ since $\gamma$ is always tangent to it. The line integral of $-\vec{\theta}$ over its contour is zero. This means that the line integral of $-\vec{\theta}$ along $\gamma$ is equal to the one along $\gamma'$: small variations of $\gamma$ do not change the line integral.
+A way to intuitively understand this is the following. Take a field line $\gamma$ of the curl, a line that is tangent $\nabla \times \vec{\theta}$ at every point. Between two points, make a small change to it $\gamma'$. Take $\Sigma$ to be a surface enclosed by these lines. The line integral of $\vec{\theta}$ over its contour $\partial \Sigma$ is given by the flow of its curl through $\Sigma$ by Stokes theorem.
+
+\begin{equation}
+\int_{\partial \Sigma} \vec{\theta} \cdot d\vec{\gamma} = \int_{\Sigma} \nabla \times \vec{\theta}  \cdot d\vec{\sigma}
+\end{equation}
+
+But remember: $\gamma$ is always tangent to $\nabla \times \vec{\theta}$ by construction. If the variation is small enough, the surface $\Sigma$ is tangent to $\nabla \times \vec{\theta}$ as well. The line integral of $\vec{\theta}$ over the contour $\partial \Sigma$ is zero. This means that the line integral of $\vec{\theta}$ along $\gamma$ is equal to the one along $\gamma'$: small variations of $\gamma$ do not change the line integral.
 
 As $-\vec{\theta}$ is the vector potential for the flow $\vec{S}$, we can write
 \begin{equation}
@@ -138,6 +144,6 @@ This clarifies another important aspect: the conjugate momentum $p$, the Hamilto
 
 The other interesting part is that the Hamiltonian is the time component of the vector potential. Therefore, under a coordinate transformation, it must change like the time component of a covector. This is one of the features of special relativity and we have already found it without practically doing any work.
 
-The last bit that I want to highlight is that the minimization of the path integral in terms of the Lagrangian is only possible if the Lagrangian can be expressed in terms of position and velocity. But the minimization in terms of the line integral of the vector potential is \textbf{always} possible. So the insight that we gathered is more general and it shows how classical mechanics is better understood in the extended phase space.
+The last bit that I want to highlight is that the minimization of the path integral in terms of the Lagrangian is only possible if $p \frac{dx}{dt} - H$ can be expressed in terms of position and velocity. But the minimization in terms of position and momentum is \textbf{always} possible. So the insight that we gathered is more general and it shows how classical mechanics is better understood in the extended phase space.
 
 \end{document}
