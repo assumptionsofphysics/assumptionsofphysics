@@ -24,7 +24,7 @@
 
 TL;DR Classical mechanics describes a divergence-free flow of states. The Hamiltonian is the time component of its vector potential. The Lagrangian is the scalar product between the flow and the vector potential.
 
-For the longest time I didn't know what the Lagrangian was and why its integral is minimized along trajectories. A couple of months ago I went through Mathematical Methods of Classical Mechanics by V.I. Arnold and found some insights in differential geometry that got me going and finally worked out a satisfactory answer. I unpacked that understanding in a way that only needs differential calculus, so that it's more understandable and gives direct physics intuition. If you have studied magnetostatics (i.e. the magnetic field and its vector potential) you should be able to fully follow this.
+For the longest time I didn't know what the Lagrangian was and why its integral is minimized along trajectories. A couple of months ago I went through Mathematical Methods of Classical Mechanics by V.I. Arnold and found some insights into differential geometry that got me going and finally worked out a satisfactory answer. I unpacked that understanding in a way that only needs differential calculus, so that it's more understandable and gives direct physics intuition. If you have studied magnetostatics (i.e. the magnetic field and its vector potential) you should be able to fully follow this.
 
 \section{Deterministic and reversible flow}
 
@@ -42,7 +42,7 @@ The evolution of a state in time is represented by a line in this space. If we h
 
 Note that, since we are using time both as a coordinate and as the parametrization of the curve, the time component of $\vec{S}$ is unitary: $S^t = \dfrac{dt}{dt} = 1$. Also, we are going to assume that the surface integral of $\vec{S}$ on a closed curve is zero: the density of states that flows in is equal to the density of states that flows out. In this sense, I call this deterministic and reversible flow. Well, there are a dozen other reasons to call it that, but we will see them some other time.
 
-If you remember your vector calculus, you know that we can define a vector potential for a divergence free field. We therefore define
+If you remember your vector calculus, you know that we can define a vector potential for a divergence-free field. We therefore define
 \begin{equation}
 \begin{aligned}
 \vec{\theta} &= p \, e_x + 0 \, e_p - H(x,p,t) \, e_t \\ 
@@ -115,7 +115,7 @@ The line integral of a vector field $\vec{\theta}$ has an interesting, yet littl
 \end{tikzpicture}
 \end{figure}
 
-A way to intuitively understand this is the following. Take a field line $\gamma$ of the curl, a line that is tangent $\nabla \times \vec{\theta}$ at every point. Between two points, make a small change to it $\gamma'$. Take $\Sigma$ to be a surface enclosed by these lines. The line integral of $\vec{\theta}$ over its contour $\partial \Sigma$ is given by the flow of its curl through $\Sigma$ by Stokes theorem.
+A way to intuitively understand this is the following. Take a field line $\gamma$ of the curl, a line that is tangent to $\nabla \times \vec{\theta}$ at every point. Between two points, make a small change to it $\gamma'$. Take $\Sigma$ to be a surface enclosed by these lines. The line integral of $\vec{\theta}$ over its contour $\partial \Sigma$ is given by the flow of its curl through $\Sigma$ by the Stokes theorem.
 
 \begin{equation}
 \int_{\partial \Sigma} \vec{\theta} \cdot d\vec{\gamma} = \int_{\Sigma} \nabla \times \vec{\theta}  \cdot d\vec{\sigma}

@@ -24,13 +24,13 @@
 
 TL;DR .
 
-In this post I want to look a bit more closely at the concept of mass. There are two sides to it: inertial mass (related to $F=ma$, the resistance of the body to acceleration) and gravitational mass (related to how much an object pushes or is pushed by other objects through gravity). I will only talk about the first type as I still don't quite understand what the second is and why should it be the same thing as the first. Sometimes I feel like I am staring right at the answer but I still can't see. Anyways...
+In this post I want to look a bit more closely at the concept of mass. We are mainly going to talk about inertial mass (the one used in $F=ma$) as I still don't quite understand gravitational mass (the one related to gravitational forces and space-time curvature).
 
-If you open a physics textbook, inertial mass is defined as the resistance of an object to being accelerated. That is, $F=ma$: if I apply the same force, the more massive object is harder to accelerate. Now, that does not quite work.
+If you open a physics textbook, inertial mass is defined as the resistance of an object to being accelerated. That is, $F=ma$: if I apply the same force, the more massive object is harder to accelerate. Now, that does not quite work in general.
 
-According to this notion the lesser the mass, the easier is to change the velocity of a body. Now consider the photon: it has no mass, so it should be very very easy to change it's velocity. An object of infinite mass, well, that's infinitely hard... but one that is without mass, piece of cake! Alas, the photon velocity is $c$ and cannot be changed: you cannot accelerate (or decelerate) a photon. So, that understanding of inertial mass does not quite hold.
+According to this notion the lesser the mass, the easier is to change the velocity of a body. Now consider the photon: its speed is the constant $c$ and cannot be changed. In other words: the photon is infinitely hard to accelerate. It should have infinite mass, right? Actually no: it has zero mass. So, that understanding of inertial mass does not quite hold.
 
-Is there a better one? I think so and here is the gist. A range of velocity $\Delta v$ also represents a range of possible states, all the ones corresponding to the different initial conditions for velocity. But, the count of these possible states is not the same: it is proportional to the mass. That is $\dfrac{\Delta p}{\Delta v} = m$ tells us how many possible states correspond to the range of velocity. A more massive body, then, is harder to accelerate because it has to go through more states to achieve the same change in velocity. A less massive body, on the other hand, is easier to accelerate because it has fewer states to go through. A massless body, instead, cannot change velocity: no change in state $\Delta p$ will ever correspond to a change $\Delta v$: an interval of velocity is not a valid range of initial conditions for a massless particle.
+Is there a better one? I think so and here is the gist. A small range of velocity $dv$ defines a set of possible trajectories for a particle: the ones corresponding to the different initial conditions for velocity. This will correspond to a set of possible states defined by a range of momentum $dp$. The ratio between the count of possible states and the count of possible trajectories, $\dfrac{\partial p}{\partial v} = m$, tells us how many possible states are there in each unit of velocity. A more massive body, then, is harder to accelerate because it has to go through more states to achieve the same change in velocity. A less massive body, on the other hand, is easier to accelerate because it has fewer states to go through. For a massless body, instead, a range of velocity will not correspond to a range of possible states. $p$ is not a function of $v$ and therefore a change in state (i.e. momentum) will not correspond to a change in trajectory (i.e. velocity).
 
 It's a bit of a different perspective, that I think maps better to both the math and the physics, but let's go through some details to better understand how it works.
 
@@ -43,12 +43,12 @@ We can, instead, use the following:
 \label{simpleMass}
 \frac{\partial p}{\partial v} = m
 \end{equation}
-This works for a massive charged particle, $\frac{\partial}{\partial v} (mv + qA) = m$, and for a the photon, $\frac{\partial}{\partial v} (\hbar k) = 0$ since the momentum does not depend on the velocity. In the four-dimensional case we have:
+This works for a massive charged particle, $\frac{\partial}{\partial v} (mv + qA) = m$, and for a the photon, $\frac{\partial}{\partial v} (\hbar k) = 0$ since the momentum does not depend on the velocity. For those familiar with relativity, in the four-dimensional case we have:
 \begin{equation}
 \label{advancedMass}
 \frac{\partial p_\alpha}{\partial u^\beta} = m \, g_{\alpha \beta}
 \end{equation}
-which is interesting because it already tie in the metric tensor, i.e. the geometry of space time, in the expression. So, maybe the link between inertial and gravitational mass is already staring at me in the face... but I still don't get it. 
+which is interesting because it already ties in the metric tensor, i.e. the geometry of space time, in the expression. So, maybe the link between inertial and gravitational mass is already staring at me in the face... but I still don't get it. 
 
 At any rate, mathematically we can define mass as the constant that relates changes in velocity to changes in momentum. Now, what does that mean physically?
 
@@ -69,7 +69,7 @@ In general, suppose that I have one quantity $\hat{x}=\hat{x}(x)$ that is a line
 \end{equation}
 This also gives us another insight. The partial derivative can be seen as the coefficient that transforms the count of possibilities from one unit (or quantity) to another. Relationships between different variables, then, must be differentiable if we want to map possibilities between them.
 
-This is all very interesting: but does it have to do with mass?
+This is all very interesting: but what does it have to do with mass?
 
 \section{Counting states and trajectories}
 
