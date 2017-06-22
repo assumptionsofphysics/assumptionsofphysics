@@ -22,7 +22,7 @@
 	
 \section{What is mass?}
 
-TL;DR .
+TL;DR The inertial mass tells us how many states are there within a given range of trajectories. More massive bodies are harder to accelerate because they have to go through more states to reach the same change in trajectory.
 
 In this post I want to look a bit more closely at the concept of mass. We are mainly going to talk about inertial mass (the one used in $F=ma$) as I still don't quite understand gravitational mass (the one related to gravitational forces and space-time curvature).
 
@@ -32,37 +32,37 @@ According to this notion the lesser the mass, the easier is to change the veloci
 
 Is there a better one? I think so and here is the gist. A small range of velocity $dv$ defines a set of possible trajectories for a particle: the ones corresponding to the different initial conditions for velocity. This will correspond to a set of possible states defined by a range of momentum $dp$. The ratio between the count of possible states and the count of possible trajectories, $\dfrac{\partial p}{\partial v} = m$, tells us how many possible states are there in each unit of velocity. A more massive body, then, is harder to accelerate because it has to go through more states to achieve the same change in velocity. A less massive body, on the other hand, is easier to accelerate because it has fewer states to go through. For a massless body, instead, a range of velocity will not correspond to a range of possible states. $p$ is not a function of $v$ and therefore a change in state (i.e. momentum) will not correspond to a change in trajectory (i.e. velocity).
 
-It's a bit of a different perspective, that I think maps better to both the math and the physics, but let's go through some details to better understand how it works.
+It's a bit of a different perspective, which I think maps better to both the math and the physics, but let's go through some details to better understand how it works.
 
 \section{Getting the math right}
 
-The first order of business if to find a mathematical definition that works in all cases. $F=ma$ does not because massless particles do not accelerate: they travel at the same constant speed. $p=mv$ also does not work: the momentum of a massless particle is not zero and for a charged particle $p=mv + qA$ where $q$ is the charge and $A$ the vector potential.
+The first order of business if to find a mathematical definition that works in all cases. $F=ma$ does not because massless particles do not accelerate: they travel at the same constant speed. $p=mv$ does not work either: the momentum of a massless particle is not zero and for a charged particle $p=mv + qA$ where $q$ is the charge and $A$ the vector potential.
 
 We can, instead, use the following:
 \begin{equation}
 \label{simpleMass}
 \frac{\partial p}{\partial v} = m
 \end{equation}
-This works for a massive charged particle, $\frac{\partial}{\partial v} (mv + qA) = m$, and for a the photon, $\frac{\partial}{\partial v} (\hbar k) = 0$ since the momentum does not depend on the velocity. For those familiar with relativity, in the four-dimensional case we have:
+This works for a massive charged particle, $\frac{\partial}{\partial v} (mv + qA) = m$, and for a photon, $\frac{\partial}{\partial v} (\hbar k) = 0$ since the momentum does not depend on the velocity. For those familiar with relativity, in the four-dimensional case we have:
 \begin{equation}
 \label{advancedMass}
 \frac{\partial p_\alpha}{\partial u^\beta} = m \, g_{\alpha \beta}
 \end{equation}
-which is interesting because it already ties in the metric tensor, i.e. the geometry of space time, in the expression. So, maybe the link between inertial and gravitational mass is already staring at me in the face... but I still don't get it. 
+which is interesting because it already ties in the metric tensor, i.e. the geometry of space-time, in the expression. So, maybe the link between inertial and gravitational mass is already staring me in the face... but I still don't get it. 
 
 At any rate, mathematically we can define mass as the constant that relates changes in velocity to changes in momentum. Now, what does that mean physically?
 
 \section{Counting possibilities}
 
-Let's go a few step backwards and ask some seemingly unrelated questions. Suppose I have a ball and five empty boxes. I want to put the ball in one of the boxes. How many possibilities do I have? The answer is simple: five.
+Let's go a few steps backwards and ask some seemingly unrelated questions. Suppose I have a ball and five empty boxes. I want to put the ball in one of the boxes. How many possibilities do I have? The answer is simple: five.
 
-If I get any set of discrete choices, the number of possibilities is always equal to the number of discrete choices. But what happens in the continuous case? Suppose I have a ball and a range of $1$ m. How many possibilities are there? The obvious answer would be: infinite. There are two problems with the answer: it leads to physical absurds and it is not mathematically consistent with other definitions.
+If I get any set of discrete choices, the number of possibilities is always equal to the number of discrete choices. But what happens in the continuous case? Suppose I have a ball and a range of $1$ m. How many possibilities are there? The obvious answer would be: infinite. There are two problems with the answer: it leads to physical absurdities and it is not mathematically consistent with other definitions.
 
-Physically, suppose I increase the range to $1$ Km: that is also an infinite many possibilities. So, I have as many possibilities in $1$ m than $1$ Km. That does not sound right: I should have $1000$ more. Mathematically, the topology that we ascribe to continuous space (i.e. manifolds) is the open set topology: this means that points are not topologically distinguishable. If we can't distinguish points, we also cannot count them. (More technically, the choice of the topology already sets the measure through the Riesz representation theorem.)
+Physically, suppose I increase the range to $1$ Km: that is also infinitely many possibilities. So, I have as many possibilities in $1$ m as $1$ Km. That does not sound right: I should have $1000$ times more. If you happen to have studied topology, the topology that we ascribe to continuous space (i.e.~manifolds) is the open set topology. This means that isolated points are of measure zero (not one) and finite ranges have finite measure (not infinite). That is: the choice of the topology already sets the measure through the Riesz representation theorem.
 
-So, how many possibilities are there in a range of $1$ m? $1$ m worth. How many possibilities are there in a range of $1$ Km? 1000 times more than in $1$ m. This gives an interesting insight: all numeric measurement can be seen as counting possibilities: $1$ Kelvin defines a number of possible temperatures, $1$ Pascal a number of possible pressures and so on. This relates to the importance of linearity in the definition of our unit system and therefore in all of physics: combining two intervals of $1$ meters should give us double the possibilities.
+So, how many possibilities are there in a range of $1$ m? $1$ m worth. How many possibilities are there in a range of $1$ Km? 1000 times more than in $1$ m. This gives an interesting insight: all numeric measurement can be seen as counting possibilities: a range of $1$ Kelvin defines a number of possible temperatures, a range of $1$ Pascal a number of possible pressures and so on. This relates to the importance of linearity in the definition of our unit system and therefore in all of physics: combining two intervals of $1$ meter should give us double the possibilities.
 
-In general, suppose that I have one quantity $\hat{x}=\hat{x}(x)$ that is a linear function of another, how does the count of possibility transform? It is:
+In general, suppose that I have one quantity $\hat{x}=\hat{x}(x)$ that is a linear function of another, how does the count of possibilities transform? It is:
 \begin{equation}
 \label{countTransform}
 \Delta \hat{x} = \frac{\partial \hat{x}}{\partial x} \Delta x
@@ -73,22 +73,22 @@ This is all very interesting: but what does it have to do with mass?
 
 \section{Counting states and trajectories}
 
-For particle mechanics, we have at least two things we may want to count: states and trajectories. States are identified by position and momentum (i.e. the state variables) while trajectories are identified by position and velocity (i.e. the initial conditions). Since position is the same for both, the relationship between momentum and velocity is enough to tell us how the count changes. That is, if we combine \eqref{simpleMass} and \eqref{countTransform} (and skip some mathematical details) we have:
+For particle mechanics, we have at least two things we may want to count: states and trajectories. States are identified by position and momentum (i.e.~the state variables) while trajectories are identified by position and velocity (i.e.~the initial conditions). Since position is the same for both, the relationship between momentum and velocity is enough to tell us how the count changes. That is, if we combine \eqref{simpleMass} and \eqref{countTransform} (and skip some mathematical details) we have:
 \begin{equation}
 \label{stateCountTransform}
 \Delta p = \frac{\partial p}{\partial v} \Delta v = m \Delta v
 \end{equation}
 
-In other words: inertial mass transforms the count of possible trajectories into the count of possible states. A more massive body has fewer trajectories within the same possible states. This makes intuitive sense: a force changes the state of a system, goes through the same possible states, but accelerates different bodies differently depending on the ratio between states and trajectories. This reasoning extends to massless particles, like the photon. If the particle has no mass, momentum and velocity are independent variables. Changes is momentum will not produce any change in velocity.
+In other words: inertial mass transforms the count of possible trajectories into the count of possible states. A more massive body has fewer trajectories within the same possible states. This makes intuitive sense: a force changes the state of a system, goes through the same possible states, but accelerates different bodies differently depending on the ratio between states and trajectories. This reasoning extends to massless particles, like the photon. If the particle has no mass, momentum and velocity are independent variables. Changes in momentum will not produce any change in velocity.
 
-The key here is that the derivative of the inverse is not the derivative of the inverse. In fact if $p$ is not a function of $v$ then $v$ is not a function of $p$: $\dfrac{\partial p}{\partial v} = \dfrac{\partial v}{\partial p} = 0$. In the introduction, in fact, we observed how the photon is impossible to accelerate, which should suggest the mass is infinite. Well, in a way, the mass and its inverse are both zero. It looks like that because what we are really saying is that the magnitude of momentum and velocity are independent variables: looking at the trajectory of a photon tells us nothing about the magnitude of its momentum.
+The key here is that the derivative of the inverse is not the inverse of the derivative. In fact if $p$ is not a function of $v$ then $v$ is not a function of $p$: $\dfrac{\partial p}{\partial v} = \dfrac{\partial v}{\partial p} = 0$. In the introduction, in fact, we observed how the photon is impossible to accelerate, which should suggest the mass is infinite. Well, in a way, the mass and its inverse are both zero. It looks like that because what we are really saying is that the magnitude of momentum and velocity are independent variables: looking at the trajectory of a photon tells us nothing about the magnitude of its momentum.
 
 \section{Conclusion}
 
 We have seen that the inertial mass can be given a more general physical meaning as the constant that relates the count of possible states to the count of possible trajectories. This gives a concept that works in a more general context.
 
-Not everything, though, is nice and neat. In the massless case the velocity and the momentum are not completely independent: the direction is the same. How does that fit into the picture? In \eqref{advancedMass} the metric tensor does come into place: how does the space-time curvature (i.e. gravity) affect the relationship? The same relationship implies that momentum is a linear function of velocity: does it have to be so and why?
+Not everything, though, is nice and neat. In the massless case the velocity and the momentum are not completely independent: the direction is the same. How does that fit into the picture? In \eqref{advancedMass} the metric tensor does come into place: how does the space-time curvature (i.e.~gravity) affect the relationship? The same relationship implies that momentum is a linear function of velocity: does it have to be so and why?
 
-It would make sense if, in some way, the geometry of space-time affects the possibility count of trajectories: gravity would be the "apparent" force that results from such a correction. But that's just speculation: I don't see the math yet. I do hope one day to find answers to these questions and that they will give more insight on why inertial mass and gravitational forces are related. Unfortunately, I can never predict when...
+It would make sense if, in some way, the geometry of space-time affects the possibility count of trajectories: gravity would be the "apparent" force that results from such a correction. I do hope one day to find answers to these questions and that they will give more insight into why inertial mass and gravitational forces are related. Unfortunately, I can never predict when...
 
 \end{document}
