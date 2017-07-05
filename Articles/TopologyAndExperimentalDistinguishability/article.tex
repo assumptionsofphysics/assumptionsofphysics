@@ -1,6 +1,16 @@
 \documentclass[review]{elsarticle}
 
 \usepackage{lineno,hyperref}
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
+
+\theoremstyle{plain}% default 
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{lem}[thm]{Lemma} 
+\newtheorem{prop}[thm]{Proposition} 
+\newtheorem{cor}{Corollary}
+ \theoremstyle{definition} \newtheorem{defn}{Definition}[section]\newtheorem{exmp}{Example}[section]\theoremstyle{remark}\newtheorem*{rem}{Remark}
 \modulolinenumbers[5]
 
 \journal{Topology and its Applications}
@@ -45,11 +55,405 @@ topological spaces \sep other keyword
 
 \section{Experimental observations}
 
+
+\begin{defn}
+	A \textbf{statement} $\mathsf{s}$ is a declarative sentence that is either true or false, as in classical logic.
+\end{defn}
+
+\begin{defn}
+	An \textbf{experimental test} $\mathsf{e}$ is a repeatable procedure that can terminate successfully in a finite amount of time and that can be stopped at any time.
+\end{defn}
+
+TODO: in principle, time can be defined as a monoid. This would prevent circular arguments to some extent.
+
+\begin{defn}
+	An \textbf{experimental observation} is a tuple $\mathsf{o} = \llparenthesis \mathsf{s}, \mathsf{e} \rrparenthesis$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is true if and only if the  experimental test is always successful. The experimental observation is \textbf{verified} if the statement is true.
+\end{defn}
+
+\begin{defn}
+	An \textbf{experimental counter-observation} is a tuple $\mathsf{o}^c= \llbracket \mathsf{s}, \mathsf{e} \rrbracket$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is false if and only if the experimental test is always successful. The experimental counter-observation is \textbf{refuted} if the statement is false.
+\end{defn}
+
+We also define some basic relationships between experimental observations.
+
+\begin{defn}
+	Given two experimental observations $\mathsf{o}_1$ and $\mathsf{o}_2$:
+	\begin{itemize}
+	\item \textbf{implication}: $\mathsf{o}_1 \implies \mathsf{o}_2$ if $\mathsf{o}_2$ is verified whenever $\mathsf{o}_1$ is verified
+	\item \textbf{equivalence}: $\mathsf{o}_1 = \mathsf{o}_2$ if $\mathsf{o}_1 \implies \mathsf{o}_2$ and $\mathsf{o}_2 \implies \mathsf{o}_1$
+	\item \textbf{mutual exclusion}: $\mathsf{o}_1 \asymp \mathsf{o}_2$ ($\mathsf{o}_1$ excludes $\mathsf{o}_2$) if one is not verified whenever the other one is
+	\end{itemize}
+\end{defn}
+TODO: add a symbol for ``not mutually exclusive". I couldn't find the $\asymp$ with a slash through it. 
+
+
+A note on the language: even if $\mathsf{o}_1$ implies $\mathsf{o}_2$ this does not give us a way to verify $\mathsf{o}_2$. There may be cases where the $\mathsf{o}_2$ is verified and $\mathsf{o}_1$ is not. Therefore it is improper to say that one observation verifies another: only experimental tests verify observations.
+
+
+
+
+
+
+We define the following logical operations on experimental observations. Taken as whole, they define the \textbf{algebra of experimental observations}. With each definition, we will prove that the resulting object is an experimental (counter-)observation. 
+
+\begin{defn}
+	The \textbf{negation or logical NOT} of an experimental observation $\mathsf{o}=\llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ is the experimental counter-observation $\neg \mathsf{o}=\llbracket\neg \mathsf{s}, \mathsf{e}\rrbracket$ where the negation of the statement $\mathsf{s}$ can be refuted by the experimental test $\mathsf{e}$.
+\end{defn}
+
+\begin{proof}
+	We show that the negation exists and is well defined. Let $\mathsf{o}=\llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ be an experimental observation. The experimental test $\mathsf{e}$ succeeds if and only if $\mathsf{s}$ is true or, equivalently, if and only if $\neg \mathsf{s}$ is false. So the tuple $\llbracket\neg \mathsf{s}, \mathsf{e}\rrbracket$ forms an experimental counter-observation.
+\end{proof}
+
+\begin{defn}
+	The \textbf{conjunction or logical AND} of a finite collection  of experimental observations $\{\mathsf{o}_i\}_{i=1}^{n}=\{\llparenthesis \mathsf{s}_i, \mathsf{e}_i\rrparenthesis\}_{i=1}^{n}$ is the experimental observation $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ where $\mathsf{s} = \bigwedge\limits_{i=1}^{n} \mathsf{s}_i$ is the conjunction of the respective statements and $\mathsf{e} = \mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is the experimental test that successfully terminates if and only if all $\{\mathsf{e}_i\}_{i=1}^{n}$ successfully terminate.
+\end{defn}
+
+\begin{proof}
+	We show that the conjunction exists and is well defined. Let $\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ be the experimental procedure defined as follows:
+	\begin{enumerate}
+	\item for each $i=1..n$ run the test $\mathsf{e}_i$
+	\item if all tests terminated successfully terminate successfully.
+	\end{enumerate}
+	The experimental procedure so defined terminates successfully if and only if all $\mathsf{e}_i$ terminate successfully. It will do so in finite time as each $\mathsf{e}_i$ succeeds in finite time and there only a finite number of them. Therefore $\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is an experimental test that is successful if and only if all statements $\{\mathsf{s}_i\}_{i=1}^{n}$ are successful. So $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigwedge\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\wedge}(\mathsf{e}_i)\rrparenthesis$ is an experimental observation.
+\end{proof}
+
+\begin{defn}
+	The \textbf{disjunction or logical OR} of a countable (finite or infinite) collection of experimental observations $\{\mathsf{o}_i\}_{i=1}^{\infty}=\{\llparenthesis \mathsf{s}_i, \mathsf{e}_i\rrparenthesis\}_{i=1}^{\infty}$ is the experimental observation $\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i = \llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ where $\mathsf{s} = \bigvee\limits_{i=1}^{\infty} \mathsf{s}_i$ is the disjunction of the respective statements and $\mathsf{e} = \mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ is the experimental test that successfully terminates if and only if at least one experimental test in $\{\mathsf{e}_i\}_{i=1}^{\infty}$ successfully terminates.
+\end{defn}
+
+\begin{proof}
+	We show that the disjunction exists and is well defined. Let $\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ be the experimental procedure defined as follows:
+	\begin{enumerate}
+	\item initialize $n$ to 1
+	\item for each $i=1..n$
+	\begin{enumerate}
+		\item run the test $\mathsf{e}_i$ for $n$ seconds
+		\item if $\mathsf{e}_i$ terminated successfully, terminate successfully
+	\end{enumerate}
+	\item increment $n$ and go to step 2
+	\end{enumerate}
+	Suppose there exists an $i \in \mathbb{Z}^+$ such that $\mathsf{e}_i$ will terminate successfully, then the above procedure will eventually run that test for a time long enough and terminate successfully. It will do so in finite time as it will have run finitely many tests finitely many times each for a finite amount of time. Therefore $\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ is an experimental test that is successful if and only if at least one statement in $\{\mathsf{s}_i\}_{i=1}^{n}$ is successful. So $\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i =\llparenthesis\bigvee\limits_{i=1}^{\infty} \mathsf{s}_i, \mathsf{e}_{\wedge}(\{\mathsf{e}_i\}_{i=1}^{\infty})\rrparenthesis$ is an experimental observation.
+\end{proof}
+
+
+
+For technical reasons, we will need the following: 
+
+\begin{defn}
+The \textbf{empty observation} is any experimental observation of the form $\llparenthesis \mathsf{s}\wedge \neg\mathsf{s},\mathsf{e}\rrparenthesis$. Note that this will always fail. 
+\end{defn}
+
+
+
+\section{Experimental domain}
+
+\begin{defn}
+	An \textbf{generalized experimental domain} is a set of observations closed under finite conjunction and countable disjunction. Any subset that can generate all others via finite conjunction and countable disjunction is called a \textbf{sub-basis} of the domain. A \textbf{basis} is a subset of the observations which can generate all others by countable disjunctions. 
+\end{defn}
+
+Clearly, given a sub-basis one can generate a basis by taking all finite conjunctions of the observations. Note that any infinite sub-basis will generate a basis of the same cardinality. We claim that it is only possible to verify all members of an experimental domain with a countable (sub-)basis even given infinite time. 
+
+\begin{prop}
+Let $\mathcal{S}$ be an experimental domain. Then it is possible to verify all experimental observations $\mathsf{o}\in S$ in infinite time if and only if there exists a countable basis (equivalently, sub-basis) $\mathcal{B}$ of $\mathcal{S}$. 
+\end{prop}
+\begin{proof}
+If there exists a countable basis $\mathcal{B}$, then given infinite time one can test all observations in $\mathcal{B}$. Given all truth values for elements of the basis, one can deduce the truth values for the other observations in $\mathcal{S}$ (again using infinite time) by computing the appropriate conjunctions and disjunctions. 
+
+If there does not exist a countable basis, then by definition there does not exist a sequence of experimental observations in $\mathcal{S}$ from which one can deduce all other observations in $\mathcal{S}$. Hence it is impossible to verify all members of $\mathcal{S}$.
+\end{proof}
+
+In light of the above result, we have the following definition, on which the remainder of this chapter will focus. 
+
+\begin{defn}
+An \textbf{experimental domain} is a set of observations closed under finite conjunction and countable disjunction which has a countable basis and contains the empty observation. 
+\end{defn}
+
+
+
 \section{Experimental distinguishability}
+
+
+
+We will now use our notions of experimental observations and experimental domains to construct a new space with a topology which will more rigorously capture our notion of ``exact" possibilities. We will begin with a given experimental domain $\mathcal{S}$. 
+
+\begin{defn}
+A \textbf{generalized exact outcome} for $\mathcal{S}$ is a sequence of experimental observations $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}\subset\mathcal{S}$ with the following property. For all experimental observations $\mathsf{o}\in\mathcal{S}$, there exists some positive integer $N$ such that for all integers $n>N$, one of the following must happen:
+\begin{enumerate}
+\item $\mathsf{o}_n \asymp \mathsf{o}$ 
+\item $\mathsf{o}_n \implies \mathsf{o}$
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+An \textbf{exact outcome} for $\mathcal{S}$ is a generalized exact outcome $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}$ such that for all $i\geq1$, we have $\mathsf{o}_{i+1}\implies\mathsf{o}_i$.
+\end{defn}
+Note that given a generalized exact outcome, one can build an exact outcome by simply replacing each $\mathsf{o}_n$ with the (finite) conjunction $\bigvee_{i=1}^n\mathsf{o}_i$. We will often denote the collection of (generalized) exact outcomes by $\mathcal{C}$. Next, we note that different sequences can result in ``equivalent" outcomes. 
+
+\begin{defn}
+We say two exact outcomes $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}$ and $\mathcal{P}' = \{\mathsf{o}'_i\}_{j=1}^{\infty}$ are \textbf{equivalent}, denoted $\mathcal{P}\sim\mathcal{P}'$, if for all $i,j$, we have that $\mathsf{o}_i$ and $\mathsf{o}'_j$ are not mutually exclusive. 
+\end{defn}
+
+Note that given a generalized exact outcome, the exact outcome built from it will be equivalent. Importantly, this notion of equivalence is in fact an equivalence relation (i.e. a relation with reflexivity, symmetry, and transitivity):
+
+\begin{prop}
+The equivalence $\sim$ above is an equivalence relation.
+\end{prop}
+\begin{proof}
+Let $\mathcal{P},\mathcal{P}',\mathcal{P}''$ be exact outcomes. Reflexivity and symmetry are immediate since not being mutually exclusive is reflexive and symmetric. 
+
+For transitivity, suppose $\mathcal{P}\sim\mathcal{P}'$ and $\mathcal{P}'\sim\mathcal{P}''$, and pick some positive integers $m$ and $n$. We will show that $\mathsf{o}_m$ is not mutually exclusive to $\mathsf{o}''_n$. By hypothesis, for every $\mathsf{o}'_j\in\mathcal{P}'$, we have $\mathsf{o}_m$ and $\mathsf{o}'_j$ are not mutually exclusive and $\mathsf{o}'_j$ and $\mathsf{o}''_n$ are not mutually exclusive. Because $\mathcal{P}'$ is an exact outcome and neither $\mathsf{o}_m$ nor $\mathsf{o}''_n$ are ever mutually exclusive from any $\mathsf{o}'_j$, we may select an integer $J$ large enough so that $\mathsf{o}'_J\implies\mathsf{o}_m$ and $\mathsf{o}'_J\implies\mathsf{o}''_n$. Hence whenever $\mathsf{o}'_J$ is verified, both $\mathsf{o}_m$ and $\mathsf{o}''_n$ are verified, so they are not mutually exclusive. Because this holds for all positive integers $m,n$, we have that $\mathcal{P}_1\sim\mathcal{P}_3$. 
+\end{proof}
+
+Next, we will define our universe of discourse. 
+
+
+\begin{defn}
+	A \textbf{set of possibilities} $X$ for an experimental domain $\mathcal{S}$ is the collection $\mathcal{C}$ of all exact outcomes for $\mathcal{S}$, modulo the equivalence relation $\sim$ defined above. That is, $X=\mathcal{C}/\sim$. 
+\end{defn}
+
+Equivalently, a set of possibilities $X$ for $\mathcal{S}$ may be specified by choosing one exact outcome from each equivalence class. We will now provide a notion of containment for exact outcomes being ``within" an experimental observation. 
+
+\begin{defn}
+An exact outcome $\mathcal{P}=\{\mathsf{o}_i\}_{i=1}^{\infty}$ for experimental domain $\mathcal{S}$ is said to be an element of an experimental observation $\mathsf{o}\in\mathcal{S}$ if there exists some $N$ such that for all $n>N$, we have $\mathsf{o}_n\implies\mathsf{o}$. We denote this as $\mathcal{P}\in\mathsf{o}$. 
+\end{defn}
+
+In light of the above definition, we will refer to experimental observations either as observations or as sets. 
+
+\begin{prop}
+Let $\mathcal{P}=\{\mathsf{o}_i\}_{i=1}^{\infty}$ be an exact outcome which is an element of observation $\mathsf{o}$. Suppose $\mathcal{P}'$ is another exact outcome $\mathcal{P}'=\{\mathsf{o}'_j\}_{j=1}^{\infty}$ such that $\mathcal{P}\sim\mathcal{P}'$. Then $\mathcal{P}'\in\mathsf{o}$. 
+\end{prop}
+\begin{proof}
+Suppose not - then we must be in case (1) of the definition of (generalized) exact outcome. Then there exists some $N_1$ such that for all $n>N_1$, we have $\mathsf{o}'_n\asymp\mathsf{o}$. By hypothesis, there exists some $N_2$ such that for all $m>N_2$, we have $\mathsf{o}_m\implies\mathsf{o}$. Let $N=\max(N_1,N_2)$. But then for all $k>N$, we have that $\mathsf{o}_k$ and $\mathsf{o}'_k$ are not mutually exclusive. This contradicts $\mathsf{o}'_k\asymp\mathsf{o}$. 
+\end{proof}
+
+In particular, we immediately extend the definition of ``exact outcome containment" for elements of $\mathcal{S}$ to containment of equivalence classes of exact outcomes in $\mathcal{C}/\sim$. By the above, we can use containment of an individual exact outcome interchangeably with its equivalence class. In practice, most of our work will use individual exact outcomes representing an equivalence class, while the technical definitions will use their equivalence classes.
+
+\begin{prop}
+Let $\{\mathsf{o}_i\}_{i=1}^{n}$ be some collection of experimental observations. Then the conjunction $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigwedge\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\wedge}(\mathsf{e}_i)\rrparenthesis$ contains precisely the exact outcomes that are in all of the $\mathsf{o}_i$'s. 
+\end{prop}
+\begin{proof}
+Let $\mathcal{P} = \{\mathsf{o}'_i\}_{i=1}^{\infty}$ be an exact outcome, and suppose $\mathcal{P}\in\mathsf{o}_i$ for $i=1,\ldots,n$. Then there exists $N$ large enough so that $\mathsf{o}'_m\implies\mathsf{o}_i$ for all $m>N$ and all $i=1,\ldots,n$, which is possible since $n$ is finite. It follows that $\mathsf{o}'_m\implies\bigwedge\limits_{i=1}^{n} \mathsf{o}_i$ for all $m>N$, so $\mathcal{P}\in\bigwedge\limits_{i=1}^{n} \mathsf{o}_i$, as desired. 
+
+Next, let $\mathcal{P}\in\bigwedge\limits_{i=1}^{n} \mathsf{o}_i$. It follows that $\mathcal{P}\in\mathsf{o}_i$ for each $i$ immediately from the definitions. 
+\end{proof}
+
+
+\begin{prop}
+Let $\{\mathsf{o}_i\}_{i=1}^{\infty}$ be some collection of experimental observations. Then the disjunction $\bigvee\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigvee\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\vee}(\mathsf{e}_i)\rrparenthesis$ contains precisely the exact outcomes that are in any of the $\mathsf{o}_i$'s. 
+\end{prop}
+\begin{proof}
+Let $\mathcal{P} = \{\mathsf{o}'_i\}_{i=1}^{\infty}$ be an exact outcome, and suppose $\mathcal{P}\in\mathsf{o}_k$ for some $k\geq1$. Then there exists $N$ large enough so that $\mathsf{o}'_m\implies\mathsf{o}_k$ for all $m>N$. It follows that $\mathsf{o}'_m\implies\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$ for all $m>N$, so $\mathcal{P}\in\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$, as desired. 
+
+Next, let $\mathcal{P}\in\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$. Then there exists $N$ such that for all $m>N$, we have $\mathsf{o}'_m\implies \bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$. Pick some such $m$, and so in particular, there exists $k$ such that $\mathsf{o}'_m\implies\mathsf{o}_k$. By definition of (non-generalized) exact outcome, this means $\mathcal{P}\in \mathsf{o}_k$, as required. 
+\end{proof}
+
+
+TODO: check this. the definition of experimental observation and their OR and AND are a little hard to use as needed here. 
+
+TODO: maybe make a new notation for observation as a set of outcomes. 
+
+
+TODO: a lot of the indices/notation might be a little hard to read/follow. 
+
+
+
+
+We are now ready to prove one of the main results of this chapter. The following theorem links the philosophical definitions at the beginning of the chapter to the mathematical structure of a topological space.
+
+TODO: maybe add a theorem environment for this one
+
+\begin{prop}
+Let $\mathcal{S}$ be an experimental domain with (by definition countable) basis $\mathcal{B}$, and let $X = \mathcal{C}/\sim$ be the set of possibilities. Then $(X,\mathcal{S})$ is a Hausdorff, second-countable topological space with points $X$ and open sets $\mathcal{S}$, where union and intersection are given by conjunction and disjunction of experimental observations, respectively. 
+\end{prop}
+\begin{proof}
+We first will show that the collection of sets $\mathsf{o}\in\mathcal{S}$ do indeed form a topology on $X$. First, the experimental observation formed by the (countable) disjunction of all observations in $\mathcal{B}$ is an observation which contains all others; that is, this set contains all of $X$. The empty observation contains no elements of $X$, so serves as the empty set. 
+
+Next, let $\mathsf{o}_1,\mathsf{o}_2\in\mathcal{S}$. Then by the previous proposition about conjunction, we have that the set of exact outcomes corresponding to $\mathsf{o}_1\wedge\mathsf{o}_2$ is precisely $\mathsf{o}_1\cap\mathsf{o}_2$. For a countable subset of $\mathcal{S}$, the same argument shows that their union (as sets of exact outcomes) matches the disjunction (as experimental observations). For arbitrary collections, because $\mathcal{B}$ is countable and generates all of the experimental observations, we can rewrite an arbitrary union of the corresponding subsets of exact outcomes as a countable disjunction of experimental observations, and we are reduced to the countable case. 
+
+This proves that $(X,\mathcal{S})$ is a topology. Further, we can see that $\mathcal{B}$ is a countable basis for the topology (because conjunction and disjunction correspond to intersection and union), so it is second-countable. Next, we prove that $(X,\mathcal{S})$ is Hausdorff. 
+
+Let $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}$ and $\mathcal{P}' = \{\mathsf{o}'_i\}_{j=1}^{\infty}$ be two non-equivalent exact outcomes. Then there exist some $m,n$ such that $\mathsf{o}_m\asymp\mathsf{o}'_n$. But then $\mathcal{P}\in\mathsf{o}_m$ and $\mathcal{P}'\in\mathsf{o}'_n$, which are two disjoint sets in $\mathcal{S}$. This completes the proof. 
+\end{proof}
+
+
+
+\begin{defn}
+	A \textbf{verifiable set} $U \subseteq X$ is a subset of possibilities for which there exists an experimental observation $\mathsf{o}\in\mathcal{S}$  = (\text{``The object is in } U \text{"}, $\mathsf{e}_\in(U))$ where $\mathsf{e}_\in(U)$ is an experimental test that succeeds only if the object to identify is an element of $U$.
+\end{defn}
+
+\begin{defn}
+	A \textbf{refutable set} $U \subseteq X$ is a subset of possibilities for which there exists an experimental counter-observation $\mathsf{o} = (\text{``The object is in } U \text{"}, \mathsf{e}_{\notin}(U))$ where $\mathsf{e}_{\notin}(U)$ is an experimental test that succeeds only if the object to identify is not an element of $U$.
+\end{defn}
+
+\begin{prop}
+	The complement $U^C$ of a verifiable set $U \subseteq X$ is a refutable set.
+\end{prop}
+
+
+\begin{prop}
+	A Hausdorff and second countable space $X$ has at most cardinality of continuum.
+\end{prop}
+
+\begin{proof}
+	We define an injective function $F:X\to2^{\mathbb{N}}$, where $2^{\mathbb{N}}$ denotes all infinite binary sequences.
+	
+	Since $X$ is second-countable, we can enumerate the countable basis $\mathcal{B}$ as $\mathcal{B} = \{B_i\}_{i=1}^{\infty}$. Let $2^{\mathbb{N}}$ denote all infinite binary sequences. We define $F:X\to2^{\mathbb{N}}$ such that $F(x) = (F(x)_i)_{i=1}^{\infty}$ is the sequence where each element is given by: 
+	$$
+	F(x)_i = 
+	\begin{cases}
+	1 & x\in B_i \\
+	0 & x\notin B_i
+	\end{cases}
+	$$
+	This is an injective function. Suppose $x_1 \neq x_2$, then since $X$ is Hausdorff there is at least one element of the basis that contains one but not the other.\footnote{In fact, $T_0$ separability would be sufficient.} Therefore $F(x_1) \neq F(x_2)$. As $F$ injects $X$ into $2^{\mathbb{N}}$, we have $|X| \leq |2^{\mathbb{N}}|=|\mathbb{R}|$. $X$ has at most cardinality of continuum.
+\end{proof}
+
+This means that, no matter what technique we use now or in the future, the collections of elements that we can properly define experimentally are at most infinite like the continuum. This already gives us a first simple and basic requirement a set of mathematical objects need to pass to be of scientific interest.
+
+For example, these objects have cardinality of continuum, and therefore are good candidates:
+\begin{itemize}
+	\item Euclidean space $\mathbb{R}^n$
+	\item all continuous functions from $\mathbb{R}$ to $\mathbb{R}$
+	\item all open sets in $\mathbb{R}^n$
+	\item all subsets of $\mathbb{N}$
+\end{itemize}
+
+These, instead, have cardinality greater then continuum, and therefore are not good candidates:
+\begin{itemize}
+	\item all functions from $\mathbb{R}$ to $\mathbb{R}$
+	\item all subsets of $\mathbb{R}$
+\end{itemize}
+
+
+
+
+\section{Example of an Experimental Domain}
+
+Consider the collection of statements, ``this object has a mass strictly between $x$ and $y$ kilograms" where $x$ and $y$ are any positive real numbers with $x<y$. Consider the experimental test where we put the object on a balance with an appropriate level of precision for each corresponding statement. Then each observation may be equated to an open interval of positive real numbers $(x,y)\subset\mathbb{R}$. Conjunction and disjunction of these observations will correspond exactly to intersection and union of these intervals, respectively. Further, the collection of intervals of the form $(p,q)$ for $p,q\in\mathbb{Q}$ forms a basis of observations. Next, one can show that any sequence of observations satisfying the conditions of exact outcome corresponds precisely to a real number. In particular, the set of possibilities $X$ for this experimental domain will be the set of positive real numbers with their usual topology. The reader with some experience with elementary real analysis will recognize that this construction is essentially the same as the Cauchy sequence construction of the real numbers, where representative Cauchy sequences come from endpoints of intervals, and the intervals used those corresponding to observations in a sequence of observations yielding an exact outcome. 
+
+
+
+
 
 \section{Experimental relationships}
 
+
+
+\begin{prop}
+	\label{setfunctions}
+	Let $X$ and $Y$ be two Hausdorff topological spaces, and let $g: \mathsf{T}(Y) \rightarrow \mathsf{T}(X)$ be a mapping such that:
+	\begin{enumerate}
+		\item It is compatible with union and intersection $\forall V_1, V_2 \in Y$ $g(V_1 \cup V_2)=g(V_1)\cup g(V_2)$ and $g(V_1 \cap V_2)=g(V_1)\cap g(V_2)$
+		\item $g(\emptyset) = \emptyset$
+		\item $g(Y) = X$
+	\end{enumerate}
+	Then there exists a unique continuous function $f: X \rightarrow Y$ such that $g = f^{-1} |_{\mathsf{T}(Y)}$.
+\end{prop}
+
+\begin{proof}
+	We claim there exists a unique extension $\bar{g}:\sigma(Y)\to\sigma(X)$ to the Borel $\sigma$-algebras of $X$ and $Y$, respectively $\sigma(X)$ and $\sigma(Y)$, such that $\bar{g}|_{\mathsf{T}(Y)}=g$ and $\bar{g}$ is compatible with union, intersection and complements. Let $\bar{g}(V) = g(V)$ for all open sets $V \in \mathsf{T}(Y)$. Let $A \in \sigma(Y)$ (not necessarily open) and $A^C$ be its complement. We must have $\bar{g}(A^C) = \bar{g}(A)^C = X\setminus \bar{g}(A)$ for $\bar{g}$ to be compatible with complements. Recall that all Borel sets in $\sigma(Y)$ and $\sigma(X)$ may be written as some combination of unions, intersections, and complements of open sets. Thus, the construction uniquely determine what $\bar{g}$ should output on any Borel set. We need only check that the output is still a Borel set. But by definition of $\bar{g}$, the outputs will be given as unions, intersections, and complements of outputs of $g$, which are open sets, and so the image of $\bar{g}$ is contained in $\sigma(X)$.  $\bar{g}$ is well defined. The function $\bar{g}$ in a sense represents extracting the maximum amount of information possible out of $g$.
+	
+	We claim we can define $\hat{g}:Y\to\sigma(X)$ such that $\hat{g}(y) = \bar{g}(\{y\})$. Since $Y$ is Hausdorff, every singleton $\{y\}$ is closed and is therefore a Borel set. $\bar{g}(\{y\})$ is well defined and so is $\hat{g}(y)$.
+	
+	We claim  $\hat{g}(y_1)\cap\hat{g}(y_2) = \emptyset$ if and only if $y_1\neq y_2$ for all $y_1,y_2\in Y$ such that $\hat{g}(y_i)\neq\emptyset$ for $i=1,2$. If $y_1\neq y_2$ we have
+	$$
+	\hat{g}(y_1)\cap\hat{g}(y_2) = \bar{g}(\{y_1\})\cap\bar{g}(\{y_2\}) = \bar{g}(\{y_1\}\cap\{y_2\}) = \bar{g}(\emptyset) = \emptyset.
+	$$
+	Conversely, if $y_1 = y_2$ we have
+	$$
+	\hat{g}(y_1)\cap\hat{g}(y_2) = 	\hat{g}(y_1)\cap\hat{g}(y_1) = 
+	\hat{g}(y_1) \neq \emptyset.
+	$$
+	
+	We claim we can define $f: X\to Y$ such that $f(x) = y$ if and only if $x\in \hat{g}(y)$. Since $g(Y)=X$, there exists $y\in Y$ such that $x\in\hat{g}(y)$. By the preceding claim, this $y$ is unique. $f: X\to Y$ is well defined. Note that no arbitrary choice where made so far that lead to the construction of $f$, which is therefore determined uniquely by $g$. 
+	
+	We claim $g = f^{-1} |_{\mathsf{T}(Y)}$. Let $V\in\mathsf{T}(Y)$. We want to show $f^{-1}(V) = g(V)$. Let $x\in f^{-1}(V)$. Then for some $y \in V$ we have $f(x)=y$. $x\in \hat{g}(y)$ by construction of $f$. $\hat{g}(y) \subset g(V)$ since $\{y\}\subset V$, so $x\in g(V)$. $f^{-1}(V) \subseteq g(V)$. Conversely, let $x\in g(V)=\bar{g}(V)$. Then for some $y\in V$, we have $x\in\bar{g}(\{y\})\subset\bar{g}(V)$. But then by definition we have $f(x)=y$, so $x\in f^{-1}(V)$. $f^{-1}(V) \supseteq g(V)$. $f^{-1}(V) = g(V)$ for all $V\in\mathsf{T}(Y)$ and therefore $f^{-1}|_{\mathsf{T}(Y)}=g$.
+	
+	We claim $f$ is continuous. It is so since $g = f^{-1} |_{\mathsf{T}(Y)}$ takes open sets to open sets. 
+\end{proof}
+
+The above work gives us an approach to reconstruct continuous functions given the behavior of the inverse on open sets. In the context of collecting information on observable phenomena, the function $g$ represents the total of all information possible to gather on the correlation between two variables. The fact that from $g$ we can construct a unique continuous $f$ shows us that in the infinite-resource ideal, we fully obtain the information to give exact relations between variables. Further, the result itself tells us that the interesting phenomena in our framework of experimental observations will be continuous, which is often a baseline assumption in physics. 
+
+
+For continuous functions to be physically distinguishable, we need to show they can always be given, as a set, given a topology that is Hausdorff and second-countable.
+
+To that end, we introduce the basis-to-basis topology on the set of continuous functions from two topological spaces. This is the topology generated by the sets of functions that map a basis element of one element inside an element of the other space. 
+
+\begin{defn} Let $X$ and $Y$ be two topological spaces. Let $C(X,Y)$ denote the set of all continuous functions from $X$ to $Y$. Let $\mathcal{B}_X$ and $\mathcal{B}_Y$ be two bases for $X$ and $Y$ respectively. The basis-to-basis topology $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ on $C(X,Y)$ with respect to the basis $\mathcal{B}_X$ and $\mathcal{B}_Y$ is the topology generated by all sets of the form 
+	$$
+	V(U_X, U_Y) = \{f\in C(X,Y) : f(U_X)\subset U_Y\}
+	$$
+where $U_X \in \mathcal{B}_X$ and $U_Y \in \mathcal{B}_Y$.
+\end{defn}
+
+Now we need to show that if the two spaces $X$ and $Y$ are Hausdorff and second-countable, the basis-to-basis topology is Hausdorff and second-countable for a suitable choice of basis.
+
+\begin{prop}
+	Let $X$ and $Y$ be two Hausdorff and second-countable topological spaces. Let $C(X,Y)$ denote the set of all continuous functions from $X$ to $Y$. Let $\mathcal{B}_X$ and $\mathcal{B}_Y$ be two countable bases for $X$ and $Y$ respectively. The basis-to-basis topology $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ on $C(X,Y)$ with respect to the basis $\mathcal{B}_X$ and $\mathcal{B}_Y$ is Hausdorff and second-countable. 
+\end{prop}
+\begin{proof}
+	We claim $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is second-countable. We first note that the sub-basis $\{V(U_X, U_Y) \, |\,   U_X \in \mathcal{B}_X , U_Y \in \mathcal{B}_Y \}$ is countable since $\mathcal{B}_X$ and $\mathcal{B}_Y$ are countable. The collection $\mathcal{B}$ of all finite intersections is still countable, since it is in one-to-one correspondence with the collection of finite subsets of a countable set, which is still countable. Therefore $\mathcal{B}$ is a countable basis, which means $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is second-countable.
+	
+	We claim $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is Hausdorff. Let $f,g:X\to Y$ be distinct continuous functions. Then for some $x\in X$, we have $f(x)\neq g(x)$. Pick $V_1, V_2$ disjoint open subsets of $Y$ with $f(x)\in V_1$ and $g(x)\in V_2$. We may assume (possibly by shrinking $V_1$ or $V_2$) that both are basis elements for the topology of $Y$. Let $U=f^{-1}(V_1)\cap g^{-1}(V_2)$. Then $U$ is an open neighborhood of $x$. We may assume again that $U$ is a basis element for the topology on $X$ by shrinking it if necessary. Now, let $T_1$ to be the (sub-)basis element for basis-to-basis topology corresponding to $U$ and $V_1$. By construction, $f\in T_1$. Similarly, let $T_2$ to be the basis element for the basis-to-basis topology corresponding to $U$ and $V_2$ and containing $g$. Since $V_1$ and $V_2$ are disjoint, so are $T_1$ and $T_2$. $\mathsf{T}(\mathcal{C})$ is Hausdorff.
+\end{proof}
+
+We will also show that this is not in general equal to the open-open topology. 
+
+\begin{prop}
+	In general, the topology $\mathsf{T}(\mathcal{C})$ defined above depends on the bases for $X$ and $Y$. 
+\end{prop}
+\begin{proof}
+	We will give an example of such a case. Let $X=Y=\mathbb{R}$ with the usual topology on $\mathbb{R}$. Let $\mathcal{B}_1$ be the basis for $\mathbb{R}$ consisting of all open intervals with rational endpoints, and let $\mathcal{B}_2 = \mathcal{B}_1\cup\{(0,\pi)\}$. We find a set open in our topology $\mathsf{T}(\mathcal{C})$ using $\mathcal{B}_2$ as our basis which is not open when we use $\mathcal{B}_1$. Consider the following set, open in our topology when using $\mathcal{B}_2$:
+	$$
+	V = \{f\in\mathcal{C}| f((0,\pi))\subset(0,1)\}
+	$$
+	This is clearly open because $(0,\pi)$ and $(0,1)$ are basis elements in $\mathcal{B}_2$. 
+	
+	Next, we show that when using $\mathcal{B}_1$ as our basis for $X=Y=\mathbb{R}$, no finite intersection and/or infinite union of sub-basis elements for $\mathsf{T}(\mathcal{C})$ will equal $V$. Henceforth, when we say ``open" subsets, unless otherwise stated, we will refer exclusively to the topology $\mathsf{T}(\mathcal{C})$ when using $\mathcal{B}_1$ for $\mathbb{R}$. The smallest sub-basis subsets containing $V$ are those of the form:
+	$$
+	B_r = \{f\in\mathcal{C} | f((0,r))\subset(0,1)\}
+	$$
+	for each $r\in\mathbb{Q}$ with $r<\pi$. By ``smallest" we mean any sub-basis elements containing $V$ which are not in the form of $B_r$ will contain some $B_r$. Now, any finite intersection of the $B_r$'s will be another $B_r$, but these strictly contain $V$, so we can never obtain $V$ from this sub-basis. 
+	
+	Similarly, the largest sub-basis sets contained within $V$ are of the form: 
+	$$
+	S_r = \{f\in\mathcal{C} | f((0,r))\subset(0,1)\}
+	$$
+	for each $r\in \mathbb{Q}$ with $r>\pi$. Let $S = \cup_{r>\pi}S_r$. This is the largest open set in our topology which is contained in $V$. Consider the function $f(x) = x/\pi$. This is continuous and is an element of $V$. But notice $f(\pi)=1$, so $f\notin S_r$ for all $r>\pi$, hence $f\notin S$. Thus, $V$ is a set which is open in $\mathsf{T}(\mathcal{C})$ when we use $\mathcal{B}_1$ for $X$ and $Y$, but not open when we use $\mathcal{B}_2$ for $X$ and $Y$. 
+\end{proof}
+
+TODO: add corollary environment for this one. 
+
+\begin{prop}
+The topology $\mathsf{T}(\mathcal{C})$ on the set of continuous functions $C(\mathbb{R},\mathbb{R})$ from $\mathbb{R}$ to itself is in general not equal to the open-open topology on $C(\mathbb{R},\mathbb{R})$.
+\end{prop}
+\begin{proof}
+In the proof of the previous proposition, note that the basis for the open-open topology is independent of the basis used for the underlying spaces, and in particular is a superset of the basis for $\mathsf{T}(\mathcal{C})$ when using $\mathbb{B}_2$ to construct it. Hence the open-open topology is distinct from $\mathsf{T}(\mathcal{C})$ when using the basis $\mathcal{B}_1$ on $\mathbb{R}$. 
+\end{proof}
+
+TODO: the above propositions might generalize to any uncountable, second-countable space. This will be considered during the paper-writing process later. 
+
+Thus we have shown one can start with two Hausdorff, second-countable spaces, and generate a new Hausdorff second-countable space consisting of all functions between them. Topological spaces with these properties make up our class of scientifically interesting spaces, so the space of continuous (distinguishability-preserving) functions between spaces of distinguishable quantities is again a physically distinguishable space. Because one can iterate this construction (since the relevant properties are preserved), this is a way to generate arbitrarily many new physically distinguishable spaces encoding important information about the ``lower-order" spaces (i.e. they consist of functions which encode a conversion between verifiable sets in different spaces).
+
+
 \section{Conclusion}
+
+\begin{table}[h]
+	\centering
+\begin{tabular}{p{0.20\textwidth} p{0.7\textwidth}}
+	Math/Topology & Science/Physics \\ 
+	\hline 
+	Hausdorff, second-countable topological space & Experimentally distinguishable space, whose points are the possible values and whose open sets represent the experimentally attainable levels of precision \\
+	Open set & Verifiable set. We can verify experimentally that an element is within the set  \\ 
+	Closed set & Refutable set. We can verify experimentally that an element is not in the set \\ 
+	Basis of a topology & A collection of verifiable sets such that any verifiable set is determined by the basis sets\\
+	Continuous \newline function &  A function between two sets of experimental distinguishable elements that preserves distinguishability \\
+	Homeomorphism &  A perfect equivalence between experimentally distinguishable spaces. \\
+\end{tabular} 
+\caption{Topology to physics dictionary}
+\end{table}
+
+
 
 \bibliography{bibliography}
 
