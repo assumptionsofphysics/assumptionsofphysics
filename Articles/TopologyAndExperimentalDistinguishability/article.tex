@@ -5,12 +5,18 @@
 \usepackage{amsmath, amsthm, amsfonts}
 \usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
 
-\theoremstyle{plain}% default 
+
+\theoremstyle{plain}% default 
 \newtheorem{thm}{Theorem}[section] 
 \newtheorem{lem}[thm]{Lemma} 
 \newtheorem{prop}[thm]{Proposition} 
 \newtheorem{cor}{Corollary}
- \theoremstyle{definition} \newtheorem{defn}{Definition}[section]\newtheorem{exmp}{Example}[section]\theoremstyle{remark}\newtheorem*{rem}{Remark}
+
+ \theoremstyle{definition}
+ \newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
 \modulolinenumbers[5]
 
 \journal{Topology and its Applications}
@@ -23,20 +29,19 @@
 \title{Topology and physical distinguishability}
 
 %% Group authors per affiliation:
-\author{Gabriele Carcassi\fnref{myfootnote}}
-\address{Somewhere, Ann Arbor}
-\fntext[myfootnote]{Footnote?}
-
-%% or include affiliations in footnotes:
-\author[mymainaddress,mysecondaryaddress]{University of Michigan}
-\ead[url]{www.umich.edu}
-
-\author[mysecondaryaddress]{Secondary\corref{mycorrespondingauthor}}
-\cortext[mycorrespondingauthor]{Corresponding author}
+\author[umich]{Gabriele Carcassi\corref{cor1}}
 \ead{carcassi@umich.edu}
 
-\address[mymainaddress]{Somewhere else, Ann Arbor}
-\address[mysecondaryaddress]{Somewhere instead, Ann Arbor}
+\author[umich]{Christine A. Aidala}
+\ead{caidala@umich.edu}
+
+\author[umich]{Mark J. Greenfield}
+\ead{markjg@umich.edu}
+
+\address[umich]{University of Michigan, Ann Arbor, MI 48109, USA}
+
+\cortext[cor1]{Corresponding author}
+
 
 \begin{abstract}
 TODO
