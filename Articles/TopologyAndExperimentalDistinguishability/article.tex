@@ -5,12 +5,18 @@
 \usepackage{amsmath, amsthm, amsfonts}
 \usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
 
-\theoremstyle{plain}% default 
+
+\theoremstyle{plain}% default 
 \newtheorem{thm}{Theorem}[section] 
 \newtheorem{lem}[thm]{Lemma} 
 \newtheorem{prop}[thm]{Proposition} 
 \newtheorem{cor}{Corollary}
- \theoremstyle{definition} \newtheorem{defn}{Definition}[section]\newtheorem{exmp}{Example}[section]\theoremstyle{remark}\newtheorem*{rem}{Remark}
+
+ \theoremstyle{definition}
+ \newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
 \modulolinenumbers[5]
 
 \journal{Topology and its Applications}
@@ -23,23 +29,24 @@
 \title{Topology and physical distinguishability}
 
 %% Group authors per affiliation:
-\author{Gabriele Carcassi\fnref{myfootnote}}
-\address{Somewhere, Ann Arbor}
-\fntext[myfootnote]{Footnote?}
-
-%% or include affiliations in footnotes:
-\author[mymainaddress,mysecondaryaddress]{University of Michigan}
-\ead[url]{www.umich.edu}
-
-\author[mysecondaryaddress]{Secondary\corref{mycorrespondingauthor}}
-\cortext[mycorrespondingauthor]{Corresponding author}
+\author[umich]{Gabriele Carcassi\corref{cor1}}
 \ead{carcassi@umich.edu}
 
-\address[mymainaddress]{Somewhere else, Ann Arbor}
-\address[mysecondaryaddress]{Somewhere instead, Ann Arbor}
+\author[umich]{Christine A. Aidala}
+\ead{caidala@umich.edu}
+
+\author[umich]{Mark J. Greenfield}
+\ead{markjg@umich.edu}
+
+\address[umich]{University of Michigan, Ann Arbor, MI 48109, USA}
+
+\cortext[cor1]{Corresponding author}
+
 
 \begin{abstract}
-TODO
+We formalize the relationship between topological spaces and the ability to distinguish objects experimentally, providing understanding and justification as to why topological spaces and continuous functions are pervasive tools in the physical sciences. The aim is to use these ideas as a stepping stone to give a more rigorous physical foundation to dynamical systems and, in particular, Hamiltonian dynamics.  We first define an experimental observation as a statement that can be verified using an experimental procedure. We show that observations are not closed under negation and countable conjunction, but are closed under finite conjunction and countable disjunction. We then consider observations that identify elements in a set and show how they induce a Hausdorff and second countable topology on that set, thus identifying an open set as one that can be associated with an experimental observation. We then show that only continuous functions preserve experimental distinguishability and that the collection of these functions can be given a Hausdorff and second countable topology. This shows that the universe of discourse of experimental distinguishability so defined is closed and consistent.
+
+
 \end{abstract}
 
 \begin{keyword}
@@ -453,7 +460,8 @@ Thus we have shown one can start with two Hausdorff, second-countable spaces, an
 \caption{Topology to physics dictionary}
 \end{table}
 
-
+\section*{Acknowledgments}
+Funding for this work was provided in part by the MCubed program of the University of Michigan.
 
 \bibliography{bibliography}
 
