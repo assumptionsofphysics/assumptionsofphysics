@@ -22,17 +22,17 @@
 	
 \section{What is information entropy?}
 
-TL;DR .
+TL;DR Information entropy tells you the average number of bits (i.e. answers to yes/no questions) you need to identify an element from a distribution.
 
-Starting from the 1950s, the connection between information theory and thermodynamics has been increasingly made clear. What I believe is still largely unnoticed is that there is a deep link between information theory and Hamiltonian mechanics as well. I want to explore this link in the next few posts and it is appropriate to first have a clear idea on what information entropy is.
+Starting from the 1950s, the connection between information theory and thermodynamics has been increasingly made clear. What I believe is still largely unnoticed is that there is a deep link between information theory and Hamiltonian mechanics as well. I want to explore this link in the next few posts so I'd like to first give a clear idea on what information entropy actually is.
 
-The concept of entropy in physics is unfortunately associated with a certain amount of vagueness. While mathematically is well defined, I have never heard a crisp conceptual understanding (e.g. it measures "disorder", it has to do with how much the system is homogeneous, ...). Entropy in information theory, or Shannon's entropy, instead has a crisp intuitive meaning and therefore I cringe when I hear physicists defining it as "lack of information" or any other vague description. So, let's see if we do better.
+The concept of entropy in physics is unfortunately associated with a certain amount of vagueness. While mathematically is well defined, I have never heard a crisp conceptual understanding (e.g. it measures "disorder", it has to do with how much the system is homogeneous, ...). Entropy in information theory, or Shannon's entropy, instead has a crisp intuitive meaning and therefore I cringe when I hear physicists defining it as "lack of information" or any other vague description. So, let's see if we can do better.
 
 The scenario is this: you have a distribution over a set of possibilities. You pick an element according to that distribution. On average, how many bits of information you have to use to tell me which element have you picked? How many one-zeros? How many yes-no answers? If that doesn't make sense yet, hopefully it will after we go through a few examples.
 
 \section{Examples}
 
-Suppose you have a bag with 40 balls. 20 are green and 20 are red. Suppose you pick a ball and I want to know the color. Suppose I can only ask you yes or no questions. How many questions do I have to ask you? One suffices: "Is it red?". If the answer is yes, I know it's red, if the answer is no, I know it's green. We can rephrase by asking: how many one-zero choices? That is: how many bits of information you need to give me? The answer is one bit: 0 for green and 1 for red. That is: all the information can be encoded into one zero-one choice.
+Suppose you have a bag with 40 balls. 20 are green and 20 are red. Suppose you pick a ball and I want to know the color. Suppose I can only ask you yes or no questions. How many questions do I have to ask you? One suffices: "is it red?". If the answer is yes, I know it's red, if the answer is no, I know it's green. We can rephrase by asking: how many one-zero choices? That is: how many bits of information you need to give me? The answer is one bit: 0 for green and 1 for red. That is: all the information can be encoded into one zero-one choice.
 
 Let's do it again in another case. Suppose all 40 balls are green. How many bits of information? The answer is zero bits: I already know you are going to get a green ball.
 

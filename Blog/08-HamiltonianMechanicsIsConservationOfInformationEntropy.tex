@@ -1,0 +1,76 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+	
+\section{Hamiltonian mechanics is conservation of information entropy}
+
+TL;DR Hamiltonian systems are those that conserve information entropy during time evolution.
+
+This is one of those result that I figured out a few years ago but I still don't know if and where to publish it. Fortunately for me, I care a lot more about figuring things out than publishing papers.
+
+The idea is the following: suppose you have a distribution over position and momentum $\rho(x, p)$. Suppose you evolve it in time and get a final distribution $\hat{\rho}(x, p)$ using Hamiltonian evolution. That is: you take each little volume and move it according to the trajectories given by Hamiltonian mechanics. How does the information entropy change? Answer: it doesn't. Suppose you look for all possible time evolutions that conserve information entropy, what do you get? You get Hamiltonian mechanics.
+
+That is: Hamiltonian systems are the ones and only the ones that preserve information entropy of a distribution $\rho(x, p)$ over states. That is: identifying an element in the initial distribution requires exactly the same information as an element in the final distribution. That is: knowing the initial element you know the final element and vice-versa. That is: the evolution is deterministic and reversible.
+
+Let's see how the math works.
+
+\section{Hamiltonian mechanics conserves information entropy}
+
+Suppose we have a distribution over position and momentum $\rho(x, p)$. How does it change during Hamiltonian evolution? Suppose we start with a little region $dx \,dp$. The fraction contained in that region will be $\rho(x, p) dx \,dp$. After an infinitesimal time the new coordinates, according to Hamiltonian evolution, will be:
+\begin{equation}
+\begin{aligned}
+\hat{x} = x + \frac{dx}{dt} dt = x + \frac{\partial H}{\partial p} dt  \\
+\hat{p} = p + \frac{dp}{dt} dt = p - \frac{\partial H}{\partial x} dt  \\
+\end{aligned}
+\label{newCoordinates}
+\end{equation}
+
+In general, the density and the volume would change according to the Jacobian $|J|$ of the transformation:
+\begin{equation}
+\begin{aligned}
+|J| &= \frac{\partial \hat{x}}{\partial x} \frac{\partial \hat{p}}{\partial p} - \frac{\partial \hat{p}}{\partial x} \frac{\partial \hat{x}}{\partial p}\\
+d\hat{x}\,d\hat{p} &= |J| dx \,dp  \\
+\hat{\rho}(\hat{x}, \hat{p}) &= \frac{\rho(x, p)}{|J|}  \\
+\end{aligned}
+\label{newDistribution}
+\end{equation}
+If you are familiar with the Poisson bracket, you can see that the Jacobian is simply the Poisson bracket of the new position and momentum.
+
+Because the evolution is Hamiltonian, the Liouville's theorem applies so the Jacobian is unitary: the volume $d\hat{x}\,d\hat{p} = dx \,dp$ remains unchanged and the final density at the final state is equal to the initial density at the initial state: $\rho(\hat{x}, \hat{p}) = \rho(x, p)$.  
+
+How does the information entropy change? We calculate the entropy at the final state and then change variable using \eqref{newDistribution}:
+\begin{equation}
+\begin{aligned}
+-\int \hat{\rho} \log \hat{\rho} \; d\hat{x}\,d\hat{p}&= -\int \frac{\rho}{|J|} \log \frac{\rho}{|J|} \; |J| dx \,dp = -\int \frac{\rho}{|J|} \log \frac{\rho}{|J|} \; |J| dx \,dp \\
+&= -\int \rho \log \frac{\rho}{|J|} \; dx \,dp \\
+&= -\int \rho \log \rho \; dx \,dp + \int \rho \log |J| \; dx \,dp \\
+\end{aligned}
+\label{newEntropy}
+\end{equation}
+That is: the information entropy of the final distribution is equal to the one of the initial distribution plus the expectation of the Jacobian.
+
+But since the evolution is Hamiltonian, the Jacobian is unitary. The information entropy of the final distribution is that of the initial distribution. The information entropy is conserved.
+
+\section{Conservation of information entropy gives Hamiltonian mechanics}
+
+
+
+\end{document}
