@@ -34,7 +34,7 @@ Let's see how the math works.
 
 \section{Hamiltonian mechanics conserves information entropy}
 
-Suppose we have a distribution over position and momentum $\rho(x, p)$. How does it change during Hamiltonian evolution? Suppose we start with a little region $dx \,dp$. The fraction contained in that region will be $\rho(x, p) dx \,dp$. After an infinitesimal time the new coordinates, according to Hamiltonian evolution, will be:
+Suppose we have a distribution over position and momentum $\rho(x, p)$. How does it change during Hamiltonian evolution? Start with a little region $dx \,dp$. The fraction of the distribution contained in that region will be $\rho(x, p) dx \,dp$. After an infinitesimal time the new coordinates, according to Hamiltonian evolution, will be:
 \begin{equation}
 \begin{aligned}
 \hat{x} = x + \frac{dx}{dt} dt = x + \frac{\partial H}{\partial p} dt  \\
@@ -46,15 +46,30 @@ Suppose we have a distribution over position and momentum $\rho(x, p)$. How does
 In general, the density and the volume would change according to the Jacobian $|J|$ of the transformation:
 \begin{equation}
 \begin{aligned}
-|J| &= \frac{\partial \hat{x}}{\partial x} \frac{\partial \hat{p}}{\partial p} - \frac{\partial \hat{p}}{\partial x} \frac{\partial \hat{x}}{\partial p}\\
+|J| &= \left| \begin{matrix}
+\dfrac{\partial \hat{x}}{\partial x} & \dfrac{\partial \hat{x}}{\partial p} \\[2.2ex]
+\dfrac{\partial \hat{p}}{\partial x} & \dfrac{\partial \hat{p}}{\partial p} \end{matrix} \right| = \frac{\partial \hat{x}}{\partial x} \frac{\partial \hat{p}}{\partial p} - \frac{\partial \hat{p}}{\partial x} \frac{\partial \hat{x}}{\partial p}\\
 d\hat{x}\,d\hat{p} &= |J| dx \,dp  \\
 \hat{\rho}(\hat{x}, \hat{p}) &= \frac{\rho(x, p)}{|J|}  \\
 \end{aligned}
 \label{newDistribution}
 \end{equation}
-If you are familiar with the Poisson bracket, you can see that the Jacobian is simply the Poisson bracket of the new position and momentum.
+BTW: if you are familiar with the Poisson bracket, you can see that the Jacobian is simply the Poisson bracket of the new position and momentum. But that's for another time.
 
-Because the evolution is Hamiltonian, the Liouville's theorem applies so the Jacobian is unitary: the volume $d\hat{x}\,d\hat{p} = dx \,dp$ remains unchanged and the final density at the final state is equal to the initial density at the initial state: $\rho(\hat{x}, \hat{p}) = \rho(x, p)$.  
+Because the evolution is Hamiltonian, the Liouville's theorem applies so the Jacobian is unitary. Let's verify that:
+\begin{equation}
+\begin{aligned}
+|J| &= \left| \begin{matrix}
+1 + \dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) dt & \dfrac{\partial}{\partial p} \left( \dfrac{dx}{dt} \right) dt \\[2.2ex]
+\dfrac{\partial}{\partial x} \left( \dfrac{dp}{dt} \right) dt & 1 + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) dt \end{matrix} \right| \\
+&= 1 + \left[ \dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) \right] dt + O(dt^2)\\
+&= 1 + \left[ \dfrac{\partial}{\partial x} \frac{\partial H}{\partial p} - \dfrac{\partial}{\partial p} \frac{\partial H}{\partial x} \right] dt + O(dt^2)\\
+&= 1 + O(dt^2)\\
+\end{aligned}
+\label{Jacobian}
+\end{equation}
+
+This means the volume $d\hat{x}\,d\hat{p} = dx \,dp$ remains unchanged and the final density at the final state is equal to the initial density at the initial state: $\rho(\hat{x}, \hat{p}) = \rho(x, p)$.  
 
 How does the information entropy change? We calculate the entropy at the final state and then change variable using \eqref{newDistribution}:
 \begin{equation}
@@ -71,6 +86,25 @@ But since the evolution is Hamiltonian, the Jacobian is unitary. The information
 
 \section{Conservation of information entropy gives Hamiltonian mechanics}
 
+We can run the argument backwards. If information entropy is conserved, the logarithm of the Jacobian has to be zero everywhere, which can only happen if the Jacobian is equal to one everywhere. Looking at \eqref{Jacobian}, this happens only if:
+\begin{equation}
+\dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) = 0
+\label{Jacobian}
+\end{equation}
 
+This means that the vector field formed by the displacement vector $\left[ \dfrac{dx}{dt}, \dfrac{dp}{dt}\right]$ is divergence free. Which means it admits a potential $H$ such that:
+\begin{equation}
+\begin{aligned}
+\frac{dx}{dt} &= \frac{\partial H}{\partial p}  \\
+\frac{dp}{dt} &= - \frac{\partial H}{\partial x}
+\end{aligned}
+\label{Hamilton}
+\end{equation}
+So we have recovered Hamilton's equations.
+
+\section{Conclusion}
+As we have saw, Hamiltonian mechanics is equivalent to conservation of information entropy. This idea can be generalized to multiple independent degrees of freedoms. The math is a bit more involved but does not add to the general idea.
+
+This is why isolated systems conserve energy: if they are isolated it means that their motion only depends on the information that is already contained in the system. Which means it cannot change. Which gives us Hamiltonian motion. Which means: energy is conserved.
 
 \end{document}
