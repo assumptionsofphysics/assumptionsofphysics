@@ -60,7 +60,23 @@ topological spaces \sep other keyword
 
 \section{Introduction}
 
+The successful use of mathematical ideas in experimental sciences is something long established and celebrated.\footnote{Unreasonable effectiveness and other} In particular topology is arguably the most widespread, as it provides the foundation for other mathematical tools such as differential geometry and ???. Why is it so successful? What physical property is captured by topological spaces that is so fundamental for scientific investigation? 
+
+We believe we have identified the answer: topologies capture the way objects are experimentally distinguishable. It is open sets that are associated with experimental outcomes, not the values themselves. For example, as real values are only measurable with finite precisions, the standard topology on euclidean spaces is the one that is physically meaningful. Along the same line, experimental relationships will need to preserve what can be experimentally distinguished and they will therefore be continuous functions.
+
+In this sense, experimentally distinguishability is \emph{the} application of topology in experimental science. It is fitting, then, that topology is so wide-spread as defining what can be experimentally identified is truly a fundamental aspect in science. The aim of this paper is to lay down a formal framework that formalizes this insight. 
+
+The work is organized as follows. We will first define experimental observations as statements paired with an experimental test that is able to verify them. We will study their properties under logical operations and show they are only closed under finite conjunction and countable disjunction.
+
+We will then show that any set of objects that are experimentally distinguishable is a Hausdorff second-countable topological space. Both the points and the topology of the space will be formally defined in terms of the observations themselves.
+
+Finally, we will study relationships between experimentally distinguishable objects. This will be represented by continuous functions and can be shown to be themselves physically distinguishable
+
+We believe this work not only provides interest insights, but a firm justification of the use of topological ideas in the physical science.
+
 \section{Experimental observations}
+
+In science, something is accepted as true only if one can provide a way to independently test the assertion. We introduce the following definitions to capture this notion.
 
 
 \begin{defn}
@@ -96,6 +112,12 @@ TODO: add a symbol for ``not mutually exclusive". I couldn't find the $\asymp$ w
 
 A note on the language: even if $\mathsf{o}_1$ implies $\mathsf{o}_2$ this does not give us a way to verify $\mathsf{o}_2$. There may be cases where the $\mathsf{o}_2$ is verified and $\mathsf{o}_1$ is not. Therefore it is improper to say that one observation verifies another: only experimental tests verify observations.
 
+
+
+
+\section{Algebra of experimental observations}
+
+We now want to understand how experimental observations behave under logical operations. The resulting algebra will have some key differences from the standard Boolean algebra.
 
 
 
@@ -154,6 +176,9 @@ The \textbf{empty observation} is any experimental observation of the form $\llp
 
 \section{Experimental domain}
 
+Being able to test experimental observations one at a time is not enough. Given a set of observations we must be able to test them all to find those that are verified. With this in mind, we introduce the following definitions.
+
+
 \begin{defn}
 	An \textbf{generalized experimental domain} is a set of observations closed under finite conjunction and countable disjunction. Any subset that can generate all others via finite conjunction and countable disjunction is called a \textbf{sub-basis} of the domain. A \textbf{basis} is a subset of the observations which can generate all others by countable disjunctions. 
 \end{defn}
@@ -179,6 +204,7 @@ An \textbf{experimental domain} is a set of observations closed under finite con
 
 \section{Experimental distinguishability}
 
+Given an experimental domain, we want to study the maximal sets of consistent observations that can be verified at the same time. These will define the possibilities of our domain: the possible cases that can be experimentally distinguished through the observations.
 
 
 We will now use our notions of experimental observations and experimental domains to construct a new space with a topology which will more rigorously capture our notion of ``exact" possibilities. We will begin with a given experimental domain $\mathcal{S}$. 
@@ -344,6 +370,8 @@ Consider the collection of statements, ``this object has a mass strictly between
 
 \section{Experimental relationships}
 
+Now that we have defined the possibilities of our domains and the topology associated with them, we want to establish relationships between them. We want to do this because the aim of scientific investigation is studying and characterizing these relationships
+
 
 
 \begin{prop}
@@ -444,6 +472,10 @@ Thus we have shown one can start with two Hausdorff, second-countable spaces, an
 
 
 \section{Conclusion}
+
+We have shown that it is possible to formally capture the requirements of experimental sciences using experimental observations and their properties. These definitions lead naturally to topological spaces giving the result that any set of experimentally distinguishable possibilities is a Hausdorf and second-countable topological space. In the same framework, experimental relationships between these objects are represented mathematically by continuous functions and are themselves experimentally distinguishable objects as they too can be given a Hausdorf and secound-countable topology. The ability to create functions of any order confirms that the universe of discourse provided by these definition is closed and self-consistent.
+
+We hope that this work, because of both its method and result, can provide a more solid foundation to formalize experimental sciences.
 
 \begin{table}[h]
 	\centering
