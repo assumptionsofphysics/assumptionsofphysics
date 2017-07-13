@@ -4,6 +4,15 @@
 
 \usepackage{amsmath, amsthm, amsfonts}
 \usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
+\usepackage{MnSymbol,centernot}
+
+% Symbol for "implies" and "not implies"
+\def\imp{\Rightarrow}
+\def\nimp{\nRightarrow}
+
+% Symbol for "compatibility" and "incompatibility"
+\def\comp{\doublefrown}
+\def\ncomp{\ndoublefrown}
 
 
 \theoremstyle{plain}% default 
@@ -29,6 +38,7 @@
 \title{Topology and experimental distinguishability}
 
 %% Group authors per affiliation:
+
 \author[]{Christine A. Aidala\corref{cor1}}
 \ead{caidala@umich.edu}
 
@@ -76,38 +86,50 @@ In science, something is accepted as true only if one can provide a way to indep
 
 
 \begin{defn}
-	A \textbf{statement} $\mathsf{s}$ is a declarative sentence that is either true or false, as in classical logic.
+	A \emph{statement} $\mathsf{s}$ is a declarative sentence that is either true or false, as in classical logic. Here, we allow for infinite statements. 
+\end{defn}
+
+In addition to the usual logical operations on statements, we introduce the following notation: 
+
+\begin{defn}
+We say two statements $s$ and $t$ are \emph{compatible}, denoted $s\comp t$, if the conjunction $s\wedge t$ is not a contradiction; otherwise they are \emph{incompatible}, denoted $s\ncomp t$. 
+\end{defn}
+
+Given a statement, we wish to consider when it makes scentific sense to test. The following construction will define the building blocks of this theory. 
+
+\begin{defn}
+	An \emph{experimental test} $\mathsf{e}$ is a repeatable procedure (i.e. it can be restarted and stopped an arbitrary number of times) that, if successful, terminates in a finite amount of time.
 \end{defn}
 
 \begin{defn}
-	An \textbf{experimental test} $\mathsf{e}$ is a repeatable procedure that can terminate successfully in a finite amount of time and that can be stopped at any time.
-\end{defn}
-
-TODO: in principle, time can be defined as a monoid. This would prevent circular arguments to some extent.
-
-\begin{defn}
-	An \textbf{experimental observation} is a tuple $\mathsf{o} = \llparenthesis \mathsf{s}, \mathsf{e} \rrparenthesis$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is true if and only if the  experimental test is always successful. The experimental observation is \textbf{verified} if the statement is true.
+	An \emph{experimental observation} is a tuple $\mathsf{o} = \llparenthesis \mathsf{s}, \mathsf{e} \rrparenthesis$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is true if and only if the  experimental test is always successful. The experimental observation is \emph{verified} if the statement is true.
 \end{defn}
 
 \begin{defn}
-	An \textbf{experimental counter-observation} is a tuple $\mathsf{o}^c= \llbracket \mathsf{s}, \mathsf{e} \rrbracket$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is false if and only if the experimental test is always successful. The experimental counter-observation is \textbf{refuted} if the statement is false.
+	An \emph{experimental counter-observation} is a tuple $\mathsf{o}^c= \llbracket \mathsf{s}, \mathsf{e} \rrbracket$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is false if and only if the experimental test is always successful. The experimental counter-observation is \emph{refuted} if the statement is false.
 \end{defn}
 
-We also define some basic relationships between experimental observations.
+Experimental observations are the core object of the scientific discourse. We now define some basic relationships between experimental observations.
 
 \begin{defn}
-	Given two experimental observations $\mathsf{o}_1$ and $\mathsf{o}_2$:
+	Given two experimental observations $\mathsf{o}_1$ and $\mathsf{o}_2$ we define:
 	\begin{itemize}
-	\item \textbf{implication}: $\mathsf{o}_1 \implies \mathsf{o}_2$ if $\mathsf{o}_2$ is verified whenever $\mathsf{o}_1$ is verified
-	\item \textbf{equivalence}: $\mathsf{o}_1 = \mathsf{o}_2$ if $\mathsf{o}_1 \implies \mathsf{o}_2$ and $\mathsf{o}_2 \implies \mathsf{o}_1$
-	\item \textbf{mutual exclusion}: $\mathsf{o}_1 \asymp \mathsf{o}_2$ ($\mathsf{o}_1$ excludes $\mathsf{o}_2$) if one is not verified whenever the other one is
+	\item \emph{implication}: $\mathsf{o}_1 \imp \mathsf{o}_2$ ($\mathsf{o}_1$ implies $\mathsf{o}_2$) if $\mathsf{o}_2$ is always verified whenever $\mathsf{o}_1$ is verified
+	\item \emph{equivalence}: $\mathsf{o}_1 = \mathsf{o}_2$ ($\mathsf{o}_1$ is equal to $\mathsf{o}_2$) if $\mathsf{o}_1 \imp \mathsf{o}_2$ and $\mathsf{o}_2 \imp \mathsf{o}_1$
+	\item \emph{compatibility}: $\mathsf{o}_1 \comp \mathsf{o}_2$ ($\mathsf{o}_1$ is compatible with $\mathsf{o}_2$) if there exists a case in which $\mathsf{o}_1$ and $\mathsf{o}_2$ are jointly verified
 	\end{itemize}
+    The negation of these properties will be noted by $\nimp$, $\neq$ , $\ncomp$ respectively.
 \end{defn}
-TODO: add a symbol for ``not mutually exclusive". I couldn't find the $\asymp$ with a slash through it. 
-
 
 A note on the language: even if $\mathsf{o}_1$ implies $\mathsf{o}_2$ this does not give us a way to verify $\mathsf{o}_2$. There may be cases where the $\mathsf{o}_2$ is verified and $\mathsf{o}_1$ is not. Therefore it is improper to say that one observation verifies another: only experimental tests verify observations.
 
+Lastly, we define a special type of observation. 
+
+\begin{defn}
+	The \emph{null observation} is any experimental observation that is never verified (i.e. the experimental test will never terminate successfully). 
+\end{defn}
+
+The null observation is the degenerate case and has the following, maybe counterintuitive, properties. Since it is never verified, it can never rule out any other observations: the null observation implies all other observations. Since it is never verified, it can never be jointly verified with another observation: the null observation is incompatible with every experimental observation, including itself.
 
 
 
@@ -119,10 +141,10 @@ We now want to understand how experimental observations behave under logical ope
 
 
 
-We define the following logical operations on experimental observations. Taken as whole, they define the \textbf{algebra of experimental observations}. With each definition, we will prove that the resulting object is an experimental (counter-)observation. 
+We define the following logical operations on experimental observations. Taken as whole, they define the \emph{algebra of experimental observations}. With each definition, we will prove that the resulting object is an experimental (counter-)observation. 
 
 \begin{defn}
-	The \textbf{negation or logical NOT} of an experimental observation $\mathsf{o}=\llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ is the experimental counter-observation $\neg \mathsf{o}=\llbracket\neg \mathsf{s}, \mathsf{e}\rrbracket$ where the negation of the statement $\mathsf{s}$ can be refuted by the experimental test $\mathsf{e}$.
+	The \emph{negation} or \emph{logical NOT} of an experimental observation $\mathsf{o}=\llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ is the experimental counter-observation $\neg \mathsf{o}=\llbracket\neg \mathsf{s}, \mathsf{e}\rrbracket$ where the negation of the statement $\mathsf{s}$ can be refuted by the experimental test $\mathsf{e}$.
 \end{defn}
 
 \begin{proof}
@@ -130,7 +152,7 @@ We define the following logical operations on experimental observations. Taken a
 \end{proof}
 
 \begin{defn}
-	The \textbf{conjunction or logical AND} of a finite collection  of experimental observations $\{\mathsf{o}_i\}_{i=1}^{n}=\{\llparenthesis \mathsf{s}_i, \mathsf{e}_i\rrparenthesis\}_{i=1}^{n}$ is the experimental observation $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ where $\mathsf{s} = \bigwedge\limits_{i=1}^{n} \mathsf{s}_i$ is the conjunction of the respective statements and $\mathsf{e} = \mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is the experimental test that successfully terminates if and only if all $\{\mathsf{e}_i\}_{i=1}^{n}$ successfully terminate.
+	The \emph{conjunction} or \emph{logical AND} of a finite collection  of experimental observations $\{\mathsf{o}_i\}_{i=1}^{n}=\{\llparenthesis \mathsf{s}_i, \mathsf{e}_i\rrparenthesis\}_{i=1}^{n}$ is the experimental observation $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ where $\mathsf{s} = \bigwedge\limits_{i=1}^{n} \mathsf{s}_i$ is the conjunction of the respective statements and $\mathsf{e} = \mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is the experimental test that successfully terminates if and only if all $\{\mathsf{e}_i\}_{i=1}^{n}$ successfully terminate.
 \end{defn}
 
 \begin{proof}
@@ -143,7 +165,7 @@ We define the following logical operations on experimental observations. Taken a
 \end{proof}
 
 \begin{defn}
-	The \textbf{disjunction or logical OR} of a countable (finite or infinite) collection of experimental observations $\{\mathsf{o}_i\}_{i=1}^{\infty}=\{\llparenthesis \mathsf{s}_i, \mathsf{e}_i\rrparenthesis\}_{i=1}^{\infty}$ is the experimental observation $\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i = \llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ where $\mathsf{s} = \bigvee\limits_{i=1}^{\infty} \mathsf{s}_i$ is the disjunction of the respective statements and $\mathsf{e} = \mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ is the experimental test that successfully terminates if and only if at least one experimental test in $\{\mathsf{e}_i\}_{i=1}^{\infty}$ successfully terminates.
+	The \emph{disjunction} or \emph{logical OR} of a countable (finite or infinite) collection of experimental observations $\{\mathsf{o}_i\}_{i=1}^{\infty}=\{\llparenthesis \mathsf{s}_i, \mathsf{e}_i\rrparenthesis\}_{i=1}^{\infty}$ is the experimental observation $\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i = \llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ where $\mathsf{s} = \bigvee\limits_{i=1}^{\infty} \mathsf{s}_i$ is the disjunction of the respective statements and $\mathsf{e} = \mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ is the experimental test that successfully terminates if and only if at least one experimental test in $\{\mathsf{e}_i\}_{i=1}^{\infty}$ successfully terminates.
 \end{defn}
 
 \begin{proof}
@@ -162,13 +184,6 @@ We define the following logical operations on experimental observations. Taken a
 
 
 
-For technical reasons, we will need the following: 
-
-\begin{defn}
-The \textbf{empty observation} is any experimental observation of the form $\llparenthesis \mathsf{s}\wedge \neg\mathsf{s},\mathsf{e}\rrparenthesis$. Note that this will always fail. 
-\end{defn}
-
-
 
 \section{Experimental domain}
 
@@ -176,25 +191,28 @@ Being able to test experimental observations one at a time is not enough. Given 
 
 
 \begin{defn}
-	An \textbf{generalized experimental domain} is a set of observations closed under finite conjunction and countable disjunction. Any subset that can generate all others via finite conjunction and countable disjunction is called a \textbf{sub-basis} of the domain. A \textbf{basis} is a subset of the observations which can generate all others by countable disjunctions. 
+	An \emph{experimental domain} is a set of observations closed under finite conjunction and countable disjunction such that all observations can be tested in infinite time. 
+\end{defn}
+
+\begin{defn}
+	A \emph{sub-basis} of an experimental domain is any subset that can generate all others via finite conjunction and countable disjunction. A \emph{basis} of an experimental domain is any subset that can generate all others by countable disjunctions. 
 \end{defn}
 
 Clearly, given a sub-basis one can generate a basis by taking all finite conjunctions of the observations. Note that any infinite sub-basis will generate a basis of the same cardinality. We claim that it is only possible to verify all members of an experimental domain with a countable (sub-)basis even given infinite time. 
 
 \begin{prop}
-Let $\mathcal{S}$ be an experimental domain. Then it is possible to verify all experimental observations $\mathsf{o}\in S$ in infinite time if and only if there exists a countable basis (equivalently, sub-basis) $\mathcal{B}$ of $\mathcal{S}$. 
+Let $\mathcal{S}$ be an experimental domain. Then there exists a countable basis (equivalently, sub-basis) $\mathcal{B}$ of $\mathcal{S}$.
 \end{prop}
+
 \begin{proof}
 If there exists a countable basis $\mathcal{B}$, then given infinite time one can test all observations in $\mathcal{B}$. Given all truth values for elements of the basis, one can deduce the truth values for the other observations in $\mathcal{S}$ (again using infinite time) by computing the appropriate conjunctions and disjunctions. 
 
-If there does not exist a countable basis, then by definition there does not exist a sequence of experimental observations in $\mathcal{S}$ from which one can deduce all other observations in $\mathcal{S}$. Hence it is impossible to verify all members of $\mathcal{S}$.
+If there does not exist a countable basis, then by definition there does not exist a sequence of experimental observations in $\mathcal{S}$ from which one can deduce all other observations in $\mathcal{S}$. Hence it is impossible to test all members of $\mathcal{S}$.
 \end{proof}
 
-In light of the above result, we have the following definition, on which the remainder of this chapter will focus. 
-
-\begin{defn}
-An \textbf{experimental domain} is a set of observations closed under finite conjunction and countable disjunction which has a countable basis and contains the empty observation. 
-\end{defn}
+\begin{rem} 
+It is not hard to see that the (countable) disjunction of an entire basis produces an experimental observation which is always verified. Henceforth, we call this the \emph{trivial observation}. 
+\end{rem}
 
 
 
@@ -203,120 +221,72 @@ An \textbf{experimental domain} is a set of observations closed under finite con
 Given an experimental domain, we want to study the maximal sets of consistent observations that can be verified at the same time. These will define the possibilities of our domain: the possible cases that can be experimentally distinguished through the observations.
 
 
-We will now use our notions of experimental observations and experimental domains to construct a new space with a topology which will more rigorously capture our notion of ``exact" possibilities. We will begin with a given experimental domain $\mathcal{S}$. 
+We will now use our notions of experimental observations and experimental domains to construct a new space with a topology which will more rigorously capture our notion of ``exact" possibilities. We will begin with a given experimental domain $\mathcal{S}$. First, we will construct an intermediate space which will mimic the Borel algebra of a topological space:
 
 \begin{defn}
-A \textbf{generalized exact outcome} for $\mathcal{S}$ is a sequence of experimental observations $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}\subset\mathcal{S}$ with the following property. For all experimental observations $\mathsf{o}\in\mathcal{S}$, there exists some positive integer $N$ such that for all integers $n>N$, one of the following must happen:
-\begin{enumerate}
-\item $\mathsf{o}_n \asymp \mathsf{o}$ 
-\item $\mathsf{o}_n \implies \mathsf{o}$
-\end{enumerate}
+Given an experimental domain $\mathcal{S}$, define the associated \emph{theoretical domain} $\mathcal{S}^*$ to be the closure under countable conjunction, disjunction, and negation of the set of statements in all experimental observations of $\mathcal{S}$.
 \end{defn}
+
+Next, we will extract the appropriate subcollection of the theoretical domain in order to obtain what will serve as ``points" in our space:
 
 \begin{defn}
-An \textbf{exact outcome} for $\mathcal{S}$ is a generalized exact outcome $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}$ such that for all $i\geq1$, we have $\mathsf{o}_{i+1}\implies\mathsf{o}_i$.
+\label{possibilitiesdef}
+Given a theoretical domain $\mathcal{S}^*$, define the set $X$ of \emph{possibilities} to be the following subset:
+$$
+X = \{s\in\mathcal{S}^*\ |\ \forall t\in\mathcal{S}^*, \text{ either } s\imp t \text{ or } s\ncomp t\}
+$$
 \end{defn}
-Note that given a generalized exact outcome, one can build an exact outcome by simply replacing each $\mathsf{o}_n$ with the (finite) conjunction $\bigvee_{i=1}^n\mathsf{o}_i$. We will often denote the collection of (generalized) exact outcomes by $\mathcal{C}$. Next, we note that different sequences can result in ``equivalent" outcomes. 
 
-\begin{defn}
-We say two exact outcomes $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}$ and $\mathcal{P}' = \{\mathsf{o}'_i\}_{j=1}^{\infty}$ are \textbf{equivalent}, denoted $\mathcal{P}\sim\mathcal{P}'$, if for all $i,j$, we have that $\mathsf{o}_i$ and $\mathsf{o}'_j$ are not mutually exclusive. 
-\end{defn}
-
-Note that given a generalized exact outcome, the exact outcome built from it will be equivalent. Importantly, this notion of equivalence is in fact an equivalence relation (i.e. a relation with reflexivity, symmetry, and transitivity):
-
-\begin{prop}
-The equivalence $\sim$ above is an equivalence relation.
-\end{prop}
+Of course, the nature of the set $X$ will vary greatly depending on the behavior of the collection $\mathcal{S}$ of observations. The following function will provide us with a collection of distinguished subsets of $X$. Define the \emph{verification function} $U:\mathcal{S}\to 2^X$, the set of subsets of $X$, by:
+$$
+U(\mathsf{o}) = \{s\in X\ |\ \mathsf{o}\text{ is successful if }s\text{ is true}\}.
+$$
+This function behaves nicely with our algebra of observations:
+\begin{lem}
+\label{ubehavior}
+Let $\mathsf{o}_1,\mathsf{o}_2,\ldots$ be some collection of observations. Then we have:
+$$U(\bigwedge\limits_{i=1}^{n} \mathsf{o}_i) = \bigcap\limits_{i=1}^{n} U (\mathsf{o}_i) \text{ and }U(\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i) = \bigcup\limits_{i=1}^{\infty} U (\mathsf{o}_i).$$
+That is, $U$ respects finite conjunction and countable disjunction.
+\end{lem}
 \begin{proof}
-Let $\mathcal{P},\mathcal{P}',\mathcal{P}''$ be exact outcomes. Reflexivity and symmetry are immediate since not being mutually exclusive is reflexive and symmetric. 
-
-For transitivity, suppose $\mathcal{P}\sim\mathcal{P}'$ and $\mathcal{P}'\sim\mathcal{P}''$, and pick some positive integers $m$ and $n$. We will show that $\mathsf{o}_m$ is not mutually exclusive to $\mathsf{o}''_n$. By hypothesis, for every $\mathsf{o}'_j\in\mathcal{P}'$, we have $\mathsf{o}_m$ and $\mathsf{o}'_j$ are not mutually exclusive and $\mathsf{o}'_j$ and $\mathsf{o}''_n$ are not mutually exclusive. Because $\mathcal{P}'$ is an exact outcome and neither $\mathsf{o}_m$ nor $\mathsf{o}''_n$ are ever mutually exclusive from any $\mathsf{o}'_j$, we may select an integer $J$ large enough so that $\mathsf{o}'_J\implies\mathsf{o}_m$ and $\mathsf{o}'_J\implies\mathsf{o}''_n$. Hence whenever $\mathsf{o}'_J$ is verified, both $\mathsf{o}_m$ and $\mathsf{o}''_n$ are verified, so they are not mutually exclusive. Because this holds for all positive integers $m,n$, we have that $\mathcal{P}_1\sim\mathcal{P}_3$. 
-\end{proof}
-
-Next, we will define our universe of discourse. 
-
-
-\begin{defn}
-	A \textbf{set of possibilities} $X$ for an experimental domain $\mathcal{S}$ is the collection $\mathcal{C}$ of all exact outcomes for $\mathcal{S}$, modulo the equivalence relation $\sim$ defined above. That is, $X=\mathcal{C}/\sim$. 
-\end{defn}
-
-Equivalently, a set of possibilities $X$ for $\mathcal{S}$ may be specified by choosing one exact outcome from each equivalence class. We will now provide a notion of containment for exact outcomes being ``within" an experimental observation. 
-
-\begin{defn}
-An exact outcome $\mathcal{P}=\{\mathsf{o}_i\}_{i=1}^{\infty}$ for experimental domain $\mathcal{S}$ is said to be an element of an experimental observation $\mathsf{o}\in\mathcal{S}$ if there exists some $N$ such that for all $n>N$, we have $\mathsf{o}_n\implies\mathsf{o}$. We denote this as $\mathcal{P}\in\mathsf{o}$. 
-\end{defn}
-
-In light of the above definition, we will refer to experimental observations either as observations or as sets. 
-
-\begin{prop}
-Let $\mathcal{P}=\{\mathsf{o}_i\}_{i=1}^{\infty}$ be an exact outcome which is an element of observation $\mathsf{o}$. Suppose $\mathcal{P}'$ is another exact outcome $\mathcal{P}'=\{\mathsf{o}'_j\}_{j=1}^{\infty}$ such that $\mathcal{P}\sim\mathcal{P}'$. Then $\mathcal{P}'\in\mathsf{o}$. 
-\end{prop}
-\begin{proof}
-Suppose not - then we must be in case (1) of the definition of (generalized) exact outcome. Then there exists some $N_1$ such that for all $n>N_1$, we have $\mathsf{o}'_n\asymp\mathsf{o}$. By hypothesis, there exists some $N_2$ such that for all $m>N_2$, we have $\mathsf{o}_m\implies\mathsf{o}$. Let $N=\max(N_1,N_2)$. But then for all $k>N$, we have that $\mathsf{o}_k$ and $\mathsf{o}'_k$ are not mutually exclusive. This contradicts $\mathsf{o}'_k\asymp\mathsf{o}$. 
-\end{proof}
-
-In particular, we immediately extend the definition of ``exact outcome containment" for elements of $\mathcal{S}$ to containment of equivalence classes of exact outcomes in $\mathcal{C}/\sim$. By the above, we can use containment of an individual exact outcome interchangeably with its equivalence class. In practice, most of our work will use individual exact outcomes representing an equivalence class, while the technical definitions will use their equivalence classes.
-
-\begin{prop}
-Let $\{\mathsf{o}_i\}_{i=1}^{n}$ be some collection of experimental observations. Then the conjunction $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigwedge\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\wedge}(\mathsf{e}_i)\rrparenthesis$ contains precisely the exact outcomes that are in all of the $\mathsf{o}_i$'s. 
-\end{prop}
-\begin{proof}
-Let $\mathcal{P} = \{\mathsf{o}'_i\}_{i=1}^{\infty}$ be an exact outcome, and suppose $\mathcal{P}\in\mathsf{o}_i$ for $i=1,\ldots,n$. Then there exists $N$ large enough so that $\mathsf{o}'_m\implies\mathsf{o}_i$ for all $m>N$ and all $i=1,\ldots,n$, which is possible since $n$ is finite. It follows that $\mathsf{o}'_m\implies\bigwedge\limits_{i=1}^{n} \mathsf{o}_i$ for all $m>N$, so $\mathcal{P}\in\bigwedge\limits_{i=1}^{n} \mathsf{o}_i$, as desired. 
-
-Next, let $\mathcal{P}\in\bigwedge\limits_{i=1}^{n} \mathsf{o}_i$. It follows that $\mathcal{P}\in\mathsf{o}_i$ for each $i$ immediately from the definitions. 
+Notice that $s\in U(\bigwedge\limits_{i=1}^{n} \mathsf{o}_i)$ if and only if all of the $\mathsf{o}_i$ are successful whenever $s$ is true. This is equivalent to the right-hand side, i.e. $s\in \bigcap\limits_{i=1}^{n} U (\mathsf{o}_i)$. The other equality is similarly straightforward. 
 \end{proof}
 
 
-\begin{prop}
-Let $\{\mathsf{o}_i\}_{i=1}^{\infty}$ be some collection of experimental observations. Then the disjunction $\bigvee\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigvee\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\vee}(\mathsf{e}_i)\rrparenthesis$ contains precisely the exact outcomes that are in any of the $\mathsf{o}_i$'s. 
-\end{prop}
+\begin{thm}
+For an experimental domain $\mathcal{S}$ with set of possibilities $X$ and verification function $U$, the collection $\mathsf{T} = U(\mathcal{S})\subset2^X$ is a Hausdorff, second-countable topology on $X$.
+\end{thm}
 \begin{proof}
-Let $\mathcal{P} = \{\mathsf{o}'_i\}_{i=1}^{\infty}$ be an exact outcome, and suppose $\mathcal{P}\in\mathsf{o}_k$ for some $k\geq1$. Then there exists $N$ large enough so that $\mathsf{o}'_m\implies\mathsf{o}_k$ for all $m>N$. It follows that $\mathsf{o}'_m\implies\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$ for all $m>N$, so $\mathcal{P}\in\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$, as desired. 
+First, the null obervation will map to the empty set, and the trivial observation will map to all of $X$. Next, we must check arbitrary union and finite intersections. Recall that the experimental domain $\mathcal{S}$ has a countable basis $\mathcal{B} = \{\mathsf{o}_1,\mathsf{o}_2,\ldots\}$. 
 
-Next, let $\mathcal{P}\in\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$. Then there exists $N$ such that for all $m>N$, we have $\mathsf{o}'_m\implies \bigvee\limits_{i=1}^{\infty} \mathsf{o}_i$. Pick some such $m$, and so in particular, there exists $k$ such that $\mathsf{o}'_m\implies\mathsf{o}_k$. By definition of (non-generalized) exact outcome, this means $\mathcal{P}\in \mathsf{o}_k$, as required. 
-\end{proof}
+Let $\{U_i\ |\ i\in I\}\subseteq \mathsf{T}$, where $I$ is some indexing set. Let $U_i = U(\mathsf{O}_i)$, where each $\mathsf{O}_i = \bigcup\limits_{j=1}^{\infty}\mathsf{o}_{n_{i,j}}$ for appropriately indexed basis elements $\mathsf{o}_{n_{i,j}}$, where $n_{i,j}$ is a positive integer. Now, since there are only countably many basis elements, we know that there are only countably many distinct $n_{i,j}$'s, so we may define a sequence of positive integers $m_k, k=1,2,\ldots$ such that $$\{m_k\}_{k=1}^{\infty} = \{n_{i,j}\ |\ i\in I, j=1,2,\ldots\}.$$ Then using Lemma \ref{ubehavior}, we have the following:
+$$
+\bigcup\limits_{i\in I}U(\mathsf{O}_i) = \bigcup\limits_{i\in I}\bigcup\limits_{j=1}^{\infty}U(\mathsf{o}_{n_{i,j}}) = \bigcup\limits_{k=1}^{\infty}U(\mathsf{o}_{m_k}) = U(\bigvee\limits_{k=1}^{\infty} \mathsf{o}_{m_k})
+$$
+which is an element of $\mathsf{T}$, so this collection is closed under arbitrary union. 
 
+The proof for finite intersection is simpler. Let $\{U_i\}_{i=1}^N$ be a finite collection of elements of $\mathsf{T}$. Then as above writing $U_i = U(\mathsf{O}_i)$, we have:
+$$
+\bigcap\limits_{i=1}^N U(\mathsf{O}_i) = U(\bigwedge\limits_{i=1}^{N} \mathsf{O}_i)
+$$
+by Lemma \ref{ubehavior}, as required. Hence $\mathsf{T}$ is a topology. In what follows we will refer to elements of $\mathsf{T}$ as open sets. 
 
-TODO: check this. the definition of experimental observation and their OR and AND are a little hard to use as needed here. 
+It is immediate that this topology is second-countable, since by Lemma \ref{ubehavior} the countable basis of observations for $\mathcal{S}$ becomes under $U$ a countable basis for the topology $\mathsf{T}$. To see why it is Hausdorff, let $x,y\in X$ be distinct possibilities. From Definition \ref{possibilitiesdef}, we have several cases to consider; however, it turns out that only one is possible. Without loss of generality, suppose $x\imp y$. But then we have $x\comp y$, so by symmetry we must also have $y\imp x$; in other words, $x=y$, contrary to assumption. It follows that $x\ncomp y$. Now suppose for a contradiction that for every open set $U\ni x$ and $V\ni y$ we have $U\cap V\neq \emptyset$. TODO: PROBLEM
 
-TODO: maybe make a new notation for observation as a set of outcomes. 
-
-
-TODO: a lot of the indices/notation might be a little hard to read/follow. 
-
-
-
-
-We are now ready to prove one of the main results of this chapter. The following theorem links the philosophical definitions at the beginning of the chapter to the mathematical structure of a topological space.
-
-TODO: maybe add a theorem environment for this one
-
-\begin{prop}
-Let $\mathcal{S}$ be an experimental domain with (by definition countable) basis $\mathcal{B}$, and let $X = \mathcal{C}/\sim$ be the set of possibilities. Then $(X,\mathcal{S})$ is a Hausdorff, second-countable topological space with points $X$ and open sets $\mathcal{S}$, where union and intersection are given by conjunction and disjunction of experimental observations, respectively. 
-\end{prop}
-\begin{proof}
-We first will show that the collection of sets $\mathsf{o}\in\mathcal{S}$ do indeed form a topology on $X$. First, the experimental observation formed by the (countable) disjunction of all observations in $\mathcal{B}$ is an observation which contains all others; that is, this set contains all of $X$. The empty observation contains no elements of $X$, so serves as the empty set. 
-
-Next, let $\mathsf{o}_1,\mathsf{o}_2\in\mathcal{S}$. Then by the previous proposition about conjunction, we have that the set of exact outcomes corresponding to $\mathsf{o}_1\wedge\mathsf{o}_2$ is precisely $\mathsf{o}_1\cap\mathsf{o}_2$. For a countable subset of $\mathcal{S}$, the same argument shows that their union (as sets of exact outcomes) matches the disjunction (as experimental observations). For arbitrary collections, because $\mathcal{B}$ is countable and generates all of the experimental observations, we can rewrite an arbitrary union of the corresponding subsets of exact outcomes as a countable disjunction of experimental observations, and we are reduced to the countable case. 
-
-This proves that $(X,\mathcal{S})$ is a topology. Further, we can see that $\mathcal{B}$ is a countable basis for the topology (because conjunction and disjunction correspond to intersection and union), so it is second-countable. Next, we prove that $(X,\mathcal{S})$ is Hausdorff. 
-
-Let $\mathcal{P} = \{\mathsf{o}_i\}_{i=1}^{\infty}$ and $\mathcal{P}' = \{\mathsf{o}'_i\}_{j=1}^{\infty}$ be two non-equivalent exact outcomes. Then there exist some $m,n$ such that $\mathsf{o}_m\asymp\mathsf{o}'_n$. But then $\mathcal{P}\in\mathsf{o}_m$ and $\mathcal{P}'\in\mathsf{o}'_n$, which are two disjoint sets in $\mathcal{S}$. This completes the proof. 
 \end{proof}
 
 
 
-\begin{defn}
-	A \textbf{verifiable set} $U \subseteq X$ is a subset of possibilities for which there exists an experimental observation $\mathsf{o}\in\mathcal{S}$  = (\text{``The object is in } U \text{"}, $\mathsf{e}_\in(U))$ where $\mathsf{e}_\in(U)$ is an experimental test that succeeds only if the object to identify is an element of $U$.
-\end{defn}
 
-\begin{defn}
-	A \textbf{refutable set} $U \subseteq X$ is a subset of possibilities for which there exists an experimental counter-observation $\mathsf{o} = (\text{``The object is in } U \text{"}, \mathsf{e}_{\notin}(U))$ where $\mathsf{e}_{\notin}(U)$ is an experimental test that succeeds only if the object to identify is not an element of $U$.
-\end{defn}
 
-\begin{prop}
-	The complement $U^C$ of a verifiable set $U \subseteq X$ is a refutable set.
-\end{prop}
+
+
+
+
+
+
+
+
 
 
 \begin{prop}
