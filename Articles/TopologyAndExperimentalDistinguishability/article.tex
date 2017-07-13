@@ -26,7 +26,7 @@
 
 \begin{frontmatter}
 
-\title{Topology and physical distinguishability}
+\title{Topology and experimental distinguishability}
 
 %% Group authors per affiliation:
 \author[]{Christine A. Aidala\corref{cor1}}
@@ -44,14 +44,14 @@
 
 
 \begin{abstract}
-We formalize the relationship between topological spaces and the ability to distinguish objects experimentally, providing understanding and justification as to why topological spaces and continuous functions are pervasive tools in the physical sciences. The aim is to use these ideas as a stepping stone to give a more rigorous physical foundation to dynamical systems and, in particular, Hamiltonian dynamics.  We first define an experimental observation as a statement that can be verified using an experimental procedure and show that observations are closed under finite conjunction and countable disjunction. We then consider observations that identify elements in a set and show how they induce a Hausdorff and second-countable topology on that set, thus identifying an open set as one that can be associated with an experimental observation. We then show that only continuous functions preserve experimental distinguishability and that the collection of these functions can be given a Hausdorff and second-countable topology. 
+We formalize the relationship between topological spaces and the ability to distinguish objects experimentally, providing understanding and justification as to why topological spaces and continuous functions are pervasive tools in science. We first define an experimental observation as a statement that can be verified using an experimental procedure and show that observations are closed under finite conjunction and countable disjunction. We then consider observations that identify elements in a set and show how they induce a Hausdorff and second-countable topology on that set, thus identifying an open set as one that can be associated with an experimental observation. We then show that only continuous functions preserve experimental distinguishability and that the collection of these functions can be given a Hausdorff and second-countable topology. 
 
 
 \end{abstract}
 
 \begin{keyword}
-topological spaces \sep other keyword
-\MSC[2010] 00-01\sep  99-00
+topological spaces \sep TODO
+\MSC[2010] TODO \sep TODO
 \end{keyword}
 
 \end{frontmatter}
@@ -60,15 +60,15 @@ topological spaces \sep other keyword
 
 \section{Introduction}
 
-The successful use of mathematical ideas in experimental sciences is something long established and celebrated.\footnote{Unreasonable effectiveness and other} In particular topology is arguably the most widespread, as it provides the foundation for other mathematical tools such as differential geometry and ???. Why is it so successful? What physical property is captured by topological spaces that is so fundamental for scientific investigation? 
+The successful use of mathematical ideas in experimental sciences is something long established and celebrated.\footnote{Unreasonable effectiveness and other} In particular topology is arguably the most widespread, as it provides the foundation for other mathematical tools such as differential geometry and ???. Why is it so successful? What property is captured by topological spaces that is so fundamental for scientific investigation? 
 
-We believe we have identified the answer: topologies capture the way objects are experimentally distinguishable. It is open sets that are associated with experimental outcomes, not the values themselves. For example, as real values are only measurable with finite precision, the standard topology on Euclidean spaces is the one that is physically meaningful. Along the same line, experimental relationships need to preserve what can be experimentally distinguished, and they are therefore represented as continuous functions.
+We believe we have identified the answer: topologies capture the way objects are experimentally distinguishable. It is open sets that are associated with experimental outcomes, not the points themselves. For example, as real values are only measurable with finite precision, the standard topology on Euclidean spaces is the one that is physically meaningful. Along the same line, experimental relationships need to preserve what can be experimentally distinguished, and they are therefore represented as continuous functions.
 
 In this sense, experimental distinguishability is \emph{the} application of topology in experimental science. It is fitting, then, that topology is so widespread given that defining what can be experimentally identified is truly a fundamental aspect of science. The aim of this paper is to lay down a framework that formalizes this insight. 
 
 The work is organized as follows. We first define experimental observations as statements paired with an experimental test that is able to verify them. We study their properties under logical operations and show that they are only closed under finite conjunction and countable disjunction.  We then show that any set of objects that are experimentally distinguishable is a Hausdorff second-countable topological space. Both the points and the topology of the space are formally defined in terms of the observations themselves.  Finally, we study relationships between experimentally distinguishable objects. These are represented by continuous functions, and they can be shown to be themselves physically distinguishable.
 
-We believe this work not only provides interesting insights, but a firm justification of the use of topological ideas in the physical sciences.
+We believe this work not only provides interesting insights, but a firm justification of the use of topological ideas in the sciences.
 
 \section{Experimental observations}
 
@@ -466,6 +466,21 @@ TODO: the above propositions might generalize to any uncountable, second-countab
 
 Thus we have shown one can start with two Hausdorff, second-countable spaces, and generate a new Hausdorff second-countable space consisting of all functions between them. Topological spaces with these properties make up our class of scientifically interesting spaces, so the space of continuous (distinguishability-preserving) functions between spaces of distinguishable quantities is again a physically distinguishable space. Because one can iterate this construction (since the relevant properties are preserved), this is a way to generate arbitrarily many new physically distinguishable spaces encoding important information about the ``lower-order" spaces (i.e. they consist of functions which encode a conversion between verifiable sets in different spaces).
 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{p{0.20\textwidth} p{0.7\textwidth}}
+		Math/Topology & Science/Physics \\ 
+		\hline 
+		Hausdorff, second-countable topological space & Experimentally distinguishable space, whose points are the possible values and whose open sets represent the experimentally attainable levels of precision \\
+		Open set & Verifiable set. We can verify experimentally that an element is within the set  \\ 
+		Closed set & Refutable set. We can verify experimentally that an element is not in the set \\ 
+		Basis of a topology & A collection of verifiable sets such that any verifiable set is determined by the basis sets\\
+		Continuous \newline function &  A function between two sets of experimental distinguishable elements that preserves distinguishability \\
+		Homeomorphism &  A perfect equivalence between experimentally distinguishable spaces. \\
+	\end{tabular} 
+	\caption{Topology to physics dictionary}
+\end{table}
+
 
 \section{Conclusion}
 
@@ -473,20 +488,6 @@ We have shown that it is possible to formally capture the requirements of experi
 
 We hope that this work, because of both its method and result, can provide a more solid foundation to formalize experimental sciences.
 
-\begin{table}[h]
-	\centering
-\begin{tabular}{p{0.20\textwidth} p{0.7\textwidth}}
-	Math/Topology & Science/Physics \\ 
-	\hline 
-	Hausdorff, second-countable topological space & Experimentally distinguishable space, whose points are the possible values and whose open sets represent the experimentally attainable levels of precision \\
-	Open set & Verifiable set. We can verify experimentally that an element is within the set  \\ 
-	Closed set & Refutable set. We can verify experimentally that an element is not in the set \\ 
-	Basis of a topology & A collection of verifiable sets such that any verifiable set is determined by the basis sets\\
-	Continuous \newline function &  A function between two sets of experimental distinguishable elements that preserves distinguishability \\
-	Homeomorphism &  A perfect equivalence between experimentally distinguishable spaces. \\
-\end{tabular} 
-\caption{Topology to physics dictionary}
-\end{table}
 
 \section*{Acknowledgments}
 Funding for this work was provided in part by the MCubed program of the University of Michigan.
