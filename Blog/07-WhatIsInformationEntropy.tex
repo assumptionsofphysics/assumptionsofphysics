@@ -26,17 +26,17 @@ TL;DR Information entropy tells you the average number of bits (i.e. answers to 
 
 Starting from the 1950s, the connection between information theory and thermodynamics has been increasingly made clear. What I believe is still largely unnoticed is that there is a deep link between information theory and Hamiltonian mechanics as well. I want to explore this link in the next few posts so I'd like to first give a clear idea on what information entropy actually is.
 
-The concept of entropy in physics is unfortunately associated with a certain amount of vagueness. While mathematically is well defined, I have never heard a crisp conceptual understanding (e.g. it measures "disorder", it has to do with how much the system is homogeneous, ...). Entropy in information theory, or Shannon's entropy, instead has a crisp intuitive meaning and therefore I cringe when I hear some defining it as "lack of information" or any other vague description. So, let's see if we can do better.
+The concept of entropy in physics is unfortunately associated with a certain amount of vagueness. While mathematically is well defined, I have never heard a crisp conceptual understanding (e.g. it measures "disorder", it has to do with how much the system is homogeneous, ...). Entropy in information theory, or Shannon's entropy, instead has a crisp intuitive meaning and therefore I cringe when I hear people describing it as "lack of information" or any other vague description. So, let's see if we can do better.
 
 The scenario is this: you have a distribution over a set of possibilities. You pick an element according to that distribution. On average, how many bits of information you have to use to tell me which element have you picked? How many one-zeros? How many yes-no answers? If that doesn't make sense yet, hopefully it will after we go through a few examples.
 
 \section{Examples}
 
-Suppose you have a bag with 40 balls. 20 are green and 20 are red. Suppose you pick a ball and I want to know the color. Suppose I can only ask you yes or no questions. How many questions do I have to ask you? One suffices: "is it red?". If the answer is yes, I know it's red, if the answer is no, I know it's green. We can rephrase by asking: how many one-zero choices? That is: how many bits of information you need to give me? The answer is one bit: 0 for green and 1 for red. That is: all the information can be encoded into one zero-one choice.
+Suppose you have a bag with forty balls. Twenty are green and twenty are red. Suppose you pick a ball and I want to know the color. Suppose I can only ask you yes or no questions. How many questions do I have to ask you? One suffices: "is it red?". If the answer is yes, I know it's red, if the answer is no, I know it's green. We can rephrase by asking: how many one-zero choices? That is: how many bits of information you need to give me? The answer is one bit: 0 for green and 1 for red. That is: all the information can be encoded into a single zero-one choice.
 
-Let's do it again in another case. Suppose all 40 balls are green. How many bits of information? The answer is zero bits: I already know you are going to get a green ball.
+Let's do it again in another case. Suppose all forty balls are green. How many bits of information? The answer is zero bits: I already know you are going to get a green ball.
 
-Suppose there are 10 balls for each of these color: green, red, yellow and blue. How many bits of information? We can set 00 for green, 01 for red, 10 for yellow and 11 for blue. That is two zero-one choices: it's two bits of information.
+Suppose there are ten balls for each of these color: green, red, yellow and blue. How many bits of information? We can set 00 for green, 01 for red, 10 for yellow and 11 for blue. Four cases can be encoded into two zero-one choices: it's two bits of information.
 
 Shannon's entropy simply generalizes this idea: given a $n$ cases each with a probability $p_i$, the average number of bits (i.e. yes/no answers) required to identify an element is:
 
@@ -71,7 +71,7 @@ While we are not going to derive it here, the derivation is not particularly ins
 
 There are a couple of aspects we need to clarify as it allows to understand why such concept is useful in physics.
 
-First of all, information entropy has nothing to do with knowledge (e.g. what we know about the system or what can be known). This misunderstanding arises because the concept can be applied to probability distribution that represent our knowledge of the system, and in some cases it may relate to knowledge. For example, if there are four boxes and I do not know in which one the ball is hiding, I have a uniform distribution on four cases which has 2 bits of information entropy. Conversely, if I know where it is, the entropy is 0 bits. So, in this case more entropy correspond to less knowledge. But this idea does no generalize.
+First of all, information entropy has nothing to do with knowledge (e.g. what we know about the system or what can be known). This misunderstanding arises because the concept can be applied to probability distribution that represent our knowledge of the system, and in some cases it may relate to knowledge. For example, if there are four boxes and I do not know in which one the ball is hiding, I have a uniform distribution on four cases which has 2 bits of information entropy. Conversely, if I know where it is, the entropy is 0 bits. So, in this case more entropy correspond to less knowledge. But this idea does not generalize.
 
 Suppose you have equal confidence that you may or may not win a prize. That is: 50\% chance you get one million dollars and 50\% chance you get nothing. That corresponds to one bit of information entropy. On the other hand, suppose you know you won a prize but you do not know how much. 50\% chance you won half a million dollars and 50\% chance you won a million dollars. It is still one bit of information entropy. Yet, I would argue, you know more in the second case: you know you have half a million dollars you can spend right away.
 
@@ -81,6 +81,6 @@ Another thing to keep in mind is that information entropy is a quantity that rel
 
 \section{Conclusion}
 
-This hopefully helps you understand what information entropy measures: how many bits of informations are required on average to identify an element in a distribution. Not "knowledge" or "lack of information" or "disorder" or any other vague concept. In the end, information entropy is a number: to understand it you need to understand what that number quantifies and in what units.
+At the end of the day, information entropy is a number: to understand it you need to understand what that number quantifies and in what units. If do not have a clear idea what that number is measuring, you do not understand what it is. That number measures how many bits of informations are required on average to identify an element in a distribution. Not "knowledge" or "lack of information" or "disorder" or any other vague concept. 
 
 \end{document}
