@@ -24,11 +24,9 @@
 
 TL;DR Hamiltonian systems are those that conserve information entropy during time evolution.
 
-This is one of those result that I figured out a few years ago but I still don't know if and where to publish it. Fortunately for me, I care a lot more about figuring things out than publishing papers.
+The idea is the following: suppose you have a distribution over position and momentum $\rho(x, p)$. Suppose you evolve it in time and get a final distribution $\hat{\rho}(x, p)$ using Hamiltonian evolution. That is: you take each little area in phase space and move it according to Hamilton's equations. How does the information entropy change? Answer: it doesn't. Suppose you look for all possible time evolutions that conserve information entropy, what do you get? You get Hamiltonian mechanics.
 
-The idea is the following: suppose you have a distribution over position and momentum $\rho(x, p)$. Suppose you evolve it in time and get a final distribution $\hat{\rho}(x, p)$ using Hamiltonian evolution. That is: you take each little volume and move it according to the trajectories given by Hamiltonian mechanics. How does the information entropy change? Answer: it doesn't. Suppose you look for all possible time evolutions that conserve information entropy, what do you get? You get Hamiltonian mechanics.
-
-That is: Hamiltonian systems are the ones and only the ones that preserve information entropy of a distribution $\rho(x, p)$ over states. That is: identifying an element in the initial distribution requires exactly the same information as an element in the final distribution. That is: knowing the initial element you know the final element and vice-versa. That is: the evolution is deterministic and reversible.
+That is: Hamiltonian systems are the ones and only the ones that preserve information entropy of a distribution $\rho(x, p)$ over states. Identifying an element in the initial distribution requires exactly the same information as identifying an element in the final distribution. Knowing the initial element you know the final element and vice-versa. The evolution is deterministic and reversible.
 
 Let's see how the math works.
 
@@ -56,7 +54,7 @@ d\hat{x}\,d\hat{p} &= |J| dx \,dp  \\
 \end{equation}
 BTW: if you are familiar with the Poisson bracket, you can see that the Jacobian is simply the Poisson bracket of the new position and momentum. But that's for another time.
 
-Because the evolution is Hamiltonian, the Liouville's theorem applies so the Jacobian is unitary. Let's verify that:
+Because the evolution is Hamiltonian, Liouville's theorem applies so the Jacobian is unitary. Let's verify that by combining the Jacobian definition in \eqref{newDistribution} with the new coordinates defined in \eqref{newCoordinates}:
 \begin{equation}
 \begin{aligned}
 |J| &= \left| \begin{matrix}
@@ -69,30 +67,30 @@ Because the evolution is Hamiltonian, the Liouville's theorem applies so the Jac
 \label{Jacobian}
 \end{equation}
 
-This means the volume $d\hat{x}\,d\hat{p} = dx \,dp$ remains unchanged and the final density at the final state is equal to the initial density at the initial state: $\rho(\hat{x}, \hat{p}) = \rho(x, p)$.  
+This means the volume $d\hat{x}\,d\hat{p} = dx \,dp$ remains unchanged and the final density at the final state is equal to the initial density at the initial state: $\hat{\rho}(\hat{x}, \hat{p}) = \rho(x, p)$.  
 
 How does the information entropy change? We calculate the entropy at the final state and then change variable using \eqref{newDistribution}:
 \begin{equation}
 \begin{aligned}
--\int \hat{\rho} \log \hat{\rho} \; d\hat{x}\,d\hat{p}&= -\int \frac{\rho}{|J|} \log \frac{\rho}{|J|} \; |J| dx \,dp = -\int \frac{\rho}{|J|} \log \frac{\rho}{|J|} \; |J| dx \,dp \\
+-\int \hat{\rho} \log \hat{\rho} \; d\hat{x}\,d\hat{p}&= -\int \frac{\rho}{|J|} \log \frac{\rho}{|J|} \; |J| dx \,dp \\
 &= -\int \rho \log \frac{\rho}{|J|} \; dx \,dp \\
 &= -\int \rho \log \rho \; dx \,dp + \int \rho \log |J| \; dx \,dp \\
 \end{aligned}
 \label{newEntropy}
 \end{equation}
-That is: the information entropy of the final distribution is equal to the one of the initial distribution plus the expectation of the Jacobian.
+That is: the information entropy of the final distribution is equal to the one of the initial distribution plus the expectation of the logarithm of the Jacobian.
 
-But since the evolution is Hamiltonian, the Jacobian is unitary. The information entropy of the final distribution is that of the initial distribution. The information entropy is conserved.
+But since the evolution is Hamiltonian, the Jacobian is unitary and its logarithm is therefore zero. The information entropy of the final distribution is that of the initial distribution. The information entropy is conserved.
 
 \section{Conservation of information entropy gives Hamiltonian mechanics}
 
-We can run the argument backwards. If information entropy is conserved, the logarithm of the Jacobian has to be zero everywhere, which can only happen if the Jacobian is equal to one everywhere. Looking at \eqref{Jacobian}, this happens only if:
+We can run the argument backwards. Suppose we have a distribution over position and momentum $\rho(x, p)$. Suppose the evolution is such that the information entropy is conserved. How can we characterize the evolution? For the information entropy to be conserved the logarithm of the Jacobian has to be zero everywhere, which can only happen if the Jacobian is equal to one everywhere. Looking at \eqref{Jacobian}, this happens only if:
 \begin{equation}
 \dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) = 0
-\label{Jacobian}
+\label{divergenceFree}
 \end{equation}
 
-This means that the vector field formed by the displacement vector $\left[ \dfrac{dx}{dt}, \dfrac{dp}{dt}\right]$ is divergence free. Which means it admits a potential $H$ such that:
+This means that the vector field formed by the displacement vector $\left[ \dfrac{dx}{dt}, \dfrac{dp}{dt}\right]$ is divergence free, which means it admits a potential $H$ such that:
 \begin{equation}
 \begin{aligned}
 \frac{dx}{dt} &= \frac{\partial H}{\partial p}  \\
@@ -103,7 +101,7 @@ This means that the vector field formed by the displacement vector $\left[ \dfra
 So we have recovered Hamilton's equations.
 
 \section{Conclusion}
-As we have saw, Hamiltonian mechanics is equivalent to conservation of information entropy. This idea can be generalized to multiple independent degrees of freedoms. The math is a bit more involved but does not add to the general idea.
+As we have seen, Hamiltonian mechanics is equivalent to conservation of information entropy. This idea can be generalized to multiple independent degrees of freedom. The math is a bit more involved but the single degree of freedom already gives the general idea.
 
 This is why isolated systems conserve energy: if they are isolated it means that their motion only depends on the information that is already contained in the system. Which means it cannot change. Which gives us Hamiltonian motion. Which means: energy is conserved.
 
