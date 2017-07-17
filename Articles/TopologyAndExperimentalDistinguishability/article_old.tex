@@ -86,7 +86,13 @@ In science, something is accepted as true only if one can provide a way to indep
 
 
 \begin{defn}
-	A \emph{statement} $\mathsf{s}$ is a declarative sentence that is either true or false, as in classical logic. 
+	A \emph{statement} $\mathsf{s}$ is a declarative sentence that is either true or false, as in classical logic. Here, we allow for infinite statements. 
+\end{defn}
+
+In addition to the usual logical operations on statements, we introduce the following notation: 
+
+\begin{defn}
+We say two statements $s$ and $t$ are \emph{compatible}, denoted $s\comp t$, if the conjunction $s\wedge t$ is not a contradiction; otherwise they are \emph{incompatible}, denoted $s\ncomp t$. 
 \end{defn}
 
 Given a statement, we wish to consider when it makes scentific sense to test. The following construction will define the building blocks of this theory. 
@@ -117,15 +123,13 @@ Experimental observations are the core object of the scientific discourse. We no
 
 A note on the language: even if $\mathsf{o}_1$ implies $\mathsf{o}_2$ this does not give us a way to verify $\mathsf{o}_2$. There may be cases where the $\mathsf{o}_2$ is verified and $\mathsf{o}_1$ is not. Therefore it is improper to say that one observation verifies another: only experimental tests verify observations.
 
-Lastly, we define a special type of observation.
+Lastly, we define a special type of observation. 
 
 \begin{defn}
-The \textit{null observation}, denoted $\mathsf{o}_N$, is any experimental observation that is never verified (i.e. the experimental test will never terminate successfully).
+	The \emph{null observation} is any experimental observation that is never verified (i.e. the experimental test will never terminate successfully). 
 \end{defn}
 
-
 The null observation is the degenerate case and has the following, maybe counterintuitive, properties. Since it is never verified, it can never rule out any other observations: the null observation implies all other observations. Since it is never verified, it can never be jointly verified with another observation: the null observation is incompatible with every experimental observation, including itself.
-
 
 
 
@@ -178,9 +182,7 @@ We define the following logical operations on experimental observations. Taken a
 	Suppose there exists an $i \in \mathbb{Z}^+$ such that $\mathsf{e}_i$ will terminate successfully, then the above procedure will eventually run that test for a time long enough and terminate successfully. It will do so in finite time as it will have run finitely many tests finitely many times each for a finite amount of time. Therefore $\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ is an experimental test that is successful if and only if at least one statement in $\{\mathsf{s}_i\}_{i=1}^{n}$ is successful. So $\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i =\llparenthesis\bigvee\limits_{i=1}^{\infty} \mathsf{s}_i, \mathsf{e}_{\wedge}(\{\mathsf{e}_i\}_{i=1}^{\infty})\rrparenthesis$ is an experimental observation.
 \end{proof}
 
-\begin{rem}
-A useful equivalent characterization of $\mathsf{o}\imp\mathsf{o}'$ for observations $\mathsf{o}$ and $\mathsf{o}'$ is provided by the above constructions. We note that $\mathsf{o}\imp\mathsf{o}'$ if and only if $\mathsf{o}\wedge\mathsf{o}' = \mathsf{o}'$ if and only if $\mathsf{o}\vee\mathsf{o}'=\mathsf{o}$. 
-\end{rem}
+
 
 
 \section{Experimental domain}
@@ -191,7 +193,6 @@ Being able to test experimental observations one at a time is not enough. Given 
 \begin{defn}
 	An \emph{experimental domain} is a set of observations closed under finite conjunction and countable disjunction such that all observations can be tested in infinite time. 
 \end{defn}
-
 
 \begin{defn}
 	A \emph{sub-basis} of an experimental domain is any subset that can generate all others via finite conjunction and countable disjunction. A \emph{basis} of an experimental domain is any subset that can generate all others by countable disjunctions. 
@@ -209,10 +210,9 @@ If there exists a countable basis $\mathcal{B}$, then given infinite time one ca
 If there does not exist a countable basis, then by definition there does not exist a sequence of experimental observations in $\mathcal{S}$ from which one can deduce all other observations in $\mathcal{S}$. Hence it is impossible to test all members of $\mathcal{S}$.
 \end{proof}
 
-\begin{rem}
-It is not hard to see that the (countable) disjunction of an entire basis produces an experimental observation which is always verified. Henceforth, we call this the \textit{trivial observation}, denoted $\mathsf{o}_T$.
+\begin{rem} 
+It is not hard to see that the (countable) disjunction of an entire basis produces an experimental observation which is always verified. Henceforth, we call this the \emph{trivial observation}. 
 \end{rem}
-
 
 
 
@@ -220,78 +220,71 @@ It is not hard to see that the (countable) disjunction of an entire basis produc
 
 Given an experimental domain, we want to study the maximal sets of consistent observations that can be verified at the same time. These will define the possibilities of our domain: the possible cases that can be experimentally distinguished through the observations.
 
+
+We will now use our notions of experimental observations and experimental domains to construct a new space with a topology which will more rigorously capture our notion of ``exact" possibilities. We will begin with a given experimental domain $\mathcal{S}$. First, we will construct an intermediate space which will mimic the Borel algebra of a topological space:
+
 \begin{defn}
-\label{mposs}
-A \textit{set of multipossibilities} for experimental domain $\mathcal{S}$ is a set of points $X$, together with a function $U:\mathcal{S}\to2^X$ (the set of subsets of $X$) with the following properties:
-\begin{enumerate}
-\item $U(\mathsf{o}_T) = X$, $U(\mathsf{o}_N)=\emptyset$
-\item If $\mathsf{O}_1,\mathsf{O}_2,\ldots$ is a countable collection of observations, then:
-$$
-U\big(\bigvee_i\mathsf{O}_i\big) = \bigcup_i U(\mathsf{O}_i)
-$$
-\item If $\mathsf{O}_1,\mathsf{O}_2,\ldots,\mathsf{O}_n$ is a finite collection of observations, then:
-$$
-U\big(\bigwedge_i\mathsf{O}_i\big) = \bigcap_i U(\mathsf{O}_i)
-$$
-\end{enumerate}
+Given an experimental domain $\mathcal{S}$, define the associated \emph{theoretical domain} $\mathcal{S}^*$ to be the closure under countable conjunction, disjunction, and negation of the set of statements in all experimental observations of $\mathcal{S}$.
 \end{defn}
 
-A set of multipossibilities can be thought of as a collection of possible results of experimental data. This interpretation is given credence by a desirable property: 
+Next, we will extract the appropriate subcollection of the theoretical domain in order to obtain what will serve as ``points" in our space:
 
-\begin{prop}
-If $\mathsf{o},\mathsf{o}'$ are observations such that $\mathsf{o}\imp\mathsf{o}'$, then we have $U(\mathsf{o}')\subset U(\mathsf{o})$.
-\end{prop}
+\begin{defn}
+\label{possibilitiesdef}
+Given a theoretical domain $\mathcal{S}^*$, define the set $X$ of \emph{possibilities} to be the following subset:
+$$
+X = \{s\in\mathcal{S}^*\ |\ \forall t\in\mathcal{S}^*, \text{ either } s\imp t \text{ or } s\ncomp t\}
+$$
+\end{defn}
+
+Of course, the nature of the set $X$ will vary greatly depending on the behavior of the collection $\mathcal{S}$ of observations. The following function will provide us with a collection of distinguished subsets of $X$. Define the \emph{verification function} $U:\mathcal{S}\to 2^X$, the set of subsets of $X$, by:
+$$
+U(\mathsf{o}) = \{s\in X\ |\ \mathsf{o}\text{ is successful if }s\text{ is true}\}.
+$$
+This function behaves nicely with our algebra of observations:
+\begin{lem}
+\label{ubehavior}
+Let $\mathsf{o}_1,\mathsf{o}_2,\ldots$ be some collection of observations. Then we have:
+$$U(\bigwedge\limits_{i=1}^{n} \mathsf{o}_i) = \bigcap\limits_{i=1}^{n} U (\mathsf{o}_i) \text{ and }U(\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i) = \bigcup\limits_{i=1}^{\infty} U (\mathsf{o}_i).$$
+That is, $U$ respects finite conjunction and countable disjunction.
+\end{lem}
 \begin{proof}
-By assumption, it is clear that $\mathsf{o}\wedge\mathsf{o}' = \mathsf{o}'$. We have:
-$$
-U(\mathsf{o}') = U(\mathsf{o}\wedge\mathsf{o}') = U(\mathsf{o})\cap U(\mathsf{o}') \subset U(\mathsf{o}).
-$$
+Notice that $s\in U(\bigwedge\limits_{i=1}^{n} \mathsf{o}_i)$ if and only if all of the $\mathsf{o}_i$ are successful whenever $s$ is true. This is equivalent to the right-hand side, i.e. $s\in \bigcap\limits_{i=1}^{n} U (\mathsf{o}_i)$. The other equality is similarly straightforward. 
 \end{proof}
 
 
-
-Now, we have the following straightforward, but important consequence:
-
 \begin{thm}
-A set of multipossibilities has a second-countable topology induced by the function $U$.
+For an experimental domain $\mathcal{S}$ with set of possibilities $X$ and verification function $U$, the collection $\mathsf{T} = U(\mathcal{S})\subset2^X$ is a Hausdorff, second-countable topology on $X$.
 \end{thm}
 \begin{proof}
-We show that the collection $\mathsf{T}:=U(\mathcal{S})$ of subsets of $X$ is a second-countable topology on $X$. First, requirement (1) in Definition \ref{mposs} gives us that the empty set and the entire set $X$ are in $U(\mathcal{S})$. Now, recall that an experimental domain has a countable basis $\{\mathsf{o}_i\}_{i=1}^{\infty}$ of observations. 
+First, the null obervation will map to the empty set, and the trivial observation will map to all of $X$. Next, we must check arbitrary union and finite intersections. Recall that the experimental domain $\mathcal{S}$ has a countable basis $\mathcal{B} = \{\mathsf{o}_1,\mathsf{o}_2,\ldots\}$. 
 
-Let $\{U_i\ |\ i\in I\}\subseteq \mathsf{T}$, where $I$ is some indexing set. Let $U_i = U(\mathsf{O}_i)$, where each $\mathsf{O}_i = \bigcup\limits_{j=1}^{\infty}\mathsf{o}_{n_{i,j}}$ for appropriately indexed basis elements $\mathsf{o}_{n_{i,j}}$, where $n_{i,j}$ is a positive integer. Now, since there are only countably many basis elements, we know that there are only countably many distinct $n_{i,j}$'s, so we may define a sequence of positive integers $m_k, k=1,2,\ldots$ such that $$\{m_k\}_{k=1}^{\infty} = \{n_{i,j}\ |\ i\in I, j=1,2,\ldots\}.$$ Then by requirement (2), we have the following:
+Let $\{U_i\ |\ i\in I\}\subseteq \mathsf{T}$, where $I$ is some indexing set. Let $U_i = U(\mathsf{O}_i)$, where each $\mathsf{O}_i = \bigcup\limits_{j=1}^{\infty}\mathsf{o}_{n_{i,j}}$ for appropriately indexed basis elements $\mathsf{o}_{n_{i,j}}$, where $n_{i,j}$ is a positive integer. Now, since there are only countably many basis elements, we know that there are only countably many distinct $n_{i,j}$'s, so we may define a sequence of positive integers $m_k, k=1,2,\ldots$ such that $$\{m_k\}_{k=1}^{\infty} = \{n_{i,j}\ |\ i\in I, j=1,2,\ldots\}.$$ Then using Lemma \ref{ubehavior}, we have the following:
 $$
 \bigcup\limits_{i\in I}U(\mathsf{O}_i) = \bigcup\limits_{i\in I}\bigcup\limits_{j=1}^{\infty}U(\mathsf{o}_{n_{i,j}}) = \bigcup\limits_{k=1}^{\infty}U(\mathsf{o}_{m_k}) = U(\bigvee\limits_{k=1}^{\infty} \mathsf{o}_{m_k})
 $$
 which is an element of $\mathsf{T}$, so this collection is closed under arbitrary union. 
 
-Next, given a finite collection of elements of $\mathsf{T}$, we can quickly find their preimages in $\mathsf{S}$, take their finite conjunction, and their image will be the intersection by requirement (3) of the definition. 
+The proof for finite intersection is simpler. Let $\{U_i\}_{i=1}^N$ be a finite collection of elements of $\mathsf{T}$. Then as above writing $U_i = U(\mathsf{O}_i)$, we have:
+$$
+\bigcap\limits_{i=1}^N U(\mathsf{O}_i) = U(\bigwedge\limits_{i=1}^{N} \mathsf{O}_i)
+$$
+by Lemma \ref{ubehavior}, as required. Hence $\mathsf{T}$ is a topology. In what follows we will refer to elements of $\mathsf{T}$ as open sets. 
 
-It is clear from the definition of experimental domain and properties (2) and (3) that the countable basis of observations will yield a countable basis of sets in $\mathsf{T}$. 
+It is immediate that this topology is second-countable, since by Lemma \ref{ubehavior} the countable basis of observations for $\mathcal{S}$ becomes under $U$ a countable basis for the topology $\mathsf{T}$. To see why it is Hausdorff, let $x,y\in X$ be distinct possibilities. From Definition \ref{possibilitiesdef}, we have several cases to consider; however, it turns out that only one is possible. Without loss of generality, suppose $x\imp y$. But then we have $x\comp y$, so by symmetry we must also have $y\imp x$; in other words, $x=y$, contrary to assumption. It follows that $x\ncomp y$. Now suppose for a contradiction that for every open set $U\ni x$ and $V\ni y$ we have $U\cap V\neq \emptyset$. TODO: PROBLEM
+
 \end{proof}
 
-Because experimental verification for observations behaves well with subsethood of points of $X$, one possible interpretation involves considering points of $X$ as maximal collections of observations with nonempty conjunctions. See Remark \ref{hardconstruction} for more on this. 
 
-We have now constructed a topological space associated to an unknown variable. However, our battery of tests (experimental domain) may not be robust enough to discern all of the multipossibilities in $X$. We wish to avoid these cases, and so we provide the following definition, which will define our universe of discourse for the remainder of this paper. 
 
-\begin{defn}
-\label{hausdorff}
-If a set of multipossibilities $X$ for an experimental domain $\mathcal{S}$ is such that any two points in $X$ may be separated by a pair of observations, we say $X$ is a \textit{set of possibilities}.
-\end{defn}
 
-In other words, a set of multipossibilities is called a set of possibilities if the topology induced by the set of observations is also Hausdorff. 
 
-\begin{defn}
-An \textit{experimentally distinguishable domain} is a pair $(X,\mathcal{S})$ where $X$ is a set of possibilities for experimental domain $\mathcal{S}$. 
-\end{defn}
 
-Henceforth, when discussing experimentally distinguishable domains we do not distinguish between an experimental observation $\mathsf{o}$ and the associated subset $U(\mathsf{o})$. 
 
-\begin{rem}
-\label{hardconstruction}
-It seems somewhat artificial to be given such a set $X$, when many possible interpretations are readily available. One hopes that given an experimental domain, the appropriate interpretation will lead to a natural definition of a set of possibilities, where the properties we prescribe in Definitions \ref{mposs} and \ref{hausdorff} will be straightforward deductions. Unfortunately, dealing with the inevitable infinite conjunctions of experimental observations and their corresponding infinite statements leads to subtleties which are beyond the scope of this brief article. Subsequent work will attempt to make such a construction tractable in order to circumvent the need to conjure the possibility set nonintrinsically. 
-\end{rem}
 
-We end this section with an easy result which has some interesting consequences for the nature of experimental distinguishability. 
+
+
+
 
 
 
@@ -314,7 +307,7 @@ We end this section with an easy result which has some interesting consequences 
 	This is an injective function. Suppose $x_1 \neq x_2$, then since $X$ is Hausdorff there is at least one element of the basis that contains one but not the other.\footnote{In fact, $T_0$ separability would be sufficient.} Therefore $F(x_1) \neq F(x_2)$. As $F$ injects $X$ into $2^{\mathbb{N}}$, we have $|X| \leq |2^{\mathbb{N}}|=|\mathbb{R}|$. $X$ has at most cardinality of continuum.
 \end{proof}
 
-This means that, no matter what technique we use now or in the future, the collections of elements that we can properly define experimentally are at most the cardinality of the continuum. This already gives us a first simple and basic requirement a set of mathematical objects need to pass to be of scientific interest.
+This means that, no matter what technique we use now or in the future, the collections of elements that we can properly define experimentally are at most infinite like the continuum. This already gives us a first simple and basic requirement a set of mathematical objects need to pass to be of scientific interest.
 
 For example, these objects have cardinality of continuum, and therefore are good candidates:
 \begin{itemize}
@@ -329,6 +322,14 @@ These, instead, have cardinality greater then continuum, and therefore are not g
 	\item all functions from $\mathbb{R}$ to $\mathbb{R}$
 	\item all subsets of $\mathbb{R}$
 \end{itemize}
+
+
+
+
+\section{Example of an Experimental Domain}
+
+Consider the collection of statements, ``this object has a mass strictly between $x$ and $y$ kilograms" where $x$ and $y$ are any positive real numbers with $x<y$. Consider the experimental test where we put the object on a balance with an appropriate level of precision for each corresponding statement. Then each observation may be equated to an open interval of positive real numbers $(x,y)\subset\mathbb{R}$. Conjunction and disjunction of these observations will correspond exactly to intersection and union of these intervals, respectively. Further, the collection of intervals of the form $(p,q)$ for $p,q\in\mathbb{Q}$ forms a basis of observations. Next, one can show that any sequence of observations satisfying the conditions of exact outcome corresponds precisely to a real number. In particular, the set of possibilities $X$ for this experimental domain will be the set of positive real numbers with their usual topology. The reader with some experience with elementary real analysis will recognize that this construction is essentially the same as the Cauchy sequence construction of the real numbers, where representative Cauchy sequences come from endpoints of intervals, and the intervals used those corresponding to observations in a sequence of observations yielding an exact outcome. 
+
 
 
 
@@ -422,10 +423,11 @@ We will also show that this is not in general equal to the open-open topology.
 	for each $r\in \mathbb{Q}$ with $r>\pi$. Let $S = \cup_{r>\pi}S_r$. This is the largest open set in our topology which is contained in $V$. Consider the function $f(x) = x/\pi$. This is continuous and is an element of $V$. But notice $f(\pi)=1$, so $f\notin S_r$ for all $r>\pi$, hence $f\notin S$. Thus, $V$ is a set which is open in $\mathsf{T}(\mathcal{C})$ when we use $\mathcal{B}_1$ for $X$ and $Y$, but not open when we use $\mathcal{B}_2$ for $X$ and $Y$. 
 \end{proof}
 
+TODO: add corollary environment for this one. 
 
-\begin{cor}
+\begin{prop}
 The topology $\mathsf{T}(\mathcal{C})$ on the set of continuous functions $C(\mathbb{R},\mathbb{R})$ from $\mathbb{R}$ to itself is in general not equal to the open-open topology on $C(\mathbb{R},\mathbb{R})$.
-\end{cor}
+\end{prop}
 \begin{proof}
 In the proof of the previous proposition, note that the basis for the open-open topology is independent of the basis used for the underlying spaces, and in particular is a superset of the basis for $\mathsf{T}(\mathcal{C})$ when using $\mathbb{B}_2$ to construct it. Hence the open-open topology is distinct from $\mathsf{T}(\mathcal{C})$ when using the basis $\mathcal{B}_1$ on $\mathbb{R}$. 
 \end{proof}
@@ -458,7 +460,7 @@ We hope that this work, because of both its method and result, can provide a mor
 
 
 \section*{Acknowledgments}
-Funding for this work was provided in part by the MCubed program of the University of Michigan. The third author is supported by the National Science Foundation Graduate Research Fellowship Program under Grant No. DGE\#1256260. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+Funding for this work was provided in part by the MCubed program of the University of Michigan.
 
 \bibliography{bibliography}
 
