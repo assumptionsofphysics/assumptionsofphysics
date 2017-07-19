@@ -37,19 +37,109 @@ In this work we show that the canonical transformations of classical Hamiltonian
 \section{Introduction}
 
 \section{Single degree of freedom}
-Define distribution over phase space.
 
-Show change under coordinate transformation.
+We first want to show how the math works in the simplest case, the one with a single degree of freedom. We will specifically use the simplest level of math for a number of reasons: it makes the details more accessible to a wider audience but it also shows that to show that the problem is not mathematically difficult once it is set up correctly.
 
-Define information entropy.
+Let's consider a normalized distribution over position and momentum $\rho(x, p)$. This can either be thought as a probability distribution or an actual physical distribution in phase space of an ideally continuous material. Suppose we have a differentiable law of evolution
+\begin{equation}
+\label{newCoordinates}
+\begin{aligned}
+\hat{q} = q + \frac{dq}{dt} dt  \\
+\hat{p} = p + \frac{dp}{dt} dt  \\
+\end{aligned}
+\end{equation}
+that moves each initial state $(q,p)$ to the final state $(\hat{q},\hat{p})$. Each little region $dq \,dp$ will contain $\rho(q, p) dq \,dp$ amount of material and will be mapped to a final region $d\hat{q} \,d\hat{p}$ that will contain $\rho(\hat{q}, \hat{p}) d\hat{q} \,d\hat{p}$ amount of material, which will have to match the initial amount.
 
-Show change under coordinate transformation.
+The Jacobian of the transformation is given by
+\begin{equation}
+\label{Jacobian}
+\begin{aligned}
+	|J| &= \left| \begin{matrix}
+		\dfrac{\partial \hat{q}}{\partial q} & \dfrac{\partial \hat{q}}{\partial p} \\[2.2ex]
+		\dfrac{\partial \hat{p}}{\partial q} & \dfrac{\partial \hat{p}}{\partial p} \end{matrix} \right| = \frac{\partial \hat{q}}{\partial q} \frac{\partial \hat{p}}{\partial p} - \frac{\partial \hat{p}}{\partial x} \frac{\partial \hat{q}}{\partial p}\\
+	&= \{\hat{q}, \hat{p}\} \\
+	&= \left| \begin{matrix}
+	1 + \dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) dt & \dfrac{\partial}{\partial p} \left( \dfrac{dx}{dt} \right) dt \\[2.2ex]
+	\dfrac{\partial}{\partial x} \left( \dfrac{dp}{dt} \right) dt & 1 + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) dt \end{matrix} \right| \\
+&= 1 + \left[ \dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) \right] dt + O(dt^2)\\
+\end{aligned}
+\end{equation}
+which coincides with the Poisson brackets $\{\hat{q}, \hat{p}\}$ of the new values for position and momentum.
 
-Show that conservation of information entropy is equivalent to transformation having Jacobian equals to 1.
+The transformation rules for the density and the area of phase space, then, are the following:
+\begin{equation}
+\label{newDistribution}
+\begin{aligned}
+d\hat{q}\,d\hat{p} &= |J| dq \,dp  \\
+\hat{\rho}(\hat{q}, \hat{p}) &= \frac{\rho(q, p)}{|J|}  \\
+\end{aligned}
+\end{equation}
 
-Show that canonical transformations are the ones and only the ones that have the Jacobian equals to one. Show relation to Poisson bracket. Show relation to incompressible flow. Show relation to symplectic form.
+Given a distribution, we can calculate its information entropy. On the initial distribution it will be given by:
+\begin{equation}
+\label{entropy}
+H(\rho) = -\int \rho \log \rho \; dx \,dp\\
+\end{equation}
 
-Important point: the trick is setting up the problem, not the proof.
+We can calculate how the entropy changes just by substituting \ref{newDistribution} in the definition for the entropy of the final distribution.
+\begin{equation}
+\label{newEntropy}
+\begin{aligned}
+H(\hat{\rho}) &= -\int \hat{\rho} \log \hat{\rho} \; d\hat{x}\,d\hat{p}= -\int \frac{\rho}{|J|} \log \frac{\rho}{|J|} \; |J| dx \,dp \\
+&= -\int \rho \log \frac{\rho}{|J|} \; dx \,dp \\
+&= -\int \rho \log \rho \; dx \,dp + \int \rho \log |J| \; dx \,dp \\
+\end{aligned}
+\end{equation}
+
+In other words, the final entropy is the initial entropy plus the expectation of the logarithm of the Jacobian.
+
+If the evolution obeys Hamilton's equations
+\begin{equation}
+\label{Hamilton}
+\begin{aligned}
+\frac{dq}{dt} = \frac{\partial H}{\partial p}  \\
+\frac{dp}{dt} = - \frac{\partial H}{\partial q}  \\
+\end{aligned}
+\end{equation}
+then we calculate the Jacobian
+\begin{equation}
+\label{HamiltonianJacobian}
+\begin{aligned}
+|J| &= 1 + \left[ \dfrac{\partial}{\partial q} \frac{\partial H}{\partial p} - \dfrac{\partial}{\partial p} \frac{\partial H}{\partial q} \right] dt + O(dt^2)\\
+&= 1 + O(dt^2)\\
+\end{aligned}
+\end{equation}
+which turns out to be unitary. Therefore the areas, the values of the distribution at each point and the information entropy are all conserved during the evolution.
+
+This should not be surprising. Hamiltonian mechanics leads to Liouville's theorem, which means preservation of phase space areas. Hamiltonian mechanics of canonical coordinates, therefore the new coordinates are also canonical and their Poisson bracket is unitary. Hamiltonian mechanics means invariance of the form $\omega$ with components
+\begin{equation}
+\label{singleForm}
+\omega_{ab} = TODO
+\end{equation}
+
+which corresponds to the two dimensional vector product (i.e. the area given by two vectors). Hamiltonian mechanics means incompressible flow in phase space, which means the value of the distribution has the same value for the initial and final state.  And if the distribution is value by value the same, its entropy is going to be the same as well. All these are different aspect of the same property.
+
+We can easily run the argument backward. Suppose we start with a distribution over space and a law of evolution that preserves information entropy. How can we characterize the law?
+
+For entropy to be conserved, the logarithm of Jacobian must be zero everywhere, therefore the Jacobian must be unitary. This means that the law has to satisfy the condition
+\begin{equation}
+\label{divergenceFree}
+\dfrac{\partial}{\partial q} \left( \dfrac{dq}{dt} \right) + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) = 0
+\end{equation}
+In other words: the vector field formed by the displacement vector $\left[ \dfrac{dq}{dt}, \dfrac{dp}{dt}\right]$ is divergence free, which means it admits a potential $H$ such that:
+\begin{equation*}
+\begin{aligned}
+\frac{dq}{dt} &= \frac{\partial H}{\partial p}  \\
+\frac{dp}{dt} &= - \frac{\partial H}{\partial q}
+\end{aligned}
+\end{equation*}
+So we have recovered Hamilton's equations.
+
+Therefore is not just that Hamiltonian mechanics on a single degree of freedom preserves information entropy: it is the only evolution that does. In fact, it's even deeper than that.
+
+As we saw, the information entropy is, in general, coordinate dependent. If we had a distribution over position only, we would not be able to arbitrarily change reference frame: information would not be invariant. A two dimensional manifold, with position and momentum, is exactly what is needed to define distributions such that their value and their information entropy is defined independent of reference frame. The symplectic form $\omega$ keeps track the areas on which these distributions are defined in a way similar to how the metric sensor $g$ keeps track about length in Riemannian geometry.
+
+Both phase space and Hamilton's equation are exactly the mathematical structures necessary and sufficient to describe distributions for which the information entropy is coordinate independent and is conserved in time.
 
 \section{Multiple degree of freedom}
 
