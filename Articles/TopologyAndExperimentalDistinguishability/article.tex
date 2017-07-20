@@ -14,6 +14,10 @@
 \def\comp{\doublefrown}
 \def\ncomp{\ndoublefrown}
 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
 
 \theoremstyle{plain}% default 
 \newtheorem{thm}{Theorem}[section] 
@@ -29,7 +33,7 @@
 \modulolinenumbers[5]
 
 \journal{Topology and its Applications}
-\bibliographystyle{elsarticle-num}
+
 
 \begin{document}
 
@@ -54,14 +58,12 @@
 
 
 \begin{abstract}
-We formalize the relationship between topological spaces and the ability to distinguish objects experimentally, providing understanding and justification as to why topological spaces and continuous functions are pervasive tools in science. We first define an experimental observation as a statement that can be verified using an experimental procedure and show that observations are closed under finite conjunction and countable disjunction. We then consider observations that identify elements in a set and show how they induce a Hausdorff and second-countable topology on that set, thus identifying an open set as one that can be associated with an experimental observation. We then show that only continuous functions preserve experimental distinguishability and that the collection of these functions can be given a Hausdorff and second-countable topology. 
-
-
+We formalize the relationship between topological spaces and the ability to distinguish objects experimentally, providing understanding and justification as to why topological spaces and continuous functions are pervasive tools in science. We first define an experimental observation as a statement that can be verified using an experimental procedure and show that observations are closed under finite conjunction and countable disjunction. We then consider observations that identify elements in a set and show how they induce a Hausdorff and second-countable topology on that set, thus identifying an open set as one that can be associated with an experimental observation. We then show that continuous functions preserve experimental distinguishability and define a Hausdorff and second-countable topology for this collection. 
 \end{abstract}
 
 \begin{keyword}
-topological spaces \sep TODO
-\MSC[2010] TODO \sep TODO
+topological spaces \sep scientific foundations \sep function space
+\MSC[2010] 54H99 \sep 00A79
 \end{keyword}
 
 \end{frontmatter}
@@ -70,43 +72,42 @@ topological spaces \sep TODO
 
 \section{Introduction}
 
-The successful use of mathematical ideas in experimental sciences is something long established and celebrated.\footnote{Unreasonable effectiveness and other} In particular topology is arguably the most widespread, as it provides the foundation for other mathematical tools such as differential geometry and ???. Why is it so successful? What property is captured by topological spaces that is so fundamental for scientific investigation? 
+The successful use of mathematical ideas in experimental sciences is long established and celebrated \cite{wigner}. In many ways, topology is perhaps the most widespread, as it provides the foundation for other mathematical tools such as differential geometry and analysis. Topology is foundational in physics \cite{nakahara}, and has been the backbone of advances in many areas such as biology \cite{rashevsky} and social choice theory \cite{chichilnisky}. This leads one to ask, why is it so successful? What property is captured by topological spaces that is so fundamental for scientific investigation? 
 
-We believe we have identified the answer: topologies capture the way objects are experimentally distinguishable. It is open sets that are associated with experimental outcomes, not the points themselves. For example, as real values are only measurable with finite precision, the standard topology on Euclidean spaces is the one that is physically meaningful. Along the same line, experimental relationships need to preserve what can be experimentally distinguished, and they are therefore represented as continuous functions.
+We attempt to answer these questions in a precise manner by defining the appropriate connections. Topological spaces generalize metric spaces; they provide a notion of ``nearness" of points without necessarily quantifying it. We extend this interpretation in a precise way to cover spaces representing objects (points in space, objects needing classification, etc.) which are distinguishable by scientific experimentation. Because experimental data is universally limited by precision, it is neighborhoods of points that are associated with experimental outcomes, as opposed to the points themselves. Along the same line, experimental relationships need to preserve what can be experimentally distinguished, and they are therefore should be realized as continuous functions on the appropriate topological spaces.
 
-In this sense, experimental distinguishability is \emph{the} application of topology in experimental science. It is fitting, then, that topology is so widespread given that defining what can be experimentally identified is truly a fundamental aspect of science. The aim of this paper is to lay down a framework that formalizes this insight. 
+In this sense, experimental distinguishability is intrinsically topological in nature. It is fitting, then, that the use of topology is so widespread, as defining what can be experimentally identified is a fundamental aspect of science. The aim of this paper is to lay down a framework that formalizes this insight. 
 
-The work is organized as follows. We first define experimental observations as statements paired with an experimental test that is able to verify them. We study their properties under logical operations and show that they are only closed under finite conjunction and countable disjunction.  We then show that any set of objects that are experimentally distinguishable is a Hausdorff second-countable topological space. Both the points and the topology of the space are formally defined in terms of the observations themselves.  Finally, we study relationships between experimentally distinguishable objects. These are represented by continuous functions, and they can be shown to be themselves physically distinguishable.
+The work is organized as follows. We first define experimental observations as statements paired with an experimental test that is able to verify them. These will be the fundamental objects which enable us to define our universe of discourse. We study their properties under logical operations and show that they are only closed under finite conjunction and countable disjunction.  We then show that any set of objects that are experimentally distinguishable is a Hausdorff, second-countable topological space. The topology of the space is formally defined in terms of the observations themselves.  Finally, we study relationships between experimentally distinguishable objects. These are represented by continuous functions, and they can be shown to be themselves physically distinguishable.
 
-We believe this work not only provides interesting insights, but a firm justification of the use of topological ideas in the sciences.
 
 \section{Experimental observations}
 
-In science, something is accepted as true only if one can provide a way to independently test the assertion. We introduce the following definitions to capture this notion.
+In science, a statement is considered valid for inquiry only if one can provide a way to independently test the assertion. We introduce the following definitions to capture this notion. 
 
 
 \begin{defn}
 	A \textbf{statement} $\mathsf{s}$ is a declarative sentence that is either true or false, as in classical logic. 
 \end{defn}
 
-Given a statement, we wish to consider when it makes scentific sense to test. The following construction will define the building blocks of this theory. 
+Given a statement, we wish to consider when it makes scentific sense to test. The following construction will define the next building block of this theory. 
 
 \begin{defn}
-	An \textbf{experimental test} $\mathsf{e}$ is a repeatable procedure (i.e. it can be restarted and stopped an arbitrary number of times) that, if successful, terminates in a finite amount of time.
+	An \textbf{experimental test} $\mathsf{e}$ is a repeatable procedure (i.e. it can be restarted and stopped an arbitrary number of times) that either terminates in finite time (in which case it is said to be a successful experimental test), or continues indefinitely.
 \end{defn}
 
 \begin{defn}
-	An \textbf{experimental observation} is a tuple $\mathsf{o} = \llparenthesis \mathsf{s}, \mathsf{e} \rrparenthesis$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is true if and only if the  experimental test is always successful. The experimental observation is \textbf{verified} if the statement is true.
+	An \textbf{experimental observation} is a tuple $\llparenthesis \mathsf{s}, \mathsf{e} \rrparenthesis$, normally denoted by $\mathsf{o}$, consisting of a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is true if and only if the  experimental test is successful. The experimental observation is \textbf{verified} if the statement is true.
 \end{defn}
 
 \begin{defn}
-	An \textbf{experimental counter-observation} is a tuple $\mathsf{o}^c= \llbracket \mathsf{s}, \mathsf{e} \rrbracket$ composed by a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is false if and only if the experimental test is always successful. The experimental counter-observation is \textbf{refuted} if the statement is false.
+	An \textbf{experimental counter-observation} is a tuple $\llbracket \mathsf{s}, \mathsf{e} \rrbracket$, normally denoted by $\mathsf{o}^C$, consisting of a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is false if and only if the experimental test is always successful. The experimental counter-observation is \textbf{refuted} if the statement is false.
 \end{defn}
 
 Experimental observations are the core object of the scientific discourse. We now define some basic relationships between experimental observations.
 
 \begin{defn}
-	Given two experimental observations $\mathsf{o}_1$ and $\mathsf{o}_2$ we define:
+	Given two experimental observations $\mathsf{o}_1 = \llparenthesis \mathsf{s}_1,\mathsf{e}_1\rrparenthesis$ and $\mathsf{o}_2 = \llparenthesis \mathsf{s}_2,\mathsf{e}_2\rrparenthesis$ we define:
 	\begin{itemize}
 	\item \textbf{implication}: $\mathsf{o}_1 \imp \mathsf{o}_2$ ($\mathsf{o}_1$ implies $\mathsf{o}_2$) if $\mathsf{o}_2$ is always verified whenever $\mathsf{o}_1$ is verified
 	\item \textbf{equivalence}: $\mathsf{o}_1 = \mathsf{o}_2$ ($\mathsf{o}_1$ is equal to $\mathsf{o}_2$) if $\mathsf{o}_1 \imp \mathsf{o}_2$ and $\mathsf{o}_2 \imp \mathsf{o}_1$
@@ -185,11 +186,11 @@ A useful equivalent characterization of $\mathsf{o}\imp\mathsf{o}'$ for observat
 
 \section{Experimental domain}
 
-Being able to test experimental observations one at a time is not enough. Given a set of observations we must be able to test them all to find those that are verified. With this in mind, we introduce the following definitions.
+In order to access arbitrary levels of precision in some system, we must be able to conduct arbitrarily many tests. Given a collection of observations $\mathcal{X}$, we wish to understand both the largest collection $\mathcal{Y}\supset\mathcal{X}$ of observations which can be deduced from $\mathcal{X}$, and similarly, we wish to find a small enough collection $\mathcal{Z}\subset\mathcal{X}$ from which we can deduce all of $\mathcal{X}$. With this in mind, we introduce the following definitions.
 
 
 \begin{defn}
-	An \textbf{experimental domain} is a set of observations closed under finite conjunction and countable disjunction such that all observations can be tested in infinite time. 
+	An \textbf{experimental domain} is a set of observations closed under finite conjunction and countable disjunction, such that all observations can be tested in infinite time. 
 \end{defn}
 
 
@@ -197,20 +198,20 @@ Being able to test experimental observations one at a time is not enough. Given 
 	A \textbf{sub-basis} of an experimental domain is any subset that can generate all others via finite conjunction and countable disjunction. A \textbf{basis} of an experimental domain is any subset that can generate all others by countable disjunctions. 
 \end{defn}
 
-Clearly, given a sub-basis one can generate a basis by taking all finite conjunctions of the observations. Note that any infinite sub-basis will generate a basis of the same cardinality. We claim that it is only possible to verify all members of an experimental domain with a countable (sub-)basis even given infinite time. 
+Clearly, given a sub-basis one can generate a basis by taking all finite conjunctions of the observations. Note that any infinite sub-basis will generate a basis of the same cardinality. We claim that it is only possible to verify all members of an experimental domain with a (sub-)basis of at most countably infinite cardinality, even given infinite time. 
 
 \begin{prop}
 Let $\mathcal{S}$ be an experimental domain. Then there exists a countable basis (equivalently, sub-basis) $\mathcal{B}$ of $\mathcal{S}$.
 \end{prop}
 
 \begin{proof}
-If there exists a countable basis $\mathcal{B}$, then given infinite time one can test all observations in $\mathcal{B}$. Given all truth values for elements of the basis, one can deduce the truth values for the other observations in $\mathcal{S}$ (again using infinite time) by computing the appropriate conjunctions and disjunctions. 
+If there exists a countable basis $\mathcal{B}$, then given infinite time one can test all observations in $\mathcal{B}$. Given which observations of the basis are verified, one can deduce which other observations in $\mathcal{S}$ are verified (again using infinite time) by computing the appropriate disjunctions. 
 
 If there does not exist a countable basis, then by definition there does not exist a sequence of experimental observations in $\mathcal{S}$ from which one can deduce all other observations in $\mathcal{S}$. Hence it is impossible to test all members of $\mathcal{S}$.
 \end{proof}
 
 \begin{rem}
-It is not hard to see that the (countable) disjunction of an entire basis produces an experimental observation which is always verified. Henceforth, we call this the \textbf{trivial observation}, denoted $\mathsf{o}_T$.
+If the (countable) disjunction of an entire basis produces an experimental observation which is always verified, we call this the \textbf{trivial observation}, denoted $\mathsf{o}_T$. This may not always be the case: consider, for example, the rather uninteresting case of an experimental domain consisting only of the null observation. 
 \end{rem}
 
 
@@ -218,13 +219,14 @@ It is not hard to see that the (countable) disjunction of an entire basis produc
 
 \section{Experimental distinguishability}
 
-Given an experimental domain, we want to study the maximal sets of consistent observations that can be verified at the same time. These will define the possibilities of our domain: the possible cases that can be experimentally distinguished through the observations.
+Now that we have a framework for testing a system, we will define the class of systems we can understand with these tests. The framework will be general enough that one can readily apply it to most real-world experimental scenarios. In this construction, we will begin with a space we wish to understand - in this case, finding the appropriate element - and then define the appropriate collection of experimental observations to do so. 
+
 
 \begin{defn}
 A \textbf{set of possibilities} $(X,x^*)$ is a set together with a distinguished element $x^*$. 
 \end{defn}
 
-
+Given the possibility space $(X,x^*)$, we define the following distinguished subsets:
 
 
 \begin{defn}
@@ -241,7 +243,7 @@ A \textbf{set of possibilities} $(X,x^*)$ is a set together with a distinguished
 \end{lem}
 
 \begin{proof}
-	Let $U\subset X$ be a verifiable set. There exists an experimental observation $\mathsf{o} = (x^*\in U, \mathsf{e}_\in(U))$. Consider $\neg \mathsf{o} = (\neg x^*\in U, \mathsf{e}_\in(U)) = (x^*\notin U, \mathsf{e}_{\notin}(U^C)) = (x^*\in U^C, \mathsf{e}_{\notin}(U^C))$. That is, there exists a counter-observation $(x^*\in U^C, \mathsf{e}_{\notin}(U^C))$. Therefore $U^C$ is a refutable set.
+	Let $U\subset X$ be a verifiable set. There exists an experimental observation $\mathsf{o} = (x^*\in U, \mathsf{e}_\in(U))$. Consider $\neg \mathsf{o} = \neg(x^*\in U, \mathsf{e}_\in(U)) = (x^*\notin U, \mathsf{e}_{\notin}(U^C)) = (x^*\in U^C, \mathsf{e}_{\notin}(U^C))$. That is, there exists a counter-observation $(x^*\in U^C, \mathsf{e}_{\notin}(U^C))$, and so $U^C$ is a refutable set.
 \end{proof}
 
 \begin{lem}
@@ -271,7 +273,7 @@ It is immediate that the trivial and null observations may be written as experim
 \end{proof}
 
 \begin{cor}
-The collection of refutable sets for $X$ is precisely the closed sets for the topology $\mathsf{T}$.
+The collection of refutable sets for $X$ is precisely the collection of closed sets for the topology $\mathsf{T}$.
 \end{cor}
 \begin{proof}
 This is immediate from Lemma \ref{complements}.
@@ -415,7 +417,7 @@ The topology $\mathsf{T}(\mathcal{C})$ on the set of continuous functions $C(\ma
 In the proof of the previous proposition, note that the basis for the open-open topology is independent of the basis used for the underlying spaces, and in particular is a superset of the basis for $\mathsf{T}(\mathcal{C})$ when using $\mathbb{B}_2$ to construct it. Hence the open-open topology is distinct from $\mathsf{T}(\mathcal{C})$ when using the basis $\mathcal{B}_1$ on $\mathbb{R}$. 
 \end{proof}
 
-TODO: the above propositions might generalize to any uncountable, second-countable space. This will be considered during the paper-writing process later. 
+
 
 Thus we have shown one can start with two Hausdorff, second-countable spaces, and generate a new Hausdorff second-countable space consisting of all functions between them. Topological spaces with these properties make up our class of scientifically interesting spaces, so the space of continuous (distinguishability-preserving) functions between spaces of distinguishable quantities is again a physically distinguishable space. Because one can iterate this construction (since the relevant properties are preserved), this is a way to generate arbitrarily many new physically distinguishable spaces encoding important information about the ``lower-order" spaces (i.e. they consist of functions which encode a conversion between verifiable sets in different spaces).
 
@@ -424,10 +426,10 @@ Thus we have shown one can start with two Hausdorff, second-countable spaces, an
 	\begin{tabular}{p{0.20\textwidth} p{0.7\textwidth}}
 		Math/Topology & Science/Physics \\ 
 		\hline 
-		Hausdorff, second-countable topological space & Experimentally distinguishable space, whose points are the possible values and whose open sets represent the experimentally attainable levels of precision \\
+		$T_2$, 2nd ctbl space. & Experimentally distinguishable space, whose points are the possible values and whose open sets represent the experimentally attainable levels of precision \\
 		Open set & Verifiable set. We can verify experimentally that an element is within the set  \\ 
 		Closed set & Refutable set. We can verify experimentally that an element is not in the set \\ 
-		Basis of a topology & A collection of verifiable sets such that any verifiable set is determined by the basis sets\\
+		Basis of top. & A collection of verifiable sets such that any verifiable set is determined by the basis sets\\
 		Continuous \newline function &  A function between two sets of experimental distinguishable elements that preserves distinguishability \\
 		Homeomorphism &  A perfect equivalence between experimentally distinguishable spaces. \\
 	\end{tabular} 
@@ -445,6 +447,7 @@ We hope that this work, because of both its method and result, can provide a mor
 \section*{Acknowledgments}
 Funding for this work was provided in part by the MCubed program of the University of Michigan. The third author is supported by the National Science Foundation Graduate Research Fellowship Program under Grant No. DGE\#1256260. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
 
+\bibliographystyle{elsarticle-num}
 \bibliography{bibliography}
 
 \end{document}
