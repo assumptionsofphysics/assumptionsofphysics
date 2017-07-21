@@ -90,75 +90,48 @@ In science, a statement is considered valid for inquiry only if one can provide 
 	A \textbf{statement} $\mathsf{s}$ is a declarative sentence that is either true or false, as in classical logic. 
 \end{defn}
 
+Statements in this work shall have a truth value as well as \textit{logical content}, and so one can compare the meaning of statements as well as their truth values. For example, a statement can be a \textbf{contradiction}, which is stronger than being false. For example, the statement ``$\{1,2,3\}$ has four elements, and $\{1,2,3\}$ has three elements" is a contraction, which is a distinct claim from noticing it is a false statement. 
+
 Given a statement, we wish to consider when it makes scentific sense to test. The following construction will define the next building block of this theory. 
 
 \begin{defn}
-	An \textbf{experimental test} $\mathsf{e}$ is a repeatable procedure (i.e. it can be restarted and stopped an arbitrary number of times) that either terminates in finite time (in which case it is said to be a successful experimental test), or continues indefinitely.
+	An \textbf{experimental test} $\mathsf{e}$ is a repeatable procedure (i.e. it can be restarted and stopped an arbitrary number of times) which may be successful, in which case it terminates in finite time, or may be unsuccessful, in which case it may or may not terminate.
 \end{defn}
 
 \begin{defn}
 	An \textbf{experimental observation} is a tuple $\llparenthesis \mathsf{s}, \mathsf{e} \rrparenthesis$, normally denoted by $\mathsf{o}$, consisting of a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is true if and only if the  experimental test is successful. The experimental observation is \textbf{verified} if the statement is true.
 \end{defn}
 
-\begin{defn}
-	An \textbf{experimental counter-observation} is a tuple $\llbracket \mathsf{s}, \mathsf{e} \rrbracket$, normally denoted by $\mathsf{o}^C$, consisting of a statement $\mathsf{s}$ and an experimental test $\mathsf{e}$ such that the statement is false if and only if the experimental test is always successful. The experimental counter-observation is \textbf{refuted} if the statement is false.
-\end{defn}
 
-Experimental observations are the core object of the scientific discourse. We now define some basic relationships between experimental observations.
-
-\begin{defn}
-	Given two experimental observations $\mathsf{o}_1 = \llparenthesis \mathsf{s}_1,\mathsf{e}_1\rrparenthesis$ and $\mathsf{o}_2 = \llparenthesis \mathsf{s}_2,\mathsf{e}_2\rrparenthesis$ we define:
-	\begin{itemize}
-	\item \textbf{implication}: $\mathsf{o}_1 \imp \mathsf{o}_2$ ($\mathsf{o}_1$ implies $\mathsf{o}_2$) if $\mathsf{o}_2$ is always verified whenever $\mathsf{o}_1$ is verified
-	\item \textbf{equivalence}: $\mathsf{o}_1 = \mathsf{o}_2$ ($\mathsf{o}_1$ is equal to $\mathsf{o}_2$) if $\mathsf{o}_1 \imp \mathsf{o}_2$ and $\mathsf{o}_2 \imp \mathsf{o}_1$
-	\item \textbf{compatibility}: $\mathsf{o}_1 \comp \mathsf{o}_2$ ($\mathsf{o}_1$ is compatible with $\mathsf{o}_2$) if there exists a case in which $\mathsf{o}_1$ and $\mathsf{o}_2$ are jointly verified
-	\end{itemize}
-    The negation of these properties will be noted by $\nimp$, $\neq$ , $\ncomp$ respectively.
-\end{defn}
-
-A note on the language: even if $\mathsf{o}_1$ implies $\mathsf{o}_2$ this does not give us a way to verify $\mathsf{o}_2$. There may be cases where the $\mathsf{o}_2$ is verified and $\mathsf{o}_1$ is not. Therefore it is improper to say that one observation verifies another: only experimental tests verify observations.
-
-Lastly, we define a special type of observation.
-
-\begin{defn}
-The \textbf{null observation}, denoted $\mathsf{o}_N$, is any experimental observation that is never verified (i.e. the experimental test will never terminate successfully).
-\end{defn}
-
-
-The null observation is the degenerate case and has the following, maybe counterintuitive, properties. Since it is never verified, it can never rule out any other observations: the null observation implies all other observations. Since it is never verified, it can never be jointly verified with another observation: the null observation is incompatible with every experimental observation, including itself.
+Experimental observations are the core object of the scientific discourse. This construction is designed to encode the forming of a claim together with a procedure to test the claim. In this work, we do not presuppose knowledge of the truth values of the statements - only by ``running" the tests can we ascertain these values. 
 
 
 
 
 \section{Algebra of experimental observations}
 
-We now want to understand how experimental observations behave under logical operations. The resulting algebra will have some key differences from the standard Boolean algebra.
+We now want to understand how experimental observations behave under logical operations. While utilizing similar techniques, the resulting algebra will have some key differences from the standard Boolean algebra.
 
 
 
 
 
-We define the following logical operations on experimental observations. Taken as whole, they define the \emph{algebra of experimental observations}. With each definition, we will prove that the resulting object is an experimental (counter-)observation. 
+We define the following logical operations on experimental observations. Taken as whole, they define the \emph{algebra of experimental observations}. With each definition, we will prove that the resulting object is an experimental observation. 
 
-\begin{defn}
-	The \textbf{negation} or \textbf{logical NOT} of an experimental observation $\mathsf{o}=\llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ is the experimental counter-observation $\neg \mathsf{o}=\llbracket\neg \mathsf{s}, \mathsf{e}\rrbracket$ where the negation of the statement $\mathsf{s}$ can be refuted by the experimental test $\mathsf{e}$.
-\end{defn}
 
-\begin{proof}
-	We show that the negation exists and is well defined. Let $\mathsf{o}=\llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ be an experimental observation. The experimental test $\mathsf{e}$ succeeds if and only if $\mathsf{s}$ is true or, equivalently, if and only if $\neg \mathsf{s}$ is false. So the tuple $\llbracket\neg \mathsf{s}, \mathsf{e}\rrbracket$ forms an experimental counter-observation.
-\end{proof}
+
 
 \begin{defn}
 	The \textbf{conjunction} or \textbf{logical AND} of a finite collection  of experimental observations $\{\mathsf{o}_i\}_{i=1}^{n}=\{\llparenthesis \mathsf{s}_i, \mathsf{e}_i\rrparenthesis\}_{i=1}^{n}$ is the experimental observation $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis \mathsf{s}, \mathsf{e}\rrparenthesis$ where $\mathsf{s} = \bigwedge\limits_{i=1}^{n} \mathsf{s}_i$ is the conjunction of the respective statements and $\mathsf{e} = \mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is the experimental test that successfully terminates if and only if all $\{\mathsf{e}_i\}_{i=1}^{n}$ successfully terminate.
 \end{defn}
 
 \begin{proof}
-	We show that the conjunction exists and is well defined. Let $\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ be the experimental procedure defined as follows:
+	We show that the conjunction exists and is well defined. Let $\mathsf{e}_\wedge=\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ be the experimental procedure defined as follows:
 	\begin{enumerate}
-	\item for each $i=1..n$ run the test $\mathsf{e}_i$
-	\item if all tests terminated successfully terminate successfully.
+	\item for each $i=1,\ldots,n$ run the test $\mathsf{e}_i$
+	\item if all tests $\mathsf{e}_i$ terminate successfully, terminate the test $\mathsf{e}_\wedge$ successfully.
 	\end{enumerate}
-	The experimental procedure so defined terminates successfully if and only if all $\mathsf{e}_i$ terminate successfully. It will do so in finite time as each $\mathsf{e}_i$ succeeds in finite time and there only a finite number of them. Therefore $\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is an experimental test that is successful if and only if all statements $\{\mathsf{s}_i\}_{i=1}^{n}$ are successful. So $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigwedge\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\wedge}(\mathsf{e}_i)\rrparenthesis$ is an experimental observation.
+	The experimental procedure so defined terminates successfully if and only if all $\mathsf{e}_i$ terminate successfully. It will do so in finite time as each of the finitely many $\mathsf{e}_i$ succeeds in finite time. Therefore $\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is an experimental test that is successful if and only if all statements $\{\mathsf{s}_i\}_{i=1}^{n}$ are true. So, $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigwedge\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\wedge}(\mathsf{e}_i)\rrparenthesis$ is an experimental observation.
 \end{proof}
 
 \begin{defn}
@@ -166,27 +139,34 @@ We define the following logical operations on experimental observations. Taken a
 \end{defn}
 
 \begin{proof}
-	We show that the disjunction exists and is well defined. Let $\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ be the experimental procedure defined as follows:
+	We show that the disjunction exists and is well defined. Let $\mathsf{e}_\vee=\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ be the experimental procedure defined as follows:
 	\begin{enumerate}
 	\item initialize $n$ to 1
-	\item for each $i=1..n$
+	\item for each $i=1,\ldots,n$:
 	\begin{enumerate}
 		\item run the test $\mathsf{e}_i$ for $n$ seconds
-		\item if $\mathsf{e}_i$ terminated successfully, terminate successfully
+		\item if $\mathsf{e}_i$ terminated successfully, terminate $\mathsf{e}_\vee$ successfully
 	\end{enumerate}
 	\item increment $n$ and go to step 2
 	\end{enumerate}
-	Suppose there exists an $i \in \mathbb{Z}^+$ such that $\mathsf{e}_i$ will terminate successfully, then the above procedure will eventually run that test for a time long enough and terminate successfully. It will do so in finite time as it will have run finitely many tests finitely many times each for a finite amount of time. Therefore $\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ is an experimental test that is successful if and only if at least one statement in $\{\mathsf{s}_i\}_{i=1}^{n}$ is successful. So $\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i =\llparenthesis\bigvee\limits_{i=1}^{\infty} \mathsf{s}_i, \mathsf{e}_{\wedge}(\{\mathsf{e}_i\}_{i=1}^{\infty})\rrparenthesis$ is an experimental observation.
+	Suppose there exists an $i \in \mathbb{Z}^+$ such that $\mathsf{e}_i$ will terminate successfully. Then the above procedure will eventually run that test for time sufficient for it to terminate successfully. It will do so in finite time as it will have run finitely many tests finitely many times each for a finite amount of time. Therefore $\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ is an experimental test that is successful if and only if at least one statement in $\{\mathsf{s}_i\}_{i=1}^{n}$ is successful. So $\bigvee\limits_{i=1}^{\infty} \mathsf{o}_i =\llparenthesis\bigvee\limits_{i=1}^{\infty} \mathsf{s}_i, \mathsf{e}_{\wedge}(\{\mathsf{e}_i\}_{i=1}^{\infty})\rrparenthesis$ is an experimental observation.
 \end{proof}
 
-\begin{rem}
-A useful equivalent characterization of $\mathsf{o}\imp\mathsf{o}'$ for observations $\mathsf{o}$ and $\mathsf{o}'$ is provided by the above constructions. We note that $\mathsf{o}\imp\mathsf{o}'$ if and only if $\mathsf{o}\wedge\mathsf{o}' = \mathsf{o}'$ if and only if $\mathsf{o}\vee\mathsf{o}'=\mathsf{o}$. 
-\end{rem}
+Now, we define a special type of observation.
+
+\begin{defn}
+A \textbf{null observation}, denoted $\mathsf{o}_N$, is any experimental observation whose statement is a contradiction.
+\end{defn}
+
+We will need to compare certain observations with each other, and an important relationship is the following:
+\begin{defn}
+Two experimental observations $\mathsf{o}_1$ and $\mathsf{o}_2$ are said to be \textbf{incompatible} or \textbf{contradictory} if the conjunction $\mathsf{o}_1\wedge\mathsf{o}_2$ is a null observation.
+\end{defn}
 
 
 \section{Experimental domain}
 
-In order to access arbitrary levels of precision in some system, we must be able to conduct arbitrarily many tests. Given a collection of observations $\mathcal{X}$, we wish to understand both the largest collection $\mathcal{Y}\supset\mathcal{X}$ of observations which can be deduced from $\mathcal{X}$, and similarly, we wish to find a small enough collection $\mathcal{Z}\subset\mathcal{X}$ from which we can deduce all of $\mathcal{X}$. With this in mind, we introduce the following definitions.
+Given a collection of observations $\mathcal{X}$, we wish to understand both the largest collection $\mathcal{Y}\supset\mathcal{X}$ of observations which can be constructed from $\mathcal{X}$ by our algebra of observations, and similarly, we wish to find smaller collections $\mathcal{Z}\subset\mathcal{X}$ from which we can construct all of $\mathcal{X}$. With this in mind, we introduce the following definitions.
 
 
 \begin{defn}
@@ -201,13 +181,13 @@ In order to access arbitrary levels of precision in some system, we must be able
 Clearly, given a sub-basis one can generate a basis by taking all finite conjunctions of the observations. Note that any infinite sub-basis will generate a basis of the same cardinality. We claim that it is only possible to verify all members of an experimental domain with a (sub-)basis of at most countably infinite cardinality, even given infinite time. 
 
 \begin{prop}
-Let $\mathcal{S}$ be an experimental domain. Then there exists a countable basis (equivalently, sub-basis) $\mathcal{B}$ of $\mathcal{S}$.
+Let $\mathcal{D}$ be an experimental domain. Then there exists a countable basis (equivalently, sub-basis) $\mathcal{B}$ of $\mathcal{S}$.
 \end{prop}
 
 \begin{proof}
-If there exists a countable basis $\mathcal{B}$, then given infinite time one can test all observations in $\mathcal{B}$. Given which observations of the basis are verified, one can deduce which other observations in $\mathcal{S}$ are verified (again using infinite time) by computing the appropriate disjunctions. 
+If there exists a countable basis $\mathcal{B}$, then given infinite time one can test all observations in $\mathcal{B}$. Given which observations of the basis are verified, one can deduce which other observations in $\mathcal{D}$ are verified (again using infinite time) by computing the appropriate disjunctions. 
 
-If there does not exist a countable basis, then by definition there does not exist a sequence of experimental observations in $\mathcal{S}$ from which one can deduce all other observations in $\mathcal{S}$. Hence it is impossible to test all members of $\mathcal{S}$.
+If there does not exist a countable basis, then by definition there does not exist a sequence of experimental observations in $\mathcal{D}$ from which one can deduce all other observations in $\mathcal{D}$. Hence it is impossible to test all members of $\mathcal{S}$.
 \end{proof}
 
 \begin{rem}
@@ -219,32 +199,19 @@ If the (countable) disjunction of an entire basis produces an experimental obser
 
 \section{Experimental distinguishability}
 
-Now that we have a framework for testing a system, we will define the class of systems we can understand with these tests. The framework will be general enough that one can readily apply it to most real-world experimental scenarios. In this construction, we will begin with a space we wish to understand - in this case, finding the appropriate element - and then define the appropriate collection of experimental observations to do so. 
+Now that we have a framework for testing a system, we will define a class of systems we can understand with these tests. The framework will be general enough that one can readily apply it to many real-world experimental scenarios. In this construction, we will begin with a space we wish to understand - in this case, finding the appropriate element - and then define the appropriate collection of experimental observations to do so. In what follows, let $X$ be a set. 
+
+\begin{defn}
+For $x^*\in X$ and $U\subseteq X$, an \textbf{experimental identification} is any experimental observation of the form $\mathsf{o} = (x^*\in U, \mathsf{e}_\in(U))$ where $\mathsf{e}_\in(U)$ is an experimental test that succeeds if and only if $x^*\in U$. Any subset $U\subseteq X$ for which such an observation exists is said to be a \textbf{verifiable subset}. 
+\end{defn} 
 
 
 \begin{defn}
-A \textbf{set of possibilities} $(X,x^*)$ is a set together with a distinguished element $x^*$. 
+A \textbf{Experimental Identification Problem} $(X,\mathcal{D})$ is a set $X$ of cardinality $|X|\geq2$ together with a collection $\mathcal{D}$ of experimental identifications for the same element $x^*\in X$. 
 \end{defn}
 
-Given the possibility space $(X,x^*)$, we define the following distinguished subsets:
+Next, we will explore the important properties of the collection of verifiable subsets. 
 
-
-\begin{defn}
-	A \textbf{verifiable set} $U \subseteq X$ is a subset of possibilities for which there exists an experimental observation $\mathsf{o} = (x^*\in U, \mathsf{e}_\in(U))$ where $\mathsf{e}_\in(U)$ is an experimental test that succeeds only if the object to identify is an element of $U$.
-\end{defn}
-
-\begin{defn}
-	A \textbf{refutable set} $U \subseteq X$ is a subset of possibilities for which there exists an experimental counter-observation $\mathsf{o} = (x^*\in U, \mathsf{e}_{\notin}(U))$ where $\mathsf{e}_{\notin}(U)$ is an experimental test that succeeds only if the object to identify is not an element of $U$.
-\end{defn}
-
-\begin{lem}
-\label{complements}
-	The complement $U^C$ of a verifiable set $U \subseteq X$ is a refutable set.
-\end{lem}
-
-\begin{proof}
-	Let $U\subset X$ be a verifiable set. There exists an experimental observation $\mathsf{o} = (x^*\in U, \mathsf{e}_\in(U))$. Consider $\neg \mathsf{o} = \neg(x^*\in U, \mathsf{e}_\in(U)) = (x^*\notin U, \mathsf{e}_{\notin}(U^C)) = (x^*\in U^C, \mathsf{e}_{\notin}(U^C))$. That is, there exists a counter-observation $(x^*\in U^C, \mathsf{e}_{\notin}(U^C))$, and so $U^C$ is a refutable set.
-\end{proof}
 
 \begin{lem}
 \label{setbehavior}
@@ -257,51 +224,27 @@ Given the possibility space $(X,x^*)$, we define the following distinguished sub
 	We claim the countable union of verifiable sets is a verifiable set. Let $U_1, U_2, ... , U_n, ... \subseteq X$ be an infinite sequence of verifiable sets. For each $U_i$ there exists an experimental observation $\mathsf{o}_i = (x^*\in U_i, \mathsf{e}_\in(U_i))$. Consider $\mathsf{o} = \bigvee\limits_{i=1}^{\infty} \mathsf{o}_i = (\bigvee\limits_{i=1}^{\infty} x^*\in U_i, \mathsf{e}_{\vee}(\mathsf{e}_\in(U_i)))=( x^*\in \bigcup\limits_{i=1}^{\infty} U_i, \mathsf{e}_\in(\bigcup\limits_{i=1}^{\infty} U_i))$ is an experimental observation. Thus $\bigcup\limits_{i=1}^{\infty} U_i$ is a verifiable set.
 \end{proof}
 
-Next, we wish to isolate the possibility spaces for which there exists an appropriate collection of experimental observations. Let $(X,x^*)$ be a set of experimental possibilities. An \textbf{experimental identification} is any experimental observation of the form $(x^*\in S,\mathsf{e}_{\in}(S))$, where $S$ is any subset of $X$. 
+Next, we wish to isolate the experimental identification problems for which there exists an appropriate (for applications) collection of experimental observations. 
 
 \begin{defn}
-	A set of experimental possibilities $X$ is \textbf{experimentally distinguishable} if there exists a collection $\mathsf{T}$ of experimental identifications which form an experimental domain such that given any two possibilities $x_1, x_2 \in X$ we can always find two mutually exclusive experimental observation such that each possibility is compatible with one observation.
+An experimental identification problem $(X,\mathcal{D})$ is called \textbf{experimentally distinguishable} if $\mathcal{D}$ is an experimental domain such that given any two possibilities $x_1, x_2 \in X$ we can find two experimental observations $(x^*\in U_1, \mathsf{e}_\in(U_1)), (x^*\in U_2, \mathsf{e}_\in(U_2))\in\mathcal{D}$ such that $x_i\in U_i$ for $i=1,2$, and $U_1\cap U_2 = \emptyset$.
 \end{defn}
 
 From the work above, we will quickly arrive at the following.
 
 \begin{thm}
-An experimentally distinguishable set $X$ together with its collection $\mathsf{T}$ of experimental identifications (realized as subsets of $X$) forms a Hausdorff, second-countable topology with open sets given by the verifiable sets. 
+An experimentally distinguishable identification problem $(X,\mathcal{D})$ forms a Hausdorff, second-countable topology $(X,\mathsf{T})$ with open sets given by the verifiable sets. 
 \end{thm}
 \begin{proof}
-It is immediate that the trivial and null observations may be written as experimental identifications, and that they give $X\in\mathsf{T}$ and $\emptyset\in\mathsf{T}$. Proposition \ref{setbehavior} shows that the collection $\mathsf{T}$ is closed under finite intersection and countable union. Because $\mathsf{T}$ is given by an experimental domain of observations, there is a countable basis, so it is second-countable. To show it is closed under arbitrary union, notice that an arbitrary union may be rewritten as a union of basis elements, which is then a countable union, and so it remains in $\mathsf{T}$.
+First, from the definition one can see that for all $x\in X$, there exists a verifiable set $U$ with $x\in U$, so their union $X$ is also a verifiable set. Further, there is a null observation by taking the conjunction of two identifications corresponding to disjoint sets, so the empty set is a verifiable set. Now, Proposition \ref{setbehavior} shows that the collection $\mathsf{T}$ is closed under finite intersection and countable union. Because $\mathsf{T}$ is determined by an experimental domain of observations, there is a countable basis of operations which translates to a countable basis of open (verifiable) sets, so it is second-countable. To show it is closed under arbitrary union, notice that an arbitrary union may be rewritten as a union of basis elements, which is then a countable union, and so it remains in $\mathsf{T}$. That the topology is Hausdorff is immediate from the last part of the definition. 
 \end{proof}
 
-\begin{cor}
-The collection of refutable sets for $X$ is precisely the collection of closed sets for the topology $\mathsf{T}$.
-\end{cor}
-\begin{proof}
-This is immediate from Lemma \ref{complements}.
-\end{proof}
 
-And so we have found that all experimentally distinguishable spaces may be given by Hausdorff, second-countable topological spaces. We end this section with an elementary result which has interesting consequences on the theory of experimentally distinguishable spaces. 
+And so we have found that all experimentally distinguishable spaces may be given by Hausdorff, second-countable topological spaces. 
 
 
-
-\begin{prop}
-	A Hausdorff and second countable space $X$ has at most the cardinality of the continuum.
-\end{prop}
-
-\begin{proof}
-	We define an injective function $F:X\to2^{\mathbb{N}}$, where $2^{\mathbb{N}}$ denotes all infinite binary sequences.
-	
-	Since $X$ is second-countable, we can enumerate the countable basis $\mathcal{B}$ as $\mathcal{B} = \{B_i\}_{i=1}^{\infty}$. Let $2^{\mathbb{N}}$ denote all infinite binary sequences. We define $F:X\to2^{\mathbb{N}}$ such that $F(x) = (F(x)_i)_{i=1}^{\infty}$ is the sequence where each element is given by: 
-	$$
-	F(x)_i = 
-	\begin{cases}
-	1 & x\in B_i \\
-	0 & x\notin B_i
-	\end{cases}
-	$$
-	This is an injective function. Suppose $x_1 \neq x_2$, then since $X$ is Hausdorff there is at least one element of the basis that contains one but not the other.\footnote{In fact, $T_0$ separability would be sufficient.} Therefore $F(x_1) \neq F(x_2)$. As $F$ injects $X$ into $2^{\mathbb{N}}$, we have $|X| \leq |2^{\mathbb{N}}|=|\mathbb{R}|$. $X$ has at most cardinality of continuum.
-\end{proof}
-
-This means that, no matter what technique we use now or in the future, the collections of elements that we can properly define experimentally are at most the cardinality of the continuum. This already gives us a first simple and basic requirement a set of mathematical objects need to pass to be of scientific interest.
+\begin{rem}
+It is an elementary exercise to show that any Hausdorff, second-countable topological space has cardinality at most that of the continuum. This means that, no matter what technique we use now or in the future, the collections of elements that we can properly define experimentally are at most the cardinality of the continuum. This already gives us a first simple and basic requirement a set of mathematical objects need to pass to be of scientific interest.
 
 For example, these objects have cardinality of continuum, and therefore are good candidates:
 \begin{itemize}
@@ -316,13 +259,15 @@ These, instead, have cardinality greater then continuum, and therefore are not g
 	\item all functions from $\mathbb{R}$ to $\mathbb{R}$
 	\item all subsets of $\mathbb{R}$
 \end{itemize}
-
+\end{rem}
 
 
 
 \section{Experimental relationships}
 
-Now that we have defined the possibilities of our domains and the topology associated with them, we want to establish relationships between them. We want to do this because the aim of scientific investigation is studying and characterizing these relationships. 
+TODO
+
+Now that we have defined the possibilities of our domains and the topology associated with them, we want to establish relationships between them. The aim of scientific investigation is studying and characterizing these relationships. 
 
 
 
