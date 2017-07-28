@@ -72,7 +72,7 @@ topological spaces \sep scientific foundations \sep function space
 
 \section{Introduction}
 
-The successful use of mathematical ideas in experimental sciences is long established and celebrated \cite{wigner}. Topology is perhaps the most widespread, either directly\cite{rashevsky, chichilnisky} or as a foundation to other tools\cite{nakahara}.  This leads one to ask, why is it so successful? What property is captured by topological spaces that is so fundamental for scientific investigation? 
+The successful use of mathematical ideas in experimental sciences is long established and celebrated \cite{wigner}. Topology is perhaps the most widespread, either directly\cite{rashevsky, chichilnisky} or as a foundation to other tools\cite{nakahara}.  This leads one to ask, why is it so successful? What property is captured by topological spaces that is so fundamental for scientific investigation?
 
 We believe experimental distinguishability to be the relevant concept. The notion of ``nearness" captured by topologies keeps track of how hard it is to tell two elements apart via scientific observation. The standard topology on a real line, for example, captures the inability to measure a continuous value with infinite precision. This connection holds in cases where a metric would not be physically meaningful (e.g.~phase space) and in discrete spaces (where each element can be individually identified).  It is fitting, then, that the use of topology is so widespread, as defining what can be experimentally distinguished is a fundamental aspect of science.
 
@@ -113,12 +113,12 @@ We now want to understand how the standard Boolean algebra defined on statements
 \end{defn}
 
 \begin{proof}
-	We show that the conjunction exists and is well defined. Let $\mathsf{e}_\wedge=\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ be the experimental procedure defined as follows:
+	To show that the conjunction is well defined it suffices to show that we can construct a suitable experimental test.  Let $\mathsf{e}_\wedge=\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ be the experimental procedure defined as follows:
 	\begin{enumerate}
 	\item for each $i=1,\ldots,n$ run the test $\mathsf{e}_i$
 	\item if all tests $\mathsf{e}_i$ terminate successfully, terminate the test $\mathsf{e}_\wedge$ successfully.
 	\end{enumerate}
-	The experimental procedure so defined terminates successfully if and only if all $\mathsf{e}_i$ terminate successfully. It will do so in finite time as each of the finitely many $\mathsf{e}_i$ succeeds in finite time. Therefore $\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is an experimental test that is successful if and only if all statements $\{\mathsf{s}_i\}_{i=1}^{n}$ are true. So, $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigwedge\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\wedge}(\mathsf{e}_i)\rrparenthesis$ is an experimental observation.
+	This experimental procedure terminates successfully if and only if all $\mathsf{e}_i$ terminate successfully. It will do so in finite time as each of the finitely many $\mathsf{e}_i$ succeeds in finite time. Therefore $\mathsf{e}_\wedge(\{\mathsf{e}_i\}_{i=1}^{n})$ is an experimental test that is successful if and only if all statements $\{\mathsf{s}_i\}_{i=1}^{n}$ are true. So, $\bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis\bigwedge\limits_{i=1}^{n} \mathsf{s}_i, \mathsf{e}_{\wedge}(\mathsf{e}_i)\rrparenthesis$ is an experimental observation.
 \end{proof}
 
 \begin{rem}
@@ -130,7 +130,7 @@ We now want to understand how the standard Boolean algebra defined on statements
 \end{defn}
 
 \begin{proof}
-	We show that the disjunction exists and is well defined. Let $\mathsf{e}_\vee=\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ be the experimental procedure defined as follows:
+	As before, it suffices to show that we can construct a suitable experimental test. Let $\mathsf{e}_\vee=\mathsf{e}_\vee(\{\mathsf{e}_i\}_{i=1}^{\infty})$ be the experimental procedure defined as follows:
 	\begin{enumerate}
 	\item initialize $n$ to 1
 	\item for each $i=1,\ldots,n$:
@@ -191,11 +191,11 @@ If there does not exist a countable basis, then by definition there does not exi
 We now turn our attention to a more specific case. We want to characterize an experimental domain whose purpose is to identify an element among a set of possibilities.
 
 \begin{defn}
-	An \textbf{experimental identification domain} is the triplet $(\mathcal{D}_x, X, x)$ where:
+	An \textbf{experimental identification domain} is the triplet $(\mathcal{D}_X, X, x)$ where:
 	\begin{itemize}
 		\item $X$ is the set of \textbf{possibilities}, and satisfies $|X|>1$
 		\item $x$ is the element to identify among the possibilities, therefore $x \in X$
-		\item $\mathcal{D}_x$ is an experimental domain containing all possible experimental observations of the form $\mathsf{o} = (x\in U, \mathsf{e}_\in(U))$ where $U \subseteq X$ is a set of possibilities and $\mathsf{e}_\in(U)$ is an experimental test that succeeds if and only if $x \in U$
+		\item $\mathcal{D}_X$ is an experimental domain containing all possible experimental observations of the form $\mathsf{o} = \llparenthesis x\in U, \mathsf{e}_\in(U)\rrparenthesis$ where $U \subseteq X$ is a set of possibilities and $\mathsf{e}_\in(U)$ is an experimental test that succeeds if and only if $x \in U$
 	\end{itemize}
 	Any subset $U\subseteq X$ for which such an observation exists is said to be a \textbf{verifiable set}.
 \end{defn}
@@ -206,24 +206,24 @@ We now turn our attention to a more specific case. We want to characterize an ex
 \end{lem}
 
 \begin{proof}
-	We claim the finite intersection of verifiable sets is a verifiable set. Let $U_1, U_2, ... , U_n \subseteq X$ be n verifiable sets. For each $U_i$ there exists an experimental observation $\mathsf{o}_i = (x\in U_i, \mathsf{e}_\in(U_i))$. Consider $\mathsf{o} = \bigwedge\limits_{i=1}^{n} \mathsf{o}_i = (\bigwedge\limits_{i=1}^{n} x\in U_i , \mathsf{e}_{\wedge}(\mathsf{e}_\in(U_i)))=( x\in \bigcap\limits_{i=1}^{n} U_i, \mathsf{e}_\in(\bigcap\limits_{i=1}^{n} U_i))$ is an experimental observation. We conclude $\bigcap\limits_{i=1}^{n} U_i$ is a verifiable set.
+	We show that the finite intersection of verifiable sets is a verifiable set. Let $U_1, U_2, ... , U_n \subseteq X$ be n verifiable sets. For each $U_i$ there exists an experimental observation $\mathsf{o}_i = \llparenthesis x\in U_i, \mathsf{e}_\in(U_i) \rrparenthesis$. Consider the finite conjunction $\mathsf{o} = \bigwedge\limits_{i=1}^{n} \mathsf{o}_i = \llparenthesis \bigwedge\limits_{i=1}^{n} x\in U_i , \mathsf{e}_{\wedge}(\mathsf{e}_\in(U_i)) \rrparenthesis=\llparenthesis x\in \bigcap\limits_{i=1}^{n} U_i, \mathsf{e}_\in(\bigcap\limits_{i=1}^{n} U_i)\rrparenthesis$ which is an experimental observation. Thus $\bigcap\limits_{i=1}^{n} U_i$ is a verifiable set.
 	
-	We claim the countable union of verifiable sets is a verifiable set. Let $U_1, U_2, ... , U_n, ... \subseteq X$ be an infinite sequence of verifiable sets. For each $U_i$ there exists an experimental observation $\mathsf{o}_i = (x\in U_i, \mathsf{e}_\in(U_i))$. Consider $\mathsf{o} = \bigvee\limits_{i=1}^{\infty} \mathsf{o}_i = (\bigvee\limits_{i=1}^{\infty} x\in U_i, \mathsf{e}_{\vee}(\mathsf{e}_\in(U_i)))=( x\in \bigcup\limits_{i=1}^{\infty} U_i, \mathsf{e}_\in(\bigcup\limits_{i=1}^{\infty} U_i))$ is an experimental observation. Thus $\bigcup\limits_{i=1}^{\infty} U_i$ is a verifiable set.
+	We show that the countable union of verifiable sets is a verifiable set. Let $U_1, U_2, ... , U_n, ... \subseteq X$ be an infinite sequence of verifiable sets. For each $U_i$ there exists an experimental observation $\mathsf{o}_i = \llparenthesis x\in U_i, \mathsf{e}_\in(U_i)\rrparenthesis$. Consider the infinite disjunction $\mathsf{o} = \bigvee\limits_{i=1}^{\infty} \mathsf{o}_i = \llparenthesis\bigvee\limits_{i=1}^{\infty} x\in U_i, \mathsf{e}_{\vee}(\mathsf{e}_\in(U_i))\rrparenthesis=\llparenthesis x\in \bigcup\limits_{i=1}^{\infty} U_i, \mathsf{e}_\in(\bigcup\limits_{i=1}^{\infty} U_i)\rrparenthesis$ which is an experimental observation. Thus $\bigcup\limits_{i=1}^{\infty} U_i$ is a verifiable set.
 \end{proof}
 
-Next, we wish to isolate the experimental identification problems for which there exists an appropriate (for applications) collection of experimental observations. 
+To make sure we have enough experimental observations to tell the possibilities apart, we introduce the following definition.
 
 \begin{defn}
-A set of possibilities $X$ is \textbf{experimentally distinguishable} if there exists an experimental identification domain $(\mathcal{D}_x, X, x)$ such that for any two possibilities $x_1, x_2 \in X$ we can find two incompatible experimental observations $(x\in U_1, \mathsf{e}_\in(U_1)), (x\in U_2, \mathsf{e}_\in(U_2))\in\mathcal{D}$ such that $x_i\in U_i$ for $i=1,2$. 
+A set of possibilities $X$ is \textbf{experimentally distinguishable} if there exists an experimental identification domain $(\mathcal{D}_X, X, x)$ such that for any two possibilities $x_1, x_2 \in X$ we can find two incompatible experimental observations $\llparenthesis x\in U_1, \mathsf{e}_\in(U_1)\rrparenthesis, \llparenthesis x\in U_2, \mathsf{e}_\in(U_2)\rrparenthesis\in\mathcal{D}_X$ such that $x_i\in U_i$ for $i=1,2$. 
 \end{defn}
 
 We are now ready to prove the first main result of this work.
 
 \begin{thm}
-A set of experimentally distinguishable possibilities $X$ has a natural Hausdorff, second-countable topology $(X,\mathsf{T})$ with the open sets given by the verifiable sets of the associated experimental identification domain $(\mathcal{D}_x, X, x)$.
+A set of experimentally distinguishable possibilities $X$ has a natural Hausdorff, second-countable topology $(X,\mathsf{T})$ with the open sets given by the verifiable sets of the associated experimental identification domain $(\mathcal{D}_X, X, x)$.
 \end{thm}
 \begin{proof}
-First, from the definition one can see that for all $x\in X$, there exists a verifiable set $U$ with $x\in U$, so their union $X$ is also a verifiable set. Further, there is a null observation by taking the conjunction of two identifications corresponding to disjoint sets, so the empty set is a verifiable set. Now, Proposition \ref{setbehavior} shows that the collection $\mathsf{T}$ is closed under finite intersection and countable union. Because $\mathsf{T}$ is determined by an experimental domain of observations, there is a countable basis of operations which translates to a countable basis of open (verifiable) sets, so it is second-countable. To show it is closed under arbitrary union, notice that an arbitrary union may be rewritten as a union of basis elements, which is then a countable union, and so it remains in $\mathsf{T}$. That the topology is Hausdorff is immediate from the last part of the definition. 
+First, from the definition one can see that for all $x\in X$, there exists a verifiable set $U$ with $x\in U$. Therefore the union of a (countable) basis is the verifiable set $X$. Further, there exist at least two incompatible experimental observation, corresponding to two disjoint sets, so the empty set is a verifiable set. Now, \ref{setbehavior} shows that the collection $\mathsf{T}$ is closed under finite intersection and countable union. Because $\mathsf{T}$ is determined by an experimental domain of observations, there is a countable basis of operations which translates to a countable basis of open (verifiable) sets, so it is second-countable. To show it is closed under arbitrary union, notice that an arbitrary union may be rewritten as a union of basis elements, which is then a countable union, and so it remains in $\mathsf{T}$. That the topology is Hausdorff is immediate from the last part of the definition. 
 \end{proof}
 
 \begin{rem}
@@ -235,27 +235,27 @@ As any Hausdorff, second-countable topological space has at most cardinality of 
 We now want to characterize relationships between two experimentally distinguishable elements. Such relationships can be defined either on the values (i.e.~the possibilities) or on the observations (i.e.~the experimental domain). We need to show that both definitions lead to the same mathematical object.
 
 \begin{defn}[Experimental relationship between possibilities]
-	Let $(\mathcal{D}_x, X, x)$ and $(\mathcal{D}_y, Y, y)$ be two experimental identification domains. An \textbf{experimental relationship} is a map $f : X \rightarrow Y$ that can be used within an experimental test.
+	Let $(\mathcal{D}_X, X, x)$ and $(\mathcal{D}_X, Y, y)$ be two experimental identification domains. An \textbf{experimental relationship} is a map $f : X \rightarrow Y$ that can be used within an experimental test.
 \end{defn}
 
 \begin{prop}
 	The experimental relationship $f$ defined above is a continuous function.
 \end{prop}
 \begin{proof}
-Let $o_y = \llparenthesis y\in U_Y,\mathsf{e}_{\in}(U_Y)\rrparenthesis \in \mathcal{D}_y$.  Consider the following experimental procedure:
+Let $o_y = \llparenthesis y\in U_Y,\mathsf{e}_{\in}(U_Y)\rrparenthesis \in \mathcal{D}_Y$.  Since $f$ can be used within an experimental test, consider the following experimental procedure:
 \begin{enumerate}
 	\item map $x$ to $y=f(x)$
 	\item run the test $\mathsf{e}_{\in}(U_Y)$
 \end{enumerate}
-It will be successful if and only if $y \in U_Y$. Since $y=f(x)$, it is successful if and only if $x \in f^{-1}(U_Y)$: the procedure is the test $\mathsf{e}_{\in}(f^{-1}(U_Y))$. This means that $o_x = \llparenthesis x \in f^{-1}(U_Y),\mathsf{e}_{\in}(f^{-1}(U_Y))\rrparenthesis$ is an experimental observation and it must be in $\mathcal{D}_x$ since $\mathcal{D}_x$ contains all possible experimental observations of that form. It follows that $f^{-1}(U_Y)$ is a verifiable set and must be part of the topology $\mathsf{T}_X$.
+It will be successful if and only if $y \in U_Y$. Since $y=f(x)$, it is successful if and only if $x \in f^{-1}(U_Y)$: the procedure is the test $\mathsf{e}_{\in}(f^{-1}(U_Y))$. This means that $o_x = \llparenthesis x \in f^{-1}(U_Y),\mathsf{e}_{\in}(f^{-1}(U_Y))\rrparenthesis$ is an experimental observation and it must be in $\mathcal{D}_X$ since $\mathcal{D}_X$ contains all possible experimental observations of that form. It follows that $f^{-1}(U_Y)$ is a verifiable set and must be part of the topology $\mathsf{T}_X$.
 \end{proof}
 
 \begin{defn}[Experimental relationship between observations]
-	Let $(\mathcal{D}_x, X, x)$ and $(\mathcal{D}_y, Y, y)$ be two experimental identification domains. An \textbf{experimental relationship} is a map $g : \mathcal{D}_y \rightarrow \mathcal{D}_x$ such that if $\mathsf{o}_y \in \mathcal{D}_y$ is verified then $\mathsf{o}_x \in \mathcal{D}_x$ must also be verified. To be consistent, such relationship must have these properties:
+	Let $(\mathcal{D}_X, X, x)$ and $(\mathcal{D}_Y, Y, y)$ be two experimental identification domains. An \textbf{experimental relationship} is a map $g : \mathcal{D}_Y \rightarrow \mathcal{D}_X$ such that if $\mathsf{o} \in \mathcal{D}_Y$ is verified then $g(\mathsf{o}) \in \mathcal{D}_X$ must also be verified. To be consistent, such relationship must have these properties:
 	\begin{enumerate}
 	\item it is compatible with conjunction and disjunction: for any $\mathsf{o}_1, \mathsf{o}_2 \in \mathcal{D}_y$, we have $g(\mathsf{o}_1 \wedge \mathsf{o}_2)=g(\mathsf{o}_1)\wedge g(\mathsf{o}_2)$ and $g(\mathsf{o}_1 \vee \mathsf{o}_2)=g(\mathsf{o}_1)\vee g(\mathsf{o}_2)$
 	\item contradiction leads to contradiction: $g(\bot) = \bot$
-	\item no knowledge leads to no knowledge: if $Y$ is the verifiable set associated with $\mathsf{o}_y$ then $X$ is the verifiable set associated with  $g(\mathsf{o}_y)$
+	\item no knowledge leads to no knowledge: if $Y$ is the verifiable set associated with $\mathsf{o} \in \mathcal{D}_Y$ then $X$ is the verifiable set associated with  $g(\mathsf{o})$
 	\end{enumerate}
 \end{defn}
 
@@ -264,19 +264,18 @@ It will be successful if and only if $y \in U_Y$. Since $y=f(x)$, it is successf
 \end{prop}
 
 \begin{proof}
-TODO: 	Let $X$ and $Y$ be two Hausdorff topological spaces, and let $g: \mathsf{T}_Y \rightarrow \mathsf{T}_X$ be a mapping such that:
-\begin{enumerate}
-	\item It is compatible with union and intersection, i.e. for any subsets $V_1, V_2 \subseteq Y$, we have $g(V_1 \cup V_2)=g(V_1)\cup g(V_2)$ and $g(V_1 \cap V_2)=g(V_1)\cap g(V_2)$
-	\item $g(\emptyset) = \emptyset$
-	\item $g(Y) = X$
-\end{enumerate}
+	First we reformulate $g$ in terms of the open set. We can redefine $g: \mathsf{T}_Y \rightarrow \mathsf{T}_X$ to be the map between the verifiable sets corresponding to the experimental observations. This map has the following properties:
+	\begin{enumerate}
+		\item It is compatible with union and intersection, i.e. for any subsets $V_1, V_2 \subseteq Y$, we have $g(V_1 \cup V_2)=g(V_1)\cup g(V_2)$ and $g(V_1 \cap V_2)=g(V_1)\cap g(V_2)$
+		\item $g(\emptyset) = \emptyset$
+		\item $g(Y) = X$
+	\end{enumerate}
 
-
-	We claim there exists a unique extension $\bar{g}:\sigma(Y)\to\sigma(X)$ to the Borel $\sigma$-algebras of $X$ and $Y$, respectively $\sigma(X)$ and $\sigma(Y)$, such that $\bar{g}|_{\mathsf{T}_Y}=g$ and $\bar{g}$ is compatible with union, intersection and complements. Let $\bar{g}(V) = g(V)$ for all open sets $V \in \mathsf{T}_Y$. Let $A \in \sigma(Y)$ (not necessarily open) and $A^C$ be its complement. We must have $\bar{g}(A^C) = \bar{g}(A)^C = X\setminus \bar{g}(A)$ for $\bar{g}$ to be compatible with complements. Recall that all Borel sets in $\sigma(Y)$ and $\sigma(X)$ may be written as some combination of unions, intersections, and complements of open sets. Thus, the construction uniquely determine what $\bar{g}$ should output on any Borel set. We need only check that the output is still a Borel set. But by definition of $\bar{g}$, the outputs will be given as unions, intersections, and complements of outputs of $g$, which are open sets, and so the image of $\bar{g}$ is contained in $\sigma(X)$.  $\bar{g}$ is well defined. The function $\bar{g}$ in a sense represents extracting the maximum amount of information possible out of $g$.
+	Then we construct the unique extension $\bar{g}:\sigma(Y)\to\sigma(X)$ to the Borel $\sigma$-algebras of $X$ and $Y$, respectively $\sigma(X)$ and $\sigma(Y)$, such that $\bar{g}|_{\mathsf{T}_Y}=g$ and $\bar{g}$ is compatible with union, intersection and complements. Let $\bar{g}(V) = g(V)$ for all open sets $V \in \mathsf{T}_Y$. Let $A \in \sigma(Y)$ (not necessarily open) and $A^C$ be its complement. We must have $\bar{g}(A^C) = \bar{g}(A)^C = X\setminus \bar{g}(A)$ for $\bar{g}$ to be compatible with complements. Recall that all Borel sets in $\sigma(Y)$ and $\sigma(X)$ may be written as some combination of unions, intersections, and complements of open sets. Thus, the construction uniquely determine what $\bar{g}$ should output on any Borel set. We need only check that the output is still a Borel set. But by definition of $\bar{g}$, the outputs will be given as unions, intersections, and complements of outputs of $g$, which are open sets, and so the image of $\bar{g}$ is contained in $\sigma(X)$.  $\bar{g}$ is well defined. The function $\bar{g}$ in a sense represents extracting the maximum amount of information possible out of $g$.
 	
-	We claim we can define $\hat{g}:Y\to\sigma(X)$ such that $\hat{g}(y) = \bar{g}(\{y\})$. Since $Y$ is Hausdorff, every singleton $\{y\}$ is closed and is therefore a Borel set. $\bar{g}(\{y\})$ is well defined and so is $\hat{g}(y)$.
+	Next we define $\hat{g}:Y\to\sigma(X)$ such that $\hat{g}(y) = \bar{g}(\{y\})$. Since $Y$ is Hausdorff, every singleton $\{y\}$ is closed and is therefore a Borel set. Therefore $\bar{g}(\{y\})$ is well defined and so is $\hat{g}(y)$.
 	
-	We claim  $\hat{g}(y_1)\cap\hat{g}(y_2) = \emptyset$ if and only if $y_1\neq y_2$ for all $y_1,y_2\in Y$ such that $\hat{g}(y_i)\neq\emptyset$ for $i=1,2$. If $y_1\neq y_2$ we have
+	We claim that $\hat{g}(y_1)\cap\hat{g}(y_2) = \emptyset$ if and only if $y_1\neq y_2$ for all $y_1,y_2\in Y$ such that $\hat{g}(y_i)\neq\emptyset$ for $i=1,2$. If $y_1\neq y_2$ we have
 	$$
 	\hat{g}(y_1)\cap\hat{g}(y_2) = \bar{g}(\{y_1\})\cap\bar{g}(\{y_2\}) = \bar{g}(\{y_1\}\cap\{y_2\}) = \bar{g}(\emptyset) = \emptyset.
 	$$
@@ -286,11 +285,11 @@ TODO: 	Let $X$ and $Y$ be two Hausdorff topological spaces, and let $g: \mathsf{
 	\hat{g}(y_1) \neq \emptyset.
 	$$
 	
-	We claim we can define $f: X\to Y$ such that $f(x) = y$ if and only if $x\in \hat{g}(y)$. Since $g(Y)=X$, there exists $y\in Y$ such that $x\in\hat{g}(y)$. By the preceding claim, this $y$ is unique. $f: X\to Y$ is well defined. Note that no arbitrary choice where made so far that lead to the construction of $f$, which is therefore determined uniquely by $g$. 
+	We are now ready to define $f: X\to Y$ such that $f(x) = y$ if and only if $x\in \hat{g}(y)$. Since $g(Y)=X$, there exists $y\in Y$ such that $x\in\hat{g}(y)$. By the preceding claim, this $y$ is unique. $f: X\to Y$ is well defined. Note that no arbitrary choice where made so far that lead to the construction of $f$, which is therefore determined uniquely by $g$. 
 	
-	We claim $g = f^{-1} |_{\mathsf{T}(Y)}$. Let $V\in\mathsf{T}(Y)$. We want to show $f^{-1}(V) = g(V)$. Let $x\in f^{-1}(V)$. Then for some $y \in V$ we have $f(x)=y$. $x\in \hat{g}(y)$ by construction of $f$. $\hat{g}(y) \subset g(V)$ since $\{y\}\subset V$, so $x\in g(V)$. $f^{-1}(V) \subseteq g(V)$. Conversely, let $x\in g(V)=\bar{g}(V)$. Then for some $y\in V$, we have $x\in\bar{g}(\{y\})\subset\bar{g}(V)$. But then by definition we have $f(x)=y$, so $x\in f^{-1}(V)$. $f^{-1}(V) \supseteq g(V)$. $f^{-1}(V) = g(V)$ for all $V\in\mathsf{T}(Y)$ and therefore $f^{-1}|_{\mathsf{T}(Y)}=g$.
+	Now we show that $g = f^{-1} |_{\mathsf{T}(Y)}$. Let $V\in\mathsf{T}(Y)$. We want to show $f^{-1}(V) = g(V)$. Let $x\in f^{-1}(V)$. Then for some $y \in V$ we have $f(x)=y$. $x\in \hat{g}(y)$ by construction of $f$. $\hat{g}(y) \subset g(V)$ since $\{y\}\subset V$, so $x\in g(V)$. $f^{-1}(V) \subseteq g(V)$. Conversely, let $x\in g(V)=\bar{g}(V)$. Then for some $y\in V$, we have $x\in\bar{g}(\{y\})\subset\bar{g}(V)$. But then by definition we have $f(x)=y$, so $x\in f^{-1}(V)$. $f^{-1}(V) \supseteq g(V)$. $f^{-1}(V) = g(V)$ for all $V\in\mathsf{T}(Y)$ and therefore $f^{-1}|_{\mathsf{T}(Y)}=g$.
 	
-	We claim $f$ is continuous. It is so since $g = f^{-1} |_{\mathsf{T}(Y)}$ takes open sets to open sets. 
+	Lastly we claim $f$ is continuous. It is so since $g = f^{-1} |_{\mathsf{T}(Y)}$ takes open sets to open sets. 
 \end{proof}
 
 We can now state the second main result of this work.
@@ -298,6 +297,10 @@ We can now state the second main result of this work.
 \begin{thm}
 	An experimental relationship between two sets $X$ and $Y$ of experimentally distinguishable possibilities is a continuous function $f : X \rightarrow Y$ between the respective natural topologies $(X,\mathsf{T}_X)$ and $(Y,\mathsf{T}_Y)$. 
 \end{thm}
+
+\begin{proof}
+	As we saw in the previous result, both definitions lead to experimental relationships being fully characterized by a continuous function.
+\end{proof}
 
 \begin{rem}
 	This result gives a formal justification as to why continuous functions are prevalent in science in general and in physics in particular. As topologies capture experimental distinguishability, continuous functions preserve it.
@@ -319,9 +322,9 @@ where $U_X \in \mathcal{B}_X$ and $U_Y \in \mathcal{B}_Y$.
 	Let $X$ and $Y$ be two Hausdorff and second-countable topological spaces. Let $C(X,Y)$ denote the set of all continuous functions from $X$ to $Y$. Let $\mathcal{B}_X$ and $\mathcal{B}_Y$ be two countable bases for $X$ and $Y$ respectively. The basis-to-basis topology $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ on $C(X,Y)$ with respect to the basis $\mathcal{B}_X$ and $\mathcal{B}_Y$ is Hausdorff and second-countable. 
 \end{prop}
 \begin{proof}
-	We claim $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is second-countable. We first note that the sub-basis $\{V(U_X, U_Y) \, |\,   U_X \in \mathcal{B}_X , U_Y \in \mathcal{B}_Y \}$ is countable since $\mathcal{B}_X$ and $\mathcal{B}_Y$ are countable. The collection $\mathcal{B}$ of all finite intersections is still countable, since it is in one-to-one correspondence with the collection of finite subsets of a countable set, which is still countable. Therefore $\mathcal{B}$ is a countable basis, which means $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is second-countable.
+	First we show that $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is second-countable. We note that the sub-basis $\{V(U_X, U_Y) \, |\,   U_X \in \mathcal{B}_X , U_Y \in \mathcal{B}_Y \}$ is countable since $\mathcal{B}_X$ and $\mathcal{B}_Y$ are countable and so will be the bases which it generates. Which means $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is second-countable.
 	
-	We claim $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is Hausdorff. Let $f,g:X\to Y$ be distinct continuous functions. Then for some $x\in X$, we have $f(x)\neq g(x)$. Pick $V_1, V_2$ disjoint open subsets of $Y$ with $f(x)\in V_1$ and $g(x)\in V_2$. We may assume (possibly by shrinking $V_1$ or $V_2$) that both are basis elements for the topology of $Y$. Let $U=f^{-1}(V_1)\cap g^{-1}(V_2)$. Then $U$ is an open neighborhood of $x$. We may assume again that $U$ is a basis element for the topology on $X$ by shrinking it if necessary. Now, let $T_1$ to be the (sub-)basis element for basis-to-basis topology corresponding to $U$ and $V_1$. By construction, $f\in T_1$. Similarly, let $T_2$ to be the basis element for the basis-to-basis topology corresponding to $U$ and $V_2$ and containing $g$. Since $V_1$ and $V_2$ are disjoint, so are $T_1$ and $T_2$. $\mathsf{T}(\mathcal{C})$ is Hausdorff.
+	Next we show that $\mathsf{T}(C(X,Y), \mathcal{B}_X, \mathcal{B}_Y)$ is Hausdorff. Let $f,g:X\to Y$ be two distinct continuous functions. Then for some $x\in X$, we have $f(x)\neq g(x)$. Pick $V_1, V_2$ disjoint open subsets of $Y$ with $f(x)\in V_1$ and $g(x)\in V_2$. We may assume (possibly by shrinking $V_1$ or $V_2$) that both are basis elements for the topology of $Y$. Let $U=f^{-1}(V_1)\cap g^{-1}(V_2)$. Then $U$ is an open neighborhood of $x$. We may assume again that $U$ is a basis element for the topology on $X$ by shrinking it if necessary. Now, let $T_1$ to be the (sub-)basis element for basis-to-basis topology corresponding to $U$ and $V_1$. By construction, $f\in T_1$. Similarly, let $T_2$ to be the basis element for the basis-to-basis topology corresponding to $U$ and $V_2$ and containing $g$. Since $V_1$ and $V_2$ are disjoint, so are $T_1$ and $T_2$. $\mathsf{T}(\mathcal{C})$ is Hausdorff.
 \end{proof}
 
 \begin{rem}
@@ -335,12 +338,12 @@ As experimental relationships are themselves distinguishable, we can recursively
 	\begin{tabular}{p{0.20\textwidth} p{0.7\textwidth}}
 		Math/Topology & Science/Physics \\ 
 		\hline 
-		$T_2$, 2nd ctbl space. & Experimentally distinguishable space, whose points are the possible values and whose open sets represent the experimentally attainable levels of precision \\
-		Open set & Verifiable set. We can verify experimentally that an element is within the set  \\ 
-		Closed set & Refutable set. We can verify experimentally that an element is not in the set \\ 
-		Basis of top. & A collection of verifiable sets such that any verifiable set is determined by the basis sets\\
-		Continuous \newline function &  A function between two sets of experimental distinguishable elements that preserves distinguishability \\
-		Homeomorphism &  A perfect equivalence between experimentally distinguishable spaces. \\
+		Hausdorff, second-countable space & Space of experimentally distinguishable elements, whose points are the possible values and whose open sets represent the experimentally attainable levels of precision. \\
+		Open set & Verifiable set. We can verify experimentally that an element is within the set.  \\ 
+		Closed set & Refutable set. We can verify experimentally that an element is not in the set. \\ 
+		Basis & A collection of verifiable sets that can be used to distinguish an element\\
+		Continuous \newline function &  An experimental relationship between two sets of experimental distinguishable elements, which must preserve distinguishability \\
+		Homeomorphism &  A perfect equivalence between spaces of experimentally distinguishable elements. \\
 	\end{tabular} 
 	\caption{Topology to physics dictionary. This table sums up the relationship established between mathematical and scientific concepts.}
 \end{table}
