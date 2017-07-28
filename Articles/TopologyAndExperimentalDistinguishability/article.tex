@@ -58,7 +58,7 @@
 
 
 \begin{abstract}
-We formalize the relationship between topological spaces and the ability to distinguish objects experimentally, providing understanding and justification as to why topological spaces and continuous functions are pervasive tools in science. We first define an experimental observation as a statement that can be verified using an experimental procedure and show that observations are closed under finite conjunction and countable disjunction. We then consider observations that identify elements in a set and show how they induce a Hausdorff and second-countable topology on that set, thus identifying an open set as one that can be associated with an experimental observation. We then show that continuous functions preserve experimental distinguishability and define a Hausdorff and second-countable topology for this collection. 
+	In this work we introduce the idea that the primary application of topology in experimental sciences is to keep track of what can be distinguished through experimentation. This link provides understanding and justification as to why topological spaces and continuous functions are pervasive tools in science. We first define an experimental observation as a statement that can be verified using an experimental procedure and show that observations are closed under finite conjunction and countable disjunction. We then consider observations that identify elements within a set and show how they induce a Hausdorff and second-countable topology on that set, thus identifying an open set as one that can be associated with an experimental observation. We then show that experimental relationships are continuous functions, as they must preserve experimental distinguishability, and that they are themselves experimentally distinguishable by defining a Hausdorff and second-countable topology for this collection. 
 \end{abstract}
 
 \begin{keyword}
@@ -74,9 +74,9 @@ topological spaces \sep scientific foundations \sep function space
 
 The successful use of mathematical ideas in experimental sciences is long established and celebrated \cite{wigner}. Topology is perhaps the most widespread, either directly\cite{rashevsky, chichilnisky} or as a foundation to other tools\cite{nakahara}.  This leads one to ask, why is it so successful? What property is captured by topological spaces that is so fundamental for scientific investigation? 
 
-We believe experimentally distinguishability to be the correct concept. The notion of ``nearness" captured by topologies keeps track of how hard it is to tell two elements apart scientific observation. The standard topology on a real line, for examples, captures the inability to measure a continuous value with infinite precision. This connection holds in cases where a metric would not be physically meaningful (e.g. phase space) and in discrete spaces (where each element can be individually identified).  It is fitting, then, that the use of topology is so widespread, as defining what can be experimentally distinguished is a fundamental aspect of science.
+We believe experimental distinguishability to be the relevant concept. The notion of ``nearness" captured by topologies keeps track of how hard it is to tell two elements apart via scientific observation. The standard topology on a real line, for example, captures the inability to measure a continuous value with infinite precision. This connection holds in cases where a metric would not be physically meaningful (e.g.~phase space) and in discrete spaces (where each element can be individually identified).  It is fitting, then, that the use of topology is so widespread, as defining what can be experimentally distinguished is a fundamental aspect of science.
 
-The aim of this paper is to lay down a framework that formalizes this insight. We first define experimental observations as statements paired with an experimental test that is able to verify them. We then study their properties under logical operations and conclude that they are only closed under finite conjunction and countable disjunction. Next we define experimental distinguishability and show, as our fist main result, that any set of objects that are experimentally distinguishable is a Hausdorff, second-countable topological space, where the topology is formally defined in terms of the observations themselves. Last we define experimental relationships between experimentally distinguishable objects and show, as our second main result, that experimental relationships are represented by continuous functions and are themselves physically distinguishable.
+The aim of this paper is to lay down a framework that formalizes this insight. We first define experimental observations as statements paired with an experimental test that is able to verify them. We then study their properties under logical operations and conclude that they are only closed under finite conjunction and countable disjunction. Next we define experimental distinguishability and show, as our fist main result, that any set of objects that are experimentally distinguishable is a Hausdorff, second-countable topological space, where the topology is formally defined in terms of the observations themselves. Last we define experimental relationships between experimentally distinguishable objects and show, as our second main result, that experimental relationships are represented by continuous functions and are themselves experimentally distinguishable.
 
 
 \section{Experimental observations}
@@ -90,9 +90,9 @@ In science, a statement can be accepted as true only if there exists a way to ex
 \begin{defn}
 	An \textbf{experimental test} $\mathsf{e}$ is a repeatable procedure (i.e. it can be restarted and stopped an arbitrary number of times) which may be successful, in which case it terminates in finite time, or may be not successful, in which case it may or may not terminate.\footnote{In line with philosophical tradition\cite{mill,russell}, we can define this experimental test:
 		\begin{enumerate}
-			\item find a swan
-			\item if black terminate successfully
-			\item go to step 1
+			\item Find a swan
+			\item If black terminate successfully
+			\item Go to step 1
 	\end{enumerate}}
 \end{defn}
 
@@ -342,16 +342,15 @@ As experimental relationships are themselves distinguishable, we can recursively
 		Continuous \newline function &  A function between two sets of experimental distinguishable elements that preserves distinguishability \\
 		Homeomorphism &  A perfect equivalence between experimentally distinguishable spaces. \\
 	\end{tabular} 
-	\caption{Topology to physics dictionary. This table sums up the relationship established between math and scientific concepts.}
+	\caption{Topology to physics dictionary. This table sums up the relationship established between mathematical and scientific concepts.}
 \end{table}
 
 
 \section{Conclusion}
 
-We have shown that it is possible to formally capture the requirements of experimental sciences using experimental observations and their properties. These definitions lead naturally to topological spaces, giving the result that any set of experimentally distinguishable possibilities is a Hausdorff and second-countable topological space. In the same framework, experimental relationships between these objects are represented mathematically by continuous functions and are themselves experimentally distinguishable objects, as they too can be given a Hausdorff and second-countable topology. The ability to create functions of any order confirms that the universe of discourse provided by these definitions is closed and self-consistent.
+What emerges from this work is that \emph{the primary application of topology in science is experimental distinguishability}. Its role is to track of what can be distinguished through experimentation. The importance of continuous functions in science and physics is explained since experimental relationships have to be consistent with what can be experimentally distinguished. This provides a strong justification as to why deterministic systems are always characterized by continuous transformations. It is not that they happen to be continuous: they must be.
 
 We hope that this work, because of both its method and result, can provide a more solid foundation to formalize experimental sciences.
-
 
 \section*{Acknowledgments}
 Funding for this work was provided in part by the MCubed program of the University of Michigan. The third author is supported by the National Science Foundation Graduate Research Fellowship Program under Grant No. DGE\#1256260. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
