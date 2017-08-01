@@ -143,6 +143,12 @@ Both phase space and Hamilton's equation are exactly the mathematical structures
 
 \section{Multiple degree of freedom}
 
+The reader may have notice that there the proof of the single degree of freedom was trivial: just a mere application of the definitions. The clever bit was to set up the problem. In the multiple degrees of freedom setting up the problem presents a challenge: we don't have a suitable mathematical tool to do it.
+
+Mathematically, Hamiltonian mechanics is formalized with symplectic geometry, a branch of differential geometry. But while symplectic geometry gives us the right tool to study the geometry of the volumes and areas on which we define the distributions, it does not give us good tools to study the distributions themselves. This because differential geometry in general focuses on objects that are coordinate independent while distributions are coordinate dependent. On the other hand, probability theory and statistics give us the right tool to study distributions on multiple degrees of freedom but they do not give us tools to define areas and volumes. So, to make a mathematically precise proof, we would need to combine elements of both and once the problem is correctly setup, the proof would be trivial. Unfortunately, the result would be something difficult to follow and would make the physical content opaque.
+
+What we are going to do, instead, is to show how and why the math works the way that it does and what the key intuitive ideas areas. It will also give enough elements for someone to construct a more formal proof, in case it is needed.
+
 Show conceptually what needs to happen. Need to be able to define marginal distributions on each degree of freedom. Jacobian preserved under all degrees of freedom. Symplectic form in multiple dimension preserves area and orthogonality. Product of marginals needs to be preserved.
 
 Show that setting up the problem mathematically is more problematic because: symplectic geometry does not have the tools to talk about distributions as it focuses on objects that are coordinate independent, statistics does not care that distribution and information entropy is coordinate dependent since the prime object is the cumulative distribution function.
