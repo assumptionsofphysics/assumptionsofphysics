@@ -1,5 +1,14 @@
 \documentclass[preprint]{elsarticle}
 
+% Temporary to remove "submitted to"
+\makeatletter
+\def\ps@pprintTitle{%
+	\let\@oddhead\@empty
+	\let\@evenhead\@empty
+	\def\@oddfoot{}%
+	\let\@evenfoot\@oddfoot}
+\makeatother
+
 \usepackage{lineno,hyperref}
 
 \usepackage{amsmath, amsthm, amsfonts}
