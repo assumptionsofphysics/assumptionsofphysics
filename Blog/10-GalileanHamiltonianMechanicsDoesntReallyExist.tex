@@ -1,0 +1,126 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{Galilean Hamiltonian mechanics doesn't really exist}
+
+or "Non-relativistic Hamiltonian mechanics doesn't really exist"
+or "All Hamiltonian mechanics is relativistic"
+
+TL;DR Galilean transformations are not compatible with standard Hamiltonian mechanics. They give good approximations only for small changes in velocity.
+
+As part of my work in foundations of physics, I am forced to constantly search for different ways to look at things. Sometimes this leads me to have a different perspective which brings a more consistent overall picture but forces one to reshuffle some of the basic concepts. The relationship between relativity and Hamiltonian mechanics is one of those cases.
+
+When studying physics, you learn that relativistic mechanics is more ``correct" and non-relativistic mechanics is just an approximation. But you may also get a sense that non-relativistic mechanics is self-consistent: it just so happens that the world is different. If you look at things closely, though, I don't think that's the case.
+
+First we have to make a distinction between the ``principle of relativity", which just states that the laws are invariant under any coordinate transformations, and the ``theory of special relativity", which adds that the speed of light is invariant and gives you things like $E=mc^2$. We are mainly going to concentrate on the first.
+
+The idea is this: if we make Hamiltonian mechanics ``relativistic", in the sense of making sure it gives the same equations for all reference frames, what do we get? It will take a few posts to explore this question. What we'll see is that we already get some results associated with the theory of special relativity, even though we didn't require the invariance of the speed of light.
+
+We start by concentrating on a simpler question: is standard Hamiltonian mechanics invariant under Galilean transformations? That is, what happens if we boost our frame according to $\hat{x}=x+ v_0 t$? What we find is that standard Hamiltonian mechanics already breaks down and the transformation is a good approximation only if $v_0$ is small. Which is a result that already sounds like the theory of special relativity.
+
+Let's break this down into smaller steps.
+
+\section{Change of coordinates}
+
+Suppose we have a Hamiltonian system. Its state is given by position $x$ and momentum $p$. Its evolution is given by:
+\begin{equation}
+\begin{aligned}
+\frac{dx^i}{dt} = \frac{\partial H}{\partial p_i}  \\
+\frac{dp_i}{dt} = - \frac{\partial H}{\partial x^i}  \\
+\end{aligned}
+\label{Hamilton}
+\end{equation}
+where $H(x^i,p_j)$ is the Hamiltonian.
+
+Suppose we change coordinates $\hat{x}^i = \hat{x}^i(x^j)$: how does the momentum change? We can recover the transformation rule of momentum by requiring that, in the new coordinates, the system is still Hamiltonian. One way of doing that is requiring that area elements of phase space are conserved. We find that the product of two matrices $\frac{\partial \hat{x}^i}{\partial x^j}$ and $\frac{\partial \hat{p}_i}{\partial p_k}$ must be the identity matrix, which means one is the inverse of the other.
+\begin{equation*}
+\begin{aligned}
+dx^i \wedge dp_i = d\hat{x}^i\wedge d\hat{p}_i &=  \frac{\partial \hat{x}^i}{\partial x^j} dx^j \wedge \frac{\partial \hat{p}_i}{\partial p_k} dp_k \\
+\frac{\partial \hat{x}^i}{\partial x^j} \frac{\partial \hat{p}_i}{\partial p_k} &= \delta^k_j \\
+\frac{\partial \hat{p}_i}{\partial p_k} = \left[\frac{\partial \hat{x}^i}{\partial x^k}\right]^{-1} &=  \frac{\partial x^k}{\partial \hat{x}^i}
+\end{aligned}
+\end{equation*}
+
+This means that $\frac{\partial \hat{p}_i}{\partial p_k}$ is only a function of position, therefore the new momentum must be a linear transformation. Integrating we have:
+\begin{equation*}
+\begin{aligned}
+\hat{x}^i &= \hat{x}^i(x^j) \\
+\hat{p}^i &= \frac{\partial x^j}{\partial \hat{x}^i} p_j + \frac{\partial f(x^j)}{\partial \hat{x}^i}
+\end{aligned}
+\end{equation*}
+where $f$ is an arbitrary function. Since it is arbitrary, we set it to zero and have:
+\begin{equation}
+\begin{aligned}
+\hat{x}^i &= \hat{x}^i(x^j) \\
+\hat{p}^i &= \frac{\partial x^j}{\partial \hat{x}^i} p_j
+\end{aligned}
+\label{spaceTransf}
+\end{equation}
+Technically, we haven't shown why the arbitrary function added to the momentum is actually the gradient of a scalar function. Since we are setting it to zero, I didn't want to put details that are not that relevant.
+
+The point is: the components of momentum do not transform like a vector, they are not multiplied by the Jacobian, but do transform like a covector, they are multiplied by the inverse of the Jacobian. $dx^i$ gets multiplied by the Jacobian, $dp_i$ by its inverse, so the phase space area remains the same. Note that the transformation rules are completely general: they do not depend on the particular $\hat{x}^i(x^j)$ or the particular $H(x^i,p_j)$. They are valid across all coordinate frames for any Hamiltonian system. As far as spatial transformation is concerned, Hamiltonian mechanics is ``relativistic" as it respects the principle of relativity for those transformations. Note that the same can't be said for Newtonian mechanics.
+
+\section{Galilean transformations}
+Now we want to see what happens if we use a Galilean boost and, for simplicity, we'll only use the coordinate in the direction of boost. Plugging into \eqref{spaceTransf} we have:
+\begin{equation}
+\begin{aligned}
+\hat{x} &= x + v_0 t \\
+\hat{p} &= p
+\end{aligned}
+\label{galTransf}
+\end{equation}
+since $\frac{\partial x}{\partial \hat{x}} = \frac{\partial (\hat{x} - v_0 t)}{\partial \hat{x}} = 1$. Already note something unexpected: momentum does not change. We could use the arbitrary function and set $\hat{p} = p + m v_0$ but that is really ad-hoc, it's not following the general rule.
+
+If we want to calculate the differential and the derivative, we have to decide how to treat $t$. We could treat it as a constant parameter and have:
+\begin{equation}
+\begin{aligned}
+d\hat{x} &= dx \\
+\frac{d\hat{x}}{dt} &= \frac{dx}{dt} \\
+d\hat{x}\wedge d\hat{p} &= dx \wedge dp
+\end{aligned}
+\label{timeParameter}
+\end{equation}
+Or we can treat is as an independent variable:
+\begin{equation}
+\begin{aligned}
+d\hat{x} &= dx + v_0 dt \\
+\frac{d\hat{x}}{dt} &= \frac{dx}{dt} + v_0 \\
+d\hat{x}\wedge d\hat{p} &= dx \wedge dp + v_0 dt \wedge dp
+\end{aligned}
+\label{timeParameter}
+\end{equation}
+
+In both cases we have a problem. In the first, the velocity does not change as we are adding the same constant number throughout the trajectory. In the second, the area of phase space is not conserved, so the coordinate transformation is not canonical: the equations of motion are not going to be Hamilton's equations so they are not invariant.
+
+Note, though, that if $v_0$ is ``small enough", the area of phase space is ``almost" conserved so the error introduced by using Hamilton's equations is ``small". In other words: the transformation is still incorrect but not \emph{that} incorrect. Standard Hamiltonian mechanics with Galilean transformation can be a good approximation. But if $v_0$ is large, it breaks down.
+
+\section{Conclusion}
+
+If you tried with more complicated transformations, you'd get even worse results. In the sense explored here, standard Hamiltonian mechanics is not relativistic under any time transformation, including Galilean. It's not that we need to make Hamiltonian mechanics relativistic so that it can handle the invariance of the speed of light: we need to make it relativistic so that it can handle any type of coordinate transformation. The invariance of the speed of light does something different: it constrains the Hamiltonian.
+
+This issue is not explored in textbooks. But they do change coordinate systems, even to non-inertial ones! How do they do it? What they do is start from the Lagrangian, which is invariant under all transformations, change the variable there, calculate the new conjugate momentum and then the new Hamiltonian. This does indeed yield the correct result, so if you are only interested in crunching the numbers you are done. That is why, at a technical level, they always put the Lagrangian first. But it does have at least two problems.
+
+First, as we saw in other posts, there are Hamiltonian systems for which you can't write the Lagrangian. In practice, all interesting systems are also Lagrangian so this is more of a conceptual problem. But conceptual problems are exactly what we need to solve if we want to get a good understanding.
+
+The second problem is that it hides the issue, which prevents getting a clear picture. If one addresses it head on, it gives better insights on the connections between classical mechanics, quantum mechanics and special relativity. And that is what we are going to see in the next few posts.
+
+\end{document}
