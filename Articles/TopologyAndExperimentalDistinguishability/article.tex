@@ -1,14 +1,5 @@
 \documentclass[preprint]{elsarticle}
 
-% Temporary to remove "submitted to"
-\makeatletter
-\def\ps@pprintTitle{%
-	\let\@oddhead\@empty
-	\let\@evenhead\@empty
-	\def\@oddfoot{}%
-	\let\@evenfoot\@oddfoot}
-\makeatother
-
 \usepackage{lineno,hyperref}
 
 \usepackage{amsmath, amsthm, amsfonts}
@@ -43,10 +34,10 @@
 
 %% Group authors per affiliation:
 
-\author[]{Christine A. Aidala\corref{cor1}}
+\author[]{Christine A. Aidala}
 \ead{caidala@umich.edu}
 
-\author[]{Gabriele Carcassi}
+\author[]{Gabriele Carcassi\corref{cor1}}
 \ead{carcassi@umich.edu}
 
 \author[]{Mark J. Greenfield}
