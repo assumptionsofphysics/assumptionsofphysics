@@ -20,16 +20,11 @@
 
 \begin{document}
 
-\section{Galilean Hamiltonian mechanics doesn't really exist}
+\section{Galilean transformations are not compatible with Hamiltonian mechanics}
 
-or "Non-relativistic Hamiltonian mechanics doesn't really exist"
-or "All Hamiltonian mechanics is relativistic"
+TL;DR Galilean boosts do not leave Hamilton's equations and phase space volumes unchanged. They give good approximations only for small changes in velocity.
 
-TL;DR Galilean transformations are not compatible with standard Hamiltonian mechanics. They give good approximations only for small changes in velocity.
-
-As part of my work in foundations of physics, I am forced to constantly search for different ways to look at things. Sometimes this leads me to have a different perspective which brings a more consistent overall picture but forces one to reshuffle some of the basic concepts. The relationship between relativity and Hamiltonian mechanics is one of those cases.
-
-When studying physics, you learn that relativistic mechanics is more ``correct" and non-relativistic mechanics is just an approximation. But you may also get a sense that non-relativistic mechanics is self-consistent: it just so happens that the world is different. If you look at things closely, though, I don't think that's the case.
+When studying physics, you learn that relativistic mechanics is more ``correct" and non-relativistic mechanics is just an approximation. But you may also get a sense that non-relativistic mechanics is self-consistent: it just so happens that the world is different. If you look at things closely, though, I don't think that's the case. The problem is that typically in textbooks a small sleight of hand is performed, so we have to look from a slightly different angle to see the trick.
 
 First we have to make a distinction between the ``principle of relativity", which just states that the laws are invariant under any coordinate transformations, and the ``theory of special relativity", which adds that the speed of light is invariant and gives you things like $E=mc^2$. We are mainly going to concentrate on the first.
 
@@ -41,17 +36,17 @@ Let's break this down into smaller steps.
 
 \section{Change of coordinates}
 
-Suppose we have a Hamiltonian system. Its state is given by position $x$ and momentum $p$. Its evolution is given by:
+Suppose we have a Hamiltonian system. Its state is given by position $x^i$ and momentum $p_j$. Its evolution is given by:
 \begin{equation}
 \begin{aligned}
 \frac{dx^i}{dt} = \frac{\partial H}{\partial p_i}  \\
-\frac{dp_i}{dt} = - \frac{\partial H}{\partial x^i}  \\
+\frac{dp_j}{dt} = - \frac{\partial H}{\partial x^j}  \\
 \end{aligned}
 \label{Hamilton}
 \end{equation}
 where $H(x^i,p_j)$ is the Hamiltonian.
 
-Suppose we change coordinates $\hat{x}^i = \hat{x}^i(x^j)$: how does the momentum change? We can recover the transformation rule of momentum by requiring that, in the new coordinates, the system is still Hamiltonian. One way of doing that is requiring that area elements of phase space are conserved. We find that the product of two matrices $\frac{\partial \hat{x}^i}{\partial x^j}$ and $\frac{\partial \hat{p}_i}{\partial p_k}$ must be the identity matrix, which means one is the inverse of the other.
+Suppose we change coordinates $\hat{x}^i = \hat{x}^i(x^j)$: how does the momentum change? We can recover the transformation rule of momentum by requiring that, in the new coordinates, the system is still Hamiltonian. One way of doing that is requiring that area elements of phase space are conserved. We find that the product of the two matrices $\frac{\partial \hat{x}^i}{\partial x^j}$ and $\frac{\partial \hat{p}_i}{\partial p_k}$ must be the identity matrix, which means one is the inverse of the other.
 \begin{equation*}
 \begin{aligned}
 dx^i \wedge dp_i = d\hat{x}^i\wedge d\hat{p}_i &=  \frac{\partial \hat{x}^i}{\partial x^j} dx^j \wedge \frac{\partial \hat{p}_i}{\partial p_k} dp_k \\
@@ -60,18 +55,18 @@ dx^i \wedge dp_i = d\hat{x}^i\wedge d\hat{p}_i &=  \frac{\partial \hat{x}^i}{\pa
 \end{aligned}
 \end{equation*}
 
-This means that $\frac{\partial \hat{p}_i}{\partial p_k}$ is only a function of position, therefore the new momentum must be a linear transformation. Integrating we have:
+This means that $\frac{\partial \hat{p}_i}{\partial p_k}$ is only a function of position, therefore the new momentum must be a linear transformation with respect to the old momentum. Integrating we have:
 \begin{equation*}
 \begin{aligned}
 \hat{x}^i &= \hat{x}^i(x^j) \\
-\hat{p}^i &= \frac{\partial x^j}{\partial \hat{x}^i} p_j + \frac{\partial f(x^j)}{\partial \hat{x}^i}
+\hat{p}_i &= \frac{\partial x^j}{\partial \hat{x}^i} p_j + \frac{\partial f(x^j)}{\partial \hat{x}^i}
 \end{aligned}
 \end{equation*}
 where $f$ is an arbitrary function. Since it is arbitrary, we set it to zero and have:
 \begin{equation}
 \begin{aligned}
 \hat{x}^i &= \hat{x}^i(x^j) \\
-\hat{p}^i &= \frac{\partial x^j}{\partial \hat{x}^i} p_j
+\hat{p}_i &= \frac{\partial x^j}{\partial \hat{x}^i} p_j
 \end{aligned}
 \label{spaceTransf}
 \end{equation}

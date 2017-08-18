@@ -44,18 +44,16 @@ Let's see how it works.
 
 \section{Minimizing uncertainty}
 
-Suppose we have a phase space distribution $\rho(x,p)$. As the state evolves into its final state, the amount of material remains the same: $\int \rho \, dx \wedge dp = 1$. The final entropy will also remain the same: $I(\rho) = \int \rho \ln \rho \, dx \wedge dp = I_0$. We now ask the following question: once we fix the entropy, what is the distribution that minimizes the product $\sigma_x\sigma_p$ of the standard deviations? That would correspond to the minimum uncertainty for the final distribution given by Hamiltonian evolution on the initial distribution.
+Suppose we have a phase space distribution $\rho(x,p)$. As the state evolves into its final state, the amount of material remains the same: $\int \rho \, dx \wedge dp = 1$. The final entropy will also remain the same: $I(\rho) = - \int \rho \ln \rho \, dx \wedge dp = I_0$. We now ask the following question: once we fix the entropy, what is the distribution that minimizes the product $\sigma_x\sigma_p$ of the standard deviations? That would correspond to the minimum uncertainty for the final distribution given by Hamiltonian evolution on the initial distribution.
 
-We are going to use Lagrange multipliers, which is a standard technique in calculus of variations. We write a function that is the product of the variances $\sigma_x^2 \sigma_p^2 \equiv \int (x-\mu_x)^2 \rho \, dxdp \int (p-\mu_p)^2 \rho \, dxdp$ summed with the two constraints (the total amount of material is $1$ and the total entropy $I_0$) each multiplied by a constant. Then take the derivative and set it to $0$.
+We are going to use Lagrange multipliers, which is a standard technique in calculus of variations. We write a function $M$ that is the product of the variances $\sigma_x^2 \sigma_p^2 \equiv \int (x-\mu_x)^2 \rho \, dxdp \int (p-\mu_p)^2 \rho \, dxdp$ summed with the two constraints (the total amount of material is $1$ and the total entropy $I_0$) each multiplied by a constant. Then take the derivative and set it to $0$.
 \begin{align*}
-L = &\sigma_x^2 \sigma_p^2 + \lambda_1\left(\int \rho dxdp - 1\right) + \lambda_2\left(- \int \rho \ln \rho \, dxdp - I_0\right)\\
-\delta L = & \delta \sigma_x^2 \sigma_p^2 + \sigma_x^2 \delta \sigma_p^2 +  \lambda_1 \, \delta \int \rho dxdp - \lambda_2 \, \delta \int \rho \ln \rho \, dxdp \\
+M = &\sigma_x^2 \sigma_p^2 + \lambda_1\left(\int \rho dxdp - 1\right) + \lambda_2\left(- \int \rho \ln \rho \, dxdp - I_0\right)\\
+\delta M = & \delta \sigma_x^2 \sigma_p^2 + \sigma_x^2 \delta \sigma_p^2 +  \lambda_1 \, \delta \int \rho dxdp - \lambda_2 \, \delta \int \rho \ln \rho \, dxdp \\
 = &\int  (x-\mu_x)^2 \delta \rho \, dxdp \, \sigma_p^2 +  \sigma_x^2 \int (p-\mu_p)^2 \delta \rho \, dxdp + \\ &\lambda_1 \int \delta\rho \, dxdp - \lambda_2 \int (\delta \rho \ln \rho + \rho \delta \ln \rho)dxdp  \\
 = &\int [(x-\mu_x)^2 \sigma_p^2 + \sigma_x^2 (p-\mu_p)^2 + \lambda_1 - \lambda_2 \ln \rho - \lambda_2 ] \delta \rho  \, dxdp = 0 \\
 \lambda_2 \ln \rho = &\lambda_1 - \lambda_2 + (x-\mu_x)^2 \sigma_p^2 + \sigma_x^2 (p-\mu_p)^2 \\
-\rho = &e^{\frac{\lambda_1 - \lambda_2}{\lambda_2}}e^{\frac{(x-\mu_x)^2 \sigma_p^2}{\lambda_2}}e^{\frac{\sigma_x^2 (p-\mu_p)^2}{\lambda_2}}\\
-L = &\int (x-\mu_x)^2 \rho \, dxdp \int (p-\mu_p)^2 \rho \, dxdp \\
-&+ \lambda_1\left(\int \rho dxdp - 1\right) + \lambda_2\left(- \int \rho \ln \rho \, dxdp - I_0\right)\\
+\rho = &e^{\frac{\lambda_1 - \lambda_2}{\lambda_2}}e^{\frac{(x-\mu_x)^2 \sigma_p^2}{\lambda_2}}e^{\frac{\sigma_x^2 (p-\mu_p)^2}{\lambda_2}}
 \end{align*}
 Now that we found the form of the function, we solve the multipliers. That is: we find $\lambda_1$ and $\lambda_2$ such that the distribution is unitary and the information entropy is $I_0$. We have:
 \begin{align*}
