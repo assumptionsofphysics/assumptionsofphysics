@@ -1,5 +1,14 @@
 \documentclass[preprint]{elsarticle}
 
+% Temporary to remove "submitted to"
+\makeatletter
+\def\ps@pprintTitle{%
+	\let\@oddhead\@empty
+	\let\@evenhead\@empty
+	\def\@oddfoot{}%
+	\let\@evenfoot\@oddfoot}
+\makeatother
+
 \usepackage{lineno,hyperref}
 
 \usepackage{amsmath, amsthm, amsfonts}
@@ -59,15 +68,15 @@ topological spaces \sep scientific foundations \sep function space
 
 \end{frontmatter}
 
-\linenumbers
+%\linenumbers
 
 \section{Introduction}
 
 The successful use of mathematical ideas in experimental sciences is long established and celebrated~\cite{wigner}. Topology is perhaps the most widespread, either directly~\cite{rashevsky, chichilnisky} or as a foundation to other tools~\cite{nakahara, basener}.  This leads one to ask, why is it so successful? What property is captured by topological spaces that is so fundamental for scientific investigation?
 
-We believe experimental distinguishability to be the relevant concept. The notion of ``nearness" captured by topologies keeps track of how hard it is to tell two elements apart via scientific observation. The standard topology on a real line, for example, captures the inability to measure a continuous value with infinite precision. This connection holds in cases where a metric would not be physically meaningful (e.g.~phase space) and in discrete spaces (where each element can be individually identified).  It is fitting, then, that the use of topology is so widespread, as defining what can be experimentally distinguished is a fundamental aspect of science.
+We believe experimental distinguishability to be the relevant concept. The notion of ``nearness" captured by topologies keeps track of how hard it is to tell two elements apart via scientific observation. The standard topology on the real line, for example, captures the inability to measure a continuous value with infinite precision. This connection holds in cases where a metric would not be physically meaningful (e.g.~phase space) and in discrete spaces (where each element can be individually identified).  It is fitting, then, that the use of topology is so widespread, as defining what can be experimentally distinguished is a fundamental aspect of science.
 
-The aim of this paper is to lay down a framework that formalizes this insight. We first define experimental observations as statements paired with an experimental test that is able to verify them. We then study their properties under logical operations and conclude that they are only closed under finite conjunction and countable disjunction. Next we define experimental distinguishability and show, as our fist main result, that any set of objects that are experimentally distinguishable is a Hausdorff, second-countable topological space, where the topology is formally defined in terms of the observations themselves. Last we define experimental relationships between experimentally distinguishable objects and show, as our second main result, that experimental relationships are represented by continuous functions and are themselves experimentally distinguishable.
+The aim of this paper is to lay down a framework that formalizes this insight. We first define experimental observations as statements paired with an experimental test that is able to verify them. We then study their properties under logical operations and conclude that they are only closed under finite conjunction and countable disjunction. Next we define experimental distinguishability and show, as our first main result, that any set of objects that are experimentally distinguishable is a Hausdorff, second-countable topological space, where the topology is formally defined in terms of the observations themselves. Last we define experimental relationships between experimentally distinguishable objects and show, as our second main result, that experimental relationships are represented by continuous functions and are themselves experimentally distinguishable.
 
 
 \section{Experimental observations}
@@ -182,7 +191,7 @@ If there does not exist a countable basis, then by definition there does not exi
 We now turn our attention to a more specific case. We want to characterize an experimental domain whose purpose is to identify an element among a set of possibilities.
 
 \begin{defn}
-	An \textbf{experimental identification domain} is the triplet $(\mathcal{D}_X, X, x)$ where:
+	An \textbf{experimental identification domain} is the triplet \linebreak $(\mathcal{D}_X, X, x)$ where:
 	\begin{itemize}
 		\item $X$ is the set of \textbf{possibilities}, and satisfies $|X|>1$
 		\item $x$ is the element to identify among the possibilities, therefore $x \in X$
@@ -226,7 +235,7 @@ As any Hausdorff, second-countable topological space has at most cardinality of 
 We now want to characterize relationships between two experimentally distinguishable elements. Such relationships can be defined either on the values (i.e.~the possibilities) or on the observations (i.e.~the experimental domain). We need to show that both definitions lead to the same mathematical object.
 
 \begin{defn}[Experimental relationship between possibilities]
-	Let $(\mathcal{D}_X, X, x)$ and $(\mathcal{D}_X, Y, y)$ be two experimental identification domains. An \textbf{experimental relationship} is a map $f : X \rightarrow Y$ that can be used within an experimental test.
+	Let \linebreak $(\mathcal{D}_X, X, x)$ and $(\mathcal{D}_Y, Y, y)$ be two experimental identification domains. An \textbf{experimental relationship} is a map $f : X \rightarrow Y$ that can be used within an experimental test.
 \end{defn}
 
 \begin{prop}
@@ -276,7 +285,7 @@ It will be successful if and only if $y \in U_Y$. Since $y=f(x)$, it is successf
 	\hat{g}(y_1) \neq \emptyset.
 	$$
 	
-	We are now ready to define $f: X\to Y$ such that $f(x) = y$ if and only if $x\in \hat{g}(y)$. Since $g(Y)=X$, there exists $y\in Y$ such that $x\in\hat{g}(y)$. By the preceding claim, this $y$ is unique. $f: X\to Y$ is well defined. Note that no arbitrary choices were made so far that led to the construction of $f$, which is therefore determined uniquely by $g$. 
+	We are now ready to define $f: X\to Y$ such that $f(x) = y$ if and only if $x\in \hat{g}(y)$. Since $g(Y)=X$, there exists $y\in Y$ such that $x\in\hat{g}(y)$. By the preceding claim, this $y$ is unique. $f: X\to Y$ is well defined. Note that no arbitrary choices were made that led to the construction of $f$, which is therefore determined uniquely by $g$. 
 	
 	Now we show that $g = f^{-1} |_{\mathsf{T}_Y}$. Let $V\in\mathsf{T}_Y$. We want to show $f^{-1}(V) = g(V)$. Let $x\in f^{-1}(V)$. Then for some $y \in V$ we have $f(x)=y$. $x\in \hat{g}(y)$ by construction of $f$. $\hat{g}(y) \subset g(V)$ since $\{y\}\subset V$, so $x\in g(V)$. $f^{-1}(V) \subseteq g(V)$. Conversely, let $x\in g(V)=\bar{g}(V)$. Then for some $y\in V$, we have $x\in\bar{g}(\{y\})\subset\bar{g}(V)$. But then by definition we have $f(x)=y$, so $x\in f^{-1}(V)$. $f^{-1}(V) \supseteq g(V)$. $f^{-1}(V) = g(V)$ for all $V\in\mathsf{T}_Y$ and therefore $f^{-1}|_{\mathsf{T}_Y}=g$.
 	
@@ -337,10 +346,10 @@ As experimental relationships are themselves distinguishable, we can recursively
 		Open set & Verifiable set. We can verify experimentally that an element is within the set.  \\ 
 		Closed set & Refutable set. We can verify experimentally that an element is not in the set. \\ 
 		Basis & A collection of verifiable sets that can be used to distinguish an element\\
-		Continuous \newline function &  An experimental relationship between two sets of experimental distinguishable elements, which must preserve distinguishability \\
+		Continuous \newline function &  An experimental relationship between two sets of experimentally distinguishable elements, which must preserve distinguishability \\
 		Homeomorphism &  A perfect equivalence between spaces of experimentally distinguishable elements. \\
 	\end{tabular} 
-	\caption{Topology to physics dictionary. This table sums up the relationship established between mathematical and scientific concepts.}
+	\caption{Topology-to-physics dictionary. This table sums up the relationships established between mathematical and scientific concepts.}
 \end{table}
 
 
