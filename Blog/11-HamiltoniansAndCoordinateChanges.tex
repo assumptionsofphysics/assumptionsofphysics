@@ -20,19 +20,19 @@
 
 \begin{document}
 
-\section{Hamiltonians and coordinate changes}
+\section{How Hamiltonians vary under coordinate changes}
 
 TL;DR Hamiltonians are not invariant: they change as the time component of a covector (i.e. covariant component) in phase space.
 
-In the previous post we saw how momentum changes as covariant components and that keeps the Hamiltonian equations unchanged under coordinate transformations. We have also seen, though, that under coordinate transformation that mix time and space we have a problem.
+In the previous post we saw how momentum varies as covariant components and that keeps the Hamiltonian equations unchanged under coordinate transformations. We have also seen, though, that under coordinate transformations that mix time and space we have a problem.
 
-What we'll show in this post is that if we impose that Hamilton's equations remain unchanged for all coordinate transformations then the Hamiltonian itself is not invariant but it changes as the covariant time component of a covector. That is, in the same way we group space and time $(x, t)$, we also group momentum and Hamiltonian into a covector of components $(p, -H)$.
+What we'll show in this post is that if we impose that Hamilton's equations remain unchanged for all coordinate transformations then the Hamiltonian itself is not invariant but it changes as the covariant time component of a covector. That is, in the same way we group space and time $(x, t)$, we also group momentum and the Hamiltonian into a covector of components $(p, -H)$.
 
-Let's see how this work.
+Let's see how this works.
 
 \section{Change of space-time coordinates}
 
-Unfortunately, I haven't found a way to derive the transformation laws that only uses simple vector calculus. At least, not one that generalizes well. Let's at least intuitively try to understand why the Hamiltonian cannot possibly be invariant.
+Unfortunately, I haven't found a way to derive the transformation laws that only uses simple vector calculus. At least, not one that generalizes well. Let's first intuitively try to understand why the Hamiltonian cannot possibly be invariant.
 
 Recall Hamilton's equations:
 \begin{equation}
@@ -42,11 +42,11 @@ Recall Hamilton's equations:
 \end{aligned}
 \label{Hamilton}
 \end{equation}
-where $H(x^i,p_j)$ is the Hamiltonian. Note how space and momentum appear on each side of each equation. Note, though, that they always appear inverted: when one is in the numerator, the other is in the denominator and vice-versa. That is way they have to change in the opposite way: if space is contravariant while momentum is covariant then the equations stay the same.
+where $H(x^i,p_j)$ is the Hamiltonian. Note how space and momentum appear on each side of each equation. Note, though, that they always appear inverted: when one is in the numerator, the other is in the denominator and vice-versa. That is why they have to change in the opposite way: if space is contravariant while momentum is covariant then the equations stay the same.
 
-If we change time (e.g. imagine changing units by multiplying by a constant) and nothing else changes than the equations change as well. Note, though, that the Hamiltonian appears inverted on the opposite side of the equation: time is always in the denominator while the Hamiltonian is always in the numerator. Intuitively: if we want the equations not to change, then the Hamiltonian must change in a way opposite of the time change.
+If we change time (e.g. imagine changing units by multiplying by a constant) and nothing else changes then the equations change as well (e.g. the constant appears only on one side). Note, though, that the Hamiltonian appears inverted on the opposite side of the equation: time is always in the denominator while the Hamiltonian is always in the numerator. Intuitively: if we want the equations not to change, then the Hamiltonian must change in a way opposite of the time change.
 
-In a previous post, we also saw how Hamilton's equations for a single degree of freedom can also be written as:
+To find the transformation law, in a previous post we saw how Hamilton's equations for a single degree of freedom can also be written as:
 \begin{equation}
 \begin{aligned}
 \vec{S} &= \dfrac{d}{dt} [x, p, t] =  - \mathrm{curl}(\vec{\theta}) = - \mathrm{curl}([p, 0, -H]) \\
@@ -65,7 +65,7 @@ The covector $\vec{\theta}=[p, 0, -H]$ functions as a vector potential for the d
 \end{aligned}
 \label{generalTransf}
 \end{equation}
-If we are changing space-time coordinates, then space and time are not functions of momentum. With that in mind, we have:
+If we are changing space-time coordinates $\hat{x}(x,t)$ and $\hat{t}(x,t)$, then space and time are not functions of momentum. With that in mind, we have:
 \begin{equation}
 \begin{aligned}
 \theta_{\hat{x}} &= \frac{\partial x}{\partial \hat{x}}p + \frac{\partial p}{\partial \hat{x}}0 - \frac{\partial t}{\partial \hat{x}}H = \hat{p} \\
@@ -96,12 +96,12 @@ or creating a polar coordinate between space and time:
 \hat{t} &= \sqrt{x^2 + t^2}
 \end{aligned}
 \end{equation}
-Apart the fact that they do not make physical sense, a total derivative in time along all trajectories is not possible. In these cases Hamilton's equation \eqref{Hamilton} do make sense because $\hat{t}$ can no longer be used as the parameter of the evolution.
+Apart from the fact that they do not make physical sense, a total derivative in time along all trajectories is not possible in the new coordinates. In these cases Hamilton's equations \eqref{Hamilton} do not make sense because $\hat{t}$ can no longer be used as the parameter of the evolution.
 
-If the change in space-time coordinate does make sense, we can use \eqref{HamiltonianTransf} to change momentum and Hamiltonian to the new coordinates. Let's try doing that for Galilean transformations.
+If the change in space-time coordinates does make sense, we can use \eqref{HamiltonianTransf} to change momentum and the Hamiltonian to the new coordinates. Let's try doing that for Galilean transformations.
 
 \section{Galilean transformations revisited}
-If we take the transformations rules for a Galilean boost use them into \eqref{HamiltonianTransf} we have:
+If we take the transformation rules for a Galilean boost and plug them into \eqref{HamiltonianTransf} we have:
 \begin{equation}
 \begin{aligned}
 \hat{x} &= x + v_0 t \\
@@ -133,12 +133,12 @@ But note that $\hat{p} = p$: the momentum does not change. We can set $\hat{p} =
 
 \section{Conclusion}
 
-The first important point is that the transformation rules \eqref{HamiltonianTransf} are the ones one encounters in special relativity for the four-momentum. Note that we haven't said whether the speed of light should be conserved therefore those relationships are more fundamental.
+The first important point is that the transformation rules \eqref{HamiltonianTransf} are essentially the ones one encounters in special relativity for the four-momentum. Note that we haven't said whether the speed of light should be invariant therefore these transformation rules are more fundamental.
 
-The second important point is that the relationship $p=mv$ is not valid in general. It is only valid for inertial frames and after we ``retouch" the transformation rules. We will see a slightly better version in a future post.
+The second important point is that the relationship $p=mv$ is not valid in general. It is only valid for inertial frames and after we ``retouch" the transformation rules. If you studied special relativity, note that the similar relationships between four-momentum and four-velocity, instead, hold more generally.
 
-The third important point is that we have seen how Galilean mechanics fails to be relativistic. While the Hamiltonian will never be invariant, what we want it to be form-invariant. That is: for all inertial observers, the expression of the Hamiltonian for the free particle in terms of position, momentum and time must be the same. The problems is that, physically, all inertial systems are the same to us. If the Hamiltonian has a different form for the different inertial systems, then they are not indistinguishable.
+The third important point is that we have seen in what way Galilean mechanics fails to be relativistic. While the Hamiltonian will never be invariant, we want it to be form-invariant. That is: for all inertial observers, the expression of the Hamiltonian for the free particle in terms of position, momentum and time must be the same. Physically all inertial systems are the same to us. If the Hamiltonian has a different form for the different inertial systems, then they are not indistinguishable.
 
-This is exactly where a lot of people get confused: the Hamiltonian is not invariant (i.e. the energy is different for different observers, as position, time or momentum) yet it can be form-invariant (i.e. its expression in terms of position, time and momentum is the same). And maybe we should look into it in the next post.
+This is exactly where a lot of people get confused: the Hamiltonian is not invariant (i.e. the energy is different for different observers, as are position, time and momentum) yet it can be form-invariant (i.e. its expression in terms of position, time and momentum is the same).
 
 \end{document}
