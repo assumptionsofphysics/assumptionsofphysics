@@ -24,11 +24,11 @@
 
 TL;DR The most complete version of Hamiltonian mechanics lives on the extended phase space that includes position, momentum, time and energy.
 
-In this post we look at the most complete version of Hamiltonian mechanics. It is kind of a shame that this is not the version taught because it is the one that works best mathematically and is the one that allows to make parallels to quantum mechanics and special relativity. The general idea is that, instead of just having phase space made of position and momentum, we extend it to include time and energy. This was we can separate time as a coordinate (so that we can do all the coordinate changes we want) and time as the evolution parameter (so that we can keep describing the evolution no matter the coordinates).
+In this post we look at the most complete version of Hamiltonian mechanics. It is kind of a shame that this is not the version taught because it is the one that works best mathematically and is the one that allows parallels to quantum mechanics and special relativity. The general idea is that, instead of just having phase space consisting of position and momentum, we extend it to include time and energy. This way we can separate time as a coordinate (so that we can do all the coordinate changes we want) and time as the evolution parameter (so that we can keep describing the evolution no matter the coordinates).
 
 Let's see how this works.
 
-\section{Hamiltonian mechanics in the extended phase space}
+\section{Hamilton's equations on the extended phase space}
 
 We consider the space formed by $(x^i,t,p_j,E)$. Each point particle will have trajectories $(x^i(s),t(s),p_j(s),E(s))$ where $s$ is the evolution parameter. The equations of motion will be given by:
 \begin{equation}
@@ -52,7 +52,7 @@ where $\mathcal{H}(x^i,t,p_j,E)$ is the extended Hamiltonian. Time and energy ha
 \end{equation}
 So $-E$ behaves exactly like a component of momentum. The evolution parameter $s$ does not change and therefore the extended Hamiltonian does not change either: the extended Hamiltonian is invariant.
 
-So, what is the connection between the standard Hamiltonian and the extended Hamiltonian? Between the standard set of equation and the extended set of equations?
+So, what is the connection between the standard Hamiltonian and the extended Hamiltonian? Between the standard set of equations and the extended set of equations?
 
 Suppose we have a particular system where we can set $\mathcal{H} = H(x^i,p_j) - E$. We have:
 \begin{equation}
@@ -64,15 +64,15 @@ Suppose we have a particular system where we can set $\mathcal{H} = H(x^i,p_j) -
 \end{aligned}
 \label{HamiltonRecovered}
 \end{equation}
-So $t=s$ and we recover the standard equations. That is: in the special case where we use time as the evolution parameter and the energy does not change in time we recover the standard Hamiltonian mechanics.
+So $t=s$ and we recover the standard equations. That is: in the special case where we use time as the evolution parameter and the energy does not change in time we recover standard Hamiltonian mechanics.
 
-Not only the extended Hamiltonian is invariant, but it also is constant throughout the evolution and it is customary to simply set it to zero. In the previous case we have $\mathcal{H} = 0 = H(x^i,p_j) - E$: $E = H(x^i,p_j)$.
+Not only is the extended Hamiltonian invariant, but it is also constant throughout the evolution and it is customary to simply set it to zero. In the previous case we have $\mathcal{H} = 0 = H(x^i,p_j) - E$: $E = H(x^i,p_j)$.
 
-We can see that the extended Hamiltonian has two functions: the first is as a potential for the equations for motion; the second as a constrain that links the energy to position, momentum and time.
+We can see that the extended Hamiltonian has two functions: the first is as a potential for the equations of motion; the second as a constraint that links the energy to position, momentum and time.
 
 \section{Conclusion}
 
-This formulation of Hamiltonian mechanics is the most general and, personally, I think it's the correct one as it allows to tie in even more concepts from quantum mechanics and special relativity.
+This formulation of Hamiltonian mechanics is the most general and, personally, I think is ultimately the correct one as it allows more concepts from quantum mechanics and special relativity to be tied in.
 
 We have seen how Hamiltonian mechanics already has an uncertainty principle, we clearly see here that energy and momentum form a covector and we will see that in extended phase space we can find classical analogues of antiparticles and other ideas that are connected to quantum field theories.
 
