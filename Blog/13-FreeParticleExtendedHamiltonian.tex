@@ -20,19 +20,19 @@
 
 \begin{document}
 
-\section{Classical anti-particles}
+\section{Classical antiparticles}
 
-TL;DR Anti-particle states are those for which the parametrization of the trajectory in phase-space is anti-aligned with time (i.e. it decreases as time increases).
+TL;DR Antiparticle states are those for which time is a decreasing function $t(s)$ of the trajectory parametrization instead of an increasing function (i.e. time and trajectory parametrization are anti-aligned).
 
-In a previous post we introduced the extended Hamilton's equations. In the next few posts we will see that they allow to create parallels not only to special relativity, but also quantum field theory. That is: many quantum concepts have classical counterparts.
+In a previous post we introduced the extended Hamiltonian equations. In the next few posts we will see that they allow us to create parallels not only to special relativity, but also quantum field theory. That is: many quantum concepts have classical counterparts.
 
-The first thing I want to show you is that there is such a thing as classical anti-particle. One of the key feature of the extended Hamilton equations is that we have separated the time coordinate $t$ from the evolution parameter $s$. The idea is that $t$ and $s$ can be anti-aligned, that is if $t$ decreases when $s$ increases. Those exactly correspond to anti-particles.
+The first thing I want to show you is that there is such a thing as classical antiparticles. One of the key features of the extended Hamiltonian equations is that we have separated the time coordinate $t$ from the evolution parameter $s$. The idea is that $t$ and $s$ can be anti-aligned, that is if $t$ decreases when $s$ increases. Those states correspond to anti-particles.
 
 Let's look at the details.
 
 \section{Time coordinate and evolution parameter}
 
-The spatial trajectory of a particle in terms of the evolutions parameter $s$ can be written as $(x^i(s), t(s))$. But if $t$ is a valid time coordinate, we must have only one position for each moment in time. That is: the trajectory cannot pass twice at a given $t$. For each value of $t$ there is one only one $s$. The function $t(s)$ must be invertible.
+The trajectory of a particle in terms of the evolution parameter $s$ can be written as $(x^i(s), t(s))$. But if $t$ is a valid time coordinate, we must have only one position for each moment in time. That is: the trajectory cannot pass twice at a given $t$. For each value of $t$ there is one only one $s$. The function $t(s)$ must be invertible.
 
 But if $t(s)$ is invertible, it must be strictly monotonic, either decreasing or increasing, along the whole trajectory. Now consider the following part of the extended Hamiltonian equations:
 \begin{equation}
@@ -43,38 +43,38 @@ But if $t(s)$ is invertible, it must be strictly monotonic, either decreasing or
 \end{equation}
 The extended Hamiltonian $\mathcal{H}$ will determine whether $t(s)$ is increasing or decreasing. That is, for each state in the extended phase space $(x^i,t,p_j,E)$ we will know whether $t(s)$ increases or decreases in that neighborhood.
 
-Let's call ``standard particle states" those for which $t(s)$ increases and ``antiparticle states" those for which $t(s)$ decreases. Note that a trajectory cannot cross those two groups: if it did $t(s)$ would not be strictly monotonic. So standard particle states can only evolve into other standard particle states and anti-particle states can only evolve into anti-particle states.
+Let's call ``standard particle states" those for which $t(s)$ increases and ``antiparticle states" those for which $t(s)$ decreases. Note that a trajectory cannot cross those two groups: if it did $t(s)$ would not be strictly monotonic. So standard particle states can only evolve into other standard particle states and antiparticle states can only evolve into other antiparticle states.
 
-What we call particle or anti-particles is arbitrary: if we invert the sign of $\mathcal{H}$, then we invert the direction of $s$ with respect to the other variables. But the fact that there are these two groups is something that is invariant under all parametrization.
+What we call particles or antiparticles is arbitrary as the parametrization is not physical. In fact, if we invert the sign of $\mathcal{H}$, then we invert the direction of $s$ with respect to the other variables. But the fact that there are these two groups is something that is invariant under all parametrizations.
 
-Now, this may all be nice mathematically, but physically we think of anti-particle as having opposite charge. How does that come in? The general idea is that the conservative forces, like electromagnetism, are such that we can write:
+Now, this may all be nice mathematically, but physically we think of antiparticles as having opposite charge. How does that come in? The general idea is that the conservative forces, like electromagnetism, are such that we can write:
 \begin{equation}
 \begin{aligned}
 m\frac{d^2x^\alpha}{ds^2} &= F^\alpha_\beta \frac{dx^\beta}{ds} \\
 \end{aligned}
 \label{NewtonHamilton}
 \end{equation}
-That is: they are linear functions of the four-velocity. Now suppose we re-express those in terms of a parametrization $\tau$ that always increases with time. For standard particles we have $s = \tau$:
+That is: the four-acceleration is a linear function of the four-velocity. Now suppose we re-express those in terms of a parametrization $\tau$ that always increases with time. For standard particles we have $s = \tau$:
 \begin{equation}
 \begin{aligned}
 	m\frac{d^2x^\alpha}{d\tau^2} &= F^\alpha_\beta \frac{dx^\beta}{d\tau} \\
 \end{aligned}
 \label{NewtonHamiltonParticles}
 \end{equation}
-For anti-particles we have $s = - \tau$:
+For antiparticles we have $s = - \tau$:
 \begin{equation}
 \begin{aligned}
-m\frac{d^2x^\alpha}{d(-\tau)^2} &= F^\alpha_\beta \frac{dx^\beta}{d(-\tau)} \\
-m\frac{d^2x^\alpha}{d(\tau)^2} &= - F^\alpha_\beta \frac{dx^\beta}{d\tau} \\
+m\frac{d^2x^\alpha}{(d(-\tau))^2} &= F^\alpha_\beta \frac{dx^\beta}{d(-\tau)} \\
+m\frac{d^2x^\alpha}{d\tau^2} &= - F^\alpha_\beta \frac{dx^\beta}{d\tau} \\
 \end{aligned}
 \label{NewtonHamiltonAntiParticles}
 \end{equation}
-That is: the second derivative does not change sign but the first derivative does. Effectively, the force is opposite for the anti-particles.
+That is: the second derivative does not change sign but the first derivative does. Effectively, the force is opposite for the antiparticles.
 
 \section{Conclusion}
 
-If you have studied quantum field theory and you have seen Feynman diagrams, you see that anti-particles are drawn like particles with arrows in the opposite direction. The direction is not of time: it's not that they are traveling backward in time. It's the direction of the parametrization: if we use the Hamilton equations to evolve the state of the anti-particle, we reconstruct the past instead of predicting the future.
+If you have studied quantum field theory and you have seen Feynman diagrams, you see that antiparticles are drawn like particles with arrows in the opposite direction. That direction is not the direction of time: it's not that antiparticles are traveling backward in time. It's the direction of the parametrization: if we use the extended Hamiltonian equations to evolve the state of the antiparticle forward in the parametrization, we reconstruct the past instead of predicting the future.
 
-Anti-particles are not an exclusive feature of quantum field theory. They are a feature of Hamiltonian mechanics. The problem is that you need the extended phase-space to be able to see them, and, since this is not what is typically done, you don't. On the other hand, it is impossible to write a relativistic quantum field theory without working on the extended phase space, so you cannot hide them there.
+Antiparticles are not an exclusive feature of quantum field theory. They are a feature of Hamiltonian mechanics. The problem is that you need the extended phase space to be able to see them, and, since this is not what is typically done in classical mechanics, you don't. On the other hand, it is impossible to write a relativistic quantum field theory without working on the extended phase space, so you cannot hide them there.
 
 \end{document}
