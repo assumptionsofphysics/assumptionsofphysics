@@ -1,0 +1,90 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{Classical Klein-Gordon}
+
+TL;DR The extended Hamiltonian for a classical free particle is the classical version of the Klein-Gordon equation.
+
+After having seen the classical version of antiparticle we will see the classical version of the Klein-Gordon equation. This is the essentially the extended Hamiltonian for the free particle.
+
+Let's look at the details.
+
+\section{Extended Hamiltonian for the free particle}
+
+The extended Hamiltonian for a free particle is:
+\begin{equation}
+\begin{aligned}
+\mathcal{H}(x^i,t,p_j,E) = \frac{1}{2m} \left(p^2 - \left(\frac{E^2}{c^2}\right)\right)  + \frac{1}{2} mc^2\\
+\end{aligned}
+\label{ExtendedHamiltonFree}
+\end{equation}
+
+Remember that, for valid physical states, we have $\mathcal{H}=0$. Therefore:
+\begin{equation}
+\begin{aligned}
+\left(p^2 - \left(\frac{E^2}{c^2}\right)\right) = - m^2c^2\\
+\end{aligned}
+\label{FourMomentum}
+\end{equation}
+If you studied special relativity, you recognized the norm of the four-momentum. Moreover:
+\begin{equation}
+\begin{aligned}
+\frac{E^2}{c^2} &= p^2 + m^2c^2\\
+E &= \pm c \sqrt{p^2 + m^2c^2} \\
+\end{aligned}
+\label{HamiltonFree}
+\end{equation}
+This is the energy as a function of momentum: it the relativistic Hamiltonian for a free particle. But in this case the energy can both be positive or negative. Note that:
+\begin{equation}
+\begin{aligned}
+\frac{dt}{ds} = - \frac{\partial \mathcal{H}}{\partial E} = \frac{E}{mc^2}
+\end{aligned}
+\label{TimeEvolution}
+\end{equation}
+So if the energy is negative, then the parametrization is anti-aligned to the time: $t$ decreases as $s$ increases. As we saw in the previous post, these correspond to anti-particle states.
+
+So, not only the extended Hamiltonian recovers relativistic free-particles, it also recovers anti-particles and it is has much nicer form than the relativistic Hamiltonian (i.e. it is quadratic and does not have any square root).
+
+
+\section{Relation to Klein-Gordon}
+
+If you use the standard classical to quantum substitutions $\left( p_i, -E \right)$ to $\left(-\imath \hbar \frac{\partial}{\partial x^i}, -\imath \hbar \frac{\partial}{\partial t} \right)$ we have:
+\begin{equation}
+\begin{aligned}
+\mathcal{H} = &\frac{1}{2m} \left(- \hbar^2 \nabla^2 + \hbar^2 \left(\frac{\partial^2}{c^2\partial t^2}\right)\right)  + \frac{1}{2} mc^2 = 0\\
+&\frac{1}{c^2}\frac{\partial^2}{\partial t^2}- \nabla^2 + \frac{m^2 c^2}{\hbar^2}  = 0\\
+\end{aligned}
+\label{KleinGordon}
+\end{equation}
+If you studied quantum field theory, that should look familiar: if we add a $\psi$ it's the Klein-Gordon equation. (Note: the mass term is positive as we are using the relativity metric convention $(-,+,+,+)$ instead of the particle physics metric convention $(+, -, -, -)$).
+
+So why should we add $\psi$? There is good reason to do this, even in the classical setting.
+
+Suppose you have a phase space distribution $(x^i,t,p_j,E)$. This would correspond to a distribution of matter over space, time, momentum and energy. Consider $\mathcal{H} \rho$, the product between the extended Hamiltonian and the distribution. As we saw, $\mathcal{H}=0$ is a constraint between energy and the other variables so that only states that satisfy that equation are physical. Therefore $\rho$ can only be different than zero for those states where $\mathcal{H}$ is zero. But this means that $\mathcal{H} \rho = 0$ everywhere. In other words: $\mathcal{H} \rho = 0$ can be used as a constraint to find the valid distribution.
+
+Now, in the quantum case states are always ensembles: they are always distributions. Therefore we use the constraint $\mathcal{H}\psi = 0$. Which, in the case of the free particle, corresponds to the Klein-Gordon equation.
+
+\section{Conclusion}
+
+The extended Hamiltonian for a free particle has a much nicer form than the relativistic Hamiltonian, and it ties in more with quantum concepts. The Klein-Gordon equation is the extended Hamiltonian for a free particle acting on the distribution. The only thing it does is constrain the state so that the norm of the four-momentum is $-m^2c^2$.
+
+\end{document}
