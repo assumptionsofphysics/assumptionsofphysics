@@ -30,7 +30,7 @@ Let's look at the details.
 
 \section{Phase space for a direction in space}
 
-Suppose we have a vector $\vec{S} = \{S_x, S_y, S_z\}$ and suppose we want to give a Hamiltonian description to its direction. The phase space we want to consider, then, is the space of all possible directions, which we can think of the sphere of unitary radius. The norm of the vector $|\vec{S}|$, instead, is a parameter for the system, much in the same way that mass is parameter for a massive particle. So, for convenience, we will assume that $\vec{S}$ is unitary.
+Suppose we have a vector $\vec{S} = \{S_x, S_y, S_z\}$ and suppose we want to give a Hamiltonian description to its direction. The phase space we want to consider, then, is the space of all possible directions, which we can think of as the sphere of unitary radius. The norm of the vector $|\vec{S}|$, instead, is a parameter for the system, much in the same way that mass is a parameter for a massive particle. So, for convenience, we will assume that $\vec{S}$ is unitary.
 
 The first order of business is to find a set of conjugate variables. Recall that $x$ and $p_x$ are conjugate because the area $dx \wedge dp_x$ does not change under coordinate (i.e. unit) transformations. Note that the solid angle $d\Omega$ is already a quantity that is independent of coordinates so we can write:
 \begin{equation}
@@ -42,14 +42,14 @@ d\Omega &= \sin \psi d\psi d\theta \\
 \end{aligned}
 \label{DirectionDOF}
 \end{equation}
-The minus sign is removed since the wedge product is anti-symmetric (i.e. $a \wedge b = - b \wedge a$). Note that if we take $\cos \psi$ is the component of the vector along the vertical direction. So our conjugate variables are $\theta^{xy}$, the azimuthal angle, and $S_z$, the vertical component.
+The minus sign is removed since the wedge product is anti-symmetric (i.e. $a \wedge b = - b \wedge a$). Note that  $\cos \psi$ is the component of the vector along the vertical direction. So our conjugate variables are $\theta^{xy}$, the angle on the $(x, y)$ plane, and $S_z$, the vertical component.
 %picture https://upload.wikimedia.org/wikipedia/commons/d/dc/3D_Spherical_2.svg
 
 In terms of the conjugate variable, we have:
 \begin{equation}
 \begin{aligned}
-S_x &= \sqrt{1-S_z^2} \cos \theta^{xy} \\
-S_y &= \sqrt{1-S_z^2} \sin \theta^{xy} \\
+S_x &= \cos \theta^{xy} \sqrt{1-S_z^2} \\
+S_y &= \sin \theta^{xy} \sqrt{1-S_z^2} \\
 S_z &= S_z\\
 \end{aligned}
 \label{SpinComponents}
@@ -76,7 +76,7 @@ Note that these are analogous to the same relationships one has with spin compon
 
 \section{Relation to spin and magnetic field}
 
-Suppose we have the following Hamiltonian $H=\mu\vec{B}\cdot\vec{S}=\mu B^i S_i$, which is formally identical to the Hamiltonian for a spin 1/2 system in a uniform magnetic field. We can calculate the evolution of the vector components using the standard Hamiltonian techniques. For simplicity, let's assume our ``field" $B$ is oriented along the $z$ axis, that is $H= \mu B^z S_z$. We have:
+Suppose we have the following Hamiltonian $H=\mu\vec{B}\cdot\vec{S}=\mu B^i S_i$, which is formally identical to the Hamiltonian for a spin 1/2 system in a uniform magnetic field. We can calculate the evolution of the vector components using the standard Hamiltonian techniques. For simplicity, let's assume our ``field" $\vec{B}$ is oriented along the $z$ axis, that is $H= \mu B^z S_z$. We have:
 \begin{equation}
 \begin{aligned}
 \frac{dS_x}{dt} &= \{S_x, H\} = \mu B^z \{S_x, S_z\} = - \mu B^z S_y \\
@@ -101,8 +101,8 @@ The vector $\vec{S}$ precesses about the axis determined by $\vec{B}$, and in th
 
 \section{Conclusion}
 
-As we have seen, we can construct a classical analogue of spin just by looking at the Hamiltonian evolution of spatial directions. Like in the case of position and momentum, we have two conjugate variables and we have the same set of relationship and equations between them.
+As we have seen, we can construct a classical analogue of spin just by looking at the Hamiltonian evolution of spatial directions. Like in the case of position and momentum, we have two conjugate variables and we have the same set of relationships and equations between them.
 
-Another thing to note. In Hamiltonian mechanics the conjugate variables are a pair. If the spatial direction is an independent degree of freedom then it must be described by a pair of variable. Note that a direction in an $n$ dimensional space is always described by a set of $n-1$ variables. Therefore the only direction we can describe in Hamiltonian mechanics as an independent degrees of freedom is a direction in a three dimensional space.
+Another thing to note. In Hamiltonian mechanics the conjugate variables are a pair. If the spatial direction is an independent degree of freedom then it must be described by a pair of variables. Note that a direction in an $n$ dimensional space is always described by a set of $n-1$ variables. Therefore the only direction we can describe in Hamiltonian mechanics as an independent degree of freedom is a direction in a three dimensional space since we must have $n-1 = 2$.
 
 \end{document}
