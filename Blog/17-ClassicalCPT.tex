@@ -1,0 +1,46 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{CPT-like theorem for classical particles}
+
+TL;DR Inverting the direction of time and space is equivalent to inverting the direction of the parametrization.
+
+In previous posts we have seen the classical equivalent for anti-particles. Here we see something that looks similar to the CPT theorem. Naturally, it's not a complete analogue because we are not really looking at fields at all (just the state of a single particle moving in phase-space), we don't have spin, etc... But the symmetry we get has the same flavor.
+
+As we saw, the classical analogue for anti-particle are simply those states for which the parametrization of the phase-space trajectory is anti-aligned with time. If we flip both space and time, the vectors tangent to the evolution will flip sign and this is equivalent to flipping the sign of the parametrization.
+
+\section{Reflections in space, time and evolution parameter}
+
+Suppose we have a state in the extend phase space $(x^i,t,p_j,E)$. It's change during the evolution will be given by the vector $\frac{d}{ds}(x^i,t,p_j,E) = (\frac{dx^i}{ds},\frac{dt}{ds},\frac{dp_j}{ds},\frac{dE}{ds})$.
+
+Now suppose we perform a spatial reflection. This will send $x^i$ to $-x^i$, multiplying the coordinate by the constant $-1$. The momentum transforms as the components of a covector, so it will change as the inverse of that constant: momentum also reflects. Therefore $p_j$ will become $-p_j$. The change during the evolution becomes $(-\frac{dx^i}{ds},\frac{dt}{ds},-\frac{dp_j}{ds},\frac{dE}{ds})$.
+
+Suppose we perform a time reflection on top of the spatial reflection. This will send $t$ to $-t$. And since energy transforms as the time component of a covector, $E$ will become $-E$. The change during the evolution becomes $(-\frac{dx^i}{ds},-\frac{dt}{ds},-\frac{dp_j}{ds},-\frac{dE}{ds})$.
+
+The change is now exactly the opposite on all components. The same change could have been achieved by changing the parametrization from $s$ to $-s$. But changing the sign of the parametrization means changing what we label as particle to what we label as anti-particle. If we call this our analogue for charge conjugation, we see that performing all three changes gets us back where we started.
+
+
+\section{Conclusion}
+
+Note that I would not considered an exact analogue for CPT. The other analogies we have found so far between classical/quantum/relativity are a lot stronger. Still, I think it points our intuition in the right direction and I don't think is just a coincidence either.
+
+\end{document}

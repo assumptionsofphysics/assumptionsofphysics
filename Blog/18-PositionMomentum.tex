@@ -1,0 +1,53 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{Why are states identified by position and momentum?}
+
+TL;DR - States are identified by position and momentum because this is the space that allows us to define coordinate-invariant densities.
+
+As we saw in many of our posts, Hamiltonian mechanics describes the deterministic and reversible evolution of states. This leaves one question: why are states fully described by position and momentum? Why not only position? Why not position, momentum and something else? Why are state variables always in pairs? And why does momentum change in the opposite way during coordinate transformations?
+
+The overall idea is the following: pairing variables in that way is the only way to define density distributions over the space of states (i.e. phase space) in a way that is invariant under coordinate changes. That is, if we want to have distributions of matter that are coordinate independent, such that the values are the same for all observers, then the distributions must be defined on pairs of conjugate quantities.
+
+Let's see how this works.
+
+\section{Distributions are not invariant}
+
+Suppose you have a spatial distribution of mass $\rho(x^i)$. The unit of the distribution will be something like $kg/m^3$. Suppose we change units from $m$ to $km$. The density will be expressed in $kg/km^3$ therefore the value of our density will change accordingly by a factor of one billion. That is, the value of the density depends on the unit we use for space.
+
+This presents a conceptual problem. We are typically used to thinking we have a density of mass at a point. But identifying the point and the unit used for mass is not enough to determine the density: we need to specify a unit for space as well. Why is this a conceptual problem? Suppose we have a composite object, like a finite amount of water, made of many pieces, modeled as infinitesimal parts of water. The state of the whole system will be a distribution over the states of the pieces. The fixed amount of water will be a distribution over the states of infinitesimal amounts of water (i.e. their position, momentum and whatever else). Now, if the distribution cannot even be defined without a coordinate system, how can this be an objective part of nature? Coordinate systems are things we create: nature does not know or care about them.
+
+\section{Search for invariant densities}
+
+Well, we know that the whole system must be distributed over the states of the infinitesimal parts. And we know such a distribution must be invariant under coordinate transformations. Both facts combined tell us that the state space of the infinitesimal parts cannot be arbitrary: it has to be such that if we change the unit for one variable, the density is not affected. Which means, the volume of the state space must be invariant as well.
+
+The only way this can happen is if each variable that defines the coordinate system is paired with a variable that uses the inverted units. For example, if we have $x$ expressed in meters, then we must have $k_x$ expressed in inverse meters. Suppose we have $\Delta x = 1 \, m$ and $\Delta k_x = 1 \, \frac{1}{m}$, then $\Delta x \Delta k_x = 1$. Suppose we change units to kilometers, we have $\Delta x = 0.001 \, km$, $\Delta k_x = 1000 \, \frac{1}{km}$ and $\Delta x \Delta k_x = 1$. The volume does not change and therefore the density we define on it does not change either.
+
+As we said, this is the only way to do it. If we had only $x$, then the density would not be invariant. If we had more than two variables, then simply knowing the units (or the change of units) of $x$ would not be enough to determine the units of the other variables. That is: the change of unit of $x$ and the invariance of the phase space volume provide two constraints so, if the system is well defined, we can only have two variables.
+
+Note the phase space volume is in ``natural units": it's a pure number. We define $\hbar$ to be the unit of measurement for state space volume along one degree of freedom (i.e. a pair of conjugate variables). We can set $p_x = \hbar k_x$ so that the product $\Delta x \Delta p_x = \hbar \Delta x \Delta k_x$ already gives us the phase space volume with the correct units. And $p_x$ is exactly conjugate momentum.
+
+\section{Conclusion}
+
+Hamiltonian mechanics is the deterministic and reversible evolution of distributions that are defined independently of coordinates. The phase space for infinitesimal parts is charted by position and momentum because this is the space that allows us to define coordinate-invariant densities.
+
+\end{document}

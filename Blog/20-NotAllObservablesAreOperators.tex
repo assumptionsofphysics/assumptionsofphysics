@@ -1,0 +1,62 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{Not everything we measure is an eigenvalue of a linear operator}
+
+TL;DR - Statistical quantities (e.g. averages) and angles (e.g. direction of spin) are measurable quantities but are not associated with linear operators, eigenkets and eigenvalues.
+
+When studying quantum mechanics you learn about observables, how to each you associate a Hermitian operator, how the value is only defined on the eigenstates of that operator and how, in general, you will have a distribution over eigenvalues. Position, momentum, energy and spin are all examples. Since one mostly deals with those, one usually gets the impression that that's all there is. This may not be stated per se in your textbook, yet you may have that impression.
+
+But is that true? Is everything that we measure an eigenvalue of some Hermitian operator? Here I'll present two quantities that don't follow the pattern: temperature and direction of spin.
+
+\section{Temperature}
+
+Suppose we have a box filled with gas in thermodynamic equilibrium. Its temperature $T$ will be proportional to the variance of the velocity of all the elementary constituents of the gas. If we call $|\psi>$ the state of all the particles, $P_i$ the momentum operator for the $i$-th particle and $m_i$ its mass, we'll have something like:
+\begin{equation}
+T=\alpha<\psi|\sum_{i=1}^{n} \frac{P_i^2}{m_i}|\psi>
+\end{equation}
+where $\alpha$ is an appropriate constant.
+
+Now, what's important here is not the detail of the expression: the important aspect is that temperature is an average. Any state that represents a snapshot of a system (i.e. a pure state) will always have one and only one value of temperature. And that value needs to match what our thermometer says. That is: we are not going to have a statistical distribution over possible values of temperatures.
+
+You may think: but the quantity $\sum_{i=1}^{n} \frac{P_i^2}{m_i}$ is an operator. And indeed it is. But that's where the connection with temperature ends. Think about the eigenstates of that operator: they correspond to those states for which the magnitude of the momentum is perfectly prepared for all particles. Those are not the only states for which we have a well defined value of temperature. And measuring the temperature does not mean measuring the magnitude of the momentum for each particle. So $\sum_{i=0}^{n} \frac{P_i^2}{m_i}$ is an operator but is not the temperature operator: it's an operator whose expectation corresponds to the temperature.
+
+\section{Spin direction}
+
+Now suppose we have a spin 1/2 system. You may be familiar with $S_x$, $S_y$ and $S_z$ which are the operators for the spin components along the respective directions. As you know, spin represents angular momentum so their conjugate quantity is the angle along the plane perpendicular to their direction. Which leads to the question: where is the spin angle operator? Well, there isn't one.
+
+All spin 1/2 states can be defined by a unique direction in space. We can write:
+\begin{equation}
+|\psi>=\cos(\theta/2)|z^+> + \sin(\theta/2)e^{\imath \phi}|z^->
+\end{equation}
+where $\theta$ and $\phi$ are the polar and azimuthal angle respectively. Note that we just need two states, $|z^+>$ and $|z^->$, to form a basis and those correspond to the two possible values of spin measured along the $z$ direction. An angle, instead, takes a continuum of possible values and therefore we would need an infinite number of eigenkets to form an angle operator (as it is for position and momentum). Since the space is two dimensional, all bases must be two dimensional: no angle operator.
+
+But here is the thing: we can nonetheless measure angles. Suppose we have a source of electrons such that their spin comes aligned always in the same direction. With a Stern-–Gerlach type experiment, we can measure the fraction $0\leq f_z \leq 1$ that comes out with $z^+$. We have $f_z = <\psi|z^+><z^+|\psi> = \cos^2(\theta/2)$. So $\theta = 2 \arccos \sqrt{f_z}$ is definitely something we can measure. Similarly, we can find an expression for $\phi$.
+
+Again you may think: all we did was measure the expectation of $|z^+><z^+|$ which is a Hermitian operator. And indeed we did. But that operator has eigenstates only for $\theta=0$ and $\theta=\pi$. Yet each state will always have a well defined value for $\theta$ and we can measure the values between $0$ and $\pi$ as well.
+
+\section{Conclusion}
+
+While it is often useful to think of a quantum state as a distribution over the eigenvalues of some observable, this is not the only way we should think about it. Not all measurable quantities work like that. In particular, note that many macroscopic quantities are averages over a large number of particles and therefore one should always be very careful when extrapolating ideas from the quantum world.
+
+
+\end{document}

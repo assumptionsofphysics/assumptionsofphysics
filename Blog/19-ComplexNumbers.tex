@@ -1,0 +1,80 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{What are complex numbers?}
+
+TL;DR - Complex numbers should really be called rotation numbers. Whenever they are used in physics and engineering, some type of rotation is lurking and begging to be understood.
+
+In the past posts we went through a lot of insights in classical mechanics and I want to start doing the same for quantum mechanics. But first we have to talk about complex numbers. Complex numbers are prominent in quantum mechanics and, before we understand why that is, we have to understand what complex numbers are in general.
+
+Unfortunately, complex and imaginary numbers have names that are not very meaningful: they are not complex and they are not imaginary. The other problem is that they are typically introduced in the way they were discovered historically (i.e. solving polynomial equations) and we drag along this idea of $\imath = \sqrt{-1}$. None of this is intuitive or useful to understand why complex numbers are important in physics and engineering.
+
+Briefly: complex numbers describe 2D vectors (i.e. a pair of real numbers) and rotations acting on them. You may sort of know this already. You may not realize, though: that's the only thing they do. Let's see how this work.
+
+\section{Sets of numbers and bad naming}
+
+While we are on the subject, note that complex numbers are not the only horribly named set of numbers in the English language. So, let's go through all of them.
+
+First, we have the natural numbers $\mathbb{N} = \{0, 1, 2, ...\}$. Now, there is nothing ``natural" about them or ``unnatural" about the other numbers. These are the numbers we use to count: counting numbers would be a better name for $\mathbb{N}$.
+
+Next we have the integer numbers $\mathbb{Z} = {..., -2, -1, 0, 1, 2, ...}$. The name comes from the same Latin root as ``entire". Whole numbers would be a better English name for $\mathbb{Z}$ (and sometimes they are called just that).
+
+We can then take a pair of integer number, a numerator and a denominator, and construct the rational numbers $\mathbb{Q}$. They are not ``rational" in the sense of ``sensible". They are rational because they express a ratio, a proportion between two integer values. Same goes for irrationals: they are not crazy numbers, they simply cannot be expressed as a ratio. Fractional numbers would probably be a less confusing name for $\mathbb{Q}$. 
+
+And finally we have the real numbers $\mathbb{R}$ which are defined as the distinct Cauchy sequences of rational numbers. There is nothing ``real" about them. What they represent are values that in general can only be approximated by rationals. Physically, we use them when we assume we can measure values with arbitrary precision, so arbitrary precision numbers would be a more precise name for $\mathbb{R}$.
+
+Now, despite that the names are not actually that good, you most likely have a good intuitive understanding of these types of numbers because they were introduced with real world examples. Hopefully.
+
+\section{Rethinking complex numbers}
+
+So how should we define and think about the complex numbers $\mathbb{C}$? As you know, a complex number $c$ is simply a pair of real numbers (i.e. arbitrary precision numbers). Instead of noting it $a+\imath b$, which makes the two elements look different, we can write it as $c = a\mathbf{1} + b \mathbf{i}$. Instead of calling $a$ the ``real part", let's call it the ``horizontal part". Instead of calling $b$ the ``imaginary part", let's call it the ``vertical part".
+
+If we have two complex numbers $c_1$ and $c_2$, we can define the sum as $c_1+c_2 = (a_1+a_2) \mathbf{1} + (b_1+b_2)\mathbf{i}$: the horizontal part is the sum of the horizontal parts and the vertical part is the sum of the vertical parts. Note how the new name makes it seem beyond obvious: it's just a standard vector with two components. Note that $\mathbf{1}$ and $\mathbf{i}$ are simply the unit vectors along the horizontal and vertical directions. And the norm is given by $|c| = \sqrt{a^2 + b^2}$
+
+Now suppose we want to characterize the linear operations. Let's first look at how they work in $\mathbb{R}$. Each number $a \in \mathbb{R}$ can be associated with the operation of rescaling by that number $f_a(x) = a x$. Each complex number $c \in \mathbb{C}$, instead, will be associated with a rescaling by the norm $|c|$ and a rotation by the angle between $c$ and the horizontal direction $\mathbf{1}$.
+
+Since the operation is linear, we really just need to define the multiplication between the basis vectors. We have $\mathbf{1} \cdot \mathbf{1} = \mathbf{1}$ and $\mathbf{1} \cdot \mathbf{i} = \mathbf{i}$: since the angle between $\mathbf{1}$ and $\mathbf{1}$ is zero, the rotation leaves the direction unchanged. We also have $\mathbf{i} \cdot \mathbf{1} = \mathbf{i}$: since $\mathbf{i}$ is in the vertical direction, the corresponding rotation will move the horizontal by 90 degrees to the vertical direction. Lastly, $\mathbf{i} \cdot \mathbf{i} = - \mathbf{1}$: we are rotating the vertical direction by another 90 degrees so we obtain the opposite of the horizontal direction.
+
+Note that we have obtained the usual relationship $\imath^2=-1$, but this time we know what we are talking about and there is nothing imaginary about it. It simply means that if we rotate 90 degrees twice, we get the opposite direction than we started with. It should also make it clear why we can express $c=\rho (\cos \theta \mathbf{1} + \sin \theta \mathbf{i})$. Mathematically, there shouldn't really be anything new about it but I hope that intuitively it clicked that there is nothing mysterious or arbitrary about any of this.
+
+Complex numbers are just 2D vectors and rotations: rotation numbers would be a much less confusing name for $\mathbb{C}$.
+
+\section{An example: linear systems}
+
+Let's make complex numbers a little bit more concrete by quickly showing some highlights from linear control theory and signal processing. Suppose you have a system that takes an input signal $I(t)$ and converts it to an output signal $O(t)$. Suppose the system is linear: if we sum two inputs and feed them into the system we simply get the sum of the independent outputs. If that's the case, on can show that the relationship between inputs and outputs is of the form:
+\begin{equation}
+	O(t) = \mu_0 I(t) + \mu_1 \frac{d}{dt} I(t) + \mu_2 \frac{d^2}{dt^2} I(t) + ... + \mu_n \frac{d^n}{dt^n} I(t) + ...
+\end{equation}
+
+Now, suppose that the input is of the form $I(\omega, t) = a_\omega \cos \omega t$. The derivative will change cosines to sines and vice-versa, so the result will still be an oscillation of the form $O(t) = \hat{a}_\omega \cos \omega t + \hat{b}_\omega \sin \omega t$. We can set $\mathbf{1} = \cos \omega t$ and $\mathbf{i} = \sin \omega t$. So we have $I(\omega, t) = a_\omega \mathbf{1} = c_\omega$ and $O(\omega, t) = \hat{a}_\omega \mathbf{1} + \hat{b}_\omega \mathbf{i} = \hat{c}_\omega$. That is: we can express each frequency component with a two dimensional vector and the effect of the linear system is simply a rotation in that space. The linear system may change the magnitude (i.e. the strength of the signal) and the angle (i.e. the phase of the signal) but nothing else (i.e. not the shape of the signal).
+
+Now, the point here is not to give a full introduction to control theory (which would take a lot more space). Hopefully, this should give you a sense of when and why rotation numbers, sorry, complex numbers are useful in physics and engineering: they will always be useful when we are studying the effect of linear systems, and all systems are, at first approximation, linear.
+
+\section{Conclusion}
+
+Complex numbers are not that complex to understand: they just describe 2D vectors and rotations. They are unfortunately named and the notation typically used is meaningless for the purpose of physics and engineering. It is important to understand that these are historical accidents, and they have no bearing on the actual concepts and their applications.
+
+When we are solving complex polynomial equations, then, we are not looking for quantities: we looking for rotations that satisfy a particular property. For example, $x^2=-1$ is asking: what is the rotation that, if applied twice, is equivalent to a reflection? It's the 90 degree rotation, of course, which is denoted by $\imath$.
+
+Complex numbers are fundamental when studying linear systems. Quantum mechanics, as we'll see, studies linear systems and that is why complex numbers are prevalent. You just need to understand what physical quantity is the 2D vector representing and what is rotating.
+
+\end{document}
