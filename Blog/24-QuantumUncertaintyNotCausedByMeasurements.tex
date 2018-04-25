@@ -1,0 +1,47 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{Quantum uncertainty is not caused by measurements}
+TL;DR - The uncertainty relationship in quantum mechanics exists before and independently of measurements.
+
+Some books still perpetuate the idea that the uncertainty introduced by quantum mechanics is related to measurement. Either as an observer effect (i.e. the measurement causes the uncertainty) or as an observed relationship (i.e. our measurements are limited by that relationships). Unfortunately, neither of these are correct: the uncertainty exists before and independently of any measurement.
+
+The problem is that in the early days physicists used these incomplete ideas as a stepping stone (e.g. Heisenberg's microscope). This is not uncommon in physics: Galileo himself argued that the tides of the oceans are clear indication that the earth is spinning. The difference is that nobody repeats Galileo's argument (though we keep the conclusion) while some early thought experiments in quantum mechanics are offered as insightful while they are actually misleading.
+
+So let's look at the math and see what it tells us.
+
+\section{The measurement collapse and the uncertainty}
+
+Suppose you have an incoming electron, whose state is described by a wave function $\psi(x)$. Suppose we measure its position. According to the theory, the wave function will collapse in one of the eigenstates of position. That is, we have one wave function coming in, we have a distribution of wave function coming out. The probability associated with the eigenstate at a particular $x$ will be given by $\rho(x) = |\psi(x)|^2$. This distribution will have an associated standard deviation $\sigma_x = \sqrt{ \int x^2 \rho dx - (\int x \rho dx)^2}$.
+
+Note that, since the outgoing states are all position eigenstates, the distribution in momentum for all of them is uniform. So the measurement has indeed introduced uncertainty. But all the uncertainty is introduced to momentum, the conjugate of position. The standard deviation $\sigma_x$ is the same because the distribution in position $|\psi(x)|^2$ is the same distribution we had in the wave function before the collapse. That is: the distribution over the observable we measure remains the same. If it didn't, in fact, we couldn't measure anything.
+
+It's not that we can write wave functions for which the uncertainty principle is not satisfied, we collapse them, and then the uncertainty principle is found. Not at all. It's that we can't even write wave functions that violate the uncertainty principle. Let me repeat it once more for effect: you can't write a $\psi(x)$ for which the Fourier transform has an uncertainty on momentum that violates the uncertainty principle. It doesn't matter whether you are going to collapse it or not.
+
+\section{Conclusion}
+
+It's not that the uncertainties of our measurements are bound by the uncertainty principle. It's that we can't even prepare states that violate the uncertainty principle. Those states are excluded a priori: they do not exist in the theory.
+
+Therefore we can't consider the uncertainty principle an observer effect: it's an intrinsic property of a quantum system.
+
+
+\end{document}

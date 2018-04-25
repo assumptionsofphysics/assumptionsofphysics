@@ -1,0 +1,64 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-1}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{Determinism and quantum mechanics}
+TL;DR - The Schrodinger equation can be seen as the deterministic and reversible limit of the projection associated with a measurement.
+
+Quantum mechanics comes with two ways to go from an initial to a final state. The first is the Schrodinger equation that represents time evolution and the second is the projection that represents what happens during measurements. These are usually presented as two separate entities. In fact, much of the work surrounding various ``interpretations" is to reconcile these two types of evolution.
+
+What we want to show here is that there is a very natural way to reconcile them. As we saw in a previous post, a quantum state always has a set of quantities that are well defined (i.e. it is always an eigenstate of some Hermitian operator). Therefore we can regard the Schrodinger equation as a special case of the projection where at each instant a measurement is made. Let's see how this works.
+
+\section{The projection postulate}
+
+Let's first review the projection postulate which supposedly describes what happens during measurements. The idea is that you start with a single well defined initial state $|\psi\rangle$. You pick an observable $A$, which is defined by a set of eigenstates $|\psi_{a_i}\rangle$ and the corresponding eigenvalues $a_i$. After the measurement you end up with what is called a mixed state: a statistical distribution. More precisely, a distribution over the eigenstates, each having probability $|\langle \psi_{a_i} | \psi \rangle | ^2$. So, for example, if we start with spin up $|s^+_z\rangle$ and we measure the horizontal direction, we end up with 50\% $|s^+_x\rangle$ and 50\% $|s^-_x\rangle$.
+ 
+Note that we don't always end up with a mixed state: if the initial state is already an eigenstate of the observable, nothing changes. That is, if we start with spin up $|s^+_z\rangle$ and we measure the vertical direction, we end up with 100\% $|s^+_z\rangle$ and 0\% $|s^-_z\rangle$. Which is the same as what we started with. So projection postulate is not always non-deterministic. In fact we can go continuously from a process that is deterministic, where the direction of measurement is the same as the prepared direction, to one that is completely non-deterministic, where the direction of measurement is perpendicular to the prepared direction.
+
+\section{Deterministic projections}
+
+So the idea is the following: can we perform a measurement such that we are not exactly measuring the same observable (e.g. the same direction of spin) but something so close that the projection is still deterministic (e.g. the direction of spin in an infinitesimally close direction)? That is, we want the final state $|\psi_{t+dt}\rangle$ to be very close to the initial state $|\psi_t\rangle$ so that $|\langle \psi_{t+dt}|\psi_t\rangle|^2=|\langle \psi_t|\psi_{t+dt}\rangle|^2=1$. We can rewrite $|\psi_{t+dt}\rangle = (1 + dt \frac{\partial}{\partial t}) |\psi_t\rangle $. We have:
+
+\begin{align*}
+|\langle \psi_t|\psi_{t+dt}\rangle|^2 &= 1 = |\langle \psi_t | (1 + dt \partial_t) |\psi_t\rangle|^2 \\
+&= \langle \psi_t | (1 + dt \partial_t)^\dagger |\psi_t\rangle \langle \psi_t | (1 + dt \partial_t) |\psi_t\rangle \\
+&= (\langle \psi_t | \psi_t\rangle + \langle \psi_t | dt \partial_t^\dagger |\psi_t\rangle ) (\langle \psi_t | \psi_t\rangle + \langle \psi_t | dt \partial_t |\psi_t\rangle ) \\
+&= 1 + dt (\langle \psi_t | \partial_t^\dagger |\psi_t\rangle + \langle \psi_t | \partial_t |\psi_t\rangle) + dt^2 (|\langle \psi_t | \partial_t |\psi_t\rangle|^2) \\
+&\approx 1 + dt \langle \psi_t | \partial_t^\dagger + \partial_t |\psi_t\rangle \\
+\partial_t &= - \partial_t^\dagger 
+\end{align*}
+
+We have that deterministic time evolution must be unitary and that its generator $\partial_t$ must be anti-Hermitian. This means we can find a corresponding Hermitian operator $H$ such that $\partial_t = \frac{H}{\imath \hbar}$. This gives us the Schrodinger equation.
+\begin{align*}
+	\frac{\partial}{\partial t} | \psi_t \rangle = \frac{H}{\imath \hbar} |\psi_t\rangle
+\end{align*}
+
+To put this in more concrete term, consider spin precession in a magnetic field. We can say that the magnetic field continuously measures the spin of the particle, and this is what causes the motion. The direction where this measurement happens is a function of the particle itself, which makes sense because the motion is deterministic: it only depends on the state of the particle.
+
+\section{Conclusion}
+
+We have seen that the Schrodinger equation is a continuous process that at every moment is measuring something that is very close to what was measured before. This way there is no difference between measurement and evolution between measurement: it is the same type of process. It also means that there is nothing special about a measurement: whether we cause it or not, is just the same process that happens all the time.
+
+What this also means is that the deterministic and reversible process is the particular case, not the general one. But this is true anyway: it is only when we are able to isolate a system enough from the environment that we can assume that its evolution is independent from it.
+
+Mathematically, we are associating continuous unitary evolution with deterministic and reversible processes while non-deterministic processes have no such restriction. This is very interesting because it is the same conclusion that we reach from a completely different premise in our work on the assumption of physics.
+
+\end{document}
