@@ -1,0 +1,324 @@
+\documentclass[letterpaper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=0.5in]{geometry}
+
+% Temporary to remove "submitted to"
+\makeatletter
+\def\ps@pprintTitle{%
+	\let\@oddhead\@empty
+	\let\@evenhead\@empty
+	\def\@oddfoot{}%
+	\let\@evenfoot\@oddfoot}
+\makeatother
+
+\usepackage{lineno,hyperref}
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
+
+\newenvironment{rationale}{\emph{Rationale}.}{\qed}
+\newenvironment{justification}{\emph{Justification}.}{\qed}
+\renewenvironment{proof}{\emph{Proof}.}{\qed}
+
+
+\theoremstyle{plain}% default 
+\newtheorem{thrm}{Theorem}[section] 
+\newtheorem{prop}[thrm]{Proposition} 
+\newtheorem{coro}[thrm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thrm]{Definition}
+\newtheorem{axiom}[thrm]{Axiom}
+\newtheorem*{principle*}{Principle of scientific objectivity}
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+
+% Remove line spaces between items of enumerate and itemize
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+
+% LOGIC symbols
+% -------------
+
+% Allows to create negation symbols
+\usepackage{MnSymbol}
+
+\DeclareMathOperator{\truth}{truth}
+\DeclareMathOperator{\possFn}{poss}
+\DeclareMathOperator{\result}{result}
+\DeclareMathOperator{\idFn}{id}
+
+\def\TRUE{\textsc{true}}
+\def\FALSE{\textsc{false}}
+
+\def\SUCCESS{\textsc{success}}
+\def\FAILURE{\textsc{failure}}
+\def\UNDEF{\textsc{undefined}}
+
+% Symbols for statements set
+\def\stmtSet{\mathcal{S}}
+\def\vstmtSet{\mathcal{S}_\textsf{v}}
+\def\dstmtSet{\mathcal{S}_\textsf{d}}
+
+
+% Symbols for tautology and contradiction
+\def\tautology{\top}
+\def\contradiction{\bot}
+
+% Symbols for "compatibility" and "incompatibility"
+\def\comp{\doublefrown}
+\def\ncomp{\ndoublefrown}
+
+% Symbols for "narrower" and "wider"
+\def\narrower{\preccurlyeq}
+\def\nnarrower{\npreccurlyeq}
+\def\broader{\succcurlyeq}
+\def\nbroader{\nsucccurlyeq}
+
+
+% Symbol for "independent" and "correlated"
+\def\indep{\upmodels}
+\def\nindep{\nupmodels}
+
+% Aliases for logical operations
+\def\AND{\wedge}
+\def\bigAND{\bigwedge}
+\def\OR{\vee}
+\def\bigOR{\bigvee}
+\def\NOT{\neg}
+
+
+% Formatting for statements
+\newcommand{\stmt}[1][s] {\mathsf{#1}}
+% Formatting for experimental tests
+\newcommand{\expt}[1][e] {\mathsf{#1}}
+\newcommand{\exptSet}{\mathcal{E}}
+% Formatting for observations
+\newcommand{\obs}[1][s] {\mathsf{#1}}
+% Formatting for possibilities
+
+% Formatting for experimental domain
+\newcommand{\edomain}[1][D] {\mathcal{#1}}
+
+% Formatting for theoretical domain
+\newcommand{\tdomain}[1][D] {\bar{\mathcal{#1}}}
+
+\newcommand{\basis}[1][B] {\mathcal{#1}} % Basis
+
+% Formatting for experimental relationships
+\newcommand{\erel}[1][r] {#1}
+
+% Formatting for sentence statements
+\newcommand{\statement}[1] {\emph{``#1''}}
+
+
+
+\begin{document}
+
+\title{A Mathematical Framework for Informal Logic}
+\author{Gabriele Carcassi, Christine A. Aidala}
+
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+	In this work we present a formal framework suitable to describe the logic of informal statements. That is, the truth bearer are the abstract assertions contained in natural language while the relationships between them are still described in a formal mathematical language. This framework is guaranteed to not have antinomies, that is paradoxes that are characterized by self-inconsistencies. All paradoxes are reduced to either veridical or falsidical.
+\end{abstract}
+
+%\linenumbers
+
+\section{Introduction}
+
+
+\section{A formal logic of informal statements}
+
+\begin{defn}
+	The \textbf{Boolean domain} is the set $\mathbb{B} = \{\FALSE, \TRUE\}$ of all possible truth values.
+\end{defn}
+
+\begin{axiom}\label{ax_statement}
+	A \textbf{statement} $\stmt$ is an assertion that is either true or false. Formally, a statement is an element of the set $\mathcal{S}$ of all statements upon which is defined a function $\truth: \mathcal{S} \to \mathbb{B}$ that returns the truth value for each element.
+\end{axiom}
+
+\begin{defn}
+	Given a collection of statements $\{\stmt_i\}^n_{i=1}$, a \textbf{consistent truth assignment} is a collection of truth values $\{t_i\}^n_{i=1}$ such that it is logically consistent to simultaneously suppose that $\truth(\stmt_i) = t_i$ for all $1 \leq i \leq n$. That is, from those assumptions it cannot be proven that $\truth(\stmt_i) \neq t_i$ for any $1 \leq i \leq n$.  This definition generalizes to the case of infinite, possibly uncountable, collections.
+\end{defn}
+
+\begin{axiom}\label{ax_possibilities}
+	The \textbf{possibilities} of a statement $\stmt$ are the possible truth values allowed by the content of the statement. Formally, on the set $\mathcal{S}$ of all statements is also defined a function $\possFn: \mathcal{S} \to \{\{\FALSE, \TRUE\},\{\FALSE\},\{\TRUE\}\}$ such that:
+	\begin{itemize}
+		\item $\truth(\stmt) \in \possFn(\stmt)$ for all $\stmt \in \mathcal{S}$. This remains valid in every consistent truth assignment.
+		\item for any collection of statements $\{\stmt_i\}^n_{i=1}$, for any $1 \leq j \leq n$ and for any $t \in \possFn(\stmt_j)$ there exists a consistent truth assignment $\{t_i\}^n_{i=1}$ such that $t_j = t$. This generalizes to the case of infinite, possibly uncountable, indexed families.
+	\end{itemize}
+\end{axiom}
+
+\begin{defn}
+	A \textbf{tautology} $\tautology$ is a statement that must be true simply because of its content. That is, $\possFn(\stmt) = \{\TRUE\}$.
+\end{defn}
+
+\begin{defn}
+	A \textbf{contradiction} $\contradiction$ is a statement that must be false simply because of its content. That is, $\possFn(\stmt) = \{\FALSE\}$.
+\end{defn}
+
+
+\begin{axiom}\label{ax_functions_of_statement}
+	We can always construct a statement whose truth value arbitrarily depends on an arbitrary set of statements. Formally: given an arbitrary truth function $f_{\mathbb{B}} : \mathbb{B}^n \to \mathbb{B}$ there exists a function $f : \mathcal{S}^n \to \mathcal{S}$ such that
+	$$\truth(f(\stmt_1, ..., \stmt_n)) = f_{\mathbb{B}}(\truth(\stmt_1), ..., \truth(\stmt_n))$$
+	and the same relationship remains valid in every consistent truth assignment. This also holds in the case of infinite, possibly uncountable, arguments.
+\end{axiom}
+
+\begin{defn}
+	Two statements $\stmt_1$ and $\stmt_2$ are \textbf{equivalent} $\stmt_1 \equiv \stmt_2$ if they must be equally true or false simply because of their content. Formally, $\stmt_1 \equiv \stmt_2$ if and only if $(\stmt_1 \AND \stmt_2) \OR (\NOT\stmt_1 \AND \NOT\stmt_2)$ is a tautology.
+\end{defn}
+
+\begin{prop}
+	Statement equivalence satisfies the following properties:
+	\begin{itemize}
+		\item reflexivity: $\stmt \equiv \stmt$
+		\item symmetry: if $\stmt_1 \equiv \stmt_2$ then $\stmt_2 \equiv \stmt_1$
+		\item transitivity: if $\stmt_1 \equiv \stmt_2$ and $\stmt_2 \equiv \stmt_3$ then $\stmt_1 \equiv \stmt_3$
+	\end{itemize}
+	and is therefore an \textbf{equivalence relationship}.
+\end{prop}
+
+\begin{prop}\label{boolean_properties}
+	The set of all statements $\mathcal{S}$ satisfies the following properties:
+	\begin{itemize}
+		\item associativity: $a \OR (b \OR c) \equiv (a \OR b) \OR c$, $a \AND (b \AND c) \equiv (a \AND b) \AND c$
+		\item commutativity: $a \OR b \equiv b \OR a$, $a \AND b \equiv b \AND a$
+		\item absorption: $a \OR (a \AND b) \equiv a$, $a \AND (a \OR b) \equiv a$
+		\item identity: $a \OR \contradiction \equiv a
+		$, $a \AND \tautology \equiv a$
+		\item distributivity: $a \OR (b \AND c) \equiv (a \OR b) \AND (a \OR c)$, $a \AND (b \OR c) \equiv (a \AND b) \OR (a \AND c)$
+		\item complements: $a \OR \NOT a \equiv \tautology$, $a \AND \NOT a \equiv \contradiction$
+		\item De Morgan: $\NOT a \OR \NOT b \equiv \NOT (a \AND b)$, $\NOT a \AND \NOT b \equiv \NOT (a \OR b)$
+	\end{itemize}
+	This, by definition, means $\mathcal{S}$ is a \textbf{Boolean algebra}.
+\end{prop}
+
+\begin{defn}
+	Given two statement $\stmt_1$ and $\stmt_2$, we say that:
+	\begin{itemize}
+		\item $\stmt_1$ \textbf{is narrower than} $\stmt_2$ (noted $\stmt_1 \narrower \stmt_2$) if $\stmt_2$ is true whenever $\stmt_1$ is true simply because of their content. That is, $\stmt_1 \AND \NOT \stmt_2 \equiv \contradiction$.
+		\item $\stmt_1$ \textbf{is broader than} $\stmt_2$ (noted $\stmt_1 \broader \stmt_2$) if $\stmt_2 \narrower \stmt_1$.
+		\item $\stmt_1$ \textbf{is compatible to} $\stmt_2$ (noted $\stmt_1 \comp \stmt_2$) if their content allows them to be true at the same time. That is, $\stmt_1 \AND \stmt_2 \nequiv \contradiction$.
+		
+	\end{itemize}
+	The negation of these properties will be noted by $\nnarrower$, $\nbroader$ , $\ncomp$ respectively.
+\end{defn}
+\begin{defn}
+	The elements of a set of statements $S \subseteq \mathcal{S}$ are said to be \textbf{independent} (noted $\stmt_1 \indep \stmt_2$ for a set of two) if their content is such that any combination of their possibilities is allowed. That is, $\possFn(f(S)) = f(\bigtimes\limits_{\stmt \in S} \possFn(\stmt))$ for any truth function $f : \mathbb{B}^{|S|} \to \mathbb{B}$. The negation of independence, will be noted by $\nindep$.
+\end{defn}
+
+\begin{prop}
+	Statement narrowness satisfies the following properties:
+	\begin{itemize}
+		\item reflexivity: $s \narrower s$
+		\item antisymmetry: if $s_1 \narrower s_2$ and  $s_2 \narrower s_1$ then $s_1 \equiv s_2$
+		\item transitivity: if $s_1 \narrower s_2$ and $s_2 \narrower s_3$ then $s_1 \narrower s_3$
+	\end{itemize}
+	and is therefore a \textbf{partial order}.
+\end{prop}
+statement independence.
+
+\section{Paradoxes}
+
+\subsection{Self reference}
+
+$\stmt[a]=$\statement{This sentence is true}
+
+$\stmt[a]=$``$\truth(\stmt[a]) = \TRUE$''
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c}
+		
+		$\stmt[a]$ & $\truth(\stmt[a]) = \TRUE$ \\
+		\hline
+		1 & 1 \\
+		\hline
+		0 & 0 \\ 
+	\end{tabular}
+\end{table}
+
+$\stmt[a]=$``$\truth(\stmt[a]) = \TRUE$'' in all cases. No paradox.
+
+$\stmt[b]=$\statement{This sentence is false}
+
+$\stmt[b]=$``$\truth(\stmt[b]) = \FALSE$''
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c}
+		
+		$\stmt[b]$ & $\truth(\stmt[b]) = \FALSE$ \\
+		\hline
+		0 & 1 \\
+		\hline
+		1 & 0 \\ 
+	\end{tabular}
+\end{table}
+
+In no cases $\stmt[b]=$``$\truth(\stmt[b]) = \FALSE$''. $\possFn(\stmt[b]) = \{\}$ which cannot be. $\stmt[b]$ does not satisfy the axioms: it is not a statement. Falsidical paradox.
+
+\subsection{Curry's paradox}
+
+$\stmt[a]=$ \statement{If this sentence is true then I will win the lottery.}
+
+$\stmt[b]=$\statement{I will win the lottery}
+
+Two possible ways. Material implication $\stmt[a]=\NOT \stmt[a] \OR \stmt[b]$
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c|c}
+		
+		$\stmt[a]$ & $\stmt[b]$ & $\NOT \stmt[a] \OR \stmt[b]$ \\
+		\hline
+		0 & 0 & 1 \\
+		\hline
+		0 & 1 & 1 \\
+		\hline
+		1 & 0 & 0 \\ 
+		\hline
+		1 & 1 & 1 \\ 
+	\end{tabular}
+\end{table}
+
+Since we must have $\stmt[a]=\NOT \stmt[a] \OR \stmt[b]$, the last line is the only one possible. Therefore $\possFn(\stmt[a])=\possFn(\stmt[b])=\{\TRUE\}$ and $\stmt[a]\equiv\stmt[b]\equiv\tautology$. If $\stmt[b]$ is not a tautology, then we have a falsidical paradox.
+
+Other way, logical implication. $\stmt[a]=\stmt[a] \narrower \stmt[b]$.
+
+Suppose $\stmt[a] \narrower \stmt[b]$, then the third line is ruled out because $\NOT \stmt[a] \OR \stmt[b]$ is a tautology and the first two lines are also ruled out because $\stmt[a]=\stmt[a] \narrower \stmt[b]$. Therefore, like before, $\stmt[a]\equiv\stmt[b]\equiv\tautology$. Suppose $\stmt[a] \nnarrower \stmt[b]$. Then the third line must be possible, but that can't happen because $\stmt[a]$ is false.
+
+Even with logical implication $\stmt[a]\equiv\stmt[b]\equiv\tautology$ and if $\stmt[b]$ is not a tautology, then we have a falsidical paradox.
+
+
+$\stmt[a]=$\statement{This sentence is true}
+
+$\stmt[a] \equiv \tautology$ as seen before
+
+$\possFn(\stmt[b]) = \{\TRUE, \FALSE\}$
+
+$\stmt = \NOT \stmt[a] \OR \stmt[b]$
+
+
+
+
+
+
+
+
+\bibliography{bibliography}
+
+\end{document}
