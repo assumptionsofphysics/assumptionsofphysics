@@ -124,29 +124,31 @@
 \begin{document}
 
 \title{Towards a general mathematical theory of experimental science}
-\author{Gabriele Carcassi, Christine A. Aidala}
+\author{Gabriele Carcassi, Christine A. Aidala \\ University of Michigan}
 
 \date{\today}
 
 \maketitle
 
 \begin{abstract}
-	In this work we lay the ground work for a mathematical framework that necessarily applies to all sciences. The starting point will be the logic of verifiable statements: those assertion that can be shown to be true with an experimental test. We study the algebra of such objects and show how it is closed only on finite conjunction and countable disjunction. We collect verifiable statements into experimental domains, which represent the list of all possible testable answers to a particular scientific question. From these we construct theoretical domains, which represent all possible predictions which are not necessarily verifiable themselves. We then define the possibilities of an experimental domain as those theoretical statements that, if true, predict the truthfulness of all verifiable statements in the domain. We then show that experimental domains provide a natural Kolmogorov and second countable topology over their possibilities, while the theoretical domains provide a natural $\sigma$-algebra. This gives a clear physical meaning to those mathematical structure and provide a strong justification as to why these can be used in science. It is our hope and belief that such approach can be extended to many other areas of fundamental physics.
+	In this article we lay the ground work for a general mathematical theory of experimental science. The starting point will be the notion of verifiable statements, those assertions that can be shown to be true with an experimental test. We study the algebra of such objects and show how it is closed only on finite conjunction and countable disjunction. With simple constructions, we show that the set of possible cases distinguishable by verifiable statements is equipped with a natural Kolmogorov and second countable topology and a natural $\sigma$-algebra. This gives a clear physical meaning to those mathematical structures and provides a strong justification for their use in science. It is our hope and belief that such an approach can be extended to many areas of fundamental physics and will provide a consistent vocabulary across scientific domains.
 \end{abstract}
+
+% We form experimental domains, which represent the list of all possible testable answers to a particular scientific question. From these we construct theoretical domains, which represent all possible predictions (not necessarily verifiable themselves). We then define the possibilities of an experimental domain as those predictions that, if true, predict the truthfulness of all verifiable statements in the domain. We then show that experimental domains provide a natural Kolmogorov and second countable topology over their possibilities, while theoretical domains provide a natural $\sigma$-algebra. 
 
 %\linenumbers
 
 \section{Introduction}
 
-During the course of the last century a few fields of science and engineering have developed an associated general theory. For example, in computer science theory one starts by defining what a computational device is and then shows that no algorithm exists that can correctly decide whether an arbitrary program terminates given an arbitrary input. In communications one defines what information is and shows that no encoding can outperform the Huffman coding.\footnote{Assuming a symbol-by-symbol coding with a known input probability distribution.} In control theory one defines what a system is and then looks for general strategies for control such as Kalman filtering. These theories are general in the sense that their results respectively apply to all control systems, all communication systems and all computational devices. That is: the results apply because of the mere definition of the subject matter.
+During the course of the last century a few fields of science and engineering have developed an associated general theory. For example, in computer science theory one starts by defining what a computational device is\cite{Turing} and then shows that no algorithm exists that can correctly decide whether an arbitrary program terminates given an arbitrary input.\cite{Sipser} In communications one defines what information\cite{Shannon} is and shows that no encoding can outperform the Huffman coding.\cite{Pierce} In control theory one defines what a system is\cite{Brogan} and then looks for general strategies for control such as Kalman filtering.\cite{Kalman} These theories are general in the sense that their results respectively apply to all control systems, all communication systems and all computational devices. That is: the results apply because of the mere definition of the subject matter.
 
-No such general theory currently exists for physics, which is essentially composed of different theories loosely connected to each other, each with their own realm of applicability. However, we believe it can be created and in this work we present our basic strategy towards it. As one familiar to the general theories of other subjects would expect, we only need to focus on clarifying exactly what our starting points are and let the logic follow. That is: once we formalize exactly what it means to study a system through experimentation, we can reach interesting results that necessarily apply to all scientific theories. For example, we will see that any set of objects that are physically distinguishable must have cardinality no greater than continuum. We will see that defining what can be experimentally verified about them will always induce a topology that is Kolmogorov and second countable. These results are general because they apply independently of what is being studied.
+No such general theory currently exists for physics, which is essentially composed of different theories loosely connected to each other, each with their own realm of applicability. However, we believe such a general theory can be created and in this work we present our basic strategy towards it. As one familiar with the general theories of other subjects would expect, we only need to focus on clarifying exactly what our starting points are and let the logic follow. That is: once we formalize exactly what it means to study a system through experimentation, we can reach interesting results that necessarily apply to all scientific theories. For example, we will see that any set of objects that are physically distinguishable must have cardinality no greater than continuum. We will see that defining what can be experimentally verified about them will always induce a topology that is Kolmogorov and second countable. These results are general because they apply independently of what is being studied.
 
 One should not confuse this approach with the idea of a grand-unified theory or theory of everything. In that program, one looks for the theory of fundamental constituents from which all other theories can be derived. Our program is altogether different and orthogonal. Our subject matter are the scientific models themselves. Our aim is to understand what aspects of a scientific theory are already constrained by the mere fact that it is a scientific theory or by the assumptions one bakes into them. While this general theory may be of some utility to someone working on a grand-unified theory as it may help narrow the search, neither one will lead to the other.
 
-In this paper we briefly present the starting point for our general mathematical theory of experimental science. It is the product of a decade spent in reverse engineering the laws of particle mechanics (cite paper) and our subsequent work on axiomatizing the starting points (cite other paper?). Our overall program is large and ambitious and a journal article cannot treat it comprehensively. Therefore we will only present an overview of the basic concepts, which are already well consolidated and provide a good template to understand our approach. We will only provide a sketch for the proofs, which can be found in our open access book (cite book) together with more details, discussions and insights.
+In this paper we briefly present the starting point for our general mathematical theory of experimental science. It is the product of a decade spent in reverse engineering the laws of particle mechanics\cite{Carc1} and our subsequent work on formalizing the starting points.\cite{Carc2} Our overall program is large and ambitious and a journal article cannot treat it comprehensively. Therefore we will only present an overview of the basic concepts, which are already well consolidated and provide a good template to understand our approach. We will only provide a sketch for the proofs, which can be found in our open access book\cite{Carc3} together with more details, discussions and insights.
 
-The basic idea is that science deals with verifiable statements: assertion whose truth can be tested experimentally. We study the logic of these statements, which is different from the standard Boolean logic. We then group them into experimental domains, which represent a set of verifiable statements that can be tested in an indefinite amount of time. From these we construct theoretical domains, which represent all possible predictions, and within these we find the possibilities, those predictions that determine the outcome of all possible tests. We will find that possibilities have a natural topology induced by the experimental domain and a natural $\sigma$-algebra induced by the theoretical domain. We will find that the topology is Kolmogorov and second countable, which limits the cardinality of the set of possibilities of a domain to the one of continuum. Note that these structure are indeed pervasive in science, and form the foundation for differential geometry (Riemannian and symplectic), measure theory, probability theory and many other mathematical tools already used in physics and other sciences.
+The basic idea is that science deals with verifiable statements: assertions whose truth can be tested experimentally. We study the logic of these statements, which is different from the standard Boolean logic. We then group them into experimental domains, which represent a set of verifiable statements that can be tested in an indefinite amount of time. From these we construct theoretical domains, which represent all possible predictions, and within these we find the possibilities, those predictions that determine the outcome of all possible tests. We will find that possibilities have a natural topology induced by the experimental domain and a natural $\sigma$-algebra induced by the theoretical domain. We will find that the topology is Kolmogorov and second countable, which limits the cardinality of the set of possibilities of a domain to the one of continuum. Note that these structures are indeed pervasive in science, and form the foundation for differential geometry (Riemannian and symplectic), measure theory, probability theory and many other mathematical tools already used in physics and other sciences.
 
 \section{The principle of scientific objectivity}
 
@@ -162,21 +164,21 @@ This means that science restricts itself to the study of assertions that have a 
 	The \textbf{Boolean domain} is the set $\mathbb{B} = \{\FALSE, \TRUE\}$ of all possible truth values.
 \end{defn}
 
-Next we need to define our truth bearer. In mathematical logic, this is typically a well formed formula. This cannot work for us: what we are interested in is the meaning of the assertion and not how it is expressed. For example, \statement{this animal is a dog} and \statement{questo animale \`e un cane} are the same statement express in different languages. As science is universal, it should not matter the language, units or reference system used to make an assertion. Therefore we introduce a variation of algebraic logic suited to our needs. We start by defining our truth bearer as:
+Next we need to define our truth bearer. In mathematical logic, this is typically a well formed formula. This cannot work for us: what we are interested in is the meaning of the assertion and not how it is expressed. For example, \statement{this animal is a dog} and \statement{questo animale \`e un cane} represent the same fact expressed in different languages. As science is universal, it should not matter the language, units or reference system used to make an assertion. While we will still use standard mathematical logic to run our formal system, we introduce a variation of algebraic logic to represent our ``informal'' assertions. We start by defining our truth bearer as:
 
 \begin{axiom}\label{ax_statement}
 	A \textbf{statement} $\stmt$ is an assertion that is either true or false. Formally, a statement is an element of the set $\mathcal{S}$ of all statements upon which is defined a function $\truth: \mathcal{S} \to \mathbb{B}$ that returns the truth value for each element.
 \end{axiom}
 
-Note how the first part of the definition captures the informal meaning of what we are describing, while the second part captures the part that is formalized. This pattern will be present in most of our definition and it serves to clarify both what is being formalized and how. Therefore, in science, the statement is an assertion while for the math is just an element in some set.
+Note how the first part of the definition captures the informal meaning of what we are describing, while the second part captures the part that is formalized. This pattern will be present in most of our definitions and it serves to clarify both what is being formalized and how. Therefore, in science, the statement is an assertion while for the math it is just an element in some set.
 
-While in math the truth value is the focus of the logic system, in science it is generally established experimentally. But our model may constrain certain statements or statement combination to be ruled out. For example, \statement{this animal is a dog} and \statement{this animal is a cat} can both be either true or false, but the statement \statement{this animal is a cat and a dog} can never be true. That is: the role of our logic system is not to keep track of what is true and false, but of what can't possibly be true and can't possibly be false. So we need to keep track of these relationships so that we can never have inconsistencies or paradoxes.
+While in math the truth value is the focus of the logic system, in science it is generally established experimentally. But our scientific model may constrain certain statements or statement combinations to be ruled out. For example, \statement{this animal is a dog} and \statement{this animal is a cat} can both be either true or false, but the statement \statement{this animal is a cat and a dog} can never be true. That is: the role of our logic system is not to keep track of what is true and false, but of what cannot possibly be true and cannot possibly be false. We need to keep track of these relationships so that we can never have inconsistencies or paradoxes.
 
 \begin{defn}
 	Given a collection of statements $\{\stmt_i\}^n_{i=1}$, a \textbf{consistent truth assignment} is a collection of truth values $\{t_i\}^n_{i=1}$ such that it is logically consistent to simultaneously suppose that $\truth(\stmt_i) = t_i$ for all $1 \leq i \leq n$. That is, from those assumptions it cannot be proven that $\truth(\stmt_i) \neq t_i$ for any $1 \leq i \leq n$.  This definition generalizes to the case of infinite, possibly uncountable, indexed families.
 \end{defn}
 
-Note that the truth assignments are happening in our head: they are not actual physical entities. There is only one truth value, the one found experimentally. Logical consistency is defined on the truth assignments and not on the truth value. Therefore we need a way to track whether the meaning of each statement allows it to be true or not.
+Note that the truth assignments are just hypotheticals. They are not actual physical entities. There is only one truth value, the one found experimentally. Logical consistency is defined on the truth assignments and not on the truth values. Therefore we need a way to track whether the meaning of each statement allows it to be true or not.
 
 \begin{axiom}\label{ax_possibilities}
 	The \textbf{possibilities} of a statement $\stmt$ are the possible truth values allowed by the content of the statement. Formally, on $\mathcal{S}$ is also defined a function $\possFn: \mathcal{S} \to \{\{\FALSE, \TRUE\},\{\FALSE\},\{\TRUE\}\}$ such that:
@@ -189,23 +191,23 @@ Note that the truth assignments are happening in our head: they are not actual p
 With this axiom, we can distinguish between statements that can never be true and those that just happen to be true.
 
 \begin{defn}
-	A \textbf{tautology} $\tautology$ is a statement that must be true simply because of its content. That is, $\possFn(\stmt) = \{\TRUE\}$.
+	A \textbf{tautology} $\tautology$ is a statement that must be true simply because of its content. That is, $\possFn(\tautology) = \{\TRUE\}$.
 \end{defn}
 
 \begin{defn}
-	A \textbf{contradiction} $\contradiction$ is a statement that must be false simply because of its content. That is, $\possFn(\stmt) = \{\FALSE\}$.
+	A \textbf{contradiction} $\contradiction$ is a statement that must be false simply because of its content. That is, $\possFn(\contradiction) = \{\FALSE\}$.
 \end{defn}
 
 We also need to express relationships between the truth of different statements. For example, if we assign true to \statement{this animal is a dog} then we cannot assign true to \statement{this animal is not a dog}. Therefore we introduce the following:
 
 
 \begin{axiom}\label{ax_functions_of_statement}
-	We can always construct a statement whose truth value arbitrarily depends on an arbitrary set of statements. Formally: given an arbitrary truth function $f_{\mathbb{B}} : \mathbb{B}^n \to \mathbb{B}$ there exists a function $f : \mathcal{S}^n \to \mathcal{S}$ such that
+	We can always construct a statement whose truth value arbitrarily depends on an arbitrary set of statements. Formally, given an arbitrary truth function $f_{\mathbb{B}} : \mathbb{B}^n \to \mathbb{B}$ there exists a function $f : \mathcal{S}^n \to \mathcal{S}$ such that
 	$$\truth(f(\stmt_1, ..., \stmt_n)) = f_{\mathbb{B}}(\truth(\stmt_1), ..., \truth(\stmt_n))$$
 	and the same relationship remains valid in every consistent truth assignment. This also holds in the case of infinite, possibly uncountable, arguments.
 \end{axiom}
 
-We will use the standard symbols $\NOT$, $\AND$ $\OR$ to indicate the negation (logical NOT), conjunction (logical AND) and disjunction (logical OR). With these three axioms, we can rederive all of of the rules of classical logic. First we define our equivalence.
+We will use the standard symbols $\NOT$, $\AND$, $\OR$ to indicate the negation (logical NOT), conjunction (logical AND) and disjunction (logical OR). With these three axioms, we can rederive all of the rules of classical logic. First we define our equivalence.
 
 \begin{defn}
 	Two statements $\stmt_1$ and $\stmt_2$ are \textbf{equivalent} $\stmt_1 \equiv \stmt_2$ if they must be equally true or false simply because of their content. Formally, $\stmt_1 \equiv \stmt_2$ if and only if $(\stmt_1 \AND \stmt_2) \OR (\NOT\stmt_1 \AND \NOT\stmt_2)$ is a tautology.
@@ -240,10 +242,10 @@ From this definition, one can prove that two statements are equivalent if and on
 
 One can also prove that the Boolean algebra is complete, and therefore it generalizes to the infinite case.
 
-This system not only allows to use formal classical logic while keeping the statements informal, but it also equipped to capture causal relationships.\footnote{Note that the axioms prevents any form of paradox, simply because the possibilities of a statement are never empty and a consistent truth assignment must exist. Therefore situations like \statement{this statement is not true} are ruled out simply because they cannot satisfy the axioms.} For example, $\stmt_1=$\statement{the thermometer indicator is between 24 C and 25 C} and $\stmt_s=$\statement{the temperature is between 24 C and 25 C} are equivalent because both $\stmt_1 \AND \NOT \stmt_2$ and $\NOT \stmt_1 \AND \stmt_2$ are contradictions (on the assumption that our thermometer is actually working). We can also define other semantic relationships.
+This system not only allows us to use formal classical logic while keeping the statements informal, but is also equipped to capture causal relationships.\footnote{Note that the axioms prevent any form of paradox, simply because the possibilities of a statement are never empty and a consistent truth assignment must exist. Therefore situations like \statement{this statement is not true} are ruled out simply because they cannot satisfy the axioms.} For example, $\stmt_1=$\statement{the thermometer indicator is between 24 C and 25 C} and $\stmt_2=$\statement{the temperature is between 24 C and 25 C} are equivalent because both $\stmt_1 \AND \NOT \stmt_2$ and $\NOT \stmt_1 \AND \stmt_2$ are contradictions (on the assumption that our thermometer is actually working). We can also define other semantic relationships.
 
 \begin{defn}
-	Given two statement $\stmt_1$ and $\stmt_2$, we say that:
+	Given two statements $\stmt_1$ and $\stmt_2$, we say that:
 	\begin{itemize}
 		\item $\stmt_1$ \textbf{is narrower than} $\stmt_2$ (noted $\stmt_1 \narrower \stmt_2$) if $\stmt_2$ is true whenever $\stmt_1$ is true simply because of their content. That is, $\stmt_1 \AND \NOT \stmt_2 \equiv \contradiction$.
 		\item $\stmt_1$ \textbf{is broader than} $\stmt_2$ (noted $\stmt_1 \broader \stmt_2$) if $\stmt_2 \narrower \stmt_1$.
@@ -253,7 +255,7 @@ This system not only allows to use formal classical logic while keeping the stat
 	The negation of these properties will be noted by $\nnarrower$, $\nbroader$ , $\ncomp$ respectively.
 \end{defn}
 \begin{defn}
-	The elements of a set of statements $S \subseteq \mathcal{S}$ are said to be \textbf{independent} (noted $\stmt_1 \indep \stmt_2$ for a set of two) if their content is such that any combination of their possibilities is allowed. That is, $\possFn(f(S)) = f(\bigtimes\limits_{\stmt \in S} \possFn(\stmt))$ for any truth function $f : \mathbb{B}^{|S|} \to \mathbb{B}$. The negation of independence, will be noted by $\nindep$.
+	The elements of a set of statements $S \subseteq \mathcal{S}$ are said to be \textbf{independent} (noted $\stmt_1 \indep \stmt_2$ for a set of two) if their content is such that any combination of their possibilities is allowed. That is, $\possFn(f(S)) = f(\bigtimes\limits_{\stmt \in S} \possFn(\stmt))$ for any truth function $f : \mathbb{B}^{|S|} \to \mathbb{B}$. The negation of independence will be noted by $\nindep$.
 \end{defn}
 
 For example, given the following statements:
@@ -263,7 +265,7 @@ For example, given the following statements:
 	\item $\stmt_3=$\statement{that animal is a dog}
 	\item $\stmt_4=$\statement{that animal is black}
 \end{description}
-we have the $\stmt_1$ $\narrower$ $\stmt_2$ (i.e. it is more specific), $\stmt_1$ $\ncomp$ $\stmt_3$ (i.e. they can't be true at the same time) and $\stmt_1$ $\indep$ $\stmt_4$ (i.e. the truth of one tells us nothing about the truth of the other).
+we have the $\stmt_1$ $\narrower$ $\stmt_2$ (i.e. it is more specific), $\stmt_1$ $\ncomp$ $\stmt_3$ (i.e. they cannot be true at the same time) and $\stmt_1$ $\indep$ $\stmt_4$ (i.e. the truth of one tells us nothing about the truth of the other).
 
 Another interesting result is that statement narrowness imposes a partial order on the set of all statements.
 
@@ -277,11 +279,11 @@ Another interesting result is that statement narrowness imposes a partial order 
 	and is therefore a \textbf{partial order}.
 \end{prop}
 
-As every element in our general theory will be constructed upon statements, these operations are important as they will characterize all those constructions. For example, if we quantify the precision of a set of statements, it will need to be ordered in a way that is compatible with narrowness. If we define statistical independence, it will have to be defined in a way that is compatible with statement independence. In the same way that set theory defines concepts common on all mathematics, the general theory defines basic concepts that are common to all scientific theories.
+As every element in our general theory will be constructed upon statements, these operations are important as they will characterize all those constructions. For example, if we quantify the precision of a set of statements, it will need to be ordered in a way that is compatible with narrowness. If we define statistical independence, it will have to be defined in a way that is compatible with statement independence. In the same way that set theory defines concepts common across all mathematics, the general theory defines basic concepts that are common to all scientific theories.
 
 \section{Verifiable statements and experimental domains}
 
-We have the tools for dealing with assertions that are universal and non-contradictory, now we have to develop the tools for those that areevidence based as well.
+We have the tools for dealing with assertions that are universal and non-contradictory, now we have to develop the tools for those that are evidence based as well.
 
 \begin{axiom}\label{ax_verifiable_statements}
 	A \textbf{verifiable statement} is a statement that can be shown to be true experimentally. Formally, a statement $\stmt$ is verifiable if it is part of the subset $\stmt \in \vstmtSet \subset \stmtSet$ of all verifiable statements.
@@ -290,12 +292,12 @@ We have the tools for dealing with assertions that are universal and non-contrad
 Physically, this means that we have a repeatable procedure that anybody can execute and that always gives the same result. If the statement is true, then this experimental test must terminate successfully. Note that, in general, the test may not terminate if the statement is false. Consider the following:
 \begin{enumerate}
 	\item find a swan
-	\item if it's black terminate successfully
+	\item if it is black terminate successfully
 	\item go to step 1
 \end{enumerate}
-This will terminate if a black swan is found, but it will not terminate if no black swans exist (i.e. absence of evidence is not evidence of absence). Because of non-termination, failure to verify is not verification of the negation. That is: the negation of a verifiable statement is not necessarily a verifiable statement.
+This will terminate if a black swan is found, but it will not terminate if no black swans exist (i.e. absence of evidence is not evidence of absence). Because of non-termination, failure to verify is not verification of the negation. That is, the negation of a verifiable statement is not necessarily a verifiable statement.
 
-Given two statements, though, we can verify their conjunction simply by verifying both: if they are both true, both their tests will terminate and verify the conjunction. But we cannot extend this to an infinite number of statements as we would never terminate. We can also verifying the disjunction of two statement: once one test terminates we are done. And because we only need one test to terminate, we can generalize to a countable number of verifiable statements by following this procedure:
+Given two statements, though, we can verify their conjunction simply by verifying both: if they are both true, both their tests will terminate and verify the conjunction. But we cannot extend this to an infinite number of statements as we would never terminate. We can also verify the disjunction of two statements: once one test terminates we are done. And because we only need one test to terminate, we can generalize to a countable number of verifiable statements by following this procedure:
 \begin{enumerate}
 	\item initialize $n$ to 1
 	\item for each $i=1..n$
@@ -305,7 +307,7 @@ Given two statements, though, we can verify their conjunction simply by verifyin
 	\end{enumerate}
 	\item increment $n$ and go to step 2
 \end{enumerate}
-This procedure will run all tests for an arbitrary amount of time therefore, if one statement is true, it will make the test terminate successfully, even if all other tests would never terminate. In light of this, we can set the following axioms.
+This procedure will run all tests for an arbitrary amount of time. Therefore, if one statement is true, it will make the test terminate successfully, even if all other tests would never terminate. In light of this, we can set the following axioms.
 
 \begin{axiom}\label{ax_verifiable_AND}
 	The conjunction of a finite collection of verifiable statements is a verifiable statement. Formally, let $\{\stmt_i\}_{i=1}^{n} \subseteq \vstmtSet$ be a finite collection of verifiable statements. Then the conjunction $\bigAND\limits_{i=1}^{n} \stmt_i \in \vstmtSet$ is a verifiable statement.
@@ -328,13 +330,13 @@ We could also define decidable statements as those for which falsehood can also 
 	\caption{Comparing algebras of statements.}
 \end{table}
 
-Now that we can verify statements one by one, we need to define what it means to verify a group of them. In principle, given a set of verifiable statements we can simply start testing them one after the other. However, if we are given a set of uncountable statements than, even if we have an indefinitely long time at our disposal, we will not be able to create a procedure that eventually tests all statements. However, we may not need to actually run all tests for all statements. For example, if we found that $\stmt_1$ is true then there is no need to test any of its disjunctions like $\stmt_1 \OR \stmt_2$.
+Now that we can verify statements one by one, we need to define what it means to verify a group of them. In principle, given a set of verifiable statements we can simply start testing them one after the other. However, if we are given a set of uncountable statements then, even if we have an indefinitely long time at our disposal, we will not be able to create a procedure that eventually tests all statements. However, we may not need to actually run all tests for all statements. For example, if we found that $\stmt_1$ is true then there is no need to test any of its disjunctions like $\stmt_1 \OR \stmt_2$.
 
 \begin{defn}
 	Given a set $\edomain$ of verifiable statements, $\basis \subseteq \edomain$ is a \textbf{basis} if the truth values of $\basis$ are enough to deduce the truth values of the set. Formally, all elements of $\edomain$ can be generated from $\basis$ using finite conjunction and countable disjunction.
 \end{defn}
 
-Therefore it is the size of the basis, then, that matters and not the size of the set. If the basis is countable we can keep going and, if any statement is true, it will eventually be verified experimentally.\footnote{We assume we are given an indefinitely long time that because it's the upper limit, because it handles limits and because we haven't given constraints for how long or short a successful test can be (i.e. if ran a test for three days it may still successfully complete in three days and one minute).}
+Therefore it is the size of the basis that matters and not the size of the set. If the basis is countable we can keep going and, if any statement is true, it will eventually be verified experimentally.\footnote{We assume we are given an indefinitely long time because this handles limits and because we have not given constraints for how long or short a successful test can be (i.e. if we ran a test for three days without terminating, it may still successfully complete in three days and one minute).}
 
 \begin{defn}
 	An \textbf{experimental domain} $\edomain$ represents all the experimental evidence that can be acquired about a scientific subject in an indefinite amount of time. Formally, it is a set of statements, closed under finite conjunction and countable disjunction, that includes precisely the tautology, the contradiction, and a set of verifiable statements that can be generated from a countable basis.
@@ -344,45 +346,43 @@ These axioms and definitions formally characterize what we mean by evidence base
 
 \section{Theoretical domains and possibilities}
 
-While verifiable statements define what can be scientifically studied, not all predictions are themselves verifiable. Consider the two statements \statement{there exists extra-terrestrial life} and \statement{there is no extra-terrestrial life}. We can verify the first if we happen to find signs of life somewhere, but experimentally verifying the second is practically impossible. Yet, the second is still meaningful as a prediction: it predicts that the test for the first will never terminate. That is: while negations are not verifiable we can still logically talk about them when, for example, constructing truth assignments.
+While verifiable statements define what can be scientifically studied, not all interesting scientific statements are directly verifiable. Consider the two statements \statement{there exists extra-terrestrial life} and \statement{there is no extra-terrestrial life}. We can verify the first if we happen to find signs of life somewhere, but experimentally verifying the second is practically impossible. Yet, the second is still meaningful as a prediction: it predicts that the test for the first will never terminate. That is, while negations are not verifiable we can still logically talk about them when, for example, constructing truth assignments.
 
 \begin{defn}
 	The \textbf{theoretical domain} $\tdomain$ of an experimental domain $\edomain$ is the set of statements that we can use to state predictions, which is constructed from $\edomain$ by allowing negation. We call \textbf{theoretical statement} a statement that is part of a theoretical domain. More formally, $\tdomain$ is the set of all statements generated from $\edomain$ using negation, finite conjunction and countable disjunction.
 \end{defn}
 
-Note that the new statements provide no new information. In fact, all statements in the theoretical domain $\tdomain$ can be generated by negation, countable conjunction and countable disjunction from a basis $\basis$ of $\edomain$. As they provide all possible predictions, we focus on the ones that completely specify the truth value for all theoretical statements. For example, once we know that \statement{this animal is a cat} we know that \statement{this animal has whiskers}, that \statement{this animal has no feathers}and so on.
+Note that the new statements provide no new information. In fact, all statements in the theoretical domain $\tdomain$ can be generated by negation, countable conjunction and countable disjunction from a basis $\basis$ of $\edomain$. As they provide all possible predictions, we focus on the ones that completely specify the truth value for all theoretical statements. For example, once we know that \statement{this animal is a cat} we know that \statement{this animal has whiskers}, that \statement{this animal has no feathers} and so on.
 
 \begin{defn}
 	A \textbf{possibility} for an experimental domain $\edomain$ is a statement $x \in \tdomain$ that, when true, determines the truth value for all statements in the theoretical domain. Formally, $x \nequiv \contradiction$ and for each $\mathsf{s} \in \tdomain$, either $x \narrower \mathsf{s}$ or $x \ncomp \mathsf{s}$. The \textbf{possibilities} $X$ for $\edomain$ are the collection of all possibilities.
 \end{defn}
 
-The possibilities are all the different cases that can be distinguished experimentally given the verifiable statements of the domain. If we increase or otherwise change the set of verifiable statements (e.g. we learn how to test the DNA of animals) then the possibilities will change as well (e.g. the possible animal species is refined). We conclude this section with the following general result.
+The possibilities are all the different cases that can be distinguished experimentally given the verifiable statements of the domain. If we increase or otherwise change the set of verifiable statements (e.g. we learn how to test the DNA of animals) then the possibilities will change as well (e.g. the possible animal species are refined). We conclude this section with the following general result.
 
 \begin{thrm}
 	The possibilities $X$ for an experimental domain $\edomain$ have at most the cardinality of the continuum.
 \end{thrm}
 
-The proof is simply noting that each possibility can be labeled by the truth value of the countable basis of the experimental domain. We cannot have more possibilities than sequences of true/false and the set of all binary sequences has the cardinality of continuum.
+The proof is simply noting that each possibility can be labeled by the truth value of the countable basis of the experimental domain. We cannot have more possibilities than sequences of true/false and the set of all binary sequences has the cardinality of the continuum.
 
 This means that we are never going to be able to experimentally distinguish between elements of greater cardinality. The set of discontinuous functions from $\mathbb{R}$ to $\mathbb{R}$, for example, has greater cardinality and therefore it will never be associated with any physically distinguishable concept. All the issues with large cardinals are not something science will ever be interested in. It does not matter what system we are describing, what experimental techniques we are using or how clever we are.
 
 \section{Topologies and sigma-algebras}
 
-Now that we have introduced the basic mathematical structures for our general theory, we show that their deep connection to other well established mathematical structures.
-
-We first note that each verifiable statement can be written as the disjunction of a set of possibilities.
+Now that we have introduced the basic mathematical structures for our general theory, we show their deep connection to other well established mathematical structures. We first note that each verifiable statement can be written as the disjunction of a set of possibilities.
 
 \begin{defn}
-	Let $\edomain$ be an experimental domain and $X$ its possibilities. We define the map $U : \edomain \rightarrow 2^X$ that for each statement $\obs \in \edomain$ returns the set of possibilities compatible with it. That is: $U(\obs)\equiv\{ x \in X \, | \, x \comp \obs\}$. We call $U(\obs)$ the \textbf{verifiable set} of possibilities associated with $\obs$.
+	Let $\edomain$ be an experimental domain and $X$ its possibilities. We define the map $U : \edomain \rightarrow 2^X$ that for each statement $\obs \in \edomain$ returns the set of possibilities compatible with it. That is, $U(\obs)\equiv\{ x \in X \, | \, x \comp \obs\}$. We call $U(\obs)$ the \textbf{verifiable set} of possibilities associated with $\obs$.
 \end{defn}
 
 \begin{prop}
 	A statement $\obs \in \edomain$ is the disjunction of the possibilities in its verifiable set $U(\obs)$. That is, $\obs=\bigOR\limits_{x \in U(\obs)} x$.
 \end{prop}
 
-The proof is a trivial application of the disjunction normal form of Boolean algebra. In fact, each possibility can be written as a minterm of a basis (i.e. a conjunction where each basis element appears only once either negated or not). Any verifiable statement can be expressed in terms of the basis, and it is a result of Boolean algebra that each logical expression can be formulated as a disjunction of minterms (i.e. an OR of ANDs). Intuitively, it is the disjunction of all cases in which the statement is true.
+The proof is a trivial application of the disjunctive normal form of Boolean algebra. In fact, each possibility can be written as a minterm of a basis (i.e. a conjunction where each basis element appears only once either negated or not). Any verifiable statement can be expressed in terms of the basis, and it is a result of Boolean algebra that each logical expression can be formulated as a disjunction of minterms (i.e. an OR of ANDs). Intuitively, it is the disjunction of all cases in which the statement is true.
 
-Since every statement is a set of possibilities, we can re-express the statement relationships in terms of sets according to this table:
+Since every statement is a set of possibilities, we can re-express the statement relationships in terms of set relationships according to this table:
 
 \begin{table}[h]
 	\centering
@@ -400,15 +400,13 @@ Since every statement is a set of possibilities, we can re-express the statement
 	\caption{Correspondence between statement operators and set operators.}
 \end{table}
 
-The closure of an experimental domain under finite conjunction and countable disjunction becomes closure under finite intersection and countable union. Since the basis is countable, countable union is equivalent to arbitrary union. In other words: the set of all verifiable sets is a topology.
+The closure of an experimental domain under finite conjunction and countable disjunction becomes closure under finite intersection and countable union. Since the basis is countable, countable union is equivalent to arbitrary union. In other words, the set of all verifiable sets is a topology.
 
 \begin{thrm}
 	Let $X$ be the set of possibilities for an experimental domain $\edomain$. $X$ has a natural topology given by the collection of all verifiable sets $\mathsf{T}_X=U(\edomain)$ that is Kolmogorov and second countable.
 \end{thrm}
 
-The topology is Kolmogorov (i.e. $T_0$) because given two possibilities, by their construction, there must be one element of the basis that is compatible with one but not the other. It is second countable because a basis of the experimental domain corresponds to a sub-basis of the topology.
-
-One can also show that the natural topology is Hausdorff if and only if all possibilities are approximately verifiable (i.e. each possibility is the limit of a sequence of verifiable statements). The hope is that we can find physically meaningful definitions for all topological concepts.
+The topology is Kolmogorov (i.e. $T_0$) because given two possibilities, by their construction, there must be one element of the basis that is compatible with one but not the other. It is second countable because a basis of the experimental domain corresponds to a sub-basis of the topology. One can also show that the natural topology is Hausdorff if and only if all possibilities are approximately verifiable (i.e. each possibility is the limit of a sequence of verifiable statements). The hope is that we can find physically meaningful definitions for all relevant topological concepts.
 
 In the same way, the theoretical domain corresponds to a $\sigma$-algebra on the possibilities.
 
@@ -439,24 +437,47 @@ Then it can be shown that:
 	Given an experimental domain $\edomain_X$, the set of possibilities with their natural topology is homeomorphic to the reals with the standard topology if and only if the domain allows arbitrary precision.
 \end{thrm}
 
-This can be proven by showing that each possibility is equivalent to a class of Cauchy sequences, which corresponds to a real number. Each open interval corresponds to a finite precision measurement. The possibilities are not themselves verifiable statements: we cannot measure a continuous quantity with infinite precision. But it is a theoretical statement: we can use the value to predict which finite precision measurement will be verified (the ones that contain that value).
+This can be proven by showing that each possibility is associated to an equivalence class of Cauchy sequences, which corresponds to a real number. Each open interval corresponds to a finite precision measurement. The possibilities are not themselves verifiable statements: we cannot measure a continuous quantity with infinite precision. But it is a theoretical statement: we can use the value to predict which finite precision measurements will be verified (the ones that contain that value).
 
-This connection creates a strong bridge between the standard mathematical structures used in physics and their meaning. Every theorem, every proof now has a consistent and direct physical meaning. And given the foundational nature of topologies and $\sigma$-algebra, we have hope to extend this framework to measure theory, differential geometry, symplectic geometry, Riemannian geometry, probability theory and so on.
+This connection creates a strong bridge between the standard mathematical structures used in physics and their meaning. Every theorem, every proof on those structures can now be given a direct physical meaning as well. And given the foundational nature of topologies and $\sigma$-algebras, we hope to extend this framework to measure theory, differential geometry, symplectic geometry, Riemannian geometry, probability theory and so on.
 
 \section{Conclusion}
 
-The general theory presented in this paper can be quickly summarized as follows. Science deals with statements that can be shown to be true experimentally. A scientific domain (i.e. an experimental domain) will be defined by a set of verifiable statements. From these we construct the set of all possible predictions (i.e. the theoretical domain), and concentrate on those that fully predict all our measurements, the possibilities. By the very nature and properties of these objects, a topology and a $\sigma$-algebra is induced on the possibilities that retains the connection to what statements are verifiable and what statements constitute a valid prediction.
+The general theory presented in this paper can be briefly summarized as follows. Science deals with statements that can be shown to be true experimentally. A scientific domain (i.e. an experimental domain) will be defined by a set of verifiable statements. From these we construct the set of all possible predictions (i.e. the theoretical domain), and concentrate on those that fully predict all our measurements, the possibilities. By the very nature and properties of these objects, a topology and a $\sigma$-algebra is induced on the possibilities that retains the connection to which statements are verifiable and which statements constitute a valid prediction.
 
-The framework can be further be expanded by studying how additional assumptions constrain the verifiable statements. We have seen, for example, how assuming a quantity can be measured with arbitrary precision leads to the real numbers with standard topology. Similarly, other assumptions will lead to other mathematical structures. This expansion is the aim of current and future work.
+The framework can be further expanded by studying how additional assumptions constrain the verifiable statements. We have seen, for example, how assuming a quantity can be measured with arbitrary precision leads to the real numbers with the standard topology. Similarly, other assumptions will lead to other mathematical structures. This expansion is the aim of future work.
 
 One benefit of the general theory is to bring to the forefront our hidden assumptions. We have seen that real numbers are associated with arbitrary precision. What happens in the case of limited precision, when we cannot assume precision can always be increased indefinitely? Would we still have real numbers? Would we be justified to use smooth manifolds or would we need an entirely different topological structure?
 
-The other benefit is that requires no interpretation. All mathematical definition are capturing a well defined physical concept. Therefore every theorem, every step in every proof will also have a well defined physical meaning. Since we know what we have put in, we know what comes out.
+The other benefit is that no interpretation is required. All mathematical definitions are capturing well defined physical concepts. Therefore every theorem, every step in every proof will also have a well defined physical meaning.
 
-We feel that this type of work is of significance importance for the scientific community in general and for the physics community in particular if we are ever to truly understand what scientific theories are and what are they meant to be describing.
+We feel that this type of work is of significance for the scientific community in general and for the physics community in particular if we are ever to truly understand what scientific theories are meant to be describing.
 
 
 
 \bibliography{bibliography}
+
+\begin{thebibliography}{1}
+	
+	\bibitem{Turing}
+	A. M. Turing: On Computable Numbers, with an Application to the Entscheidungsproblem". Proceedings of the London Mathematical Society 2, 42: 230–265, doi:10.1112/plms/s2-42.1.230, 1936. 
+	
+	\bibitem{Sipser} M. Sipser: An Introduction to the Theory of Computation, 3rd edition. Cengage Learning, Boston, USA, 2013.
+	
+	\bibitem{Shannon} C.E.Shannon: A Mathematical Theory of Communication. The Bell System Technical Journal,
+	Vol. 27, pp. 379–423, 623–656, July, October, 1948.
+	
+	\bibitem{Pierce} J.R. Pierce: An Introduction To Information Theory: Symbols, Signals and Noise. Dover Books on Mathematics, Second Edition, 1980.
+	
+	\bibitem{Brogan} W. L. Brogan: Modern Control Theory, 3rd edition. Pearson, 1990. 	
+	
+	\bibitem{Kalman} R. E. Kalman: A new approach to linear filtering and prediction problems. Journal of Basic Engineering. 82 (1): 35–45, doi:10.1115/1.3662552, 1960.
+	
+	\bibitem{Carc1} G. Carcassi, C. A. Aidala, D. J. Baker and L. Bieri: From physical assumptions to classical and quantum Hamiltonian and Lagrangian particle mechanics. Journal of Physics Communications, 2, 4, 045026, 2018.
+	
+	\bibitem{Carc2} C. A. Aidala, G. Carcassi, M. J. Greenfield: Topology and experimental distinguishability. arXiv:1708.05492
+	
+	\bibitem{Carc3} G. Carcassi, C. A. Aidala: Assumptions of Physics, v0.1. http://assumptionsofphysics.org/book/, Ann Arbor, MI, USA, 2018.
+\end{thebibliography}
 
 \end{document}
