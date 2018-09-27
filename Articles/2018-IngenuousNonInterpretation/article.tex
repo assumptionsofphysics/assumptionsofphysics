@@ -1,0 +1,254 @@
+\documentclass[letterpaper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=0.5in]{geometry}
+
+% Temporary to remove "submitted to"
+\makeatletter
+\def\ps@pprintTitle{%
+	\let\@oddhead\@empty
+	\let\@evenhead\@empty
+	\def\@oddfoot{}%
+	\let\@evenfoot\@oddfoot}
+\makeatother
+
+\usepackage{lineno,hyperref}
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
+
+\newenvironment{rationale}{\emph{Rationale}.}{\qed}
+\newenvironment{justification}{\emph{Justification}.}{\qed}
+\renewenvironment{proof}{\emph{Proof}.}{\qed}
+
+
+\theoremstyle{plain}% default 
+\newtheorem{thrm}{Theorem}[section] 
+\newtheorem{prop}[thrm]{Proposition} 
+\newtheorem{coro}[thrm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thrm]{Definition}
+\newtheorem{axiom}[thrm]{Axiom}
+\newtheorem*{principle*}{Principle of scientific objectivity}
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+
+% Remove line spaces between items of enumerate and itemize
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+
+% LOGIC symbols
+% -------------
+
+% Allows to create negation symbols
+\usepackage{MnSymbol}
+
+\DeclareMathOperator{\truth}{truth}
+\DeclareMathOperator{\possFn}{poss}
+\DeclareMathOperator{\result}{result}
+\DeclareMathOperator{\idFn}{id}
+
+\def\TRUE{\textsc{true}}
+\def\FALSE{\textsc{false}}
+
+\def\SUCCESS{\textsc{success}}
+\def\FAILURE{\textsc{failure}}
+\def\UNDEF{\textsc{undefined}}
+
+% Symbols for statements set
+\def\stmtSet{\mathcal{S}}
+\def\vstmtSet{\mathcal{S}_\textsf{v}}
+\def\dstmtSet{\mathcal{S}_\textsf{d}}
+
+
+% Symbols for tautology and contradiction
+\def\tautology{\top}
+\def\contradiction{\bot}
+
+% Symbols for "compatibility" and "incompatibility"
+\def\comp{\doublefrown}
+\def\ncomp{\ndoublefrown}
+
+% Symbols for "narrower" and "wider"
+\def\narrower{\preccurlyeq}
+\def\nnarrower{\npreccurlyeq}
+\def\broader{\succcurlyeq}
+\def\nbroader{\nsucccurlyeq}
+
+
+% Symbol for "independent" and "correlated"
+\def\indep{\upmodels}
+\def\nindep{\nupmodels}
+
+% Aliases for logical operations
+\def\AND{\wedge}
+\def\bigAND{\bigwedge}
+\def\OR{\vee}
+\def\bigOR{\bigvee}
+\def\NOT{\neg}
+
+
+% Formatting for statements
+\newcommand{\stmt}[1][s] {\mathsf{#1}}
+% Formatting for experimental tests
+\newcommand{\expt}[1][e] {\mathsf{#1}}
+\newcommand{\exptSet}{\mathcal{E}}
+% Formatting for observations
+\newcommand{\obs}[1][s] {\mathsf{#1}}
+% Formatting for possibilities
+
+% Formatting for experimental domain
+\newcommand{\edomain}[1][D] {\mathcal{#1}}
+
+% Formatting for theoretical domain
+\newcommand{\tdomain}[1][D] {\bar{\mathcal{#1}}}
+
+\newcommand{\basis}[1][B] {\mathcal{#1}} % Basis
+
+% Formatting for experimental relationships
+\newcommand{\erel}[1][r] {#1}
+
+% Formatting for sentence statements
+\newcommand{\statement}[1] {\emph{``#1''}}
+
+
+
+\begin{document}
+
+\title{The ingenuous non-interpretation of quantum mechanics}
+\author{Gabriele Carcassi, Christine A. Aidala \\ University of Michigan}
+
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+	...
+\end{abstract}
+
+
+%\linenumbers
+
+\section{Introduction}
+
+This paper is part of a larger effort, called Assumptions of Physics, which aims at rederiving the known laws of physics from a handful of physical ideas. 
+
+Disjointness of physics. Open problems (quantum interpretation, )
+
+The idea is to create a framework We believe that many fundamental problems in physics cannot be solved without first creating a 
+
+
+\section{States and equilibrium}
+
+The first question we ask is: what is the minimum requirement to be able to define the state of a system?
+
+At the very least, the system must exist for a finite amount of time. For example, for a book to be a book the temperature of the surrounding air must be less than 233 Celcius or what we'd have is a pile of ash. While the earth revolves around the sun, the gravitational forces are such that they keep it together. We can study the acceleration of a muon only if it doesn't decay in the meantime.
+
+All physical systems, galaxies, stars, planets, continents, materials, molecules, atoms, fundamental particles, exist in so far that the environment ``let's them be what they are". That is, there is an underlying process, of a faster time scale than our measurements, with which our system is at an equilibrium for at least a finite amount of time.
+
+As states are in equilibrium with such process, if we apply the same process twice we get the same result. If we limit the input for process to be the same space of states it outputs, than if $\mathcal{S}$ is the state space, the process $P : \mathcal{S} \to \mathcal{S}$ is such that $P^2 = P$. That is: it is a projection. For an equilibrium state of that process we have $P(\mathsf{s}) = \mathsf{s}$. That is: it is an eigenstate of that projection operator. So, in order to have states, we also must have projection operators such that the states are eigenstates of that operator.\footnote{Technically, the state space here should be the space of statistical distributions over the possible states. This particular paper aims to give a conceptual understanding of our other more mathematically rigorous work.}
+
+So, without any references to quantum mechanics, observers and the like, we see already the need for projections. These are simply physical processes that have equilibrium. Yes, an experimental physicist may decide to force one system to go through such processes, that's what we do, but the physical process does what it does: projects to an equilibrium state. Why shouldn't we just take the projections in quantum mechanics be these process?
+
+For example, we have an hydrogen atom in equilibrium. We send a photon which is absorbed, making the electron go out of equilibrium. Then it emits a lower energy photon and goes to another state of equilibrium, a higher energy orbital. But that equilibrium is metastable and short lived, the electron emits another photon and goes to the ground state, it's stable equilibrium. Or we have a muon, another metastable equilibrium, which at some point decays into an electron and pair of neutrino/anti-neutrino, a more stable equilibrium.
+
+Since any measurement is, in the end, implemented by a physical process, it's a sequence of emission, decays or scattering of particles. And given that the output of our measurement is going to be the state of something that we can look at over and over, it will also be a projection. That is, we don't need any ad-hoc concept: we just need to realize that a measurement is an equilibrium state of some process.\footnote{Technically, the projection is be defined on the final states which may be different from the states of the system. Mathematically, we can always pull back the projection in the space of states.}
+
+Conceptually, what happens during a projection for a quantum system is the same as when we put hydrogen and oxygen together to make water. The system goes out of equilibrium, so it cannot be described in terms of hydrogen, oxygen and water anymore, then it settles and we can again specify the state of the system based on how much hydrogen, oxygen and water is there. The difference is that in that case we can get a better picture if the state is defined in terms of atoms, which remain what they are during the chemical reaction.
+
+In other words, we can often describe a system out of equilibrium in terms of components which remain withing their own equilibrium. This is something we don't seem to be able to do with quantum systems. Let's look at the relationship between system and subsystems in more detail.
+
+\section{System, subsystems and reducibility}
+
+The second question that we need to explore, then, is: do quantum systems have parts?
+
+Consider a muon: at some point it will decay into an electron and a neutrino-antineturino pair. Consider an electron entering a calorimeter: it will cascade into a shower of electron-positron pairs. In all these cases, everything else stays the same except the original particle is not there anymore and, in its place, there are multiple particles whose total energy is the energy of the original one. The energy/mass of the incoming particle was split into the resulting ones. How would this be possible if the incoming particle wasn't made of parts?
+
+The confusion is between \textit{divisibility}, the idea we have a process such that at the end there are two systems instead of one, and \textit{reducibility}, the idea that at the same time we can describe the system as made of two parts.
+
+Take a planarian flatworm. We can cut into two and from each side a new worm will grow. But a single worm is not made of two worms. That is, the planarian flatworm is divisible into two worms but is not reducible to them. Now take a magnet. We can think of it as made of a north and a south pole. But if we try to break them apart, we get two full magnets. That is, the magnet is reducible into a north and a south pole but is's not divisible into them.
+
+In the same way, we saw that a muon decays into three particle, but it's not made by them. The muon is divisible but not reducible to those particles. Conversely, a proton is thought to be made of quarks and gluons, but we cannot divide it into isolated quarks and gluons. The proton is reducible but not divisible into its constituents.
+
+Therefore there is nothing inconsistent in assuming a system to have parts but not being able to assign them a state. We have cases where whole and parts both have states (e.g. a water molecule and its atoms), cases where only parts have states (e.g. atoms during a chemical reaction) and now cases where only the whole has states (e.g. an electron). Again, we do not need new concepts: just another permutation on the old ones.
+
+If even quantum systems have parts, then, a state will always in some way tell us something about those parts. At the very minimum, if the system is not within a region then neither are its parts. The state of the system may contain the full state of the parts or only a partial description. But it will have to be, in general, some kind of distribution.
+
+The state of a quantum system is, in fact, identified by a wavefunction, which is a type of distribution. What about a classical system?
+
+Again, there may be some confusion here. Some may think that the state of a classical system is defined only by position and momentum, and therefore is not a distribution. Consider the type of systems one describes with classical mechanics: beads, planes, planets. These are not point-like systems: the state can be described just by the position and momentum of the center of mass only in those cases where the physical extent can be ignored. If the orbit of a satellite, for example, would be such that it's distance from the center of the earth is less than its radius, the point particle approximation would fail. That is, in general the state of the system is a distribution $\rho(q^i,p_i)$ in phase space and, when the distribution vanishes outside of a small region where the force is constant, we can just study the center of mass. But this is true for quantum system as well.\footnote{This is Ehrenfest's theorem} Point particles, then, are approximations that can be applied to any sytem.
+
+The parallel between classical states and quantum states is between distributions in phase space and wave functions. But what type of distributions do we have?
+
+This is again a source of confusion as there are three types. The first type describes our propensity to believe that some part has some characteristic. It is subjective in the sense that we may believe different things about the same system. The second type describes the probability to find that some part has some characteristic. It is objective in the sense that the probability is the same for everybody, though it may depend on how the distribution is defined. The third type describes what fraction of the system at that time has some characteristic. It is objective in the sense that it is an actual physical distribution. Which type do we have?
+
+There is actually a tell sign: an element of the distribution of the first two types can be described in isolation. Suppose there is a 50\% probability (or credence) that the system has positive charge, we can study the evolution of the system without worrying about the remaining 50\%. However, if 50\% of the system is positively charged, it will matter whether the remaining 50\% will be neutrally or negatively charged: the trajectories will change.
+
+If we have a classical distribution $\rho(q^i,p_i)$, this will at least self-interact through gravitation. Then it cannot be anything else but an actual physical distribution. If we have a wave-function $\psi(q^i)$, we know that one part may interfere with another and therefore self-interact. Wouldn't it make sense, at this point, to say it must be an actual physical distribution itself? Quite frankly, it seems to us it's the only physically reasonable position.
+
+In this view, which again we believe is not so avoidable, classical and quantum systems are not that different: they are both physical distributions of matter/energy.\footnote{The fact that Hamiltonian mechanics and quantum mechanics have a similar structure is already well known. In our work we show, for example, that classical systems conserve entropy and therefore obey an analogue of the uncertainty principle. There also exists a classical analogue for anti-particles.} We use the same concepts to understand them, the standard ideas of parts and equilibrium we have always had in physics. The only difference is what the distribution can tell us about the parts. A classical system is assumed to be infinitesimally reducible: the state of the whole is equivalent to the states of all infinitesimal parts. A quantum system is irreducible: the state of the whole does not tell us the state of the parts and their internal dynamics.\footnote{In out previous work we showed how these assumptions are enough to recover the mathematical frameork of classical Hamiltonian mechanics on one side and quantum mechanics on the other.}
+
+\section{Quantum systems}
+
+Now that we have seen the basics, we can get to our final question: how are these simple ideas responsible for all quantum effects?
+
+First we note that the inability to characterize the internal structure, the inability to interact with only one part of the system or to prepare it as desired, and the idea that the process under which the quantum system is stable keeps reshuffling its parts are all equivalent: they are restatements of the idea that the system is irreducible. The distribution of the parts remains the same, thus we can define the state for the whole, but the parts keep being reshuffled chaotically, thus we cannot define the state for the parts.\footnote{In classical mechanics, instead, they simply would stay what they were} This is the picture we should have in our head, and with it it becomes straight forward to understand the nature of the different quantum effects.
+
+Uncertainty principle. Here it means that, when we prepare our system, we cannot arbitrarily shrink the distribution in both position and momentum. That is, it's not just a mere uncertainty on what is measure but the inability to prepare a system with a desired precision.\footnote{In both Italian and Spanish it is called indetermination principle, which is more accurate.} This can directly be understood from the fact that we cannot prepare the parts as desired. If we were able to narrow the distribution as we please, we would also be able to control the parts as we please. Another way to see this is that we cannot prepare the parts with better precision than the continuous chaotic reshuffling allows.
+
+Wave particle duality. The wave nature of a quantum corresponds to the distribution of the parts while the particle nature corresponds to the state being defined on the whole. As the state will always be a distribution (e.g. it will be spread in space) so it will always act as a unit (e.g. it cannot be half-absorbed or half-emitted). The idea is that while the motion of each part is chaotic, it is correlated to the motion of all the other parts of the system.
+
+Use of statistics. As the internal dynamics is chaotic, it is natural that statistics plays an important role in quantum mechanics.
+
+Interference patterns. As to parts of the same system start to overlap, so will their chaotic internal dynamics. These will combine as random processes do: depending on their correlation. The more they are correlated, the stronger the combined process. The more they are anti-correlated, the weaker the combined process. Recall how the variance of random variable combines: $\sigma^2_{X+Y} = \sigma^2_{X} + \sigma^2_{Y} + 2 \, \sigma_{X} \sigma_{Y} \rho_{X,Y}$ where $\sigma^2$ is the variance, $\sigma$ the standard deviation, and $\rho_{X,Y}= COV(X,Y)/\sigma_{X}\sigma_{Y}$ is the Pearson correlation coefficient which is a value between $-1$ and $1$. Note how we can use complex numbers to represent the same relationship: $|c_1+c_2|^2=|c_1|^2 + |c_2|^2 + 2 |c_1||c_2|\cos(\arg(c_2) - \arg(c_1))$. The cosine of the phase difference represents the Pearson correlation coefficient.
+
+Exponential decay. If we assume that an isolated quantum particle can decay into multiple ones, we have to assume that such a decay is non-deterministic: we cannot have a one-to-one map between spaces of different dimension. The cause, then, is not just the state of the whole system. As the system is isolated, the only other obvious element that can play a part is the chaotic internal dynamics. Something inside causes to abandon the metastable equilibrium and find a new one, thus the particle decay. Since the internal dynamics is partly to blane, and we have no way of probing the internal dynamics, the probability of decays has to be constant over time. Thus, the time distribution for the decay is exponential.
+
+Non locality. As the system is distributed and as we cannot interact with part of it, interaction with a part of one location is also an interaction on the other location. We can image that while we interact in one location only, the effect on the other location is only mediated through the chaotic internal dynamics, so it cannot establish links of cause and effect, and therefore it cannot be used to transmit information.
+
+Entanglement. As we saw before, to be able to define the state of two systems separately we must have that each is in its own equilibrium. That is, the chaotic internal dynamics of one is independent of the other. Suppose, instead, they are correlated. Then they would act as a single system: they would be entangled. As such, they will display all the characteristics of a single quantum system. When the entanglement is broken, the internal dynamics become independent.
+
+In other words: we can intuitively justify all quantum phenomena. We can do so without introducing any weird or ad-hoc explanation. We are simply talking about 
+
+
+
+
+\section{Conclusion}
+
+
+\section{Acknowledgments}
+
+\bibliography{bibliography}
+
+\begin{thebibliography}{1}
+	
+	\bibitem{Turing}
+	A. M. Turing: On Computable Numbers, with an Application to the Entscheidungsproblem". Proceedings of the London Mathematical Society 2, 42: 230–265, doi:10.1112/plms/s2-42.1.230, 1936. 
+	
+	\bibitem{Sipser} M. Sipser: An Introduction to the Theory of Computation, 3rd edition. Cengage Learning, Boston, USA, 2013.
+	
+	\bibitem{Shannon} C. E. Shannon: A Mathematical Theory of Communication. The Bell System Technical Journal,
+	Vol. 27, pp. 379–423, 623–656, July, October, 1948.
+	
+	\bibitem{Pierce} J. R. Pierce: An Introduction To Information Theory: Symbols, Signals and Noise. Dover Books on Mathematics, Second Edition, 1980.
+	
+	\bibitem{Brogan} W. L. Brogan: Modern Control Theory, 3rd edition. Pearson, 1990. 	
+	
+	\bibitem{Kalman} R. E. Kalman: A new approach to linear filtering and prediction problems. Journal of Basic Engineering. 82 (1): 35–45, doi:10.1115/1.3662552, 1960.
+	
+	\bibitem{Carc1} G. Carcassi, C. A. Aidala, D. J. Baker and L. Bieri: From physical assumptions to classical and quantum Hamiltonian and Lagrangian particle mechanics. Journal of Physics Communications, 2, 4, 045026, 2018.
+	
+	\bibitem{Carc2} C. A. Aidala, G. Carcassi, M. J. Greenfield: Topology and experimental distinguishability. arXiv:1708.05492, 2017.
+	
+	\bibitem{Carc3} G. Carcassi, C. A. Aidala: Assumptions of Physics (in preparation). http://assumptionsofphysics.org/book/, Ann Arbor, MI, USA, 2018.
+\end{thebibliography}
+
+\end{document}
