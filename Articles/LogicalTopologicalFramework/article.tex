@@ -192,57 +192,70 @@ The main reason we cannot use traditional logic and formal languages is that we 
 
 \subsection{Building the collection of statements}
 
-\begin{defn}
-A \emph{statement} is an object with a truth value, ascertained by a truth function outputting a Boolean, and logical content, defined by satisfying the Consistency Axiom (\ref{consistent}) and the Completeness Axiom (\ref{completeness}). The set of all statements is denoted $\mathcal{S}$. The truth function is denoted $\truth:\mathcal{S}\to\mathbb{B}$.
-\end{defn}
+We begin the axiomatization of our universe of scientific statements by declaring existence of our collection. Following this, the special properties of its elements are built up. 
+
+\begin{axiom}[Existence Axiom]
+There exists a collection $\mathcal{S}$ of \emph{statements} whose properties are as follows. Each $\stmt\in\mathcal{S}$ is an object with a truth value, ascertained by a truth function outputting a Boolean, and logical content, defined by satisfying the Consistency Axiom (\ref{consistent}) and the Completeness Axiom (\ref{completeness}). The set of all statements is denoted $\mathcal{S}$. The truth function is denoted $\truth:\mathcal{S}\to\mathbb{B}$.
+\end{axiom}
 
 \begin{axiom}[Consistency Axiom]
 \label{consistent}
 Given a collection of statements $\{\stmt_{\lambda}\}_{\lambda\in\Lambda}$ for some (possibly uncountable) index set $\Lambda$, and given a set of truth values $\{t_{\lambda}\}_{\lambda\in\Lambda}$, where each $t_{\lambda}\in\mathbb{B}$, one can ascertain whether simultaneously supposing $\truth(\stmt_{\lambda}) = t_{\lambda}$ for all $\lambda\in\Lambda$ is a logically \emph{consistent truth assignment}. This is independent of the actual truth values of the statements. 
 \end{axiom}
 
-This axiom captures the general notion of content of an individual statement. Our earlier example of two statements about electron mass cannot both be true, but all other combinations (both false, one true and one false) are consistent truth assignments. We next define the possibilities of a statement in terms of consistent truth values of single statements.
-
-\begin{defn}
-The \emph{possibilities} of a statement $\stmt\in\mathcal{S}$ are the possible truth values allowed by the content of the statement. We define the possibilities function as
-$$
-\possFn:\mathcal{S}\to\{\{\FALSE,\TRUE\},\{\TRUE\},\{\FALSE\}\}
-$$
-where $\possFn(\stmt)$ is defined to be the set $S\subseteq\mathbb{B}$ of truth values such that $\{\stmt\},\{B\}$ is a consistent truth assignment for each $B\in S$. 
-\end{defn}
-
-
-\begin{defn}
-A \emph{tautology} is a statement whose possibilities are $\{\TRUE\}$. A \emph{contradiction} is a statement whose possibilities are $\{\FALSE\}$.
-\end{defn}
-
-The notion of possibilities of a statement captures the difference between statements whose truth values can be obtained a priori (such as mathematical statements or tautologies), and those which must be experimentally tested. It is immediate that $\truth(\stmt)\in\possFn(\stmt)$ for all statements $\stmt$. In fact, for any collection of statements, assigning them their truth values is always a consistent truth assignment, since we assume true scientific statements to be non-contradictory. However, there are many consistent truth assignments which do not arise from the truth values of the included statements. Conversely, for any consistent truth assignment, each truth value $t_{\lambda}$ must be in $\possFn(\stmt_{\lambda})$. We now can define the Completeness Axiom:
+This axiom captures the general notion of content of an individual statement. Our earlier example of two statements about electron mass cannot both be true, but all other combinations (both false, one true and one false) are consistent truth assignments. 
+We now can define the Completeness Axiom:
 
 
 \begin{axiom}[Completeness Axiom]
 \label{completeness}
 Given a collection of statements $\{\stmt_{\lambda}\}_{\lambda\in\Lambda}$ for some (possibly uncountable) index set $\Lambda$, let $A\subseteq\Lambda$, and let $\{t_a\}_{a\in A}$ be a consistent truth assignment for $\{\stmt_a\}_{a\in A}$. Then there exists a consistent truth assignment $\{t_{\lambda}\}_{\lambda\in\Lambda}$ for $\{\stmt_{\lambda}\}_{\lambda\in\Lambda}$ such that $t_{\lambda} = t_a$ for all $\lambda\in A$. 
 \end{axiom}
-This axiom expands the notion of what is considered to be a possible truth value. No possible truth value of any statement can lead to a paradox in larger collections of statements. These two axioms define our basic collection of statements. Next, we will give an additional axiom which will allow us to create new statements from old ones. 
+This axiom restricts the notion of what is considered to be a consistent truth assignment. No consistent truth assignment for any single statement can lead to a paradox in larger collections of statements. We next define the possibilities of a statement in terms of consistent truth values of single statements.
+
+\begin{defn}
+The \emph{possibilities} of a statement $\stmt\in\mathcal{S}$ are the possible truth values allowed by the content of the statement. We define the possibilities function as
+$$
+\possFn:\mathcal{S}\to\{\{\FALSE,\TRUE\},\{\TRUE\},\{\FALSE\}\}
+$$
+where $\possFn(\stmt)$ is defined to be the set $B\subseteq\mathbb{B}$ of truth values such that $\{\stmt\},\{t\}$ is a consistent truth assignment for each $t\in B$. 
+\end{defn}
+
+
+\begin{defn}
+A \emph{tautology} is a statement whose possibilities are $\{\TRUE\}$. A \emph{contradiction} is a statement whose possibilities are $\{\FALSE\}$. 
+\end{defn}
+
+The notion of possibilities of a statement captures the difference between statements whose truth values can be obtained a priori (such as mathematical statements or tautologies), and those which must be experimentally tested. For any collection of statements, assigning them their truth values is always a consistent truth assignment, since we assume true scientific statements to be non-contradictory. However, there are many consistent truth assignments which do not arise from the truth values of the included statements. Conversely, for any consistent truth assignment, each truth value $t_{\lambda}$ must be in $\possFn(\stmt_{\lambda})$. 
+
+It is important to note that the possibilities of a statement composed from other statements cannot be determined just by looking at the truth values and possibilities of individual statements alone. For example, two statements $\stmt_1$ and $\stmt_2$ which both have $\mathbb{B}$ as their possibilities may have any subset of $\mathbb{B}$ as the possibilities of their conjunction $\stmt_1\AND\stmt_2$ (regardless of the truth values). Next, we will give an additional axiom which will allow us to create new statements from old ones. 
 
 \begin{axiom}[Construction axiom]
-Let $f_{\mathbb{B}}$ be a Boolean function $f_{\mathbb{B}}:\mathbb{B}^{\Lambda}\to\mathbb{B}$, where $\Lambda$ is any cardinal. Then there exists a function on the set of statements $f:(\mathcal{S}^*)^{\Lambda}\to\mathcal{S}$ such that
-		$$\truth(f(\stmt_1, ..., \stmt_n)) = f_{\mathbb{B}}(\truth(\stmt_1), ..., \truth(\stmt_n))$$
-with the same relationship holding for every consistent truth assignment. 
+Let $f_{\mathbb{B}}$ be a Boolean function $f_{\mathbb{B}}:\mathbb{B}^{\Lambda}\to\mathbb{B}$, where $\Lambda$ is an index set. Then there exists a function on the set of statements $f:\mathcal{S}^{\Lambda}\to\mathcal{S}$ with the following requirements. First, the truth value is determined by the Boolean function:
+\begin{equation}
+\label{constructionrequirement}
+\truth(f(\{\stmt_{\lambda}\}_{\lambda\in\Lambda}) = f_{\mathbb{B}}(\{\truth(\stmt_{\lambda})\}_{\lambda\in\Lambda}).
+\end{equation}
+Second, any consistent truth assignment for a collection of statements $S$ which includes the statement $f(\{\stmt_{\lambda}\}_{\lambda\in\Lambda})$ extends to a consistent truth assignment for $S\cup\{\stmt_{\lambda}\}_{\lambda\in\Lambda}$ such that the assignment to $f(\{\stmt_{\lambda}\}_{\lambda\in\Lambda})$ is given by $f_{\mathbb{B}}(\{t_{\lambda}\}_{\lambda\in\Lambda}$. 
 \end{axiom}
 
-The point of the Construction axiom is to extend our usual Boolean logical operations to statements. We will now define them in this context.
+\begin{rem}
+Note that in the second condition of the axiom, this means that if $S$ already contains some of the $\stmt_{\lambda}$'s, then their truth assignments must already be compatible in the sense of the second condition above. 
+\end{rem}
+
+The Construction axiom allows us to turn any Boolean function into a function on the collection of statements. In particular, the usual logic operations can be applied to $\mathcal{S}$. 
 
 \begin{notn}
 The usual Boolean functions AND, OR, NOT, denoted respectively by $\AND,\ \OR,\ \NOT$, will also refer to the corresponding operations on statements. They will be applied to arbitrary collections of statements. The Construction axiom ensures that $\mathcal{S}$ will contain the prescribed statements. 
 \end{notn}
 
-It is important to note that the possibilities of a statement composed from other statements cannot be determined just by looking at the truth values and possibilities of individual statements alone. For example, two statements $\stmt_1$ and $\stmt_2$ which both have $\mathbb{B}$ as their possibilities may have any subset of $\mathbb{B}$ as the possibilities of their conjunction $\stmt_1\AND\stmt_2$ (regardless of the truth values). 
+
+
 
 Now, we will define an equivalence relation on the set of statements which will dramatically reduce the collection of statements to a more manageable size. 
 
 \begin{defn}
-Two statements $\stmt_1$ and $\stmt_2$ are \emph{equivalent}, denoted $\stmt_1 \equiv \stmt_2$, if and only if $$\stmt_0:=(\stmt_1 \AND \stmt_2) \OR (\NOT\stmt_1 \AND \NOT\stmt_2)$$ has $\possFn(\stmt_0)=\{\TRUE\}$. 
+Two statements $\stmt_1$ and $\stmt_2$ are \emph{equivalent}, denoted $\stmt_1 \equiv \stmt_2$, if and only if in all consistent truth assignments, $\stmt_1$ and $\stmt_2$ must be assigned the same truth value. 
 \end{defn}
 
 Informally, this means that $\stmt_1\equiv\stmt_2$ if and only if they must \emph{a priori} share the same truth value, independent of the actual truth values. It is immediate that two equivalent statements must have the same truth value and possibilities, since in any consistent truth assignment for $\{\stmt_1,\stmt_2,\stmt_0\}$ (given in the definition above), we must have that the statement $\stmt_0$ true. We will first confirm that this is an equivalence relation:
@@ -254,7 +267,7 @@ Statement equivalence is an equivalence relation.
 Reflexivity and symmetry are clear. For transitivity, let $\stmt_i$, $i=1,2,3$ be statements with $\stmt_1\equiv\stmt_2$ and $\stmt_2\equiv\stmt_3$. Consider the collection $\{\stmt_1,\stmt_2,\stmt_3\}$. Every consistent truth assignment must give the same truth value to $\stmt_1$ and $\stmt_2$, as well as $\stmt_2$ and $\stmt_3$, since these pairs are equivalent. It follows that $\stmt_1\equiv\stmt_3$. 
 \end{proof}
 
-An alternative way to view statement equivalence is as follows: 
+It is an immediate consequence of the definition that all tautologies are equivalent, and all contradictions are equivalent. We will interchangeably denote tautologies and their equivalence class by $\tautology$, and similarly contradictions and their equivalence class will be denoted by $\contradiction$. An alternative way to view statement equivalence is as follows: 
 
 \begin{prop}\label{prop_equivalent_is_iff}
 	Let $\stmt_1, \stmt_2 \in \mathcal{S}$ be two statements. Then $\stmt_1\equiv\stmt_2$ if and only if in all consistent truth assignments, $\stmt_1$ and $\stmt_2$ must have the same truth value.
@@ -266,7 +279,7 @@ Suppose all consistent truth assignments require $\stmt_1$ and $\stmt_2$ to shar
 For the converse, recall that $\possFn((\stmt_1 \AND \stmt_2) \OR (\NOT\stmt_1 \AND \NOT\stmt_2)) = \{\TRUE\}$. Denote this statement by $\stmt_0$. Because any consistent truth assignment for $\{\stmt_1,\stmt_2\}$ can be extended to a consistent truth assignment for $\{\stmt_1,\stmt_2,\stmt_0\}$, and $\possFn(\stmt_0)=\{\TRUE\}$, the claim follows. 
 \end{proof}
 
-It is an immediate consequence of the definition that all tautologies are equivalent, and all contradictions are equivalent. We will interchangeably denote tautologies and their equivalence class by $\tautology$, and similarly contradictions and their equivalence class will be denoted by $\contradiction$. Proposition \ref{prop_equivalent_is_iff} allows one to quickly see that if two Boolean functions are equal, then the corresponding functions on $\mathcal{S}$ must give equivalent results. We then arrive at the following:
+Proposition \ref{prop_equivalent_is_iff} allows one to quickly see that if two Boolean functions are equal, then the corresponding functions on $\mathcal{S}$ must give equivalent results. We then arrive at the following:
 
 \begin{cor}\label{boolean_properties}
 		The set of all statements $\mathcal{S}$ satisfies the following properties, where $a,b,c\in\mathcal{S}$, and $\tautology$ and $\contradiction$ denote any tautology and contradiction, respectively:
@@ -286,7 +299,10 @@ It is an immediate consequence of the definition that all tautologies are equiva
 The left-hand side of each equation is equivalent as a Boolean function to the right-hand side. Proposition \ref{prop_equivalent_is_iff} then implies the left- and right-hand sides must give equivalent statements. 
 \end{proof}
 
-While $\mathcal{S}$ is not technically a Boolean algebra itself (since e.g. there are many nonequal, but equivalent, tautologies and contradictions), it will enjoy many of the useful consequences of being a Boolean algebra when using statement equivalence rather than equality. We call the operations and properties defined thus far the \emph{algebra of statements}. Many of the methods utilized henceforth will be based on these tools. 
+Note that $\mathcal{S}$ is not a Boolean algebra itself (since e.g. there are many nonequal, but equivalent, tautologies and contradictions). Henceforth, unless otherwise noted, \emph{we will exclusively use the notation $\mathcal{S}$ for the collection of equivalence classes of statements}. The Boolean operations with $\tautology$ and $\contradiction$ (now each individual equivalence classes) endow the set of equivalence classes $\mathcal{S}$ with the structure of a Boolean algebra. Further, it is a \emph{complete Boolean algebra}, since the usual operations of conjunction and disjunction allow one to obtain an $\inf$ and $\sup$ for any subset $S\subseteq\mathcal{S}$. 
+
+
+We call the operations and properties defined thus far the \emph{algebra of statements}. Many of the methods utilized henceforth will be based on these tools. 
 
 \subsection{An ordering of statements}
 
@@ -370,26 +386,19 @@ Reflexivity is clear.
 	Since in all cases $t_4=\FALSE$ then $\possFn(\stmt_1 \AND \NOT\stmt_3) = \{\FALSE\}$. Therefore $\stmt_1 \narrower \stmt_3$.
 \end{proof}
 
-We can now exhibit some lattice-type properties of $\mathcal{S}$. 
+We can now exhibit some lattice-type properties of $\mathcal{S}$ endowed with $\narrower$. 
 
 \begin{prop}
-	Every subset $S \subseteq \stmtSet$ of statements has a supremum. That is, there exists an element $\bar{\stmt} \in \stmtSet$ such that $\stmt \narrower \bar{\stmt}$ for all $\stmt \in S$. 
+The supremum (respectively infimum) of any set $S \subseteq \stmtSet$ of statements with respect to $\narrower$ is equal to the Boolean supremum (respectively infimum). That is, for any collection $S$, the conjunction $\OR S$ (respectively $\AND S$ is the supremum (respectively infimum) with respect to $\narrower$. Denote them by $\OR S := \bar{\stmt} \in \stmtSet$ and $\AND S := \underline{\stmt}\in\stmtSet$. 
 \end{prop}
 
 \begin{proof}
 	Let $S \subseteq \stmtSet$ be an arbitrary set of statements. Using the Construction axiom, consider $\bar{\stmt}=\bigOR\limits_{\stmt[e] \in S} \stmt[e]$. Let $\stmt \in S$. Using the properties in \ref{boolean_properties}, one has $\stmt \OR \bar{\stmt} \equiv \bar{\stmt}$. By Propostion \ref{prop_narrowness_properties}, we have $\stmt \narrower \bar{\stmt}$ for any $\stmt \in S$. 
 
 Next, suppose $\stmt_0\in\mathcal{S}$ also has $\stmt\narrower\stmt_0$ for all $\stmt\in S$. Then by Proposition \ref{prop_narrowness_properties} (vii), it follows that $\bar{\stmt}\narrower\stmt_0$. Thus $\bar{\stmt}$ is our supremum. By antisymmetry of $\narrower$, it is unique up to statement equivalence. 
-\end{proof}
 
-\begin{cor}
-	Every subset $S \subseteq \stmtSet$ of statements has an infimum. That is, there exists an element $\underline{\stmt} \in \stmtSet$ such that $\underline{\stmt} \narrower \stmt$ for all $\stmt \in S$. 
-\end{cor}
-\begin{proof}
-Let $S\subseteq\mathcal{S}$ be a set of statements. consider the set $\NOT S$ consisting of all negations of elements of $S$. Then let $\stmt_0 = \sup\NOT S$. Then since $\NOT\stmt \narrower \stmt_0$ for all $\stmt\in S$, using Prop \ref{boolean_properties} we have that $\NOT\stmt_0\narrower\stmt$ for all $\stmt\in S$, and similar to the above proof, it is a greatest lower bound. We conclude that $\underline{\stmt} =\NOT\stmt_0$ is the infimum we sought. By antisymmetry of $\narrower$, it is unique up to statement equivalence. 
+For the infimum, consider the set $\NOT S$ consisting of all negations of elements of $S$. Then let $\stmt_0 = \sup\NOT S$. Then since $\NOT\stmt \narrower \stmt_0$ for all $\stmt\in S$, using Prop \ref{boolean_properties} we have that $\NOT\stmt_0\narrower\stmt$ for all $\stmt\in S$, and similar to the above proof, it is a greatest lower bound. We conclude that $\underline{\stmt} =\NOT\stmt_0$ is the infimum we sought. By antisymmetry of $\narrower$, it is unique up to statement equivalence. 
 \end{proof} 
-
-It follows that the set of equivalence classes of statements is a \emph{complete} Boolean algebra. The supremum and infimum are constructed in the set of statements, but they are only unique up to statement equivalence. 
 
 We will now review the \emph{disjunctive normal form} which will give us some useful tools for analyzing large statements. While it is generally used in the context of more traditional logical systems requiring finite sentences, we will describe it in terms of arbitrary collections of statements. For a more extensive discussion and proofs of the finite case, see \S4.24 of \cite{lattices}. 
 
@@ -448,25 +457,7 @@ The first of the Closure axioms is justified by the fact that if we can test eac
 The second is somewhat more subtle. We can prescribe a recipe using a standard diagonal approach so that each of the countably many tests is eventually run for arbitrarily long. For example, we can run the first $n$ tests for $n$ seconds, starting with $n=1$ and incrementing, until some test terminates successfully. This will terminate successfully whenever any of the statements in the countable disjunction is true, which is sufficient to verify the new statement. It will only fail or fail to terminate if none of the statements' tests terminate successfully. This cannot be generalized beyond countable infinity since there is no procedure which will eventually run every test. 
 \end{rem} 
 
-The collection $\vstmtSet$ of verifiable statements is not required to be closed under negation. To see why, consider for example the statement ``particles $A$ and $B$ are of different mass". If this statement is true, we could arrange for a sequence of progressively more precise measuring equipment to compare them, and eventually we would find out. Now, the negation of this statement, ``particles $A$ and $B$ have precisely the same mass" cannot be verified experimentally, since for any measuring apparatus, we will not know if the difference is just within a margin of error. However, we will be interested in certain subsets of $\vstmtSet$ with stronger closure properties. 
-
-\begin{defn}
-The set of \emph{decidable statements}, denoted $\dstmtSet$, is the subset of $\vstmtSet$ consisting of statements $\stmt\in\vstmtSet$ such that $\NOT\stmt\in\vstmtSet$ as well. 
-\end{defn} 
-
-\begin{rem}
-Decidable statements may be thought of as those which can be shown to be true or false experimentally, or equivalently, as those pairs consisting of a statement and its negation which can both be verified. Given a pair of statements in $\vstmtSet$ which are negations of each other, we can simply run their associated tests for arbitrarily long (using e.g. a similar diagonalization approach to above) to see which one terminates successfully. 
-\end{rem}
-
-
-\begin{prop}\label{prop_decidable_AND_OR}
-The collection $\dstmtSet$ of decidable statements is closed under finite conjunction and disjunction.
-\end{prop}
-\begin{proof}
-	Let $\{\stmt_i\}_{i=1}^{n}$ be a finite collection of decidable statements. Then $$\{\stmt_i\}_{i=1}^{n} \subseteq \vstmtSet\text{ and }\{\NOT\stmt_i\}_{i=1}^{n} \subseteq \vstmtSet$$ are each collections of verifiable sets. Now, consider the conjunction $\bigAND\limits_{i=1}^{n} \stmt_i$. This a verifiable statement by the Closure axiom. Further, the negation $\NOT \bigAND\limits_{i=1}^{n} \stmt_i \equiv \bigOR\limits_{i=1}^{n} \NOT \stmt_i$ is also verifiable by the Closure axiom. We conclude that $\bigAND\limits_{i=1}^{n} \stmt_i\in\dstmtSet$. 
-	
-	Similarly, the disjunction $\bigOR\limits_{i=1}^{n} \stmt_i$ and its negation $\NOT \bigOR\limits_{i=1}^{n} \stmt_i \equiv \bigAND\limits_{i=1}^{n} \NOT \stmt_i$ are verifiable statements by the closure axioms.
-\end{proof}
+The collection $\vstmtSet$ of verifiable statements is not required to be closed under negation. To see why, consider for example the statement ``particles $A$ and $B$ are of different mass". If this statement is true, we could arrange for a sequence of progressively more precise measuring equipment to compare them, and eventually we would find out. Now, the negation of this statement, ``particles $A$ and $B$ have precisely the same mass" cannot be verified experimentally, since for any measuring apparatus, we will not know if the difference is just within a margin of error. 
 
 Given the truth values of some collection of statements, we can immediately deduce the truth values of all statements constructed from them using conjunction and disjunction. We formalize this in the following definitions. 
 
@@ -505,7 +496,7 @@ It is worth noting that the restriction to countable operations does leave out a
 A \emph{possibility} for an experimental domain $\edomain$ is a theoretical statement $x\in\tdomain$ such that $x \nequiv \contradiction$ and for each $\mathsf{s} \in \tdomain$, either $x \narrower \mathsf{s}$ or $x \ncomp \mathsf{s}$. 
 \end{defn}
 
-We will generally denote possibilities by $x$, the set of all possibilities for an experimental domain by $X$. Since possibilities are statements, we use the same equivalence relation and ordering. The set of equivalence classes in $X$ will be denoted by $X^*$. We will often use the phrasing, ``a possibility $x$ \emph{determines} the truth value of a statement". This follows from the fact that if a possibility is true (or assigned true in a consistent assignment), then all statements incompatible must be assigned false, and all statements compatible are necessarily broader and hence must be assigned true. We now show a few of the fundamental properties of possibilities. 
+We will generally denote possibilities by $x$, the set of all possibilities for an experimental domain by $X$. Since possibilities are statements, we can use the same ordering. We will often use the phrasing, ``a possibility $x$ \emph{determines} the truth value of a statement". This follows from the fact that if a possibility is true (or assigned true in a consistent assignment), then all statements incompatible must be assigned false, and all statements compatible are necessarily broader and hence must be assigned true. We now show a few of the fundamental properties of possibilities. 
 
 
 \begin{prop}\label{prop_poss_is_minterm}
@@ -528,7 +519,7 @@ A statement may be written as the conjunction of all statements that it determin
 
 
 \begin{prop}\label{exactly_one_poss}
-In the set of possibilities $X$ for any experimental domain $\edomain$, exactly one equivalence class of possibilities is true. 
+In the set of possibilities $X$ for any experimental domain $\edomain$, exactly one of the possibilities is true. 
 \end{prop}
 \begin{proof}
 First, we show at most one possibility is true. Suppose $x_1,x_2\in X$ are both true. Since they are true simultaneously, they are not incompatible. Then we have $x_1\narrower x_2$ and $x_2\narrower x_1$, and so $x_1\equiv x_2$. 
@@ -555,7 +546,7 @@ Finally, Proposition \ref{exactly_one_poss} motivates the study (and name) of po
 
 The residual possibility represents the case that the methods available are insufficient. This possibility corresponds to what remains after all verifiable statements are tested unsuccessfully. Not all domains admit a residual possibilities: a domain is complete if there are sufficient verifiable statements to cover all outcomes. A simple example might be in counting a fixed finite collection of objects. An example of an incomplete domain might be in identifying organisms, since we have not catalogued all species. The established possibilities in that case would be a list of all known species, and the residual possibility would simply be that it is a new discovery. 
 
-With the tools we have thus far developed, we are now ready to answer a fundamental question: what is the size of the largest set amongst which scientific methods can distinguish? This is answered by looking at the possible cardinalities of sets of (equivalence classes of) possibilities. The requirement of a countable basis for an experimental domain is crucial. Recall Theorem \ref{cardinality_thm}, which states that $X^*$ has cardinality at most that of the continuum. 
+With the tools we have thus far developed, we are now ready to answer a fundamental question: what is the size of the largest set amongst which scientific methods can distinguish? This is answered by looking at the possible cardinalities of sets of possibilities. The requirement of a countable basis for an experimental domain is crucial. Recall Theorem \ref{cardinality_thm}, which states that $X$ has cardinality at most that of the continuum. 
 
 
 \begin{proof}[Proof of Theorem \ref{cardinality_thm}]
@@ -580,11 +571,11 @@ Topology is a natural setting for axiomatizing scientific study since a motivati
 Since $\stmt$ is a member of an experimental domain, it may be expressed in DNF as a disjunction of minterms of the basis $\basis$, and in particular, minterms which are not contradictions. This means $\stmt$ is a disjunction of possibilities, say $\stmt\equiv\bigOR\limits_{x \in U} x$. The statement $\stmt$ is broader than precisely the possibilities in its disjunction, and incompatible with all other possibilities. This means $U=U(\stmt)$, as desired. 
 \end{proof}. 
 
-We are now ready to define the topology on $X^*$, the set of equivalence classes of possibilities. 
+We are now ready to define the topology on $X$, the set of possibilities. 
 
 \begin{prop}[Theorem \ref{main}, the topology]
 \label{topology}
-The collection of verifiable sets $\mathsf{T}_X=\{U(\stmt)|\stmt\in\edomain\}$ for $\stmt\in\edomain$ forms a topology on the set $X^*$. 
+The collection of verifiable sets $\mathsf{T}_X=\{U(\stmt)|\stmt\in\edomain\}$ for $\stmt\in\edomain$ forms a topology on the set $X$. 
 \end{prop}
 \begin{proof}
 First, recall that $\tautology$ and $\contradiction$ are verifiable sets. We have $U(\tautology) = X$ and $U(\contradiction) = \emptyset$. 
@@ -615,7 +606,7 @@ The topology of experimental possibility classifies near-ness in all scientific 
 The collection $U(\basis)\cup\{X\}$ of verifiable sets for a basis of an experimental domain, together with the set of all possibilities, forms a sub-basis for the topology of experimental possibility $T_X$.
 \end{cor}
 \begin{proof}
-It is clear that $U(\basis)$ can generate all nontrivial open sets by union (countable, and hence arbitrary, disjunction) and finite intersection (conjunction). Because $\tautology$ is not necessarily in $\basis$, we need to add $\{X^*\}$ to the collection to reach the residual possibility, if it exists. 
+It is clear that $U(\basis)$ can generate all nontrivial open sets by union (countable, and hence arbitrary, disjunction) and finite intersection (conjunction). Because $\tautology$ is not necessarily in $\basis$, we need to add $\{X\}$ to the collection to reach the residual possibility, if it exists. 
 \end{proof}
 
 Note that if the domain $\edomain$ is complete, then $U(\basis)$ will be sufficient. 
@@ -624,7 +615,7 @@ Note that if the domain $\edomain$ is complete, then $U(\basis)$ will be suffici
 The topology of experimental possibility is second-countable.
 \end{cor}
 \begin{proof}
-The collection $U(\basis)\cup\{X^*\}$ is a countable sub-basis which may be extended to a countable basis by including finite intersections. 
+The collection $U(\basis)\cup\{X\}$ is a countable sub-basis which may be extended to a countable basis by including finite intersections. 
 \end{proof}
 
 
@@ -634,7 +625,7 @@ Next, we will explore separability properties. Recall that a topological space h
 The topology of experimental possibility has $\mathsf{T}_0$ separability for any experimental domain. 
 \end{prop}
 \begin{proof}
-Let $x_1,x_2\in X^*$. It will suffice to show that there exists a verifiable statement $\mathsf{e}\in\basis$ whose verifiable set contains one but not the other. Because possibilities may be expressed as minterms of basis elements, if $x_1$ and $x_2$ are distinct, then there exists a basis element $b\in\basis$ which is negated in, without loss of generality, $x_1$ but not $x_2$. Then $x_2\in U(b)$ but $x_1\notin U(b)$, as required. 
+Let $x_1,x_2\in X$. It will suffice to show that there exists a verifiable statement $\mathsf{e}\in\basis$ whose verifiable set contains one but not the other. Because possibilities may be expressed as minterms of basis elements, if $x_1$ and $x_2$ are distinct, then there exists a basis element $b\in\basis$ which is negated in, without loss of generality, $x_1$ but not $x_2$. Then $x_2\in U(b)$ but $x_1\notin U(b)$, as required. 
 \end{proof}
 
 \begin{prop}[Theorem \ref{main}, $\mathsf{T}_2$ separability]
