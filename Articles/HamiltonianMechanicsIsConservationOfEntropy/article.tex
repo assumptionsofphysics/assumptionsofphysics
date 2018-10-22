@@ -1,4 +1,6 @@
-\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -17,7 +19,7 @@
 
 \begin{document}
 
-\title{DRAFT \\ Hamiltonian mechanics is conservation of information \\ (or why isolated systems conserve energy)}
+\title{Hamiltonian mechanics is conservation of information entropy}
 \author{Christine A. Aidala, Gabriele Carcassi}
 
 
@@ -28,144 +30,295 @@
 
 \date{\today}
 
+\maketitle
+
 \begin{abstract}
-In this work we show that the canonical transformations of classical Hamiltonian mechanics are exactly the transformations that preserve information.
+	In this work we show that the canonical transformations of classical Hamiltonian mechanics are exactly the transformations that preserve information.
 \end{abstract}
 
-\maketitle
+\tableofcontents
+\newpage
 
 \section{Introduction}
 
-\section{Single degree of freedom}
+\section{Distributions}
 
-We first want to show how the math works in the simplest case, the one with a single degree of freedom. We will specifically use the simplest level of math for a number of reasons: it makes the details more accessible to a wider audience but it also shows that to show that the problem is not mathematically difficult once it is set up correctly.
+The general idea is that we want to describe a quantity that is distributed among different cases. For example, mass or charge over different positions in space, amount of material among different compounds, population at different ages. In all these cases, we assume there is a total quantity $M$, a set of $n$ variables $\xi^a$ over which the quantity is distributed and a function $\rho(\xi^a)$ such that:
 
-Let's consider a normalized distribution over position and momentum $\rho(x, p)$. This can either be thought as a probability distribution or an actual physical distribution in phase space of an ideally continuous material. Suppose we have a differentiable law of evolution
 \begin{equation}
-\label{newCoordinates}
+\int M \rho(\xi^a) d\xi^1 d\xi^2 ... d\xi^n = M
+\end{equation}
+
+We say that $\rho$ is the (normalized) density for our distribution and if we want to calculate the amount in a particular region $V$ we have:
+
+\begin{equation}
+m_V = M \mu(V) =\int_V M \rho(\xi^a) d\xi^1 d\xi^2 ... d\xi^n
+\end{equation}
+
+The above expression would represent the mass or charge within a particular region, the amount of material of some selected set of compounds or the population in a particular age group. The integral is used when some of the variables $\xi^a$ are continuous and a simple sum would be used over the discrete ones.
+
+While the mathematical setting is the same for degrees of belief (credence) or the likelyhood that something will happen (probability), we will assume we are working with an actual physical distribution. Even when we are talking about marginal distributions or information entropy, we are doing it in the context of a system that has parts and each part has a different characterization.
+
+The link to information theory is the following: suppose we have a distribution, known to both of us, and you select one element at random. How many yes or no questions do you have to answer before I know what case you selected? For example, if you have a pouch with 230 balls of which 115 are red and 115 are green, one yes or no question would be sufficient. In general, if $I$ is the number of questions then $C = 2 ^ I$ are the number of cases you can distinguish with those questions. But suppose $\rho(\xi_0)=1/5$, then we know that we'd select $\xi_0$ one in 5 cases. That is, the normalized distribution is be the inverse of the number of cases: $\rho(\xi_0) = \frac{1}{C}$.  Therefore the information needed to identify a particular element is $I(\xi^a)=\log \frac{1}{\rho(\xi^a)}$. If we take the average and change the base of the logarithm, we have:
+\begin{equation}
+I(\rho(\xi^a)) = \int \rho(\xi^a)) \ln \left(\frac{1}{\rho(\xi^a))}\right) d\xi^1 d\xi^2 ... d\xi^n =-\int \rho(\xi^a)) \ln (\rho(\xi^a)) d\xi^1 d\xi^2 ... d\xi^n
+\end{equation}
+which is the information entropy of the distribution.\footnote{The nature of information entropy is often misunderstood, especially in physics. It does not represent the information the distribution has: it represent the \emph{additional} information that would be needed to identify an element. Also, it does not represent knowledge: as we are studying actual physical distributions, any correct distribution has full knowledge of the system.}
+
+Technically, given the more convenient choice of the natural logarithm, the unit of information is the nat, which is equal to $\frac{1}{\ln 2}$ bits. However, in the discussion we will refer to it as measured in bits, as we believe that the majority of the readers is more conformable with the latter unit. Note that for continuous variables the expression has a slightly different meaning: the uniform distribution in a unit volume is assigned zero entropy so $I(\rho(\xi^a))$ represents the relative number of bits to achieve the same level of precision, which can be negative.
+
+\subsection*{Densities and change of variables}
+
+There is one feature about densities we need to be fully aware of: they are not invariant under change of variables. Intuitively, if we change units of the denominator the distribution changes value. For example, $1$ kg/m becomes $1000$ kg/km: the number changes and the units allow us to understand that the overall quantity remains the same but mathematics does not keep track of units. In general, if $\hat{\xi}^a=\hat{\xi}^a(\xi^b)$ we can recover how the density changes by requiring that the total in each volume is the same no matter what variables are used. That is:
+\begin{align*}
+\int_V \rho(\xi^b) d\xi^1 ... d\xi^n &= \int_V \rho(\hat{\xi}^a) d\hat{\xi}^1 ... d\hat{\xi}^n \\
+&=\int_V\rho(\hat{\xi}^a) \left\|\frac{\partial \hat{\xi}^a}{\partial \xi^b}\right\| d\xi^1 ... d\xi^n
+\end{align*}
+\begin{equation}\label{density_transformation}
+\rho(\xi^b) = \rho(\hat{\xi}^a) \left\|\frac{\partial \hat{\xi}^a}{\partial \xi^b}\right\|
+\end{equation}
+the density is multiplied by the absolute value of the Jacobian determinant of the transformation. As the Jacobian is in general a function of the variables themselves, this also means that whether the density at one point is greater or smaller than at another also depends on the choice of variables.
+
+Similarly, we can see that information entropy is not invariant
+\begin{align*}
+I(\rho(\xi^b)) &=-\int \rho(\xi^b) \ln (\rho(\xi^b)) d\xi^1 ... d\xi^n \\
+&=-\int \rho(\hat{\xi}^a) \left\|\frac{\partial \hat{\xi}^a}{\partial \xi^b}\right\| \ln \left(\rho(\hat{\xi}^a) \left\|\frac{\partial \hat{\xi}^a}{\partial \xi^b}\right\|\right) d\xi^1 ... d\xi^n \\
+&=-\int \rho(\hat{\xi}^a) \ln \left(\rho(\hat{\xi}^a) \left\|\frac{\partial \hat{\xi}^a}{\partial \xi^b}\right\|\right) d\hat{\xi}^1 ... d\hat{\xi}^n \\
+&=-\int \rho(\hat{\xi}^a) \ln (\rho(\hat{\xi}^a)) d\hat{\xi}^1 ... d\hat{\xi}^n -\int \rho(\hat{\xi}^a) \ln \left\|\frac{\partial \hat{\xi}^a}{\partial \xi^b}\right\| d\hat{\xi}^1 ... d\hat{\xi}^n
+\end{align*}
+\begin{equation}\label{entropy_transformation}
+I(\rho(\xi^b)) =I(\rho(\hat{\xi}^a)) -\int \rho(\hat{\xi}^a) \ln \left\|\frac{\partial \hat{\xi}^a}{\partial \xi^b}\right\| d\hat{\xi}^1 ... d\hat{\xi}^n
+\end{equation}
+The reason is that we may be changing scale and therefore level of precision.
+
+The situation is actually worse. We'd like to think of a density as a number associated to a point of a space but that's technically incorrect. Given a manifold $\mathcal{M}$ upon which we define the distribution, the latter is \emph{not} $\rho : \mathcal{M} \to \mathbb{R}$. That would be invariant change of variables, as a point is a point no matter how is it identified. Instead we additionally need a set of functions $\xi^b : \mathcal{M} \to \mathbb{R}$ and only then we can define the density as $\rho : \mathbb{R}^n \to \mathbb{R}$. The density value is defined on the values for a set of variables, not at a point.\footnote{As the density is really a limit, we need to know how that limit is taken and the coordinates decide that.} That is, the density is undefined without a (differentiable) set of coordinates.
+
+\subsection*{Mathematical tools for distributions}
+
+Different fields in math deal with this issue in different ways depending on their aims, which unfortunately leads to a fractured physical understanding given that one needs ideas and results from the different areas. In statistics and information theory one simply accepts the transformation rules and does not try to create invariant objects. This gives us the proper setting to study the statistical properties but it does not help us understand which mathematical elements represent objective physical entities.
+
+In probability theory one starts with three objects: a set of outcomes $\mathcal{M}$, a set of events $\sigma_\mathcal{M}$ where each event is a collection of outcomes, and a probability measure $\mu : \sigma_\mathcal{M} \rightarrow [0,1]$ that assigns a number between zero and one to each event. That is, we don't assign a probability density to the points of $\mathcal{M}$ but we assign a finite probability to sets of points. We can then define a random variable $\xi : \mathcal{M} \rightarrow \mathbb{R}$ as a real valued function of the outcomes. For each random variable we can define its cumulative distribution function $F_\xi(\xi_0)=\mu(\xi<\xi_0)$ and the probability density function is its Radon-–Nikodym derivative $\rho(\xi) = \frac{dF_\xi}{d\xi}$. That is: the integral is the primal object while the density is derived.
+
+This approach actually makes more physical sense: what we measure is the amount of mass in a finite region and the density is the limit for a smaller and smaller ones. The fundamental objects (outcomes, events and probability) are all defined without reference to variables. But in probability theory we have no notion of coordinate systems, vectors and all other geometrical notions.
+
+In differential geometry, one starts with a manifold: a set of points $\mathcal{M}$ which can be given local coordinates $\xi^i : \mathcal{M} \to \mathbb{R}$. One defines a tangent space $\mathsf{T}\mathcal{M}$ where vectors live and cotangent space $\mathsf{T}^*\mathcal{M}$ were linear functions of vectors live. Then we define $n$-forms as multi-linear functions of $n$ vectors that return the value associated with the infinitesimal parallelepiped they form. That is $\nu : (\mathsf{T}^*\mathcal{M})^n \rightarrow \mathbb{R}$. As vectors are coordinate invariant, $n$-forms are coordinate invariant as well so we can write $m_V=\int_V \nu(dV)$ with no reference to coordinates. If $e_i$ are the basis vector associated with $\xi^i$ and $e^j$ are linear functions such that $e^j(e_i)=\delta_i^j$, then we can express each $n$-form as $\rho(\xi^i)e_1\wedge e_2 \wedge ... \wedge e_n$. The density $\rho(\xi^i)$ is the component of the $n$-form expressed in the $\xi^i$ coordinates in the a way analogous to components of a vector.\footnote{Technically, the form is linear so it changes with the Jacobian determinant and not its absolute value. But negative determinants means changing orientation of the region of integration, so fixing that would bring another sign change and $\rho(q^i)$ would not change. This is equivalent to saying that some coordinate systems are right handed and some are left handed.}
+
+This approach gives us a way to understand which objects are coordinate independent and which aren't. But it has two issues: it does not allow to easily talk about coordinate dependent operations, such as marginal distributions and information entropy, and it may use definitions that do not map well to physical concepts.\footnote{Typically, a vector is defined as a map between a scalar function of the manifold to another scalar function to the manifold. Or as an equivalence class of trajectories. It is a stretch to think of fluid velocities or electric fields in those terms.}
+
+So the situation is that we have a single clear physical objects we want to study, but different and somewhat disconnected mathematical frameworks to study it. This should not be surprising as the frameworks are defined by mathematicians to solve their own needs, which is totally understandable. But it is an issue as each mathematical framework only partially captures our physical understanding and we risk missing the full picture.
+
+\section{Coordinate independent densities}
+
+Suppose we have a system which we can think of made of infinitesimally small parts, which we call particles. Suppose  that each infinitesimal part can be assigned a state from a state space $\mathcal{S}$. The state of the whole system will be a distribution over those states. Now suppose that this system evolves in a way that is deterministic and reversible, that is the state of a particle at one time is associated with one and only one state at another time. What does that tell us about our distribution?
+
+If the evolution is deterministic and reversible, then all the parts that are in one state will be mapped to another: the density should be exactly mapped to a different state and therefore should not change value. If the evolution is deterministic and reversible, then if I give you enough information to identify an element at one time I also gave you enough information to identify the element at a future time: the information entropy will remain the same over time. And here lies the problem: how can we make sure that these quantities are preserved over time if they are not even observer independent? How can we know if the density stays the same if we can't even compare the value of the densities at two different elements of the distribution? How can we tell whether the information entropy is conserved if we can't event define a unique value at a given time?
+
+\textbf{If we want to define deterministc and reversible evolution over distributions, they must be invariant distributions. That is, the densities and information entropy must be independent on the choice of coordinates.}
+
+If our variables are discrete, all our integrals are sums and all our definitions work. Everything is already coordinate invariant. If our variables are continuous, instead, we have a problem. Because the densities and the information entropy vary with the Jacobian, we need something more. Our state space $\mathcal{S}$ must allow to write densities whose value does not change under coordinate transformation. This seems to be impossible given what we saw before: how can it work?
+
+Suppose $\mathcal{S}$ is a two dimensional manifold. Suppose we have two variables $(q,k)$ such that $k$ uses the inverse units of $q$. For example, if $q$ is meters then $k$ is inverse meters and an infinitesimal area $dq dk$ will be a pure number. We say $q$ is a coordinate as it is a variable that defines a unit, while $k$ is the corresponding conjugate variable as it uses the inverse unit. Now suppose you change coordinate. For example, $\hat{q}$ will be kilometers and $\hat{k}$ inverse kilometers. We'll have $d\hat{q} d\hat{k} = dq dk$. Therefore we'll also have $\rho(q,k) = \rho(\hat{q}, \hat{k})$: the density is invariant and so is the information entropy.
+
+If we have a set of variables fixed by a single choice of unit then what we discussed before is the only possible way. Let $q$ be the coordinate, the variable that defines the unit. Suppose we have $n$ variable $\xi^a$ such that $\xi^1 = q$. Each vector $v^a$ tangent to that space has $n$-components. If we change unit $\hat{q}=\hat{q}(q)$ we have two constraints: the one unit change and the unitary Jacobian, and these must be enough to determine how the vector components change. The components must be equal to the constraints and therefore they are exactly two variable $\xi^a = (q, k)$. Then $k$ is the conjungate variable of $q$.
+
+\subsection*{Hamiltonian mechanics for one degree of freedom}
+
+Let's set $\hbar$ as the unit we use to describe the amount of possible states. We have:
+\begin{equation}
+m_V = M \mu(V) =\int_V M \rho(q, k) \hbar dq dk = \int_V M \rho(q, p) dq dp
+\end{equation}
+where we set $p=\hbar k$. We should recognize $p$ as conjugate momentum and $k$ the classical analogue of the wave number. Suppose we change variables. In general the Jacobian will be given by:
+\begin{equation}
+\label{Poisson}
 \begin{aligned}
-\hat{q} = q + \frac{dq}{dt} dt  \\
-\hat{p} = p + \frac{dp}{dt} dt  \\
+|J| &= \left| \begin{matrix}
+\dfrac{\partial \hat{q}}{\partial q} & \dfrac{\partial \hat{q}}{\partial p} \\[2.2ex]
+\dfrac{\partial \hat{p}}{\partial q} & \dfrac{\partial \hat{p}}{\partial p} \end{matrix} \right| = \frac{\partial \hat{q}}{\partial q} \frac{\partial \hat{p}}{\partial p} - \frac{\partial \hat{p}}{\partial x} \frac{\partial \hat{q}}{\partial p} &= \{\hat{q}, \hat{p}\}
 \end{aligned}
 \end{equation}
-that moves each initial state $(q,p)$ to the final state $(\hat{q},\hat{p})$. Each little region $dq \,dp$ will contain $\rho(q, p) dq \,dp$ amount of material and will be mapped to a final region $d\hat{q} \,d\hat{p}$ that will contain $\rho(\hat{q}, \hat{p}) d\hat{q} \,d\hat{p}$ amount of material, which will have to match the initial amount.
-
-The Jacobian of the transformation is given by
+which we recognize it to be the Poisson bracket. If the change of variable is simply a change of coordinates, a change of units, we have:
 \begin{equation}
-\label{Jacobian}
+\label{coordinate_change}
 \begin{aligned}
-	|J| &= \left| \begin{matrix}
-		\dfrac{\partial \hat{q}}{\partial q} & \dfrac{\partial \hat{q}}{\partial p} \\[2.2ex]
-		\dfrac{\partial \hat{p}}{\partial q} & \dfrac{\partial \hat{p}}{\partial p} \end{matrix} \right| = \frac{\partial \hat{q}}{\partial q} \frac{\partial \hat{p}}{\partial p} - \frac{\partial \hat{p}}{\partial x} \frac{\partial \hat{q}}{\partial p}\\
-	&= \{\hat{q}, \hat{p}\} \\
-	&= \left| \begin{matrix}
-	1 + \dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) dt & \dfrac{\partial}{\partial p} \left( \dfrac{dx}{dt} \right) dt \\[2.2ex]
-	\dfrac{\partial}{\partial x} \left( \dfrac{dp}{dt} \right) dt & 1 + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) dt \end{matrix} \right| \\
-&= 1 + \left[ \dfrac{\partial}{\partial x} \left( \dfrac{dx}{dt} \right) + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) \right] dt + O(dt^2)\\
+\hat{q} &= \hat{q}(q) \\
+\{\hat{q}, \hat{p}\} &= 1 = \frac{\partial \hat{q}}{\partial q} \frac{\partial \hat{p}}{\partial p} \\
+\dfrac{\partial \hat{p}}{\partial p} &= \frac{\partial \hat{q}}{\partial q} ^{-1} = \frac{\partial q}{\partial \hat{q}} \\
+\hat{p} &= \frac{\partial q}{\partial \hat{q}} p
 \end{aligned}
 \end{equation}
-which coincides with the Poisson brackets $\{\hat{q}, \hat{p}\}$ of the new values for position and momentum.
-
-The transformation rules for the density and the area of phase space, then, are the following:
+Conjugate momentum transforms as a covariant component. Under coordinate transformations we have:
 \begin{equation}
-\label{newDistribution}
+\label{density_invariance}
 \begin{aligned}
-d\hat{q}\,d\hat{p} &= |J| dq \,dp  \\
-\hat{\rho}(\hat{q}, \hat{p}) &= \frac{\rho(q, p)}{|J|}  \\
+\rho(q,p) &= \rho(\hat{q}, \hat{p}) \\
+I(\rho(q,p)) &= I(\rho(\hat{q},\hat{p}))
 \end{aligned}
 \end{equation}
+Let us call $(q,p)$ canonical variables if the density is equal to the invariant density. Then two other variables such that $\{\hat{q}, \hat{p}\}=1$ are also canonical since the Jacobian determinant will be unitary.
 
-Given a distribution, we can calculate its information entropy. On the initial distribution it will be given by:
+We can think of the evolution as a vector field on $\mathcal{S}$ of components $S = (S_q, S_q) = (\frac{dq}{dt}, \frac{dp}{dt})$ that gives the direction in which states move in time. The Jacobian for time evolution will be
 \begin{equation}
-\label{entropy}
-H(\rho) = -\int \rho \log \rho \; dx \,dp\\
-\end{equation}
-
-We can calculate how the entropy changes just by substituting \ref{newDistribution} in the definition for the entropy of the final distribution.
-\begin{equation}
-\label{newEntropy}
+\label{Jacobian_evolution}
 \begin{aligned}
-H(\hat{\rho}) &= -\int \hat{\rho} \log \hat{\rho} \; d\hat{x}\,d\hat{p}= -\int \frac{\rho}{|J|} \log \frac{\rho}{|J|} \; |J| dx \,dp \\
-&= -\int \rho \log \frac{\rho}{|J|} \; dx \,dp \\
-&= -\int \rho \log \rho \; dx \,dp + \int \rho \log |J| \; dx \,dp \\
+|J| &= \left| \begin{matrix}
+1 + \dfrac{\partial S_q}{\partial q}dt & \dfrac{\partial S_q}{\partial p} dt \\[2.2ex]
+\dfrac{\partial S_p}{\partial q}  dt & 1 + \dfrac{\partial S_p}{\partial p} dt \end{matrix} \right| \\
+&= 1 + \left[ \dfrac{\partial S_q}{\partial q} + \dfrac{\partial S_p}{\partial p} \right]dt + O(dt^2)\\
+&= 1 + div(S)dt + O(dt^2)\\
 \end{aligned}
 \end{equation}
 
-In other words, the final entropy is the initial entropy plus the expectation of the logarithm of the Jacobian.
-
-If the evolution obeys Hamilton's equations
+If we want the time evolution to transport the densities and to conserve information entropy, the Jacobian must be unitary and therefore $S$ is divergence-free and admits a potential. We have
 \begin{equation}
-\label{Hamilton}
+\label{Potential_Hamilton}
 \begin{aligned}
-\frac{dq}{dt} = \frac{\partial H}{\partial p}  \\
-\frac{dp}{dt} = - \frac{\partial H}{\partial q}  \\
-\end{aligned}
-\end{equation}
-then we calculate the Jacobian
-\begin{equation}
-\label{HamiltonianJacobian}
-\begin{aligned}
-|J| &= 1 + \left[ \dfrac{\partial}{\partial q} \frac{\partial H}{\partial p} - \dfrac{\partial}{\partial p} \frac{\partial H}{\partial q} \right] dt + O(dt^2)\\
-&= 1 + O(dt^2)\\
-\end{aligned}
-\end{equation}
-which turns out to be unitary. Therefore the areas, the values of the distribution at each point and the information entropy are all conserved during the evolution.
-
-This should not be surprising. Hamiltonian mechanics leads to Liouville's theorem, which means preservation of phase space areas. Hamiltonian mechanics of canonical coordinates, therefore the new coordinates are also canonical and their Poisson bracket is unitary. Hamiltonian mechanics means invariance of the form $\omega$ with components
-\begin{equation}
-\label{singleForm}
-\omega_{ab} = TODO
-\end{equation}
-
-which corresponds to the two dimensional vector product (i.e. the area given by two vectors). Hamiltonian mechanics means incompressible flow in phase space, which means the value of the distribution has the same value for the initial and final state.  And if the distribution is value by value the same, its entropy is going to be the same as well. All these are different aspect of the same property.
-
-We can easily run the argument backward. Suppose we start with a distribution over space and a law of evolution that preserves information entropy. How can we characterize the law?
-
-For entropy to be conserved, the logarithm of Jacobian must be zero everywhere, therefore the Jacobian must be unitary. This means that the law has to satisfy the condition
-\begin{equation}
-\label{divergenceFree}
-\dfrac{\partial}{\partial q} \left( \dfrac{dq}{dt} \right) + \dfrac{\partial}{\partial p} \left( \dfrac{dp}{dt} \right) = 0
-\end{equation}
-In other words: the vector field formed by the displacement vector $\left[ \dfrac{dq}{dt}, \dfrac{dp}{dt}\right]$ is divergence free, which means it admits a potential $H$ such that:
-\begin{equation*}
-\begin{aligned}
+S = - curl(H) &= (\frac{\partial H}{\partial q}, - \frac{\partial H}{\partial p}) \\
 \frac{dq}{dt} &= \frac{\partial H}{\partial p}  \\
-\frac{dp}{dt} &= - \frac{\partial H}{\partial q}
+\frac{dp}{dt} &= - \frac{\partial H}{\partial q}  \\
 \end{aligned}
-\end{equation*}
-So we have recovered Hamilton's equations.
+\end{equation}
+and we recognize Hamilton's equations. Note that the reverse is true as well: any Hamiltonian evolution will transport densities and conserve information entropy due to Liouville's theorem.\footnote{Again, it's not just that the density and the areas are conserved in time: is that they are the same for all canonical coordinates. That is, we have an objective way to compare them.} Therefore \textbf{Hamiltonian mechanics is the exactly the evolution of (classical) distributions that preserve information entropy and densities}.
 
-Therefore is not just that Hamiltonian mechanics on a single degree of freedom preserves information entropy: it is the only evolution that does. In fact, it's even deeper than that.
+We'd like to stress how all elements of Hamiltonian mechanics had a straight forward physical meaning in terms of invariant densities and change of coordinates and variables.
 
-As we saw, the information entropy is, in general, coordinate dependent. If we had a distribution over position only, we would not be able to arbitrarily change reference frame: information would not be invariant. A two dimensional manifold, with position and momentum, is exactly what is needed to define distributions such that their value and their information entropy is defined independent of reference frame. The symplectic form $\omega$ keeps track the areas on which these distributions are defined in a way similar to how the metric sensor $g$ keeps track about length in Riemannian geometry.
+\subsection*{Distributions over multiple degrees of freedom}
 
-Both phase space and Hamilton's equation are exactly the mathematical structures necessary and sufficient to describe distributions for which the information entropy is coordinate independent and is conserved in time.
+To understand what happens in multiple degrees of freedom, let's first look at change of variables of marginal distributions. Suppose we have a distribution $\rho(\xi^a)$ that depends on many coordinates, on many units. If the density is coordinate invariant, then it will be so even if we change one coordinate, say $\xi^1$. As we saw before, then we can find the conjugate variable $\xi^2$ that changes in the opposite way. We can calculate the marginal distribution by integrating over those two quantities.
+\begin{equation}
+\rho(\xi^b) = \int \rho(\xi^a) d\xi^1 d\xi^2
+\end{equation}
+where $\xi^b$ are the remaining coordinates. If the variables $\xi^b$ are independent from $\xi^1$ and $\xi^2$, then we must be able to change units independently as well. Which means $\rho(\xi^b)$ must be coordinate invariant.
 
-\section{Multiple degree of freedom}
+We can imagine to proceed iteratively, one unit at a time. We'll find that our variables are paired $(q^i, p_i)$  with the first defining the units and the seconds defining the invariant areas. We call each pair an independent degree of freedom as it constitute an independent choice of unit. We recognize $\mathcal{Q}$, the manifold charted by $q^i$, as the (poorly named) configuration space. We are going to call it coordinate space as it includes all variables and only the variables that define the units and the reference frame. The state space for the particles, then, is a set of coordinates plus an equal number of conjugate variables that vary like covector components, therefore we recognize $\mathcal{S}=\mathsf{T}^*\mathcal{Q}$ as the cotangent bundle.\footnote{This does \emph{not} mean that conjugate momentum is a one form, in the sense of a map from a vector to a number. The state space is just a manifold and the structure it has comes from how units transform, not because the variable represent different objects. Unfortunately mathematical structures strip out the units, so that knowledge is lost and then resurfaces in other structures. Changing state variables from position and momentum to position and velocity is not, as one may be mistakenly understand from the math, a change of objects: is relabeling the same states much like changing spatial coordinates relabels positions. It is not, in general, a canonical transformation as the density will not correspond to the invariant one, and it is not simply a change of coordinates. But it is still a valid change of state variables.}
 
-The reader may have notice that there the proof of the single degree of freedom was trivial: just a mere application of the definitions. The clever bit was to set up the problem. In the multiple degrees of freedom setting up the problem presents a challenge: we don't have a suitable mathematical tool to do it.
+In terms of information theory, this is equivalent to being able to assign a coordinate invariant information entropy to each of the marginal distributions. This means that relationships between the entropy of the total and marginal distributions are preserved. For example, saying that the marginal distributions $\rho_2(q^2)$ and $\rho_1(q^1)$ are independent is equivalent to saying that the entropy of the joint distribution is equal to the sum of the entropy of the marginals: $I(\rho(q^1,q^2)) = I(\rho_2(q^2)) +I(\rho_1(q^1))$.\footnote{This is also equivalent to saying that the joint distribution is the product of the marginals $\rho(q^1,q^2) = \rho_2(q^2)\rho_1(q^1)$.} That is, giving both values is equivalent to giving one and then the other. This means we can think of these relationships and quantities as real physical properties assigned to the degree of freedom and not just to the coordinates.
 
-Mathematically, Hamiltonian mechanics is formalized with symplectic geometry, a branch of differential geometry. But while symplectic geometry gives us the right tool to study the geometry of the volumes and areas on which we define the distributions, it does not give us good tools to study the distributions themselves. This because differential geometry in general focuses on objects that are coordinate independent while distributions are coordinate dependent. On the other hand, probability theory and statistics give us the right tool to study distributions on multiple degrees of freedom but they do not give us tools to define areas and volumes. So, to make a mathematically precise proof, we would need to combine elements of both and once the problem is correctly setup, the proof would be trivial. Unfortunately, the result would be something difficult to follow and would make the physical content opaque.
+\subsection*{The geometry of phase space}
 
-What we are going to do, instead, is to show how and why the math works the way that it does and what the key intuitive ideas areas. It will also give enough elements for someone to construct a more formal proof, in case it is needed.
+Now that we have an intuitive sense of the objects we want to describe physically, we can turn to differential geometry to derive the geometrical structure of the state space and then the equations of motion. What we want to capture is that we can integrate densities over two dimensional sub-manifolds in a way that is coordinate invariant. That is, we need to have a two-form $\omega$ such that:
+\begin{equation}
+\rho_\Sigma = \int_\Sigma \rho(\xi^a) \omega(d\Sigma)
+\end{equation}
+is coordinate invariant. In fact, creating a marginal distribution means giving a family of surfaces parameterized by a set of variables, that do not intersect and whose union is the whole space and then calculating the integral as a function of the variables.
 
-Show conceptually what needs to happen. Need to be able to define marginal distributions on each degree of freedom. Jacobian preserved under all degrees of freedom. Symplectic form in multiple dimension preserves area and orthogonality. Product of marginals needs to be preserved.
+The requirement that $\omega$ is a two-form, i.e. linear and anti-symmetric, comes from the fact that it needs to represent areas. That is, it needs to be linear because the area of a parallelogram is a linear function of its sides. And if $v^1$ and $v^2$ are vectors and $\omega(v^1, v^2)$ represents the area, then rotating by 90 degrees will give the same area. That is, $\omega(v^1, v^2) = \omega(v^2, -v^1) = -\omega(v^2, v^1)$. Therefore it must be anti-symmetric. It should also be non-degenerate, i.e. there is no direction for which $\omega$ is always zero or we would not be able to define a volume.
 
-Show that setting up the problem mathematically is more problematic because: symplectic geometry does not have the tools to talk about distributions as it focuses on objects that are coordinate independent, statistics does not care that distribution and information entropy is coordinate dependent since the prime object is the cumulative distribution function.
+We also want the two-form to be closed, that is the integral
+\begin{equation}
+\int_\Sigma \omega(d\Sigma)
+\end{equation}
+is zero if $\Sigma$ is a closed surface. To understand why, note that it corresponds to the case where the density is the unit constant. If the surface is a parallelopiped in some variables, each face that give a positive contribution will have a parallel and equal face that would give an opposite contribution. As the closed integral needs to be zero for all parallelopipeds, it will also be zero for an arbitrary closed surface.
 
-Spend the rest at making links between geometric objects and distributions.
+Under a change of variables, the two-form $\omega$ must be invariant. That is, phase space is a symplectic manifold. And, as any symplectic manifald, we can find Darboux variables\footnote{In general, this gives a general understanding of what a differentiable structure is. Any manifold, even a non-differentiable one, can identify points with coordinates. A differentiable structure on a manifold selects a set of charts that allow differentiable coordinate change. But there are many such sets, which one do we pick? We pick the one that allows us to write densities for our distributions. Similarly, a symplectic manifolds selects only the coordinates that allows us to write invariant densities. Also note how both the tangent space and the space of distributions are vector spaces. In a way, the linearity of distributions corresponds to the linearity of the tangent space.} $q^i, p_j$ and express the two-form as
+\begin{equation}
+\label{Symplectic}
+\begin{aligned}
+\omega &= dq^i \wedge dp_i = d\xi^a\omega_{ab}d\xi^b \\
+\omega_{ab} &=  \left[
+\begin{array}{cc}
+0 & 1 \\
+-1 & 0 \\
+\end{array}
+\right] \otimes I_n =
+\left[
+\begin{array}{cc}
+0 & I_n \\
+-I_n & 0 \\
+\end{array}
+\right]
+\end{aligned}
+\end{equation}
 
-Show the definitions for mutual information entropy.
+The components $\omega_{ab}$ let us understand what geometrical features are captured by $\omega$. It corresponds to a two dimensional vector product within each degree of freedom while it corresponds to a scalar product across degrees of freedom. As $\omega$ is preserved during coordinate transformations, the area within each degree of freedom is preserved meaning we are preserving the marginal distribution as well. Across degree of freedom, instead, we are preserving the angle meaning two perpendicular degrees of freedom remain perpendicular. But here perpedicular means independent: the density within the four dimensional volume is the product of the densities on sides. As these are preserved under coordinate transformation, these now can correspond to actual physical entities.
+
+\subsection*{Hamiltonian mechanics for multiple degrees of freedom}
+
+Deterministic and reversible evolution will preserve the densities and therefore preserve $\omega$. That is, $\omega(v, w) = \omega(v',w')$ where $v'$ and $w'$ are the vector evolved in time. In fancy math terms, deterministic and reversible evolution for a distribution is a symplectomorphism. As before, $S = \left(\frac{d\xi^a}{dt}\right)$ is the vector field corresponding to the evolution. The vector components change according to $v'^a = \partial_b \xi(t+dt)^a v^b = (\delta^a_b + \partial_b S^a dt) v^b$. Therefore we have:
+\begin{align*}
+v^{a} \omega_{ab} w^{b} &= v'^{a} \omega_{ab} w'^{b}  \\
+&= (v^{a} + \partial_{c} S^{a} v^{c} dt) \omega_{ab} ( w^{b} + \partial_{d} S^{b} w^{d} dt) \\
+&= v^{a} \omega_{ab} w^{b} + (\partial_{c} S^{a} v^{c} \omega_{ab} w^{b} + v^{a} \omega_{ab} \partial_{d} S^{b} w^{d}) dt \\ &+ O(dt^2)
+\end{align*}
+If we set $S_{b} \equiv S^{a} \omega_{ab}$, we have:
+\begin{equation}
+\begin{aligned}
+v^{c} w^{b} \partial_{c} S_{b} &- v^{a} w^{d} \partial_{d} S_{a} = 0\\
+\partial_{a} S_{b} - \partial_{b} S_{a} &= curl(S_{a}) = 0 \\
+S_{a} &= \partial_{a}H \\
+\frac{dq^i}{dt} &= \frac{\partial H}{\partial p_i}  \\
+\frac{dp_i}{dt} &= - \frac{\partial H}{\partial q^i}
+\end{aligned}
+\end{equation}
+
+We recognize Hamilton's equations for multiple degrees of freedom.
 
 \section{Discussion}
 
-Why should we care? Because it provides links.
+Hamiltonian mechanics, through Liouville's theorem, has always had an important role in statistical mechanics. What we are showing is that that role is not a coincidence: it is the very defining characteristic. \textbf{Hamiltonian mechanics is a type of statistical mechanics}, one with no probability and deterministic and reversible laws. The fact that entropy can be defined objectively and is conserved through evolution cannot be simply seen as a curiosity.
 
-Uncertainty principle as relationship between entropy and uncertainty.
+To us, it does not make sense to start our physical discourse by imposing a state space for point-like particles, that somehow does not require only points but a particular differentiable structure as well. Then, if we are so keen, put distributions on it which turn out, somewhat magically, to have density and entropy defined in a coordinate independent way. It makes a lot more sense to start by saying we have a finite system which we pretend to be made of infinitesimal parts, which we keep to dividing as we please and derive the state space of particles as the limit of such process of subdivision. This gives uniquely gives us the actual mathematical structure and its physical meaning.
 
-Relativistic Hamiltonian motion as preservation of entropy.
+Not only the second approach is preferable because with fewer starting points it justifies the state space, the evolution and why that state space is so compatible with statistical mechanics. It also maps better to what we do in classical physics: we study composite systems (planets, cannonballs, beads on a wire, fluids) which we sometime pretend we can recursively divide. None of those objects, in fact, has a single position or momentum: only the center of mass has a single position and momentum but those are precisely the expectation values $\int q \rho(q,p) dq dp$ and $\int p \rho(q,p) dq dp$ over the distribution. In other words, particles are not point-like in classical mechanics. They are infinitesimal cells of phase-space and that's why they evolution is symplectomorphism: that's why phase space requires a differentiable structure.
 
-Relationship to conservation of energy in isolated systems.
+Under this light, asking whether classical mechanics is tenable coincides with asking whether we can really keep dividing our object indefinitely. If one is convinced that that is not realistic then he is already convinced that classical mechanics will not hold in those regimes. And if that simplification fails, it's not that we need an altogether new set of rules: the macroscopic object is still the same. We simply need to change how the subdivision works.
+
+While the power of this shift can really be appreciated in the context of our broder work, it should be clear how with relative few starting points, elements of relativity (e.g. coordinate invariance), statistical mechanics (e.g. physical distributions), quantum mechanics (e.g. wave number, conjugate quantities) and classical Hamiltonian mechanics (e.g. phase space, Poisson brackets) already emerge and form a coherent picture. In particular note how energy (in the form of the Hamiltonian) and entropy (in the form of information entropy) both come out from the single unassuming idea of invariant distributions. And note how conservation of entropy is related to deterministic and reversible evolution. Also note how deterministic and reversible evolution means the that the system is only influenced by itself, which means it is not influenced by anything else, which means it is isolated, which indeed means energy is conserved. This surely this cannot be all coincidence.
+
+The larger point is that physics is one and it can't be understood piecemeal. Nature does not separate between dynamical systems and thermodynamics, between topologies and $\sigma$-algebras, between classical systems and quantum systems. The boundaries between all these disciplines are as much unfortunate as they are artificial. There is no real understanding of one without the other.
+
+Having a coherent picture across the different areas not only is intellectually more satisfying, but it allows us to switch perspective when the intuition from one fails. As a practical example, we can show how understanding the link between Hamiltonian mechanics and information theory leads very straightforwardly to a classical equivalent for the uncertainty principle.
+
+\subsection*{Classical uncertainty principle}
+
+As we saw, Hamiltonian dynamics not only conserves the energy of all particles, but it also conserves the information entropy of the distribution as a whole. We can imagine that there is going to be some link between the spread of a distribution and the number of bits required to identify an element. So we ask: what is the distribution that minimizes the spread given a certain amount of information entropy? If $I_0$ is the set amount of information entropy and $\sigma_q^2 \sigma_p^2 \equiv \int (q-\mu_q)^2 \rho \, dqdp \int (p-\mu_p)^2 \rho \, dqdp$ is the spread, we can use Lagrange multipliers to find out.
+\begin{align*}
+L = &\int (q-\mu_q)^2 \rho \, dqdp \int (p-\mu_p)^2 \rho \, dqdp \\
+&+ \lambda_1(\int \rho dqdp - 1) \\ &+ \lambda_2(- \int \rho \ln \rho \, dqdp - I_0)\\ 
+\delta L = &\int \delta \rho [(q-\mu_q)^2 \sigma_p^2 + \sigma_q^2 (p-\mu_p)^2 + \\ &\lambda_1 - \lambda_2 \ln \rho - \lambda_2 ] dqdp = 0 \\
+\lambda_2 \ln \rho = &\lambda_1 - \lambda_2 + (q-\mu_q)^2 \sigma_p^2 + \sigma_q^2 (p-\mu_p)^2 \\
+\rho = &e^{\frac{\lambda_1 - \lambda_2}{\lambda_2}}e^{\frac{(q-\mu_q)^2 \sigma_p^2}{\lambda_2}}e^{\frac{\sigma_q^2 (p-\mu_p)^2}{\lambda_2}}\\
+\end{align*}
+We solve the multipliers and have:
+\begin{align*}
+\rho = &\frac{1}{ 2 \pi \sigma_q \sigma_p} e^{-\frac{(q-\mu_q)^2}{2\sigma_q^2}} e^{-\frac{(p-\mu_p)^2}{2\sigma_p^2}} \\
+I_0 = &\ln (2\pi\sigma_q\sigma_p) + 1
+\end{align*}
+The distribution that minimizes the spread, then, is the product of two independent Gaussians. As the entropy is conserved during Hamiltonian evolution the product $\sigma_q^2 \sigma_p^2$ can never be less than the one given by the Gaussian distribution of the same entropy. We have:
+\begin{align*}
+\sigma_q\sigma_p \geq \exp (I_0 - 1) / 2 \pi 
+\end{align*}
+Intuitively, Hamiltonian mechanics is deterministic and reversible evolution for a distribution and their elements, and therefore it can't shrink it more than a set amount. If it did, it would start concentrating the density, meaning that multiple states have part of their density mapped to a single state and the dynamics would not be reversible.
+
+\section{Conclusion}
+
+In this paper we have shown how classical Hamiltonian mechanics coincides with conservation of information entropy. The structure of phase space is required to be able to define densities and entropy in a way that is coordinate invariant, and therefore physically meaningful. This clarifies the link between Hamiltonian mechanics, statistical mechanics and deterministic and reversible motion.
+
+In the narrower context, it allows to understand what physical object is represented by each mathematical one. This can be summarized in table \ref{dictionary}.
+\begin{table}[h]
+	\centering
+	%	\begin{tabular}{p{0.2\textwidth} p{0.1\textwidth} p{0.1\textwidth} p{0.5\textwidth}}
+	\begin{tabular}{c p{0.3\textwidth} p{0.5\textwidth} }
+		& Name & Meaning\\ 
+		\hline 
+		& Particle (classical) & an infinitesimal part of the system (i.e. the limit of recursive division) \\ 
+		$\mathcal{S} =\mathsf{T}^*\mathcal{Q}$ & Phase space \newline (Tangent bundle) & the set of all possible states for particles upon which invariant distributions can be defined \\
+		$\xi^a$ & State variables \newline (Unified coordinates) & the set of variables needed to identify the state of a particle \\ 
+		$\rho(\xi^a)$ & Density & the amount of material for a given particle state (i.e. in the limit of the recursive division)\\ 
+		$I(\rho(\xi^a))$ & Information entropy & the number of bits to identify an element of the distribution to a unitary level of precision\\ 
+		$q^i$ & Coordinate & a state variable that also defines a unit \\
+		$\mathcal{Q}$ & Coordinate space \newline (Configuration space) & the space charted by all coordinates \\
+		$k_i$ & Conjugate coordinate & a state variable that uses the inverse unit of the corresponding coordinate \\
+		$\hbar$ & & the unit for measuring the range of possible states within a single degree of freedom \\
+		$p_i=\hbar k_i$ & Conjugate momentum & a state variable that together with the corresponding coordinate defines invariant ranges of possible states \\
+		$(q^i, p_i)$ & Canonical variables \newline (Canonical coordinates) & a set of variable for which the density is invariant and expressed over units of $\hbar$\\ 
+		& Canonical transformation & a change in state variables that does not change the density\\ 
+	\end{tabular}
+	\caption{Dictionary between mathematical and physical objects.}
+	\label{dictionary}
+\end{table}
+It also allows us to see that deterministic and reversible evolution must conserve entropy and that isolated systems must conserve energy. In the broader context, it allows to make deeper connections between different areas of math and physics, and pushes us to rethink our starting points. In particular, it tells us that classical particles should not be considered point-like objects (upon which entropy and densities cannot be defined), but the limit of recursive subdivisions (i.e. infinitesimal cells of phase space).
+
+These insights come from our project, Assumptions of Physics, that aims to re-derive the standard laws from a handful of physical starting points. We believe that a reorganization of fundamental physics on more physically meaningful conceptual footing and more rigorous mathematical grounds is not only possible, but long overdue. The insights presented here are one step toward that direction as we know them to be still valid and useful in a larger setting, such as understanding the similarities in the mathematical structures of classical and quantum mechanics.
 
 \begin{thebibliography}{0}
 	
