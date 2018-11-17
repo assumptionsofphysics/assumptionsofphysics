@@ -93,3 +93,5 @@ sympy-plots-for-*.tex/
 *.xdy
 *.bib
 *.tex~txs0
+
+!bibliography.bib
