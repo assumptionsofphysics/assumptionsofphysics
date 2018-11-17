@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{braket}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{calculator}
+\usepackage{standalone}
+
+
+
+\begin{document}
+
+\title{Particle Gravitation}
+\author{Gabriele Carcassi, Christine A. Aidala}
+
+
+%\ifjournal
+%	% As the page margins are so large, the full title does not fit
+%	\titlerunning{From physical principles to classical and quantum particle mechanics}
+%\fi
+
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{General properties}
+\begin{equation}
+\begin{aligned}
+a \wedge b &= a \otimes b - b \otimes a \\
+g_{\alpha\beta} e^\alpha \wedge e^\beta &= g_{\alpha\beta} e^\alpha \otimes e^\beta - g_{\alpha\beta} e^\beta \otimes e^\alpha = g_{\alpha\beta} e^\alpha \otimes e^\beta - g_{\beta\alpha} e^\alpha \otimes e^\beta \\
+&= (g_{\alpha\beta} - g_{\beta\alpha}) e^\alpha \otimes e^\beta \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\partial_\alpha \delta^\beta_\gamma &= 0 = \partial_\alpha ( g^{\beta \delta} g_{\delta \gamma} ) = \partial_\alpha g^{\beta \delta} g_{\delta \gamma} + g^{\beta \delta} \partial_\alpha g_{\delta \gamma} \\
+\partial_\alpha g^{\beta \gamma} &= - g^{\beta \delta} g^{\gamma \epsilon} \partial_\alpha g_{\delta \epsilon} \\
+\Gamma_{\alpha \beta \gamma} &= (\partial_\gamma g_{\alpha\beta} + \partial_\beta g_{\alpha\gamma} - \partial_\alpha g_{\beta\gamma}) \\
+\Gamma^\alpha_{\beta\gamma} &= g^{\alpha \delta} \Gamma_{\delta\beta\gamma}
+\end{aligned}
+\end{equation}
+
+\section{Position and conjugate momentum}
+
+\begin{equation}
+\begin{aligned}
+\theta &= \left[ \begin{matrix}
+p_\alpha & 0 \end{matrix} \right] \\
+\theta &= \theta_a e^a = p_\alpha e^{q^\alpha} \\
+\omega &= - \partial \theta = - \partial_b \theta_a e^b \wedge e^a = - e^{p_\alpha} \wedge e^{q^\alpha}  \\
+\omega &= \left[ \begin{matrix}
+0 & I_n \\[2.2ex]
+- I_n & 0 \end{matrix} \right] \\
+\omega &= \omega_{ab} e^a \otimes e^b = e^{q^\alpha} \otimes e^{p_\alpha} - e^{p_\alpha} \otimes e^{q^\alpha} = e^{q^\alpha} \wedge e^{p_\alpha} \\
+\end{aligned}
+\end{equation}
+
+\section{Position and kinetic momentum}
+\begin{equation}
+\begin{aligned}
+	q^\alpha &= x^\alpha \\
+	p_\alpha &= m g_{\alpha \beta} u^\beta + q A_\alpha \\
+	&= \Pi_\alpha + q A_\alpha \\
+	\Pi_\alpha &= m g_{\alpha \beta} u^\beta \\
+	\mathcal{H} &= \frac{1}{2m} \Pi_\alpha g^{\alpha\beta} \Pi_\beta 
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+	e^{q^\alpha} &= \frac{\partial q^\alpha}{\partial x^\beta}e^{x^\beta} + \frac{\partial q^\alpha}{\partial \Pi_\gamma}e^{\Pi_\gamma} = e^{x^\alpha} \\
+	e^{p_\alpha} &= \frac{\partial p_\alpha}{\partial x^\beta}e^{x^\beta} + \frac{\partial p_\alpha}{\partial \Pi_\gamma}e^{\Pi_\gamma} \\
+	&= q \frac{\partial A_\alpha}{\partial x^\beta} e^{x^\beta} +e^{\Pi_\alpha} \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+	\theta &= (\Pi_\alpha + q A_\alpha) e^{x^\alpha} \\
+	\omega &= e^{x^\alpha} \wedge \left( q \frac{\partial A_\alpha}{\partial x^\beta} e^{x^\beta} +e^{\Pi_\alpha} \right) \\
+	&= q \frac{\partial A_\alpha}{\partial x^\beta} e^{x^\alpha} \wedge e^{x^\beta} + e^{x^\alpha} \wedge e^{\Pi_\alpha} \\
+	&=  q \left( \frac{\partial A_\alpha}{\partial x^\beta} - \frac{\partial A_\beta}{\partial x^\alpha}\right)  e^{x^\alpha} \otimes e^{x^\beta} \\
+	&+ e^{x^\alpha} \otimes e^{\Pi_\gamma} - e^{\Pi_\gamma} \otimes e^{x^\alpha} \\
+	F_{\alpha\beta} &= \partial_\alpha A_\beta - \partial_\beta A_\alpha \\
+	\omega_{ab} &= \left[ \begin{matrix}
+		- q F_{\alpha\beta} & I_n \\[2.2ex]
+		- I_n & 0 \end{matrix} \right] \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+e_{q^\alpha} &= \frac{\partial x^\beta }{\partial q^\alpha}e_{x^\beta} + \frac{\partial \Pi_\beta}{\partial q^\alpha}e_{\Pi_\beta} \\
+&= e_{x^\alpha} - q \frac{\partial A_\beta}{\partial q^\alpha}e_{\Pi_\beta} \\
+e_{p_\alpha} &= \frac{\partial x^\beta}{\partial p_\alpha}e_{x^\beta} + \frac{\partial \Pi_\gamma}{\partial p_\alpha}e_{\Pi_\gamma} \\
+&= e_{\Pi_\alpha} \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\{x^\alpha, x^\beta\} &= \{q^\alpha, q^\beta\} = 0 \\
+\{x^\alpha, \Pi_\beta\} &= \{q^\alpha, p_\beta - q A_\beta\} = \{q^\alpha, p_\beta\} - \{q^\alpha, q A_\beta\} \\
+&= \delta^\alpha_\beta \\
+\{ \Pi_\alpha, \Pi_\beta\} &= \{p_\alpha - q A_\alpha, p_\beta - q A_\beta\} \\
+&= \{p_\alpha, p_\beta\} - \{p_\alpha, q A_\beta\} - \{q A_\alpha, p_\beta\} + \{q A_\alpha , q A_\beta\} \\
+&= \{q A_\beta, p_\alpha\} - \{q A_\alpha, p_\beta\} = q (\partial_\alpha A_\beta - \partial_\beta A_\alpha) \\
+&= q F_{\alpha \beta} \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+d_s x^\alpha = \{x^\alpha, \mathcal{H}\} &= \frac{1}{2m} \{x^\alpha, \Pi_\beta g^{\beta\gamma} \Pi_\gamma\} = \frac{1}{m} g^{\alpha \beta} \Pi_\beta \\
+m g_{\alpha\beta} d_s x^\beta &= \Pi_\alpha \\
+d_s \Pi_\alpha = \{ \Pi_\alpha , \mathcal{H} \} &= \frac{1}{2m} \{\Pi_\alpha, \Pi_\beta g^{\beta\gamma} \Pi_\gamma\} \\
+&= \frac{1}{2m} \left( \{\Pi_\alpha, \Pi_\beta\}  g^{\beta\gamma} \Pi_\gamma + \{\Pi_\alpha,  g^{\beta\gamma} \} \Pi_\beta \Pi_\gamma + \{\Pi_\alpha,  \Pi_\gamma\} \Pi_\beta g^{\beta\gamma} \right)  \\
+&= \frac{1}{2m} \left( q F_{\alpha \beta}  g^{\beta\gamma} \Pi_\gamma - \partial_\alpha g^{\beta\gamma} \Pi_\beta \Pi_\gamma + q F_{\alpha \gamma} \Pi_\beta g^{\beta\gamma} \right)  \\
+&= - \frac{1}{2m} \partial_\alpha g^{\beta\gamma} \Pi_\beta \Pi_\gamma + \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+&= \frac{1}{2m} g^{\beta\delta} g^{\gamma\epsilon} \partial_\alpha g_{\delta\epsilon} \Pi_\beta \Pi_\gamma + \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+&= \frac{1}{2m} g^{\beta\delta} g^{\gamma\epsilon}(\partial_\epsilon g_{\delta\alpha} - \partial_\epsilon g_{\delta\alpha} + \partial_\alpha g_{\delta\epsilon} ) \Pi_\beta \Pi_\gamma + \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+&= \frac{1}{2m} g^{\beta\delta} g^{\gamma\epsilon}(\partial_\delta g_{\epsilon\alpha} - \partial_\epsilon g_{\delta\alpha} + \partial_\alpha g_{\delta\epsilon} ) \Pi_\beta \Pi_\gamma + \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+&= \frac{1}{2m} g^{\beta\delta} g^{\gamma\epsilon}(\partial_\delta g_{\epsilon\alpha} + \partial_\alpha g_{\delta\epsilon} - \partial_\epsilon g_{\alpha\delta}  ) \Pi_\beta \Pi_\gamma + \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+&= \frac{1}{m} g^{\beta\delta} \Gamma^\gamma_{\delta\alpha} \Pi_\beta \Pi_\gamma + \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+&= d_sx^\delta \Gamma^\gamma_{\delta\alpha} \Pi_\gamma + \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+D_s \Pi_\alpha &= d_s \Pi_\alpha - d_sx^\delta \Gamma^\gamma_{\delta\alpha} \Pi_\gamma = \frac{q}{m} F_{\alpha\beta} g^{\beta\gamma} \Pi_\gamma \\
+\end{aligned}
+\end{equation}
+
+\section{Position and velocity}
+
+\begin{equation}
+\begin{aligned}
+q^\alpha &= x^\alpha \\
+p_\alpha &= m g_{\alpha \beta} u^\beta + q A_\alpha \\
+\mathcal{H} &= \frac{1}{2} m u^\alpha g_{\alpha\beta} u^\beta \\
+e^{q^\alpha} &= \frac{\partial q^\alpha}{\partial x^\beta}e^{x^\beta} + \frac{\partial q^\alpha}{\partial u^\gamma}e^{u^\gamma} = e^{x^\alpha} \\
+e^{p_\alpha} &= \frac{\partial p_\alpha}{\partial x^\beta}e^{x^\beta} + \frac{\partial p_\alpha}{\partial u^\gamma}e^{u^\gamma} \\
+&= \left(m \frac{\partial g_{\alpha\gamma}}{\partial x^\beta} u^\gamma + q \frac{\partial A_\alpha}{\partial x^\beta} \right)e^{x^\beta} + m g_{\alpha \gamma} e^{u^\gamma} \\
+\theta &= (m g_{\alpha \beta} u^\beta + q A_\alpha) e^{x^\alpha} \\
+\omega &= e^{x^\alpha} \wedge \left[ \left(m \frac{\partial g_{\alpha\gamma}}{\partial x^\beta} u^\gamma + q \frac{\partial A_\alpha}{\partial x^\beta} \right)e^{x^\beta} + m g_{\alpha \gamma} e^{u^\gamma} \right] \\
+&= \left(m \frac{\partial g_{\alpha\gamma}}{\partial x^\beta} u^\gamma + q \frac{\partial A_\alpha}{\partial x^\beta} \right) e^{x^\alpha} \wedge e^{x^\beta} + m g_{\alpha \gamma} e^{x^\alpha} \wedge e^{u^\gamma} \\
+&= \left(m u^\gamma \left( \frac{\partial g_{\alpha\gamma}}{\partial x^\beta} -  \frac{\partial g_{\beta\gamma}}{\partial x^\alpha}\right) + q \left( \frac{\partial A_\alpha}{\partial x^\beta} - \frac{\partial A_\beta}{\partial x^\alpha}\right) \right) e^{x^\alpha} \otimes e^{x^\beta} \\
+&+ m g_{\alpha \gamma} e^{x^\alpha} \otimes e^{u^\gamma} - m g_{\alpha \gamma} e^{u^\gamma} \otimes e^{x^\alpha} \\
+F_{\alpha\beta} &= \partial_\alpha A_\beta - \partial_\beta A_\alpha \\
+G_{\alpha\beta\gamma} &= \partial_\alpha g_{\beta \gamma} - \partial_\beta g_{\alpha \gamma} = \frac{1}{2} (\partial_\alpha g_{\beta \gamma} - \partial_\beta g_{\alpha \gamma}) - \frac{1}{2} (\partial_\beta g_{\alpha \gamma} - \partial_\alpha g_{\beta \gamma}) \\
+&= \frac{1}{2} (\partial_\gamma g_{\alpha \beta} + \partial_\alpha g_{\beta \gamma} - \partial_\beta g_{\alpha \gamma}) - \frac{1}{2} (\partial_\gamma g_{\alpha \beta} + \partial_\beta g_{\alpha \gamma} - \partial_\alpha g_{\beta \gamma}) \\
+&= \Gamma_{\beta\alpha\gamma} - \Gamma_{\alpha\beta\gamma} \\
+\omega_{ab} &= \left[ \begin{matrix}
+- m G_{\alpha\beta\gamma} u^\gamma - q F_{\alpha\beta} & mg_{\alpha \beta} \\[2.2ex]
+- mg_{\alpha \beta} & 0 \end{matrix} \right] \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+G^{\alpha\beta\gamma} &= g^{\alpha\delta}g^{\beta\epsilon}g^{\gamma\zeta} G_{\delta\epsilon\zeta} = g^{\alpha\delta}g^{\beta\epsilon}g^{\gamma\zeta} \partial_\delta g_{\epsilon\zeta} - g^{\alpha\delta}g^{\beta\epsilon}g^{\gamma\zeta} \partial_\epsilon g_{\delta\zeta}\\
+&= - g^{\alpha\delta} \partial_\alpha g^{\beta\gamma} + g^{\beta\epsilon} \partial_\beta g^{\alpha\gamma} \\
+&= \partial^\beta g^{\alpha\gamma} - \partial^\alpha g^{\beta\gamma} \\
+F^{\alpha\beta} &= g^{\alpha\gamma}g^{\beta\delta} F_{\gamma\delta} = g^{\alpha\gamma}g^{\beta\delta} \partial_\gamma A_{\delta} - g^{\alpha\gamma}g^{\beta\delta} \partial_\delta A_{\gamma}  \\
+&= g^{\alpha\gamma} \partial_\gamma (g^{\beta\delta} A_{\delta}) - g^{\beta\delta} \partial_\delta ( g^{\alpha\gamma}A_{\gamma}) - g^{\alpha\gamma} \partial_\gamma g^{\beta\delta} A_{\delta} + g^{\beta\delta} \partial_\delta g^{\alpha\gamma}A_{\gamma}\\
+&= \partial^\alpha A^\beta - \partial^\beta A^\alpha + \partial ^\beta g^{\alpha \gamma} A_\gamma - \partial^\alpha g^{\beta \delta} A_\delta\\
+&= \partial^\alpha A^\beta - \partial^\beta A^\alpha +G^{\alpha\beta\gamma} A_\gamma
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\{x^\alpha, x^\beta\} &= \{q^\alpha, q^\beta\} = 0 \\
+\{x^\alpha, u^\beta\} &= \{q^\alpha, \frac{1}{m} g^{\beta\gamma}(p_\gamma - q A_\gamma)\} = \{q^\alpha, \frac{1}{m} g^{\beta\gamma} p_\gamma\} - \{q^\alpha, \frac{q}{m} g^{\beta\gamma} A_\gamma\} \\
+&= \frac{1}{m} g^{\alpha\beta} \\
+\{u^\alpha, u^\beta\} &= \frac{1}{m^2} \{g^{\alpha \gamma} p_\gamma - q A^\alpha, g^{\beta \delta} p_\delta - q A^\beta\} \\
+&= \frac{1}{m^2}\left[ \{g^{\alpha \gamma} p_\gamma, g^{\beta \delta} p_\delta\} - \{g^{\alpha \gamma} p_\gamma, q A^\beta\} - \{q A^\alpha , g^{\beta \delta} p_\delta \} + \{q A^\alpha , q A^\beta\} \right]\\
+&= \frac{1}{m^2}\left[ g^{\alpha \gamma} \{p_\gamma, p_\delta\} g^{\beta \delta} + p_\gamma \{g^{\alpha \gamma}, p_\delta\} g^{\beta \delta} + g^{\alpha \gamma} \{p_\gamma, g^{\beta \delta}\} p_\delta + p_\gamma \{g^{\alpha \gamma}, g^{\beta \delta}\} p_\delta \right.\\
+&\left. - g^{\alpha \gamma} \{p_\gamma, q A^\beta\} - p_\gamma \{g^{\alpha \gamma} , q A^\beta\} - \{q A^\alpha , p_\delta \} g^{\beta \delta} - \{q A^\alpha , g^{\beta \delta} \} p_\delta \right]\\
+&= \frac{1}{m^2}\left[ G^{\alpha\beta\gamma} p_\gamma  + q (\partial^\alpha A^\beta - \partial^\beta A^\alpha) \right] \\
+&= \frac{1}{m^2}\left[ G^{\alpha \beta \gamma} m ( g_{\gamma \delta} u^\delta + q A_\gamma ) + q (\partial^\alpha A^\beta - \partial^\beta A^\alpha) \right] \\
+&= \frac{1}{m^2}\left[ G^{\alpha \beta \gamma} m g_{\gamma \delta} u^\delta + q (G^{\alpha \beta \gamma} A_\gamma + \partial^\alpha A^\beta - \partial^\beta A^\alpha) \right] \\
+&= \frac{1}{m^2}\left[ G^{\alpha \beta \gamma} m g_{\gamma \delta} u^\delta +  q F^{\alpha \beta} \right] \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+d_s x^\alpha = \{x^\alpha, \mathcal{H}\} &= \frac{1}{2} m  \{x^\alpha, u^\beta g_{\beta\gamma} u^\gamma\} = m u^\beta g_{\beta \gamma} \{x^\alpha, u^\gamma\}\\
+&= m u^\beta g_{\beta\gamma} \frac{1}{m} g^{\alpha\gamma} = u^\alpha \\
+d_s u^\alpha = \{ u^\alpha , \mathcal{H} \} &= \frac{1}{2} m \{u^\alpha, u^\beta g_{\beta\gamma} u^\gamma\} \\
+&=  m u^\beta g_{\beta\gamma} \{u^\alpha,  u^\gamma\} + \frac{1}{2} m u^\beta u^\gamma \{u^\alpha,  g_{\beta\gamma} \} \\
+&= m u^\beta g_{\beta\gamma} \frac{1}{m^2} (G^{\alpha \gamma \delta} m g_{\delta \epsilon} u^\epsilon +  q F^{\alpha \gamma}) - \frac{1}{2} m u^\beta u^\gamma \frac{1}{m} g^{\alpha \delta} \partial_\delta g_{\beta\gamma} \\
+&= u^\beta u^\epsilon g_{\beta\gamma} g_{\epsilon \delta} G^{\alpha \gamma \delta} - \frac{1}{2} u^\beta u^\gamma g^{\alpha \delta} \partial_\delta g_{\beta\gamma} + \frac{q}{m} F^{\alpha \gamma}g_{\gamma\beta}u^\beta \\
+&= u^\beta u^\epsilon g^{\alpha\gamma} G_{\gamma \beta \epsilon} - \frac{1}{2} u^\beta u^\gamma g^{\alpha \delta} (\partial_\beta g_{\gamma\delta} - \partial_\beta g_{\gamma\delta} + \partial_\delta g_{\beta\gamma}) + \frac{q}{m} F^{\alpha \gamma}g_{\gamma\beta}u^\beta \\
+&= u^\beta u^\gamma g^{\alpha\delta} G_{\delta \beta \gamma} -  u^\beta u^\gamma g^{\alpha \delta} \frac{1}{2} (\partial_\gamma g_{\delta\beta} + \partial_\delta g_{\beta\gamma} - \partial_\beta g_{\gamma\delta}) + \frac{q}{m} F^{\alpha \gamma}g_{\gamma\beta}u^\beta \\
+&= u^\beta u^\gamma g^{\alpha\delta} (\Gamma_{\beta \delta \gamma} - \Gamma_{\delta \beta \gamma} - \Gamma_{\beta \delta \gamma}) + \frac{q}{m} F^{\alpha \gamma}g_{\gamma\beta}u^\beta \\
+&= - u^\beta u^\gamma g^{\alpha\delta} \Gamma_{\delta \beta \gamma} + \frac{q}{m} F^{\alpha \gamma}g_{\gamma\beta}u^\beta \\
+D_s u^\alpha &= d_s u^\alpha + u^\beta d_sx^\gamma \Gamma^\alpha_{\beta\gamma} = \frac{q}{m} F^{\alpha \gamma}g_{\gamma\beta}u^\beta \\
+\end{aligned}
+\end{equation}
+
+\begin{thebibliography}{0}
+	
+\end{thebibliography}
+
+\end{document}
