@@ -1,26 +1,26 @@
-\documentclass[letterpaper]{article}
+\newif\ifarchive
+%\archivetrue
+\archivefalse
+
+\ifarchive
+	\documentclass[letterpaper]{article}
+\else
+	\documentclass[smallextended]{svjour3}
+\fi
 
 %% Language and font encodings
-\usepackage[english]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage[T1]{fontenc}
+%\usepackage[english]{babel}
+%\usepackage[utf8x]{inputenc}
+%\usepackage[T1]{fontenc}
 
 %% Sets page size and margins
-\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=0.5in]{geometry}
+%\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,marginparwidth=0.5in]{geometry}
 
-% Temporary to remove "submitted to"
-\makeatletter
-\def\ps@pprintTitle{%
-	\let\@oddhead\@empty
-	\let\@evenhead\@empty
-	\def\@oddfoot{}%
-	\let\@evenfoot\@oddfoot}
-\makeatother
+%\usepackage{lineno,hyperref}
 
-\usepackage{lineno,hyperref}
-
+\ifarchive
+% Theorem definitions using amsthm
 \usepackage{amsmath, amsthm, amsfonts}
-\usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
 
 \newenvironment{rationale}{\emph{Rationale}.}{\qed}
 \newenvironment{justification}{\emph{Justification}.}{\qed}
@@ -39,6 +39,28 @@
 \theoremstyle{remark}
 \newtheorem*{rem}{Remark}
 
+\else
+
+\usepackage{amsmath, amsfonts}
+
+\numberwithin{equation}{section}
+\spnewtheorem{assump}{Assumption}{\bf}{\it}
+\renewcommand{\theassump}{\Roman{assump}}
+\spnewtheorem{prop}[equation]{Proposition}{\bf}{\rm}
+\spnewtheorem{thrm}[equation]{Theorem}{\bf}{\it}
+\spnewtheorem{defn}[equation]{Definition}{\bf}{\it}
+\spnewtheorem{axiom}[equation]{Axiom}{\bf}{\it}
+\spnewtheorem*{principle*}{Principle of scientific objectivity}{\bf}{\it}
+
+\newenvironment{rationale}{\emph{Rationale}.}{\hfill\(\qed\)}
+\newenvironment{justification}{\emph{Justification}.}{\hfill\(\qed\)}
+\renewenvironment{proof}{\emph{Proof}.}{\hfill\(\qed\)}
+\fi
+
+
+\usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
+
+
 
 % Remove line spaces between items of enumerate and itemize
 \usepackage{enumitem}
@@ -49,6 +71,7 @@
 % -------------
 
 % Allows to create negation symbols
+\let\vec\undefined
 \usepackage{MnSymbol}
 
 \DeclareMathOperator{\truth}{truth}
@@ -124,9 +147,19 @@
 \begin{document}
 
 \title{Towards a general mathematical theory of experimental science}
-\author{Gabriele Carcassi, Christine A. Aidala \\ University of Michigan}
 
+
+\ifarchive
+\author{Gabriele Carcassi, Christine A. Aidala \\ University of Michigan}
 \date{\today}
+\else
+\author{Gabriele Carcassi \and Christine A. Aidala}
+\institute{G. Carcassi, C. A. Aidala \at
+	Physics Department, University of Michigan, Ann Arbor, MI 48109 \\
+	\email{carcassi@umich.edu}
+}
+\date{Received: date / Accepted: date}
+\fi
 
 \maketitle
 
@@ -466,7 +499,7 @@ We thank Mark J. Greenfield for the thorough review of the mathematical framewor
 	
 	\bibitem{Carc1} G. Carcassi, C. A. Aidala, D. J. Baker and L. Bieri: From physical assumptions to classical and quantum Hamiltonian and Lagrangian particle mechanics. Journal of Physics Communications, 2, 4, 045026, 2018.
 	
-	\bibitem{Carc2} C. A. Aidala, G. Carcassi, M. J. Greenfield: Topology and experimental distinguishability. arXiv:1708.05492, 2017.
+	\bibitem{Carc2} C. A. Aidala, G. Carcassi, M. J. Greenfield: Topology and experimental distinguishability. Topology proceedings, accepted for publication on 11 Dec 2017.
 	
 	\bibitem{Carc3} G. Carcassi, C. A. Aidala: Assumptions of Physics (in preparation). http://assumptionsofphysics.org/book/, Ann Arbor, MI, USA, 2018.
 \end{thebibliography}
