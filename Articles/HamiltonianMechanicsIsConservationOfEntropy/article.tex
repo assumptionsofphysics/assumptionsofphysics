@@ -22,15 +22,6 @@
 \begin{document}
 
 \title{Hamiltonian mechanics is conservation of information entropy}
-%\author{Gabriele Carcassi, Christine A. Aidala}
-
-
-%\ifjournal
-%	% As the page margins are so large, the full title does not fit
-%	\titlerunning{From physical principles to classical and quantum particle mechanics}
-%\fi
-
-%\date{\today}
 
 \maketitle
 
@@ -277,24 +268,6 @@ We can imagine proceeding iteratively, integrating away one pair at a time. We w
 
 The idea, then, is that a distribution is truly coordinate-independent only when the density and information entropy for all the possible marginal distributions on any combination of degrees of freedom are invariant, not just for the joint distribution.
 
-%Now, the fact that we can use a tangent bundle to track our particle states does \emph{not} mean that conjugate momentum is a one form, in the sense of a map from a vector to a number. The state space is just a manifold, a set of points identified by $n$ continuous variable, and the structure it has comes from how units transform, not because the variables identify separate objects. Unfortunately mathematical structures strip out the units, the knowledge of the double role of coordinates is lost and then a different mathematical concept is used, one that has the same mathematical features of our particle state space but an altogether different meaning and construction. Changing state variables from position and momentum to position and velocity is not, as one may mistakenly understand from the math, a change of objects from a cotangent bundle to a tangent bundle: it is relabeling the same states much like changing spatial coordinates relabels positions. This change of variables, though, is not in general a canonical transformation which means the density will not correspond to the invariant one. But it is still a valid change of state variables and in fact, giving that velocity is gauge invariant, a very useful one. It allows to write Poisson brackets and find invariants of motion that are readily physically meaningful~\cite{Holten}.
-
-%We can summ
-
-% In fact, if $(q^1, p_1)$ and $(q^2, p_2)$ are two degrees of freedom and $\rho_1(q^1, p_1)$ and $\rho_2(q^2, p_2)$ are the respective marginal distributions, we have now four ways of characterizing that they are independent.
-%These characterizations are equivalent because they repre
-
-%This means that relationships between the entropy of the total and marginal distributions are preserved. For example, saying that the marginal distributions $\rho_1(q^1, p_1)$ and $\rho_2(q^2, p_2)$ are independent is equivalent to saying that the entropy of the joint distribution is equal to the sum of the entropy of the marginals: $I(\rho(q^1,q^2, p_1, p_2)) = I(\rho_1(q^1, p_1)) +I(\rho_2(q^2, p_2))$.\footnote{This is also equivalent to saying that the joint distribution is the product of the marginals $\rho(q^1,q^2, p_1, p_2) = \rho_1(q^1, p_1)\rho_2(q^2, p_2)$.} That is, giving both values is equivalent to giving one and then the other. This means we can think of these relationships and quantities as real physical properties assigned to the degree of freedom and not just to the coordinates.
-
-%\begin{description}
-%	\item \emph{Coordinate independence}. The unit of $q^1$ can be chosen independently of $q^2$.
-%	\item \emph{State count}. If $dq^1 dp_1$ and $dq^2 dp_2$ represent how many possible states the count of states in each degree of freedom then the total count across is the product 
-%	\item \emph{Statistical independence}. The joint distribution is the product of the marginals: $\rho(q^1,q^2, p_1, p_2) = \rho_1(q^1, p_1)\rho_2(q^2, p_2)$.
-%	\item \emph{Information independence}. The information entropy of the joint distribution is the sum of the information entropy of the marginals: $I(\rho(q^1,q^2, p_1, p_2)) = I(\rho_1(q^1, p_1)) +I(\rho_2(q^2, p_2))$. Intuitively this means that giving the value of all state variables is equivalent to giving the values of both degree of freedom one after the other.
-%\end{description}
-%These characterizations are equivalent: you can't have one without the others.
-
-
 \subsection*{The geometry of phase space}
 
 Now that we have an intuitive sense of the objects we want to describe physically, we can turn to differential geometry to derive the geometrical structure of the state space and then the equations of motion. What we want to capture is that we can integrate densities over two dimensional sub-manifolds in a way that is coordinate invariant. That is, we need to have a two-form $\omega$ such that:
@@ -440,8 +413,6 @@ We can also better understand what physical requirement each mathematical struct
 In this paper we have shown how classical Hamiltonian mechanics coincides with conservation of information entropy. The structure of phase space is required to be able to define densities and information entropy in a way that is coordinate invariant, and therefore physically meaningful. The equations of motion and the existence of the Hamiltonian are required to conserve densities and information entropy over time. This clarifies the link between Hamiltonian mechanics, statistical mechanics and deterministic and reversible motion.
 
 In the narrower context, it allows us to understand what physical object is represented by each mathematical one. In the broader context, it allows us to make deeper connections among different areas of math and physics, and pushes us to rethink our starting points. In particular, it tells us that classical particles should not be considered point-like objects (upon which entropy and densities cannot be defined), but the limit of recursive subdivisions (i.e. infinitesimal cells of phase space).
-
-%These results represent one set of insights from our larger project, Assumptions of Physics, that aims to rederive the standard laws from a handful of physical starting points.
 
 This approach may point to a reorganization of fundamental physics on a more physically rigorous conceptual footing and more meaningful mathematical grounds which we believe is not only possible, but long overdue.
 
