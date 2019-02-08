@@ -95,3 +95,4 @@ sympy-plots-for-*.tex/
 *.tex~txs0
 
 !bibliography.bib
+Articles/HamiltonianMechanicsIsConservationOfEntropy/article.spl

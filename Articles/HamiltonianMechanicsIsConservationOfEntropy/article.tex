@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[11pt]{elsarticle}
 
 \usepackage[margin=1.25in]{geometry}
 
@@ -23,11 +23,11 @@
 
 \title{Hamiltonian mechanics is conservation of information entropy}
 
-\maketitle
-
 \begin{abstract}
 	In this work we show the equivalence between Hamiltonian mechanics and conservation of information entropy. We will show that distributions with coordinate independent values for information entropy require that the manifold on which the distribution is defined is charted by conjugate pairs (i.e.~it is a symplectic manifold). We will also show that further requiring that the information entropy is conserved during the evolution yields Hamilton's equations.
 \end{abstract}
+
+\maketitle
 
 \tableofcontents
 \newpage
@@ -360,11 +360,11 @@ L = &\int (q-\mu_q)^2 \rho \, dqdp \int (p-\mu_p)^2 \rho \, dqdp \\
 We solve the multipliers and have:
 \begin{align*}
 \rho = &\frac{1}{ 2 \pi \sigma_q \sigma_p} e^{-\frac{(q-\mu_q)^2}{2\sigma_q^2}} e^{-\frac{(p-\mu_p)^2}{2\sigma_p^2}} \\
-I = &\ln (2\pi\sigma_q\sigma_p) + 1
+I = &\ln (2\pi e\sigma_q\sigma_p)
 \end{align*}
 The distribution that minimizes the spread, then, is the product of two independent Gaussians. As the entropy is conserved during Hamiltonian evolution the product $\sigma_q^2 \sigma_p^2$ can never be less than the one given by the Gaussian distribution of the same entropy. We have:
 \begin{align*}
-\sigma_q\sigma_p \geq \exp (I - 1) / 2 \pi 
+\sigma_q\sigma_p \geq \exp (I) / 2 \pi e 
 \end{align*}
 Hamiltonian mechanics is the deterministic and reversible evolution for a distribution and its elements, and therefore it cannot reduce the spread of the distribution indefinitely. If it did, it would start concentrating the density, meaning that multiple states would be mapped to a single state and the dynamics would not be reversible. In this form $I$ is not a fundamental constant but a parameter that depends upon the initial condition. While this is already striking,~\cite{AoPPhy1} shows a simple argument to turn this into something more.
 
@@ -376,7 +376,7 @@ If one buys into the argument, one can posit that there exists an $I_0$ associat
 
 We can then decide to measure volumes in phase space in terms of this minimum spread, which means setting the value of $\hbar$ (or $h = 2 \pi \hbar$) according to the following relationship:
 \begin{align*}
-\frac{\hbar}{2} &= \frac{h}{4\pi} \equiv \frac{e^{I_0 - 1}}{2 \pi} =  \frac{e^{I_0}}{2 e \pi} \leq \sigma_q\sigma_p
+\frac{\hbar}{2} &= \frac{h}{4\pi} \equiv  \frac{e^{I_0}}{2 e \pi} \leq \sigma_q\sigma_p
 \end{align*}
  This is what~\cite{AoPPhy1} refers to as the classical uncertainty principle.
 
