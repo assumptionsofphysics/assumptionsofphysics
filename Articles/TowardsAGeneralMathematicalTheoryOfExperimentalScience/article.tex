@@ -2,11 +2,27 @@
 \archivetrue
 %\archivefalse
 
-\ifarchive
-	\documentclass[letterpaper]{article}
-\else
-	\documentclass[smallextended]{svjour3}
-\fi
+\documentclass[%
+reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+%preprint,
+%preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+amsmath,amssymb,
+aps,
+%pra,
+prx,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-1}
 
 %% Language and font encodings
 %\usepackage[english]{babel}
@@ -19,7 +35,6 @@
 %\usepackage{lineno,hyperref}
 \usepackage{tikz}
 
-\ifarchive
 % Theorem definitions using amsthm
 \usepackage{amsmath, amsthm, amsfonts}
 
@@ -39,24 +54,6 @@
 \newtheorem*{principle*}{Principle of scientific objectivity}
 \theoremstyle{remark}
 \newtheorem*{rem}{Remark}
-
-\else
-
-\usepackage{amsmath, amsfonts}
-
-\numberwithin{equation}{section}
-\spnewtheorem{assump}{Assumption}{\bf}{\it}
-\renewcommand{\theassump}{\Roman{assump}}
-\spnewtheorem{prop}[equation]{Proposition}{\bf}{\rm}
-\spnewtheorem{thrm}[equation]{Theorem}{\bf}{\it}
-\spnewtheorem{defn}[equation]{Definition}{\bf}{\it}
-\spnewtheorem{axiom}[equation]{Axiom}{\bf}{\it}
-\spnewtheorem*{principle*}{Principle of scientific objectivity}{\bf}{\it}
-
-\newenvironment{rationale}{\emph{Rationale}.}{\hfill\(\qed\)}
-\newenvironment{justification}{\emph{Justification}.}{\hfill\(\qed\)}
-\renewenvironment{proof}{\emph{Proof}.}{\hfill\(\qed\)}
-\fi
 
 
 \usepackage[only,llbracket, rrbracket,llparenthesis,rrparenthesis]{stmaryrd} 
@@ -143,30 +140,27 @@
 % Formatting for sentence statements
 \newcommand{\statement}[1] {\emph{``#1''}}
 
-
-
 \begin{document}
 
 \title{Towards a general mathematical theory of experimental science}
 
 
-\ifarchive
-\author{Gabriele Carcassi, Christine A. Aidala \\ University of Michigan}
-\date{\today}
-\else
-\author{Gabriele Carcassi \and Christine A. Aidala}
-\institute{G. Carcassi, C. A. Aidala \at
-	Physics Department, University of Michigan, Ann Arbor, MI 48109 \\
-	\email{carcassi@umich.edu}
+\author{Gabriele Carcassi}
+\email{carcassi@umich.edu}
+\author{Christine A. Aidala}
+\affiliation{
+	Physics Department \\
+	University of Michigan \\
+	Ann Arbor, MI 48109 \\
 }
-\date{Received: date / Accepted: date}
-\fi
 
-\maketitle
+\date{\today}
 
 \begin{abstract}
 	We lay the groundwork for a formal framework that studies scientific theories and can serve as a unified foundation for the different theories within physics. We define a scientific theory as a set of verifiable statements, assertions that can be shown to be true with an experimental test in finite time. By studying the algebra of such objects, we show that verifiability already provides severe constraints. In particular, it requires that a set of physically distinguishable cases is naturally equipped with the mathematical structures (i.e. second-countable Kolmogorov topologies and $\sigma$-algebras) that form the foundation of manifold theory, differential geometry, measure theory, probability theory and all the major branches of mathematics currently used in physics. This gives a clear physical meaning to those mathematical structures and provides a strong justification for their use in science. Most importantly it provides a formal framework to incorporate additional assumptions and constrain the search space for new physical theories.
 \end{abstract}
+
+\maketitle
 
 %\linenumbers
 
@@ -186,10 +180,10 @@ In physics there is no equivalent. Classical mechanics, thermodynamics and quant
 	\begin{tikzpicture}
 	[child anchor = north, every node/.style={draw, align = center, inner sep=5pt},
 	edge from parent/.style={draw, ->, -latex, stealth-},
-	level 1/.style={level distance=1cm, sibling distance=6cm},
-	level 2/.style={level distance=1.3cm, sibling distance=3cm}, sloped]
-	\node {Experimental verifiability} [text width=4cm]
-	child {node {States and processes} [text width={}]
+	level 1/.style={level distance=1cm},
+	level 2/.style={level distance=1.3cm, sibling distance=2.4cm}, sloped]
+	\node {Experimental verifiability}
+	child {node {States and processes}
 		child {
 			node {Classical \\ mechanics}
 		}
@@ -197,7 +191,7 @@ In physics there is no equivalent. Classical mechanics, thermodynamics and quant
 			node {Quantum \\ mechanics}
 		}
 		child {
-			node {Thermodynamics}
+			node {Thermo- \\dynamics}
 		}
 		child {
 			node {...}
@@ -215,7 +209,7 @@ The aim of the present work is to lay down the beginning of a general mathematic
 
 While this result is remarkable by itself, the most interesting aspect is that it can be used as a cornerstone for a more general theory. Conceptually, in the same way that topological spaces keep track of what can be verified experimentally, manifolds keep track of objects that can be identified by continuous quantities, differentiable manifolds keep track of objects that allow a density to be defined over them and symplectic manifolds (i.e. phase space of classical mechanics) allow the density to be coordinate invariant (i.e. observer independent). By doing all this work formally we will be forced to recognize the assumptions that go into those structures, and understand if and how they fail. For example, we are currently in the process of identifying the necessary and sufficient conditions such that a set of verifiable statements defines a continuous quantity. While, as one would expect, these can only correspond to an idealized case where one pretends a better precision measurement can always be achieved, they also tell us precisely how this idealized case fails which can be relevant to work on Planck scale physics. But whatever other tools we will have in that case, we \emph{know} we will always have at least a topology and a $\sigma$-algebra.
 
-As another example, note that the set of discontinuous functions from $\mathbb{R}$ to $\mathbb{R}$ has cardinality greater than the continuum and therefore cannot represent a set of physically distinguishable objects. This means that the square integrable space of functions typically used in quantum mechanics is far too big, and, in fact, it contains unphysical elements, such as states with infinite energy. However, the Schwartz space, like the set of continuous functions, has cardinality of the continuum and can be given a second-countable Kolmogorov topology.\footnote{It also has other properties that map to physical requirements. For example, quantities of the form $\langle \psi|Q^n P^m|\psi\rangle$ are always finite and the Fourier transform is always well defined.} To our understanding, the reason why Hilbert spaces are mathematically useful is because one can take limits and use the vector space norm to converge. However, we may instead be able to use the corresponding $\sigma$-algebra to take limits, like one does in probability and measure theory. In other words, we may be able to construct, within this framework, a more mathematically sound and physically motivated foundation for quantum mechanics that includes the objects and only the objects that are physically meaningful.
+As another example, note that the set of discontinuous functions from $\mathbb{R}$ to $\mathbb{R}$ has cardinality greater than the continuum and therefore cannot represent a set of physically distinguishable objects. This means that the square integrable space of functions typically used in quantum mechanics is far too big, and, in fact, it contains unphysical elements, such as states with infinite energy. However, the Schwartz space, like the set of continuous functions, has cardinality of the continuum and can be given a second-countable Kolmogorov topology.\footnote{It also has other properties that map to physical requirements. For example, quantities of the form \unexpanded{$\langle \psi|Q^n P^m|\psi\rangle$} are always finite and the Fourier transform is always well defined.} To our understanding, the reason why Hilbert spaces are mathematically useful is because one can take limits and use the vector space norm to converge. However, we may instead be able to use the corresponding $\sigma$-algebra to take limits, like one does in probability and measure theory. In other words, we may be able to construct, within this framework, a more mathematically sound and physically motivated foundation for quantum mechanics that includes the objects and only the objects that are physically meaningful.
 
 As a last example, we also believe we can form a connection to computer science. We can characterize the output of a computational device as a set of verifiable statements (e.g. \statement{the third bit of output is 1}) that are a function of the input, which can also be characterized as verifiable statements (e.g. \statement{the second bit of the input is 0}). In this context, all possible inputs form the possibilities of our space, as they define all possible outputs of the computation. Now suppose we have a function from the input to a Boolean value. Then we can write the statements \statement{the input is such that the output of the function is true} and \statement{the input is such that the output of the function is false}. If both these statements correspond to open sets on the possible inputs then they are verifiable statements and we construct a test (i.e. a program) that will always terminate. That is, we can combine tools from topology and computer science to answer a question of the type: is this scientific problem testable or computable? In a similar way, connections to information theory can also be established: a deterministic and reversible process, in fact, is one for which description of the input is equivalent to the description of the output, which means information entropy is conserved. These links illustrate the potential as a theory of experimental science, and not just physics.
 
@@ -237,7 +231,7 @@ This means that science concerns itself only to the study of assertions that hav
 	The \textbf{Boolean domain} is the set $\mathbb{B} = \{\FALSE, \TRUE\}$ of all possible truth values.
 \end{defn}
 
-Next we need to define our truth bearer. In mathematical logic, this is typically a well formed formula. This cannot work for us: what we are interested in is the meaning of the assertion and not how it is expressed. For example, \statement{this animal is a dog} and \statement{questo animale \`e un cane} represent the same fact expressed in different languages. As science is universal, it should not matter the language, units or reference system used to make an assertion.\footnote{In the same vein, a statement is not necessarily one sentence as it has to include all the information needed to understand what exactly we are taking about. These are the type of philosophical issues that are discussed at greater length in~\cite{Carc3}.} While we will still use standard mathematics for the formal system, we introduce a variation of algebraic logic to represent our ``informal'' assertions. We start by defining our truth bearer as:
+Next we need to define our truth bearer. In mathematical logic, this is typically a well formed formula. This cannot work for us: what we are interested in is the meaning of the assertion and not how it is expressed. For example, \statement{this animal is a dog} and \statement{questo animale \`e un cane} represent the same fact expressed in different languages. As science is universal, it should not matter the language, units or reference system used to make an assertion.\footnote{In the same vein, a statement is not necessarily one sentence as it has to include all the information needed to understand what exactly we are talking about. These are the type of philosophical issues that are discussed at greater length in~\cite{Carc3}.} While we will still use standard mathematics for the formal system, we introduce a variation of algebraic logic to represent our ``informal'' assertions. We start by defining our truth bearer as:
 
 \begin{axiom}\label{ax_statement}
 	A \textbf{statement} $\stmt$ is an assertion that is either true or false. Formally, a statement is an element of the set $\mathcal{S}$ of all statements upon which is defined a function $\truth: \mathcal{S} \to \mathbb{B}$ that returns the truth value for each element.
@@ -389,9 +383,9 @@ This procedure will run all tests for an arbitrary amount of time. Therefore, if
 	The disjunction of a countable collection of verifiable statements is a verifiable statement. Formally, let $\{\stmt_i\}_{i=1}^{\infty} \subseteq \vstmtSet$ be a countable collection of verifiable statements. Then the disjunction $\bigOR\limits_{i=1}^{\infty} \stmt_i \in \vstmtSet$ is a verifiable statement.
 \end{axiom}
 
-We could also define decidable statements as those for which falsehood can also be tested experimentally. This table compares the different algebras.
+We could also define decidable statements as those for which falsehood can also be tested experimentally. Table \ref{tab:algebras} compares the different algebras.
 
-\begin{table}[h]
+\begin{table*}
 	\centering
 	\begin{tabular}{p{0.14\textwidth} p{0.08\textwidth} p{0.13\textwidth} p{0.22\textwidth} p{0.23\textwidth}}
 		Operator & Gate & Statement & Verifiable Statement & Decidable Statement  \\ 
@@ -400,8 +394,8 @@ We could also define decidable statements as those for which falsehood can also 
 		Conjunction & AND & arbitrary  & finite & finite \\ 
 		Disjunction & OR & arbitrary  & countable & finite \\ 
 	\end{tabular}
-	\caption{Comparing algebras of statements.}
-\end{table}
+	\caption{Comparing algebras of statements.}\label{tab:algebras}
+\end{table*}
 
 Now that we can verify statements one by one, we need to define what it means to verify a group of them. In principle, given a set of verifiable statements we can simply start testing them one after the other. However, if we are given a set of uncountable statements then, even if we have an indefinitely long time at our disposal, we will not be able to create a procedure that eventually tests all statements. However, we may not need to actually run all tests for all statements. For example, if we found that $\stmt_1$ is true then there is no need to test any of its disjunctions like $\stmt_1 \OR \stmt_2$.
 
@@ -439,9 +433,25 @@ The possibilities are all the different cases that can be distinguished experime
 
 The proof is simply noting that each possibility can be labeled by the truth value of the countable basis of the experimental domain. We cannot have more possibilities than sequences of true/false and the set of all binary sequences has the cardinality of the continuum.
 
-This means that we are never going to be able to experimentally distinguish between elements of greater cardinality. The set of topologically discontinuous functions from $\mathbb{R}$ to $\mathbb{R}$, for example, has greater cardinality and therefore it will never be associated with any physically distinguishable concept.\footnote{However, discontinuous function with up to countably many discontinuities can be seen as the limit of a sequence of continuous functions and therefore may be used as a convenient approximation of a physical concept.} All the issues with large cardinals are not something science will ever be interested in. It does not matter what system we are describing, what experimental techniques we are using or how clever we are.
+This means that we are never going to be able to experimentally distinguish between elements of greater cardinality. The set of topologically discontinuous functions from $\mathbb{R}$ to $\mathbb{R}$, for example, has greater cardinality and therefore it will never be associated with any physically distinguishable concept.\footnote{However, a discontinuous function with up to countably many discontinuities can be seen as the limit of a sequence of continuous functions and therefore may be used as a convenient approximation of a physical concept.} All the issues with large cardinals are not something science will ever be interested in. It does not matter what system we are describing, what experimental techniques we are using or how clever we are.
 
 \section{Topologies and sigma-algebras}
+
+\begin{table*}
+	\centering
+	\begin{tabular}{p{0.075\textwidth} p{0.275\textwidth} p{0.2\textwidth} p{0.3\textwidth}}
+		& Statement relationship & & Set relationship  \\ 
+		\hline 
+		$\stmt_1 \AND \stmt_2$ & (Conjunction) & $U(\stmt_1) \cap U(\stmt_2)$ & (Intersection) \\ 
+		$\stmt_1 \OR \stmt_2$ & (Disjunction) & $U(\stmt_1) \cup U(\stmt_2)$ & (Union) \\ 
+		$\NOT \stmt$ & (Negation) & $U(\stmt)^C$ & (Complement) \\ 
+		$\stmt_1 \equiv \stmt_2$ & (Equivalence) & $U(\stmt_1) = U(\stmt_2)$ & (Equality) \\ 
+		$\stmt_1 \narrower \stmt_2$ & (Narrower than) & $U(\stmt_1) \subseteq U(\stmt_2)$ & (Subset) \\ 
+		$\stmt_1 \broader \stmt_2$ & (Broader than) & $U(\stmt_1) \supseteq U(\stmt_2)$ & (Superset) \\ 
+		$\stmt_1 \comp \stmt_2$ & (Compatibility) & $U(\stmt_1) \cap U(\stmt_2) \neq \emptyset$ & (Intersection not empty)
+	\end{tabular} 
+	\caption{Correspondence between statement operators and set operators.}\label{tab:statement_set}
+\end{table*}
 
 Now that we have introduced the basic mathematical structures for our general theory, we show their deep connection to other well established mathematical structures. We first note that each verifiable statement can be written as the disjunction of a set of possibilities.
 
@@ -455,23 +465,7 @@ Now that we have introduced the basic mathematical structures for our general th
 
 The proof is a trivial application of the disjunctive normal form of Boolean algebra. In fact, each possibility can be written as a minterm of a basis (i.e. a conjunction where each basis element appears only once either negated or not). Any verifiable statement can be expressed in terms of the basis, and it is a result of Boolean algebra that each logical expression can be formulated as a disjunction of minterms (i.e. an OR of ANDs). Intuitively, it is the disjunction of all cases in which the statement is true.
 
-Since every statement is a set of possibilities, we can re-express the statement relationships in terms of set relationships according to this table:
-
-\begin{table}[h]
-	\centering
-	\begin{tabular}{p{0.075\textwidth} p{0.275\textwidth} p{0.2\textwidth} p{0.3\textwidth}}
-		& Statement relationship & & Set relationship  \\ 
-		\hline 
-		$\stmt_1 \AND \stmt_2$ & (Conjunction) & $U(\stmt_1) \cap U(\stmt_2)$ & (Intersection) \\ 
-		$\stmt_1 \OR \stmt_2$ & (Disjunction) & $U(\stmt_1) \cup U(\stmt_2)$ & (Union) \\ 
-		$\NOT \stmt$ & (Negation) & $U(\stmt)^C$ & (Complement) \\ 
-		$\stmt_1 \equiv \stmt_2$ & (Equivalence) & $U(\stmt_1) = U(\stmt_2)$ & (Equality) \\ 
-		$\stmt_1 \narrower \stmt_2$ & (Narrower than) & $U(\stmt_1) \subseteq U(\stmt_2)$ & (Subset) \\ 
-		$\stmt_1 \broader \stmt_2$ & (Broader than) & $U(\stmt_1) \supseteq U(\stmt_2)$ & (Superset) \\ 
-		$\stmt_1 \comp \stmt_2$ & (Compatibility) & $U(\stmt_1) \cap U(\stmt_2) \neq \emptyset$ & (Intersection not empty)
-	\end{tabular} 
-	\caption{Correspondence between statement operators and set operators.}
-\end{table}
+Since every statement is a set of possibilities, we can re-express the statement relationships in terms of set relationships according to Table \ref{tab:statement_set}.
 
 The closure of an experimental domain under finite conjunction and countable disjunction becomes closure under finite intersection and countable union. Since the basis is countable, countable union is equivalent to arbitrary union. In other words, the set of all verifiable sets is a topology.
 
@@ -513,31 +507,8 @@ We believe the development of a general mathematical theory of experimental scie
 
 \section{Acknowledgments}
 
-We thank Mark J. Greenfield for the thorough review of the mathematical framework. We thank Josh Hunt for comments on the philosophical underpinning of this work. We would also like to acknowledge the numerous individuals who commented on the drafts of this paper and our previous works leading up to it.
+We thank Mark J. Greenfield for the thorough scrutiny of the mathematical framework and Mathew Timm for clarifying what can and cannot be defined within a formal mathematical framework. We thank Josh Hunt for the detailed review of the philosophical underpinning of this work and Gordon Belot, Laura Ruetsche and David J. Baker for philosophical discussions related to this work. We would also like to acknowledge John Mayer, Kai Sun, Jens Zorn and others for their interest and support for this project.
 
 \bibliography{bibliography}
-
-\begin{thebibliography}{1}
-	
-	\bibitem{Turing}
-	A. M. Turing: On Computable Numbers, with an Application to the Entscheidungsproblem". Proceedings of the London Mathematical Society 2, 42: 230–265, doi:10.1112/plms/s2-42.1.230, 1936. 
-	
-	\bibitem{Sipser} M. Sipser: An Introduction to the Theory of Computation, 3rd edition. Cengage Learning, Boston, USA, 2013.
-	
-	\bibitem{Shannon} C. E. Shannon: A Mathematical Theory of Communication. The Bell System Technical Journal,
-	Vol. 27, pp. 379–423, 623–656, July, October, 1948.
-	
-	\bibitem{Pierce} J. R. Pierce: An Introduction To Information Theory: Symbols, Signals and Noise. Dover Books on Mathematics, Second Edition, 1980.
-	
-	\bibitem{Brogan} W. L. Brogan: Modern Control Theory, 3rd edition. Pearson, 1990. 	
-	
-	\bibitem{Kalman} R. E. Kalman: A new approach to linear filtering and prediction problems. Journal of Basic Engineering. 82 (1): 35–45, doi:10.1115/1.3662552, 1960.
-	
-	\bibitem{Carc1} G. Carcassi, C. A. Aidala, D. J. Baker and L. Bieri: From physical assumptions to classical and quantum Hamiltonian and Lagrangian particle mechanics. Journal of Physics Communications, 2, 4, 045026, 2018.
-	
-	\bibitem{Carc2} C. A. Aidala, G. Carcassi, M. J. Greenfield: Topology and experimental distinguishability. Accepted by Topology Proceedings on 11 Dec 2018, arxiv:1708.05492.
-	
-	\bibitem{Carc3} G. Carcassi, C. A. Aidala: Assumptions of Physics (in preparation). http://assumptionsofphysics.org/book/, Ann Arbor, MI, USA, 2018.
-\end{thebibliography}
 
 \end{document}
