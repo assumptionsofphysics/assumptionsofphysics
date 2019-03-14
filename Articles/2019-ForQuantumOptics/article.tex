@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{dutchcal}
+\usepackage{braket}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usepackage{forest}
+\usetikzlibrary{trees}
+\usetikzlibrary{calc}
+\usepackage{calculator}
+\usepackage{standalone}
+
+\usepackage{braket}
+
+\begin{document}
+
+\title{TODO}
+
+\maketitle
+
+\begin{abstract}
+	TODO
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+Pure states: $\mathcal{S} $
+Statistical ensemble: $\mathcal{D} $
+Mixed state: $\mathcal{M} $
+Evolution: $\mathcal{E}$
+Fast time scale: $\mathcal{P}$
+
+\section{From projections to unitary evolution}
+
+In this section we will assume as given the state space of non-relativistic quantum mechanics and the rules for projections. We will then recover unitary evolution (i.e. the Schroedinger equation) as the quasi-static deterministic evolution given by continuous projections. To do so, we will introduce a different mathematical notation which will make explicit the difference between pure states, statistical distributions and mixed state, which helps to dispel some confusions. This notation will also prepare the stage for the next section, where we will see that that the same mathematical framework applies to all scientific theories.
+
+We start by having a set of pure states $\mathcal{S}$, which are typically represented in quantum mechanics as directions in a Hilbert space,\footnote{As long as one is able to define projections, other representations can be equivalently used.} so we'll write $\psi \in \mathcal{S}$ meaning $\psi$ is a state for our system. These elements correspond to the possible configurations of a single instance of our system at a given time.
+
+We then define the set of statistical ensembles $\mathcal{D}$, which represent the (classical) statistical distributions of multiple copies of our system independently prepared. Each element of $\mathcal{d} \in \mathcal{D}$ can be represented as a normalized distribution $\mathcal{d}: \mathcal{S} \to \mathbb{R}$ where $\mathcal{d}(\psi)$ represents the probability to find an instance of the distribution in the state $\psi$. For example, if $\mathcal{d}(\psi) = \frac{1}{2}$ then $50\%$ of the times a system prepared according to the statistical ensemble $\mathcal{d}$ will be found in the state $\psi$ . We can also have statistical ensembles prepared in such a way that all instances are prepared in the same pure state. We therefore define $\iota : \mathcal{S} \to \mathcal{D}$ as the statistical ensemble where all instances are prepared in the same way: if $\mathcal{d}=\iota(\psi)$ then $\mathcal{d}(\phi)$ is equal to 1 if $\psi = \phi$ and is equal to 0 otherwise. Mathematically, $\iota$ is an injection of the pure states into the space of statistical distributions. The space $\mathcal{D}$ is a real vector space, as we can combine probability distributions through linear combinations, and the set $\iota(\mathcal{S})$ forms a basis of that space, as any distribution can be constructed from pure states.
+
+Note that $\mathcal{S}$ and $\mathcal{D}$ are two different vector spaces, both mathematically and physically. Suppose we are studying a spin $1/2$ system. Let $z^+, z^- \in \mathcal{S}$ be the two states with spin aligned and anti-aligned with respect to the $z$ direction. We have:
+\begin{equation}
+\begin{aligned}
+\ket{y^+} &= \frac{1}{\sqrt{2}} (\ket{z^+} + i \ket{z^-}) \\
+\mathcal{d}&= \frac{1}{2} (\iota(z^+) + \iota(z^-))
+\end{aligned}
+\end{equation}
+The first is a complex linear combination in $\mathcal{S}$ and represents a quantum superposition, which simply returns another pure state. In the example, it returns spin prepared in a different direction. The second is a real linear combination in $\mathcal{D}$ and represents a statistical mixture. In the example, it returns a statistical ensemble that half the time is prepared in one direction and half the time in the opposite direction. The first type of combination is specific to quantum states. The second type of combination applies to all statistical distributions.
+
+In quantum mechanics, not all statistical ensembles are distinguishable from each other. For example, in the spin $1/2$ case, the distribution $\mathcal{d}_1$ defined as $\mathcal{d}_1(z^+)=\mathcal{d}_1(z^-)=\frac{1}{2}$ is physically equivalent to $\mathcal{d}_2$ defined as $\mathcal{d}_2(x^+)=\mathcal{d}_2(x^-)=\frac{1}{2}$. Therefore we define the set of mixed states $\mathcal{M}$ as the set of statistical ensembles that are physically different, which is usually represented by a density matrix. Mathematically, we can also represent physical equivalence between statistical ensemble with the equivalence operator $\mathcal{d}_1 \equiv \mathcal{d}_2$ and the set of mixed states $\mathcal{M} = \mathcal{D}_{/_\equiv}$ will be the quotient space.
+
+We can now introduce the space of projections $\mathcal{P}$ as those processes $\mathcal{p} : \mathcal{D} \to \mathcal{D}$ that take a statistical ensemble and return another statistical ensemble according to the rules of quantum mechanics projections. That is, given a Hermitian operator $O$ over $\mathcal{S}$, we find the set of eigenstates $\{\phi_i\} \subset \mathcal{S}$ for $O$ and we construct the projection $\mathcal{p}_O$ such that:
+\begin{equation}\label{transition_probability}
+\mathcal{p}_O(\iota(\psi))(\phi) = 
+\begin{cases}
+\frac{\braket{\psi | \phi} \braket{\phi|\psi}}{\braket{\psi|\psi}} &\quad\phi \in \{\phi_i\}\\
+0 &\quad\phi \notin \{\phi_i\}\\
+\end{cases}
+\end{equation}
+If we prepare a statistical ensemble $\iota(\psi)$, where all instances are in state $\psi$, we then apply the process $\mathcal{p}_O$ we find that we cannot be in a state that is not an eigenstate of $O$, and the probability of being in a particular eigenstate is given by the inner product. Since $\iota(\mathcal{S})$ is a basis for $\mathcal{D}$ and the projections are linear, each $\mathcal{p}_O$ is well defined over the whole $\mathcal{D}$.
+
+All we said so far are standard concepts in quantum mechanics re-expressed in a new notation which allows us to clarify an important detail. The processes $\mathcal{P}$ are defined on the statistical ensembles $\mathcal{D}$, not on the pure states $\mathcal{S}$. They are, in general, non-deterministic processes and therefore do not take a pure state to a single well-defined pure state. These processes are projections because they are:
+\begin{description}
+	\item [linear operations] the output for an ensemble is the same as an ensemble of the outputs for the elements, i.e. $\mathcal{p}(a_1\mathcal{d}_1 + a_2\mathcal{d}_2) = a_1\mathcal{p}(\mathcal{d}_1) + a_2\mathcal{p}(\mathcal{d}_2)$
+	\item [idempotent] if applied twice return the same result, i.e. $\mathcal{p}(\mathcal{p}(\mathcal{d})) = \mathcal{p}(\mathcal{d})$
+\end{description}
+The linearity of these operations, then, is the one defined on statistical ensembles: it is the linearity of classical probability, not of superposition. The fact that these processes are idempotent simply means that, if we run the process again on the output, we get the same output. That is, all the outputs are equilibria. Mathematically, if $\psi$ is an eigenstate of $O$, it is an equilibrium for the process since $\mathcal{p}_O(\iota(\psi))=\iota(\psi)$: every time we start with $\psi$ we always get $\psi$. Therefore, \textbf{we will take the projections to represent non-deterministic processes that always reach equilibria in a very small time $dt$, faster than our description allows}. Similarly to thermodynamics processes, we do not claim a description in terms of our state space $\mathcal{S}$ is valid during that process, only that it is a valid description for the final equilibrium. 
+
+Conversely, note that for any pure state $\psi \in \mathcal{S}$ we can find an appropriate Hermitian operator $O$ such that $\psi$ is an eigenstate of $O$ and therefore any pure state is an equilibrium of some process $\mathcal{p} \in \mathcal{P}$. That is, not only the equilibria of every process in $\mathcal{P}$ are elements of $\mathcal{S}$, but all elements of $\mathcal{S}$ are equilibria for at least one process in $\mathcal{P}$: \textbf{all states are equilibrium states of the projections}.
+
+If we accept this premise, then the natural thing to do is to write the conditions for a quasi-static deterministic evolution. That is, we assume that at each moment the system is in equilibrium and we change the state just a little so that each pure state is mapped to a single well-defined pure state. That is, if $\psi_{t}$ and $\psi_{t+dt}$ are two states infinitesimally close in time and $\mathcal{p}_{t+dt}$ is the process that between $[t, t+dt]$ transitions one into the other, then every time $\psi_{t}$ is the input of that process $\psi_{t+dt}$ is its output. Mathematically:
+\begin{equation}
+\begin{aligned}
+\mathcal{p}_{t+dt}(\iota(\psi_{t}))&=\iota(\psi_{t+dt}) \\
+\end{aligned}
+\end{equation}
+Applying the definitions we find:
+\begin{equation}
+\begin{aligned}
+\mathcal{p}_{t+dt}(\iota(\psi_{t}))(\psi_{t+dt}) &=
+\frac{\braket{\psi_{t} | \psi_{t+dt}} \braket{\psi_{t+dt}|\psi_{t}}}{\braket{\psi_{t}|\psi_{t}}} = 1 \\
+\end{aligned}
+\end{equation}
+This requires the evolution to be unitary and we can use standard techniques from here, which will lead to the Schroedinger equation. In other words, \textbf{the Schroedinger equation is the quasi-static deterministic evolution of a process of continuous projections}. This approach, therefore, proceeds in the opposite way of others: instead of assuming the Schroedinger equation is always valid and deriving projections as a special case, we assume projections are valid approximations of faster scale processes and the Schrodeinger equation is the special quasi-static deterministic case.
+
+We can briefly see why this approach makes intuitive sense. The closer two states are, the greater the chance that one will transition to the other during a projection. Continuous evolution, then, means small deterministic changes. Unitary evolution, in particular, conserves information entropy, which is also the hallmark of deterministic and reversible evolution. On the other hand, a projection can increase entropy, which is the hallmark of a transition that went out of equilibrium and is not reversible. Since any two unitary vectors can be connected by a unitary operation (i.e. a rotation), it makes sense that all states are equilibria since they can all be connected by a deterministic and reversible process, and it also makes sense that they all carry the same entropy. We also note that in quantum field theory, to calculate cross-sections and particle decays, one puts the initial states at minus infinity and the final states at plus infinity for processes that, in reality, take a tiny fraction of a second. To us, this does sound like a quasi-static approximation. Finally, while the approach presented here does not solve the so called ``measurement problem'', it does however give us an understanding of why we have the problem to begin: our states are really just the equilibrium states of faster scale processes and those cannot, in general, be described by quasi-static ones.
+
+%The connection to measurement is simply that, as we will see later in more detail, such processes are always required if we want to measure a quantity, even in classical mechanics or thermodynamics. For example, if we want to measure the temperature of a gas it needs to be in equilibrium for long enough for us to conduct the measurement. If we are measuring the position of a ball, we need to integrate over a (small) period of time to integrate the giggling created by the random collisions of air particles. That is: if we want to measure the vertical spin component of an electron, something needs to make sure that we actually have and electron and its vertical component is well defined. So we need a process whose outputs are equilibria with those properties.
+
+\section{States and processes}
+
+The next question, then, is whether what we saw in the previous section is an actual model for physical reality or is just a coincidental. We will, once again, proceed in a different way than usual. Instead of justifying the mathematical structure for quantum mechanics in particular, we will show that a very similar mathematical structure exists in all cases. That is, instead of proceeding from what is reasonable in a particular set of circumstances, we proceed from what is necessary in general and find a conceptual and mathematical framework that is similar to the one we already discussed.
+
+In any physical theory, first one needs to define what is the object under study. We typically call that object \emph{system} and \emph{environment} everything else. Depending on the case, our system may be the solar system, a rocket, a ball, a region of the atmosphere, a misture of gas within a can, a handful of molecules or an electron. We call \emph{state} a particular configuration of that system at a particular time and define $\mathcal{S}$ as the set of all possible configurations.
+
+It should be fairly clear that the state space will depend upon the choice of system. What may be less clear is that it also depends on context. For example, if we are studying the motion of a balloon position and momentum may be enough to identify a state. If, instead, we want to study how the balloon expands or contracts we may need temperature and pressure. \textbf{The same system allows different choices for state, which are contingent upon what properties and situations we choose to study.} 
+
+Ultimately, what we want is a set of measurable properties $\xi^a : \mathcal{S} \to \mathbb{R}$ that uniquely identify a state and a law of evolution $\mathcal{E} : \mathcal{S} \times \mathbb{R} \to \mathcal{S}$ such that given a state at one time and a time increment we can predict the state at the future time. For example, if we are studying the motion of a ball the effect of the air bumping chaotically on the surface can be disregarded and therefore position and velocity of the center of mass will suffice. If we are studying the motion of a spec of dust, the air collisions cannot be disregarded and therefore we use a statistical ensemble as the state and, given the initial probability distribution, we will predict the final probability distribution.\footnote{In this case, the measurable properties that identify the state become the probabilities associated to each case.} But if we study the spec of dust in a vacuum, then we can go back to just position and momentum. That is, \textbf{states and deterministic laws are defined interdependently}: within a given situation we define states in a particular way because we have a law they obey and we write the law in a particular way because we have states that obey it.
+
+States and deterministic laws, then, are indeed objective concepts but they are not absolute ones. While it is a matter of fact that those particular properties of that particular system under those circumstances are enough to predict their future values, it is up to us to choose the system, the circumstances and the variables that make for a good combination. Therefore, when discussing state definition, we must be cognizant of that choice or we may unknowingly misconstrue the meaning of our theories. We may believe some results to be features of the system studied while in fact they may be direct consequence of us trying to find states we can manipulate and for which we can write deterministic laws. This is akin to a fisherman noting that there is a minimum size to the fish in the sea, not realizing it is precisely the size of the mesh of his net.
+
+With this is mind, let us explore the following question: could we, in principle, extend the state to exhaust the description of the system? As we saw, that would mean finding a set of circumstances in which the evolution of the entirety of the system is fully determined by the system itself. That is, no part of the system is influenced by the environment in any way. Under those conditions, no interactions with the system are possible. Photons cannot scatter off of it and neither gravitational waves. No way to synchronize clocks between the system and the environment, no way to tell where the system is with respect to the environment. To us in the environment, within those circumstances, the system has vanished. How, then, are we supposed to study it? How are we supposed to experimentally define the properties in those conditions? How are we supposed to validate the law of evolution?
+
+This tells us that there is a tension. On one side we can only say that something is a property of the system if its defined independently of the environment. On the other side, we cannot completely turn off system-environment interaction or there would be no way to operationally define the property. This means that we can never have a complete independent description of the system.\footnote{Ultimately, this is why classical mechanics conceptually fails. See XXX for more discussion.} We need to leave out some ``unstated part'' whose future will depend on the environment. In other words, \textbf{the system always has a boundary with the environment and, through it, is in constant interaction}.
+
+This unavoidable interaction with the environment also comes into play in the definition of a system and its state. For example, we can talk about the position of a ball because we sit on the surface of the earth at around 273 K. If we were on the surface of the sun at around 5778 K, after a short time, we would not be able to talk about a ball. A state and its properties only exist because the system is in some kind of equilibrium with the environment. Therefore even if the unstated part is not part of the state, its interaction with the environment has to be ``suitable'' for the state to be defined in the first place. In other words, \textbf{a physical property of a system is well defined and measurable if and only if the constant interaction with the environment keeps it that way.}\footnote{A possible misconception here is thinking of a process that does not change anything as ``doing nothing''. This is similar to thinking of the vacuum as ``nothing''. If one accepts the idea that the vacuum cannot be ``nothing'' then one always has interaction with the vacuum which cannot be ``doing nothing''.}
+
+Let us define $\mathcal{P}$ as the set of all system-environment interactions. While we cannot characterize their effect on the unstated part, we should characterize their relationship to the state space $\mathcal{S}$. These processes may act on the states non-deterministically since they depend in general on the configuration of the environment. So we define $\mathcal{D}$ as the set of all statistical ensembles over $\mathcal{S}$ and each process $\mathcal{p} \in \mathcal{P}$ is a map $\mathcal{p} : \mathcal{D} \to \mathcal{D}$ that takes a statistical ensemble to another statistical ensemble. Given a state $\mathcal{s} \in \mathcal{S}$ we must find at least a set of circumstances in which it is in equilibrium with the environment for a finite amount of time. That is, if we prepare an ensemble $\iota(\mathcal{s})$ that is made of identically prepared copies of $\mathcal{s}$, we have a process $\mathcal{p} \in \mathcal{P}$ such that $\mathcal{p}(\iota(\mathcal{s})) = \iota(\mathcal{s})$.
+
+Every process that has equilibria is characterized by a time scale needed to reach equilibrium. That time will set the maximum time resolution we can use with that choice of states and processes. To go to faster time scales we inevitably need to change both states and processes. For example, as we change the volume of a gas, the region against the moving wall will be compressed sooner than the opposite region, but if we wait a short while we will again obtain a uniform pressure. If we want to study that transition, we may conceptually divide the system into small volumes and the pressure is replaced by a pressure field. Still, we need to assume each small volume to have enough molecules to be in equilibrium. We can go into more detail, and describe the distribution of position and velocities of the molecules. Yet, we need to assume that the molecules themselves are not undergoing chemical changes. We could study the atoms of the molecules, yet we would have to assume that the atoms are not undergoing nuclear changes. We could study the electrons and nucleons of the atoms, yet we would have to assume they are stable under weak nuclear forces. As we move to a finer and finer description, we have faster and faster scale processes that we assume do not change the basic constituents. At each level of the description what is assumed to be in equilibrium changes and what the laws describe change as well. Yet, the overall structure remains the same: we have a timescale $dt$ such that within each interval $[t-dt, t]$ there is a process $\mathcal{p}_{t-dt}$ such that the state $\mathcal{s}_t$ is an equilibrium of $\mathcal{p}_{t-dt}$. The evolution $\mathcal{E}$, then, is quasi-static in terms of the processes in $\mathcal{P}$. That is, \textbf{all deterministic laws are quasi-static evolutions in terms of system-environment interaction processes}.
+
+We have reached, then, the second major point of this article: \textbf{the mathematical structure we used to rearrange quantum mechanics is a general structure that applies to all systems} and as such we call it the \emph{fundamental model of physics}. It is fundamental because it always applies and what changes case by case are the specifics. If we study a ball using classical particle mechanics, for example, the position and momentum of the center of mass will be defined in a short time scale integrating the giggling created by the random collisions of air particles. That averaging process will be the same regardless of the values of position and momentum, all states are equilibria of the same process and therefore $\mathcal{P}$ contains only one element: the identity map. Therefore, while the overall structure still exists, it is mathematically trivial and can be effectively disregarded as we concentrate on the law of evolution exclusively.
+
+In thermodynamics, instead, processes and equilibria play a critical role. The study of the boundary between system and environment becomes the main focus. In this framework, choosing an isolated fixed wall means we picked the process $\mathcal{p}_{U,V} \in \mathcal{P}$ that guarantees the equilibrium to have a fixed energy and volume. The equilibrium state $\mathcal{s} \in \mathcal{S}$ will be associated to other quantities, like pressure, temperature and entropy, that are only defined on the equilibrium state itself. Work and heat are associated with the process, not the state, and that is why, in general, they are not calculable. State evolution occurs because we change the constraints or work parameters, for example we change volume at equal pressure. That is, at each time step we slowly change either the state or the process and let the system reach a new equilibrium.
+
+In quantum mechanics we have elements of both. Like in classical mechanics we have a state space and a law of evolution, given by the choice of an Hamiltonian, that is deterministic and reversible. Like in thermodynamics, we have states that are equilibria of non-deterministic processes, of which we are not able to give a more fundamental description. Quantities are only well defined at equilibrium and the law of evolution is the quasi-static evolution where we assume the system changes slowly and we are always at equilibrium. What is interesting is that \textbf{in quantum mechanics what drives the deterministic evolution are the same processes that drive the equilibrium}.
+
+In this framework all processes in $\mathcal{P}$ always represent abrupt transitions to a new equilibrium. In thermodynamics they could represent the crystallization of a supersaturated solution or the ignition of a mixture of oxygen and hydrogen to form water. In quantum mechanics they represent the absorption of an incoming photon by an hydrogen atom or the decay of a muon into an electron and two neutrinos. In all these cases we start from a state of (possibly metastable) equilibrium and we end with a new equilibrium which is not, in general, described in terms of the initial state space. For example, water vapor is not a mixture of hydrogen and oxygen gases and a muon is not a collection of three particles. That is, in general the system passes through configurations that are not suitably described by the initial or final state space. We do not believe the similar conceptual structure to be simply a formal analogy but to represent analogue physical mechanisms. Quantum projections happen for the same reasons supersaturated solution crystallize: an abrupt change in external or internal physical conditions.
+
+Why, then, are measurements in quantum mechanics typically associated with projections? Let us think of what a particle detector has to do: it has to take the very small signal of a particle coming through and amplify it to a macroscopic level. In the case the particle itself is absorbed, or destroyed in any way, then are already in the realm of fast processes. In the other cases, the particle has to initiate a chain reaction that has to transfer a lot more energy than the particle itself has. The detector, then, has to be prepared in a state sufficiently stable to not change if no particle interacts with it but unstable enough that a small perturbation makes it transition to a lower energy. That is, the detector has to be prepared in a metastable state and the particle interaction has to make it transition to a more stable state. But a transition from a metastable state to a more stable state is exactly what our projections are supposed to represent. %https://www.researchgate.net/publication/280330121_A_Heuristic_Approach_to_the_Quantum_Measurement_Problem_How_to_Distinguish_Particle_Detectors_from_Ordinary_Objects
+
+We can sum up this section in the following points:
+\begin{itemize}
+	\item the mathematical structure of quantum mechanics (i.e. projections and law of evolution) is the natural structure that all physical theories have
+	\item projections represent processes with equilibria that happen at a faster scale and in general not describable in terms of said description
+	\item measurements are simply physical processes
+\end{itemize}
+The advantage of this perspective is that no ad-hoc concepts are needed. In future works we will further characterize this model providing even more constraints to physical theories, which may clarify what other elements of processes and laws are basic requirements and which are particular to classical or quantum mechanics.
+
+\section{???}
+
+Now that we have presented the fundamental model and saw how quantum mechanics is simply a specific instance, we have a broader framework to gain insights.
+
+New physics should be found for processes that cannot be described by either unitary evolution or projection. Out of equilibrium. But the issue is that:
+
+Quantum states may not provide the ultimate description for states. We will need states for the out of equilibrium. But the issues is that:
+
+At some point, time cannot be continuous. The idea is that the scale of the process is no longer faster than that of the evolution. We will need new mathematical tools.
+
+
+
+\bibliography{bibliography}
+
+\end{document}
