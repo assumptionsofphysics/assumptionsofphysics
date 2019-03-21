@@ -21,24 +21,28 @@
 
 \begin{document}
 
-\title{TODO}
+\title{Unitary evolution as a quasistatic process of infinitesimal collapses}
 
 \maketitle
 
 \begin{abstract}
-	TODO
+Any state, to be properly defined, has to be an equilibrium of all processes happening at a faster timescale. As processes with equilibria are idempotent, they can be expressed as projections in a probability space. Assuming a quasistatic evolution, then, means the equilibria of the faster scale processes will evolve slowly, giving rise to continuous and unitary evolution. These ideas are enough to get the general form of the projection postulate and the time evolution of quantum mechanics. Violations of the Schroedinger equation, then, should be expected only for processes that cannot be considered quasistatic.
 \end{abstract}
 
-\tableofcontents
-\newpage
+%\tableofcontents
+%\newpage
 
 \section{Introduction}
 
-Pure states: $\mathcal{S} $
-Statistical ensemble: $\mathcal{D} $
-Mixed state: $\mathcal{M} $
-Evolution: $\mathcal{E}$
-Fast time scale: $\mathcal{P}$
+In an effort to better understand why the frameworks of classical and quantum mechanics are what they are, we have worked on identifying a minimal set of physical assumptions from which both can be derived. This gave us a new perspective that is somewhat unusual among people who fork on fundamental issues in physics. The typical view is that the theories are so different that they require a radical different set of starting point, and that classical mechanics in particular should only be viewed as an approximation of the other. In this view, the similarities between the theories are due to one being an approximation of the other.
+
+We believe a better view is to think of both classical and quantum mechanics as a specialization of a simpler more fundamental theory. This would deal with states and laws of evolution as abstract objects, formalizing what are the \emph{necessary} conditions for them to be operationally defined such that they can be experimentally studied. The other physical theories (classical and quantum mechanics, thermodynamics and so on) would specialize those concepts to better define what states we are studying and under what conditions. In this view, the similarities between the theories are due to the general concepts of the more fundamental theory. This different approach can help us pinpoint what elements are specific to what theory, clarify their realm of applicability and, hopefully, give us ideas where new physics may lie.
+
+In this paper we start clarifying what are the fundamental relationships and, in particular, how they work in the context of quantum mechanics. The general idea is that for a state to be experimentally prepared, manipulated and measured, it needs to be ``stable'' for a maybe very short but certainly finite amount of time. That is, it must be a, possibly metastable, equilibrium of faster scale processes. But a process for which all outputs are equilibria is idempotent (i.e. gives the same output no matter how many is applied) and is therefore mathematically modeled by a projection operation on the space of statistical distributions. We identify quantum projections as these processes. If we want a deterministic law, then, it has to be a quasi-static evolution in terms of those fast scale processes. As the change has to be small, this leads to continuous evolution over the state space and unitary evolution in the space of statistical distributions. We identify unitary evolution as these processes.
+
+The necessity of states to be stable for a certain minimum timescale applies to all physical theories, and a deterministic law, then, can only be valid \emph{above} that timescale within each theory. In other words, fast scale processes define the state space as their equilibria and the minimum scale $dt$ for the law of evolution. It will be instructive, then, to see how these concepts apply to classical mechanics and thermodynamics as well. This will foster the idea that looking at the foundations of all physical theories, and not on quantum mechanics in isolation, fosters a better general understanding of fundamental concepts.
+
+In section 2 we will first take the basic framework of quantum mechanics and dress it in a slightly different language. The purpose is to make the interplay between pure states, statistical distributions of pure states, projections and unitary evolution more clear. In that context it will be easier to see how unitary evolution can be seen as a quasi-static process of infinitesimally close projections. In section 3 we will see how the same mathematical structure can be justified from more general physical consideration and how it necessarily applies to all physical theories, including classical mechanics in the thermodynamics. 
 
 \section{From projections to unitary evolution}
 
@@ -137,23 +141,36 @@ We can sum up this section in the following points:
 \end{itemize}
 The advantage of this perspective is that no ad-hoc concepts are needed. In future works we will further characterize this model providing even more constraints to physical theories, which may clarify which other elements of processes and laws are basic requirements and which are particular to classical or quantum mechanics.
 
-\section{???}
+\section{Conclusion}
 
-If we accept the line of thinking present in the previous two sections, we can try and draw some conclusions. These will be necessary qualitative as much further work would be needed to make any quantitative prediction.
+We have seen that quantum mechanics fits in a more general framework that applies to all other physical theories. States are always equilibria of some faster scale process, which in quantum mechanics are modeled with the projection. States are chosen to satisfy a law of evolution, which is necessarily a quasi-static process in terms of the faster scale processes, which in quantum mechanics is modeled by the Schroedinger equation. This general framework only uses standard physics concepts and puts no special role on the observer except the choice of what processes the system will be subjected to.
 
-The first main consequence is that we should be able to find processes that are neither described by unitary evolution nor by the projection. These would correspond to processes for which the out-of-equilibrium dynamics becomes relevant so the quasi-static evolution is not a good approximation and neither is the instantaneous transition. Even if we do not have a theory for those regimes, there aren't so many ways to achieve it so we can, at least conceptually, create a few categories.
+Violations of the Schroedinger equation, then, should be expected only for processes that cannot be considered quasi-static. If we were to implement a measurement process, then, in a way that the transfer of information between the system and the probe happens in a slow and controlled fashion, this would will not provide a violation to the Schroedinger equation, nor it would tell us that all projections are quasi-static processes. A better description of the faster scale processes given by the projections, then, will inevitable need a new state space as the standard quantum states only describes equilibria, and we should expect the faster scale processes to go out of equilibria.
 
-For example, slow changing conditions are unlikely to reveal new dynamics. As long as we change things adiabatically, the quasi-static approximation will hold. If we were to have a process that end-to-end can be modeled by a projection, but was implemented as a slow transition, the quasi-static approximation holds and no new phenomena would be osserved.
+To understand what is the right mathematical framework for those regimes, we are proceeding by first identifying the physical requirements for all mathematical structures already used in physics, starting from the most basic ones like topological spaces (upon which is based all of differential geometry) and $\sigma$-algebras (upon which is based all of measure theory and probability theory). This long term effort is centered mainly around the development of an open access book in which these issues can be explored in full detail and with a rigor more typical of mathematical disciplines. This rigor is what forces us to spell out the often hidden assumptions we have while constructing physical theories. By making explicit under which physically motivated circumstances time can be modeled by real numbers, states can be modeled by classical phase space or by quantum Hilbert spaces, we believe we will be in a better position to understand what happens when we can't.
 
-The main issue is that we have to catch the system out of equilibrium. In principle, we can imagine preparing a system, starting a process $\mathcal{p}_1$ and, while in transition, switch to process $\mathcal{p}_2$. At that point, the final state may have characteristics that are different from having run the two process sequentially and that would be evidence of new physics. This may correspond to having an atom absorb a photon while it was already in the process of emitting one. Or it may correspond to measure the horizontal spin of a particle while we where in the process of measuring the vertical one. Whether anything along these lines is actually practicable is unclear, but it's one category.
+%\section{???}
 
-Another venue would be to find a process that under some conditions is well described by unitary evolution while in others by a projection. We may find that at the boundary of the transition the process will be described by neither. This may correspond, for example, to those cases where an energy threshold has to be passed to see particle productions or particle absorption. It is not clear what kind of precision would be required to elicit a different response, but it's another category. 
+%If we accept the line of thinking present in the previous two sections, we can try and draw some conclusions. These will be necessary qualitative as much further work would be needed to make any quantitative prediction.
 
-The second main consequence is that to get a more fundamental theory we have to change the state space. As quantum states only characterize the equilibria for the projections, we need a different state space for the out-of-equilibrium states. This suggests that developing the right physical model for what happens during a projection is not a simple matter of finding a suitable Hamiltonian or a non-linear law of evolution. We may have to substitute complex Hilbert spaces with something else. Given that we have no consensus on why those spaces are needed in the first place, and on whether all the elements are actually physical, it is unclear what we would substitute them with.
+%The first main conclusion is that we should be able to find processes that are neither described by unitary evolution nor by the projection. These would correspond to processes for which the out-of-equilibrium dynamics becomes relevant so the quasi-static evolution is not a good approximation and neither is the instantaneous transition. Even if we do not have a theory for those regimes, we can, at least conceptually, discuss a couple of general strategies.
 
-But it is actually worse than that. If we want a theory that works at the smallest time resolution, it is obvious that our $\mathcal{P}$ would correspond to those processes. Those will correspond to the basic building blocks with no further refinement possible. But in those case the temporal scale of the time evolution is the same scale of the processes: we cannot see time evolution $\mathcal{E}$ as a continuous sequence of processes $\mathcal{p}_t$. In fact, there is nothing that would prevent those processes to even be sequential.
+%For example, we can note that slow changing conditions are unlikely to reveal new dynamics. As long as the system evolves continuously, the quasi-static approximation will hold. It is also conceivable that, in some conditions, a process that may look like a projection end-to-end is actually well described by a slow transition. In those cases the quasi-static approximation evidently holds and no new phenomena would be observed. What is the right time scale, though, is not clear to us since ``slow'' in this setting is still ``very fast''.
 
-In other words, it is possible that we may be very very far from having the correct mathematical tools to be able to characterize those regimes. All
+%The main issue is that we have to catch the system out of equilibrium. In principle, we can imagine preparing a state $\mathcal{s}_0$, starting a process $\mathcal{p}_1$ and, while in transition, switch to process $\mathcal{p}_2$. At that point, the final state may have characteristics that are different from having run the two process sequentially and that would be evidence of new physics. Hypothetically, this may correspond to having an atom absorb a photon while it was already in the process of emitting one. Or it may correspond to polarizing a particle horizontally while it was in the process of polarizing vertically. Whether anything along these lines is actually practicable is unclear, but it's one general strategy.
+
+%Another one would be to find a process that under some conditions is well described by unitary evolution while in others by a projection. We may find that at the boundary of the transition the process will be described by neither. This may correspond, for example, to those cases where an energy threshold has to be passed to see particle productions or particle absorption. It is not clear what kind of precision would be required to elicit a different response, but it's general strategy. 
+
+%The second main conclusion is that to get a more fundamental theory we have to change the state space. As quantum states only characterize the equilibria for the projections, we need a different state space for the out-of-equilibrium states. This suggests that developing the right physical model for what happens during a projection is not a simple matter of finding a suitable Hamiltonian or a non-linear law of evolution. We may have to substitute complex Hilbert spaces with something else. Given that we don't even have consensus on why those spaces are needed in the first place, and on whether all the objects in those spaces are actually physical, it is unclear what we would substitute them with.
+
+%We may think we can use our intuition to guide us but it is more likely that it will lead us astray. Our ideas of conserved charges, symmetries, quantum numbers and the like may not apply in those out-of-equilibrium states. As we know that, during those processes, particles can transform from one type to another, it would make sense to assume they are all made of the same substance and that particles are more or less stable configurations of that substance. If that is the case, mass, charge and other quantum numbers may simply be the properties of those stable configurations that have no meaning in between, much like pressure or temperature for an out-of-equilibrium volume of gas. Even the symmetries would be qualifying the homogeneity of the equilibrium states.
+
+%Unfortunately, it is probably worse than that. Suppose we want a theory that works at the smallest time resolution, at Planck scale. Then our set of processes $\mathcal{P}$ would correspond to those processes bounded by that time scale. Those will correspond to the basic building blocks with no further refinement possible. If we now want the law of evolution $\mathcal{E}$ as well, the time scale of $\mathcal{E}$ will be the time scale of the processes $\mathcal{P}$: we cannot see time evolution $\mathcal{E}$ as a continuous sequence of processes $\mathcal{p}_t$. As we can no longer pretend that between two fast time scale processes there is always another one, we now must face the fact that these may be running in different regions that may or may not overlap in space and time. That is, the execution of there processes is not strictly sequential and therefore not linearly ordered, in which case time cannot be modeled by a number.
+
+%If Hilbert spaces are not suitable to characterize states, or if real and rational numbers are not suitable to characterize time, it would mean that we may be very very far from even having the correct mathematical tools to be able to characterize those regimes. 
+
+
+
 
 
 
