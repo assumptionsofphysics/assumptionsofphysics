@@ -77,6 +77,7 @@ prx,
 \DeclareMathOperator{\result}{result}
 \DeclareMathOperator{\idFn}{id}
 
+\def\Bool{\mathbb{B}}
 \def\TRUE{\textsc{true}}
 \def\FALSE{\textsc{false}}
 
@@ -124,7 +125,10 @@ prx,
 \newcommand{\exptSet}{\mathcal{E}}
 % Formatting for observations
 \newcommand{\obs}[1][s] {\mathsf{#1}}
+
 % Formatting for possibilities
+\def\logCtx{\mathcal{S}}
+\newcommand{\pAss}[1][\mathcal{S}] {\mathcal{A}_{#1}}
 
 % Formatting for experimental domain
 \newcommand{\edomain}[1][D] {\mathcal{#1}}
@@ -234,53 +238,42 @@ This means that science concerns itself only to the study of assertions that hav
 Next we need to define our truth bearer. In mathematical logic, this is typically a well formed formula. This cannot work for us: what we are interested in is the meaning of the assertion and not how it is expressed. For example, \statement{this animal is a dog} and \statement{questo animale \`e un cane} represent the same fact expressed in different languages. As science is universal, it should not matter the language, units or reference system used to make an assertion.\footnote{In the same vein, a statement is not necessarily one sentence as it has to include all the information needed to understand what exactly we are talking about. These are the type of philosophical issues that are discussed at greater length in~\cite{Carc3}.} While we will still use standard mathematics for the formal system, we introduce a variation of algebraic logic to represent our ``informal'' assertions. We start by defining our truth bearer as:
 
 \begin{axiom}\label{ax_statement}
-	A \textbf{statement} $\stmt$ is an assertion that is either true or false. Formally, a statement is an element of the set $\mathcal{S}$ of all statements upon which is defined a function $\truth: \mathcal{S} \to \mathbb{B}$ that returns the truth value for each element.
+	A \textbf{statement} $\stmt$ is an assertion that is either true or false. A \textbf{logical context} $\logCtx$ is a collection of statements with well defined logical relationships. Formally, a logical context $\logCtx$ is a collection of elements called statements upon which is defined a function $\truth: \logCtx \to \Bool$.
 \end{axiom}
 
 Note how the first part of the definition captures the informal meaning of what we are describing, while the second part captures the part that is formalized. This pattern will be present in most of our definitions and it serves to clarify both what is being formalized and how. Therefore, in science, the statement is an assertion while for the math it is just an element in some set.
 
-While in math the truth value is the focus of the logic system, in science it is generally established experimentally. But our scientific model may constrain certain statements or statement combinations to be ruled out. For example, the statements \statement{this animal is a dog} and \statement{this animal is a cat} can both be either true or false, but the statement \statement{this animal is a cat and a dog} can never be true. That is, the role of our logic system is not to keep track of what is true and false, but of what cannot possibly be true and cannot possibly be false. We need to keep track of these relationships so that we can never have inconsistencies or paradoxes.
+While in math the truth value is the focus of the logic system, in science it is generally established experimentally. But our scientific model may constrain certain statements or statement combinations to be ruled out. For example, the statements \statement{this animal is a dog} and \statement{this animal is a cat} can both be either true or false, but they can't both be true. That is, the role of our logic system is not to keep track of what is true and false, but of what cannot possibly be true and cannot possibly be false. We need to keep track of these relationships so that we can never have inconsistencies or paradoxes.
 
-\begin{defn}
-	Given a collection of statements $\{\stmt_i\}^n_{i=1}$, a \textbf{consistent truth assignment} is a collection of truth values $\{t_i\}^n_{i=1}$ such that it is logically consistent to simultaneously suppose that $\truth(\stmt_i) = t_i$ for all $1 \leq i \leq n$. That is, from those assumptions it cannot be proven that $\truth(\stmt_i) \neq t_i$ for any $1 \leq i \leq n$.  This definition generalizes to the case of infinite, possibly uncountable, indexed families.
-\end{defn}
-
-Note that the truth assignments are just hypotheticals. They are not actual physical entities. There is only one truth value, the one found experimentally. Logical consistency is defined on the truth assignments and not on the truth values. Therefore we need a way to track whether the meaning of each statement allows it to be true or not.
-
-\begin{axiom}\label{ax_possibilities}
-	The \textbf{possibilities} of a statement $\stmt$ are the possible truth values allowed by the content of the statement. Formally, on $\mathcal{S}$ is also defined a function $\possFn: \mathcal{S} \to \{\{\FALSE, \TRUE\},\{\FALSE\},\{\TRUE\}\}$ such that:
-	\begin{itemize}
-		\item $\truth(\stmt) \in \possFn(\stmt)$ for all $\stmt \in \mathcal{S}$. This remains valid in every consistent truth assignment.
-		\item for any collection of statements $\{\stmt_i\}^n_{i=1}$, for any $1 \leq j \leq n$ and for any $t \in \possFn(\stmt_j)$ there exists a consistent truth assignment $\{t_i\}^n_{i=1}$ such that $t_j = t$. This generalizes to the case of infinite, possibly uncountable, indexed families.
-	\end{itemize}
+\begin{axiom}\label{ax_possible_assignemetns}
+	A \textbf{possible assignment} for a logical context $\logCtx$ is a map $a : \logCtx \to \Bool$ that assigns a truth value to each statement in a way consistent with the content of the statements. Formally, each logical context comes equipped with a set $\pAss \subseteq \Bool^{\logCtx}$ such that $\truth \in \pAss$. A map $a : \logCtx \to \Bool$ is a possible assignment for $\logCtx$ if $a \in \pAss$.
 \end{axiom}
 
-With this axiom, we can distinguish between statements that can never be true and those that just happen to be true.
+Note that the possible assignments are just hypotheticals. They are not actual physical entities. There is only one truth value, the one found experimentally. Logical consistency is defined on the truth assignments and not on the truth values. This allows us, for example, to track whether the meaning of each statement allows it to be true or not.
 
 \begin{defn}
-	A \textbf{tautology} $\tautology$ is a statement that must be true simply because of its content. That is, $\possFn(\tautology) = \{\TRUE\}$.
+	A \textbf{tautology} $\tautology$ is a statement that is true in every possible assignment.
 \end{defn}
 
 \begin{defn}
-	A \textbf{contradiction} $\contradiction$ is a statement that must be false simply because of its content. That is, $\possFn(\contradiction) = \{\FALSE\}$.
+	A \textbf{contradiction} $\contradiction$ is a statement that is false in every possible assignment.
 \end{defn}
 
 We also need to express relationships between the truth of different statements. For example, if we assign true to \statement{this animal is a dog} then we cannot assign true to \statement{this animal is not a dog}. Therefore we introduce the following:
 
-
 \begin{axiom}\label{ax_functions_of_statement}
-	We can always construct a statement whose truth value arbitrarily depends on an arbitrary set of statements. Formally, given an arbitrary truth function $f_{\mathbb{B}} : \mathbb{B}^n \to \mathbb{B}$ there exists a function $f : \mathcal{S}^n \to \mathcal{S}$ such that
-	$$\truth(f(\stmt_1, ..., \stmt_n)) = f_{\mathbb{B}}(\truth(\stmt_1), ..., \truth(\stmt_n))$$
-	and the same relationship remains valid in every consistent truth assignment. This also holds in the case of infinite, possibly uncountable, arguments.
+	We can always construct a statement whose truth value arbitrarily depends on an arbitrary set of statements. Formally, let $S \subseteq \logCtx$ be a set of statements and $f_{\Bool} : \Bool^S \to \Bool$ an arbitrary function from an assignment of $S$ to a truth value. Then we can always find a statement $\bar{\stmt} \in \logCtx$ such that
+	$$a(\bar{\stmt}) = f_{\Bool}(\{a(\stmt)\}_{\stmt \in S})$$
+	for every possible assignment $a \in \pAss$.
 \end{axiom}
 
 We will use the standard symbols $\NOT$, $\AND$, $\OR$ to indicate the negation (logical NOT), conjunction (logical AND) and disjunction (logical OR). With these three axioms, we can rederive all of the rules of classical logic. First we define our equivalence.
 
 \begin{defn}
-	Two statements $\stmt_1$ and $\stmt_2$ are \textbf{equivalent} $\stmt_1 \equiv \stmt_2$ if they must be equally true or false simply because of their content. Formally, $\stmt_1 \equiv \stmt_2$ if and only if $(\stmt_1 \AND \stmt_2) \OR (\NOT\stmt_1 \AND \NOT\stmt_2)$ is a tautology.
+	Two statements $\stmt_1$ and $\stmt_2$ are \textbf{equivalent} $\stmt_1 \equiv \stmt_2$ if they must be equally true or false simply because of their content. Formally, $\stmt_1 \equiv \stmt_2$ if and only if $a(\stmt_1) = a(\stmt_2)$ for all $a \in \pAss$.
 \end{defn}
 
-From this definition, one can prove that two statements are equivalent if and only if they have the same truth in all consistent truth assignments. From that one can prove the following two propositions.
+From this definition one can prove the following two propositions.
 
 \begin{prop}
 	Statement equivalence satisfies the following properties:
@@ -309,20 +302,20 @@ From this definition, one can prove that two statements are equivalent if and on
 
 One can also prove that the Boolean algebra is complete, and therefore it generalizes to the infinite case.
 
-This system not only allows us to use formal classical logic while keeping the statements informal, but is also equipped to capture causal relationships.\footnote{Note that the axioms prevent any form of paradox, simply because the possibilities of a statement are never empty and a consistent truth assignment must exist. Therefore situations like \statement{this statement is not true} are ruled out simply because they cannot satisfy the axioms.} For example, $\stmt_1=$\statement{the thermometer indicator is between 24 C and 25 C} and $\stmt_2=$\statement{the temperature is between 24 C and 25 C} are equivalent because both $\stmt_1 \AND \NOT \stmt_2$ and $\NOT \stmt_1 \AND \stmt_2$ are contradictions (on the assumption that our thermometer is actually working). We can also define other semantic relationships.
+This system not only allows us to use formal classical logic while keeping the statements informal, but is also equipped to capture causal relationships.\footnote{Note that the axioms prevent any form of paradox, simply because a possible assignment must exist. Therefore situations like \statement{this statement is not true} are ruled out simply because they cannot satisfy the axioms.} For example, $\stmt_1=$\statement{the thermometer indicator is between 24 C and 25 C} and $\stmt_2=$\statement{the temperature is between 24 C and 25 C} are equivalent because one is true if and only if the other is true (on the assumption that our thermometer is actually working). We can also define other semantic relationships.
 
 \begin{defn}
 	Given two statements $\stmt_1$ and $\stmt_2$, we say that:
 	\begin{itemize}
-		\item $\stmt_1$ \textbf{is narrower than} $\stmt_2$ (noted $\stmt_1 \narrower \stmt_2$) if $\stmt_2$ is true whenever $\stmt_1$ is true simply because of their content. That is, $\stmt_1 \AND \NOT \stmt_2 \equiv \contradiction$.
+		\item $\stmt_1$ \textbf{is narrower than} $\stmt_2$ (noted $\stmt_1 \narrower \stmt_2$) if $\stmt_2$ is true whenever $\stmt_1$ is true.
 		\item $\stmt_1$ \textbf{is broader than} $\stmt_2$ (noted $\stmt_1 \broader \stmt_2$) if $\stmt_2 \narrower \stmt_1$.
-		\item $\stmt_1$ \textbf{is compatible to} $\stmt_2$ (noted $\stmt_1 \comp \stmt_2$) if their content allows them to be true at the same time. That is, $\stmt_1 \AND \stmt_2 \nequiv \contradiction$.
+		\item $\stmt_1$ \textbf{is compatible to} $\stmt_2$ (noted $\stmt_1 \comp \stmt_2$) if there is an assignment in which they are both true.
 		
 	\end{itemize}
 	The negation of these properties will be noted by $\nnarrower$, $\nbroader$ , $\ncomp$ respectively.
 \end{defn}
 \begin{defn}
-	The elements of a set of statements $S \subseteq \mathcal{S}$ are said to be \textbf{independent} (noted $\stmt_1 \indep \stmt_2$ for a set of two) if their content is such that any combination of their possibilities is allowed. That is, $\possFn(f(S)) = f(\bigtimes\limits_{\stmt \in S} \possFn(\stmt))$ for any truth function $f : \mathbb{B}^{|S|} \to \mathbb{B}$. The negation of independence will be noted by $\nindep$.
+	The elements of a set of statements $S \subseteq \logCtx$ are said to be \textbf{independent} (noted $\stmt_1 \indep \stmt_2$ for a set of two) if the assignment of any subset of statements does not depend on the assignment of the others. That is, a set of statements $S \subseteq \logCtx$ is independent if given a family  $\{t_{\stmt}\}_{\stmt \in S}$ such that each $t_{\stmt} \in \Bool$ is a possible assignment for the respective $\stmt$ we can always find $a \in \pAss$ such that $a(\stmt) = t_{\stmt}$ for all $\stmt \in S$.
 \end{defn}
 
 For example, given the following statements:
@@ -397,7 +390,7 @@ We could also define decidable statements as those for which falsehood can also 
 	\caption{Comparing algebras of statements.}\label{tab:algebras}
 \end{table*}
 
-Now that we can verify statements one by one, we need to define what it means to verify a group of them. In principle, given a set of verifiable statements we can simply start testing them one after the other. However, if we are given a set of uncountable statements then, even if we have an indefinitely long time at our disposal, we will not be able to create a procedure that eventually tests all statements. However, we may not need to actually run all tests for all statements. For example, if we found that $\stmt_1$ is true then there is no need to test any of its disjunctions like $\stmt_1 \OR \stmt_2$.
+Now that we can verify statements one by one, we need to define what it means to verify a group of them. In principle, given a set of verifiable statements we can simply start testing them one after the other. However, if we are given a set of uncountable statements then, even if we have an indefinitely long time at our disposal, we will not be able to create a procedure that eventually reaches all statements. However, we may not need to actually run all tests for all statements. For example, if we found that $\stmt_1$ is true then there is no need to test any of its disjunctions like $\stmt_1 \OR \stmt_2$.
 
 \begin{defn}
 	Given a set $\edomain$ of verifiable statements, $\basis \subseteq \edomain$ is a \textbf{basis} if the truth values of $\basis$ are enough to deduce the truth values of the set. Formally, all elements of $\edomain$ can be generated from $\basis$ using finite conjunction and countable disjunction.
