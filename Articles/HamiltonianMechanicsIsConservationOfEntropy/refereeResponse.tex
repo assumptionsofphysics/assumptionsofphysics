@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{dutchcal}
+\usepackage{braket}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usepackage{forest}
+\usetikzlibrary{trees}
+\usetikzlibrary{calc}
+\usepackage{calculator}
+\usepackage{standalone}
+
+
+
+\begin{document}
+
+
+\section*{Referee response}
+
+\textbf{1. I would like to see some further evidence for the claim that previous works have concentrated too much on philosophically interpreting the mathematics rather than the physics. It would be great if that could be demonstrated explicitly for at least one example.}
+
+\emph{We have revised the introduction to be more clear on what we mean by "focusing on the mathematics rather than the physics". We reworded the brief examples we already had and added a new one, but these are still presented at a high level because the issue we seek to highlight is not a specific detail but a difference in posture/stance. We hope that the revised introduction makes this clearer. It now reads:}
+
+... We believe, though, that there are two general problems with these attempts.
+
+The first is that they concentrate on the mathematical structure which, unfortunately, is not enough to characterize a physical theory. By mathematical structure here we mean the part of the theory that is specified by formal relationships among abstract symbols, while by physical content we mean the link, necessarily not formal, between those symbols and actual physical concepts which, ultimately, must connect with experimental verification at least potentially. The problem is that the same physical content can be described by different mathematical frameworks. For example, as it is noted in~\cite{North,Curiel,Barrett1,Barrett2}, the state of many classical systems can be characterized by a point in a tangent bundle (through position and velocity) in the Lagrangian framework and by a point in a cotangent bundle (through position and momentum) in the Hamiltonian framework. Conversely, the same mathematical structure can be attached to different physical content. For example, the equation $ma + bv = 0$ in the context of Newtonian mechanics can either represent a body in an inertial frame under linear drag or a body in a non-inertial frame with no forces acting on it. If $t_{in}$ is time in the inertial frame, the time $t$ in the non-inertial frame is such that  $\frac{dt}{dt_{in}} = e^{\frac{b}{m}t}$. In other words, we can have the same physics with different math and the same math with different physics. The connection between math and physics is many-to-many because mathematics captures only the syntax of a particular description without its semantics, which at that point cannot be recovered. Therefore, if we want to analyze, compare or just understand a physical theory, it is not enough to understand the mathematical structure: we need a clear dictionary as to what each mathematical symbol ultimately represents in the physical model. That is, we should be able to ask simple questions such as: what does the numeric value of the Lagrangian for a given position and velocity represent? What does the numeric value of the symplectic form for two vectors represent?
+
+If we just use category theory techniques, as in \cite{Barrett2}, to compare two physical theories, we cannot do anything else but compare the formal aspects. We may find that the formal parts of theories are inequivalent, but it could be that, once we add all the physical content that is needed to connect the formal part to actual physical systems and their measurement, they turn out to be equivalent; for similar arguments see~\cite{Coffey}. Or we may compare the formal structures of symplectic manifolds and Riemannian manifolds, and conclude, as in \cite{North}, that Hamiltonian mechanics is more fundamental than Lagrangian mechanics because defining only a volume element constrains the space less than defining only a line element. But, again, without having discussed exactly how that structure maps to the actual physical objects we cannot be sure of that conclusion. For example, kinetic momentum $mv$ is what is actually measured since conjugate momentum $p$ is not a gauge-invariant quantity. So it may be that, once we reconnect the formal theory to the actual physically defined quantities, we are forced to implicitly reintroduce the structure we appeared to be missing. 
+
+Fixating on the mathematical structure without fully developing the link to the physical model it represents can also lead to confusion. For example, it is known~\cite{AllHamFreeParticle} that any Hamiltonian system is, at least locally, mathematically equivalent to a free particle. That is, we can always find a canonical transformation (i.e. a transformation that does not change the equation of motion) such that any Hamiltonian system, in the new coordinates, has the motion of a free particle for a finite amount of time. As~\cite{North} notes, only frame-independent relationships should be taken as fundamental. Does that mean that the Hamiltonian itself is not fundamental because it is not invariant under canonical transformations? Does it mean that all Hamiltonian systems are the same system, since locally there is always a set of canonical coordinates in which $H=p^2/2m$? It is also known~\cite{AllSystemsAreHam} that for any first-order system of ordinary differential equations we can find an appropriate symplectic structure such that the system can be written as a Hamiltonian system. Does that mean that, in the end, all systems are physically equivalent, regardless of what they describe? The point is, we cannot know whether our findings about mathematical structures are physically significant if we do not have a precise link between the mathematical symbols and their physical meaning.
+
+\emph{The rest of the introduction was slightly modified to make the manuscript flow better. It does not address this specific point, but we include it here so that the reviewers can see the text that has actually changed.}
+
+This leads us to the second problem we believe the previous works may have: when trying to attach meaning, the thinking and intuition is still Newtonian. This is particularly evident in~\cite{Curiel} where physical ideas provide the starting point to get to Lagrangian dynamics. The starting point is that a classical system is one that, roughly, obeys Newton's second law and therefore we have, for a free particle, $\dot{x} = v$ and $\dot{v} = 0$. Unfortunately this is only true in an inertial frame. As~\cite{North} notes, both Hamiltonian and Lagrangian mechanics are coordinate independent: the equations are valid in all reference frames, even non-inertial ones. In fact, that is probably the most notable advantage of the frameworks, that fictitious forces are automatically handled. But none of the Newtonian concepts are coordinate independent: inertial frames, absence of forces and even conservation of energy are all frame dependent. This, again, leads to confusion and we may miss a key element: in the transition from Newtonian to Lagrangian/Hamiltonian mechanics, ~\cite{Curiel} must necessarily expand the reference frames in which the equations are valid (from inertial frames to all frames) at the expense of restricting the class of systems we can describe (e.g. dissipative forces in general require a modification of the Euler-Lagrange equation typically using the Rayleigh dissipation function). It is not clear when and how that transition between models happens. The point is, Newtonian concepts may prevent us from fully understanding Hamiltonian and Lagrangian mechanics.
+
+This attitude of treating mathematical structures in isolation as fundamental objects in a physical theory, instead of tools to capture its formal aspects, is now somewhat pervasive in some areas of physics, but it should be noted that it was not always like that. Even just a century ago, there was a push to find fundamental principles or laws expressed in physical terms that could serve as a starting point for the different theories. Newtonian mechanics, thermodynamics and special relativity serve as good examples. Nowadays, unfortunately, many of the current fundamental theories, including Lagrangian mechanics, Hamiltonian mechanics, quantum mechanics and quantum field theory take as their starting point a particular mathematical structure. That is, we do not know what the value of a Lagrangian means or what the symplectic form represents; we just take them as given. Moreover, a lot of work in theoretical physics nowadays starts by exploring novel abstract mathematical structures and then trying to see whether some physical meaning or prediction can be extracted. We are not going to debate here how and why this shift happened. We merely note that it leaves the semantics of our theories ill defined.\footnote{Which is a nice way to say that we don't really know what we are talking about.} 
+
+It is only natural that, given the circumstances, one would use the only thing that seems to be well defined, the math, and try to draw understanding from there. But here lies the fundamental problem: modern mathematics is not created by physicists to do physics, it is created by mathematicians to do math. The definitions of topology, differentiable manifold, symplectic manifold, Hilbert space and so on are chosen either because they are convenient to prove theorems or because they are convenient to perform calculations.\footnote{In fact, it is common in math to have two such definitions and then prove they are equivalent.} We should not expect them to be a good match for definitions that would be physically meaningful. In other words, there is a very good chance that looking at just the math may lead us, like horses with blinders, in a well-defined direction which is not the physically meaningful one. To be clear, we do not fault the mathematicians as they are not responsible for whether their structures are used appropriately or not within physics.
+
+\vspace{1cm}
+
+\textbf{2. It is not clear to me that information entropy is a fundamental physical (?) notion. In particular, the definition provided here seems to indicate that it will depend on the phase space partition employed, i.e. on extraneous factors. The authors also assert that information entropy is connected to thermodynamic entropy: this is not an unequivocally accepted claim (e.g. see Norton's dissent on the information theoretical interpretation of statistical mechanics). More justification is needed here.}
+
+\emph{The connection between information entropy and thermodynamic entropy is outside the scope for this work, therefore we toned down the claim. It now reads:}
+
+Secondly, information entropy seems to have a connection to the foundations of thermodynamics and statistical mechanics, in the sense that it is used successfully in physics practice, even on systems far from equilibrium (see \cite{Jarzynski, Maes, Horowitz}).
+
+\emph{As for whether information entropy is a fundamental physical notion, we added a new section to clarify. It reads:}
+
+\subsection*{On the physicality of information entropy}
+
+We want to stress, again, that in general information entropy cannot be taken as an objective physical quantity. It depends on the choice of symbols one uses for encoding: using letters of the alphabet or words in the English language will yield a different information entropy for the same book. It will depend on the choice of ensemble: in game theory one uses credence distributions that depend on the agent and therefore the information entropy will be different for different actors. The nature of the information entropy, then, depends on the nature of the elements, the ensemble and the values over which the distribution is defined.
+
+Moreover, we should note that our construction is not the one typically used in classical statistical mechanics. In that case, the elements are points across $N$ copies of phase space (one set of position and momentum for each particle) and the distribution over them is a probability distribution. In this case one has to be careful and show how the distribution is uniquely defined by objective physical entities. If one interprets said distribution as credence, like \cite{Jaynes}, then one has obvious problems with viewing information entropy as a physical quantity.
+
+Our case, then, is by construction very particular. The ensemble is the state of a physical system. The elements are the physical subdivisions of said system, the particles. The subdivisions are dictated by what parts can be studied independently. The set of values over which the distribution is defined is the state space of the particles. The densities relate what fraction of the whole can be found in a particular particle state. Densities and areas in terms of $q^i$ and $k_i$ are invariant pure numbers, independent of the choice of unit. No ``partitioning" or ``averaging" of phase space is invoked. The information entropy depends on no other external factors: it is an invariant state variable of the ensemble. It is a physical property of the system.
+
+Our statistical distribution does not correspond to the probability distribution of statistical mechanics. Conceptually, it corresponds to a point across the $N$ copies of phase space, a microstate, in the following way: pick a very narrow unitary distribution $\delta(q,p)$; make a copy for each particle so that it is centered around its position and momentum; sum them all.\footnote{Note that if we permute the particles we obtain the same distribution, so this repackaging does not suffer from overcounting.} That is:
+\begin{equation}
+\rho(q,p) = \sum\limits_{a=1}^N \delta(q - q_a, p - p_a)
+\end{equation}
+To form a complete link to statistical mechanics we would have to define what the probability distribution is. To form a complete connection to thermodynamics we would have to introduce a link to thermodynamic entropy. These additional steps are outside of the scope of this work. Here we simply want to show how information entropy applied to physical distributions over phase space is indeed a physical quantity that is deeply linked to the notion of deterministic and reversible evolution and to Hamiltonian mechanics.
+
+\vspace{1cm}
+
+\textbf{3. Similarly, I am not convinced that 'an infinitesimal part of the system' has more physical meaning than 'point particle'. Granted: those are not identical descriptions - but I do not perceive a difference in degree of abstraction. The criteria used to judge what counts as a desirable interpretation need to be laid out more clearly. }
+
+\emph{We added a new section specifically on the difference between infinitesimal part and point particle. It reads:}
+
+\subsection*{Point particles vs infinitesimal parts}
+
+At this point one may still argue that point particles and infinitesimal parts are both abstract concepts and both factually incorrect (i.e. planets are neither points nor made of infinitesimal parts), so why should we prefer one concept over the other?
+
+Proper understanding of a physical theory means answering one question: why does the theory work? And the answer cannot be: because it does experimentally. The problem is not that the answer begs the question; it is that no theory works experimentally for all possible systems in all possible settings. In this case, there are no ``right" theories, only ones that agree with experiments in a set of circumstances. The question, then, should be really taken to mean: what are all the necessary conditions under which the theory works? What are the assumptions or abstractions implicit in the model and where do they apply?
+
+To us, this is not an abstract intellectual question. It is a practical matter: I have a system to study and have a choice of different models (e.g. Hamiltonian mechanics, Newtonian mechanics, quantum mechanics, Markov processes, ...). How do I know which one to pick?
+
+If Hamiltonian mechanics is characterized as describing point-like objects, whose state is described by position and momentum, and that move according to a specified set of equations, it is not clear why it would apply to a planet and to a speck of dust in a vacuum, but not to a speck of dust in a fluid or to an electron. The size does not seem to matter and it is not clear why Hamilton's equations are important: why should a point-particle be constrained to follow those equations?
+
+If we instead characterize Hamiltonian mechanics as the deterministic and reversible motion of objects reducible to infinitesimal parts, we understand when the model choice is appropriate. Can we pretend that the system we are studying, under the conditions we are studying it, is made of infinitesimal parts that can be studied independently? In the case of an electron the answer is no. In the case of a planet or a speck of dust, if we are studying only the overall motion, then yes. Can we pretend that the evolution is deterministic and reversible? In the case of the speck of dust in a fluid, no. For a planet and speck of dust in a vacuum, yes.
+
+The characterization of classical mechanics as describing point-particles, then, fails spectacularly at answering the most basic question: what is a classical system? Because knowing what a classical system is means knowing when classical mechanics is applicable. And saying that classical mechanics describes point-particles does not clarify when classical mechanics is applicable. Our characterization, instead, is very straightforward: a classical system is one that can be considered to be infinitesimally reducible. It is furthermore Hamiltonian if the evolution is deterministic and reversible.\footnote{In the same vein, \cite{AoPPhy1} finds that it is Newtonian if it is purely kinematic (i.e. spatial motion identify the state), it is Lagrangian if it is both Hamiltonian and Newtonian and so on.}
+
+Finally, note that the approach presented leads to both the structure of phase space and the equations of motion. There is no freedom to choose other structures. With point-particles, instead, it is not clear why, for example, position is not sufficient to specify the state, or why trajectories that do not obey Hamilton's equations must be discarded. Therefore the point-particle characterization has far less explanatory power.
+
+
+
+\bibliographystyle{alpha}
+
+\bibliography{bibliography}{}
+
+\end{document}
