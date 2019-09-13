@@ -1,10 +1,13 @@
 \documentclass{article}
-
+\textheight 8.9 in \textwidth 6.5 in \oddsidemargin -10pt \topmargin
+-30pt
 
 %\usepackage{arxiv}
+%\usepackage[usenames,dvipsnames]{color}
 
 
-\title{Shannon entropy as the variability of elements within a distribution}
+
+\title{Universal Characterization of Variability by \\Shannon's $\sum_ip_i\,\textrm{ln}\,p_i$ Formula}
 
 \author{
 	Julian Barbour, 
@@ -16,6 +19,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \begin{abstract}
 TBD
 \end{abstract}
@@ -23,7 +28,52 @@ TBD
 
 
 
-\section{Introduction}
+\section{Introduction\label{int}}
+
+A world without any variety is barely conceivable. It certainly would not admit scientific investigation. One of us recalls but has been unable to relocate a sentence in one of Leibniz's many writings to the effect that reality \emph{is} variety. This is consistent with his view that any contingent thing is defined by a collection of attributes, which necessarily must be distinguishable
+at some epistemic level. Paragraph 58 of Leibniz's \emph{Mondadology} asserts that the principle underlying the universe is that it should realize ``as much variety as possible, but with the greatest order possible''.
+
+Without committing ourselves to Leibniz's overarching principle, our aim in this paper is to draw attention to the specific nature of the variety that can be observed in the universe and the unique suitability of Shannon's entropy (or information) formula $\sum_ip_i\,\textrm{ln}\,p_i$ for the characterization of the variety. Indeed, as we will show in the next section, opportunities for application of Shannon's formula are ubiquitous both on the earth and in the universe at large.
+
+We also wish to comment on the various interpretations of Shannon's formula and attempt to answer this question: what does the formula represent? It is well known that when Shannon recognized the importance of his formula in communication theory he sought von Neumann's advice on the name he should give to the expression he had found. He was told to call it \emph{entropy}, first, because Botlzmann had used an identical formula to define entropy in statistical mechanics and, second, nobody understood entropy and that would provide protection from criticism [exact words to be found]. We believe von Neumann's advice was not totally helpful and has given rise to confusion. Indeed, it is often claimed that Shannon's formula is epistemic in nature and represents ignorance. There certainly are situations in which that is true but equally there are others in which the use of the formula is very appropriate and no ignorance is involved at all. Examples will be given in the next section.
+
+This leads us to propose a different characterization of Shannon's formula that is both more general and more appropriate. Indeed, we will argue that the formula is a measure of the \emph{variability within a distribution of things of a given kind}. Moreover, the formula has a very wide range of applicability because the universe contains many different kinds of things that, through having common attributes, can be recognized as belonging together despite the fact that their attributes are expressed to different degrees or in different ways. To give a first example, the girls in a school can differ in the length and colour of their hair. More examples will follow in the next section.
+
+\section{Comments on Boltzmann's $H$ Theorem}
+
+[This is for you Gabriele]. In Boltzmann's 1872 paper, he introduced the function that later was called the $H$ function, though it seems he meant to call it [upper case] $\eta$ and it was printed as $E$ (which somehow later became $H$). In the paper Boltzmann describes (in $\mu$-space) a gas of monatomic molecules that has already become spatially uniform and also has the same distribution wrt the particles' kinetic energies $x$ at each space point. He therefore considers a spatially constant distribution function $f(x,t)$ and wants to show that whatever its initial value it will tend in accordance with the Boltzmann equation (which he has previously derived and I won't give here) to the Maxwell distribution $f(x,t)=C\sqrt xe^{-hx}$ as $t\rightarrow\infty$. He defines his function $E$ as follows:
+\begin{equation}
+E=\int_0^\infty f(x,t)\left\{\textrm{log}\left [{f(x,t)\over \sqrt x}\right ]-1\right\}\textrm dx\label{hfun}
+\end{equation}
+and aims to prove that it cannot increase and attains its least value when $f(x,t)$ becomes the Maxwell distribution. Boltzmann does not give the argument that leads him to the function (\ref{hfun}), but somewhat later in the paper he notes that the $-1$ in the integrand merely reflects the fact that
+$$
+\int_0^\infty f(x,t)\textrm dx
+$$
+is the total number of molecules in unit volume, so that 
+\begin{equation}
+E=\int_0^\infty f(x,t)\textrm{log}\left [{f(x,t)\over \sqrt x}\right ]\textrm dx\label{hfunb}
+\end{equation}
+also cannot increase.
+
+Boltzmann does not say how he arrived at the function (\ref{hfun}), but its form is obviously dictated by the form of the Maxwell distribution. I'm terrible at equations, but I assume the $\sqrt x$ in the denominator of the integrand in (\ref{hfunb}) is because the usual Shannon expression is `skewed' by the subsidiary Lagrangian multiplier that fixes the total energy to a definite value. Later in the paper, when considering polyatomic molecules, he arrives by means of arguments I have not yet attempted to understand at the familiar $f\, \textrm{log}\,f$ form.
+
+In his very concise 1860 derivation of his energy distribution function, Maxwell commented that
+
+\begin{quote}\small
+
+It appears from this proposition that the velocities are distributed among the particles according  to the same law as the errors are distributed among the observations in the theory of the ``method of least squares''.
+
+\end{quote}\normalsize
+
+In his much more substantial 1867 paper, Maxwell noted that his 1860 derivation could be seen as `precarious' and gave an alternative proof. However, this does not eliminate the mathematical identity of his distribution with the error distribution. Would you agree that this (somewhat indirectly) establishes another example of variablity within a distribution of things [which I think we might use instead of `elements'; `members' (of a set) is another word we might consider]?
+
+
+
+
+
+\vspace{2in}
+
+TODO: Introduction and Conclusions still need to be done
 
 Current disputed status of Shannon entropy as a physical object.
 
@@ -35,7 +85,7 @@ In this paper we will show that $- \sum p_i \log p_i$ is the most natural form t
 
 (NOTE: defining the concept like this is actually broader than Shannon entropy, which assumes source/destination/message.)
 
-\section{Variability within a distribution}
+\section{Variability within a Distribution\label{vwd}}
 
 The general setting is the following. We have a set of elements $E = \{e_\alpha\}_{\alpha=1}^N$. These can represent the galaxies in the Laniakea Supercluster, the animals in the Gal\'{a}pagos islands, the molecules in a box of gas given a particular macrostate, the different takes of spin measurement for a given quantum state, or the words in the complete works of Shakespeare. The choice of the particular set is driven by the interest and practices of scientists and their fields of study and therefore it is, in this sense, discretional. Yet, it must be objective in at least one respect: once a choice is made the actual elements are the same for everybody. Once we arbitrarily decided we will study the galaxies in the Laniakea Supercluster, it is a matter of fact that the Milky Way will be included. This also means that, whatever properties those elements will have, they will represent a matter of fact about that set. In turn, this will make some choices arguably more appropriate or interesting than others. For example, in taxonomy the set of all animals that have feathers may be more interesting than the set of all animals that can fly: the first includes only birds while the second includes most birds, a few mammals and a lot of insects.
 
@@ -75,7 +125,7 @@ Unfortunately, entropy in general is often associated with vague characterizatio
 
 If the Shannon entropy is a measure of variability, why is it connected to information? What is it measuring and in what units?
 
-\section{Units of variability}
+\section{Units of Variability\label{uv}}
 
 We have seen that the Shannon entropy measures the variability within a distribution but, in the end, it is a numeric quantity and we cannot expect to understand the concept if we don't understand what the number represents and in what units.
 
@@ -117,7 +167,7 @@ The term information entropy, then, is unfortunate for two reasons. First, becau
 
 So why is it so successfully used in statistical mechanics? Why does it seem to play a fundamental role even for systems far from equilibrium?
 
-\section{Connection to statistical mechanics}
+\section{Connection to Statistical Mechanics\label{csm}}
 
 As we saw in the previous sections, Shannon entropy is a very general concept that applies to any type of distribution, no matter what the problem domain. To understand its link to the thermodynamic/statistical mechanics entropies we need two answer two questions. First, what does the Shannon entropy represents in the context of statistical mechanics? Second, why does the Shannon entropy have the same properties of the thermodynamic entropy? That is, we have to understand why it increases during irreversible evolution, it is conserved during reversible evolution, it is maximized at equilibrium and it is additive for independent systems.
 
