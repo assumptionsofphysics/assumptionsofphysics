@@ -1,0 +1,5 @@
+* Hamiltonian dynamics is deterministic/reversible evolution of invariant distributions
+* Coordinate-invariant information entropy can only be defined on symplectic manifolds
+* Conservation of information entropy leads to symplectomorphism
+
+
