@@ -1,0 +1,223 @@
+\documentclass[twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\title{Overview and Status of the Assumptions of Physics}
+\author{Gabriele Carcassi, Christine A. Aidala}
+\date{November 2019}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This article gives an overview of the project ``Assumptions of Physics'' which aims to rederive the known laws from a few physically meaningful starting points. It presents the motivations behind the project, a summary of the main findings and current status of the research.	
+\end{abstract}
+
+\section{Introduction}
+
+The aim of this article is to give a broad overview of the project ``Assumptions of Physics'' so that the reader will understand its motivations, its status and a list of the main findings. This is intended to be a good start for anyone interested in collaborating or simply learning more about the project. Each subsection will be fairly self-contained to allow the reader to skim through the document and focus on the parts of interest.
+
+As we plan to update this document, please make sure this is a recent version.
+
+\subsection{Index}
+To this paper, not to the work.
+
+- Goals and method
+Goals: Understanding, have a better sense of the math, give a background for new theories...
+Methods: reverse engineering vs forward engineering, holistic
+
+- General theory
+relationship between math and physics
+logic of verifiable statements
+properties and quantities
+accuracy
+differentiability
+
+- Fundamental physics
+states and processes
+determinism/reversibility: isomorphism in the category
+entropy
+
+- Physical theories
+Classical mechanics
+Quantum mechanics
+Thermodynamics
+Statistical mechanics
+
+\section{Goals and method}
+
+
+A formal framework that forces us to clarify our assumptions
+From those assumptions the mathematical objects are derived
+Each mathematical object has a clear physical meaning and no object is unphysical
+Gives us concepts and tools that span across different disciplines
+Allows to explore what happens when the assumptions fail, possibly leading to new physics ideas
+
+
+\textbf{A better understanding of physics.} The overall goal of the project is to better understand physics: to understand why the laws of quantum mechanics, or classical mechanics, are what they are; to understand the limit of the validity of the different theories; to understand what the Poisson brackets, or any other mathematical operation, represent physically; to understand which mathematical objects correspond to actual physical entities and which are just artifacts; to understand what new theories are possible.
+
+To us, understanding means to see the necessity of something and how it relates to the rest. For example, once we know that the earth's revolution axis is not aligned with earth's rotation axis, we understand why there must be seasons; and we understand why days are shorter in the winter; and why the sun is brighter and warmer in the summer. The more connections, the fewer starting points, the more understanding.
+
+\subsection{Objectives}
+
+The overall goal of a better understanding of physics can be broken down into the following five objectives.
+
+\textbf{Clarify the assumptions.} Physics is currently a patchwork of different theories (e.g. classical mechanics, quantum mechanics, thermodynamics, ...) that are used for different systems or for the same system in different contexts. When should we use one instead of another? What are the limits of validity of each theory? We want to understand what are the assumptions one has to make on a system such that it can be studied with a particular theory. The only way to make sure our assumptions are necessary and sufficient is to show the theory can be rederived from them. This, in turn, gives us a better idea of what each theory describes, how it fails, and what new directions one could take.
+
+\textbf{Put physics back at the center of the discussion.} Physics used to try and identifies basic ``laws'' or ``principles'' for itself. Current physical theories, instead, just postulate a mathematical structure relegating physics to a mere after-the-fact interpretation. We want to go back to the old approach: we want to start with the physics and derive the math suitable to capture those physical concepts. Ideally, no mathematically construct should be introduced if it is not physically motivated. Why is phase-space formed with conjugate pairs? What does the commutator represent? If these are really representing physical objects, we should have a better understanding than a vague ``you can think of it as...'' or a cryptic mathematical ``it is the left action of a fiber bundle on a...''. Most of our understanding should come from physical intuition and not from the mathematics it is used to represent it.
+
+\textbf{Give science sturdier mathematical grounds.} Physicists are generally trained to think that mathematical details are physically not interesting and are the domain of mathematicians. Even mathematical structures that originally came from physics are now formalized by mathematicians to solve their own needs, and not the physicist's. This, in turns, reinforces the idea that those details are not interesting to the physicists. The reality is that a well-posed physical problem must also be a well-posed mathematical problem, but not the other way around, so leaving the details to the mathematicians means having fundamental structures that are less physical. For example, quantum states are modeled with Hilbert spaces even though we know they contain mathematical objects that are unphysical. If we give a theory, as we said before, by simply stating a mathematical structure, then there is no guarantee that what we give is a fully physical theory. Unphysical elements simply means the physical problem was not specified correctly. If we truly are able to give a precise physical meaning to every mathematical object, then our formal structures will map one-to-one to our physical understanding. This means no unphysical mathematical artifacts and a more precise mathematical treatment of physics.
+
+\textbf{Foster connections between different fields of knowledge.} Knowledge is increasingly specialized and fewer and fewer people are well versed in more than a couple of subjects. Yet, connections between different fields of science, mathematics and engineering are routinely found to be useful for one simple reason: nature is one and does not care about such divisions. A more holistic vision of scientific knowledge, then, is a natural byproduct of our effort. The notions of state, environment, process and equilibrium, for example, are intertwined and are fundamental to most fields of science and engineering. Proper characterization of such basic concepts will give a common language and mathematical tools that span across different disciplines.
+
+\textbf{Provide a solid basis for new theories.} Most of the attention in fundamental physics is focused on the development of new theory or the search for new effects. A better understanding of the current theories, recast in a single broader and more precise framework, facilitates that search. It gives more insight and intuition leading to new ideas. It makes explicit what ingredients went into the theories, so we know what assumption can fail and what principles cannot be changed. For example, we may abandon the assumption that space is measurable at an indefinite precision, leaving the realm of manifold and real numbers; yet we cannot abandon the notion that space is measurable, staying in the realm of second countable $T_0$ topological spaces. As all the physical theories are part of a more general structure, they also provide templates for new theories and prove that the more general structure is sound.
+
+The objectives are cover many areas and are very broad. As such, we are always looking for people with diverse background and interest. We ultimately believe that all these objectives are connected and cannot be pursued independently.
+
+\subsection{Methodology}
+
+As each topic is investigated by the project, it generally goes through three phases. We mention them here as they will give context to the status of the project and to people who may want to contribute.
+
+\textbf{Reverse engineering.} The goal of this phase is to deconstruct an already existing theory or mathematical structure to understand what each piece is supposed to represent physically. One way to conduct such investigation is to ask what would happen if a particular characteristic of the framework would fail. For example, a line of reasoning could be as follows: Hamilton's equations are differential; if they weren't the mapping of densities and areas would not be well defined; maybe Hamiltonian mechanics is not about mapping points but about mapping densities or areas. This usually leads to a set of necessary assumptions about the physical system one is describing, the ones one must take for the particular description to apply.
+
+\textbf{Forward engineering.} The goal of this phase is to construct an argument from the necessary assumptions outlined in the previous phase to rederive the framework at hand. This checks whether the necessary assumptions are also sufficient. For example, if we started simply by assuming we have density distributions mapped in time, this would give us all possible differentiable evolutions, not necessarily Hamiltonian ones. This leads to a set of necessary and sufficient conditions to rederive the theory.
+
+\textbf{Formalization.} The goal of this phase is to take the previous set of arguments and formalize them in pure mathematical language. This forces us to clarify all the starting points and what parts of the arguments are truly formal and what are physical. This can be done only starting from the foundations and therefore takes a considerable longer time. For example, before formalizing Hamiltonian mechanics we have to formalize differentiable manifolds, real number and topological spaces.
+
+\subsection{Organization}
+
+The overall project is organized into the following macro-categories.
+
+\textbf{The general theory.} This formalizes the basic mathematical framework that is the basis for all science. Like in mathematics every algebraic structure is a specialization of the generic structures axiomatized by set theory, all scientific theory are ultimately specialization of the generic structure provided by the general theory. This defines the basic requirements imposed on a theory by logical consistency and experimental verifiability. It defines properties and quantities, accuracy and other concepts of general applicability.
+
+\textbf{Fundamental physics concepts.} This defines the notions that are fundamental to physics specifically, such as states, processes, environment, equilibrium, determinism and so on. The idea is to define these concepts in the most abstract way possible such that common requirements can be identified. Every physical theory is a further refinement of this structure in that it will choose to study a particular set of states over a particular process.
+
+\textbf{Physical theories.} This studies the different assumptions that are needed to recover the known physical theories. The assumptions typically describe what level of description is available for the system and its parts, how does it change in time and whether trajectories are enough to recover it.
+
+We will present the work in the reverse order, from physical theories to general theory, as we find most physicist 
+
+\section{Physics theories}
+
+\subsection{Classical mechanics}
+
+Classical Hamiltonian and Lagrangian particle mechanics, including the Hamiltonian for massive particles under potential forces, can be derived from three main assumptions: infinitesimal reducibility, determinism and reversible evolution and kinematic equivalence. We list here the main points of the derivation together with the some of the insights and connections it provides.
+
+\subsubsection{Classical state spaces}
+
+\textbf{Infinitesimal reducibility.} A system is said reducible if giving the state of the whole system is equivalent to giving the state of its parts and vice-versa. For example, given a ball, we can throw it and study the motion of the ball. Alternatively, one can take a red marker, make a red dot on the ball and study the motion of the dot. The system is reducible if studying the system is equivalent to studying the motion of all possible red dots. The system is infinitesimally reducible if we can keep reducing the system to smaller and smaller parts. We call particle an infinitesimal part of the system, the limit of recursive subdivision.
+
+\emph{Composite states are distributions over particle states.} Under infinitesimal reducibility, if $\mathcal{C}$ is the state space of the while system and $\mathcal{S}$ is the state space of the particles, then each state $c \in \mathcal{C}$ for the full system is identified by a distribution $\rho : \mathcal{S} \to \mathbb{R}$ over the states of infinitesimal parts. The function is real to signify that we can associate arbitrarily small amounts to each particle states. The distribution tells us how many particles can be found in each particle state.
+
+\emph{Continuous time implies particle state space is a manifold.} If time is assumed to be continuous, then the state space $\mathcal{S}$ is a manifold. That is, each particle state $s \in U \subseteq \mathcal{S}$ can be identified by a set of continuous quantities $\xi^a : U \to \mathbb{R}$ which we call state variables. It is a consequence of the general theory that, if we wanted to write a trajectory $\xi^a(t)$, then this must be a topologically continuous function. Therefore, conceptually, once we assume time to be a real number, the state space of the particles must be charted by a set of real quantities: the topology that is given to time reasserts itself on all the quantities that will depend on time.
+
+\emph{Densities imply differentiability.} As we can write the state $s(\xi^a)$ as a function of the state variables $\xi^a$, we will also want to write the density $\rho(s(\xi^a)) = \rho(\xi^a)$ as a function of the state variables. This requires the state variables to be differentiable with respect to the distribution and with each other. Recall that if the Jacobian is not well defined during a change of variable $\rho(\hat{\xi}^b) = \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a}\right| \rho(\xi^a)$ then the density wouldn't be expressible in the new coordinates. Mathematically, this means that the manifold is equipped with a differentiable structure. Note that any time evolution that would map a density to another density will not only have to be continuous, but also differentiable. In short: assuming density distributions as our primary objects, instead of points, justifies why differentiable structures and differentiable time evolution is present in physics.
+
+\emph{Coordinate invariant densities imply phase-space.} As particles states must be defined independently of coordinate systems, they must be invariant under coordinate transformations. That is, $s(\xi^a) = s(\hat{\xi}^b(\xi^a))$. As the density distribution depends only on the state, it should be invariant as well, that is $\rho(s(\xi^a)) = \rho(s(\hat{\xi}^b(\xi^a)))$. We have two seemingly contradicting requirement: $\rho$ should both change like a density and be invariant. The only way to satisfy both requirements is the following: particle states are fully identified by a set of coordinates $q^i$ and by conjugate set of variables $k_i$ whose units are the inverse of the ones defined by $q^i$. This way the product $dq^i dk_i$ is a pure number that is invariant under coordinate transformations. A coordinate transformation $\hat{q}^j = \hat{q}^j (q^i)$ induces a transformation $\hat{k}_j = \frac{\partial q^i }{\partial \hat{q}^j} k_i$ such that the area element $d\hat{q}^j d\hat{k}_j = dq^i \frac{\partial \hat{q}^j }{\partial q^i} \frac{\partial q^i }{\partial \hat{q}^j} dk_i=dq^i dk_i$ is invariant. An independent degree of freedom, then, is a pair $(q,k)$ for which the units can be changed independently from all other state variables. Mathematically, symplectic manifolds are the only spaces that allow us to define coordinate invariant densities. We can introduce a constant $\hbar$ such that $p_i = \hbar k_i$ which at this point is simply an arbitrary choice of unit.
+
+These results gives us a precise understanding of what each layer of the mathematical structure corresponds to physically:
+\begin{description}[noitemsep]
+	\item \emph{Set of points:} possible states for the particles.
+	\item \emph{Topological space:} ability to experimentally distinguish the states.
+	\item \emph{Manifold:} states can be distinguished with a set of real valued quantities or state variables.
+	\item \emph{Differentiable manifold:} we can define a distribution over the states and the state variables.
+	\item \emph{Symplectic manifold:} we can define a distribution over the states that are coordinate independent.
+\end{description}
+
+\subsubsection{Hamiltonian mechanics}
+
+\textbf{Determinism and reversibility.} A system undergoes deterministic and reversible evolution if given the initial state one can predict the final state and given the final state one can reconstruct the initial state. In other words, the system is predictable and retrodictable.
+
+\emph{Reversibility as reconstructing the past.} This definition of reversibility should not be confused with time symmetry or the ability to undo the change. The first one means that if one substitute $t \to -t$ the dynamics is invariant (i.e. the same) or form invariant (i.e. different but described by the same equations) depending on the author. The second one means that we can find another process that brings the final state back to the original state. These concepts do not seem to work well in the general case. For example, when discussing reversibility in the sense of undoing the changes, one typically discusses changing the direction of the velocities to bring about the initial state with inverted velocities. In the presence of forces or an arbitrary dynamics, this operation because more complicated or ill-defined. The core problem with this definition is that it is not a property of the process itself, but on the existence of other processes (i.e. the process that undoes the changes or the process that flips the velocities, therefore changing the state). The requirement of time-invariance is too restrictive as it excludes all time dependent processes. Form invariance on an arbitrary set of equations, instead, can be broken by a suitably complicated change of variables, so it is only well-defined for a limited number of systems (e.g. particles under potential forces). The definition of reversibility we use is preferable because it works more generally and, when appropriate conditions apply, reduces to the other two which are better regarded as special cases. It is mathematically more elegant as it is the dual of determinism. It connects directly with information theory, as it states that the present has enough information to reconstruct the past, which gives a logical bridge to connect reversibility with information entropy and thermodynamics/statistical mechanics entropy.
+
+\emph{Determinism and reversibility imply Hamiltonian mechanics.} In the context of infinitesimal reducibility, determinism and reversibility means that all the particles and only the particle within a given initial state $\rho(s(t)) = \rho(s(t+\Delta t))$ will be mapped to a particular final state. That is, the densities will be preserved over time. Time evolution, then, is a canonical transformation in phase space. As time is continuous, we can find a function $H : \mathcal{S} \to \mathbb{R}$ which acts as a time generator, which we recognize as being the Hamiltonian. This is essentially Louisville's theorem applied in reverse.
+
+\emph{Invariant densities under time transformations imply extended phase-space.} So far, time has been treated as a parameter. If we introduce coordinate transformation that mix time, however, this is no longer possible. If $d\hat{q} = dq + vdt$ then the densities need to be defined on $dt$ as well. To do that, we have to introduce a conjugate variable $\omega$ of unit inverse time so that $dt d\omega$ is dimensionless and invariant. The invariant area element becomes $\sum_i dq^i dk_i - dt d\omega$ or $\sum_i dq^i dp_i - dt dE$ in units of $\hbar$. For surfaces at equal time $dt=0$ it reduces to the previous case. For surfaces that are not at equal time, since the temporal degree of freedom does cannot introduce new states, we need to correct the area element to account for the larger areas measured by the state variables that does not correspond to new states. If we set $q^\alpha = [t, q^i]$ and $p_\alpha = [-E, p_i]$ the area element becomes $dq^\alpha dp_\alpha$. These are elements of special relativity that come just by requiring invariance under time transformation. They do not come from invariance of the speed of light, they do not require a metric tensore. In other words, there is no way to have time transformations in Hamiltonian mechanics without requiring a four-momentum co-vector. Special relativity is not an independent choice: it is already partially baked into the two assumptions we took.
+
+\emph{Extended phase-space imply classical anti-particles.} The trajectories in the extended phase space are in terms of an affine parameter $s$ and not time: $q^\alpha(s)$. As the motion is still deterministic and reversible, though, time $t(s)$ must be monotonic with respect to the affine parameter. For each state, the direction of time can be either aligned or anti-aligned with the affine parameter. Because the relationship is monotonic, aligned states can only connect to other aligned states and anti-aligned states can only connect to other anti-aligned states. We call aligned states the particle states and the anti-aligned states the anti-particle states.
+
+\emph{Time evolution is better expressed by the Hamiltonian constraint.} The temporal degree of freedom introduces two variables but, since one is energy, there is an additional constraint since the value of the energy is linked to the other variables through the Hamiltonian. This link is better expressed by the Hamiltonian constraint $\mathcal{H} : \mathcal{\bar{S}} \to \mathbb{R}$ which is a function over the extended phase space, just like the Hamiltonian was a function over the standard phase space. The Hamiltonian constraint has two roles: it gives us the equation of motions in the same way of the standard Hamiltonian, and it constraints the motion over the surface $\mathcal{H} = 0$. To give context, the Hamiltonian constraint for a free particle is $\mathcal{H} = \frac{|p^\alpha|^2}{2m} - \frac{1}{2}mc^2$, which constraints the norm of the four-momentum to $mc$. The Hamiltonian constraint, unlike the standard Hamiltonian, is invariant under time transformation. It is the generator of the evolution in terms of an affine parameter.
+
+\emph{Hamiltonian constraint as operator on distributions.} If $\rho$ is the distribution for the whole system, then $\mathcal{H} \rho = 0$. In fact, the distribution can only be non-zero on the constrain, for which the Hamiltonian constraint is zero. So, for each point in the extended phase space, either the distribution is zero or the Hamiltonian constrain is zero. Note that this is the same form one has in quantum mechanics for the Klein-Gordon and Dirac equations $\mathcal{H} |\psi\rangle = 0$, which in fact can be understood as Hamiltonian constraints that fix the norm of the momentum four-vector and four-velocity.
+
+\emph{Determinism and reversibility is equivalent to conservation of information entropy.} Given a distribution, its information entropy is given by $I = - \int \rho \log \rho \, d\xi^n$. In general, information entropy is not invariant under change of variable: $- \int \rho(\hat{\xi}^b) \log \rho(\hat{\xi}^b) \, d\hat{\xi}^n = - \int \rho(\xi^a) \log \rho(\xi^a) \, d\xi^n - \int \rho(\xi^i) \log \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a}\right| \, d\xi^n$. Under a canonical transformation over phase space, though, the Jacobian determinant is unitary everyone therefore information entropy is invariant. That is, invariance of the density and invariance of its information entropy are one and the same. Requesting that densities are conserved in time is therefore equivalent to requesting that information entropy is conserved in time. This should be intuitive: the amount of information needed to identify an element within the initial or the final distribution is the same if the evolution is deterministic and reversible. Deterministic and reversible evolution, Hamiltonian evolution and conservation of information entropy, then, are one and the same.
+
+\emph{Conservation of information entropy leads to classical uncertainty principle.} As information entropy is conserved, a Hamiltonian process can only map a distribution to one that has the same information entropy. If we consider a single degree of freedom $(q, p)$ and fix the information entropy $I_0$, then the distribution that minimizes the product of the standard deviation is the Gaussian. The information entropy for the Gaussian is given by $I_G = \ln (2\pi e \sigma_q \sigma_p)$. During the evolution, we have:
+$$ \sigma_q \sigma_p \geq \frac{e^{I_0}}{2\pi e} $$.
+
+\subsubsection{Lagrangian mechanics and massive particles}
+
+\textbf{Kinematic equivalence.} A system is said to satisfy kinematic equivalence if giving the state of the system is equivalent to giving the trajectory in space and vice-versa. That is, for each possible state there is one and only one trajectory associated with it. Note that this is not true in general: for example, given the trajectory of a photon we cannot reconstruct its momentum since all photons travel at the same speed.
+
+Note that we use $(q^\alpha, p_\alpha)$ for position and momentum and $(x^\alpha, u^\alpha)$ for position and velocity even though $q^\alpha = x^\alpha$. We do this because $\frac{\partial}{\partial q^\alpha} \neq \frac{\partial}{\partial x^\alpha}$ since one is taken at constant $p_\alpha$ and the other at constant $u^\alpha$. This is a tremendous source of confusion which is avoided by the use of the two symbols.
+
+\emph{Kinematic equivalence means having an invertible relationship between velocity and momentum.} If the state of the system $(q^\alpha, p_\alpha)$ is enough to determine the trajectory $x^\alpha(s)$, then it will be enough to determine the position and velocity $(x^\alpha, u^\alpha)$. These will be enough to reconstruct the state as they span a space of equal dimension. As $q^\alpha = x^\alpha$, then $u^\alpha = u^\alpha(q^\beta, p_\gamma)$ is invertible.
+
+\emph{Kinematic equivalence leads to Lagrangian mechanics.} Since $u^\alpha(q^\beta, p_\gamma)$, we can write $\mathcal{L} = \dot{q}^\alpha p_\alpha - \mathcal{H}$ as a function of $(x^\alpha, u^\alpha)$. That is the Lagrangian of the system. Note that this cannot be done if we do not have kinematic equivalence. For example, for a photon treated as a particle, we have $H = c |p|$. Using Hamilton's equations, we have $u^i = \frac{dx^i}{dt} = c \frac{p}{|p|}$ which is not invertible. While we can write the Lagrangian, this cannot be expressed in terms of position and velocity.
+
+\emph{Kinematic equivalence leads to linear relationship between velocity and momentum.} Being able to go from $(q^\alpha, p_\alpha)$ to $(x^\alpha, u^\alpha)$ and vice-versa is not enough. We need to express the density $\rho$ in terms of position and velocity as well. This means expressing area elements $dq^\alpha dp_\alpha$ in terms of $dx^\alpha$ and $du^\alpha$. Since $dx^\alpha = dq^\alpha$, we must have $dp_\alpha = m g_{\alpha \beta} du^\beta$ where $g_{\alpha \beta}$ is an arbitrary linear function and $m$ is an arbitrary constant of proportionality. 
+
+\emph{Linear relationship between velocity and momentum leads to massive particles under potential forces.} We can integrate the relationship $dp_\alpha = m g_{\alpha \beta} du^\beta$ and find $p_\alpha = m g_{\alpha \beta} u^\beta + A_\alpha(x^\gamma)$ where $A_\alpha$ are arbitrary functions. Since $u^\alpha = \frac{dq^\alpha}{ds} = \frac{\partial \mathcal{H}}{\partial p_\alpha}$, we can take the previous relationship, integrate it again and find $\mathcal{H} = \frac{1}{2m} (p_{\alpha} - A_\alpha) g^{\alpha \beta} (p_{\beta} - A_\beta) + V$. We recognize this to be the Hamiltonian for a massive particle under potential forces.
+
+\emph{Inertial mass measures the number of states per unit of velocity.} Inertial mass is usually introduced using the Newtonian relationship $F=ma$: the lower the mass, the easier is accelerate the body. If the mass where zero, then, we would expect the body to be infinitely easy to accelerate. If the mass is zero, however, the velocity is fixed and the body cannot be accelerated. The derivation offers a different insight: inertial mass is the constant of proportionality between ranges of velocity and ranges of states, as measured by momentum. The higher the mass, the more possible states are there per unit of velocity. If there are more states per unit of velocity, then the body is more difficult to accelerate as we have to go through more states, which recover the Newtonian intuition. However, if the mass is zero, set of states defined in a unit of velocity has measure zero: we cannot change state, we cannot accelerate.
+
+\emph{The speed of light is a ration between the possible states in a unit of space over the possible states in a unit of time.} Regarding the constant $c$ as a speed is problematic. It is unclear why a speed, which is a property of motion, would be part of the metric of the space-time, which is defined regardless of motion and of what is there in the space itself. The derivation offers a different insight. As we move a state in space, it will go through different possible states: this can be quantified in phase space. As we move a state in time, it will also go through different possible states: this can be quantified on the extended phase space. The ratio between the two is the constant $c$. If we imagine a particle moving in both space and time, the position may remain the same but the time will always need to change. As the motion is deterministic and reversible, at most we can have one position in space for every position in time. Therefore, over a finite time, we must have $\frac{\Delta x}{\Delta t} \leq c$. Thinking about the constant $c$ as relating the count of states in space over time is more fundamental.
+
+\emph{The Plank constant, the speed of light and the inertial mass serve to transfer the measure of states from one quantity to another.} As we saw initially, $(q, k)$ are the quantities on which we can measure the number of states. The constant $\hbar$ serves to transfer the count from $dk$ to $dp$. The inertial mass $m$ serves to transfer the count from $du$ to $dp$. The speed of light served to transfer the count from $dt$ to $dx$. They are book-keeping tools we use as we express states over different quantities which allow us to express in different ways the fundamental relationship coming from determinism and reversibility: the count of states must remain the same.
+
+\subsubsection{Status and open issues}
+
+We consider classical mechanics to be essentially forward engineered. There are some details, though, that could be better understood. The formalization will need a lot more time as it has many mathematical prerequisites.
+
+\emph{Physical meaning of the Poisson brackets.} We still miss an understanding of the Poisson brackets as a generalization of Jacobian determinants. In principle, they should tells us how densities over a degree of freedom formed by two variables transform. We haven't found the right approach.
+
+\emph{Densities as measure theoretic derivatives.} As we want finite objects to be our starting points, densities should be the ration of amount of ``stuff'' divided by the size of the region. This, in  measure theory, is known as the Radon-Nikodym derivative. We want this idea to be combined with statistics and differential geometry, so that we can talk about marginal distributions. It seems that gemoetric measure theory at least partially addresses that, which would be the first step for a full formalization of this section of the project.
+
+\emph{Relationship between metric tensor and symplectic form.} The way the derivation works, the metric tensor is a secondary object that should be understood as being applied to a differential of position and a differential of velocity (e.g. $dx^\alpha g_{\alpha \beta} du^\beta$). This gives us the number of states on an area defined by the differentials. It is unclear whether the curvature of $g_{\alpha \beta}$ is linked to the geometry set by the symplectic form.
+
+
+\subsection{Quantum mechanics}
+
+\subsection{Thermodynamics}
+
+\subsection{Statistical mechanics}
+
+\section{The general theory}
+
+Part of the project focuses on the development of a mathematical framework that provides the building blocks that are common to all scientific theories. That is, we need to formalize what is the minimum baseline that a theory needs to satisfy to be called a scientific theory.
+
+This may seem a purely philosophical aspect, but in this project has actually a very pragmatic and technical implications. In any formal system, new structures are created by specializing existing ones. For example, when one writes a function or a class in a computer program, one is creating a specific instance with some extra feature, namely the functionality that one is implementing. This means that, as a baseline, we need to provide the general objects that one can specialize.
+
+In mathematics, sets provides that general foundations. A group is a set with a set of operations that satisfy certain properties. A topology is a set together is a set of sets that satisfy certain properties. A vector space is a set together with some operations that satisfy certain properties. In mathematics, everything is a set with added special features. What we need to do is provide a similar foundation for science, where any scientific theory can be seen as a baseline plus some extra features.
+
+\subsection{The Principle of Scientific Objectivity}
+
+Our guiding idea is what we call the Principle of Scientific Objectivity, which states that ``Science is universal, non-contradictory and evidence based.'' Any scientific theory must be logically consistent, must be equally true or false for everybody and it must only talk about what can be established experimentally. Different branches of science will specialize on different topics (e.g. biology on living organisms, psychology on human behavior, chemistry on substances) but they all the theories and models they develop must satisfy those basic constraints.
+
+Our principle indirectly gives us a definition for what we consider science and what it can study. There exist interesting subjects, such as the properties of prime numbers, moral questions or aesthetics of music, that are not universal (i.e. results may be subjective), contradictory (i.e. paradoxes may be unavoidable) or not-evidence based (i.e. answers not found through experimentation). These cannot be the object of science, and that is why we still need mathematics, arts, philosophy or religion.
+
+It also tells us that only the part of nature that is experimentally accessible can be studied scientifically. For example, in control systems one defines a system as a state, a law of evolution, inputs and outputs. If one can use the inputs to reach any possible state, we say the system is controllable. If one can use the outputs to fully determines the state, we say the system is observable. When designing a control system, one ideally wants to have enough inputs and outputs to have an observable and controllable system. In the same vein, our ability to study a system scientifically depends on our ability to prepare and measure its properties reliably. This ability may change over time (i.e. thermodynamics developed after advances in temperature sensing)\footnote{It was the design of Otto von Guericke for the first vacuum pump that allowed Boyle and Hook to notice that the product of pressure times volume is constant. It was the invention of the mercury thermometer by Fahrenheit that allowed Gay-Lussac to notice that the pressure is proportional to the temperature. The ability to prepare a gas at different pressure together with the ability to measure the temperature of a gas precisely is what gave us the law of an ideal gas PV=nRT.} or may work only under certain circumstances (i.e. temperature is well defined only at equilibrium).
+
+A scientific theory, then, is an objective non-contradictory model about what, under a set of circumstances, is experimentally accessible. Some may argue that the true objective of science is to give a full description of reality; or that scientific theories only deal with the mere knowledge we have of a system. We are not going to argue these positions. We do note that they are in contradiction with the principle of scientific objectivity: knowledge is not objective and there is nothing that tells us that all of reality is experimentally accessible. We also note that from this premise we can recover the correct mathematical structures needed to rederive the known theories. We take that as confirmation that our premise is valid.
+
+\subsection{The Logic of Verifiable statements}
+
+The basic building block for a scientific theory is the idea of a verifiable statement: an assertion that is either true or false for everybody and for which we have an experimental test that will terminate successfully in finite time if and only if the statement is true. What we need to do is augment standard logic with experimental verifiability.
+
+
+If a scientific theory is a model, then it is a collection of statements with well-defined logical relationships between them. For example, a model of the solar systems will be able to say characterized by statements such as ``the earth rotates around
+
+* Formal theories are specializations of more general ones
+* Algebraic structures vs Propositional structures
+* Physical theories as models; the theory of models
+* Difference from ontological theories and subjective theories; accessible information
+* Verifiable statements
+* Meaning of statements can't be captured, requires context
+
+
+
+
+\end{document}
