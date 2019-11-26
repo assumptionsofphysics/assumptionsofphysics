@@ -19,9 +19,9 @@
 
 \section{Introduction}
 
-The aim of this article is to give a broad overview of the project ``Assumptions of Physics'' so that the reader will understand its motivations, its status and a list of the main findings. This is intended to be a good start for anyone interested in collaborating or simply learning more about the project. Each subsection will be fairly self-contained to allow the reader to skim through the document and focus on the parts of interest.
+The aim of this article is to give a broad overview of the project ``Assumptions of Physics'' so that the reader will understand its motivations, its status and a list of the main findings. This is intended to be a good start for anyone interested in simply learning more about the project or finding an area for collaboration.
 
-As we plan to update this document, please make sure this is a recent version.
+As we plan to update this document, please make sure you have a recent version. Each subsection will be fairly self-contained to allow the reader to skim through the document and focus on the parts of interest. It will contain a summary section at the beginning and a titled paragraph for each of the main idea or finding.
 
 \subsection{Index}
 To this paper, not to the work.
@@ -100,15 +100,123 @@ The overall project is organized into the following macro-categories.
 
 We will present the work in the reverse order, from physical theories to general theory, as we find most physicist 
 
+\section{The general mathematical theory of experimental science}
+
+This part of the project focuses on the development of a rigorous mathematical framework that can provide the building blocks that are common to all scientific theories. As logic and set theory provides the foundation for all other mathematical structure, which are essentially sets with operations defined on them, the general theory needs to provide the same fundamental layer.
+
+\subsection{The Principle of Scientific Objectivity}
+
+Our guiding is that ``Science is universal, non-contradictory and evidence based.'' Any scientific theory must be logically consistent, its content be equally true or false for everybody and it must deal with what can be established experimentally. Different branches of science will specialize on different systems and topics, but they all the theories and models they develop must satisfy those basic constraints. The general theory deals with the fundamental mathematical structure that realize that principle. 
+
+\emph{Not every subject can be studied by science.} The principle indirectly states that anything that is subjective, contradictory or not evidence based cannot be the subject of scientific investigation. The properties of prime numbers, moral and existential questions or the aesthetics of music fail in at least on of those respects and are excluded. Therefore science cannot be a substitute of mathematics, arts, philosophy or religion. Only the parts of nature that are accessible through consistent experimental verification can be studied scientifically. New experimental techniques extend its reach.
+
+\subsection{The Logic of Verifiable Statements}
+
+The basic building block in our framework is the idea of a verifiable statement: an assertion that is either true or false for everybody and for which we have an experimental test that will terminate successfully in finite time if and only if the statement is true. The basic structures of our general theory need to provide a logic framework to keep track of verifiable statements and their relationships.
+
+\subsubsection{Logical contexts}
+
+A logical context consists of a set of statements with well defined logical relationships. It is the most fundamental structure and it is the only one that is axiomatically introduced.  A scientific theory will consist of a set of statements taken within a logical context with particular logical relationships. For example, Newtonian mechanics will use statements like ``the mass of the object is 1 $Kg$'' and ``the acceleration of the object is 1 $m/s^2$''. If both of these are true, then the statement ``the force on the object is  1 $N$'' is also true. The context defines basic logical relationships (e.g. equivalence, narrowness, compatibility and independence) which form the basis for higher level constructs (e.g. ordering, linear and statistical independence). Every other structure imposed on the statements will need to ``play'' nice with these fundamental relationships.
+
+\emph{Note on terminology.} The terminology may depart slightly from what logicians may be accustomed to, simply because our aim is different. Namely, our goal is not to study the rule of inference or study what can be formally proven, but simply to keep track of the logical relationships between statements that are assumed to be already given.
+
+\emph{Statements as primary object.} Every formal theory needs prime objects, elements that will not further be described by the theory. We will take statements, assertion that are either true or false for everybody, as these objects. The formal system will specifically:
+\begin{description}
+	\item not be propositional; the language of the statements, its syntax, its grammar, will be left unspecified; statements will represent the content regardless of how it is expressed
+	\item be algebraic; operations on statements will not form new statements, but describe relationships within a given set of statements; note that most mathematical structures used in science are algebraic (computer science is a notable exception)
+	\item purely formal; it will not not try to capture the semantic of the statements, though the semantic will impose logical relationships that will be formally captured
+\end{description}
+
+\emph{Statements cannot exist in isolation.} Statements should, in general, not be regarded as independent of the context they are part of. Take the statement ``The mass of the electron is 510 $\pm$ 0.5 KeV''. If we are measuring the mass of the electron, that is a statement that may or may not be true depending on experiment. If we are performing particle identification in a detector, that statement is assumed to be true. The truth values allowed by the same statement depends on context.
+
+\emph{Logical context as the fundamental structure.} A logical context is a set of statements with well defined logical relationships. It defines which truth assignments are possible (i.e. are consistent with the semantic of the statements). It identifies one of the possible assignments as the true one. It allows to find statements whose truth value depends on others through a particular Boolean function. The existence of this structure is introduced by axioms as they are crossing the lines between physical objects and mathematical ones.
+
+\emph{Tautologies, contradictions and contingent statements.} We define tautologies as those statements that are true in every assignment, contradictions as those statements that are false in every assignment and contingent all the remaining.
+
+\emph{Statement equivalence and Boolean algebra.} Within our formal system, we can distinguish between:
+\begin{description}
+	\item statement equality: two statements that re-express the same fact in different languages or in different words
+	\item statement equivalence: two statements have the same truth value in all possible assignments
+	\item statement material equivalence: two statements have the same truth value
+\end{description}
+A logical context is a complete Boolean algebra under statement equivalence.
+
+\emph{Narrowness and ordering.} A statement is narrower then another if whenever it is true then the other is also true. Narrowness can often be thought as implication, except in a few corner case (e.g. a statement that is always false is narrower than any other statement). Narrowness imposes a partial order to the structure. This is the same order associated to the fact that every Boolean algebra is a complemented distributed lattice.
+
+\emph{Compatibility and independence.} Two statements are said to be compatible if they can both be true in the same assignment. Two statements are independent if fixing the truth value of one does not restrict the truth value of the other. Independence, like linear independence or statistical independence of which it is the foundation, is a property of a set of statements and is not transitive.
+
+\subsubsection{Verifiable statements}
+
+Logical contexts need to keep track which statements are experimentally verifiable. A statement is experimentally verifiable if we are provided with a test that, if the statement is true, will always terminate successfully in a finite time. The fact that the test has to terminate in a finite time in the positive case and that it may not terminate in the negative case has profound implications: verifiable statements are not closed under the standard logical connectors. The negation of a verifiable statement is not in, general, a verifiable statement. The finite conjuntion (i.e. logical AND) of verifiable statements is a verifiable statement, but not an infinite one. The countable disjunction (i.e. logical OR) of verifiable statements is a verifiable statement, but not a more then countable infinite one.
+
+\emph{TODO.} The negation of a verifiable statement is not in general a verifiable statement. We may be able to verify that ``there exists extra-terrestrial life'' if at some point we find a clear signal. Absence of signal, however, will never confirm that ``there is no extra-terrestrial life''. 
+
+
+\subsubsection{Experimental domains}
+
+We will define an experimental domain as a set of verifiable statements that can be expressed as the combination of a countable subset (i.e. a countable base). Because of finite time verifiability, this is the biggest space we can experimentally probe given an indefinite amount of time. An experimental domain, then, represents all the information that can be gathered experimentally about a particular subject.
+
+From each experimental domain we construct a theoretical domain by allowing negation as well. This will include all statements for which an experimental test is in principle possible, though there is no guarantee of termination. A theoretical domain, then, represents all statement to which we can attach a prediction.
+
+Within a theoretical domain we define the set of possibilities as those statements that, once known to be true, will set the truth value of all other statements. Each possibility represents a possible case that is distinguishable experimentally, which corresponds to a unique possible assignment for the experimental and theoretical domain. Because of the countable base, the set of possibilities can never be greater than the continuum.
+
+To sum up, an experimental domain consists of a set of statements that can be tested experimentally (e.g. ``the animal has whiskers'', ``the mass of the photon is less than $10^{-13} eV$''). The theoretical domains extends to statements that may not be tested experimentally (e.g. ``the mass of the photon is exactly 0 eV''). The possibilities consists of all the possible cases (e.g. ``the animal is a cat'', ``the mass of the photon is exactly $0.102 10^-{34} eV$ ).
+
+\subsubsection{Topologies and $\sigma$-algebras}
+
+An experimental domains provide a natural topology over the possibilities. Each verifiable statements can be identified with the set of possibilities compatible with it (e.g. the statement ``the mass of the photon is less than $10^{-13} eV$'' is equal to the disjuntion of all statement of the form ``the mass of the photon is exactly x $eV$'' with $x <  10^{-13}$). Since verifiable statements are closed under finite conjunction and countable disjunction, the sets corresponding to verifiable statements form a $T_0$ second countable topology.
+
+On the other hand, theoretical domains provide a natural $\sigma$-algebra over the possibilities. Each theorical statement can also be identified with the set of possibilities compatible with it. Since theoretical statements are closed under negation and countable disjunction, the sets corresponding to theoretical statements form a $\sigma$-algebra, which is the Borel algebra of the natural topology.
+
+Topologies and $\sigma$-algebras provide the foundations for differential geometry, Lie algebras, measure theory, probability theory and many other mathematical tools used in physics and the sciences. As we have now have a precise understanding of what they represent, all concepts and proofs in those subject can be understood in terms of experimental verifiability.
+
+\subsubsection{Status and open issues}
+
+This part of the work is very well developed. More work could be done in finding meaning for all mathematical concepts (e.g. compact sets, all separability axioms, ...). It would be interesting to work with people from different fields (i.e. logic, foundations of mathematics, philosophy of science, ...) to see whether any aspect of this section would appeal to different communities.
+
+\subsection{Common constructions}
+
+With the basic mathematical structure defined, we develop some definitions and constructions that are of general use.
+
+\subsubsection{Relationships and equivalence between domains}
+
+We define two relationships between domain: inference relationships and causal relationships. An inference relationship establishes that testing a verifiable statement in one domain is the same as testing a verifiable statement in the other. Mathematically it is a map that takes a verifiable statement from the one and returns a verifiable statement from the other that is equivalent to the first. A causal relationship establishes that determining which possibility is true in one domain also determines which possibility is true in the second. Mathematically it is a map that given a possibility of the first returns a possibility of the second that is broader than (i.e. implied from) the first.
+
+Among the main results we find that there exists an inference implication between two domains if and only if there exists a causal relationship between them. The direction of the inference is the opposite of the causal direction. Therefore we say that a domain depends on another if there exists an inference relationship between the first and the second or if there exists a causal relationship between the second and the first. Causal relationships must be continuous function in terms of the natural topologies, which justifies why functions in science are always assumed to be ``well-behaved'' (i.e. analytically continuous with at most countable discontinuities).
+
+\subsubsection{Composite domains}
+
+\subsubsection{Relationship domains}
+
+\subsubsection{Status and open issues}
+
+The overall mechanics of composite domains and relationships domains are fairly well developed and understood. There are details, though, that can be understood better. The connection to category theory can be also better developed. Other common concepts and constructions, like similarities or sequences of domains, could be formulated.
+
+\subsection{Properties and Quantities}
+
+\subsubsection{Properties and quantities}
+
+\subsubsection{Ordering theorems for discrete and continuous quantities}
+
+
+If a scientific theory is a model, then it is a collection of statements with well-defined logical relationships between them. For example, a model of the solar systems will be able to say characterized by statements such as ``the earth rotates around
+
+* Formal theories are specializations of more general ones
+* Algebraic structures vs Propositional structures
+* Physical theories as models; the theory of models
+* Difference from ontological theories and subjective theories; accessible information
+* Verifiable statements
+* Meaning of statements can't be captured, requires context
+
 \section{Physics theories}
 
 \subsection{Classical mechanics}
 
-Classical Hamiltonian and Lagrangian particle mechanics, including the Hamiltonian for massive particles under potential forces, can be derived from three main assumptions: infinitesimal reducibility, determinism and reversible evolution and kinematic equivalence. We list here the main points of the derivation together with the some of the insights and connections it provides.
+Classical mechanics can be derived from three main assumptions: infinitesimal reducibility, determinism and reversible evolution and kinematic equivalence. From the first assumption we can show that the state space of the infinitesimal parts of a system (i.e. particles) has the structure of phase space. From the second we can show that the time evolution follows Hamiltonian mechanics. From the third we can show that the system is Lagranian and is restricted to the case of massive particles under potential forces.
 
 \subsubsection{Classical state spaces}
 
-\textbf{Infinitesimal reducibility.} A system is said reducible if giving the state of the whole system is equivalent to giving the state of its parts and vice-versa. For example, given a ball, we can throw it and study the motion of the ball. Alternatively, one can take a red marker, make a red dot on the ball and study the motion of the dot. The system is reducible if studying the system is equivalent to studying the motion of all possible red dots. The system is infinitesimally reducible if we can keep reducing the system to smaller and smaller parts. We call particle an infinitesimal part of the system, the limit of recursive subdivision.
+\textbf{Infinitesimal reducibility.} A system is said reducible if giving the state of the whole system is equivalent to giving the state of its parts and vice-versa. For example, given a ball, we can throw it and study the motion of the ball. Alternatively, one can take a red marker, make a red dot on the ball and study the motion of the dot. The system is reducible if studying the system is equivalent to studying the motion of all possible red dots. The system is infinitesimally reducible if we can keep reducing the system to smaller and smaller parts. We call particle an infinitesimal part of the system, the limit of recursive subdivision. The system is then described by a distribution of the state its parts over phase space, which is the only structure that allows coordinate invariant distributions over continuous variables.
 
 \emph{Composite states are distributions over particle states.} Under infinitesimal reducibility, if $\mathcal{C}$ is the state space of the while system and $\mathcal{S}$ is the state space of the particles, then each state $c \in \mathcal{C}$ for the full system is identified by a distribution $\rho : \mathcal{S} \to \mathbb{R}$ over the states of infinitesimal parts. The function is real to signify that we can associate arbitrarily small amounts to each particle states. The distribution tells us how many particles can be found in each particle state.
 
@@ -129,7 +237,7 @@ These results gives us a precise understanding of what each layer of the mathema
 
 \subsubsection{Hamiltonian mechanics}
 
-\textbf{Determinism and reversibility.} A system undergoes deterministic and reversible evolution if given the initial state one can predict the final state and given the final state one can reconstruct the initial state. In other words, the system is predictable and retrodictable.
+\textbf{Determinism and reversibility.} A system undergoes deterministic and reversible evolution if given the initial state one can predict the final state and given the final state one can reconstruct the initial state. In other words, the system is predictable and retrodictable. Densities at each past state must be equal to the density of the corresponding future state, which leads to Hamiltonian dynamics.
 
 \emph{Reversibility as reconstructing the past.} This definition of reversibility should not be confused with time symmetry or the ability to undo the change. The first one means that if one substitute $t \to -t$ the dynamics is invariant (i.e. the same) or form invariant (i.e. different but described by the same equations) depending on the author. The second one means that we can find another process that brings the final state back to the original state. These concepts do not seem to work well in the general case. For example, when discussing reversibility in the sense of undoing the changes, one typically discusses changing the direction of the velocities to bring about the initial state with inverted velocities. In the presence of forces or an arbitrary dynamics, this operation because more complicated or ill-defined. The core problem with this definition is that it is not a property of the process itself, but on the existence of other processes (i.e. the process that undoes the changes or the process that flips the velocities, therefore changing the state). The requirement of time-invariance is too restrictive as it excludes all time dependent processes. Form invariance on an arbitrary set of equations, instead, can be broken by a suitably complicated change of variables, so it is only well-defined for a limited number of systems (e.g. particles under potential forces). The definition of reversibility we use is preferable because it works more generally and, when appropriate conditions apply, reduces to the other two which are better regarded as special cases. It is mathematically more elegant as it is the dual of determinism. It connects directly with information theory, as it states that the present has enough information to reconstruct the past, which gives a logical bridge to connect reversibility with information entropy and thermodynamics/statistical mechanics entropy.
 
@@ -150,7 +258,7 @@ $$ \sigma_q \sigma_p \geq \frac{e^{I_0}}{2\pi e} $$.
 
 \subsubsection{Lagrangian mechanics and massive particles}
 
-\textbf{Kinematic equivalence.} A system is said to satisfy kinematic equivalence if giving the state of the system is equivalent to giving the trajectory in space and vice-versa. That is, for each possible state there is one and only one trajectory associated with it. Note that this is not true in general: for example, given the trajectory of a photon we cannot reconstruct its momentum since all photons travel at the same speed.
+\textbf{Kinematic equivalence.} A system is said to satisfy kinematic equivalence if giving the state of the system is equivalent to giving the trajectory in space and vice-versa. That is, for each possible state there is one and only one trajectory associated with it. Note that this is not true in general: for example, given the trajectory of a photon we cannot reconstruct its momentum since all photons travel at the same speed. Under this assumption the relationship between position/momentum and position/velocity is invertible and the system admits a Lagrangian. Moreover, given the transformation rules of momentum and velocity, we find that there must be a linear relationship between the two, which constrains the dynamics to the one of massive particle under potential forces.
 
 Note that we use $(q^\alpha, p_\alpha)$ for position and momentum and $(x^\alpha, u^\alpha)$ for position and velocity even though $q^\alpha = x^\alpha$. We do this because $\frac{\partial}{\partial q^\alpha} \neq \frac{\partial}{\partial x^\alpha}$ since one is taken at constant $p_\alpha$ and the other at constant $u^\alpha$. This is a tremendous source of confusion which is avoided by the use of the two symbols.
 
@@ -184,38 +292,6 @@ We consider classical mechanics to be essentially forward engineered. There are 
 \subsection{Thermodynamics}
 
 \subsection{Statistical mechanics}
-
-\section{The general theory}
-
-Part of the project focuses on the development of a mathematical framework that provides the building blocks that are common to all scientific theories. That is, we need to formalize what is the minimum baseline that a theory needs to satisfy to be called a scientific theory.
-
-This may seem a purely philosophical aspect, but in this project has actually a very pragmatic and technical implications. In any formal system, new structures are created by specializing existing ones. For example, when one writes a function or a class in a computer program, one is creating a specific instance with some extra feature, namely the functionality that one is implementing. This means that, as a baseline, we need to provide the general objects that one can specialize.
-
-In mathematics, sets provides that general foundations. A group is a set with a set of operations that satisfy certain properties. A topology is a set together is a set of sets that satisfy certain properties. A vector space is a set together with some operations that satisfy certain properties. In mathematics, everything is a set with added special features. What we need to do is provide a similar foundation for science, where any scientific theory can be seen as a baseline plus some extra features.
-
-\subsection{The Principle of Scientific Objectivity}
-
-Our guiding idea is what we call the Principle of Scientific Objectivity, which states that ``Science is universal, non-contradictory and evidence based.'' Any scientific theory must be logically consistent, must be equally true or false for everybody and it must only talk about what can be established experimentally. Different branches of science will specialize on different topics (e.g. biology on living organisms, psychology on human behavior, chemistry on substances) but they all the theories and models they develop must satisfy those basic constraints.
-
-Our principle indirectly gives us a definition for what we consider science and what it can study. There exist interesting subjects, such as the properties of prime numbers, moral questions or aesthetics of music, that are not universal (i.e. results may be subjective), contradictory (i.e. paradoxes may be unavoidable) or not-evidence based (i.e. answers not found through experimentation). These cannot be the object of science, and that is why we still need mathematics, arts, philosophy or religion.
-
-It also tells us that only the part of nature that is experimentally accessible can be studied scientifically. For example, in control systems one defines a system as a state, a law of evolution, inputs and outputs. If one can use the inputs to reach any possible state, we say the system is controllable. If one can use the outputs to fully determines the state, we say the system is observable. When designing a control system, one ideally wants to have enough inputs and outputs to have an observable and controllable system. In the same vein, our ability to study a system scientifically depends on our ability to prepare and measure its properties reliably. This ability may change over time (i.e. thermodynamics developed after advances in temperature sensing)\footnote{It was the design of Otto von Guericke for the first vacuum pump that allowed Boyle and Hook to notice that the product of pressure times volume is constant. It was the invention of the mercury thermometer by Fahrenheit that allowed Gay-Lussac to notice that the pressure is proportional to the temperature. The ability to prepare a gas at different pressure together with the ability to measure the temperature of a gas precisely is what gave us the law of an ideal gas PV=nRT.} or may work only under certain circumstances (i.e. temperature is well defined only at equilibrium).
-
-A scientific theory, then, is an objective non-contradictory model about what, under a set of circumstances, is experimentally accessible. Some may argue that the true objective of science is to give a full description of reality; or that scientific theories only deal with the mere knowledge we have of a system. We are not going to argue these positions. We do note that they are in contradiction with the principle of scientific objectivity: knowledge is not objective and there is nothing that tells us that all of reality is experimentally accessible. We also note that from this premise we can recover the correct mathematical structures needed to rederive the known theories. We take that as confirmation that our premise is valid.
-
-\subsection{The Logic of Verifiable statements}
-
-The basic building block for a scientific theory is the idea of a verifiable statement: an assertion that is either true or false for everybody and for which we have an experimental test that will terminate successfully in finite time if and only if the statement is true. What we need to do is augment standard logic with experimental verifiability.
-
-
-If a scientific theory is a model, then it is a collection of statements with well-defined logical relationships between them. For example, a model of the solar systems will be able to say characterized by statements such as ``the earth rotates around
-
-* Formal theories are specializations of more general ones
-* Algebraic structures vs Propositional structures
-* Physical theories as models; the theory of models
-* Difference from ontological theories and subjective theories; accessible information
-* Verifiable statements
-* Meaning of statements can't be captured, requires context
 
 
 
