@@ -1,20 +1,30 @@
-\documentclass[prb, twocolumn]{revtex4-1}
+\documentclass[prb,preprint]{revtex4-1} 
+% The line above defines the type of LaTeX document.
+% Note that AJP uses the same style as Phys. Rev. B (prb).
 
-%\documentclass{article}
-%\textheight 8.9 in \textwidth 6.5 in \oddsidemargin -10pt \topmargin -30pt
+% The % character begins a comment, which continues to the end of the line.
 
-\usepackage{amsmath}
-%\usepackage[usenames,dvipsnames]{color}
+\usepackage{amsmath}  % needed for \tfrac, \bmatrix, etc.
+\usepackage{amsfonts} % needed for bold Greek, Fraktur, and blackboard bold
+\usepackage{graphicx} % needed for figures
 
 \begin{document}
 
 
 \title{Variability as a better characterization of Shannon entropy}
 
-
 \author{Gabriele Carcassi}
-\author{Julian Barbour}
+\email{carcassi@umich.edu}
 \author{Christine A. Aidala}
+\email{caidala@umich.edu}
+\affiliation{Department of Physics, University of Michigan, Ann Arbor, MI 48109-1040 }
+% Please provide a full mailing address here.
+
+\author{Julian Barbour}
+\altaffiliation[permanent address: ]{College Farm, South Newington, Banbury, Oxon, OX15 4JG UK}
+\affiliation{Visiting Professor in Physics at the University of Oxford, UK}
+
+\date{\today}
 
 \begin{abstract}
 	The Shannon entropy, one of the cornerstones of information theory, is widely used in physics, particularly in statistical mechanics. Yet its characterization and connection to physics remain vague, leaving ample room for misconceptions and misunderstanding. We will show that the Shannon entropy can be fully understood as measuring the variability of the elements within a given distribution: it characterizes how much variation can be found within a collection of objects. We will see that it is the only indicator that is continuous and linear, that it quantifies the number of yes/no questions (i.e.~bits) that are needed to identify an element within the distribution, and we will see how applying this concept to statistical mechanics in different ways leads to the Boltzmann, Gibbs and von Neumann entropies.
