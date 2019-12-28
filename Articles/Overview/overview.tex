@@ -8,7 +8,7 @@
 
 \extendedfalse
 
-\newcommand\fact[2]{\ifextended \emph{#1}.#2 \fi}
+\newcommand\fact[2]{\ifextended \emph{#1}. #2 \fi}
 
 \title{Overview and Status of Assumptions of Physics\footnote{http://assumptionsofphysics.org} \\
 \ifextended (Extended version)
@@ -31,31 +31,6 @@
 The aim of this article is to give a broad overview of the project ``Assumptions of Physics'': its motivations, its status and a list of the main findings. It is intended to be a good start for anyone interested in simply learning more about the project or finding an area for collaboration.
 
 As we plan to update this document, please make sure you have a recent version. Each subsection will be fairly self-contained to allow the reader to skim through the document and focus on the parts of interest. It will contain a summary section at the beginning and a titled paragraph for each of the main idea or finding.
-
-\subsection{Index}
-To this paper, not to the work.
-
-- Goals and method
-Goals: Understanding, have a better sense of the math, give a background for new theories...
-Methods: reverse engineering vs forward engineering, holistic
-
-- General theory
-relationship between math and physics
-logic of verifiable statements
-properties and quantities
-accuracy
-differentiability
-
-- Fundamental physics
-states and processes
-determinism/reversibility: isomorphism in the category
-entropy
-
-- Physical theories
-Classical mechanics
-Quantum mechanics
-Thermodynamics
-Statistical mechanics
 
 \section{Goals and method}
 
@@ -81,13 +56,13 @@ While the objectives cover many areas and are very broad, our experience tells u
 
 \subsection{Methodology}
 
-As each topic is investigated by the project, it generally goes through three phases. We mention them here as they will give context to the status of the project and to people who may want to contribute.
+As each topic is investigated by the project, it generally goes through three phases. Reverse engineering, where we try to find what assumptions are beneath a theory. Forward engineering, where we try to check whether the theory can be recovered from the assumptions we found. Formalization, where we try to codify in mathematical language the assumptions and the derivation.
 
-\textbf{Reverse engineering.} The goal of this phase is to deconstruct an already existing theory or mathematical structure to understand what each piece is supposed to represent physically. One way to conduct such investigation is to ask what would happen if a particular characteristic of the framework would fail.\footnote{For example, a line of reasoning could be as follows: Hamilton's equations are differential; if they weren't the mapping of densities and areas would not be well defined; maybe Hamiltonian mechanics is not about mapping points but about mapping densities or areas.} This usually leads to a set of necessary assumptions about the physical system one is describing, the ones one must take for the particular description to apply.
+\fact{Reverse engineering} {The goal of this phase is to deconstruct an already existing theory or mathematical structure to understand what each piece is supposed to represent physically. One way to conduct such investigation is to ask what would happen if a particular characteristic of the framework would fail.\footnote{For example, a line of reasoning could be as follows: Hamilton's equations are differential; if they weren't the mapping of densities and areas would not be well defined; maybe Hamiltonian mechanics is not about mapping points but about mapping densities or areas.} This usually leads to a set of necessary assumptions about the physical system one is describing, the ones one must take for the particular description to apply.}
 
-\textbf{Forward engineering.} The goal of this phase is to construct an argument from the necessary assumptions outlined in the previous phase to rederive the framework at hand. This checks whether the necessary assumptions are also sufficient \footnote{For example, if we started simply by assuming we have density distributions mapped in time, this would give us all possible differentiable evolutions, not necessarily Hamiltonian ones.}. It ends when a set of necessary and sufficient conditions to rederive the theory are found, meaning that the full theory has been physically characterized.
+\fact{Forward engineering} {The goal of this phase is to construct an argument from the necessary assumptions outlined in the previous phase to rederive the framework at hand. This checks whether the necessary assumptions are also sufficient \footnote{For example, if we started simply by assuming we have density distributions mapped in time, this would give us all possible differentiable evolutions, not necessarily Hamiltonian ones.}. It ends when a set of necessary and sufficient conditions to rederive the theory are found, meaning that the full theory has been physically characterized.}
 
-\textbf{Formalization.} The goal of this phase is to take the previous set of arguments and formalize them in pure mathematical language. This forces us to clarify all the starting points and what parts of the arguments are truly formal and what are physical. Unfortunately, this can ultimately be done only by starting from the very foundations\footnote{For example, before formalizing Hamiltonian mechanics we have to formalize differentiable manifolds, real numbers and topological spaces.} though we are at a point where an overall tentative structure is emerging and tentative formalization can be attempted on higher structures.
+\fact{Formalization} {The goal of this phase is to take the previous set of arguments and formalize them in pure mathematical language. This forces us to clarify all the starting points and what parts of the arguments are truly formal and what are physical. Unfortunately, this can ultimately be done only by starting from the very foundations\footnote{For example, before formalizing Hamiltonian mechanics we have to formalize differentiable manifolds, real numbers and topological spaces.} though we are at a point where an overall tentative structure is emerging and tentative formalization can be attempted on higher structures.}
 
 \subsection{Organization}
 
@@ -148,7 +123,9 @@ A logical context is a complete Boolean algebra under statement equivalence.}
 
 Logical contexts need to keep track which statements are experimentally verifiable. A statement is experimentally verifiable if we are provided with a test that, if the statement is true, will always terminate successfully in a finite time. The fact that the test has to terminate in a finite time in the positive case and that it may not terminate in the negative case has profound implications. The negation of a verifiable statement is not in, general, a verifiable statement. The finite conjuntion (i.e. logical AND) of verifiable statements is a verifiable statement, but not an infinite one. The countable disjunction (i.e. logical OR) of verifiable statements is a verifiable statement, but not a more then countable infinite one. Therefore verifiable statements are not closed under the standard logical connectors
 
-[To be completed]
+\fact{Different algebra}{Verifiable statements do not follow the standard Boolean algebra. The negation of a verifiable statement is not necessarily verifiable since the test is not guaranteed to terminate. The conjunction of a finite set of verifiable statements is necessarily verifiable since we can run the tests one by one and, if all are successful, the conjunction is also verified. This cannot be extended to an infinite set since the test would not terminate. The disjunction of a countable set of verifiable statements is necessarily verifiable since, once one test terminates, the disjunction is verified and we can stop. This cannot be extended to an infinite set that is more than countable since we would not be able to find the test that terminates in a finite time.}
+
+\fact{Decidable statements}{These are statements that can be verified and falsified. That is, their test always terminates. These can be defined from verifiable statements and they follow a finite Boolean algebra: the negation, finite conjunction and finite disjunction of decidable statements is also decidable.}
 
 
 \subsubsection{Experimental and theoretical domains}
@@ -159,7 +136,7 @@ From each experimental domain we construct a theoretical domain by allowing nega
 
 Within a theoretical domain we define the set of possibilities as those statements that, once known to be true, will set the truth value of all other statements. Each possibility represents a possible case that is distinguishable experimentally and corresponds to a unique possible assignment for the experimental and theoretical domain.\footnote{For example, an experimental domain consists of a set of statements that can be tested experimentally (e.g. ``the animal has whiskers'', ``the mass of the photon is less than $10^{-13} eV$''). The theoretical domains extends to statements that may not be tested experimentally (e.g. ``the mass of the photon is exactly 0 eV''). The possibilities consists of all the possible cases (e.g. ``the animal is a cat'', ``the mass of the photon is exactly $0.102 10^-{34} eV$ ).} Because of the countable base, the set of possibilities can never be greater than the continuum.
 
-[To be completed]
+\fact{Maximum cardinality for the possibilities}{Because the domain is generated by a countable set of verifiable statements, the possibilities must be distinguished with a countable sequence of boolean values. This means that the cardinality of the possibilities cannot exceed that of the continuum. This means that higher order infinities and all associated problems do not play a role in science.}
 
 
 \subsubsection{Topologies and $\sigma$-algebras}
@@ -170,8 +147,9 @@ On the other hand, theoretical domains provide a natural $\sigma$-algebra over t
 
 Topologies and $\sigma$-algebras provide the foundations for differential geometry, Lie algebras, measure theory, probability theory and many other mathematical tools used in physics and the sciences. As we now have a precise understanding of what they represent, all concepts and proofs in those subject can be understood in terms of experimental verifiability.
 
-[To be completed]
+\fact{Interior, exterior and boundary}{Given a test associated to a theoretical statement, it will either terminate successfully, terminate unsuccessfully or never terminate. Each Borel set is associated with a theoretical statement, which means it is associated with a test. The interior of the Borel set represents the cases in which the test will terminate successfully; the exterior represents the cases in which the tests will terminate unsuccessfully; the boundary represents the cases in which the test will not terminate.}
 
+\fact{Decidable and undecidable statements}{A theoretical statement is decidable if the associated test always terminates, which means the boundary is empty. This corresponds to a clopen set. It is undecidable if the associated test never terminates, which means the boundary is the full set.\footnote{For example, ``there are three apples in the bowl'' is a decidable statement, while ``the mass of the electron is a rational number when expressed in eV'' is undecidable.}}
 
 \subsubsection{Status and open issues}
 
@@ -187,7 +165,7 @@ We define two relationships between domains: inference relationships and causal 
 
 One result is that causal relationships must be continuous function in terms of the natural topologies, which justifies why functions in science are always assumed to be ``well-behaved'' (i.e. analytically continuous with at most countable discontinuities). Another results is that there exists an inference implication between two domains if and only if there exists a causal relationship between them. The direction of the inference is the opposite of the causal direction. Therefore we say that a domain depends on another if there exists an inference relationship between the first and the second or if there exists a causal relationship between the second and the first. If the relationships are invertible (i.e. each domain depends on the other) then the domains are equivalent.
 
-[To be completed]
+\fact{Continuity and inference}{An inference relationship establishes that testing a verifiable statement in one domain tells whether a statement in the other is true or false. As these statements are equivalent, the experimental test on one constitutes an experimental test on the other, which means the second statement is verifiable. One cannot impose an inference relationship between a verifiable and non-verifiable statement. In terms of the natural topology, these correspond to open sets, therefore, by definition, the map is continuous as it maps open sets to open sets. The typical requirement that functions are ``well behaved'', then, is actually physically significant.}
 
 
 \subsubsection{Composite domains}
@@ -233,9 +211,11 @@ Properties and quantities are fairly well developed. The extension to manifolds 
 
 \subsection{Further work}
 
-The general theory at this point covers only the topological aspects and needs to be extended to the geometrical/measure theoretical ones. The idea should be that diverse aspects, such as geometry, measure theory, probability theory, information theory, can be recovered by characterizing the granularity (i.e. accuracy) of the statements. As each statement corresponds to a Borel set of possibilities, assigning a size to these sets effectively means giving a size to the statements themselves. For geometry, two sets have the same volume because they contain the same number of possible spatial points. For probability, borrowing idea from Cox probable inference, we would assign probability only on conditional statements, therefore the $P(s_1 | s_2)$ would measure what fraction of the possibilities compatible with $s_2$ are also compatible with $s_1$. For information theory, given two statements the logarithm of the ratio of the size of the possibilities corresponds to the number of yes/no questions that are needed to go from one statement to the other, the relative information.
+The general theory at this point covers only the topological aspects and needs to be extended to the geometrical/measure theoretical ones. Our current thinking is that diverse aspects, such as geometry, measure theory, probability theory, information theory, can be recovered by characterizing the granularity (i.e. accuracy) of the statements. Group theoretical aspects may be recovered 
 
-These ideas still need to be developed in a full fledged theory to see whether they can work all the way through.
+\fact{Granularity as foundational concept} {As each statement corresponds to a Borel set of possibilities, assigning a size to these sets effectively means giving a size to the statements themselves. For geometry, two sets have the same volume because they contain the same number of possible spatial points. For probability, borrowing idea from Cox probable inference, we would assign probability only on conditional statements, therefore the $P(s_1 | s_2)$ would measure what fraction of the possibilities compatible with $s_2$ are also compatible with $s_1$. For information theory, given two statements the logarithm of the ratio of the size of the possibilities corresponds to the number of yes/no questions that are needed to go from one statement to the other, the relative information.}
+
+\fact{Recover differential geometry or geometry measure theory} {The idea is to start with finite functions of finite k-dimensional surfaces that have the following properties: they are linear if the surface is broken into disjoint parts (the value for the whole is the sum of the values for the parts) and they respect the limit (the value for the limit surface is the limit of the sequence of values for the surfaces). Under these, and possibly others, conditions we expect these functions to be expressed through an integral of local functions (i.e. k-forms) over infinitesimal surfaces (i.e. k-vectors).}
 
 \section{Physics core}
 
@@ -248,6 +228,8 @@ The idea, then, is that giving a set of states is actually giving a much richer 
 \fact{States are objective but not absolute} {The same system can be found and studied in different conditions. Depending on the circumstances we may be interested in studying different properties of the system.\footnote{Consider a ball. If we are studying its motion, the state can be typically be captured by position and momentum of the center of mass. If the ball is rotating at high speeds in air, the rotation speed and axis will also need to be part of the state because of the Magnus effect. If we are studying the gas within the ball, the state may be given by volume, pressure and temperature. If the ball is so tiny and light that random impact of the fluids on the surface will affect the motion, the state will be a statistical ensemble. And so on.} Therefore the state will change depending on the situation and our focus, and in this sense it is not absolute. However, once the situation and focus are well defined, the state is objective in the sense that everybody will come to the same characterization.}
 
 \fact{The tension between isolation and interaction.} {Properties of a system can be fully characterized if they are not perturbed by the interaction with the environment, if they are in stable equilibrium.\footnote{For example, the position of the center of mass of a cannonball is not affected by the air and can therefore be characterized by a set of numbers; however, the position of the center of mass of a spek of dust is affected by the air and must be characterized by a probability distribution over the possible values.} To fully characterize a system, then, we would want it to be in perfect isolation.\footnote{Note that full isolation is not possible as this would mean no interaction, not even gravitation, between the system and the environment, to the point that the system has essentially vanished.} However, to be able to measure those quantities we would like to interact with the system. To fully access the system, then, we would want it to be in constant interaction with the environment. Conceptually, there is a trade-off. Specifying the state space means characterizing this trade-off for the specific system in the specific circumstances.}
+
+\fact{Determinism and reversibility is isomorphism}{TODO}
 
 [To be completed]
 
@@ -350,16 +332,20 @@ Quantum mechanics follows the same strategy as classical mechanics with the diff
 
 While we consider quantum mechanics to be essentially forward engineered, that is we know the assumptions are necessary and sufficient, there are some conceptual aspects and details that, if clarified, would paint a more satisfactory picture.
 
-[To be completed]
+\fact{Link between quantum hydrodynamics, stochastic mechanics, Bohmian mechanics}{We should be able to reconcile the fact that quantum mechanics can be reframed in these different ways. The fact that hydrodynamics-like equations emerge should be linked to the idea that a quantum is a finite size object that can be thought as made of infinitesimal parts, as a fluid. Each part, though, is subjected by the Brownian motion associated with the unknowable internal dynamics. Stochastic mechanics, then, characterizes those fluctuations while Bohmian mechanics characterizes the average paths.}
+
+\fact{Deriving quantum from classical}{If the above characterizations are understood, we should be able, in line of principle, to take a classical system, couple it with a suitable purely stochastic dynamic and recover quantum mechanics.}
 
 \subsection{Thermodynamics and statistical mechanics}
 
 Reverse engineering work for thermodynamics and statistical mechanics is ongoing.
 
-\subsection{Other theories}
+\subsection{Further work}
+
+The work still needs to be extended to field theories, classical (electromagnetism and general relativity) and quantum (quantum electrodynamics, quantum chromodynamics, ...). Some ideas have been explored but only at a preliminary stage.
 
 We have not yet attempted to work with field theories, either classical or quantum. On the quantum side, there are two obstacles we would need to solve. The first is how to characterize relativistic spin and the second is the right mathematical tools to use (e.g. algebraic geometry?). On the classical side, the main conceptual issue is that we start with distributions over $q$ and $p$ so it is not clear what these would represent as distributions over field values.
 
-We haven't yet attempted to work with general relativity as of yet. Classical mechanics as derived in this project is already relativistic, in the sense that we derive a metric tensor that is locally Minkowskian. However, it is not clear whether that metric has a link to the energy/momentum tensor or it is independent.
+\fact{General relativity} {Classical mechanics as derived in this project is already relativistic, in the sense that we derive a metric tensor that is locally Minkowskian. However, it is not clear whether that metric has a link to the energy/momentum tensor or it is independent. One idea to explore is that the presence of a field changes how states are counted over kinetic momentum (i.e. $\{mu^\alpha, mu^\beta\} = F^{\alpha\beta}$). It remains to be seen whether the curvature of the metric can be understood in terms of this insight.}
 
 \end{document}
