@@ -1,0 +1,7 @@
+Dear []:
+
+To address the points you raise, we have added references and modified the introduction to make more explicit that the novel aspect of the work is a more general characterization of the Shannon formula, which can be applied to any field, including information theory and statistical mechanics.  We then lay out the exact relationship of the Shannon formula to the Boltzmann, Gibbs, and von Neumann entropies in statistical mechanics.  [Mention continuum?]  
+
+We note that the previously submitted draft had been shortened from our original writing, with references and additional historical context removed, in order to come closer to the AJP article length guidance.  
+
+Regarding specifically the AJP Resource Letter on "Information Theory in Physics," which we now cite, we note that only 15 of the 160 references therein are on general physics rather than purely information theory or on specific applications.  We now cite two rather than one of the historical papers by Jaynes included there, but we note that none of the literature is trying to achieve a goal similar to that of our work.  We are not relating information to physics, but rather we are identifying a universal characterization of the Shannon formula that can be applied to information theory, statistical mechanics, and numerous other fields.
