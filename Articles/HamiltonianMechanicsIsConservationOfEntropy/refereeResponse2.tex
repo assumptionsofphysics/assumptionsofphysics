@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{dutchcal}
+\usepackage{braket}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usepackage{forest}
+\usetikzlibrary{trees}
+\usetikzlibrary{calc}
+\usepackage{calculator}
+\usepackage{standalone}
+
+
+
+\begin{document}
+
+
+\section*{Referee response}
+
+\emph{We thank the reviewer for the additional comments and we are pleased two of the previous points were addressed satisfactorily.}
+\bigskip
+
+\textbf{The additional section on infinitesimal parts vs point particles also does much to clarify the authors' claim that the former should be the objects of classical mechanics. However, I think the argument presented here is still not entirely convincing: the main line of argument seems to claim that a theory should be judged based on how clearly it defines its own extension; in fact, the authors appear to make the claim that this requirement should supplant any considerations of empirical adequacy. Surely, that is a highly controversial claim and would need more argument than is provided. In particular, it is not clear to me why the fact that no theory is perfectly empirically adequate should mean that empirical adequacy cannot be used to judge the merits of a theory. }
+
+\emph{Supplanting any considerations of empirical adequacy would indeed be a controversial claim, and one we would not agree with. We reworked the whole section, hoping we no longer give that impression.  It now reads:}
+
+\subsection*{Point particles vs infinitesimal parts}
+
+At this point one may still argue that point particles and infinitesimal parts are both abstract concepts and both factually incorrect (i.e. planets are neither points nor made of infinitesimal parts), so why should we prefer one concept over the other?
+
+Proper understanding of a physical theory means answering, among others, the question: why does the theory work experimentally? Why does the prediction match our data? And the answer cannot merely be: because it does. The problem is not just that the answer begs the question; it is that no known theory works experimentally for all possible systems in all possible settings. Newtonian gravitation does not predict gravitational lensing; general relativity is not expected to hold at the smallest scales. There are no ``right" theories in an absolute sense, only ones that agree with experiments in a set of circumstances. So it is not clear why in some cases disagreement with experiment would discard the theory altogether while in others it would not.
+
+We need to rephrase the question as: why does the theory work experimentally in these cases, but not those others? In other words, what is the realm of applicability of our theory? If the theory disagrees with experimental data within the realm of expected applicability, then the theory will be either discarded or amended in its applicability. In practice, physicists and engineers learn by examples which particular theory is suitable for what system, without a clear-cut line of demarcation.\footnote{To illustrate this with an anecdote: it is not uncommon to find individuals, even physics professors, who will insist that Hamiltonian mechanics is perfectly equivalent to Newtonian mechanics. When asked to provide the Hamiltonian for a damped harmonic oscillator, they will right away note that they cannot because it is a dissipative system. Then they will typically either admit that the two are different, or that they are still the same but only when they are both applicable.} Ideally, it would be preferable to find a set of necessary conditions that the system needs to satisfy for the theory to be applicable. This would give a clear line of demarcation within which empirical adequacy is both expected and justified. The description of the system in the theory matches experimental verification because, in those circumstances, the system can be considered to satisfy those conditions. If we chose to apply the theory where those conditions were not satisfied, it would not be the theory's fault that it gave incorrect predictions. It would be our fault for incorrectly applying it.
+
+To us, this is not just an abstract intellectual question. It is a practical matter. I have a system to study and have a choice of different models (e.g. Hamiltonian mechanics, Newtonian mechanics, quantum mechanics, Markov processes, ...). How do I know which one to pick?  What should I tell a student?
+
+If we characterize classical Hamiltonian mechanics as describing point-like objects, whose state is described by position and momentum, and that move according to a specified set of equations, it is not clear why it would apply to a planet and to a speck of dust in a vacuum, but not to a speck of dust in a fluid or to an electron. The size does not seem to matter while the circumstances seem to. Saying that Hamiltonian mechanics describes point-particles does not clarify what physical objects can be described by the theory: it does not help us understand what classical systems are. Moreover, why should a point-particle be constrained to follow those equations? A damped harmonic oscillator does not. Why is Hamiltonian mechanics not applicable there? Therefore this characterization does not help us identify the realm of applicability.
+
+If we instead characterize classical Hamiltonian mechanics as the deterministic and reversible motion of objects reducible to infinitesimal parts, we understand when the model choice is appropriate. Can we pretend that the system we are studying, under the conditions we are studying it, is made of infinitesimal parts that can be studied independently? In the case of an electron the answer is no. In the case of a planet or a speck of dust, if we are studying only the overall motion, then yes. Can we pretend that the evolution is deterministic and reversible? In the case of the speck of dust in a fluid, no. For a planet and speck of dust in a vacuum, yes. With this characterization, then, a classical system is one that can be considered to be infinitesimally reducible. It is furthermore Hamiltonian if the evolution is deterministic and reversible.\footnote{In the same vein, \cite{AoPPhy1} finds that it is Newtonian if it is purely kinematic (i.e. spatial motion identifies the state), it is Lagrangian if it is both Hamiltonian and Newtonian and so on.} The structure of phase space and the equations of motion are a direct consequence of those conditions. It is clear what the realm of applicability of the theory is and its empirical validity is justified within that realm.
+
+Therefore we prefer the characterization presented here as it gives a set of necessary conditions from which we can rederive the theory. These act as a clear demarcation for when the theory is expected to match experimental data (i.e.~its realm of applicability), which we believe is a necessary element for a full understanding of any physical theory.
+
+
+
+\bibliographystyle{alpha}
+
+\bibliography{bibliography}{}
+
+\end{document}
