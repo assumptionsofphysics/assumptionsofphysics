@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage{amsmath,amsfonts}
+\usepackage[margin=1.5in]{geometry}
+
+
+\usepackage{cite}
+
+\begin{document}
+	
+\title{Insights from Assumptions of Physics}
+	
+\author[1]{Gabriele Carcassi}
+	
+\author[1]{Christine A. Aidala}
+	
+\author[2]{David J. Baker}
+	
+\author[1]{Kai Sun}
+	
+\affil[1]{Physics Department, University of Michigan}
+\affil[2]{Philosophy Department, University of Michigan}
+	
+\maketitle
+
+\section*{Extended Abstract}
+Assumptions of Physics\cite{A,B,C,D} is a project that aims to find a minimal set of physical assumptions from which the basic laws can be derived. We do so by combining ideas not only from different branches of physics, but also advances in other disciplines (e.g. mathematics, theoretical computer science) that have so far not reached mainstream physics. The general idea is to construct a single mathematical framework with structures that apply in the general case, which get further specialized when taking further assumptions. Experimental verifiability, a fundamental requirement in science, already forces a particular mathematical structure; the notion of states and processes imposes more constraints; the additional notion of infinitesimal reducibility (i.e.~state of the whole system is equivalent to its infinitesimal parts) imposes enough structure to recover classical phase space.
+
+In this talk we will present a few key insights with which our work on reformulating different scientific theories forced us to come to terms. We believe these are of general interest to those who work on the foundations of current theories or are working on the development of new, more general ones. A couple of examples follow.
+
+It is common nowadays  to develop or present a theory by starting with its theoretical content (e.g.~relationship between perfectly defined elements and their infinitesimally precise description) and then recovering the empirical content (e.g.~the finite precision measurements and relationships between them). What we have found is that it is more fruitful to proceed the other way. This can be done because of two results. The first is that the theoretical content can be recovered from the empirical one - mathematically, the Heyting algebra that describes the experimentally verifiable statements can be used to recover the points and their topology. The second is that an inference relationship among verifiable statements is equivalent to a causal relationship. Therefore the theoretical content is effectively a more compact way to describe the empirical content.
+
+A more predominant role of the experimental verification leads us to a different perspective on reductionism, the description of a system through its constituents. This is typically done by describing the smallest systems and then aggregating them. We find it more fruitful to start from the overall system and ask what are the requirements to be able to identify and describe the parts, which is more in line with what happens experimentally. For example, when assuming that a system is infinitesimally reducible (see above) the structure of classical phase space is recovered; on the other hand, if the system is assumed irreducible (i.e.~the state of the overall system does not tell us anything about the parts, its internal dynamics) the state space of quantum mechanics is recovered. These assumptions are contingent upon both the system and the processes under study. For example, a proton can be adequately described as a single quantum system when the process (e.g.~diffraction and interference experiments) does not probe the internal dynamics. If it does (e.g. deep inelastic scattering) the assumption of irreducibility fails. This suggests to take a top-down, more practical epistemic attitude toward reductionism (i.e.~is the given process sensitive to the internal dynamics of the system) instead of a bottom-up, more ontological attitude (i.e.~the system is made of these parts). A final theory will then need to explain when and how the internal dynamics of each system becomes accessible.
+
+Not only does the state of a system depend on the accessibility of its internal dynamics, but it additionally depends on its interaction with the environment at its boundary. The position of a plastic ball makes sense on earth at 20 Celsius. On the surface of the sun at 5500 Celsius there would be no ball to speak of. When studying a system, the system-environment interaction has to be such that the system remains itself - mathematically the state space of the system is a symmetry of the system-environment interaction. While these considerations are included in the theorical treatment of condensed matter, statistical mechanics and thermodynamics, in quantum mechanics and other foundational theories they are often thought as mere experimental details. For example, since experimentally producing and maintaining entangled or coherent states requires very careful control of the system-environment interaction, it is misleading to attribute the behavior solely to the system. A final theory will need to take into account the system-environment boundary and explain how it inhibits or enhances the possible dynamics of the system.
+
+\bibliographystyle{simple}
+\begin{thebibliography}{4}
+	
+\bibitem{A} G. Carcassi, C. A. Aidala, D. J. Baker, L. Bieri: From physical assumptions to classical and quantum Hamiltonian and Lagrangian particle mechanics. Journal of Physics Communications 2-4 (2018)
+
+\bibitem{B} C. A. Aidala, G. Carcassi, M. J. Greenfield: Topology and experimental distinguishability. Topology Proceedings 54 (2019)
+
+\bibitem{C} G. Carcassi, C. A. Aidala: The fundamental connections between classical Hamiltonian mechanics, quantum mechanics and information entropy. Accepted in International Journal of Quantum Information (2020)
+
+\bibitem{D} http://assumptionsofphysics.org
+	
+\end{thebibliography}
+
+\end{document}
+
+
