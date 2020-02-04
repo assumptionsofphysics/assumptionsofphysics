@@ -1,0 +1,205 @@
+\documentclass[12pt]{iopart}
+\newcommand{\gguide}{{\it Preparing graphics for IOP Publishing journals}}
+%Uncomment next line if AMS fonts required
+\usepackage{iopams}  
+\begin{document}
+
+\title{Space-time structure may be topological and not geometrical}
+
+\author{Gabriele Carcassi, Christine A. Aidala}
+
+\address{Physics Department, University of Michigan, 450 Church Street\\
+	Ann Arbor, MI 48109-1040,
+	United States}
+\ead{carcassi@umich.edu}
+\vspace{10pt}
+\begin{indented}
+\item[]February 2019
+\end{indented}
+
+\begin{abstract}
+In a previous effort we have created a framework that explains why topological structures naturally arise within a scientific theory; namely, they capture the requirements of experimental verification. This is particularly interesting because topological structures are at the foundation of geometrical structures, which play a fundamental role within modern mathematical physics. In this talk we will show a set of necessary and sufficient conditions under which those topological structures lead to real quantities and manifolds, which are a typical requirement for geometry. These conditions will provide a physically meaningful procedure that is the physical counter-part of the use of Dedekind cuts in mathematics. We then show that those conditions are unlikely to be met at Planck scale, leading to a breakdown of the concept of ordering. This would indicate that the mathematical structures required to describe space-time at that scale, while still topological, may not be geometrical.
+\end{abstract}
+
+%
+% Uncomment for keywords
+%\vspace{2pc}
+\noindent{\it Keywords}: Foundations of physics, space-time structure, topology
+
+%
+% Uncomment for Submitted to journal title message
+\submitto{\PS}
+%
+% Uncomment if a separate title page is required
+%\maketitle
+% 
+% For two-column output uncomment the next line and choose [10pt] rather than [12pt] in the \documentclass declaration
+%\ioptwocol
+%
+
+
+
+\section{Introduction}
+
+
+
+\section{Elements of topology and its link to experimental verifiability}
+
+The first thing we need to establish is the link between topology and experimental verifiability. Topology is, knowingly or unknowingly, widely used in physics as it is the foundation of many other tools, such as differential geometry and Lie groups. Most mathematical structures used in physics are topological spaces. Therefore it is crucial to understand what physical content do they capture.\footnote{In computer science, the link between topology and computability is already accepted though not widely known. There is a link between those concepts and the ones presented here, but, for brevity, we are not going to expand on it. The gist is that any computation device is also a physical system, and the output of a computation can be experimentally verified (i.e. we can read it).}
+
+The formal definition of a topology is the following: given a set $X$, a topology $\mathsf{T}$ is a collection of subsets of $X$ that is closed under finite intersection and arbitrary (infinite) union.\footnote{Technically, it also must contain the full set $X$ and the empty set $\emptyset$. This does not play an important role.} This is similar to other algebraic structures, like groups, where you have elements and operations that return other elements of the same structure. Here the elements are subsets of $X$ and the operations are set operations. The formal definition is very abstract and does not have an apparent connection to physics.
+
+Seemingly unrelated, consider a ``verifiable statement'': an assertion that can be verified to be true experimentally. For example, ``the mass of the neutrino is $0.05 \pm 0.005$ eV" or ``the electron is a negatively charged particle''. In general these statements do not perfectly identify a single possible case, rather they identify a set of possible cases. If $X$ is the set of all possible cases, each verifiable statement is associated with a set $U \subseteq X$ and the statement can be re-expressed as ``$x$ is in $U$''. In our first example, $x$ is the mass of the neutrino and $U$ is the set of possible values from $0.045$ and $0.055$.
+
+Now we note that not all subsets of $X$ correspond to a verifiable statement. For example, ``the mass of the neutrino is exactly $0.05$ eV'' is not verifiable because we cannot perform a measurement with infinite precision. We call $U \subseteq X$ a verifiable set if the statement ``$x$ is in $U$'' is, at least in line of principle, something we can verify experimentally. Let $\mathsf{T}$ be the collection of all verifiable sets. The idea is that $\mathsf{T}$ is a topology.
+
+To convince ourselves of that, consider the following. If we have a finite collection of verifiable sets $\{U_i\}_{i=1}^n$, then the intersection corresponds to the logical AND (i.e. the conjunction) of all the statements ``$x$ is in $U_i$''. We can test the intersection simply by testing each assertion one at a time, and therefore $\{U_i\}_{i=1}^n$ is a verifiable statement. If the collection were infinite, though, we would have to go through infinitely many tests to verify the logical AND, so we would never terminate. Therefore, in general, the infinite intersection of verifiable sets is not verifiable.
+
+On the other hand, the union of verifiable sets would correspond to the logical OR (i.e. disjunction) of all the associated statements. In this case, as long as one statement is verified, the OR is verified and we can terminate. Therefore we do not care how many statements are there after the one that was verified, so the infinite union of verifiable sets is verifiable. Technically, topologies are closed under arbitrary unions, not just countable. Yet, because we cannot test more than countably many statements, the set of all verifiable statements must be constructable for a countable set of statements, or we would not be able to fully explore the space even with unlimited time. Therefore the topology $\mathsf{T}$ must have a countable basis, which means all arbitrary unions are countable unions. 
+
+We can make this more concrete by looking at the standard topology on the real numbers $\mathbb{R}$, which contains all the open intervals $(a,b)$ where $a,b \in \mathbb{R}\cup\{-\infty, +\infty\}$. These, in fact, correspond to all the finite precision measurements. It will also contains their unions. For example ``the absolute value of the charge of the electron is $1.6 \pm 0.005\;10^{-19}$ C'' would correspond to ``$x$ is in $(-1.65 \;10^{-19}, 1.55 \;10^{-19})\cup(1.55 \;10^{-19},1.65 \;10^{-19})$. Singletons, sets with a single value, are not part of the topology and in fact we cannot verify them experimentally. Note that the topology can be generated by the set of all rational intervals, which is countable, since the infinite unions will allow us to construct limits, which correspond to the intervals of the reals.
+
+A topology, then, is not just some mathematically abstract construction that happens to be useful in physics. It captures the way that we can experimentally distinguish a set of possible cases. The main point is that statements have a binary logic in terms of TRUE/FALSE, while experimental tests have a ternary logic in terms of SUCCESS/FAILURE/UNDEFINED. The topology is generally used to keep track of those differences. It makes sense, then, that topologies are so pervasive among the mathematical structures used in physics: experimental verifiability is at the heart of science.
+
+Note that we will call verifiable sets, instead of open sets, the sets within the topology. We will also call falsifiable sets, instead of closed sets, the complement of verifiable sets. It will make our work more connected to this physical notion and therefore a little bit more intuitive, especially to those who are not deeply familiar with point-set topology.
+
+The question we want to answer is the following: how are the real numbers constructed in physics? What are the requirements on our experimental apparatus such that those quantities can be measured? Can we expect those requirements to hold when we go to ever smaller scale? If not, how do they break down?
+
+Since we established a link between topology and experimental verifiability, we can pose that questions in a way that is both mathematically and physically precise. Suppose we have a set of possible cases $X$, which we will call possibilities, and a way to distinguish them experimentally, which means we have a topology $\mathsf{T}$ that captures all our verifiable sets. What are the requirements on $(X, \mathsf{T})$ such that it is homeomorphic (i.e. topologically equivalent) to the set of the real numbers with standard topology?
+
+\section{References as the starting point for measurement scales}
+
+The first thing we need to develop is an abstract model to represent how quantities are measured experimentally. Let us first gather some requirements from the physics.
+
+We start from the notion of a reference, such as a mark on a ruler or the tick of a clock. A reference, then is a physical object that allows us to distinguish between three cases: a before, an on and an after the reference. That is, a point can be before, on or after the mark on a ruler; an event can happen before, on or after the tick of a clock. We take references to be the basic conceptual element upon which quantitative measuring devices are constructed in practice.
+
+In general, the three cases a reference defines are not mutually exclusive: an object can extend before, on and after the mark; an event can start before and end after the tick of a clock. In fact, if the object is both before and after, we expect it to be on as well. In all cases, the object should be found at least in one of the three cases.
+
+If a reference is at the end of the range, then it will not have an after or a before. Yet, a reference is a physical object and needs to take some space, therefore there will always be an on case.
+
+We should also note that the before and after cases are easier to test experimentally. When comparing two weights on a scale, for example, it is easy to tell when one is greater than the other. If they are very close, we can only typically say that they are closer than a certain threshold. This is also something we will have to take into account.
+
+If $(X, \mathsf{T})$ is the set of physically distinguishable cases, we can formalize a reference as a triplet $r = (B, O, A)$ of three subsets $B, O, A \subseteq X$. Respectively, they will represent the cases in which the object is before, on or after the references. We can capture the rest of the requirements with the following:
+\begin{itemize}
+	\item $B \cap A \subseteq O$ (all possibilities in which the object is found before and after, the object is also found on)
+	\item $B \cup O \cup A = X$ (before/on/after cover all possibilities)
+	\item $O \neq \emptyset$ (the reference itself must be found somewhere)
+	\item $B, A \in \mathsf{T}$ (before and after are verifiable)
+\end{itemize}
+Note that we require only before and after to be experimentally verifiable, leaving the on case unspecified. It turns out this is sufficient and avoids the problem of testing for perfect equality.
+
+A measuring device will be composed of several references. For a continuous quantities, we can intuitively understand that we are assuming that, though we always have a finite set with finite precision, we assume we can refine our instruments with ever greater precision. Our work is to make this intuitive notion precise.
+
+\section{Elements of order theory}
+
+There are many ways to mathematically characterize the real numbers. The one we are interested is in terms of their order, instead of operations like addition or multiplication, as it is the one that imposes the least requirements and it is enough to identify the topology.\footnote{Note how all transformations that preserve addition or multiplication must preserve the ordering, while the converse is not true. For example, non-linear monotonic transformations preserve the ordering and the topology while they do not preserve the group structure.} Let us review, then, a few key concepts of order theory, which is the branch of mathematics that studies ordered sets and their properties.
+
+A partial order $\leq : X \times X \to \mathbb{B}$ is a binary relationship that is reflexive (i.e. $a \leq a$), antisymmetric (i.e. if $a\leq b$ and $b \leq a$ then $a = a$) and transitive (i.e. if $a \leq b$ and $b \leq c$ then $a \leq c$). A total order, or linear order, is a partial order such that any two elements are comparable (i.e. at least $a \leq b$ or $b \leq a$).
+
+Given an ordered set $(X, \leq)$ we can construct the order topology in the following way. Take all sets of the form $(a, \infty) = \{x \in X \, | \, a < x\} \;,\; (-\infty, b) = \{x \in X \, | \, x < b\}$. This is a basis for the topology. Then take all the sets that can be generated from the basis through finite intersection and arbitrary union. This will be the order topology. Both the integers and the reals are totally ordered sets with their standard $\leq$ relationship. Their respective order topology correspond to their standard topology. Note how each set within the basis corresponds a statement like ``x is after a'' or ``x is before b''. Note how these, already, are very similar to the before and after cases we introduced in the previous section.
+
+Like groups or topological spaces, two ordered sets are isomorphic if their have equivalent structure. That is, two ordered sets are isomorphic if there is a bijection that preserves the ordering. If two ordered set are isomorphic, then they will have the same order topology and vice-versa. So the ordering identifies the topology of an ordered set and vice-versa.
+
+In light of this, we should break our problem into two parts. First understand what are the requirements on references such that the set of possibilities $X$ is totally ordered and its topology is the order topology. Then what are the additional requirements to be ordered like the real numbers or the integers. It turns out that most of the work lies in the first part, in recovering the linear order.
+
+\section{Experimental requirements for construct real valued quantities}
+
+\subsection{Strict references}
+
+As we saw, in general a reference defines three cases (before/on/after) that may not be mutually exclusive. We say a reference is strict if they are. That is, a reference $r= (B, O, A)$ is strict if $B \cap O = \emptyset$, $O \cap A = \emptyset$ and $B \cap A = \emptyset$. Technically, we would just need that before and after are disjoint ($B \cap A = \emptyset$) and then redefine on as what remains ($O = X / (A \cup B)$). That is, as long as before and after are separate cases, we can redefine on as ``not before and not after''.
+
+The order topology allows us to construct strict references. If we take $a,b \in \mathbb{R}$ such that $b<a$, we have $( (-\infty, b), [b, a], (a, +\infty) )$ that represents a reference that physically extends from $b$ to $a$. Mathematically, we can see that the extent of the reference is represented by a falsifiable (i.e. closed). Conversely, if we want to be able to construct the order topology from references, then, those will need to be strict. Intuitively if we can experimentally define an order on all possibilities, then, given two distinct ones, we must be able to find references that are able to confirm unambiguously that one is before the other. Therefore we must be able to tell before and after apart.
+
+What does requirement entails in practice? References for quantities that we count (i.e. discrete quantities) can always be made strict: either you have $n$ elements, less than $n$ or more than $n$. The reason is that the quantity does not really have an extent and the possible values are well separated. Quantities over which we have an extent, like space and time, are another matter. If the extent of the object being measured is much smaller than the extent of the reference, then the object cannot be found both before and after. In those regimes we can treat the references as strict. But this is an idealization that will break down if the extent of the references is comparable to the extent of what is being measured.
+
+\subsection{Aligned references}
+
+As we put references together, we must be sure they are related to each other in the correct way if we want to end up with a linear ordering. Intuitively, if we mix reference of horizontal position with vertical positions we will not end up with a linear ordering.
+
+To define what it means for two references to be pointing in the same direction, take two values $b_1, b_2 \in \mathbb{R}$. Suppose that $b_1 \leq b_2$. Then if we find that our object is before $b_1$ then it will also be before $b_2$. In terms of sets, $(-\infty, b_1) \subseteq (-\infty, b_2)$. In a linear order, the idea that one point is before the other can be translate in terms of set inclusion. Alignment between references, then, can be defined by requiring that the before and after statement have an inclusion relationship.
+
+We also note that the negation of ``$x$ is greater than $a$ is ``$x$ is less or equal to $a$''. In terms of sets, $(a, +\infty)^C = (-\infty, a]$. For a strict reference extending from $a$ to $b$, we will have $(-\infty, b) \subseteq (-\infty, a]$.
+
+We will say that two references are aligned if their edges can be ordered. Mathematically two references $r_1 = (B_1, O_1, A_1)$ and $r_2 = (B_2, O_2, A_2)$ are aligned if the sets $B_1, B_2, A_1^C, A_2^C$ can be ordered by inclusion. For example, if $B_1 \subset A_1^C \subset B_2 \subset A_2^C$ then we will be in the case where $r_1$ is completely before $r_2$. If $B_1 \subset B_2 \subset A_1^C \subset A_2^C$ then the two references are overlapping. Alignment of references is another necessary condition if we want to reconstruct and ordering that is linear.
+
+What does this requirement entails in practice? It means that there are clear fixed ordering relationships between the references. For example, every time something is before one reference it will also be after the other. It means we are perfectly able to prepare, control and identify our references.
+
+\subsection{Refinable references}
+
+Strict and aligned references allow us to define ordering between sets of possibilities. We need an additional condition to make sure we have enough references at an appropriate resolution to be able to order the possibilities themselves. That is, to order all singletons, the sets with only one possibility.
+
+The general idea is we must be able to fill in the gaps and break apart overlapping regions. For example, if we have two references that can have something in between, then we must be able to put a reference between them. That is, if $r_1 = (B_1, O_1, A_1)$ and $r_2 = (B_2, O_2, A_2)$ are such that $A_1 \cap B_2 \neq \emptyset$, then we can find a reference $r_3 = (B_3, O_3, A_3)$ such that $O_3 \subseteq A_1 \cap B_2$. On the other hand, if the extent of one reference is within the extent of the other, then we need to be able to find a reference that covers another part. That is, if $O_2 \subset O_1$ then we can find another reference such that $O_3 \subset O_1$ and $O_2 \cap O_3 = \emptyset$. If a set of references have this property, then we say it is refinable: the references can be refined to non overlapping references that cover all the possibilities.
+
+What does this requirement entails in practice? It means that we can place a reference wherever we want and can shrink their extent to the point they occupy only one possibility.
+
+\subsection{Linear order}
+
+It can be demonstrated that a set of experimentally distinguishable possibilities is linearly ordered if and only if its topology can be generated by a set of refinable, aligned strict references. That is, if we have an order topology, we can construct a set of references that have those properties, and if we have a set of references that have those properties, the order topology can be generated by finite intersection and arbitrary union from the before and after sets of the references.
+
+The idea is that, under those conditions, we can find references that are so fine that they extend over only one possibility. Therefore we have a one to one correspondence between experimentally distinguishable cases and the finest references. Since all references are aligned and strict, two different references must be sequential, one before the other. This order corresponds to the one that defines the order topology.
+
+\subsection{Discrete (integer) order}
+
+The order of the integers can be characterized as the one that does not have a minimum, does not have a maximum and, taken any two elements, there are finitely many ones.
+
+If we have an ordered set with the same characteristics, we can put it in a bijective correspondence with the integers that preserves the order. Roughly, one can proceed this way. Take one element and arbitrarily label it zero. Since between two elements there are only finitely many, each element will have a successor and a predecessor. Label one the successor of zero and label minus one the predecessor of zero. Then label two the successor of one, and so on. Since between zero and any other element there are only finitely many other elements, at some point we will reach all the elements.
+
+If we have a set of refinable aligned strict references, then the only additional requirement needed to recover the integers is that between two references there are only finitely many references. The finest possible references, which will correspond to the possibilities of the space, can then be labeled by the integers. The possibilities are ordered like the integers.
+
+\subsection{Continuous (real) order}
+
+The order of the reals can be characterized as one that is dense (i.e. between two elements there is always another one), complete (i.e. contains all the limit points), has a countable dense subset (i.e. between two real numbers we can always find a rational, which is a countable set), has no minimum or maximum. 
+
+If we have an ordered set $X$ with the same characteristics, we can put it in a bijective correspondence with the reals that preserves the order. Roughly, one can proceed this way. We start by noticing that we have a countable dense subset $Q$ and, as Cantor showed, it can be put into correspondence with the rationals. The set $Q$ is dense in the original set $X$ and the original set $X$ is complete. Therefore the $X$ is the completion of $Q$. Another theorem in order theorem states that the completion of any order is unique. Since the real numbers are the completion of the rationals, and $Q$ has the same order of the rational, then $X$ has the same order of the reals.
+
+If we have a set of refinable aligned strict references, then the only additional requirement needed to recover the reals is that between two references there is always another reference. That is, we are only imposing that the references are dense. The completion and the countable dense subset are a consequence of the more general topological requirements. The inclusion of all the limit points will come from the infinite union allowed by the topology while the dense subset is associated with the countable base, which is a requirement for out topology to be physically meaningful.
+
+\section{Breakdown of ordering and of geometry}
+
+In the previous sections we have identified the experimental requirements needed to be able to operationally define continuous quantities. These are:
+\begin{enumerate}
+	\item the ability to compare the quantity (i.e. position, time, mass, ...) with references such that we can say whether the object is before or after each one
+	\item the three different cases, before/on/after, must be mutually exclusive
+	\item the references must be aligned, we must be able to place them in a line
+	\item we must be able to find enough references such that overlaps can be avoided and all the possible values can be covered
+	\item between two references we can always place another
+\end{enumerate}
+Under these conditions, we can assign a real number to the finest possible references, which will correspond to all possible distinguishable cases. Higher dimension can be reconstructed by combining sets of references for different quantities, which leads to the familiar structure of a manifold.
+
+We want to stress that these requirements are not properties of the quantity being measured. They are operational requirements. They correspond to the mundane act of constructing a ruler, a calorimeter, a timing system, or any other experimental device.
+
+We are not, therefore, positing that there already exists a continuous quantity to be found. We are asking, under what conditions we can label the outcomes of our measurement scheme with a continuous quantity. This in line with the perspective of considering a physical theory, including quantum theory, as dealing with the output of measurements. For example, Wheeler's commented: ``It is wrong, moreover, to regard this or that physical quantity as sitting out therewith this or that numerical value''. What we are doing is go at a more fundamental level to understand this works in the continuous case, and how can it be modeled in a rigorous say.
+
+Now that we understand what the requirements are we can ask: are these requirement tenable? Or are they necessarily idealizations?
+
+Note that, with the exception of (v), all other requirements are needed for ordering itself. That is, the failure of any one of the first four means that ordered quantities are not physically meaningful. Which means we cannot substitute the real number with the rationals or the integers, as these are themselves ordered. Note that all geometrical structure are based on some notion of numeric distance, therefore if order fails geometrical structure fail as well. We are not going to be able to define metric tensors, symplectic forms or even a differentiable structure.
+
+As such, the bar to show that, at a fine level, space-time does not posses a geometrical structure is very low. One simply has to instill the doubt that any of (i-iv) is untenable. Here we give a few angles one may take. We will concentrate on measurements of spatial position. Similar arguments can be made for time as well.
+
+For (ii), we saw that references are objects that have, in general, an extent in space. A reference can be considered strict if the extent if the extent of the object measured is much smaller than the extent of the reference. For example, the top level of a liquid in a jar is thinner than the marks used to measure the content. Ultimately, however, the finest constituents will also be the finest objects that we can use as finest references. Therefore, if we assume that we can make finer and finer references, at some point we will find the extent of the references comparable to the extent of the objects we are measuring. This is also true for fundamental particles, where the extent of the system correspond to the extent of the wave function: if the wavefunctions overlap, one particle is not clearly before/on/after the other. Similar arguments apply for excitations of quantum fields.
+
+For (iii), the requirement for two references to be aligned means, for example, that we must always be sure which one is before the other. This means we must have a way to tell the references apart. This is problematic if the fundamental objects are ultimately indistinguishable. We cannot order what we cannot distinguish.
+
+For (iv), the requirement for refinement means we can always prepare finer and finer references. This is generally thought to not be possible once length scales are comparable to the Planck length.
+
+We are not interested here to expand on these arguments or pick ones that are universally accepted. That will be the scope for future work. Here we simply want to show that is relatively easy to formulate reasonable arguments. As long as one finds reasonable that one of (i-iv) fails, then our point follows: space-time structure at a fine scale will not be geometrical, will not be ordered, but it will yet be topological, we will have some way to measure what can physically be well defined.
+
+
+\section{Conclusion}
+
+It is not clear what topological space should be used instead of a manifold. There are 
+
+The simplest solution would be to find a topological space 
+
+We leave
+
+Naturally, this opens the question of what topological spaces would be appropriate in those regimes. One can imagine to try and construct a topological space that is not ordered at a fine scale but is ordered at a large scale. A difficulty here is that typically the notion of distance is absent from topological spaces.
+
+There is, however, a much more problematic prospect. General relativity tells us that the geometry depends on the content of the space. What is in the space affects the notion of distance. It would not be far fetch to assume that what is in the space affects what can be distinguished experimentally. This would mean that the topology itself would also depend on the content of the space. In that case, we would not have a fixed topology, in the same way that we do not have a fixed geometry in general relativity. Conceptually, we would need to define some sort of topological equation. Though the premise seems reasonable enough, it is not clear to us whether appropriate mathematical tools for such a line of inquiry currently exist.
+
+\section{Conclusion}
+
+\section*{Acknowledgments}
+
+\end{document}
+
