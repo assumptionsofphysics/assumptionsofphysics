@@ -1,43 +1,28 @@
-\documentclass{ws-ijqi}
-\usepackage{hyperref}
-\usepackage[super,sort,compress]{cite}
-\usepackage{url}
+\documentclass{article}
+\usepackage{authblk}
+\usepackage{amsmath,amsfonts}
+
+
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%% Publisher's Area please ignore %%%%%%%%%%%%%%
-\catchline{}{}{}{}{}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{The fundamental connections between classical Hamiltonian mechanics, quantum mechanics and information entropy}
 
-\title{THE FUNDAMENTAL CONNECTIONS BETWEEN CLASSICAL HAMILTONIAN MECHANICS, QUANTUM MECHANICS \\ AND INFORMATION ENTROPY}
+\author[\dagger]{Gabriele Carcassi}
 
-\author{GABRIELE CARCASSI}
+\author[\dagger]{Christine A. Aidala}
 
-\address{Physics Department, University of Michigan, 450 Church Street\\
+\affil[\dagger]{Physics Department, University of Michigan, 450 Church Street\\
 Ann Arbor, MI 48109-1040,
 United States\\
 carcassi@umich.edu}
 
-\author{CHRISTINE A. AIDALA}
-
-\address{Physics Department, University of Michigan, 450 Church Street\\
-Ann Arbor, MI 48109-1040,
-United States\\
-caidala@umich.edu}
-
 \maketitle
-
-\begin{history}
-%\received{Day Month Year}
-%\revised{Day Month Year}
-%\accepted{Day Month Year}
-%\comby{(xxxxxxxxxx)}
-\end{history}
 
 \begin{abstract}
 We show that the main difference between classical and quantum systems can be understood in terms of information entropy. Classical systems can be considered the ones where the internal dynamics can be known with arbitrary precision while quantum systems can be considered the ones where the internal dynamics cannot be accessed at all. As information entropy can be used to characterize how much the state of the whole system identifies the state of its parts, classical systems can have arbitrarily small information entropy while quantum systems cannot. This provides insights that allow us to understand the analogies and differences between the two theories.
 \end{abstract}
 
-\keywords{Information entropy; Hamiltonian mechanics; Quantum mechanics; determinism and reversibility.}
+%\keywords{Information entropy; Hamiltonian mechanics; Quantum mechanics; determinism and reversibility.}
 
 %\tableofcontents  % optional
 
@@ -45,7 +30,7 @@ We show that the main difference between classical and quantum systems can be un
 {The Fundamental Connections between Mechanics and Information Entropy}
 
 \section{Introduction}
-In a previous work\cite{Carc1} we identified a small set of physical assumptions from which classical and quantum particle mechanics can be rederived. By assumptions here we mean simplifying conditions that our system is supposed to satisfy under the processes under study. Our work differs from others, see for example Refs.~\citenum{PhysRevA.84.012311,QLogicReview,Hardy:2001jk,ludwig_hein_2013}, in that the starting points are physical assumptions about the system being studied (e.g. whether the parts can be studied or whether the evolution is deterministic) and not information theoretic or abstract mathematical considerations. It is also different in that both classical and quantum cases are derived on equal footing. That is, we have identified a single point where one assumption leads to the classical case while another leads to the quantum system.
+In a previous work\cite{Carc1} we identified a small set of physical assumptions from which classical and quantum particle mechanics can be rederived. By assumptions here we mean simplifying conditions that our system is supposed to satisfy under the processes under study. Our work differs from others, see for example Refs.~\cite{PhysRevA.84.012311,QLogicReview,Hardy:2001jk,ludwig_hein_2013}, in that the starting points are physical assumptions about the system being studied (e.g. whether the parts can be studied or whether the evolution is deterministic) and not information theoretic or abstract mathematical considerations. It is also different in that both classical and quantum cases are derived on equal footing. That is, we have identified a single point where one assumption leads to the classical case while another leads to the quantum system.
 
 The difference is the answer to a single question: is the internal dynamics of the system accessible or not? If it is fully accessible we recover classical states and if it is totally inaccessible we recover quantum states. This difference can be understood in terms of information entropy and in this work we develop that insight. We will present here a much shorter version of the classical derivation that carries all the important points. For quantum mechanics, for the sake of brevity, we will cover only some of the general ideas. For details on both, we refer to the previous longer paper\cite{Carc1}. We then provide a classical analogue of the quantum uncertainty relationship and see how both can be understood in terms of information entropy conservation under the different initial assumptions.
 
@@ -130,7 +115,7 @@ Since this is the distribution that minimizes the spread, during the evolution w
 \begin{equation}
 \sigma_q \sigma_k \leq \frac{e^{I_0}}{2 \pi e}
 \end{equation}
-where $I_0$ is the initial information entropy. This classical uncertainty relationship is reminiscent of the quantum uncertainty relationship in both the form and the fact that the equality holds for the Gaussian packets. The analogy can be made stronger with a few extra conditions as described in Ref.~\citenum{Carc1}. What we want to show here is the connection between this uncertainty relationship, information entropy, deterministic and reversible evolution and the difference in reducibility between a classical and a quantum system.
+where $I_0$ is the initial information entropy. This classical uncertainty relationship is reminiscent of the quantum uncertainty relationship in both the form and the fact that the equality holds for the Gaussian packets. The analogy can be made stronger with a few extra conditions as described in Ref.~\cite{Carc1}. What we want to show here is the connection between this uncertainty relationship, information entropy, deterministic and reversible evolution and the difference in reducibility between a classical and a quantum system.
 
 First of all we note that this classical uncertainty relationship is given by conservation of entropy and therefore deterministic and reversible evolution. We are free to set the initial amount of information entropy for the classical distribution as small as we want. Once it is set, this cannot be changed under Hamiltonian evolution. Quantum mechanics has a stronger condition: we cannot set the initial uncertainty as small as we want. It is bound by a fundamental constant. For quantum states, all pure states have the same information entropy which is set to zero. This difference is a direct consequence of the difference in reducibility: in classical mechanics we can always access the internal dynamics, and therefore we can create narrower and narrower distributions (e.g. we can always divide a continuous material) and study their individual evolution; in quantum mechanics we cannot (e.g. we cannot prepare half an electron) so all states necessarily are associated with the same information entropy. The entropy for a pure state, then, is set to zero to signify that the dynamics within a quantum system is not accessible, there is no information to be had.
 
@@ -144,12 +129,12 @@ We have shown that the principal difference between classical and quantum system
 
 \section*{Acknowledgments}
 
- Funding for this work was provided in part by the MCubed program of theUniversity of Michigan.
+Funding for this work was provided in part by the MCubed program of the University of Michigan.
 
 
-\renewcommand\bibname{References}
+%\renewcommand\bibname{References}
 
-\bibliographystyle{ws-ijqi}
+\bibliographystyle{plain}
 \bibliography{bibliography}
 
 \end{document}
