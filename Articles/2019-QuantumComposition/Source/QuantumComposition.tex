@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Quantum system composition}
+\author{gabriele.carcassi }
+\date{October 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{First try}
+
+Postulate. The state of the system is represented by a unit vector $a$ in a vector space $\mathcal{A}$ with inner product $< \cdot, \cdot >_\mathcal{A} : \mathcal{A} \times \mathcal{A} \to \mathbb{C}$.
+
+%Postulate 2. For each measurable quantity $q$ of the system there exists an Hermitian operator $O_q : \mathcal{A} \to \mathcal{A}$ such that the expectation value is given by $\bar{q}=<v, O_qv>_\mathcal{A}$.
+
+Definition 1. A composite system $\mathcal{C}$ of two subsystems $\mathcal{A}$ and $\mathcal{B}$ is such that:
+\begin{enumerate}
+    \item given the states of the two subsystems we can construct a state in which those subsystems have that state; that is, there exists an injective map $C : \mathcal{A} \times \mathcal{B} \to \mathcal{C}$
+    
+    \item when the state of one of the subsystems is fixed, the state space of the composite system is equivalent to the one of the free subsystem. That is, given a unitary vector $b \in \mathcal{B}$ then for all $a_1, a_2 \in \mathcal{A}$:
+    
+    $$<a_1, a_2>_\mathcal{A} = <C(a_1, b), C(a_2, b)>_\mathcal{C}.$$
+    
+    Similarly, given a unitary vector $a \in \mathcal{A}$ then for all $b_1, b_2 \in \mathcal{B}$:
+    
+    $$<b_1, b_2>_\mathcal{B} = <C(a, b_1), C(a, b_1)>_\mathcal{C}.$$
+    
+%\item every measurable quantity on each subsystem corresponds to a measurable quantity on the composite system with the same expectation value; that is, for every Hermitian operator $O_{q_a}^\mathcal{A} : \mathcal{A} \to \mathcal{A}$ associated with a quantity $q_a$ there exists an Hermitian operator $O_{q_a}^\mathcal{C} :\mathcal{C} \to \mathcal{C}$ such that
+%$$\bar{q_a}=<v_a, O_{q_a}^\mathcal{A}v_a>_\mathcal{A} = <C(v_a, v_b), O_{q_a}^\mathcal{C}C(v_a, v_b)>_\mathcal{C}$$
+%for all $v_a \in V_\mathcal{A}$, $v_b \in V_\mathcal{B}$. Similarly, for every Hermitian operator $O_{q_b}^\mathcal{B} : \mathcal{B} \to \mathcal{B}$ associated with a quantity $q_b$ there exists an Hermitian operator $O_{q_b}^\mathcal{C} :\mathcal{C} \to \mathcal{C}$ such that
+%$$\bar{q_b}=<v_b, O_{q_b}^\mathcal{B}v_b>_\mathcal{B} = <C(v_a, v_b), O_{q_a}^\mathcal{C}C(v_a, v_b)>_\mathcal{C}$$
+%for all $v_a \in V_\mathcal{A}$, $v_b \in V_\mathcal{B}$.
+\end{enumerate}
+
+Proposition 1. $C = \otimes $
+
+Proof. Step 1. $C$ is bilinear. Fixing a unitary $b \in \mathcal{B}$, for all $a, a_1, a_2 \in \mathcal{A}$ and $k_1, k_2 \in \mathbb{C}$ we have
+\begin{equation}
+	\begin{aligned}
+	<C(a, b), C(k_1a_1 + k_2a_2, b)>_\mathcal{C} &= <a, k_1a_1 + k_2a_2>_\mathcal{A} \\
+	&= k_1<a, a_1>_\mathcal{A} + k_2<a, a_2>_\mathcal{A} \\
+	&= k_1<C(a, b), C(a_1, b)>_\mathcal{C} + k_2<C(a, b), C(a_2, b)>_\mathcal{C} \\
+	&= <C(a, b), k_1C(a_1, b) + k_2C(a_2, b)>_\mathcal{C} \\
+	\end{aligned}
+\end{equation}
+Since this is valid for all $a, a_1, a_2 \in \mathcal{A}$ and $k_1, k_2 \in \mathbb{C}$ then $C(k_1a_1 + k_2a_2, b)=k_1C(a_1, b) + k_2C(a_2, b)$. Similarly, we have $C(a, k_1b_1 + k_2b_2)=k_1C(a, b_1) + k_2C(a, b_2)$. $C$ is bilinear.
+
+%Step 1: inner product agrees over all linear operators. Let $A^\mathcal{A} : \mathcal{A} \to \mathcal{A}$ be a linear operator. We can decompose $A^\mathcal{A} = A_a^\mathcal{A} + \imath A_b^\mathcal{A}$ such that $A_a^\mathcal{A}$ and $A_b^\mathcal{A}$ are Hermitian. For all $v_a \in V_\mathcal{A}$, $v_b \in V_\mathcal{B}$ we have:
+%\begin{equation}
+%	\begin{aligned}
+%	<v_a, A^\mathcal{A}v_a>_\mathcal{A} &= <v_a, A_a^\mathcal{A}v_a>_\mathcal{A} + \imath <v_a, A_b^\mathcal{A}v_a>_\mathcal{A} \\
+%	&= <C(v_a, v_b), A_a^\mathcal{C}C(v_a, v_b)>_\mathcal{C} + \imath <C(v_a, v_b), A_b^\mathcal{C}C(v_a, v_b)>_\mathcal{C} \\
+%	&= <C(v_a, v_b), A^\mathcal{C}C(v_a, v_b)>_\mathcal{C}
+%	\end{aligned}
+%\end{equation}
+%Similarly for $\mathcal{B}$.
+
+
+Step 2: C is the tensor product. As $C : \mathcal{A} \times \mathcal{B} \to \mathcal{C}$ is a bilinear operator, for the universal property of the tensor product we can find a linear operator $\hat{C} : \mathcal{A} \otimes \mathcal{B} \to \mathcal{C}$ such that $C(a, b) = \hat{C}(a \otimes b)$. The set $E = \{ a\otimes b | <a,a>=1, <b,b>=1 \}$ forms a basis for the tensor product and therefore $\hat{C}(E)$ is a basis for $\mathcal{C}$. We have :
+$$<C(a, b), C(a, b)>_\mathcal{C} = <a\otimes b, a \otimes b>_{\otimes} = <a, a>_\mathcal{A} = <b, b>_\mathcal{B} = 1$$
+The function $\hat{C}$, then, is unitary over all elements of the basis and is therefore the identity. We have $C(a, b) = \hat{C}(a \otimes b) = a \otimes b$.
+
+\section{Second try}
+
+Lemma 1. Let $\mathcal{A}$, $\mathcal{B}$ and $\mathcal{C}$ be linear spaces. Let $C : \mathcal{A} \times \mathcal{B} \to \mathcal{C}$ be an injective map that satisfy the following:
+\begin{enumerate}
+	\item given a positive definite linear operator $\rho_\mathcal{A} : \mathcal{A} \to \mathcal{A}$, there exists a corresponding positive definite linear operator $\rho_\mathcal{C} : \mathcal{C} \to \mathcal{C}$ such that $\rho_\mathcal{C}(C(a,b)) = C(\rho_\mathcal{A}(a),b)$; moreover $k_1\rho_\mathcal{A}^1 + k_2\rho_\mathcal{A}^2$ corresponds to $k_1\rho_\mathcal{C}^1 + k_2\rho_\mathcal{C}^2$
+	\item given a positive definite linear operator $\rho_\mathcal{B} : \mathcal{B} \to \mathcal{B}$, there exists a corresponding positive definite linear operator $\rho_\mathcal{C} : \mathcal{C} \to \mathcal{C}$ such that $\rho_\mathcal{C}(C(a,b)) = C(a,\rho_\mathcal{B}(b))$; moreover $k_1\rho_\mathcal{B}^1 + k_2\rho_\mathcal{B}^2$ corresponds to $k_1\rho_\mathcal{C}^1 + k_2\rho_\mathcal{C}^2$
+\end{enumerate}
+Then $C$ is a bilinear operator. That is, $C(k_1a_1 + k_2a_2, b)=k_1C(a_1, b) + k_2C(a_2, b)$ and $C(a, k_1b_1 + k_2b_2)=k_1C(a, b_1) + k_2C(a, b_2)$.
+
+Proof. \emph{Extend linearity to negative and imaginary operators.} We can univocally extend the correspondence to negative and imaginary operators. If $\rho_\mathcal{A}$ is a positive operator, we have $\rho_\mathcal{A} = - (-\rho_\mathcal{A})$. If we extend the linear correspondence, we must have $\rho_\mathcal{C} = - (-\rho_\mathcal{A})_\mathcal{C}$ and therefore $(-\rho_\mathcal{A})_\mathcal{C} = - \rho_\mathcal{C}$. Similarly, $- \rho_\mathcal{A} = \imath (\imath \rho_\mathcal{A})$ which leads to $(\imath \rho_\mathcal{A})_\mathcal{C} = \imath \rho_\mathcal{C}$. One can perform the same extension on $\mathcal{B}$.
+
+\emph{All linear operators have a linear correspondence.} Let $O_\mathcal{A}$ be a linear operator. We can always write $O_\mathcal{A} = O_\mathcal{A}^{r+} - O_\mathcal{A}^{r-} + \imath O_\mathcal{A}^{i+} - \imath O_\mathcal{A}^{i-}$ where  $O_\mathcal{A}^{r+}$, $O_\mathcal{A}^{r-}$, $\imath O_\mathcal{A}^{i+}$ and $\imath O_\mathcal{A}^{i-}$ are all positive definite. Therefore we can find a corresponding $O_\mathcal{C}$. One can perform the same expansion on linear operators on $\mathcal{B}$.
+
+\emph{The map $C$ is bilinear.} Let $a_1, a_2 \in \mathcal{A}$. The we can find a linear operator such that $a_2 = O a_1$. We have $C(k_1 a_1 + k_2 a_2, b) = C(k_1 I a_1 + k_2 O a_1, b) = (k_1 I + k_2 O)_\mathcal{C}C(a_1, b) = (k_1 I)_\mathcal{C}C(a_1, b) + (k_2 O)_\mathcal{C}C(a_1, b) = C(k_1 I a_1, b) + C(k_2 O a_1, b)  = C(k_1 a, b) + C(k_2 a_2, b)$. Similarly, we find $C(a, k_1b_1 + k_2b_2)=k_1C(a, b_1) + k_2C(a, b_2)$. The map is bilinear.
+
+
+\end{document}
