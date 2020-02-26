@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Remove line spaces between items of enumerate and itemize
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+\newtheorem{assump}{Assumption}
+\renewcommand*{\theassump}{\Roman{assump}}
+
+\newtheorem{axiom}[equation]{Axiom}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{coro}[equation]{Corollary}
+\newtheorem{thrm}[equation]{Theorem}
+
+%\theoremstyle{definition}
+
+\newenvironment{remark}{\emph{Remark}.}{}
+\newenvironment{rationale}{\emph{Rationale}.}{\qed}
+\newenvironment{justification}{\emph{Justification}.}{\qed}
+\renewenvironment{proof}{\emph{Proof}.}{\qed}
+
+
+\title{Just the math: probability theory}
+
+\date{\vspace{-5ex}}
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+Short summary of probability theory.
+\end{abstract}
+
+\section{Measure theory}
+
+\begin{defn}
+	Given a set $E$, a $\sigma$-algebra $\mathcal{F} \subseteq 2^E$ is a collection of subsets of $E$ such that it:
+	\begin{itemize}
+		\item contains the entire space (i.e. $E \in \mathcal{F}$)
+		\item is closed under complement (i.e. if $A \in \mathcal{F}$ then $A^C \in \mathcal{F}$)
+		\item is closed under countable union (i.e. if $\{A_i\}_{i=1}^\infty \subseteq \mathcal{F}$ then $\bigcup_{i=1}^\infty A_i \in \mathcal{F}$)
+	\end{itemize}
+\end{defn}
+
+\begin{coro}
+	By DeMorgan laws, a $\sigma$-algebra is also closed under countable intersections.
+\end{coro}
+
+\begin{defn}
+	A \textbf{measurable space} is a tuple $(E, \mathcal{F})$ where $E$ is a set and $\mathcal{F}$ is a $\sigma$-algebra over $E$.
+\end{defn}
+
+\begin{defn}
+	A \textbf{measure} over a measurable space $(E, \mathcal{F})$ is a function $\mu : \mathcal{F} \to [0, +\infty]$ such that:
+	\begin{itemize}
+	\item is \textbf{countably additive} (also called \textbf{$\sigma$-additive}) (i.e. $\mu(\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty \mu( A_i)$ where $\{A_i\}_{i=1}^\infty \subseteq \mathcal{F}$ is a countable collection of disjoint sets)
+	\item the measure of the empty set is zero (i.e. $\mu(\emptyset) = 0$)
+\end{itemize}
+\end{defn}
+
+\begin{defn}
+	Given two measurable spaces $(A, \mathcal{F})$ and $(B, \mathcal{G})$, a \textbf{measurable function} is a map $X : A \to B$ such that the reverse image of an element of the $\sigma$-algebra of $B$ is in the $\sigma$-algebra of $A$ (i.e. $X^{-1}(U) \in \mathcal{F}$ where $U \in \mathcal{G}$).
+\end{defn}
+
+\section{Probability space}
+
+\begin{defn}
+	A \textbf{probability space} is a triple $(\Omega, \mathcal{F}, P)$ where:
+	\begin{itemize}
+		\item the set $\Omega$ is the \textbf{sample space}, or \textbf{possibility space}, that contains all the possible outcomes
+		\item an \textbf{event} $A \subseteq \Omega$ is a set of possible outcomes and the $\sigma$-algebra $\mathcal{F}$ is the collection of all possible events
+		\item the measure $P : \Omega \to [0,1]$ is the \textbf{probability measure} that returns one for the entire sample space (i.e. $P(\Omega) = 1$)
+	\end{itemize}
+\end{defn}
+
+\section{Random variables}
+
+\begin{defn}
+	Given a measurable space $(E, \mathcal{G})$, a \textbf{random variable} $X : \Omega \to E$ is a measurable function. Typically, $E = \mathbb{R}$.
+\end{defn}
+
+The following definitions apply only over random variables over the reals.
+
+\begin{defn}
+	Given a random variable $X$, the \textbf{Cumulative Distribution Function} or \textbf{CDF} $F_X : \mathbb{R} \to [0,1]$ is given by $F_X(x) = P(X \leq x)$ or more precisely $F_X(x) = P(X^{-1}( (-\infty, x] ))$.
+\end{defn}
+
+\begin{coro}
+	For all random variables:
+	\begin{itemize}
+		\item $F_X(-\infty) = 0$ and $F_X(+\infty) = 1$
+		\item $F_X$ is monotonic
+		\item $P(a < X \leq b) = F_X(b) - F_X(a)$ 
+	\end{itemize} 
+\end{coro}
+
+\begin{defn}
+	A random variable is \textbf{discrete} if the CDF is piecewise constant, is \textbf{continuous} if the CDF is continuous, is \textbf{mixed} if it is neither.
+\end{defn}
+
+\begin{defn}
+	For a continuous random variable, the \textbf{probability density function} or \textbf{PDF} $f_X : \mathbb{R} \to \mathbb{R}$ is the Radon–Nikodym derivative of the CDF (i.e. $f_X = \frac{d F_x}{dx}$).
+\end{defn}
+
+\begin{remark}
+	The Radon–Nikodym derivative is a purely measure theoretic way to define the derivative.
+\end{remark}
+
+\begin{coro}
+	For all continuous random variables:
+	\begin{itemize}
+		\item $P[a \leq X \leq b] = \int_a^b f_X dx$
+		\item $\int_{-\infty}^{\infty} f_X dx = 1$
+	\end{itemize} 
+\end{coro}
+
+\begin{defn}
+	Given a non-negative random variable $X$, the expectation value is defined to be $E[X] = \int_\Omega X dP(\omega)$. In general, $X = X^+ - X^-$ so we can write $E[X] = E[X^+] - E[X^-]$ if both 
+	$$
+	E[X]=
+	\begin{cases}
+	E[X^+] - E[X^-]  &   E[X^+] < \infty; E[X^-] < \infty \\
+	\infty &   E[X^+] = \infty; E[X^-] < \infty \\
+	-\infty &   E[X^+] < \infty; E[X^-] = \infty \\
+	undefined &   E[X^+] = \infty; E[X^-] = \infty
+	\end{cases}
+	$$
+\end{defn}
+
+\begin{remark}
+	The integral used is the Lebesgue integral.
+\end{remark}
+
+%\bibliographystyle{plain}
+%\bibliography{bibliography}
+
+\end{document}
