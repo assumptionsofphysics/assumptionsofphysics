@@ -1,5 +1,6 @@
-\documentclass{article}
-\usepackage{authblk}
+\documentclass[submission,copyright,creativecommons]{eptcs}
+\providecommand{\event}{QPL 2020} % Name of the event you are submitting to
+%\usepackage{authblk}
 
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -119,14 +120,15 @@
 
 
 \title{A model of the continuum from experimental verifiability}
-\author[1]{Gabriele Carcassi}
-\author[1]{Christine A. Aidala}
-\affil[1]{
-	Physics Department\\
-	University of Michigan
-	}
-
+\author{Gabriele Carcassi \institute{Physics Department\\ University of Michigan}
+	\email{carcassi@umich.edu}
+	\and Christine A. Aidala
+	\institute{Physics Department\\ University of Michigan}
+	\email{caidala@umich.edu}
+}
 \date{\today}
+\def\titlerunning{A model of the continuum from experimental verifiability}
+\def\authorrunning{Gabriele Carcassi, Christine A. Aidala}
 \begin{document}
 
 \maketitle
@@ -262,7 +264,7 @@ The punchline here is that if any single argument along these lines is accepted,
 
 
 
-\bibliographystyle{unsrt}
+\bibliographystyle{eptcs}
 \bibliography{bibliography}
 
 \end{document}
