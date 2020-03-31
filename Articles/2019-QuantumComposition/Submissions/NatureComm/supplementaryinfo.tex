@@ -108,20 +108,14 @@
 	\begin{post}\label{post_state}
 		The state of a quantum system is described by a ray $\pj{\psi} = \{
 		\alpha |\psi\> \, |$ non-null $\alpha \in
-		\mathbb{C},|\psi\>\in\mathcal{H}\}$ in a complex Hilbert space
+		\mathbb{C},|\psi\>\in\mathcal{H}\}$ in a separable complex Hilbert space
 		$\mathcal{H}$, and the system's observable properties are described
 		by self-adjoint operators acting on that space. %All vectors represent possible   system system states and all self-adjoint operators represent possible system   observables.
 	\end{post}
 	
 	\begin{remark}
-		All proofs, except one, should not depend on the dimensionality of
-		the space. The exception is proposition \ref{prop_fundProj} which
-		works if the basis for the space is finite since we are constructing
-		the map one component at a time. It should be possible to extend it
-		using weak convergence in the case of countable basis
-		(i.e. separable Hilbert spaces) by creating a sequence that
-		converges to each vector. We are not specifically addressing this
-		case in this paper.
+		All proofs, except one, do not depend on the dimensionality of
+		the space. The exception is proposition \ref{prop_fundProj} for which the prove the finite case by induction and then show that it holds in the limit. This would not work in the non-separable case, since the basis would not be countable.
 	\end{remark}
 	
 	\begin{post}\label{post_measurements}
@@ -210,7 +204,7 @@
 	\end{proof}
 	
 	\begin{prop}[Fundamental theorem of projective geometry]\label{prop_fundProj}
-		Let $X$ and $Y$ be two complex Hilbert spaces and $\pj{X}$ and $\pj{Y}$ their respective projective spaces. Let $M : \pj{X} \to \pj{Y}$ be a map such that $P(\pj{v}|\pj{w}) = P(M(\pj{v})|M(\pj{w}))$. Then we can find, up to a total phase, a unique map $m : X \to Y$ such that $\pj{m(v)}=M(\pj{v})$. Moreover, $m$ is either linear, $\<v|w\> = \<m(v)|m(w)\>$, or anti-linear, $\<v|w\> = \<m(w)|m(v)\>$.
+		Let $X$ and $Y$ be two separable complex Hilbert spaces and $\pj{X}$ and $\pj{Y}$ their respective projective spaces. Let $M : \pj{X} \to \pj{Y}$ be a map such that $P(\pj{v}|\pj{w}) = P(M(\pj{v})|M(\pj{w}))$. Then we can find, up to a total phase, a unique map $m : X \to Y$ such that $\pj{m(v)}=M(\pj{v})$. Moreover, $m$ is either linear, $\<v|w\> = \<m(v)|m(w)\>$, or anti-linear, $\<v|w\> = \<m(w)|m(v)\>$.
 	\end{prop}
 	
 	\begin{remark}
@@ -241,9 +235,11 @@
 		
 		Now we show that for all $c_2, ..., c_n \in \mathbb{C}$ we have $M(\pj{e_1 + c_2 e_2 + ... + c_n e_n}) = \pj{v_1 + \tau(c_2) v_2 + ... + \tau(c_n) v_n}$. We prove this by induction. If only the first two components are non-zero, we have  $M(\pj{e_1 + c_2 e_2}) = \pj{v_1 + \tau(c_2) v_2}$ by construction. Let $2 < p \leq n$. If we assume $M(\pj{e_1 + c_2 e_2 + ... + c_{p-1} e_{p-1}}) = \pj{v_1 + \tau(c_2) v_2 + ... + \tau(c_{p-1}) v_{p-1}}$, then $M(\pj{e_1 + c_2 e_2 + ... + c_p e_p}) \subset M(\pj{Sp(e_1 + c_2 e_2 + ... + c_{p-1} e_{p-1}, e_p})) = \pj{Sp(v_1 + c_2 v_2 + ... + c_{p-1} v_{p-1}, v_p)}$. This means that there exists $k_p \in \mathbb{C}$ such that $M(\pj{e_1 + c_2 e_2 + ... + c_p e_p}) = \pj{v_1 + c_2 v_2 + ... + c_{p-1} v_{p-1} + k_p v_p)}$. But we also have $M(\pj{e_1 + c_2 e_2 + ... + c_p e_p}) \subset M(\pj{Sp(e_1 + c_p e_p, c_2 e_2 + ... + c_{p-1} e_{p-1}})) = \pj{Sp(v_1 + \tau(c_p) v_p, c_2 v_2 + ... + c_{p-1} v_{p-1}, v_p)}$. The only way this can work is if $k_p = \tau(c_p)$.
 		
-		We also need to show the above works when there is no component on the first element of the basis. That is, for all $c_2, ..., c_n \in \mathbb{C}$ we have $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) = \underbar{$\tau(c_2) v_2 + ... + \tau(c_n) v_n$}$. First note that $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) \subset M(\underbar{$Sp(e_2, ..., e_n)$)} = \underbar{$Sp(v_2, ..., v_n)$}$. Also note that $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) \subset M(\underbar{$Sp(e_1, e_1 + c_2 e_2 + ... + c_n e_n)$)} = \underbar{$Sp(v_1, v_1 + \tau(c_2) v_2 + ... + \tau(c_n) v_n)$}$. The only way this can work is if $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) = \underbar{$\tau(c_2) v_2 + ... + \tau(c_n) v_n$}$.
+		The above works also over a countable sum. That is, for all $c_2, ..., c_n, ... \in \mathbb{C}$ we have $M(\pj{e_1 + c_2 e_2 + ... + c_n e_n + ...}) = \pj{v_1 + \tau(c_2) v_2 + ... + \tau(c_n) v_n + ...}$. Let $X$ be a separable space. Let $a = \sum_{k=1}^\infty c_k e_k$ such that $c_1 = 1$. Let $a_i = \sum_{k=1}^i c_k e_k$ be the sum of the first $i$ components. We have $\lim\limits_{i \to \infty} a_i = a$. Let $b_i = \sum_{k=1}^i \tau(c_k) v_k$ and $b = \sum_{k=1}^\infty \tau(c_k) e_k$. We have $\lim\limits_{i \to \infty} b_i = b$. We already know that $\pj{b_i} = M(\pj{a_i})$ for all finite $i$. We need to show that $\pj{b} = M(\pj{a})$. First note that, given $a,b \in Y$, $a=b$ if and only if $\<a,c\> = \<b,c\>$ for all $c \in Y$. Therefore $\pj{a}=\pj{b}$ if and only if $P(\pj{a}, \pj{c}) = P(\pj{b}, \pj{c})$ for all $c \in Y$. For all $c \in X$ we have $\lim\limits_{i \to \infty} P(\pj{a_i}, \pj{c}) = P(\pj{a}, \pj{c}) = P(M(\pj{a}), M(\pj{c}))$ we also have  $\lim\limits_{i \to \infty} P(\pj{a_i}, \pj{c}) = \lim\limits_{i \to \infty} P(M(\pj{a_i}), M(\pj{c})) = \lim\limits_{i \to \infty} P(b_i, M(\pj{c})) = P(\pj{b}, M(\pj{c}))$. Therefore $P(M(\pj{a}), M(\pj{c})) = P(\pj{b}, M(\pj{c}))$ for all $c \in X$. Note that $M$ is bijective over $Y'=M(\pj{X})$. Therefore $P(M(\pj{a}), \pj{c}) = P(\pj{b}, \pj{c})$ for all $c \in Y$ and $\pj{b} = M(\pj{a})$.
 		
-		We can now define $m : X \to Y$ such that $m(e_i) = v_i$ for all $i$ and $m(\sum_{i \in I} c_i e_i) = \sum_{i \in I} \tau(c_i) v_i$. This means $\underbar{$m(\sum_{i \in I} c_i e_i)$} = M(\underbar{$\sum_{i \in I} c_i e_i$})$. Moreover, if $\tau(c) = c$ we have $\<m(\sum_{i \in I} c_i e_i)|m(\sum_{j \in I} d_j e_j)\> = \<\sum_{i \in I} c_i v_i|\sum_{j \in I} d_j v_j\> = c_i^* d_j \delta_{ij} = \<\sum_{i \in I} c_i e_i|\sum_{j \in I} d_j e_j\>$. On the other hand, if $\tau(c) = c^*$ we have $\<m(\sum_{i \in I} c_i e_i)|m(\sum_{j \in I} d_j e_j)\> = \<\sum_{i \in I} c_i^* v_i|\sum_{j \in I} d_j^* v_j\> = \<\sum_{j \in I} d_j v_j|\sum_{i \in I} c_i v_i\> = d_i^* c_j \delta_{ij} = \<\sum_{j \in I} d_j e_j|\sum_{i \in I} c_i e_i\>$.
+		We also need to show the above works when there is no component on the first element of the basis. That is, for all $c_2, ..., c_n \in \mathbb{C}$ we have $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) = \underbar{$\tau(c_2) v_2 + ... + \tau(c_n) v_n$}$. First note that $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) \subset M(\underbar{$Sp(e_2, ..., e_n)$)} = \underbar{$Sp(v_2, ..., v_n)$}$. Also note that $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) \subset M(\underbar{$Sp(e_1, e_1 + c_2 e_2 + ... + c_n e_n)$)} = \underbar{$Sp(v_1, v_1 + \tau(c_2) v_2 + ... + \tau(c_n) v_n)$}$. The only way this can work is if $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) = \underbar{$\tau(c_2) v_2 + ... + \tau(c_n) v_n$}$. With same reasoning as before, we can extend the sum to the countably infinite case.
+		
+		We can now define $m : X \to Y$ such that $m(e_i) = v_i$ for all $i$ and $m(\sum_{i \in I} c_i e_i) = \sum_{i \in I} \tau(c_i) v_i$. This means $\underbar{$m(\sum_{i \in I} c_i e_i)$} = M(\underbar{$\sum_{i \in I} c_i e_i$})$. Moreover, if $\tau(c) = c$ we have $\<m(\sum_{i \in I} c_i e_i)|m(\sum_{j \in I} d_j e_j)\> = \<\sum_{i \in I} c_i v_i|\sum_{j \in I} d_j v_j\> = c_i^* d_j \delta_{ij} = \<\sum_{i \in I} c_i e_i|\sum_{j \in I} d_j e_j\>$. On the other hand, if $\tau(c) = c^*$ we have $\<m(\sum_{i \in I} c_i e_i)|m(\sum_{j \in I} d_j e_j)\> = \<\sum_{i \in I} c_i^* v_i|\sum_{j \in I} d_j^* v_j\> = \<\sum_{j \in I} d_j v_j|\sum_{i \in I} c_i v_i\> = d_i^* c_j \delta_{ij} = \<\sum_{j \in I} d_j e_j|\sum_{i \in I} c_i e_i\>$. This can be extended to the case where the basis is countable.
 	\end{proof}
 	
 	\begin{remark}
