@@ -1,0 +1,76 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Remove line spaces between items of enumerate and itemize
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+\newtheorem{assump}{Assumption}
+\renewcommand*{\theassump}{\Roman{assump}}
+
+\newtheorem{axiom}[equation]{Axiom}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{coro}[equation]{Corollary}
+\newtheorem{thrm}[equation]{Theorem}
+
+%\theoremstyle{definition}
+
+\newenvironment{remark}{\emph{Remark}.}{}
+\newenvironment{rationale}{\emph{Rationale}.}{\qed}
+\newenvironment{justification}{\emph{Justification}.}{\qed}
+\renewenvironment{proof}{\emph{Proof}.}{\qed}
+
+
+\title{Just the math: information geometry}
+
+\date{\vspace{-5ex}}
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+Short summary of information geometry.
+\end{abstract}
+
+\section{Parametric model}
+
+\begin{defn}
+	We call $\mathcal{S}$ the set of all possible probability density functions.
+\end{defn}
+
+\begin{remark}
+	We can think of $\mathcal{S}$ as the set of function that are discontinuous at countably many points whose integral is unitary.
+\end{remark}
+
+\begin{defn}
+	A \textbf{divergence} is a function $D : \mathcal{S} \times \mathcal{S} \to \mathbb{R}$ with the following properties:
+	\begin{enumerate}
+		\item $D(a, b) \geq 0$ for all $a,b \in \mathcal{S}$
+		\item $D(a, b) = 0$ if and only if $a=b$
+	\end{enumerate}
+\end{defn}
+
+\begin{remark}
+	A divergence need not be symmetrical. A divergence need not satisfy the triangle inequality. A divergence is not a distance.
+\end{remark}
+
+\begin{defn}
+	Given a manifold $M$, a \textbf{continuous parametric model} is a function $P_M : M \to \mathcal{S}$ that returns a probability density function (PDF) of a random variable $X$.
+\end{defn}
+
+\begin{defn}
+	For a parametric model, we can define the diverge in terms of the point. That is, $D : M \times M \to \mathbb{R}$ where $D[a | b] = D(P_M(a), P_M(b)$ for all $a,b \in M$. Moreover, we can define left and right derivatives as follows:
+	\begin{itemize}
+		\item $D[\partial_i \cdot | \cdot] : TM \times M \to \mathbb{R}$ such that $D[ (\partial_i) \xi^i(a) | \xi^j(b)] = \partial_i D[\xi^i(a) | \xi^j(b)]$
+		\item $D[\cdot | \partial_j \cdot] : M \times TM \to \mathbb{R}$ such that $D[ \xi^i(a) | (\partial_j) \xi^j(b)] = \partial_j D[\xi^i(a) | \xi^j(b)]$
+	\end{itemize} 
+\end{defn}
+
+%\bibliographystyle{plain}
+%\bibliography{bibliography}
+
+\end{document}
