@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{dutchcal}
+\usepackage{braket}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usepackage{forest}
+\usetikzlibrary{trees}
+\usetikzlibrary{calc}
+\usepackage{calculator}
+\usepackage{standalone}
+
+
+
+\begin{document}
+
+
+\section*{Reviewer 1 response}
+
+\emph{We again thank reviewer 1 for the continued discussion which we feel helped strengthen the paper.}
+\bigskip
+
+
+\section*{Reviewer 2 response}
+
+\emph{We thank reviewer 2 for the constructive comments and positive recommendation.}
+\bigskip
+
+\textbf{I’m unsure of the argument contained in equation (10). If ‘simply a change
+	of coordinates’ means $\hat{q} = f(q)$ and $\hat{p} = g(p)$, for some functions $f(\cdot)$, $g(\cdot)$,	then $\{\hat{q}, \hat{p}\} = 1$ implies that $\hat{p} = p/c+A$ and $\hat{q} = cq+B$, for some constants $c$, $A$ and $B$ and the last line in (10) is true only if $A = 0$. On the other
+	hand if ‘simply a change of coordinates’ means that $\hat{p} = p/c$ and $\hat{q} = cq$
+	then $\{\hat{q}, \hat{p}\} = 1$ is trivially true without (10). Finally if only $\hat{q} = f(q)$ and
+	$\{\hat{q}, \hat{p}\} = 1$ are assumed the the fourth line in (10) follows from the third
+	only if $\hat{p} = p/c$, in which case it follows that $\hat{q} = cq + B$. }
+
+\emph{By coordinate transformation we mean only $\hat{q} = f(q)$, meaning that the new coordinate $\hat{q}$ is a function of the old coordinate $q$. This is not linear in general, Cartesian to polar being a standard example. With a single coordinate, we could set $\hat{q} = q^3$, then $\hat{p} = \frac{1}{3 q^2} p$. One can verify that $\{\hat{q}, \hat{p}\} = \{ q^3, \frac{1}{3 q^2} p \} = 1$. We modified the text before and after equation (10) to clarify the relationship and highlight the possible non-linearity:}
+
+\bigskip
+
+...
+
+If the change of variables is simply a change of coordinates, then the new coordinate $\hat{q}$ is an arbitrary (possibly non-linear) function of just the old coordinate $q$. We have:
+\begin{equation}
+\label{coordinate_change}
+\begin{aligned}
+\hat{q} &= \hat{q}(q) \\
+\{\hat{q}, \hat{p}\} &= 1 = \frac{\partial \hat{q}}{\partial q} \frac{\partial \hat{p}}{\partial p} \\
+\dfrac{\partial \hat{p}}{\partial p} &= \frac{\partial \hat{q}}{\partial q} ^{-1} = \frac{\partial q}{\partial \hat{q}} \\
+\hat{p} &= \frac{\partial q}{\partial \hat{q}} p
+\end{aligned}
+\end{equation}
+In general, conjugate momentum $\hat{p}$ will depend on the coordinate $q$ through the function $\frac{\partial q}{\partial \hat{q}}$, which is a constant only in the case the transformation is linear. This is exactly the transformation law for the covariant component of a covector. On the other hand, the density and information entropy are invariant:
+
+...
+
+\bigskip
+
+\textbf{I think the last two lines of page 21 and the anecdote in footnote 13 need
+	amendment in the light of the paper by Chandrasekar et al. (J. Math.
+	Phys. Comm. 48, 032701 (2007) ) who derive forms for the Hamiltonian
+	of a damped linear harmonic oscillator.}
+
+\emph{This is a very interesting aspect of mechanics that is a source of great confusion. We were trying to avoid discussing it, since the paper is already long and a suitable treatment would require adequate space. The core issue is that physically different systems can be described by the same set of equations for position/velocity even though the cause for that motion in terms of momentum/energy/force/mass can be different. The best way to address this would be with a few instructive examples that show exactly how a conservative system, through a non-linear coordinate transformation, can be made to look like a non-conservative one. Unfortunately, this would probably add another three or four pages to an already long paper. We added this footnote in the last two lines of page 21, hoping it is enough to give an idea:}
+
+\bigskip
+
+We should again stress that, because every first-order system of equations can be turned into a Hamiltonian one\cite{AllSystemsAreHam}, we can always find a conservative system that in a suitable non-inertial frame ``looks like'' (i.e.~it has the same trajectories of) a non-conservative one. For example, if we see a body coming to a full stop, it could be because drag was acting on it, because it ejected part of its mass, or simply because we accelerated to a comoving frame. The kinematic variables (i.e.~position, velocity and acceleration) are not enough to define whether the system is actually non-conservative, especially if we do not know what reference system we are in. Therefore an equation in terms of $x$, $\dot{x}$ and $\ddot{x}$ is not enough to know we have ``a system under drag''. It is the dynamic variables (i.e.~momentum, energy, force and mass) that provide that characterization: it is the loss of energy through heat that tells us there was drag. Therefore, if one looks closely at Hamiltonian realizations of equations that come from non-conservative systems, such as \cite{chandrasekar2007lagrangian}, one will find non-standard relationships between position, velocity, momentum and energy. At least one of these relationships will have to break down at the equilibrium (e.g.~diverging momentum or energy). There is no way around this because Hamiltonian systems cannot have attractors, while a true dissipative system must have one.
+
+\bibliographystyle{alpha}
+
+\bibliography{bibliography}{}
+
+\end{document}
