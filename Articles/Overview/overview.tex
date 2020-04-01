@@ -6,7 +6,7 @@
 
 \newif\ifextended
 
-\extendedtrue
+\extendedfalse
 
 \newcommand\fact[2]{\ifextended \emph{#1}. #2 \fi}
 
@@ -16,6 +16,7 @@
 \fi}
 \author{Gabriele Carcassi, Christine A. Aidala}
 \date{January 2020}
+
 
 
 \begin{document}
@@ -32,6 +33,10 @@ The aim of this article is to give a broad overview of the project ``Assumptions
 
 As we plan to update this document, please make sure you have a recent version. Each subsection will be fairly self-contained to allow the reader to skim through the document and focus on the parts of interest. It will contain a summary section at the beginning and a titled paragraph for each of the main ideas or findings.
 
+\ifextended (This extended version contains the same material of the short version, but adds more detail.)
+\else (This short version contains the basic ideas and skips on the details.)
+\fi
+
 \section{Goals and method}
 
 \textbf{A better understanding of physics.} The overall goal of the project is to better understand physics: to understand why the laws of quantum mechanics, or classical mechanics, are what they are; to understand the limit of the validity of the different theories; to understand what the Poisson brackets, or any other mathematical operation, represent physically; to understand which mathematical objects correspond to actual physical entities and which are just artifacts; to understand what new theories are possible.
@@ -46,7 +51,7 @@ The overall goal of a better understanding of physics can be broken down into th
 
 \textbf{Put physics back at the center of the discussion.} Physics used to try and identifies basic ``laws'' or ``principles'' for itself. Current physical theories, instead, just postulate a mathematical structure relegating physics to a mere after-the-fact interpretation. We want to go back to the old approach: we want to start with the physics and derive the math suitable to capture those physical concepts. Ideally, no mathematically construct should be introduced if it is not physically motivated. Why is phase-space formed with conjugate pairs? What does the commutator represent? If these are really representing physical objects, we should have a better understanding than a vague ``you can think of it as...'' or a cryptic mathematical ``it is the left action of a fiber bundle on a...''. Most of our understanding should come from physical intuition and not from the mathematics it is used to represent it.
 
-\textbf{Give science sturdier mathematical grounds.} There is a general sense within physics that, at some point, mathematical details are physically not interesting and should be handled ``appropriately'' by mathematicians. Therefore even mathematical structures that originally came from physics are now formalized by mathematicians to solve their own needs, and not the physicist's. This, in turns, reinforces the idea that those details are not interesting to the physicists. The reality is that a well-posed physical problem must also be a well-posed mathematical problem, but not the other way around, so leaving the details to the mathematicians means having fundamental structures that are less physical.\footnote{For example, quantum states are modeled with Hilbert spaces even though we know they contain mathematical objects that are unphysical.} Mathematicians will come up with definitions so that theorems are easier to prove or calculations are easier to perform. They will not come up with definitions based on whether they are physically meaningful. If we give a theory, as we said before, by simply stating a mathematical structure, then there is no guarantee that what we give is a fully physical theory. Unphysical elements simply means the physical problem was not specified correctly. If we truly are able to give a precise physical meaning to every mathematical object, then our formal structures will map one-to-one to our physical understanding. This means no unphysical mathematical artifacts and a more precise mathematical treatment of physics.
+\textbf{Give science sturdier mathematical grounds.} There is a general sense within physics that, at some point, mathematical details are physically not interesting and should be handled ``appropriately'' by mathematicians. Therefore even mathematical structures that originally came from physics are now formalized by mathematicians to solve their own needs, and not the physicist's. This, in turns, reinforces the idea that those details are not interesting to the physicists. The reality is that a well-posed physical problem must also be a well-posed mathematical problem, but not the other way around, so leaving the details to the mathematicians means having fundamental structures that are less physical.\footnote{For example, quantum states are modeled with Hilbert spaces even though we know they contain mathematical objects that are unphysical.} Mathematicians will come up with definitions so that theorems are easier to prove or calculations are easier to perform. They will not come up with definitions based on whether they are physically meaningful. If we give a theory, as we said before, by simply stating a mathematical structure, then there is no guarantee that what we give is a fully physical theory. Unphysical elements (e.g. mathematical solutions that do not correspond to a physical case) simply means the physical problem was not specified correctly. If we truly are able to give a precise physical meaning to every mathematical object, then our formal structures will map one-to-one to our physical understanding. This means no unphysical mathematical artifacts and a more precise mathematical treatment of physics.
 
 \textbf{Foster connections between different fields of knowledge.} Knowledge is increasingly specialized and fewer and fewer people are well versed in more than a couple of subjects. Yet, connections between different fields of science, mathematics and engineering are routinely found to be useful for one simple reason: nature is one and does not care about such divisions. A more holistic vision of scientific knowledge, then, is a natural byproduct of our effort. The notions of state, environment, process and equilibrium, for example, are intertwined and are fundamental to most fields of science and engineering. Proper characterization of such basic concepts will give a common language and mathematical tools that span across different disciplines.
 
@@ -72,7 +77,7 @@ The overall project is organized into the following macro-categories.
 
 \textbf{Physics core.} This defines the notions that are fundamental to physics specifically, such as states, processes, environment, equilibrium, determinism and so on. The idea is to define these concepts in the most general way possible such that common requirements can be identified. Every physical theory is a further refinement of this structure in that it will choose to study a particular set of states over a particular process.
 
-\textbf{Physical theories.} This studies the different assumptions that are needed to recover the known physical theories. The assumptions typically describe what level of description is available for the system and its parts, how does it change in time and whether trajectories are enough to recover it.
+\textbf{Physical theories.} This studies the different assumptions that are needed to recover the known physical theories. The assumptions typically describe what level of description is available for the system and its parts, how does it change in time and whether trajectories are enough to recover all information.
 
 \section{The general theory}
 
@@ -219,7 +224,7 @@ The general theory at this point covers only the topological aspects and needs t
 
 \section{Physics core}
 
-This part has not yet been formally developed, though some common ideas are starting to emerge. The main idea comes from the realization that, when defining a system, the notions of states, processes, time, evolution laws, interaction with the environment and equilibria are all interrelated and can't be given independently. Roughly speaking, to define a system we have to choose a boundary that separates it from the environment. Only the quantities that are unaffected by the interaction with the environment can, in those circumstances, be thought as properties of the system. This in turns is linked to what we can define as state for the system, which is linked to the laws we can write. The processes and the laws are naturally linked to what is assumed about time.
+This part has not yet been formally developed, though some common ideas are starting to emerge. The main idea comes from the realization that, when defining a system, the notions of states, processes, time, law of evolution, interaction with the environment and equilibria are all interrelated and can't be given independently. Roughly speaking, to define a system we have to choose a boundary that separates it from the environment. Only the quantities that are unaffected by the interaction with the environment can, in those circumstances, be thought as properties of the system. This in turns is linked to what we can define as state for the system, which is linked to the laws we can write. The processes and the laws are naturally linked to what is assumed about time.
 
 The idea, then, is that giving a set of states is actually giving a much richer structure. It means defining a set of interaction at the boundary, it means defining equilibria with such interactions, it means defining time-scales below which and above which our description fails or is not interesting, it means defining how probing the system may affect those assumptions.\footnote{If we are studying a molecule, we may impose boundaries and processes such that that molecule and its constituent remain stable, which means, for example, interaction energies lower than the chemical bonds.} The plan is, at some point, to formalize these objects and relationships to provide a basic mathematical structure that all physical theories must adhere to.
 
