@@ -1,5 +1,9 @@
 \documentclass[letterpaper]{article}
 
+\input{../../../include/basicstyle}
+\input{../../../include/theorems}
+\input{../../../include/logic}
+
 \begin{document}
 
 \title{TBD}
@@ -16,6 +20,21 @@
 
 \section{Introduction}
 
+------------------
+Cite other axiomatic works.
+
+Single state space to capture:
+* descriptions at all levels
+* descriptions at different times
+* correlations between descriptions at equal time (equations of state)
+* correlations between descriptions at different times (evolution laws)
+* different correlations at different description
+* granularity/precision of such descriptions
+
+We can't have:
+* probability as a native concept
+------------------
+
 In the intro, describe only the discrete case as it simpler to understand and already contains all the physics. The continuous case adds the complication of 
 
 Evolution is a temporal sequence of states. Process is a set of possible evolutions. What we want to study is how a statement about a state at a particular time selects a particular set of possible evolutions and therefore selects a set of possible states at a previous or past time.
@@ -29,6 +48,7 @@ If we compose independent systems, the number of possible states and trajectorie
 \section{Different level of precision}
 
 
+
 We regard states as points in a space. Conceptually, this presents problems. Mathematically, what we care about is the sigma algebra.
 
 Introduce theoretical domains as point-less spaces, descriptions, that follow a countable boolean algebra. A size is given by a measure, additive map from the theoretical domain to the reals.
@@ -39,21 +59,6 @@ Two statements are independent if all minterms are possible, are not contradicti
 
 TODO: Combine with
 
-\section{Introduction}
-
-Cite other axiomatic works.
-
-Single state space to capture:
-* descriptions at all levels
-* descriptions at different times
-* correlations between descriptions at equal time (equations of state)
-* correlations between descriptions at different times (evolution laws)
-* different correlations at different description
-* granularity/precision of such descriptions
-
-We can't have:
-* probability as a native concept
-
 \section{Experimental domains}
 
 First introduce tabular versions of contexts. Introduce equivalence, narrowness, independence and incompatibility on tables.
@@ -62,6 +67,61 @@ Introduce verifiable statements and domains. States as possibilities.
 
 Precision over statements.
 
+
+\section{Process entropy}
+
+The general idea is that we need to describe a system as it evolves in time. To that end, we need to define what we mean by states, processes and evolutions in the most general setting such that it can be applied to thermodyamic, dynamical, classical, quantum systems alike.
+
+We call \textbf{process domain} $\tdomain[P]$ the set of all possible descriptions of the system. Depending on the system, we will have statements like \statement{the average volume between 1 and 2 seconds is between 3 and 4 liters}, \statement{the half-life of the material is between 4.46 and 4.48 billion years} or \statement{at time 2.5 s the position of the ball is [3.1, 4.2, -1.2] meters}. We take these statements to form a logical system, which means $\sigma$-complete Boolean algebra, that is $\tdomain[P]$ is closed under negation (NOT), countable disjunction (OR) and countable conjunction (AND).
+
+We call \textbf{experimental domain} for the process the subset $\edomain[P] \subseteq \tdomain[P]$ of statements that can be, at least in line of principle, experimentally verified. Note that this will not contain, in general, all statements. For example, infinite precision statements like \statement{the acceleration is exactly 9.8066543621 $m/s^2$} cannot be verified.\footnote{As discussed further in the appendix, since experimental verification is constrained by finite time and finite resources, $\edomain[P]$ will not be a $\sigma$-complete algebra but, rather, it will be a Heyting algebra: it will only be closed under finite conjunction (AND) and countable disjuction (OR). Because our process must be fully defined by physically meaningful statements, we will have that $\tdomain[P]$ will be the closure of $\edomain[P]$ over negation and countable disjunction. We also require $\edomain[P]$ to have a countable basis so that the each statement in the domain can, if given enough time, verified.}
+
+We call \textbf{evolution} a statement in $\tdomain[P]$ that, if assumed to be true, will define the truth value for all other statements. For example, if our process describes the vertical motion of a point-particle and we posit \statement{the trajectory of the particle is $y=10 \, m - t \cdot 9.80665 \, m/s^2 $} to be true, we would know the truth value of all possible finite and infinite precision measurements at all times. A process will therefore define a set of \textbf{possible evolutions}, noted $E \subset \tdomain$, which characterizes what evolutions are physically allowed. For example, in a relativistic setting evolutions with velocity greater than the speed of light would not be allowed. The possible evolutions, then, will put constraints on the system in terms of logical relationship between statements at different times: if something is true at one time then something else will be true at another time.
+
+It is useful, at this point, to at least mention two types of relationships we can have. Given two statements $\stmt_1, \stmt_2 \in \tdomain[P]$ we say one is \textbf{narrower} than the other, noted $\stmt_1 \narrower \stmt_2$, if the second is true whenever the first is. This can describe relationships at different scale (e.g. \statement{the horizontal position is between 2.5 and 3 meters} $\narrower$ \statement{the horizontal position is between 2 and 3.5 meters}), on different quantities (e.g. \statement{the horizontal position is between 2.5 and 3 meters and the vertical position is between 1 and 1.5 meters} $\narrower$ \statement{the horizontal position is between 2.5 and 3 meters}), constraints between variables at the same time (e.g. \statement{the temperature of the water in the glass is 3.98 C} $\narrower$ \statement{the density of the water in the glass is 1 $g/cm^3$}) or at different times (e.g. \statement{at time 0 s the position is 1 m and the velocity is 1 m/s} $\narrower$ \statement{at time 1 s the position is 2 m}). Similarly, we say that two statements are \textbf{compatible}, noted $\stmt_1 \comp \stmt_2$, if they can both be true or incompatible if the cannot. This and other relationships can be defined to describe what ultimately will be the equations of state and laws of evolution that govern the process.
+
+For each statement $\stmt \in \tdomain[P]$ we can now define the set $E(\stmt) \subseteq E$ of all the evolutions that are compatible. For a point-particle, the evolutions compatible with \statement{at time 0 s the position is 1 m} correspond exactly to all trajectories that pass at the given position at the given time. As the process domain $\tdomain[P]$ is a $\sigma$-complete Boolean algebra, the set of all subsets given by $E(\tdomain[P])$ will be $\sigma$-algebra over $E$.\footnote{The experimental domain will instead induce a topology over $E$. This can be used as a foundation to extend the framework to include geometrical notions that are outside the scope of this article.} If we are studying a random process, we can think of $E$ as the sample space and $E(\tdomain[P])$ as the event space.
+
+As one can see from the examples, the properties and quantities for the system typically become ways to label the statements. Yet, they do not form the basis of the basic structure and, in fact, we will make no use of them. All our conclusions, then, will only depend on the idea that we have a process that we study that is describable in terms of experimentally verifiable assertions. It does not matter what specific quantities are used, or whether the process is from physics, chemistry, control systems, ecology, economics, sociology, or some other realm we have yet to discover.
+
+\section{States}
+
+As the process extends over time, it is natural to want to organize the statements in our process domain into partial domains, one for each moment in time. Given our time parameter $t \in T \subseteq \mathbb{R}$, we can imagine to carve a domain $\tdomain_t$ that would correspond to all the statements about the system one can make at the given time.
+
+
+At each moment, we have a set of possible statements about the system corresponding to physically measurable properties. We call state the maximal description that can be given at a particular time. Given the state, we know all that can be said about the system in that moment. We define an evolution of the system as the maximal description of the system at all times. If we knew the exact evolution, we know all possible descriptions of the system at all times. Therefore picking an evolution is equivalent to picking a state at each time. A particular process will constrain how the system can evolve, it will constrain the possible evolutions. Therefore we formally define a process as a set of possible evolutions, the ones that are allowed by the process.
+
+As each evolution gives the total description of the system at all times, we assume that all evolutions give the same level of description. We also assume we have a way to compare sets of possible evolutions and determine which is bigger and which is smaller. Mathematically, we have a measure defined on the set of possible evolutions. Each description, if verified experimentally, will narrow the set of possible evolutions to the ones that are compatible with said description. Therefore each description, and in particular each state, can be assigned a value that corresponds to the number of evolutions compatible with it. We call the logarithm of the number of evolution the entropy associated to the description.
+
+We define a process to be deterministic if knowing the state at one time means we can predict with absolute certainty the state at a future time. If this is the case, all evolutions compatible with one state cannot split and must all pass through the same states at all times. During a deterministic process, then, the number of evolutions per state can only increase over time. The entropy associated to each state is a monotonically increasing function.
+
+Conversely, we define a process to be reversible if knowing the state at one time means we can reconstruct with absolute certainty the state a previous time.\footnote{Note that this notion of reversibility is not identical to the one usually found in thermodynamics, which corresponds to the ``ability to undo the change''. We will later find that the notion of thermodynamic reversibility corresponds to the case where system and environment together undergo a deterministic and reversible process.} Reasoning along the same lines, during a reversible process the entropy associated to each state can only decrease over time, as evolutions cannot merge. A deterministic and reversible process will necessarily see the number of states, and therefore the entropy, remain the same.
+
+In a deterministic process, a state will be an equilibrium if, roughly speaking, the evolutions have fully merged and they will all give the same future state. In other words, after the equilibria the evolution is effectively reversible. This means that, at equilibria, the entropy will have reached a maximum. Each equilibria will be associated with a bundle of evolutions which will define, at times before the equilibrium, the set of states that will merge. For each equilibria one can construct a constraint, an assertion that remains true for each equilibria. Therefore each equilibria can be seen as the maximizing the entropy under the constraints imposed by the process.
+
+Finally, a process over a system can be broken into two processes over two systems if and only if they are independent. That is, if the evolution over one subsystem tells us nothing about the evolution of the other or, equivalently, the measure on the evolutions on the whole is the product of the measure on the subsystems. In those cases, the entropy of the system is equal to the sum of the entropy of the subsystems. However, note that if the systems are independent throughout the whole evolution, no coupling can be defined between the subsystem.
+
+A useful scenario is when the systems can be considered independent at the beginning of the evolution, couple, and then return to be independent at equilibrium. The entropy can then be considered additive at the beginning and at the end of the evolution, but not in between. Equilibria on the whole will necessarily correspond to equilibria on each subsystem. Note how this conceptually corresponds to the scenarios studied in thermodynamics.
+
+
+
+
+
+\section{Math section}
+
+Let $\tdomain$ be the set of all statements about the evolution of the system. This is a $\sigma$-complete Boolean algebra. Let $E \subset \tdomain$ the set of all evolutions, these are the narrowest statements. To each statement $\stmt \in \tdomain$ corresponds a set of evolutions $A(s)$ that are compatible with the statement.
+
+Given two statements $s_1, s_2 \in \mathcal{D}$ we can say whether one is finer than the other $s_1 \finer s_2$. Given any statement $\stmt[u] \in \mathcal{D}$, we have a function $\mu_u : \mathcal{D} \to \mathbb{R}^+\cup \{+\infty \}$ such that:
+\begin{enumerate}
+	\item $\mu_u$ is a measure
+	\item $\mu_u(u) = 1$
+	\item $\mu_u(s_1) \leq \mu_u(s_2)$ if $s_1 \finer s_2$
+\end{enumerate}
+The value $\mu_u(\stmt)$ tells us how many trajectories are compatible with $\stmt$ in terms of how many trajectories are compatible with the unit statement $\stmt[u]$.
+
+The conditional probability $P(\cdot | \cdot) : \tdomain \times \tdomain \to [0,1]$ is defined as $P(\stmt_1 | \stmt_2) = \mu_{\stmt_2}(\stmt_1 \AND \stmt_2)$ and represents the fraction of trajectories that are compatible with $\stmt_2$ that are also with $\stmt_1$.
+
+We define $T \subseteq \mathbb{R}$ to be the range of the time parameter. We define $\tdomain_{t} \subseteq \tdomain$ as the set of statements defined at the time t. Note this does not mean they are statement of only what happens at an instant in time. They can be averages around. It's how we decompose the problem at the desired time resolution. The states at time $t$ are the possibilities of $\tdomain_t$. The process is deterministic over the chosen states if for each $x_0 \in \tdomain_{t_0}$ we can find an $x_1 \in \tdomain_{t_1}$ such that $x_0 \narrower x_1$.  The process is reversible over the chosen states if for each $x_1 \in \tdomain_{t_1}$ we can find an $x_0 \in \tdomain_{t_0}$ such that $x_1 \narrower x_0$.
 
 \bibliography{bibliography}
 
