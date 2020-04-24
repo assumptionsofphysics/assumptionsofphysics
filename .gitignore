@@ -95,6 +95,6 @@ sympy-plots-for-*.tex/
 *.tex~txs0
 
 !bibliography.bib
-Articles/HamiltonianMechanicsIsConservationOfEntropy/article.spl
+*.spl
 templates/
 Proceedings/2019-ICNFP/ioplatexguidelines*
