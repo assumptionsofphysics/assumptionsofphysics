@@ -24,7 +24,7 @@
 \renewenvironment{proof}{\emph{Proof}.}{\qed}
 
 
-\title{Just the math: probability theory}
+\title{Just the math: stochastic processes}
 
 \date{\vspace{-5ex}}
 \begin{document}
@@ -33,10 +33,10 @@
 
 
 \begin{abstract}
-Short summary of probability theory.
+Short summary of the theory of stochastic processes.
 \end{abstract}
 
-\section{Measure theory}
+\section{Martingale}
 
 \begin{defn}
 	Given a set $E$, a $\sigma$-algebra $\mathcal{F} \subseteq 2^E$ is a collection of subsets of $E$ such that it:
@@ -67,19 +67,6 @@ Short summary of probability theory.
 	Given two measurable spaces $(A, \mathcal{F})$ and $(B, \mathcal{G})$, a \textbf{measurable function} is a map $X : A \to B$ such that the reverse image of an element of the $\sigma$-algebra of $B$ is in the $\sigma$-algebra of $A$ (i.e. $X^{-1}(U) \in \mathcal{F}$ where $U \in \mathcal{G}$).
 \end{defn}
 
-\begin{coro}
-	The collection of all reverse images $\mathcal{H}_X = \{X^{-1}(G) \, | \, G \in \mathcal{G} \}$ is a $\sigma$-algebra. We also have:
-	\begin{itemize}
-		\item $\mathcal{H}_X \subseteq \mathcal{F}$
-		\item $X$ is $\mathcal{H}_X$-measurable
-		\item $\mathcal{H}_X$ is the smallest $\sigma$-algebra such that $X$ is a measurable function
-	\end{itemize}
-\end{coro}
-
-\begin{prop}[Doob-Dynkin lemma]
-	Let $X,Y: E \to \mathbb{R}^n$ be two function. Then $Y$ is $\mathcal{H}_X$ measureable if and only if there exists a Borel measurable function $g$ such that $Y=g \circ X$.
-\end{prop}
-
 \section{Probability space}
 
 \begin{defn}
@@ -89,10 +76,6 @@ Short summary of probability theory.
 		\item an \textbf{event} $A \subseteq \Omega$ is a set of possible outcomes and the $\sigma$-algebra $\mathcal{F}$ is the collection of all possible events
 		\item the measure $P : \Omega \to [0,1]$ is the \textbf{probability measure} that returns one for the entire sample space (i.e. $P(\Omega) = 1$)
 	\end{itemize}
-\end{defn}
-
-\begin{defn}
-	An event $A \in \mathcal{F}$ occurs \textbf{almost surely} (a.s.) if $P(A)=1$.
 \end{defn}
 
 \section{Random variables}
@@ -152,16 +135,6 @@ The following definitions apply only over random variables over the reals.
 \begin{remark}
 	The integral used is the Lebesgue integral.
 \end{remark}
-
-\section{Independence}
-
-\begin{defn}
-	Two events $A, B \in \mathcal{F}$ are \textbf{independent} if $P(A\cap B) = P(A)P(B)$.
-	
-	A family of collections of events $\{\mathcal{H}_i\}_{i \in I}$ is \textbf{independent} if $P(H_{i_1}\cap ... \cap H_{i_k})=P(H_{i_1})\cdots P(H_{i_k})$ for all choices of $H_{i_1} \in \mathcal{H}_{i_1}, ..., H_{i_k} \in \mathcal{H}_{i_k}$ and indexes $i_1, ..., i_k$.
-	
-	A collection of random variables $\{X_i\}_{i\in I}$ is \textbf{independent} if the collection all generated $\sigma$-algebras $\mathcal{H}_{X_i}$ is independent.
-\end{defn}
 
 %\bibliographystyle{plain}
 %\bibliography{bibliography}

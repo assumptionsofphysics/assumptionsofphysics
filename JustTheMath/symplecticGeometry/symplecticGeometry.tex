@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Remove line spaces between items of enumerate and itemize
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+\newtheorem{assump}{Assumption}
+\renewcommand*{\theassump}{\Roman{assump}}
+
+\newtheorem{axiom}[equation]{Axiom}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{coro}[equation]{Corollary}
+\newtheorem{thrm}[equation]{Theorem}
+
+%\theoremstyle{definition}
+
+\newenvironment{remark}{\noindent \emph{Remark}.}{\medskip}
+\newenvironment{rationale}{\emph{Rationale}.}{\qed}
+\newenvironment{justification}{\emph{Justification}.}{\qed}
+\renewenvironment{proof}{\emph{Proof}.}{\qed}
+
+
+\title{Just the math: symplectic geometry}
+
+\date{\vspace{-5ex}}
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+Short summary of symplectic geometry.
+\end{abstract}
+
+\section{General definitions and coordinates}
+
+\begin{defn}
+	Let $M$ be a smooth manifold. A \textbf{symplectic form} $\omega$ on $M$ is a differential two-form that is:
+	\begin{itemize}
+		\item \textbf{closed}: the exterior derivative $d \omega = 0$ is zero
+		\item \textbf{non-degenerate}: at every point $p \in M$ $\omega|_p$ we have $v=0 \in T_PM$ if and only if $\omega(v, w)=0$ for all $w \in T_pM$
+	\end{itemize}
+\end{defn}
+
+\begin{prop}
+	Let $\omega$ be a symplectic form on $M$. Then $M$ is even dimensional.
+\end{prop}
+
+\begin{defn}
+	A \textbf{symplectic manifold} is a pair $(M, \omega)$ where $M$ is a smooth manifold and $\omega$ is a symplectic form. That is, $\dim(M)=2n$.
+\end{defn}
+
+\begin{thrm}[Darboux's theorem]
+	Given a point $p \in M$ we can always find a neighborhood $U$ with local coordinates $\xi^a = \{q^i, p_j\}$ such that $\omega = e^{q^i} \wedge e^{p_i}$.
+\end{thrm}
+
+\begin{coro}
+	Locally, we have $\omega = - d\theta$ where $\theta = p_i e^{q^i}$.
+\end{coro}
+
+\begin{remark}
+	Globally this can fail (e.g a two dimensional sphere).
+\end{remark}
+
+\textbf{Index notations}:
+
+\textit{Unified coordinates}. $\xi^a = \{\xi^1, \xi^2, ..., \xi^{2n}\}$.
+
+\textit{Conjugate coordinates}. $\{q^i, p_j\} = \{q^1, q^2, ..., q^n, p_1, p_2, ..., p_n\}$.
+
+\textit{Mixed index}. $\xi^{\alpha i } = \{\xi^{q1}, \xi^{q2}, ..., \xi^{qn}, \xi^{p1}, \xi^{p2}, ..., \xi^{pn}\}$.
+
+\textbf{Components with different notations}:
+\begin{equation}
+\begin{aligned}
+\theta &= \theta_a e^a = p_i e^{q^i} = \theta_{\alpha i} e^{\alpha i} \\
+\theta_a &= \left[ \begin{matrix}
+p_i & 0 \end{matrix} \right], \;  \theta_{qi} = p_i, \; \theta_{pi} = 0\\
+\omega &= \omega_{ab} e^a \otimes e^b = \omega_{\alpha i \beta j} e^{\alpha i} \otimes e^{\beta j} \\
+&= e^{q^i} \otimes e^{p_i} - e^{p_i} \otimes e^{q^i} = e^{q^i} \wedge e^{p_i} \\
+\omega &= - d \theta = - \partial_b \theta_a e^b \wedge e^a = - e^{p_\alpha} \wedge e^{q^\alpha} = e^{q^\alpha} \wedge e^{p_\alpha} \\
+\omega_{ab} &= \left[ \begin{matrix}
+0 & I_n \\[2.2ex]
+- I_n & 0 \end{matrix} \right] , \; 
+\omega^{ab} = \left[ \begin{matrix}
+0 & - I_n \\[2.2ex]
+I_n & 0 \end{matrix} \right] , \;
+\omega_{ab} \omega^{bc} = \delta_a^c \\
+w_{\alpha \beta} &= \left[ \begin{matrix}
+0 & 1 \\[2.2ex]
+- 1 & 0 \end{matrix} \right], \;
+w^{\alpha \beta} = \left[ \begin{matrix}
+0 & -1 \\[2.2ex]
+1 & 0 \end{matrix} \right], \; w_{\alpha\beta}w^{\beta\gamma} = \delta_\alpha^\gamma \\
+\omega_{\alpha i \beta j} &= w_{\alpha \beta} \delta_{ij}, \;
+\omega^{\alpha i \beta j} = w^{\alpha \beta} \delta^{ij} \\
+w_{qp} &= 1, w_{pq} = -1
+\end{aligned}
+\end{equation}
+
+
+%\bibliographystyle{plain}
+%\bibliography{bibliography}
+
+\end{document}
