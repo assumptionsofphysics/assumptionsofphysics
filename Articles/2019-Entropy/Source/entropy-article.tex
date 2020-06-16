@@ -45,64 +45,190 @@ Note how the number of states does not always match the number evolutions it is 
 
 If we compose independent systems, the number of possible states and trajectories is the product. If we take the logarithm, then those numbers are additive. Conceptually the entropy is the logarithm of the number of evolutions compatible with a given state. This article shows how this simpler and more general concept leads, in special cases, to the Boltzman entropy and the Shannon entropy. We will also see how this same concepts is applicable more in general, including the case of non-Hamiltonian systems.
 
-\section{Different level of precision}
+\section{Main points}
+\begin{enumerate}
+	\item Entropy assigns a size to points. Shannon entropy works on a distribution where each point has the same entropy.
+	\item Measure theory differentiate between points and sets. This does not work when combining different level of granularity.
+\end{enumerate}
+
+\section{Main section}
+\begin{enumerate}
+	\item Model of a process. Set of all possible descriptions at all times. Some descriptions are narrower than others. Evolutions are the narrowest. Some descriptions are compatible. Each description has a unique set of compatible evolutions. Descriptions in narrower if the set of compatible evolution is a subset.
+	\item We can group those descriptions relative at a particular time. It is actually interval of time. States are the narrowest description at that time. How are states related through the evolution?
+	\item Define deterministic evolution: can predict future state. Past state narrower. Number of evolutions increases. Define reversible. Future state narrower. Number of evolution decreases. Det/rev remains the same. How do we quantify that?
+	\item Define way to compare granularity. Not a single measure, not everything comparable or finitely comparable. Define probability in terms of measure.
+	\item States of the same system must be finitely comparable. Can put a measure on states themselves, which is a count of evolutions. Examples to show that: the measure and state space, in general, change over time. State spaces are stable and can be assigned a measure only at equilibrium.
+	\item Define independent systems as those where the state of one does not constrain the state of the other. The measure must be the product.
+	
+\end{enumerate}
+
+\begin{enumerate}
+	\item A thermodynamic system is one that undergoes deterministic evolution with equilibria. There are variables that  
+	\item Extensive quantities are somewhat postulated at this point. So is the existence of energy.
+	\item Second law come from deterministic system.  Define entropy as the log of the measure, so that it is additive under independent systems. We have: entropy always increases under deterministic evolution; entropy is maximal at equilibrium; entropy is additive for independent system. Entropy is a function of the equilibrium, which is identified by state variables.
+	\item Third law comes from states of the same system being finitely comparable. Lowest entropy is "one evolution" in terms of system granularity.
+	
+\end{enumerate}
+
+
+\section{Evolutions, states and levels of description}
+
+The overall goal is to describe a generic system as it evolves in time by defining a minimal set of concepts that such a setup must define. We want to find notions that can be applied, for example, to thermodyamic and dynamical systems alike. Then we want to derive general results based on such definitions. Here we provide an overview of the main features, leaving the formal definitions in the (yet to be written) appendix.
+
+\subsection{Descriptions and logical relationships}
+
+Our starting point is the \textbf{process domain} $\tdomain[P]$, which is the set that contains all possible descriptions of the system at all levels of detail at all possible times. Depending on the process, it will contain statements like \statement{the average volume between 1 and 2 seconds is between 3 and 4 liters} or \statement{the trajectory of the particle is $y=10 \, m - t \cdot 9.80665 \, m/s^2 $}. It does not matter at this point what the statements themselves are, except they must be, at least in line of principle, defined from experimentally well-defined starting points. Mathematically, $\tdomain[P]$ is a $\sigma$-complete Boolean algebra\footnote{A set of statements that is closed under negation (NOT), countable disjunction (OR) and countable conjunction (AND).} and it is the closure of the set of experimentally verifiable statements $\edomain[P] \subseteq \tdomain[P]$.\footnote{These will form a Heyting algebra which, to be experimentally reachable, must allow a countable basis.}
+
+As $\tdomain[P]$ contains different levels of description, one statement may give a more specific description than another. For example, we say that \statement{the horizontal position is between 2.5 and 3 meters} is \textbf{narrower} than \statement{the horizontal position is between 2 and 3.5 meters}. Note that whenever the first statement is true, the second one must be true as well. Given two statements $\stmt_1, \stmt_2 \in \tdomain[P]$, we formally capture this relationship by noting $\stmt_1 \narrower \stmt_2$. Narrowness can describe relationships at different scales, on different quantities (e.g. \statement{the horizontal position is between 2.5 and 3 meters and the vertical position is between 1 and 1.5 meters} $\narrower$ \statement{the horizontal position is between 2.5 and 3 meters}), constraints between variables at the same time (e.g. \statement{the temperature of the water in the glass is 3.98 C} $\narrower$ \statement{the density of the water in the glass is 1 $g/cm^3$}) or at different times (e.g. \statement{at time 0 s the position is 1 m and the velocity is 1 m/s} $\narrower$ \statement{at time 1 s the position is 2 m}). It is a general tool to capture relationships within the theory which intuitively can also be thought as implication.\footnote{Technically, implication in classical logic is a truth function as classical logic does not incorporate the idea of different ``possible cases''. What we have is more similar in spirit to semantic consequence in modal logic, though modal logic brings in a lot of undesirable elements we do not want.}
+
+Within our process domain $\tdomain[P]$ we can define the set $E$ of the narrowest possible statements. Its elements give a complete description of our system at all times and therefore we call them \textbf{evolutions} while we call $E \subset \tdomain[P]$ the set of all possible evolutions.
+
+Another logical relationship we want to capture is the idea of whether two statements can be true at the same time. For example, we want to say that \statement{the horizontal position is between 2.5 and 3.5 meters} is \textbf{compatible} with \statement{the horizontal position is between 2 and 3 meters}. In general, given two statements $\stmt_1, \stmt_2 \in \tdomain[P]$ we note $\stmt_1 \comp \stmt_2$ if it is possible for them to be both true. As with narrowness, compatibility can be in terms of different ranges of the same quantities, of different quantities and of constraints at equal or different times.
+
+Every statement $\stmt \in \tdomain[P]$ can now be characterized by the set $A(\stmt) \subseteq E$ of all evolutions compatible with $\stmt$, that is all the evolutions for which $\stmt$ will be true. Mathematically,  $A(\edomain[P])$ is a topology over $E$ while $A(\tdomain[P])$ forms a $\sigma$-algebra over $E$, the Borel algebra of $A(\edomain[P])$. Narrowness and compatibility become set realtionships in the $\sigma$-algebra: $\stmt_1 \narrower \stmt_2$ if and only if $A(\stmt_1) \subseteq A(\stmt_2)$ (i.e.~all trajectories for which $\stmt_1$ is true are such that $\stmt_2$ is also true) and $\stmt_1 \comp \stmt_2$ if and only if $A(\stmt_1) \cap A(\stmt_2) \neq \emptyset$ (i.e.~two descriptions are compatible if there is an evolution that is compatbile with both).
+
+\begin{table}[h!]
+	\centering
+\begin{tabular}[h]{|c|c|p{6cm}|}
+	\hline 
+	Symbol & Name & Meaning \\ 
+	\hline 
+	$\tdomain[P]$ & Process domain & The set of all possible descriptions at all times and at all levels of granularity \\ 
+	\hline 
+	$E \subset \tdomain[P]$ & Possible evolutions & The set of descriptions that give a full account of the process; they correspond to the narrowest statements within $\tdomain[P]$ \\ 
+	\hline 
+	$A(\stmt)$ & Compatible evolutions & The set of evolutions that are compatible with the statement $\stmt$ \\ 
+	\hline 
+	$\narrower$ & narrower & A statement is narrower than another $\stmt_1 \narrower \stmt_2$ if the second one is true whenever the first one is \\ 
+	\hline 
+	$\comp$ & compatible & A statement is compatible with another $\stmt_1 \comp \stmt_2$ if they can be true at the same time \\ 
+	\hline 
+\end{tabular} 
+	\caption{Process descriptions and their logical relationships}
+	\label{table:logic}
+\end{table}
+
+
+\subsection{States and time}
+
+As the process extends over time, we want to organize the statements in our process domain into partial domains, one for each moment in time. Given a \textbf{time parameter} $t \in T \subseteq \mathbb{R}$, we can imagine to carve a subdomain $\tdomain_t$ that would correspond to all the statements about the system one can make at the given time. Note that $\tdomain_t$ is a $\sigma$-complete Boolean sub-algebra of $\tdomain[P]$ since any logical operation on statements at fixed $t$ is also another statement at fixed $t$. The set $X_t \subset \tdomain_t$ of the narrowest statements will give the most precise description at that time: these are the possible states of our system at that time.
+
+We should note that, technically, the statements are not defined at an infinitesimal moment $t$, rather within a finite interval $[t, t + \Delta t]$. This represents the time-scale at which the process will be described, meaning the description within $\tdomain_t$ should not be sensitive to what happens at faster scales. The quantities used to represent states at time $t$, then, should really be thought as averages within $\Delta t$. In the same way, $\tdomain_t$ will in general represent the system at the chosen level of description. Statements about the environment or at a finer level of description (i.e. the positions of all molecules for a gas) will not be included.
+
+We should also note that the set of states $X_t$, in general, may not be the same at all times. In fact $X_t$ will only include ``possible states'', those that are visited at least by one possible evolution (i.e. $A(x) \neq \emptyset$ for all $x \in X_t$), and it may change in time. For example, the set of possible states for a dissipative system will shrink as they converge to equilibiurm. In quantum mechanics, the possible states after a measurement are only the eigenestates and a different choice of measurement will lead to a different process with different possible evolutions. The idea of a state space of the system, independent of the process, is something we need to construct. Finding the requirements needed for that construction, the hidden assumptions, is precisely the issue we need to address.
+
+We say a process is \textbf{deterministic} over the time domains $\{X_t\}_{t \in T}$ if given the state at one time we can always predict the state at all future times. Formally, let $t_1, t_2 \in T$ such that $t_1 \leq t_2$, for any $x_1 \in X_{t_1}$ we can find an $x_2 \in X_{t_2}$ such that $x_1 \narrower x_2$.
+
+Intuitively, all the evolutions that pass through $x_1$ will also pass through $x_2$. If $x(t)$ is the state trajectory in time, we have $A(x(t)) \subseteq A(x(t + \Delta t))$: the set of compatible trajectories must stay the same or become larger.
+
+Conversely, we say a process is \textbf{reversible} over the time domains $\{X_t\}_{t \in T}$ if given the state at one time we can always reconstruct the state at all past times. Formally, let $t_1, t_2 \in T$ such that $t_1 \leq t_2$, for any $x_2 \in X_{t_2}$ we can find a $x_1 \in X_{t_1}$ such that $x_2 \narrower x_1$.
+
+In this case, all the evolutions that pass through $x_2$ must have passed through $x_1$. If $x(t)$ is the state trajectory in time, we have $A(x(t)) \subseteq A(x(t - \Delta t))$: the set of compatible trajectories must stay the same or become smaller.
+
+A deterministic and reversible process, then, will mean $x_1$ and $x_2$ are equivalent and that  $A(x(t)) = A(x(t + \Delta t))$: the set of evolutions remains the same. The fact that past and future states are equivalent $x(t) \equiv x(t + \Delta t)$ does not mean they are the same statement: it means there is an if-and-only-if relationship between them. For example, \statement{at time $t$ the position is $q$ and the velocity is $v$} if and only if \statement{at time $t + \Delta t$ the position is $q + v \Delta t$ and the velocity is $v$}. The differential equation $\dot{v} = 0$ is a short hand for all such relationships.
+
+If we limit ourselves to deterministic procseses, with these few definitions, we have already found something that ``grows bigger'' under irreversible evolution while it remains the ``the same size'' under reversible evolution.
+
+TODO: picture with deterministic evolution merging "streams" of evolutions, and detrev evolutions not merging
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}[h]{|c|c|p{6cm}|}
+		\hline 
+		Symbol & Name & Meaning \\ 
+		\hline 
+		$t \in T$ & Time parameter & Time is treated as a real valued parameter within the range $T \subseteq \mathbb{R}$ \\ 
+		\hline 
+		$\tdomain_t \subset \tdomain[P]$ & Time domain & The set of descriptions at a given time \\ 
+		\hline 
+		$X_t \subset \tdomain_t$ & Possible states & The set of descriptions that give a full account at time $t$; they correspond to the narrowest statements within $\tdomain_t$ \\ 
+		\hline 
+		$x(t) \narrower x(t + \Delta t)$ & Determinism & Given the state at one time we can predict the state at future times \\ 
+		\hline 
+		$x(t) \narrower x(t - \Delta t)$ & Reversibility & Given the state at one time we can reconstruct the state at past times \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Time domain, states and determinism}
+	\label{table:states}
+\end{table}
+
+\subsection{Granularity and quantifying evolutions}
+
+Next step is to quantify the size of the sets of evolutions, specifically those that correspond to statements. Since statement at a finer level of description will put a greater constrain to the set of evolutions, quantifying the size of $A(\stmt)$ means quantifying the granularity of the description of $\stmt$. The statement \statement{at time 0 s the particle is between 0 m and 1 m} is doubly more specific than \statement{at time 0 s the particle is between 0 m and 2 m} precisely because it correspond to half the evolutions of the second statement.
+
+The naive approach would be to assign a measure to sets of $E$ and since $A(\tdomain[P])$ is a $\sigma$-algebra, it would seem we are done. Unfortunately it is not that simple: a single measure can only compare objects of the same dimensionality. If we imagine all evolutions to be points on an $n$ dimensional manifold, if the measure gives finite values for $k$-dimensional regions it will necessarily give measure zero for all regions with lesser dimensionality and infinite measure for those with greater dimensionality. Coarse grained and subsystem descriptions will have different dimensionality therefore we need a way to quantify objects at all levels.\footnote{Typically one uses geometrical structure for his purpose. In phase space, the symplectic form allows us to define areas of two-dimensional surfaces, and use those to define volumes or even-dimensional areas. Note that it does not quantify the size of the points, which are implicitly assumed to be of equal size. This is a special case and cannot be the starting point.}
+
+Therefore we will assume that we have a way to compare two statements and decide which one gives a refined description of the process. Formally, we have partial order $\finer$ on $\tdomain[P]$ which, given two statements, it tells us whether the description of one is \textbf{finer}, more refined, than the other. Two statements are \textbf{equigranualar}, noted $\stmt_1 \eqgran \stmt_2$, if they provide the same level of description. For example, we can say that \statement{the trajectory of the particle is $y=t \cdot 1 \, m/s$} $\eqgran$ \statement{the trajectory of the particle is $y=t \cdot 2 \, m/s$} and that \statement{the position at time 0 sec is between 0 and 1 m} $\eqgran$ \statement{the position at time 0 sec is between 1 and 2 m}, even though the second pair is infinitely less discerning than the first. Note that if one statement is narrower than the other (i.e. $\stmt_1 \narrower \stmt_2$) then it is also finer than the other (i.e. $\stmt_1 \finer \stmt_2$) while the reverse is not necessarily true. 
+
+
+We say two statements are \textbf{comparable} if one is finer than the other. The order is partial because not all statements are comparable to each other. For example, consider the pressure/volume state space for an ideal gas. Comparing \statement{the pressure is 1 kPa and the volume is between 1 and 2 liters} and \statement{the pressure is between 1 and 2 kPa and the volume is 1 liter} would mean saying where one unit liter is bigger or smaller than 1 kPa.\footnote{In phase space, for example, we cannot in general compare $q^i$ and $p_i$, yet we can always compare areas of phase space.}
+
+To recover measures, we pick a statement $\stmt[u] \in \tdomain[P]$ and construct a \textbf{measure} $\mu_{\stmt[u]}$ such that $\mu_{\stmt[u]}(\stmt[u]) = 1$ and $\stmt_1 \finer \stmt_2$ will mean $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$. That is, we can quantity how more or less precise a statement is compared to a fixed statement taken as a unit. If two statements are such that the measure of one with respect to the other is finite and non-zero, we say they are \textbf{finitely comparable}. Furthermore, since all evolutions give a complete description of the whole process, we will assume they are all equigranular. Therefore if we pick $\stmt[u] \in E$, then $\mu_{\stmt[u]}(\stmt)=\#(A(\stmt))$ would be the counting measure of evolutions compatible with $\stmt$.\footnote{We still needs to understand the necessary and sufficient conditions under which such measures would exist and be unique. For the present work, we assume it can be done. We know that it is a necessary condition that all evolution must be equigranular. It remains an open question is whether it is sufficient.}
+
+We can also define the \textbf{dynamical entropy} with respect to $\stmt[u]$ the quantity $S_{\stmt[u]}(\stmt) = \log \mu_{\stmt[u]}(\stmt)$. This can be thought as the number of bits, yes/no questions, that separate the level of description of $\stmt[u]$ from the one provided by $\stmt$. Connecting the definitions from above, under a deterministic process we have $S_{\stmt[u]}(x(t)) \leq S_{\stmt[u]}(x(t + \Delta t))$ since $x(t)\narrower x(t+\Delta t)$ means $x(t) \finer x(t+\Delta t)$ and $\mu_{\stmt[u]}(x(t)) \leq \mu_{\stmt[u]}(x(t+\Delta t))$. If the process is determistic and reversible, we have $S_{\stmt[u]}(x(t)) = S_{\stmt[u]}(x(t + \Delta t))$. In other words, \textbf{dynamical entropy cannot decrease for a deterministic process and is stationary if the process is reversible as well}.
+
+Quantifying evolutions allows us to define probability as well. If we consider all the evolutions compatible with \statement{the coin is fair}, we must have that half of them are compatible with \statement{the coin is head} while the other are compatible with \statement{the coin is tails}.  Therefore we have $P(\stmt_2 | \stmt_1) = \mu_{\stmt_1}(\stmt_1 \AND \stmt_2)$ where $\stmt_1 \AND \stmt_2$ is the logical conjunction (AND) between the two statements. In other words, the probability quantifies the ratio of evolutions compatible with $\stmt_1$ that are also compatible with $\stmt_2$.
+
+%Note that this approach resolves a problem that causes friction between quantum mechanics and standard probability theory. Given two incompatible states $\psi$ and $\phi$, that is $0 < | \left<\psi | \phi \right> |^2 < 1$, we would like to say that that the probability of one given the other is $P(\psi | \phi) = | \left<\psi | \phi \right> |^2$.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}[h]{|c|c|p{6cm}|}
+		\hline 
+		Symbol & Name & Meaning \\ 
+		\hline 
+		$\finer$ & finer & A statement is finer than another $\stmt_1 \finer \stmt_2$ if it provides a more refined description than the second \\ 
+		\hline 
+		$\eqgran$ & equigranular & A statement is equigranular to another $\stmt_1 \eqgran \stmt_2$ if they provide the same level of detail \\ 
+		\hline 
+		$\mu_{\stmt[u]}(\stmt)$ & Measure & Quantifies the precision of a statement $\stmt$ in terms of a reference unit statement $\stmt[u]$; it quantifies how many evolutions are compatible with $\stmt$ compared to the evolutions compatible with $\stmt[u]$  \\ 
+		\hline 
+		$S_{\stmt[u]}(\stmt)$ & Dynamical entropy & The number of bits that separate the level of description of $\stmt$ from the one provided by the unit statement $\stmt[u]$; it quantifies the number of questions needed to go from the level of description of $\stmt$ to the level of description of $\stmt[u]$  \\ 
+		\hline 
+		$P(\stmt_2 | \stmt_1)$ & Probability & Quantifies quantifies the ratio of evolutions compatible with $\stmt_1$ that are also compatible with $\stmt_2$  \\ 
+		\hline 
+		 & Comparable & Two statements are comparable if one is finer than the other \\ 
+		\hline 
+		 & Finitely comparable & Two statements are finitely if the measure of one in terms of the other is finite and non-zero \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Granularity, measures and probability}
+	\label{table:states}
+\end{table}
+
+\subsection{Systems, equilibria and state spaces}
+
+So far we have only characterized how descriptions at different times can be related to each other. We now want to group descriptions that belong together, that describe a single system as it is subjected to different processes. In the simplest form, we prepare the system in an initial state, let it evolve and look at the final state. We want to characterize the state space of all possible initial and final states under all process and characterize the process. Our framework already tells us that if the process is deterministic, the process can be characterized as a map $x(t+\Delta t) = f(x(t))$. If the process is non-deterministic, the evolutions for each state may split, and the probability $P(x(t + \Delta t) | x(t))$ can be used to characterize the fraction of evolutions that start in $x(t)$ and end in $x(t+\Delta t)$. Yet, it also tells us there are a few things that we have to worry about.
+
+First of all, the process can't really be any process. We can study the motion of a balloon on earth at 20 Celsius. This would not be possible on the surface of the sun as our balloon would not exist. The process has to be such that the system is recognizable to be the same. In our framework, we need some type of homomorphism between $\tdomain_t$ and $\tdomain_{t + \Delta t}$ that preserves narrowness and fineness, that tells us the system is the same.
+
+Second we want to make sure that the state space of the system really tells us only about the system itself. Within a specific process, for example, saying \statement{at time $t$, the velocity of object $A$ is $v$} may also mean that \statement{at time $t$, the velocity of object $B$ is $v$} because they are tied together. We say two systems are \textbf{independent} at a particular time if the description of one system does not constrain the description of the other. In terms of measure $\mu_{\stmt[u]_a \AND \stmt[u]_b}(x_a \AND x_b) = \mu_{\stmt[u]_a}(x_a) \mu_{\stmt[u]_b}(x_b)$ must factorize. If we want our state space to describe only the system at hand, then we are assuming that states are defined on the assumption that the system is independent at least from all other systems with the chosen processes.
+
+On the other side, a state of a system is never really the description of the whole system, but of the part that is relevant to the process at hand. If we study the motion of the balloon, position and velocity may be enough; if we study it as a thermodynamic system, pressure and volume may be enough. The idea is that the state captures the system at a particular level of granularity and the process does not depend, is not sensitive, to the finer dynamics. We say a system is in \textbf{equilibrium} if the state tells us nothing about the 
+
+We stress that the independence cannot be, in general, independent throughout the whole process or there cannot be interactions between the systems. By the same token, the finer dynamics may play a part throughout the process. The constraint is only on the initial and final states, where the state space is being constructed. We also stress that these constraints make the state definition contingent upon the type of processes one studies. If we want to study a process where two systems are not independent, one that depends on the finer dynamics, our state definition will have to change to accommodate.
 
 
 
-We regard states as points in a space. Conceptually, this presents problems. Mathematically, what we care about is the sigma algebra.
-
-Introduce theoretical domains as point-less spaces, descriptions, that follow a countable boolean algebra. A size is given by a measure, additive map from the theoretical domain to the reals.
-
-To define a unit system, we take one statement to be the unit, the size of a set can be defined as the ratio of the measure of the set and the measure of the set of the unit.
-
-Two statements are independent if all minterms are possible, are not contradictions.
-
-TODO: Combine with
-
-\section{Experimental domains}
-
-First introduce tabular versions of contexts. Introduce equivalence, narrowness, independence and incompatibility on tables.
-
-Introduce verifiable statements and domains. States as possibilities.
-
-Precision over statements.
 
 
-\section{Process entropy}
 
-The general idea is that we need to describe a system as it evolves in time. To that end, we need to define what we mean by states, processes and evolutions in the most general setting such that it can be applied to thermodyamic, dynamical, classical, quantum systems alike. A formal and more rigorous introduction of the framework, both mathematically and conceptually, is given in the appendix. Here we limit ourselves to a quick overview of the main point. We will we first attempt to use measure theory, which hopefully the reader is already familiar with, show its shortcomings and then present our framework as an amendment.
+ In all processes we are considering, then, the system must be indAny other system would be independent If we found other systems that were always correlated For example, if  There can't be other systems that participate in the process whose state 
 
-To define a measure space we start with a set of objects that fully define all variables.\footnote{In probability theory this is called the sample space.} In our case, it will be the set $E$ of \textbf{possible evolutions} which represent full descriptions of the system at all times. For example, if our process describes the vertical motion of a point-particle, an evolution would be something like \statement{the trajectory of the particle is $y=10 \, m - t \cdot 9.80665 \, m/s^2 $}. Through this set, the process implicitly characterizes what is physically allowed. For example, in a relativistic setting evolutions with velocity greater than the speed of light would not be allowed and therefore no be part of $E$.
 
-Next we need a $\sigma$-algebra on $E$ which can be thought as a set of incomplete descriptions about the system.\footnote{In probability theory this is called the set of events.} For a point-particle, the description \statement{at time 0 s the position is 1 m} would correspond to all evolutions such that the particle is at the given position at the given time. We call \textbf{process domain} $\tdomain[P]$ the set of all these descriptions as it captures all those descriptions pertinent to the process at hand.
 
-Finally we a measure $\mu : \tdomain[P] \to \mathbb{R}$ that allows us to give a size to each description. This allows us to characterize which description is more or less precise: \statement{at time 0 s the particle is between 0 m and 1 m} is doubly more specific than \statement{at time 0 s the particle is between 0 m and 2 m} precisely because it correspond to half the evolutions of the second.
+We should caution that 
 
-This measure theoretic view gives a sense of what we would like to do, except it doesn't work and needs to be amended. Its biggest strength is its generality. Even though we typically use properties and quantities for the system to label the statements, they do not appear in the basic structure. Therefore, depending on the system, we will have statements like \statement{the average volume between 1 and 2 seconds is between 3 and 4 liters}, \statement{the half-life of the material is between 4.46 and 4.48 billion years} or \statement{at time 2.5 s the position of the ball is [3.1, 4.2, -1.2] meters} which will correspond to the appropriate set of evolutions. The problem is that it fails to handle different level of descriptions in two ways.
+The simplest setting is the follow
 
-First of all, the description given by the evolutions are mathematically different objects from all others: the first are points and the other are sets. This is awkward because evolutions of a coarse grain process will be simple descriptions on a fine grain one. So we can't properly see one as a mathematical structure contained in the other.
+ into Our goal now is to construct state spaces for a system.
 
-Second, the measure does not have enough resolution: it can only compare objects of the same dimensionality. If we imagine all evolutions to be points on an $n$ dimensional manifold, if the measure gives finite values for $k$-dimensional regions it will necessarily give measure zero for all regions with lesser dimensionality and infinite measure for those with greater dimensionality. Therefore we will not be able to relate the measure at different level of scale. This, again, is a problem since states will have different dimensionality when studying coarse and fine grained descriptions.
 
-To solve the first problem, we note both the evolutions in $E$ and the elements of $\tdomain[P]$ are, in the end, descriptions of the system. Therefore we treat as what they are: statements in a well-posed logical system. Our process domain $\tdomain[P]$, then, is simply a set of statements that is closed under negation (NOT), countable disjunction (OR) and countable conjunction (AND), a $\sigma$-complete Boolean algebra. The evolutions $E$ are also descriptions about the system, so we simply have $E \subset \tdomain[P]$. All descriptions of subsystems or of the system at lower scale will simply be sub-algebras of $\tdomain[P]$. 
+ Consequently any statement that corresponds to finitely many evolutions (e.g. \statement{the full trajectories is either $y=t \cdot 1 m/s$ or $y=-t \cdot 1 m/s$}) will be comparable to all other statements.
 
-All the set operations one would have can be translated in terms of logical operations. In the same way that on sets we have an inclusion operator $\subseteq$, given two statements $\stmt_1, \stmt_2 \in \tdomain[P]$ we say one is \textbf{narrower} than the other, noted $\stmt_1 \narrower \stmt_2$, if the second is true whenever the first is. This can describe relationships at different scale (e.g. \statement{the horizontal position is between 2.5 and 3 meters} $\narrower$ \statement{the horizontal position is between 2 and 3.5 meters}), on different quantities (e.g. \statement{the horizontal position is between 2.5 and 3 meters and the vertical position is between 1 and 1.5 meters} $\narrower$ \statement{the horizontal position is between 2.5 and 3 meters}), constraints between variables at the same time (e.g. \statement{the temperature of the water in the glass is 3.98 C} $\narrower$ \statement{the density of the water in the glass is 1 $g/cm^3$}) or at different times (e.g. \statement{at time 0 s the position is 1 m and the velocity is 1 m/s} $\narrower$ \statement{at time 1 s the position is 2 m}). Evolutions, then, can be seen as the narrowest statements in the domain that can still be true.
+Also note that in our ideal gas example one of the quantities was determined with infinite precision. If we gave a range for all quantities, we would compare areas in that space, which we can always do. Statements with finite precision measurements are the only ones we can experimentally verify. So, we will require that all experimentally verifiable statements are comparable. We call \textbf{experimental domain} for the process the subset $\edomain[P] \subseteq \tdomain[P]$ of statements that can be, at least in line of principle, experimentally verified.\footnote{Yet, as we will see later, the precision of measurements will be quantified in terms of number of evolutions, not the range/uncertainty on the variables.}
 
-Similarly, we say that two statements are \textbf{compatible}, noted $\stmt_1 \comp \stmt_2$, if they can both be true or incompatible if the cannot, which in terms of set would correspond to the non-empty intersection. For each $\stmt \in \tdomain[P]$ we can define $E(\stmt)$ as the set of evolutions that are compatible with it. These are exactly the sets we had in the $\sigma$-algebra before, which now corresponds to $E(\tdomain[P])$. There are operations, all with straight-forward physical meaning, that can be introduced though we will stop here since these are the only two we strictly require.
-
-This small change has significant advantages. The practical one is that we can now mix and match descriptions at different scale and of different parts of the system within a single framework. The conceptual advantage is that it is clear that all we are talking about is descriptions about a system within a model and their logical relationships, which makes it straight-forward to understand our conclusions. Lastly, the structure is still very similar to the standard tools of measure theory, therefore, once a scale or subsystem is chose, measure structures can be recovered.
-
-The second problem is solved by replacing the measure with a suitable partial order $\finer$ on $\tdomain[P]$ which, given two statements, it tells us whether the description of one is \textbf{finer}, more refined, than the other. Suitable means, for example, that it needs to be compatible with narrowness: if $\stmt_1 \narrower\stmt_2$ we must also have $\stmt_1 \finer \stmt_2$. Two statements are \textbf{equigranualar}, noted $\stmt_1 \eqgran \stmt_2$, if they provide the same level of description. By analogy with geometrical objects, we can see that these relationships can now span different dimensionality: isolated points are always going to be smaller than lines which are always smaller than surfaces and so on, while we can still have lines and surfaces of the same size. For example, we can say that \statement{the trajectory of the particle is $y=t \cdot 1 \, m/s$} $\eqgran$ \statement{the trajectory of the particle is $y=t \cdot 2 \, m/s$} and that \statement{the position at time 0 sec is between 0 and 1 m} $\eqgran$ \statement{the position at time 0 sec is between 1 and 2 m}.
-
-To recover measures, the idea is that, given a statement $\stmt[u] \in \tdomain[P]$ we can construct a measure $\mu_{\stmt[u]}$ such that $\mu_{\stmt[u]}(\stmt[u]) = 1$ and $\stmt_1 \finer \stmt_2$ will mean $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$. That is, we can quantity how more or less precise a statement is compared to a fixed statement taken as a unit.
-
-This does not work in general, though, because statements along different dimensions cannot be compared. For example, consider the pressure/volume state space for an ideal gas. Comparing \statement{the pressure is 1 kPa and the volume is between 1 and 2 liters} and \statement{the pressure is between 1 and 2 kPa and the volume is 1 liter} would mean saying where one unit liter is bigger or smaller than 1 kPa. There are two types of statements in $\tdomain[P]$, though, that can always be compared.
-
-For the first type, note that all evolutions in $E$ must give a complete description, so they must be all equigranular. Therefore any statement that corresponds to finitely many evolutions (e.g. \statement{the full trajectories is either $y=t \cdot 1 m/s$ or $y=-t \cdot 1 m/s$}) will be comparable to all other statements.
-
-For the second group, note that in our ideal gas example one of the quantities was determined with infinite precision. If we gave a range for all quantities, we would compare areas in that space, which we can always do. Note that statements with finite precision measurements are the only ones we can experimentally verify. So, we will require that all experimentally verifiable statements are comparable. We call \textbf{experimental domain} for the process the subset $\edomain[P] \subseteq \tdomain[P]$ of statements that can be, at least in line of principle, experimentally verified.
-
-We leave the full mathematical characterization in the mathematical section. We limit ourselves to make a few important comments. Verifiable statements will correspond, in terms of sets of $E$, to finite and infinite volumes. Requiring those to be comparable means the $E$ is a measurable space. In the familiar spaces, such as phase space or physical space, the measure we have will be the familiar one. As the process domain corresponds to a $\sigma$-algebra on $E$, the experimental domain corresponds to a topology on $E$. Therefore notions of continuity can be recovered as well. The process domain is the closure of the experimental domain under standard Boolean operations. This means that all the process domain is fully specify by, at least in principle, experimentally verifiable statements. The space does not contain any assertion that cannot ultimately be defined in terms of experiments. Lastly, requiring that, given enough time, each statement will be verified means the experimental domain must be generated by countably many statements. This means the topology is second countable and one is limited to work with ``nice'' spaces (e.g. spaces of continuous functions, separable Hilbert spaces, ...) not because they are ``nice'', but because they are the only physically meaningful ones.
+While we leave the full mathematical characterization in the mathematical section, there are a few things of note. Verifiable statements will correspond, in terms of sets of $E$, to finite and infinite volumes. Requiring those to be comparable means that $E$ is a measurable space and in phase space, for example, the standard measure will be recovered. As the process domain corresponds to a $\sigma$-algebra on $E$, the experimental domain corresponds to a topology on $E$. Therefore notions of continuity can be recovered as well. The process domain is the closure of the experimental domain under standard Boolean operations. This means that all the process domain is fully specify by, at least in principle, experimentally verifiable statements. The space does not contain any assertion that cannot ultimately be defined in terms of experiments. Lastly, requiring that, given enough time, each statement will be verified means the experimental domain must be generated by countably many statements. This means the topology is second countable and one is limited to work with ``nice'' spaces (e.g. spaces of continuous functions, separable Hilbert spaces, ...) not because they are ``nice'', but because they are the only physically meaningful ones.
 
 To sum up, we have two foundational object. The first object is the process domain $\tdomain[P]$ which is a Boolean algebra that contain all the possible description of our process. A subset $\edomain[P]$ contains those that are experimentally verifiable, which contain all the information in the full domain. The narrowest statements in $\tdomain[P]$ correspond to the evolutions $E$, that provide the full description at all times. The second object is the operator $\finer$ which gives us a way to compare two statements and decide which one gives a more refined description. Though two statements will not in general be comparable, all verifiable statements are comparable and all evolutions provide an equally refined description.
 
@@ -110,9 +236,14 @@ This framework imposes very few requirements which are of very general applicabi
 
 \section{States}
 
-\section{States}
+As the process extends over time, it is natural to want to organize the statements in our process domain into partial domains, one for each moment in time. Given our time parameter $t \in T \subseteq \mathbb{R}$, we can imagine to carve a subdomain $\tdomain_t$ that would correspond to all the statements about the system one can make at the given time. Any logical operation on statements at fixed $t$ is also another statement at fixed $t$ therefore $\tdomain_t$ is a $\sigma$-complete Boolean sub-algebra of $\tdomain[P]$. The set $X_t \subset \tdomain_t$ of the narrowest statements will give the most precise description at that time: these are the possible states of our system.
 
-As the process extends over time, it is natural to want to organize the statements in our process domain into partial domains, one for each moment in time. Given our time parameter $t \in T \subseteq \mathbb{R}$, we can imagine to carve a domain $\tdomain_t$ that would correspond to all the statements about the system one can make at the given time.
+We should note that, technically, the statements are not defined at an infinitesimal moment $t$, rather within a finite interval $[t, t + \Delta t]$. This represent the time-scale at which the process will be described, meaning the description within $\tdomain_t$ should not be sensitive to what happens at faster scales. The quantities used to represent states at time $t$, then, should really be thought as averages within $\Delta t$.
+
+We should also note that there is nothing at this point requiring us that the set of descriptions $\tdomain_t$ and states $X_t$ will be the same at all times.
+
+What we want to do now is relate states at different times. In particular we want to formally define the notion of deterministic process: one in which, given the state at a given time, we can always predict the state at all future times. This can be done through the use of the narrowness operator: $\stmt_{t_1} \narrower \stmt_{t_2}$ means that all evolutions compatible with $\stmt_{t_1}$ are also compatible with $\stmt_{t_2}$. In other words, if we find $\stmt_{t_1}$ to be true we will also find $\stmt_{t_2}$ to be true as well. Therefore a process is deterministic if, for all $t_1, t_2 \in T$, given $x_{t_1} \in X_{t_1}$ we can find $x_{t_2} \in X_{t_2}$ such that $x_{t_1} \narrower x_{t_2}$.
+
 
 
 At each moment, we have a set of possible statements about the system corresponding to physically measurable properties. We call state the maximal description that can be given at a particular time. Given the state, we know all that can be said about the system in that moment. We define an evolution of the system as the maximal description of the system at all times. If we knew the exact evolution, we know all possible descriptions of the system at all times. Therefore picking an evolution is equivalent to picking a state at each time. A particular process will constrain how the system can evolve, it will constrain the possible evolutions. Therefore we formally define a process as a set of possible evolutions, the ones that are allowed by the process.
@@ -130,7 +261,7 @@ Finally, a process over a system can be broken into two processes over two syste
 A useful scenario is when the systems can be considered independent at the beginning of the evolution, couple, and then return to be independent at equilibrium. The entropy can then be considered additive at the beginning and at the end of the evolution, but not in between. Equilibria on the whole will necessarily correspond to equilibria on each subsystem. Note how this conceptually corresponds to the scenarios studied in thermodynamics.
 
 
-
+NOTE: measure is invariant on Hamiltonian evolution, but not under irreversible evolution. Can't have the same measure at all times.
 
 
 \section{Math section}
@@ -148,6 +279,24 @@ The value $\mu_u(\stmt)$ tells us how many trajectories are compatible with $\st
 The conditional probability $P(\cdot | \cdot) : \tdomain \times \tdomain \to [0,1]$ is defined as $P(\stmt_1 | \stmt_2) = \mu_{\stmt_2}(\stmt_1 \AND \stmt_2)$ and represents the fraction of trajectories that are compatible with $\stmt_2$ that are also with $\stmt_1$.
 
 We define $T \subseteq \mathbb{R}$ to be the range of the time parameter. We define $\tdomain_{t} \subseteq \tdomain$ as the set of statements defined at the time t. Note this does not mean they are statement of only what happens at an instant in time. They can be averages around. It's how we decompose the problem at the desired time resolution. The states at time $t$ are the possibilities of $\tdomain_t$. The process is deterministic over the chosen states if for each $x_0 \in \tdomain_{t_0}$ we can find an $x_1 \in \tdomain_{t_1}$ such that $x_0 \narrower x_1$.  The process is reversible over the chosen states if for each $x_1 \in \tdomain_{t_1}$ we can find an $x_0 \in \tdomain_{t_0}$ such that $x_1 \narrower x_0$.
+
+Things I want to prove:
+
+\begin{prop}
+	Let $\tdomain[P]$ be a deterministic process over $\{X_t\}_{t \in T}$. Then $S(x(t))$ is a monotonically increasing function.
+\end{prop}
+
+\begin{prop}
+	Let $\tdomain[P]$ be a reversible process over $\{X_t\}_{t \in T}$. Then $S(x(t))$ is a monotonically decreasing function.
+\end{prop}
+
+\begin{prop}
+	Let $\tdomain[P]$ be a deterministic and reversible process over $\{X_t\}_{t \in T}$. Then $S(x(t))$ is constant.
+\end{prop}
+
+\begin{prop}
+	Let $\tdomain[P]$ be a deterministic process over $\{X_t\}_{t \in T}$. Then $S(x(t))$ is a monotonically increasing function.
+\end{prop}
 
 \bibliography{bibliography}
 
