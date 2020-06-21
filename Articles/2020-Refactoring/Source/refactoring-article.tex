@@ -1,4 +1,5 @@
-\documentclass[letterpaper]{article}
+\documentclass[twocolumn]{article}
+\usepackage{authblk}
 
 \input{../../../include/basicstyle}
 \input{../../../include/theorems}
@@ -15,22 +16,23 @@
 \title{A Refactoring - new attempt}
 
 
-\author{Gabriele Carcassi}
 %\email{carcassi@umich.edu}
-\author{Christine A. Aidala}
-%\affiliation{
-%	Physics Department \\
-%	University of Michigan \\
-%	Ann Arbor, MI 48109 \\
-%}
+\author[1]{Gabriele Carcassi}
+\author[1]{Christine A. Aidala}
+\affil[1]{
+	Physics Department\\
+	University of Michigan \\
+	Ann Arbor, MI 48109
+}
 
 \date{\today}
+
+\maketitle
+
 
 \begin{abstract}
 	We lay the groundwork for a formal framework that studies scientific theories and can serve as a unified foundation for the different theories within physics. We define a scientific theory as a set of verifiable statements, assertions that can be shown to be true with an experimental test in finite time. By studying the algebra of such objects, we show that verifiability already provides severe constraints. In particular, it requires that a set of physically distinguishable cases is naturally equipped with the mathematical structures (i.e. second-countable Kolmogorov topologies and $\sigma$-algebras) that form the foundation of manifold theory, differential geometry, measure theory, probability theory and all the major branches of mathematics currently used in physics. This gives a clear physical meaning to those mathematical structures and provides a strong justification for their use in science. Most importantly it provides a formal framework to incorporate additional assumptions and constrain the search space for new physical theories.
 \end{abstract}
-
-\maketitle
 
 %\linenumbers
 
@@ -172,7 +174,7 @@ The \textbf{axiom of finite conjunction verifiability} establishes that, given a
 
 The \textbf{axiom of countable disjunction verifiability} establishes that, given a countable set of statements, we can verify their disjunction (i.e. the logical OR). In fact, if the disjunction is true then one statement must be true. Once that is verified, we can terminate regardless of how many other statements are there in the disjunction. The set of statements must be countable, though, or it may take infinite time to find the statement that is true.
 
-On top of these axioms we can define \textbf{decidable statements} as the ones that can be both verified and falsified experimentally (i.e. their negation is a verifiable statement). One can prove that the finite disjunction and the finite conjunction of decidable statements is also decidable.
+On top of these axioms we can define \textbf{falsifiable statements} as the ones that can be disconfirmed experimentally (e.g. their negation is verifiable). We can also also define \textbf{decidable statements} as the ones that can be both verified and falsified experimentally (i.e. their negation is a verifiable statement). One can prove that the finite disjunction and the finite conjunction of decidable statements is also decidable.
 
 We therefore have three types of algebras embedded one into the other. The logical context $\logCtx$ is a complete Boolean algebra; the set of all verifiable statement $\vstmtSet \subset \logCtx$ is, in general, not a Boolean algebra but a complete Heyting algebra; the set of all decidable statements $\dstmtSet \subset \vstmtSet \subset \logCtx$ is a (finite) Boolean algebra. The interplay between these structures is important and leads to topologies and $\sigma$-algebras, the foundations for geometry, Lie algebras, measure theory, probability theory and most of the mathematical structures widely used in physics.
 
@@ -190,29 +192,15 @@ Given an experimental domain $\edomain$ we define its \textbf{theoretical domain
 
 For each theoretical statement $\tstmt \in \tdomain$, we can define its \textbf{verifiable part} $\ver(\tstmt)$, \textbf{falsifiable part} $\fal(\tstmt)$ and its \textbf{undecidable part} $\und(\tstmt)$. This allows us to precisely characterize the optimal testing strategy in terms of termination. For example, for a decidable statement like $\stmt=$\statement{there are three apples on the table}, the verifiable part will be equal to the statement itself $\ver(\stmt) \equiv \stmt$, the falsifiable part will be equal to its negation cases $\fal(\stmt) \equiv \NOT\stmt$ and the undecidable part will be the contradiction $\und(\stmt) \equiv \contradiction$. The experimental test for $\stmt$ always terminates either successfully or unsuccessfully. Instead, if $\stmt=$\statement{the mass of the photon is less than $10^{-17}$ eV}, we still have $\ver(\stmt) \equiv \stmt$ because it is a verifiable statement, but we will have $\fal(\stmt) \equiv$\statement{the mass of the photon is more than $10^{-17}$ eV} while $\und(\stmt) \equiv$\statement{the mass of the photon is exactly $10^{-17}$ eV}. The issue is that, due to finite precision, if the mass of the photon where exactly $10^{-17}$ eV, our confidence interval would only include the region below that number, so we would never be able to exclude it. So, the test would not terminate in that particular case. Lastly, if $\stmt=$\statement{the mass of the photon is a rational number as expressed in eV}, we have $\ver(\stmt) \equiv \contradiction \equiv \fal(\stmt)$ and $\und(\stmt) \equiv \tautology$. The only way to know whether the statement is true or not would be to know the exact value of the mass, which cannot be achieved in finite time. Therefore the test for $\stmt$ will never terminate. We call such statements \textbf{undecidable}.
 
-The fact that a scientific theory can contain undecidable statements, statements about which nothing can be said experimentally, may seem counter-intuitive. Theoretical statements include all those statement for which, in principle, a test can be devised, regardless of whether the test actually terminates: the $\sigma$-completeness guarantees that. Note that if we closed under arbitrary union, not just countable, we would bring in statements for which a test cannot even be, in principle, constructed. These would be unphysical objects, and are excluded by our framework.\footnote{These would correspond to non-Borel sets.}
+The fact that a scientific theory can contain undecidable statements, statements about which nothing can be said experimentally, may seem counter-intuitive. The issues is that theoretical statements include all those statement for which, in principle, a test can be devised, regardless of whether the test actually terminates: the $\sigma$-completeness guarantees that. Note that if we closed under arbitrary union, not just countable, we would bring in statements for which a test cannot even be, in principle, constructed. These would be truly unphysical objects, and are excluded by our framework.\footnote{These would correspond to non-Borel sets.}
 
+As noted before, some statements are narrower than other, they provide a more refined description. We call \textbf{possibilities} the statements that give the most refined description without being contradictions, without being degenerate. If we knew one of the possibilities (e.g. \statement{this animal is a cat}) to be true, then we would know the truth value of all other statements in the domain (e.g. \statement{this animal has whiskers}, \statement{this animal has no feathers}, ...). The possibilities represent all cases that can be defined experimentally through the verifiable statements given by the domain.
 
+There are notable properties conceptual and formal properties that can be proven from such a simple setup. The main results are the following.
 
-Note that the new statements provide no new information. In fact, all statements in the theoretical domain $\tdomain$ can be generated by negation, countable conjunction and countable disjunction from a basis $\basis$ of $\edomain$. As they provide all possible predictions, we focus on the ones that completely specify the truth value for all theoretical statements. For example, once we know that \statement{this animal is a cat} we know that \statement{this animal has whiskers}, that \statement{this animal has no feathers} and so on.
+\textit{Each statement corresponds to a set of possibilities and logical relationships between statements correspond to set operations.} The idea that any statement in the domain (e.g. \statement{this animal is a mammal}) can be expressed as a disjunction of possibilities (e.g. \statement{this animal is a cat} $\OR$ \statement{this animal is a dog} $\OR$ ...). Each statement, then, can be identified by the set of possibilities that are compatible with it. The conjunction of two statement will be compatible with possibilities that are compatible with both statement. If a statement is narrower than another, then all the possibilities compatible with the first will be compatible with the second. We can therefore reexpress all statement relationships in term of set relationships, as in table \ref{tab:statement_set}.
 
-\begin{defn}
-	A \textbf{possibility} for an experimental domain $\edomain$ is a statement $x \in \tdomain$ that, when true, determines the truth value for all statements in the theoretical domain. Formally, $x \nequiv \contradiction$ and for each $\mathsf{s} \in \tdomain$, either $x \narrower \mathsf{s}$ or $x \ncomp \mathsf{s}$. The \textbf{possibilities} $X$ for $\edomain$ are the collection of all possibilities.
-\end{defn}
-
-The possibilities are all the different cases that can be distinguished experimentally given the verifiable statements of the domain. If we increase or otherwise change the set of verifiable statements (e.g. we learn how to test the DNA of animals) then the possibilities will change as well (e.g. the possible animal species are refined). We conclude this section with the following general result.
-
-\begin{thrm}
-	The possibilities $X$ for an experimental domain $\edomain$ have at most the cardinality of the continuum.
-\end{thrm}
-
-The proof is simply noting that each possibility can be labeled by the truth value of the countable basis of the experimental domain. We cannot have more possibilities than sequences of true/false and the set of all binary sequences has the cardinality of the continuum.
-
-This means that we are never going to be able to experimentally distinguish between elements of greater cardinality. The set of topologically discontinuous functions from $\mathbb{R}$ to $\mathbb{R}$, for example, has greater cardinality and therefore it will never be associated with any physically distinguishable concept.\footnote{However, a discontinuous function with up to countably many discontinuities can be seen as the limit of a sequence of continuous functions and therefore may be used as a convenient approximation of a physical concept.} All the issues with large cardinals are not something science will ever be interested in. It does not matter what system we are describing, what experimental techniques we are using or how clever we are.
-
-\section{Topologies and sigma-algebras}
-
-\begin{table*}
+\begin{table*}[h]
 	\centering
 	\begin{tabular}{p{0.075\textwidth} p{0.275\textwidth} p{0.2\textwidth} p{0.3\textwidth}}
 		& Statement relationship & & Set relationship  \\ 
@@ -228,39 +216,37 @@ This means that we are never going to be able to experimentally distinguish betw
 	\caption{Correspondence between statement operators and set operators.}\label{tab:statement_set}
 \end{table*}
 
-Now that we have introduced the basic mathematical structures for our general theory, we show their deep connection to other well established mathematical structures. We first note that each verifiable statement can be written as the disjunction of a set of possibilities.
+\textit{The experimental domain induces a natural topology on the possibilities. The theoretical domain induces a $\sigma$-algebra.} As the experimental domain is closed under finite conjunction and countable disjunction, the collections of sets corresponding to verifiable statements is closed under finite intersection and countable unions. As the domain has a countable basis, arbitrary unions become equivalent to countable ones. Therefore the collection of sets associated to verifiable statements is a topology on the set of possibilities. In the same way, the theoretical domain will correspond to a $\sigma$-algebra. Note that this correspond to the actual topologies commonly used. In the standard topology of the real numbers, for example, $(0,1)$ is an open set (a set in the topology) precisely because \statement{the value is between 0 and 1} is a verifiable statement. The singleton $\{1\}$ is a closed set (the complement of a set in the topology) precisely because it is not verifiable due to infinite precision, but it is falsifiable (it can be excluded experimentally). The verifiable part of a statement will correspond to the interior of the set. An undecidable statement will be one with no interior nor exterior. We can map topological concept readily understood in terms of experimental verifiability, as in table \ref{tab:statement_topology}.
 
-\begin{defn}
-	Let $\edomain$ be an experimental domain and $X$ its possibilities. We define the map $U : \edomain \rightarrow 2^X$ that for each statement $\stmt \in \edomain$ returns the set of possibilities compatible with it. That is, $U(\stmt)\equiv\{ x \in X \, | \, x \comp \stmt\}$. We call $U(\stmt)$ the \textbf{verifiable set} of possibilities associated with $\stmt$.
-\end{defn}
+\begin{table*}[h]
+	\centering
+	\begin{tabular}{p{0.075\textwidth} p{0.275\textwidth} p{0.2\textwidth} p{0.3\textwidth}}
+		& Logical concept & & Topological concept  \\ 
+		\hline 
+		$\edomain$ & (Experimental domain) & $U(\edomain)$ & (Topology) \\ 
+		$\tdomain$ & (Theoretical domain) & $U(\tdomain)$ & (Borel algebra) \\ 
+		$\stmt \in \edomain$ & (Verifiable statement) & $U(\stmt) \in U(\edomain)$ & (Open set) \\ 
+		$\tstmt \in \tdomain$ & (Theoretical statement) & $U(\tstmt) \in U(\tdomain)$ & (Borel set) \\ 		$\NOT\stmt \in \edomain$ & (Falsifiable statement) & $U(\stmt)^C  \in U(\edomain)$ & (Closed set) \\ 
+		$\ver(\stmt)$ & (Verifiable part) & $\interior(U(\stmt))$ & (Interior) \\ 
+		$\fal(\stmt)$ & (Falsifiable part) & $\exterior(U(\stmt))$ & (Exterior) \\ 
+		$\und(\stmt)$ & (Undecidable part) & $\partial U(\stmt)$ & (Boundary) 
+	\end{tabular} 
+	\caption{Correspondence between logical concepts and topological concepts.}\label{tab:statement_topology}
+\end{table*}
 
-\begin{prop}
-	A statement $\stmt \in \edomain$ is the disjunction of the possibilities in its verifiable set $U(\stmt)$. That is, $\stmt=\bigOR\limits_{x \in U(\stmt)} x$.
-\end{prop}
+\textit{The possibilities are calculated from the verifiable statements.} It is standard in physics to use the infinitely precise values as the starting point, and the finite precision interval as measurement approximations. In our framework it is the opposite: the finite precision verifiable statements are the starting point, and the possibilities are the limits. Technically, one takes the basis of the experimental domain and creates a minterm: a disjuction where each element appears once, negated or not (e.g. $\stmt[e]_1\OR \NOT \stmt[e]_2 \OR ...$). Each minterm that is not a contradiction is a possibility: something that tells us whether each element of the basis is true or note, and therefore any statement in the domain. This approach has various benefits. First, it conceptually maps better to experimental practice. The points of our spaces are the best description possible given a set of experimental techniques. If we expand the experimental techniques (e.g. we can measure the spin of the electron and not just its position), the possibilities are refined. Second, the full descriptions (i.e. the possibilities) and the partial descriptions (i.e. any other statement in the domain) are mathematically the same object. This makes it a lot easier to talk about partial description as they will simply be sub-domains, instead of having to define maps from sets to point and from sets to sets. Third, it makes it easier to understand how the assumptions that give as a particular set of points break down and what are possible alternatives. Assumptions will fail in narrower descriptions, not in the broader ones, so the logical relationships of the broader statements need to be preserved. If we start from the infinitesimal objects, we have to make modifications and then check whether the large scale behavior emerges. Since the framework start by defining broader statements, we are literally making small modifications on our starting points. That is, we keep the large scale structure fixed and see what possible small scale structure can be had.
 
-The proof is a trivial application of the disjunctive normal form of Boolean algebra. In fact, each possibility can be written as a minterm of a basis (i.e. a conjunction where each basis element appears only once either negated or not). Any verifiable statement can be expressed in terms of the basis, and it is a result of Boolean algebra that each logical expression can be formulated as a disjunction of minterms (i.e. an OR of ANDs). Intuitively, it is the disjunction of all cases in which the statement is true.
+\textit{The possibilities $X$ for an experimental domain $\edomain$ have at most the cardinality of the continuum.} That is, a set of objects, of cases, that can be defined experimentally cannot be bigger than the set of the real numbers. The proof is simply noting that each possibility can be labeled by the truth value of the countable basis of the experimental domain. We cannot have more possibilities than sequences of true/false and the set of all binary sequences has the cardinality of the continuum. This gives a clear understanding as to why objects like the set of all discontinuous functions from $\mathbb{R}$ to $\mathbb{R}$ or discussion on large cardinals are not physically relevant.
 
-Since every statement is a set of possibilities, we can re-express the statement relationships in terms of set relationships according to Table \ref{tab:statement_set}.
+\textit{The following propositions are all equivalent: all statements in an experimental domain are decidable; all theoretical statements are verifiable; all possibilities are verifiable; the possibilities form a countable basis; the topology is discrete.} This result allows to fully characterize \textbf{decidable domains}, those that contains only decidable statements. The discrete topology one associates with integers corresponds to the fact that we can indeed verify that \statement{there are exactly 3 apples on the table}. We can either verify or falsify each of the cases: all possibilities are decidable. This can only happen if the cases are countable, so if the set of possibilities has the cardinality of the continuum (e.g. the points of a manifold) we must have a qualitatively different space in terms of experimental verifiability.
 
-The closure of an experimental domain under finite conjunction and countable disjunction becomes closure under finite intersection and countable union. Since the basis is countable, countable union is equivalent to arbitrary union. In other words, the set of all verifiable sets is a topology.
+\subsection{Experimental relationships}
 
-\begin{thrm}
-	Let $X$ be the set of possibilities for an experimental domain $\edomain$. $X$ has a natural topology given by the collection of all verifiable sets $\mathsf{T}_X=U(\edomain)$ that is Kolmogorov and second countable.
-\end{thrm}
+Having defined experimental domain, we want to define what it means for two domains to have an inference or a causal relationship. The main result is that the two coincide.
 
-The topology is Kolmogorov (i.e. $T_0$) because given two possibilities, by their construction, there must be one element of the basis that is compatible with one but not the other. It is second countable because a basis of the experimental domain corresponds to a sub-basis of the topology. One can also show that the natural topology is Hausdorff if and only if all possibilities are approximately verifiable (i.e. each possibility is the limit of a sequence of verifiable statements). The hope is that we can find physically meaningful definitions for all relevant topological concepts.
+Given two domain $\edomain_Y$ and $\edomain_X$, we say there is an \textbf{inference relationship} from the first to the second if by testing a statement in the first we can infer the truth of a statement in the second. Formally, there is a map $\erel : \edomain_Y \to \edomain_X$ such that $\erel(\stmt_Y) \equiv \stmt_Y$. In that case, we say $\edomain_Y$ \textbf{depends} on $\edomain_X$, noted $\edomain_Y \subset \edomain_X$. If $\edomain_Y$ and $\edomain_X$ depend on each other, we say  $\edomain_Y$ is \textbf{equivalent} to $\edomain_X$, noted $\edomain_Y \equiv \edomain_X$.
 
-In the same way, the theoretical domain corresponds to a $\sigma$-algebra on the possibilities.
-
-\begin{defn}
-	Let $\tdomain$ be a theoretical domain and $X$ its possibilities. We define the map $A : \tdomain \rightarrow 2^X$ that for each theoretical statement $\stmt \in \tdomain$ returns the set of possibilities compatible with it. That is, $A(\stmt)\equiv\{ x \in X \, | \, x \comp \stmt\}$. We call $A(\stmt)$ the \textbf{theoretical set} of possibilities associated with $\stmt$
-\end{defn}
-
-\begin{thrm}
-	Let $X$ be the set of possibilities for a theoretical domain $\tdomain$. $X$ has a natural $\sigma$-algebra given by the collection of all theoretical sets $\Sigma_X=A(\tdomain)$.
-\end{thrm}
-
-The proof is again a simple mapping of statement operations to set operations. It can also be shown that the natural $\sigma$-algebra of the possibilities is the Borel algebra of their natural topology.
+Given two domain $\edomain_X$ and $\edomain_Y$, we say there is a \textbf{causal relationship} from the first to the second if by knowing which possibility $x \in X$ is true in the first we know which possibility $y \in Y$ is true in the second. Formally, there is a map $f : X \to Y$ such that $x \narrower f(x)$. Note how the direction between the domains
 
 \section{Brief discussion and examples}
 
@@ -284,6 +270,7 @@ We believe the development of a general mathematical theory of experimental scie
 
 We thank Mark J. Greenfield for the thorough scrutiny of the mathematical framework and Mathew Timm for clarifying what can and cannot be defined within a formal mathematical framework. We thank Josh Hunt for the detailed review of the philosophical underpinning of this work and Gordon Belot, Laura Ruetsche and David J. Baker for philosophical discussions related to this work. We would also like to acknowledge John Mayer, Kai Sun, Jens Zorn and others for their interest and support for this project.
 
+\bibliographystyle{plain}
 \bibliography{bibliography}
 
 \end{document}
