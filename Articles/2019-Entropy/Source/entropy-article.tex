@@ -252,17 +252,76 @@ S_{\iota(\stmt[u], t_1)}(x_0) \leq S_{\iota(\stmt[u], t_1)}(x_1) = S_{\iota(\stm
 \end{equation}
 This means that all snapshots that relax to the same state will have a process entropy lower or equal to the state entropy. Therefore \textbf{the state entropy is the largest possible process entropy for which the description given by the state applies}.\footnote{Mathematically, the relaxation process in needed to compare the process entropies for the correlated descriptions. As the same description can be more or less correlated in different cases, the independent ones work as a reference and we need a way to relate to them.} This does not simply represent a subjective information theoretic consideration (e.g. we know only about the system); it is a physical consideration (e.g. knowledge about one system tells us nothing about the others). As we make the system more independent, there are more possible evolutions the combined system can have, the dynamics of the system is less affected, less correlated, by the dynamics of the other.
 
-The takeaway message is that \textbf{entropy maximization is equivalent to requiring system independence}. Maximizing entropy means taking the system apart from the others, so that its dynamics and description is decoupled. Entropy maximization, more than a law of physics, is a requirement to properly define a part of nature as a system. When we divide nature in independent systems, therefore, we are automatically looking for processes that increase entropy.
+If the final state is identified by the set of state variables $\xi^a : X \to \mathbb{R}$, the initial snapshot will be identified by the same quantities since the relaxation process should not, in principle, disturb the system. These quantities, then, are a constraint during relaxation and, additionally, they must be the only constraints. Additional constraints, in fact, would increase the number of final states, meaning the initial set of quantities did not form a full set of state variables. Therefore \textbf{state variables identify both the states of the systems and the constraints during relaxation}.
+
+The takeaway message is that \textbf{entropy maximization is equivalent to requiring system independence}. Maximizing entropy means taking the system apart from the others, so that its dynamics and description is decoupled. We should stress here that the description may not include all possible degrees of freedoms of the object studied (e.g. macrostate variable, position and momentum of the center of mass). Maximizing entropy means requiring independence of that partial description from the rest, effectively decoupling environment, other systems and internal dynamics in one operation. Entropy maximization, more than a law of physics, is a requirement to properly define a part of nature as a system. When we divide nature in independent systems, therefore, we are automatically looking for processes that increase entropy.
+
+As we have seen, the definition of a system as a part of nature to be studied independently from the rest comes with physical requirements that provide a rich conceptual and mathematical structure that maps extremely well to the basic ideas in thermodynamics.
 
 \subsection{Thermodynamic processes}
 
+We now have all the basic tools we need to recover thermodynamic as the study of the relaxation process of composite systems. That is, we have two systems, we put them together and relax the composite system. In light of what discussed before, the composition rule must tell us what composite states are possible and what is the relaxation process. These will be linked because of the double role of the state variables. Thermodynamic describes that link in the case of extensive (i.e. additive) state variables.\footnote{It should be stressed that, in our framework, recovering the laws of thermodynamics does not always mean recovering universal truths about nature. It simply means identify the necessary and sufficient assumptions for which a given system will be suitable described by those laws.}
+
+As we noted before, given the same physical object, we will have a different relaxation process and different state variables. When composing two systems, we are automatically given a relaxation process which is the independent relaxation of each system. The state space, in this case, is simply the set of all possible pairs of states of the components. This means we have constraints within the system which is therefore not necessarily relaxed: the description of the whole is tied to the description of the parts. That is, we don't simply describe what the total energy or the total number of particle is, we also describe the energy and the particles for each part. We now want to remove the constraints within the system and characterize the relaxation process. We call \textbf{equilibrium} the final states of a relaxation process of a composite system with no internal constraints. We call one-step equilibration process a one step process that ends in equilibrium.
+
+\textbf{The first assumption in thermodynamic is that an equilibrium state of the whole is described by a pair of equilibrium states of the parts.} We qualify this as an assumptions as it not always true for all systems and can fail in several ways. For example, removing the wall between two substances may change them both in a third (this usually addressed by changing the state space of the parts to accommodate). More subtly, in the presence of impermeable walls we can characterize the state on either side with a fixed number of particle. When the wall is removed, the state will be characterized by an average number of particles. The state space is not technically the same. If the boundary effects between the two components are non negligible, they will not be independent (i.e. the entropy does not sum). Outside of thermodynamics, an entangled state is certainly a state of a composite system (e.g. two photons) where constraints are put only on the whole (e.g. total spin) and it cannot be described as a simple combination of subsystems' states (e.g. is it not separable). Therefore there are definitely cases that do not follow this assumption. Characterizing all cases in which the assumptions hold (e.g. a ``large'' system in contact with a sufficiently ``large reservoir'') is left for future work.
+
+\textbf{The second assumption in thermodynamic is that constraints are independent, each identified by an extensive (i.e. additive under composition) quantity.} There is good reason to suspect that this assumption is, at least in large part, already contained in the previous one. Under the first assumption, in fact, state entropy is linear under composition. It could be that, assuming the constraints are independent (i.e. the variation on one does not change the others) is enough to construct a linear quantity to describe them. In the end, a linear scale for energy, mass, volume, number of particles, etc.. is typically construct by preparing reference sample and combining them. We leave this investigation for future work.
+
+\textbf{The third assumption in thermodynamic is that one such constraint is the internal energy and its corresponding equilibrium is thermal equilibrium.} This is hope that this too can be already contained in the first assumption. In previous work we have recovered both classical Hamiltonian and quantum unitary evolution under the assumption of deterministic and reversible evolution which, as we have seen, is equivalent to conservation of process entropy. In those settings the notion of energy, in the form of the Hamiltonian, arises naturally so it could be made to arise naturally here as well. Yet, there some technical subtleties in the relationship between the Hamiltonian and the internal energy which we still have to work out.
+
+Under these assumptions, we can recover the laws of thermodynamics. Let $A$ and $B$ be two system in thermal equilibrium and let $AB$ be the composite. We have:
+\begin{equation}
+	\begin{aligned}
+	U_{AB} &= U_A + U_B \\
+	S_{AB}(U_{AB}) &= S_A(U_A) + S_B(U_B) \\
+	&= \sup \{S_A(x) + S_B(y) \, | \, x+y= U_{AB}\} \\
+	\frac{1}{kT_A} = \beta_A = \frac{\partial S_A}{\partial U_A} &= \frac{\partial S_B}{\partial U_B} = \beta_B = \frac{1}{kT_B}
+	\end{aligned}
+\end{equation}
+which follows the standard textbooks derivations. One finds that thermal equilibrium is achieved if and only if $T_A$ and $T_B$ are equal.  If $B$ is in thermal equilibrium with another system $C$ we also have $T_B$ is equal to $T_C$ and therefore $A$ and $C$ are also in thermal equilibrium. This recovers the zeroth law.
+
+We say a system $R$ is a \textbf{thermal reservoir} if its equation of state can be sufficiently approximated by $S = \beta U = \frac{U}{k T}$. Internal energy is the only relevant constraint for the thermal reservoir and the only way the entropy of the system can change. We call \textbf{heat} the energy exchanged by a thermal reservoir and we note $Q = - \Delta U$ as the energy lost by the reservoir during a one-step process.
+
+Let $M$ be a purely mechanical system. Let $U$ be the internal energy and $X^i$ the other variables. We have:
+\begin{equation}
+\begin{aligned}
+S_M&=S_M(W, X^i)=0 \\
+dS_M = 0 &= \frac{\partial S_M}{\partial U} dU + \frac{\partial S_M}{\partial X^i} dX^i \\
+dW &= \frac{1}{\frac{\partial S_M}{\partial U}}\frac{\partial S_M}{\partial X^i} dX^i \\
+P_i &= \frac{1}{\frac{\partial S_M}{\partial U}}\frac{\partial S_M}{\partial X^i} \\
+dU &= P_i dX^i.
+\end{aligned}
+\end{equation}
+For a purely mechanical system, a chance in internal energy is always linked to a change one of the other constraints. The energy of the purely mechanical system is \textbf{stored} in one of the constraints. We note a change of internal energy during a one-step equilibration process of a pure mechanical system as $W=\Delta U$.
+
+We now consider a system composed of a generic system $A$, a thermal reservoir $R$ and a purely mechanical system $M$. During a one-step equilibration process, because the total energy of the system must be conserved, we have:
+\begin{equation}
+\begin{aligned}
+&\Delta U_A + \Delta U_R + \Delta U_M = 0 \\
+&\Delta U_A - Q + W = 0 \\
+&\Delta U_A = Q - W.
+\end{aligned}
+\end{equation}
+This recovers the first law.
+
+We now look at the change in entropy, which can only increase during a one-step process. Keeping in mind $M$ is purely mechanical, we have:
+\begin{equation}
+\begin{aligned}
+&\Delta S_A + \Delta S_R + \Delta S_M \geq 0 \\
+&\Delta S_A \geq - \Delta S_R \\
+&\Delta S_A \geq \int \beta_R dQ \\
+&\Delta S_A \geq \int \frac{dQ}{k T_R}.
+\end{aligned}
+\end{equation}
+which recovers the second law.
 
 
-
+As for the second law, we have given a characterization that is far more general than what it is given in thermodynamics. Nevertheless, we can 
 
 % DO WE NEED INTERNAL STATE? On the other side, a state of a system is never really the description of the whole system, but of the part that is relevant to the process at hand. If we study the motion of the balloon, position and velocity may be enough; if we study it as a thermodynamic system, pressure and volume may be enough. The idea is that the state captures the system at a particular level of granularity and the process does not depend, is not sensitive, to the finer dynamics. We say a system is in \textbf{equilibrium} if the state tells us nothing about the 
 
-
+ The physical meaning that ``all heat is equivalent'' and ``all diathermal walls are equivalent'' is explicit in the fact that the internal energy identifies the constraint.
 
 \section{Math section}
 
