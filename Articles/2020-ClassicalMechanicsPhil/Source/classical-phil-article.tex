@@ -1,5 +1,7 @@
 \documentclass[letterpaper]{article}
 
+\usepackage{amsmath}
+
 \begin{document}
 
 %% testing from desktop
@@ -26,6 +28,26 @@ TODO: Lagrangian assumption vs kinematic assumption. Investigate what happens wh
 \subsection{Define Lagrangian \& Hamiltonian mechanics}
 
 Talk about disippative systems.
+
+\subsubsection{Strong vs weak Kinematic assumption}
+
+Problem: changing variables from state variables $(q^i, p_j)$ to kinematic variables $(x^i, v^j)$. We set $x^i=q^i$. The change of name helps us remember that $\frac{\partial}{\partial x^i} \neq \frac{\partial}{\partial q^i}$ as one is taken at constant $v$ while the other is taken at constant $p$.
+
+Weak assumptions: $v^i = v^i(q^j, p^k)$ invertible. Strong assumptions: $m v^i = g^{ij} (p_j - q A_j(q^k))$ linear in $p_j$.
+
+We want to transport the density from state variables to initial conditions: $\rho(q^i, p_j) = |J| \rho(x^i, v^j)$. We have:
+\begin{equation}
+	|J| = \begin{bmatrix}
+	\frac{\partial x^i}{\partial q^j} & \frac{\partial v^i}{\partial q^j} \\
+	\frac{\partial x^i}{\partial p_j} & \frac{\partial v^i}{\partial p_j}
+	\end{bmatrix}
+	= \begin{bmatrix}
+	\delta^i_j & \frac{\partial v^i}{\partial q^j} \\
+	0 & \frac{\partial v^i}{\partial p_j}
+	\end{bmatrix}
+	= \left|\frac{\partial v^i}{\partial p_j}\right|
+\end{equation}
+Under the strong assumption, $\left|\frac{\partial v^i}{\partial p_j}\right| = \frac{1}{m} |g^{ij}|$.
 
 \subsection{Fundamentality}
 
