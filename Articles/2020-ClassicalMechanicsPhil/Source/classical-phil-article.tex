@@ -31,9 +31,9 @@ Talk about disippative systems.
 
 \subsubsection{Strong vs weak Kinematic assumption}
 
-Problem: changing variables from state variables $(q^i, p_j)$ to kinematic variables $(x^i, v^j)$. We set $x^i=q^i$. The change of name helps us remember that $\frac{\partial}{\partial x^i} \neq \frac{\partial}{\partial q^i}$ as one is taken at constant $v$ while the other is taken at constant $p$.
+Problem: changing variables from state variables $(q^i, p_j)$ to kinematic variables $(x^i, v^j)$. We set $q^i=x^i$ because $x^i$ defines the units for $v_j$. The change of name helps us remember that $\frac{\partial}{\partial x^i} \neq \frac{\partial}{\partial q^i}$ as one is taken at constant $v$ while the other is taken at constant $p$.
 
-Weak assumptions: $v^i = v^i(q^j, p^k)$ invertible. Strong assumptions: $m v^i = g^{ij} (p_j - q A_j(q^k))$ linear in $p_j$.
+Weak assumptions: $v^i = v^i(q^j, p^k)$ invertible. Only particles trajectories are trasported. Strong assumptions: $m v^i = g^{ij} (p_j - q A_j(q^k))$ linear in $p_j$. This considers the distribution as well. The unit for the density only depends on units of $q^i$.
 
 We want to transport the density from state variables to initial conditions: $\rho(q^i, p_j) = |J| \rho(x^i, v^j)$. We have:
 \begin{equation}
