@@ -72,7 +72,30 @@ If we compose independent systems, the number of possible states and trajectorie
 \end{enumerate}
 
 
-\section{Evolutions, states and levels of description}
+\section{Introduction}
+
+\emph{NB: this is a draft.}
+
+The basic premise of statistical mechanics is that entropy counts states. We believe this premise is not correct and what entropy really counts evolutions (i.e. curves in phase space parameterized by time). If the evolution is deterministic and reversible (i.e. each state corresponds to one evolution), these notions coincides, but leads to confusion in the rest of the cases.
+
+Consider this simple example: the system at time $t_0$ can be in state $a$ or $b$. In both cases, however, the system will move to state $a$ at time $t_1$. The dynamics is deterministic: given the state at $t_0$ we can tell the state at time $t_1$. Yet, the dynamics is non-reversible: the states have merged into the equilibrium $a$, we can't reconstruct the previous state, we have lost information.
+
+Note that the count of states goes down over time. If we start at time $t_0$ with the set with both $a$ and $b$, we have to states. Through the map, this becomes the set with only $a$ at time $t_1$. We go from two to one. If we say entropy count states, then we are saying entropy decreases.
+
+On the other hand, we propose that entropy counts the evolutions per state. In this case, the initial set of two states and the final set of one state corresponds to the same number of possible evolutions, two. However, the number of evolutions corresponding to each state changes: at time $t_0$ we have one evolution per state; at time $t_1$ we have two evolutions per state. Our entropy has increased.
+
+Note that, whenever evolutions merge, the dynamics is irreversible, the entropy increases. In the continuous case, evolutions don't need to merge, just become more dense. At equilibrium, evolutions will no longer merge: the entropy will become stable. This gives a very simple explanation of why entropy increases. The rest of the paper aims to make this simple intuition more precise.
+
+To achieve our goal, there are a number of issues that needs to be solved. First of all, we need to understand exactly how states are defined and how are they assigned an entropy. In fact, note that in the example the state $a$ has different entropy at different times. While at first this may seem strange, it actually makes sense: saying that the system is in state $a$ at time $t_0$ is different than saying that it is in state $a$ at time $t_1$: in the first case, we know the system couldn't be in state $b$ at time $t_0$. Given the non-reversible dynamics, the same assertion at different times may provide different information.
+
+Our starting point, then, needs to be a framework that can keep track of different descriptions at different times with different level of granularity. Within this general framework, we need to understand what are the conditions that allow us to group some into descriptions of the same system. This, it turns out, is not so trivial and comes with some necessary assumptions.
+
+Lastly, we want to understand what additional assumptions are needed to recover the different physical frameworks, such as classical mechanics, statistical mechanics and, our main focus, thermodynamics. The hope is that building everything from the ground up will give us more insight in the foundations of all the respective theories and, more in general, of physics.
+
+Note that our aim here is not to present a fully fleshed our mathematical framework. We want simply to present a blueprint for it and convince the reader that this is doable and interesting.
+
+
+\section{A general framework for physical processes}
 
 The overall goal is to describe a generic system as it evolves in time by defining a minimal set of concepts that such a setup must define, thus bringing to light the tacit assumptions underlying state spaces and evolution laws. We want to find notions that are equally valid and useful within different settings (e.g. thermodynamics, dynamical systems, classical mechanics, ...). We provide here an overview of the main features and a firm idea of how they recover the more standard results, leaving a complete formal development to future works.
 
@@ -171,7 +194,11 @@ The idea is that geometrical, measure theoretic, information theoretic and proba
 
 To recover measures, we pick a statement $\stmt[u] \in \tdomain[P]$, called unit, and construct a \textbf{measure} $\mu_{\stmt[u]}$ such that $\mu_{\stmt[u]}(\stmt[u]) = 1$ and $\stmt_1 \finer \stmt_2$ will mean $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$. That is, we can quantify how much more or less precise a statement is compared to a fixed statement taken as a unit. If two statements are such that the measure of one with respect to the other is finite and non-zero, we say they are \textbf{finitely comparable}. We can show that if $\stmt[u]_1$ and $\stmt[u]_2$ are finitely comparable we have $ \mu_{\stmt[u]_1}(\stmt) = \mu_{\stmt[u]_1}(\stmt[u]_2) \mu_{\stmt[u]_2}(\stmt)$. Furthermore, since all evolutions give a complete description of the whole process, we will assume they are all equigranular. Therefore if we pick $\stmt[u] \in E$, then $\mu_{\stmt[u]}(\stmt)=\#(A(\stmt))$ would be the counting measure of evolutions compatible with $\stmt$.\footnote{We still need to understand the necessary and sufficient conditions under which such measures would exist and be unique. For the present work, we assume it can be done.}
 
-We can also define the \textbf{evolution entropy} with respect to $\stmt[u]$ as the quantity $S_{\stmt[u]}(\stmt) = \log \mu_{\stmt[u]}(\stmt)$. This can be thought of as the number of bits, yes/no questions, that separate the level of description of $\stmt[u]$ from the one provided by $\stmt$. Connecting the definitions from above, under a deterministic process we have $S_{\stmt[u]}(x(t)) \leq S_{\stmt[u]}(x(t + \Delta t))$ since $x(t)\narrower x(t+\Delta t)$ means $x(t) \finer x(t+\Delta t)$ and $\mu_{\stmt[u]}(x(t)) \leq \mu_{\stmt[u]}(x(t+\Delta t))$. If the process is determistic and reversible, we have $S_{\stmt[u]}(x(t)) = S_{\stmt[u]}(x(t + \Delta t))$. In other words, \textbf{evolution entropy cannot decrease for a deterministic process and is stationary if the process is reversible as well}.
+We can also define the \textbf{evolution entropy} with respect to $\stmt[u]$ as the quantity $S_{\stmt[u]}(\stmt) = \log \mu_{\stmt[u]}(\stmt)$. This can be thought of as the number of bits, yes/no questions, that separate the level of description of $\stmt[u]$ from the one provided by $\stmt$. Connecting the definitions from above, under a deterministic process we have
+\begin{equation}\label{entropy_increases}
+S_{\stmt[u]}(x(t)) \leq S_{\stmt[u]}(x(t + \Delta t))
+\end{equation}
+since $x(t)\narrower x(t+\Delta t)$ means $x(t) \finer x(t+\Delta t)$ and $\mu_{\stmt[u]}(x(t)) \leq \mu_{\stmt[u]}(x(t+\Delta t))$. If the process is determistic and reversible, we have $S_{\stmt[u]}(x(t)) = S_{\stmt[u]}(x(t + \Delta t))$. In other words, \textbf{evolution entropy cannot decrease for a deterministic process and is stationary if the process is reversible as well}.
 
 Quantifying evolutions allows us to define probability. The idea is a process can be realized differently by each possible evolution. The more evolutions a statement is compatible with, the more it is likely to happen. For example, consider a process that implements a coin flip. If the coin (and the process flipping the coin) is fair, we must have that half the evolutions are compatible with \statement{the coin is head} while the other half are compatible with \statement{the coin is tails}.  Therefore we define that the \textbf{probability} of $\stmt_2$ given $\stmt_1$ is
 \begin{equation}
@@ -242,7 +269,22 @@ We say we have an \textbf{independent system} if the system is independent from 
 	S_{\stmt[u]}(x) = S_{\iota(\stmt[u], t_0)}(\iota( x, t_0))_{indep}
 \end{equation}
 
-We say $\xi^a : X \to \mathbb{R}$ are a set of state variables if they uniquely identify a state. That is, we can find an isomorphism (a bijection that preserve the logical structure) $\phi : \mathbb{R}^n \to X$ such that $\phi(\xi^a(x)) = x$ for all $x \in X$. Then each state space comes equipped with a \textbf{state function} $S=S(\xi^a)$. We'll see that, for thermodynamic systems, this will correspond to the usual thermodynamic entropy. We define a \textbf{purely mechanical} system one for which the state entropy is the same across all states (i.e. $S=k$ where $k$ is a constant, typically chosen to be zero). We'll see that classical phase space and quantum state spaces are state spaces of purely mechanical systems.
+At this point it would seem the state entropy has a relative scale like the process entropy. However, system composition makes the scale absolute. To see this, let us define a \textbf{null system} as one with only one possible ``state'' $x_0$, which corresponds to the fact that there is no system at all. We call this the \textbf{null state}. The null system functions as a zero for system composition:  any system composed with the null system gives the original system. We are therefore forced to use $x_\emptyset$ as a unit (if not because it is the only statement with non-zero measure) and have:
+\begin{equation}\label{entropy_zero}
+S_{x_\emptyset}(x_\emptyset) = \log \mu_{x_\emptyset}(x_\emptyset) = \log 1 = 0 \\
+\end{equation} 
+Conceptually, if the null system is composed with an independent system, the total possible evolutions are the ones coming from the independent system.
+
+Since we said before that a system may not be present in all processes, to make the state space both conceptually and mathematically complete, it will have to contain a null state. The state entropy of the null state of each system must be zero, for exactly the same reasons as before. The state entropy, then, is always taken with respect to the null state, for which it is zero and will be noted simply by $S$. Also note that, all else being equal, saying that a system is in a particular state cannot give us a more refined description than saying that a system is missing. While there may be more than one way that a particular state is implemented (e.g. degenerate energy level, multiple microstates leading to the same macrostate, ...), there is only one way the system can be missing. If we know the system is missing, there is nothing else that could be said about it. Therefore the description provided by the null state is always finer than any other description of the system, including any state. For any state $x \in X$ we have:
+\begin{equation}\label{entropy_lower_bound}
+\begin{aligned}
+x_\emptyset &\finer x \\
+S(x) &\geq S(x_\emptyset) = 0
+\end{aligned}
+\end{equation}
+In other words, \textbf{the null system and the null states set an absolute scale for the state entropy}.\footnote{The fact that each state space includes a null state, and that the entropy of the null state is zero, is required by the math to make $\iota$ work in the case where the system is not present. In fact, in that case all the states are impossible none of them would map to the snapshot of the (missing) system. As of now, it is not yet clear whether the fact that the entropy of any state must be equal or greater to the one of the null state is an additional mathematical requirement or not.}
+
+We say $\xi^a : X \to \mathbb{R}$ are a set of state variables if they uniquely identify a state. That is, we can find an isomorphism (a bijection that preserve the logical structure) $\phi : \mathbb{R}^n \to X$ such that $\phi(\xi^a(x)) = x$ for all $x \in X$. Then each state space comes equipped with a \textbf{state function} $S=S(\xi^a)$. We'll see that, for thermodynamic systems, this will correspond to the usual thermodynamic entropy. We define a \textbf{purely mechanical} system one for which the state entropy is zero across all states. We'll see that classical phase space and quantum state spaces are state spaces of purely mechanical systems.
 
 Since we can only properly talk about a system when it is independent from the other, what can we do in the other cases? The idea is that we can still talk about a system in that case if we are able, at least in line of principle, to decouple the system from all others while not changing the nature of the system itself. For example, we can talk about a molecule of a gas because we have a way to take such molecule out of the gas. The construction of a state space of a system, then, also requires telling us what all the possible correlated description will go when the system is made independent. Mathematically, we need a deterministic one-step process that takes any initial snapshot of the system to a final state, and does so without disrupting the system (i.e. the relaxation process must take each state to itself). We call this process \textbf{relaxation}.\footnote{The state space is invariant over the relaxation. In other word, the state space is a symmetry of the relaxation process.}
 
@@ -258,7 +300,14 @@ The takeaway message is that \textbf{entropy maximization is equivalent to requi
  
 As we have seen, the definition of a system as a part of nature to be studied independently from the rest comes with physical requirements that provide a rich conceptual and mathematical structure that maps extremely well to the basic ideas in thermodynamics.
 
-\section{Thermodynamic processes}
+\section{Mechanics}
+The recovery of classical mechanics is something that we have already covered in previous works. In fact, this goal of this work is to try and extend the framework to be applicable to non-derministic and non-reversible processes.
+
+The fundamental assumption to recover classical mechanics is that \textbf{the processes describes the deterministic and reversible evolution of a single system composed by infinitesimal parts, each described by a set independent degrees of freedom.} In this case, each evolution corresponds to one and only one state at each time. The state space and each time domain, then, can be given a uniform measure. The system is purely mechanical. Each degree of freedom is described by a coordinate $q^i$ and a conjugate variable $k_i$ of inverse units, making the areas $dq^idk_i$ invariant. Hamiltonian mechanics is recovered by requiring that the evolution is deterministic and reversible and the independence of the degrees of freedom is preserved. This dynamics is the one and the only one that preserves state entropy.
+
+What is often missed is that the assumption of determinism and reversibility is crucial to be able to give the same measure over all states at all times. Suppose we have a dynamical system that exhibits equilibria (i.e. attractors). Each equilibria will have a basin of attraction. We can assume, like in the previous cases, that at a particular time all states are possible and each state corresponds to one evolution. That is, we have a uniform measure and a uniform entropy on that particular time domain. If we let time pass, however, the possible states will shrink around the equilibria. 
+
+\section{Thermodynamics}
 
 We now have all the basic tools we need to recover thermodynamic as the study of the relaxation process of composite systems. That is, we have two systems, we put them together and relax the composite system. In light of what discussed before, the composition rule must tell us what composite states are possible and what is the relaxation process. These will be linked because of the double role of the state variables. Thermodynamic describes that link in the case of extensive (i.e. additive) state variables.\footnote{It should be stressed that, in our framework, recovering the laws of thermodynamics does not always mean recovering universal truths about nature. It simply means identify the necessary and sufficient assumptions for which a given system will be suitable described by those laws.}
 
@@ -314,8 +363,15 @@ We now look at the change in entropy, which can only increase during a one-step 
 &\Delta S_A \geq \int \frac{dQ}{k T_R}.
 \end{aligned}
 \end{equation}
-which recovers the second law.
+which recovers the second law of thermodynamics. This is just a more specialized version of \eqref{entropy_increases} which is valid for any deterministic process.
 
+Recall that, by \eqref{entropy_lower_bound}, the state entropy $S(U)$ must be bounded from below.  If the temperature tends to zero for some state $U_0$, the curve is tangent to a vertical line at $U_0$, so the entropy will be bound to a positive finite value. This recovers the third law.
+
+While we technically recovered the letter of the law, we do not believe have really recovered the spirit. In fact, the system may have a lower the curve could continue, have lower values of $U_0$ with even lower values of $S$. We could also have states for negative values of $U$. The law does not say anything on the subject. There are, in fact, other facts that are usually implied but not stated: that the temperature will decrease when energy decreases, that there will be a minimum value for energy and that, for that value, temperature will tend to zero.
+
+If we traverse $S(U)$ from higher 
+
+In \eqref{entropy_zero} we saw that the state entropy must be zero or greater. It is zero if the state corresponds to one independent evThe third law comes in many forms, so 
 
 As for the second law, we have given a characterization that is far more general than what it is given in thermodynamics. Nevertheless, we can 
 
