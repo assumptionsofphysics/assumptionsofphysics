@@ -1,8 +1,20 @@
 \documentclass[letterpaper]{article}
 
-\usepackage{amsmath}
+\usepackage{amsmath, hyperref}
 \usepackage{amsfonts}
 \usepackage{graphicx}
+
+\usepackage[backend=biber,  style=chicago-authordate, url=false, doi=false, eprint=false]{biblatex}
+%\usepackage[backend=biber,  style=authoryear-icomp, url=false, doi=false, eprint=false]{biblatex}
+\addbibresource{bibliography.bib}
+
+\AtEveryBibitem{%
+  \clearfield{note}%
+  \clearfield{series}%
+  \clearfield{pages}%
+}
+
+
 
 \begin{document}
 
@@ -22,8 +34,6 @@
 
 \section{Introduction}
 
-%% testing testing! 
-%% testing twice 
 
 TODO: Lagrangian assumption vs kinematic assumption. Investigate what happens when the transformation is non-linear.
 
@@ -31,12 +41,17 @@ TODO: Lagrangian assumption vs kinematic assumption. Investigate what happens wh
 
 Talk about disippative systems.
 
+Throughout, we will focus only on non-dissipative classical systems, i.e. conservative systems. For in the context of transforming between the Hamiltonian and Lagrangian formulations (via a Legendre transform), we assume that the conjugate momentum $p$ is the derivative of the Lagrangian with respect to the generalized velocity $v $. This requires that the system is conservative [why exactly?], which is equivalent to the system being deterministic and reversible. Consequently, we will not consider systems that satisfy inhomogenous Euler--Lagrange equations.
+% Dissipative systems contain more information than contained in the Lagrangian alone, namely, the additional information contained in the Rayleigh potential
+
 \subsection{Derivation}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{Diagram.png}
 \end{figure}
+
+Overall summary: A classical system is an infinitesimally reducible system. The state space of these systems can be modeled by a symplectic manifold (the physical assumption of infinitesimal reducibility corresponds to the mathematical structure of symplectic manifolds). Classical Hamiltonian systems satisfy the additional conditions of having deterministic and reversible evolutions. These two physical assumptions entail the existence of a symplectic morphism on the state space manifold, making it contact manifold. Classical Lagrangian systems satisfy a further assumption: keeping track of the trajectories in physical space is equivalent to tracking the evolution of states in phase space. Note that it is not always true that we can determine the evolution in phase space from the trajectory in physical space. For instance, knowledge of the trajectory of a photon is insufficient for knowledge of its phase space evolution, since we cannot determine the momentum of a photon from its trajectory alone.
 
 \subsubsection{Infinitesimal reducibility}
 
@@ -120,31 +135,39 @@ H = \frac{1}{2m} (p_j - A_j) g^{ij}(p_j - A_j) + V \\
 \end{equation}
 where V is another arbitrary function. We recognize this as the Hamiltonian for massive particles under potential forces.
 
-Therefore
 
-\subsection{Fundamentality}
 
-Different notions of fundamentality, perfectly natural properties, naturalness, etc. 
 
-Joint carving, perfectly natural properties. Ontological notion of fundamental. Clearly state why this is not "good" for this context. We are agnostic. One may use following points to argue whatever they want.
-
-Joint carving? What notion of fundamentality? 
 
 \section{Argument for privileging Hamiltonian mechanics}
 
 \subsection{Relevant formal background from assumptions of physics framework}
 
-Hamiltonian mechanics makes fewer assumptions on the physical system being studied than Lagrangian mechanics. Lagrangian is a subset than Hamiltonian. Makes "amount of structure" more rigorous. Hamiltonian defines the relationship between conjugate momentum and velocity ($dq/dt = \partial H / \partial p$), so kinematic assumption constrains the Hamiltonian.
+%On the notion of more or less structure, treated in such a way that we avoid the objections of Halvorson/Swanson against North's notion of amount of structure:
+Our comparisons of structure arise from logical chains of strict entailment, wherein something has more structure if and only if it is less general, i.e. if and only if it is a specialization of a more general case. So in this case, the Lagrangian framework has more structure than the Hamiltonian framework because Lagrangian mechanics requires an additional assumption. This difference in the number of assumptions corresponds to a difference in the number of commitments. When working with a Hamiltonian but non-Lagrangian structure, we are not committed to the q's being positions (although is this in tension with the remarks on the significance of the coordinate and unit systems?). In contrast, for systems where motion equivalence applies, we gain the further commitment of treating the q's as positions.
 
-Hamiltonian mechanics is "fundamental" because allows to show that densities are coordinate independent quantities and therefore physical quantities. Canonical pairs (position and conjugate momentum) allows a simpler expression/comparison of densities over space. That is why statistical mechanics works best on phase space (we have a uniform measure over q/p).
+Hamiltonian mechanics makes fewer assumptions on the physical system being studied than Lagrangian mechanics. Lagrangian is a subset than Hamiltonian. Makes ``amount of structure" more rigorous. Hamiltonian defines the relationship between conjugate momentum and velocity ($dq/dt = \partial H / \partial p$), so kinematic assumption constrains the Hamiltonian.
+
+
+Claim to think about: GC was arguing on 10-12 that you could handle classical systems in the Hamiltonian framework with just a differential manifold and no symplectic structure. This would contradict North's indispensability claim that Hamiltonian symplectic structure is necessary for treating classical systems. E.g., North footnote 31: ``The symplectic form is crucial to determining the motion, since the same Hamiltonian can induce different flows for different symplectic forms" [76]. North takes this as an argument for why we cannot eliminate the symplectic form in an attempt to get at even less structure. We need it to define the dynamics.
+
+\subsection{The significance of invariant distributions}
+
+North argues that Hamiltonian mechanics is superior because it requires strictly less structure than Lagrangian mechanics. While we agree that Hamiltonian mechanics does require less structure---in a different sense than North's account---this is not the only grounds for privileging it. Instead, the main grounds for privileging Hamiltonian mechanics comes from understanding physics in terms of invariant distributions. This allows us to provide a better physical interpretation of the action principle, which holds even when a Lagrangian cannot be defined for the system of interest.
+% Do we agree with the following claim defended by North: ``as far as we can tell, we need only symplectic structure to do classical mechanics" [74]. 
+
+Hamiltonian mechanics is ``fundamental" because allows to show that densities are coordinate independent quantities and therefore physical quantities. Canonical pairs (position and conjugate momentum) allows a simpler expression/comparison of densities over space. That is why statistical mechanics works best on phase space (we have a uniform measure over q/p).
 
 Can characterize this argument as physically or epistemically privileging Hamiltonian mechanics 
 
-\section{Interpreting Lagrangian mechanics}
+\subsection{Response to Curiel's criticisms of Hamiltonian mechanics}
 
-Somewhere in this section, should reply to Curiel's privileging of Lagrangian mechanics. Curiel frequently appeals to naturalness and a distinction between natural vs. ad hoc/artificial constructions [figure out what his definition of ``naturalness" is, if he provides one].
 
-For instance, Curiel argues that Hamiltonian mechanics is less natural and thus less physically significant/privileged:  ``Hamiltonian mechanics represents abstract classical systems only in so far as we restrict ourselves to a subfamily of all the formally acceptable Hamiltonians by the \textit{ad hoc} use of conditions foreign to Hamiltonian mechanics itself. Its structures do not provide the appropriate concepts and tools to formulate in their terms the required structures that treat configurative quantities differently from momental, nor do they provide any natural justification for the restriction to Hamiltonians of the form (6.2)" (306). 
+
+Curiel restricts Hamiltonian mechanics to systems whose Hamiltonian takes the form (equation 6.2) $H =\alpha^{m n} p_m p_n + U (q_j) $. Here, the functions $U$ and $\alpha^{m n}$ are arbitrary functions of the generalized position coordinates $q $. Curiel's argument in a nutshell:  ``Hamiltonian mechanics represents abstract classical systems only in so far as we restrict ourselves to a subfamily of all the formally acceptable Hamiltonians by the \textit{ad hoc} use of conditions foreign to Hamiltonian mechanics itself. Its structures do not provide the appropriate concepts and tools to formulate in their terms the required structures that treat configurative quantities differently from momental, nor do they provide any natural justification for the restriction to Hamiltonians of the form (6.2)" (306). 
+
+Curiel argues that Hamiltonian mechanics is less physically significant than Lagrangian mechanics. His argument hinges on the claim that Hamiltonian mechanics requires an ad hoc condition that is imposed by hand, whereas Lagrangian mechanics follows from physically plausible principles. We agree with Curiel that his equation 6.2 requires a condition that is imposed by hand, namely the kinematic equivalence assumption. However, this condition has a clear physical meaning, and it corresponds to a physical condition that must hold in order to define/apply Lagrangian mechanics. Pace Curiel, there exist Hamiltonian systems that do not satisfy his equation 6.2 (equivalently, classical systems where the momentum is not a linear function of the velocity), and these will even have a Lagrangian, although they will not be an abstract classical system in Curiel's sense. Hence, there seems to be a burden on Curiel to distinguish---in a principled way---the classical Lagrangian systems from those that are not classical.
+% Hence, perhaps we agree with Curiel that ``it is not necessary that [these conditions] hold in order for the theory to be meaningfully applied to model a [classical] system" [305]. Where is Curiel takes this as an argument for the primacy of Lagrangian mechanics, we take it as an argument for the primacy of Hamiltonian mechanics, since Curiel's conditions are equivalent to imposing motion equivalence.
 
 Response: symplectic geometry indeed does not care about the difference between q's and p's. Classical mechanics does. Misindentification of the math (symplectic geometry) with the physics (Classical Hamiltonian mechanics).
 
@@ -155,9 +178,90 @@ Part of our response: The action principle can be understood geometrically in th
 
 Upshot: can better understand Lagrangian mechanics as a special case of Hamiltonian mechanics. Explain how the geometrical understanding of the stationary action in extended phase space should meet any criterion of ``naturalness" or ``natural construction." Lagrangian mechanics is actually less natural because contingent on having a bijection between velocity and conjugate momentum.
 
+On its own, the kinematic/motion of a system in physical space is not sufficient for defining the system's dynamics. The kinematics/motion does not suffice to determine the forces acting on the system. For it is essential to be able to distinguish the forces acting on an inertial system from fictitious forces arising in the description of a non-inertial system. Hence, unless one knows that the kinematic equivalence principle is satisfied, Lagrangian mechanics faces an underdetermination problem: it is unable to distinguish between certain inertial vs. non-inertial systems that are physically distinct. Distinguishing between these kinds of systems requires a relationship between conjugate momentum and kinematic momentum (or equivalently, knowledge of the energy/Hamiltonian).
+% Example of underdetermination in the context of Lagrangian mechanics: a free particle in a non-inertial frame vs. an accelerated particle (in an inertial frame) acted on by a dissipative force. These two distinct classical systems can nevertheless have the same equations of motion.
+% The Hamiltonian framework does not face a corresponding underdetermination problem because it does not allow for dissipative systems. Hence, there is a sense in which the Lagrangian formalism is more mathematically general than the Hamiltonian formalism. However, this additional generality is irrelevant when considering conservative classical systems.
+
+The standard predator--prey model from differential equations satisfies Curiel's definition of an abstract classical system. However, it does not satisfy Curiel's notion of the split between configurational vs. velocital coordinates. And it is not true that the velocity will be the first derivative of the position. Moreover, the predator--prey system is neither Hamiltonian nor Lagrangian, because it is not necessarily deterministic and reversible.
+% Related to equation 3.1. Make precise.
+% Furthermore, the momentum does not need to be a linear function of velocity. For example, the photon does not satisfy this relationship.
+
+Objection against Curiel to make precise and substantiate with textual evidence: implicitly, Curiel assumes that classical systems are defined as Newtonian systems in an inertial frame with Cartesian coordinates. Implicitly, Curiel assumes that energy is a function of position and velocity, entailing that we have a Hamiltonian. The claim in footnote 17 that the kinetic energy is a function of velocity depends on the choice of a particular coordinate system; it is not a coordinate-invariant claim. Curiel's thought experiment assumes that we have a constant force (in this case gravity) and that we are in a reference frame where we can compare forces (e.g. an inertial frame).
+
+\subsection{Discussion of relation to categorical equivalence proofs}
+
+Possible objection to consider stemming from categorical equivalence: for systems in the hyper regular domain, does the categorical equivalence of Hamiltonian and Lagrangian mechanics show that we require the same number of assumptions to treat systems in this domain? 
+Some relevant considerations for responding: note that the photon does not belong to the hyper regular domain. Furthermore, if you are not in the hyper regular domain, then there is no longer a one-to-one map between position and velocity. In this sense, the Hamiltonian framework is more general because it applies outside the hyper regular domain: the Hamiltonian can define a unique solution (unique evolution in phase space) even when the Hessian is zero. In contrast, whenever the Lagrangian is not hyper regular, the Euler--Lagrange equations do not possess a unique solution. Furthermore, density plays a special role in the Hamiltonian framework, whereas it is in some sense an accident that the density and configuration space is invariant (simply because the Jacobian equals unity in Cartesian coordinates).
+
+\section{A non-metaphysical notion of fundamentality}
+
+%Different notions of fundamentality, perfectly natural properties, naturalness, etc. 
+
+%Joint carving, perfectly natural properties. Ontological notion of fundamental. Clearly state why this is not ``good" for this context. We are agnostic. One may use following points to argue whatever they want.
+
+Whereas North \parencites*[76]{North2009} seeks to determine the `real' fundamental state space structure of the theory---and correspondingly, of a classical world---we remain neutral on this underlying metaphysical question. Whether Hamiltonian phase space structure is metaphysically fundamental is neither here nor there for the questions we seek to answer. For regardless of its metaphysical status, Hamiltonian mechanics is epistemically, conceptually, and physically more fundamental.
+% Similarly, Curiel advocates neutrality on these metaphysical issues when it comes to the conceptual analysis of a physical theory's structure (304).
+% On the basis of the fundamentality of Hamiltonian mechanics, North argues that ``we should infer that symplectic structure is the `real' state space structure of the theory. We should infer that this structure corresponds to the `real' physical structure of a classical mechanical world" [76]
+%``there is an objective fact about what structure exists, there is a privileged carving of nature at its joints: along the lines of its fundamental physical structure" [82]. 
+
+Methodologically, we agree with North that it is important to identify invariants and more generally ``the mathematical structure needed to formulate the theory in an invariant, frame-independent way" \parencites*[65]{North2009}. Additionally, we agree that it is worthwhile to identify what particular mathematical structure is required by a formulation \parencites[78]{North2009}. However, whereas North proceeds mainly from the mathematical structure to claims about physical significance, we seek to interpret the mathematics by beginning with physically significant assumptions. We seek to determine which physical assumptions are necessary and sufficient for supporting a corresponding mathematical structure. This does not entail that additional mathematical structure is necessarily physically insignificant or surplus structure, just that it may correspond to an additional physically significant assumption that might apply to the system under consideration. As we will see, this characterizes the relationship between Hamiltonian and Lagrangian formalizations of a classical system. Hence, whereas North views the Lagrangian structure as surplus or redundant (``excess, superfluous structure"), we take the Lagrangian structure as unnecessary but still physically significant, corresponding to an additional physical assumption that applies to some classical systems.
+% % Similarly, we agree with the general methodology of Curiel as well: ``One task of the philosopher of physics is to work out the conceptual structure of a physical theory---or at least an appropriate one, if it is not unique---to isolate and characterize its mathematical and formal structures, and show how natural physical interpretation accrues to them from an analysis of their empirical application" (272).
+% I think that Curiel might make a similar point regarding the significance of a formulation even if it uses surplus structure or less physically significant structure. See section 7 argument against structural realism: Curiel argues that the Hamiltonian formulation nevertheless does not fail to represent classical systems, even if it structure is not the most natural (on his view)
+%having argued that Lagrangian mechanics has more structure ``than the theory really needs", North claims that ``we should infer that it does not exist, that it does not correspond to fundamental structure" [75]. 
+% Curiel on the harmonic oscillator: claims to have given an example where there is sameness of meaning (both Lagrangian and Hamiltonian formulations represent the harmonic oscillator and provide the same meaning) without sameness of structure (they're not isomorphic).
+%``we should infer that the world contains at least the amount of structure needed to formulate its fundamental dynamics in an invariant way" [80].
+% E.g., North argues that ``only certain kinds of mathematical object are appropriate for representing the structure of the world" and it is through these facts that we figure out which formulation of physics to prefer? [66].
+
+
+We agree that providing a physical interpretation of the invariants is important. However, some non-invariant quantities can be physically meaningful. For instance, the coordinates q define the units, and these are physically significant despite not being invariant. Units are physically significant because they allow us to assign numbers to a physical quantity. They are physically significant in part because they correspond to measurable quantities. Whereas North claims that coordinate choices are ``merely arbitrary choices of description" \parencites*[61]{North2009}, some choices of the coordinates q are less physically meaningful because they are not properly connected with measurement. Some arbitrary mixings of q's and p's preserve the symplectic manifold but are not as physically significant. For this reason, the q's are epistemically privileged because they are linked with measurements, in a sense that the logically-derivative p's are not. The p's are inverses of the q's. Whereas symplectic geometry creates a mathematical, syntactic symmetry between the q and p variables, this is not a physically significant symmetry from the standpoint of measurement.
+Moreover: could discuss how Cartesian coordinates can be physically significant, in virtue of position and velocity being independent degrees of freedom, whereas this independence does not hold generically across coordinate systems. (In contrast, position and conjugate momentum variables always characterize separable/independent degrees of freedom).
+% It follows from the way in which position quantities fix the units that $\dot{x} = v $. It is built into the notion of a dynamical system that half of the state variables are derivatives of the other half.
+
+
+In defining ``Hamiltonian mechanics" we are not privileging any one of the at least three different mathematical ways of formalizing Hamiltonian mechanics. Each of these frameworks has different pragmatic costs and benefits. Hence, unlike North, we are comfortable acknowledging that the mathematical structure that you ``need" might not be unique. There might not be a single canonical minimal structure for formalizing the relevant physical models and physical assumptions. Neither one of these three formalizations of Hamiltonian mechanics is necessarily more ``fundamental" or joint-carving than the others. And in some sense, each of these three spaces involves reference to some ``unphysical" coordinates or representational means. Nevertheless, there are compelling physical and pragmatic motivations for preferring the extended phase space formulation of Hamiltonian mechanics. In this formulation, we gain an invariant Hamiltonian that is the conjugate variable of the proper time, while the normal Hamiltonian (which is not coordinate-invariant) still plays the role of generating time-translations.
+% One con of this extended phase space formulation: the Hamiltonian constraint is both a constraint and the generator of time evolution; hence, it must be defined in the neighborhood of the actual states, so the values it provides outside of these neighborhoods should be unphysical, yet they encode the equations of motion.
+% Should we remark on the claim that the only structure we need is whatever is sufficient to define densities locally? Hence, we need just the symplectic form but not the cotangent bundle?
+% E.g. in the extended phase space formulation, the equations of motion come from derivatives of the Hamiltonian constraint over the variables, but this constraint is defined on unphysical points. These unphysical points are plausibly a mathematical artifact, although they supply a nice tool/method for understanding physically significant aspects of the representation.
+
+\subsection{Some helpful quotations from North that could help characterize her position and relevant differences:} 
+
+North argues that ``the structure of physics is the (minimal) structure that is assumed among dynamically equivalent---in classical mechanics: canonically transformed---formulations of a theory. Structure comprises those quantities that remain intact when we transform one allowable coordinatization of the laws into another" [78]
+
+North definition of structure: ``structure comprises the objective, fundamental, intrinsic features, the ones that remain the same regardless of arbitrary or conventional choices and description" [66]. So presumably, North would view the invariant phase space density as part of this fundamental structure.
+
+North's epistemic method for figuring out the structure: ``look at what is invariant under allowable transformations"; this tells us what the structure is [73].
+
+\section{Interpreting Lagrangian mechanics}
+
+
+
+%Discussion of gauge transformations in the context of Lagrangian vs. Hamiltonian mechanics; contrast with North [77] privileging the momentum variables as significant (look for Wallace 2003 quotations along these lines as well):
+In some sense (to be made more precise), gauge transformations are more fundamental in Lagrangian mechanics than Hamiltonian mechanics. The conjugate momentum $p $ functions as a dummy variable in virtue of being a gauge quantity. From motion equivalence, the Lagrangian has more invariant structure than the Hamiltonian [not sure what this really means]. The Lagrangian has the advantage of being invariant under coordinate transformations, whereas the Hamiltonian is not a coordinate invariant. Instead, the Hamiltonian varies as the time component of a 4-co-vector. Nevertheless, the Lagrangian itself is physically problematic because it is a gauge-dependent quantity. The p variables are not of fundamental significance because we can perform a gauge transformation on the p's such that the q and $\dot{q} $ variables remain the same. For systems where motion equivalence holds, we are really measuring the q and $\dot{q} $ variables, indicating that this is a genuine gauge transformation of the momentum variables. Hence, privileging Hamiltonian mechanics does not entail, pace North, that ``momentum is a truly fundamental quantity, on a par with position" \parencites*[77]{North2009}. Instead, position and kinetic momentum remain physically privileged, with conjugate momentum relegated to a gauge quantity (despite its role in the Hamiltonian formalism).
+% But there is a sense in which on the extended phase space, the Hamiltonian constraint is an invariant, yielding a coordinate-invariant way of handling systems with Hamiltonian mechanics. (?) 
+%Since the q and $\dot{q} $ variables fix the physical state, this indicates that transformed conjugate momentum is a gauge quantity. 
+%North argues that ``momentum is a truly fundamental quantity, on a par with position" [77]. 
+
+Claim to clarify: motion equivalence allows us to understand the gauge redundancy of the Lagrangian. However, it is not true that the Lagrangian has these redundancies in virtue of the system satisfying motion equivalence.
+
+Issue of the mathematical structure that is necessary/sufficient for Lagrangian mechanics:
+North footnote 20 and appendix: it is not generically true that the state space of Lagrangian mechanics comes equipped with a metric. Footnote 22: ``a more general, coordinate-free version" of Lagrangian mechanics ``does not make explicit use of this metric"; discussed in appendix A. North: ``the square of the Riemannian line element is what gives the allowable sets of coordinate transformations, the ones that preserve the Lagrangian equations of motion. A volume element would not suffice for this" [75]. How does this connect with motion equivalence and its associated mathematical structure?
+
+North assumes that formulating a Lagrangian theory requires specifying a Riemannian metric; according to Curiel, this is neither necessary nor sufficient. Furthermore, the physical significance of a Riemannian metric in the context of a Lagrangian theory is unclear: two different Lagrangian's can have the same Lagrangian vector field and yet induce inequivalent Riemannian metrics
+
+
+
+%Somewhere in this section, should reply to Curiel's privileging of Lagrangian mechanics. Curiel frequently appeals to naturalness and a distinction between natural vs. ad hoc/artificial constructions [figure out what his definition of ``naturalness" is, if he provides one].
+
+
+
+
+
+
+
 %
 
-\bibliography{bibliography}
+%\bibliography{bibliography}
+\printbibliography
 
 
 \end{document}
