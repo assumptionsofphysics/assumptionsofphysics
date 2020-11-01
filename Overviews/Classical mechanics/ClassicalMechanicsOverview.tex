@@ -97,15 +97,18 @@ These are also exactly the cases where the Lagrangian, using the principle of mi
 
 Now we look at the whole distribution and how it can be expressed as a function of position and velocity. We have $\rho(q^i, p_j) = |J| \rho(x^i, v^j) = \left|\frac{\partial v^i}{\partial p_j}\right| \rho(x^i, v^j)$ since
 \begin{equation}
-|J| = \begin{bmatrix}
+\begin{aligned}
+|J| &= \begin{vmatrix}
 \frac{\partial x^i}{\partial q^j} & \frac{\partial v^i}{\partial q^j} \\
 \frac{\partial x^i}{\partial p_j} & \frac{\partial v^i}{\partial p_j}
-\end{bmatrix}
-= \begin{bmatrix}
+\end{vmatrix}
+= \begin{vmatrix}
 \delta^i_j & \frac{\partial v^i}{\partial q^j} \\
 0 & \frac{\partial v^i}{\partial p_j}
-\end{bmatrix}
+\end{vmatrix} \\
+&= \left|\delta^i_j\right| \left|\frac{\partial v^i}{\partial p_j}\right| - \left|0\right| \left|\frac{\partial v^i}{\partial q^j}\right|
 = \left|\frac{\partial v^i}{\partial p_j}\right|.
+\end{aligned}
 \end{equation}
 Note that while the value given by $\rho(q^i, p_j)$ is coordinate independent, the value given by $\rho(x^i, v^j)$ depends on the choice of coordinate through $\left|\frac{\partial v^i}{\partial p_j}\right|$. If $x^i$ truly sets the unit system by itself, then $\left|\frac{\partial v^i}{\partial p_j}\right|$ must be a function of position only. Similar considerations will also hold for marginal distributions (i.e.~distributions on a subset of the coordinates) which means all components of $\frac{\partial v^i}{\partial p_j}$ must be a function of position only. We set:
 \begin{equation}
@@ -125,7 +128,7 @@ p_j = m g_{ji} v^i + A_j
 \end{equation}
 where $A_j$ are arbitrary functions. Note that:
 \begin{equation}
-v^i = d_t q^i = \frac{\partial H }{\partial P} = \frac{1}{m} g^{ij}(p_j - A_j) \\
+v^i = d_t q^i = \frac{\partial H }{\partial p_i} = \frac{1}{m} g^{ij}(p_j - A_j) \\
 \end{equation}
 We integrate yet again and find:
 \begin{equation}
