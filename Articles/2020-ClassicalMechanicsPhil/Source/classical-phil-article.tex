@@ -1,6 +1,6 @@
 \documentclass[letterpaper]{article}
 
-\usepackage{amsmath, hyperref}
+\usepackage{amsmath, hyperref, enumerate}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 
@@ -32,8 +32,58 @@
 \end{abstract}
 
 
-\section{Introduction}
+Current section ideas:
 
+\begin{enumerate}[1.)]
+
+\item Assumptions of physics framework section
+
+\begin{itemize}
+
+\item motivate everything upfront: going to show that Hamiltonian mechanics corresponds to three conditions being satisfied, while Lagrangian mechanics requires a fourth condition
+\item define the three assumptions, and give motivation
+\item figuring out which mathematical structures are required for systems that satisfy certain physical conditions
+\item go over the upshot of the philosophical argument, specifically how this avoids the worries about measuring the amount of structure that plagued North (i.e. Swanson and Halvorson paper)
+\item Then, give the derivation, as gentle and well-motivated as possible. But would be ideal if readers could skip or skim this section and still get the philosophical upshot, relatively early on.
+
+\end{itemize}
+
+\item Physical significance of invariant distributions
+
+\begin{itemize}
+
+\item explain how these provide a novel way of understanding things, one that we can physically privilege
+
+\item connect this with North on invariant structure, but disavow metaphysical commitments
+
+
+\end{itemize}
+
+\item How to interpret Lagrangian mechanics in light of Hamiltonian mechanics
+
+\begin{itemize}
+
+\item gauge transformation stuff
+\item go over the cool stationary action principle derivation/argument
+\item clarify the status of Riemannian metric structure in the Lagrangian formalism
+\item respond to Curiel's privileging of Lagrangian mechanics
+\item respond to Curiel's argument that Hamiltonian mechanics involves the imposition of an ad hoc condition in order to get the right kinematical constraints, whereas these fall out naturally from Lagrangian mechanics.
+
+
+\end{itemize}
+
+\item Considerations in light of categorical equivalence proofs
+
+\begin{itemize}
+
+\item  clarify that argument is not in tension with categorical equivalence within the hyper regular domain. make this precise.
+\item Respond to the worry that something must have gone amiss if we have a difference in the number of conditions required for the Hamiltonian vs. Lagrangian mechanics, yet still have categorical equivalence in the hyper-regular domain
+
+\end{itemize}
+
+\end{enumerate}
+
+\section{Introduction}
 
 TODO: Lagrangian assumption vs kinematic assumption. Investigate what happens when the transformation is non-linear.
 
@@ -61,34 +111,53 @@ Throughout, we will focus only on non-dissipative classical systems, i.e. conser
 	\includegraphics[width=\textwidth]{Diagram.png}
 \end{figure}
 
-Overall summary: A classical system is an infinitesimally reducible system. The state space of these systems can be modeled by a symplectic manifold (the physical assumption of infinitesimal reducibility corresponds to the mathematical structure of symplectic manifolds). Classical Hamiltonian systems satisfy the additional conditions of having deterministic and reversible evolutions. These two physical assumptions entail the existence of a symplectic morphism on the state space manifold, making it a contact manifold. Classical Lagrangian systems satisfy a further assumption: keeping track of the trajectories in physical space is equivalent to tracking the evolution of states in phase space. Note that it is not always true that we can determine the evolution in phase space from the trajectory in physical space. For instance, knowledge of the trajectory of a photon is insufficient for knowledge of its phase space evolution, since we cannot determine the momentum of a photon from its trajectory alone.
+Overall summary: A classical system is an infinitesimally reducible system. The state space of these systems can be modeled by a symplectic manifold (the physical assumption of infinitesimal reducibility corresponds to the mathematical structure of symplectic manifolds). Classical Hamiltonian systems satisfy the additional conditions of having deterministic and reversible evolutions. These two physical assumptions entail the existence of a symplectic morphism on the state space manifold, making it a contact manifold. Classical Lagrangian systems satisfy a further assumption: keeping track of the trajectories in physical space is equivalent to tracking the evolution of states in phase space. Note that it is not always true that we can determine the evolution in phase space from the trajectory in physical space. For instance, knowledge of the trajectory of a photon is insufficient for knowledge of its phase space evolution, since we cannot determine the momentum of a photon from its trajectory alone. Hence, the set of classical systems that satisfy this further physical condition is a proper subset of the classical systems that satisfy the assumptions for Hamiltonian mechanics.
 
 \subsubsection{Infinitesimal reducibility}
 
-Classical phase space is recovered under the:
-Infinitesimal reducibility assumption: the state of the system is reducible to the state of its infinitesimal parts. That is, giving the state of the whole system is equivalent to giving the state of its parts, which is equivalent to giving the state of its parts and so on.
+First, we will show that a classical phase space arises if and only if a system satisfies the following physical condition:
 
-Let $\mathcal{C}$ be the state space for the whole system. We call particle the limit of recursive subdivision. Let $\mathcal{S}$ be the state space for the particles. Then for each $c \in \mathcal{C}$ we can find one and only one $\rho_c : \mathcal{S} \to \mathbb{R} $ that describes the state of its parts. That is, the state of the whole is a distribution over the infinitesimal parts. If $\mathcal{S}$ is a manifold, $\int_U \rho_c d\mathcal{S}$ gives us the fraction of the system whose parts are in the region $U$ of the state space.
+\begin{quotation}
+Infinitesimal reducibility assumption: the state of the system is reducible to the state of its infinitesimal parts. That is, giving the state of the whole system is equivalent to giving the state of its parts, which is equivalent to giving the states of those parts, and so on.
+\end{quotation}
 
-The critical issue is that, on a manifold, $\rho_c$ must transform both as a scalar function (the value must depend on the point and not on the coordinates) and a density. Classical phase space (i.e. a symplectic manifold) is the only space that have this structure. Let's see why.
+\noindent
+This assumption characterizes classical systems as those whose infinitesimal parts completely specify the state of the system. [At least in a footnote: comment on how this characterization of infinitesimal particles relates to standard philosophy of physics interpretive disputes over the status of point particles in classical mechanics. See Butterfield Pointillisme article; Butterfield characterizes particles as extensionless.]
 
-We call state variables a set of quantities $\xi^a$ (i.e. coordinates in manifold terminology) that fully identify a state. We call coordinate $q \in \xi^a$ a particular variable that defines a unit. Suppose the particle state space is such that one coordinate is sufficient to define the unit system. That is, $\xi^a = \{ q, k^i \}$. We need to make sure that we can arbitrarily change the unit without changing $\rho_c$. We also have to make sure that $q$ fully defines the units for all state variables. How many $k^i$ can we have?
+Let $\mathcal{C}$ be the state space for the whole system. Any point $c \in \mathcal{C}$ represents a particular state of the whole system. We define a classical \textit{particle} as the limit of recursive subdivision. A classical system then consists of a collection of classical particles. Let $\mathcal{S}$ be the state space for the particles [all of the particles constituting the whole system? or for each particle individually?]. We assume that this state space $\mathcal{S}$ is a manifold. Then for each state $c \in \mathcal{C}$ there exists a unique distribution $\rho_c : \mathcal{S} \to \mathbb{R} $ that describes the state of $c$'s parts. That is, the state of the whole system is a distribution over its infinitesimal parts. If $\mathcal{S}$ is a manifold, $\int_U \rho_c d\mathcal{S}$ gives us the fraction of the system whose parts are in the region $U$ of the state space $\mathcal{S}$. 
+%[is region U in the state space C or S. I assume in S.].
 
-Suppose we change unit $\hat{q}=\hat{q}(q)$. Call the new units $\hat{\xi}^b = \{ \hat{q}, \hat{k}^i\}$. We have $\rho_c(\hat{\xi}^b)=\rho_c(s(\hat{\xi}^b))=\rho_c(s(\xi^a))=\rho_c(\xi^a) = \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right| \rho_c(\hat\xi^b)$. Therefore the Jacobian $\left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right|$ must be equal to 1. Note that, since $\hat{q}$ depends only on $q$, $\left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right| = \left|\frac{\partial \hat q}{\partial q} \right|\left|\frac{\partial \hat{k}^b}{\partial k^a} \right|$. Suppose there is only one variable. Then we would have $\left|\frac{\partial \hat q}{\partial q} \right| = 1$. But this would mean the unit change cannot be arbitrary. Therefore we must have two or more variables and therefore $\left|\frac{\partial \hat{k}^b}{\partial k^a} \right| = \left|\frac{\partial q}{\partial \hat q} \right|$. This puts a constraint only on the determinant of the transformation. Suppose there are three or more variables. This constraint is not enough to recover the transformation uniquely and therefore $\hat q$  would not fully define the units for all other state variables. This means there must be two variables: $q$ and a single $k$. So in this case, coordinate independent areas and densities can only be defined on a two-dimensional manifold.
+On physical grounds, the distribution $\rho_c$ must transform as both a density and a scalar function, i.e. it must depend on the point [the point $c $? ] and not on the coordinates. This is because the distribution is a function only of the states, rather than of the particular choice of state variables, i.e. coordinates. [Explain why these two physical conditions hold for the distribution. Also, explain what it means to transform as a density.] We will now show that classical phase space (i.e. a symplectic manifold) is the only space that satisfies these constraints on the distribution. 
 
-To generalize, we say two coordinates are independent if changing the units for one does not change the units for the other. Suppose our particle state space $\mathcal{S}$ is such that its units are fully defined by $n$ independent coordinates $q^i$. Suppose you change the first coordinate $q^1$ without changing the others. Then we will find a variable $k_1$ that changes as before so that the densities are invariant. Now change the second coordinate $q^2$ in the same way while also fixing $k_1$. Then we find a corresponding $k_2$. In the end, we will find that $\mathcal{S}$ is $2n$-dimensional, and the state variables are $\xi^a = \{ q^i, k_i \}$. We define an \textit{independent degree of freedom} as the space charted by a pair of such variables.
+We define the \textit{state variables} as a set of quantities $\xi^a$ that fully identify a state (in manifold terminology, these are known as coordinates). We will define a \textit{coordinate} $q \in \xi^a$ as a particular state variable that defines a unit. For instance, $q$ might be position, defining units of meters. Starting with the simplest case, suppose that one coordinate suffices to define the unit system for the particle state space. Then, the state variables are given by a set $\xi^a = \{ q, k^i \}$, where \textit{prima facie} the index $i$ can range over more than one number. We will show that, in fact, there can only be a single $k^i$ coordinate in this case, conjugate to the single $q$ coordinate. Our derivation assumes---on physical grounds---that we can (i) arbitrarily change the unit defined by $q$ without changing the density $\rho_c$ and that (ii) $q$ fully defines the units for all state variables. 
+%[Give a concrete example of a state variable defining a unit, along with physical motivation for why state variables play the role of defining units (since we are treating this as a physically grounded assumption).]
+% How many $k^i$ can we have?
 
-We can now show that $\mathcal{S}$ is a symplectic manifold. Invariant densities can only be assigned to infinitesimal areas. Therefore we need a two-form $\omega$ that assigns an infinitesimal area to each infinitesimal surface, so that we can define the integrals of the form $\int_{\Sigma} \rho_c \omega(d\Sigma)$. Because degrees of freedom are---at least locally---independent, the total number of states in a volume is the product of the possible configurations of each degree of freedom. This means the volume form is given by $\omega^n$. This cannot be degenerate, or some volumes would not contain states. Therefore $\omega$ itself cannot be degenerate. As the degrees of freedom are independent, the number of states on a surface does not change if we translate it across independent degrees of freedom. If we imagine a parallelepiped, the integral over the surface must be zero (integral over opposite sides are equal and opposite). Therefore $\mathcal{S}$ must come equipped with a two-form $\omega$ that is closed and not degenerate and therefore is a symplectic manifold. By convention, we set $\omega = \hbar dq^i \wedge dk_i = dq^i \wedge dp_i$ where $p_i = \hbar k_i$.
+[We need to introduce the definition of state variable evolution $s$, since we appeal to it below. I take it that the definition we are working with is that future states are labeled by the original state variable values (i.e. transported state variables)? Section IV.C of long paper.]
 
-The conclusion is that, under the infinitesimal reducibility assumption, the state space of the system is a coordinate invariant distribution over the state space of the infinitesimal parts. If the state space of the particles is a manifold, then it is a symplectic manifold, which is the only type of manifold that supports coordinate invariant distributions.
+Now, suppose that we change the units by transforming the coordinate $q$ to a new coordinate $\hat{q}$ that is a function of the old coordinate: $\hat{q}=\hat{q}(q)$. Call the new units $\hat{\xi}^b = \{ \hat{q}, \hat{k}^i\}$. We have $\rho_c(\hat{\xi}^b)=\rho_c(s(\hat{\xi}^b))=\rho_c(s(\xi^a))=\rho_c(\xi^a) = \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right| \rho_c(\hat\xi^b)$. Therefore the Jacobian $\left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right|$ must be equal to 1. Suppose there is only one state variable, so that there are no $k^i$ variables. Then we would have $\left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right| = \left|\frac{\partial \hat q}{\partial q} \right| = 1$. But this would mean the unit change cannot be arbitrary. Therefore we must have two or more variables, so that there is at least one $k^i$ variable. The requirement that the Jacobian determinant equals one places a constraint on how the state variables $k^i$ must change to compensate the change from $q$ to $\hat q$. Note that, since $\hat{q}$ depends only on $q$, the Jacobian is an upper triangular block matrix, so $\left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right| = \left|\frac{\partial \hat q}{\partial q} \right|\left|\frac{\partial \hat{k}^b}{\partial k^a} \right|$ [it might be worthwhile to spell this out in more detail].  For the Jacobian determinant to equal one, we must therefore have $\left|\frac{\partial \hat{k}^b}{\partial k^a} \right| = \left|\frac{\partial q}{\partial \hat q} \right|$. This places a constraint only on the determinant of the transformation. Suppose there are three or more variables. This constraint would then be insufficient to recover the transformation uniquely, and therefore $\hat q$  would not fully define the units for all other state variables (contrary to assumption). This means there must be exactly two state variables: $q$ and a single $k$. So in this case, coordinate-independent areas and densities can only be defined on a two-dimensional manifold.
+
+To generalize, we say two coordinates are \textit{independent} if changing the units for one does not change the units for the other. Suppose our particle state space $\mathcal{S}$ is such that its units are fully defined by $n$ independent coordinates $q^i$. Suppose you change the first coordinate $q^1$ without changing the others. Then we will find a variable $k_1$ that changes as before so that the densities are invariant. Now change the second coordinate $q^2$ in the same way while also fixing $k_1$. Then we find a corresponding $k_2$. In the end, we will find that $\mathcal{S}$ is $2n$-dimensional, and the state variables are $\xi^a = \{ q^i, k_i \}$. We define an \textit{independent degree of freedom} as the space charted by a pair of such variables.
+
+We can now show that $\mathcal{S}$ is a symplectic manifold. Invariant densities can only be assigned to infinitesimal areas. Therefore we need a two-form $\omega$ that assigns an infinitesimal area to each infinitesimal surface, so that we can define integrals of the form $\int_{\Sigma} \rho_c \omega(d\Sigma)$ [clarify which phase space $\Sigma$ belongs to]. Because degrees of freedom are---at least locally---independent, the total number of states in a volume is the product of the possible configurations of each degree of freedom. This means the volume form is given by $\omega^n$. This cannot be degenerate, or some volumes would not contain states [motivate this claim or]. Therefore $\omega$ itself cannot be degenerate. As the degrees of freedom are independent, the number of states on a surface does not change if we translate it across independent degrees of freedom. If we imagine a parallelepiped, the integral over the surface must be zero (the integrals over opposite sides are equal and opposite). Therefore $\mathcal{S}$ must come equipped with a two-form $\omega$ that is closed and not degenerate, and therefore $\mathcal{S}$ is a symplectic manifold. By convention, we set $\omega = \hbar dq^i \wedge dk_i = dq^i \wedge dp_i$ where $p_i = \hbar k_i$.
+
+The conclusion is that, under the infinitesimal reducibility assumption, the state space of the system is a coordinate-invariant distribution over the state space of the infinitesimal parts [what does it mean for the state space $\mathcal{C} $ to itself be a distribution ?]. If the state space of the particles is a manifold, then it is a symplectic manifold, which is the only type of manifold that supports coordinate-invariant distributions [do we have a reference to substantiate the ``only" claim? Has the proof above really shown that this is the only kind of manifold that would support a coordinate-invariant distribution].
 
 \subsubsection{Deterministic and reversible evolution}
 
+Next, we assume that the classical systems of interest are deterministic and reversible. This amounts to satisfying the following joint condition:
+
+\begin{quotation}
+
 Deterministic and reversible evolution assumption: given the present state of the system, all future (determinism) and past (reversible) states are uniquely identified.
 
-In our case, this applies to both the state of the whole and to the state of the parts. That is, given an initial state $s_0$ there will be one and only one evolution $s(t)$ such that $s(t_0) = t_0$. Moreover, if $\rho(s(t_0), t_0)$ is the density associated to the initial particle at the initial time, we must have that $\rho(s(t), t) = \rho(s(t_0), t_0)$, i.e. the density remains the same throughout the evolution. In other words, all particles that begin in the initial state must end up in the same final state and vice-versa.
+\end{quotation}
 
-Now consider the integral $\int_{\Sigma} \rho_c \omega(d\Sigma)$. The region $\Sigma$ will be mapped to a new region, but the fraction of the system found in both the old and new regions must be the same. If both the integral and $\rho_c$ have to remain constant during the evolution, then $\omega$ will also need to remain the same. That is, the areas in phase space must be mapped to areas of equal size, and independent degrees of freedom must be mapped to independent degrees of freedom (or volumes would not be mapped to equal volumes). The evolution is a symplectomorphism and corresponds to Hamiltonian evolution. Intuitively, this is the inverse of Liouville's theorem: instead of positing Hamiltonian evolution and finding conservation of areas and volumes, deterministic and reversible evolution imposes the conservation of areas and volumes which leads to Hamiltonian evolution.
+[Should we footnote that these two assumptions leave out some classical systems, e.g. Norton's dome, Earman's space invaders?]
+
+In our case, this applies to both the state of the whole system and to the state of its parts. That is, given an initial state $s_0$ there will be one and only one evolution $s(t)$ such that $s(t_0) = t_0$ [is $s$ an evolution that transports the state variables, i.e. labeling future states by the original state variables so that the initial time is transported to itself? I think we need to explain more about how evolutions are defined]. Moreover, if $\rho(s(t_0), t_0)$ is the density associated to the initial particle [what exactly does `initial particle' mean? Do we mean the initial state of the composite system or just a particular particle?] at the initial time, we must have that $\rho(s(t), t) = \rho(s(t_0), t_0)$, i.e. the density remains the same throughout the evolution. In other words, all particles that begin in a given initial state must end up in the same final state and vice-versa [could two different particles occupy the same initial state?].
+
+Now consider the integral $\int_{\Sigma} \rho_c \omega(d\Sigma)$. The region $\Sigma$ will be mapped to a new region, but the fraction of the system found in both the old and new regions must be the same. Since both the integral and $\rho_c$ must remain constant during the evolution, the two-form $\omega$ must also remain the same. That is, the areas in phase space must be mapped to areas of equal size, and independent degrees of freedom must be mapped to independent degrees of freedom (otherwise, volumes would not be mapped to equal volumes, which would violate determinism). The evolution is a symplectomorphism and corresponds to Hamiltonian evolution. Intuitively, this argument is the inverse of Liouville's theorem: instead of positing Hamiltonian evolution and finding conservation of areas and volumes, deterministic and reversible evolution imposes the conservation of areas and volumes which leads to Hamiltonian evolution.
 
 
 \subsubsection{Motion equivalence}
@@ -144,6 +213,8 @@ We integrate yet again and find:
 H = \frac{1}{2m} (p_j - A_j) g^{ij}(p_j - A_j) + V \\
 \end{equation}
 where V is another arbitrary function. We recognize this as the Hamiltonian for massive particles under potential forces.
+
+[Connect this with Curiel equation 6.2 for the Hamiltonian.]
 
 
 
