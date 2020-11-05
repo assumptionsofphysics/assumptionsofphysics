@@ -74,10 +74,10 @@
 	Here we give the mathematical details of the proof sketched in the
 	main paper.
 	
-	The following section needs to distinguish the projective space from
-	the Hilbert space itself. As this is seldom done in quantum mechanics,
-	we review some concepts in that context and introduce the notation
-	that we will be using. If $X$ is a Hilbert space, we denote $\pj{X}$
+	The core idea is that the probability space constrains what the state space for the composite system can be. Therefore we must develop a precise map between events in probability and their correspondents in terms of Hilbert space. Conceptually, the event $X = x_0$, the observable $X$ is equal to the value $x_0$, will correspond to the subspace spanned by all eigenstates of $X$ with eigenvalue $x_0$. The event $\psi$, the system was prepared in state $\psi$, will correspond to the ray (one-dimensional complex subspace) corresponding to the $\psi$ vector. Therefore, in general, all events in probability will corresponds to subspaces (of different dimensionality) of the Hilbder space. Projective spaces are the right tool to keep track of subspaces. The proof, then, consists in establishing what are the correct definitions in the space of events, map those into elements of the projective space and then, from the projective space, construct a map on the vector space directly.
+	
+	Let us establish, then, the notation we will be using to distinguish the projective space from
+	the Hilbert space itself. If $X$ is a Hilbert space, we denote $\pj{X}$
 	the projective space. The projective space is mathematically
 	constructed from the Hilbert space by removing the origin and
 	quotienting by the equivalence relationship $v \sim \lambda v$, $v\in
@@ -97,12 +97,12 @@
 	(i.e.~all the vectors reached by linear combinations) is noted by
 	$Sp(v_1, ..., v_n)$. Note that this subspace will correspond to a set
 	of rays in the projective space, which we note as $\pj{Sp(v_1, ...,
-		v_n)}$. Given $v,w \in X$, we can write $P(v|w) = \frac{|\< v | w
+		v_n)}$. Geometrically, this can be thought as the smallest hyper-plane that contains all vectors. Given $v,w \in X$, we can write $P(v|w) = \frac{|\< v | w
 		\>|^2}{\< v | v \>\< w | w \>}$ which corresponds to the probability
 	of observing $v$ given $w$ was prepared. Note that $P(v|w) = P(\lambda
 	v| \mu w)$, with non-null $\lambda,\mu\in{\mathbb C}$, and therefore
 	one can write $P(\pj{v} | \pj{w})\equiv P(v|w)$ as a function of the
-	rays.
+	rays. Geometrically, this corresponds to the angle between the two complex planes identified by the two vectors.
 	
 	
 	\begin{post}\label{post_state}
@@ -123,6 +123,9 @@
 		spectral decomposition $X = \sum_{x,i }x \frac{| x_i \> \< x_i |}{\< x_i | x_i \>}$  where $i$ is a degeneracy index, returns a value $x$ depends only on $X$ and on the state of the system $\pj{\psi}$ and is given by $P(x|\pj{\psi})=\sum_i \frac{\<\psi| x_i \> \< x_i |\psi\>}{\< \psi | \psi \>\< x_i | x_i \>}$
 		(Born rule).\end{post}
 	
+	{Given two events $\pj{a}$ and $\pj{b}$, for example $X > x_1$ and $X < x_2$, their conjunction $\pj{a} \wedge \pj{b}$ is the event where both are true, $ x_1 < X < x_2$ in the example. In terms of our Hilbert spaces, both $\pj{a}$ and $\pj{b}$ corresponds to subspaces and $\pj{a} \wedge \pj{b}$ is exactly the intersection of the two, which is also a subspace. We should not confuse $\pj{a} \wedge \pj{b}$ with $\pj{a} | \pj{b}$: the first refers to either
+		preparation or measurement of both systems  in the respective state, while the second corresponds to preparing one system in one state and measuring the
+		other system in the other state \cite{cox}.}
 	
 	\begin{defn}[Compatible states]\label{def_compatible}
 		Let A and B be two systems. Let ${\mathcal{A}}$ and ${\mathcal{B}}$
@@ -135,7 +138,7 @@
 	\end{defn}
 	
 	{Note that the proposition $\pj{a} \wedge \pj{b}$ refers to either
-		preparation or measurement of both systems  in the respective state.
+		preparation or measurement of both systems  in the respective state. 
 		The proposition $\pj{a} | \pj{b}$, instead, is the one that
 		corresponds to preparing one system in one state and measuring the
 		other system in the other state \cite{cox}. Incompatible states
@@ -160,9 +163,10 @@
 			for C, there exists a map (not yet specified)
 			$M:\pj{\mathcal{A}}\times\pj{\mathcal{B}}\to\pj{\mathcal{C}}$
 			such that, for any compatible pair of (pure) states $(\pj{a},\pj{b}) \in \pj{\mathcal{A}}\times\pj{\mathcal{B}}$, the proposition $\pj{a} \wedge \pj{b}$ is equivalent to the (pure) state $M(\pj{a},\pj{b}) \in \pj{\mathcal{C}}$ where $M$ returns the state of the composite system where the subsystems were prepared in the given states. In other words, $\pj{a} \wedge \pj{b}$ and $M(\pj{a},\pj{b})$ correspond to the same event in probability space\footnote{We will end up proving that the map $M$ leads to the tensor product.}.
-			\item Every preparation of the composite gives a non-trivial measurement on the components. Formally, for every $\pj{c} \in \pj{\mathcal{C}}$, we can find at least $\pj{a} \in \pj{\mathcal{A}}$ and $\pj{b} \in \pj{\mathcal{B}}$ such that $P(\pj{a} \wedge \pj{b}|\pj{c})\neq 0$. 
+			\item For every preparation of the composite, local projective measurements must have at least one
+			outcome with non-zero probability. Formally, for every $\pj{c} \in \pj{\mathcal{C}}$, we can find at least $\pj{a} \in \pj{\mathcal{A}}$ and $\pj{b} \in \pj{\mathcal{B}}$ such that $P(\pj{a} \wedge \pj{b}|\pj{c})\neq 0$. 
 		\end{enumerate}
-		Requirement 1 ensures that the composite system contains all the properties of the components. Requirement 2 ensures that it does not contain properties that are orthogonal to all the components' properties, i.e.~that the composite system contains {\em only} the components.
+		It is important to understand that these requirements are necessary. Requirement 1 ensures that the composite system is well defined at least when the components are prepared independently. Conceptually, this ensures that the composite system contains all the properties of the components. Note that superselection rules or other restriction may prevent the independent preparation of all possible pairs (e.g.~two fermions cannot be jointly prepared in the same state). The tensor product is recovered only all pairs are compatible. Requirement 2 ensures that it does not contain properties that are orthogonal to all the components' properties, i.e.~that the composite system contains {\em only} the components.
 	\end{defn}
 	
 	\begin{prop}[Span surjectivity, H3]\label{prop_spanSurj}
@@ -246,26 +250,26 @@
 		The fact that the proposition identifies either a linear map or an anti-linear (i.e.~conjugate-linear) corresponds, in physics terms, to a choice of convention. As analogies: a change in metric signature in relativity would change the mathematical space but not the physics; in classical phase-space, a change in signature of the symplectic form would change the mathematical space, but not the physics it represents. These choices are widely recognized as a matter of personal preference.
 		
 		In simple terms, for a Hilbert space, the conjugate
-                vector space is equivalent to the dual space, so we
-                could equivalently choose one or the other. For
-                example, Schr\"odinger in the papers in which he
-                introduces the Schr\"odinger equation, he writes it
-                with both signs, as the choice of sign of the imaginary part of the wave function is arbitrary: one sign refers to
-                the Hilbert space, the other to the dual space, namely
-                to the complex-conjugate wave function \cite{sch}. So we can think of the anti-linear map as one that preserves the inner product but maps ket vectors into bra vectors. Looking ahead, the above result does not exclude a composition map similar to the tensor product, but that maps the kets of one or both subsystems into bras in the composite system. This would only make the representation of the composite physical system more complicated, as we need to keep track of the different conventions in the different subspaces. Therefore, without changing the physics, we can always mathematically redefine the second space so that the resulting map is linear. With this in mind, we will assume that the map between the spaces is linear, which will in turn lead to identifying the tensor product as a unique composition map.
-
-Another way to look at this is that Hermitian operators, and therefore all 
- the physics, are invariant under an anti-linear transformation.
- In contrast, anti-Hermitian operators will change sign. This 
- changes the connection between the generators and the generated 
- transformations (i.e.~while $A$ generates $exp(\frac{Ab}{\imath\hbar})$ 
- on one space, the mapped $A$ will generate 
- $exp(-\frac{Ab}{\imath\hbar})$ in the mapped space). Note that the 
- choice of whether to put the minus or not is arbitrary as long as one is consistent across all generators and transformations.
- Similarly, we typically define $[A, B] = AB - BA$ but we could have 
- alternatively chosen $[A, B] = BA - AB$. The anti-linear map is simply 
- a change of that convention.
-
+		vector space is equivalent to the dual space, so we
+		could equivalently choose one or the other. For
+		example, Schr\"odinger in the papers in which he
+		introduces the Schr\"odinger equation, he writes it
+		with both signs, as the choice of sign of the imaginary part of the wave function is arbitrary: one sign refers to
+		the Hilbert space, the other to the dual space, namely
+		to the complex-conjugate wave function \cite{sch}. So we can think of the anti-linear map as one that preserves the inner product but maps ket vectors into bra vectors. Looking ahead, the above result does not exclude a composition map similar to the tensor product, but that maps the kets of one or both subsystems into bras in the composite system. This would only make the representation of the composite physical system more complicated, as we need to keep track of the different conventions in the different subspaces. Therefore, without changing the physics, we can always mathematically redefine the second space so that the resulting map is linear. With this in mind, we will assume that the map between the spaces is linear, which will in turn lead to identifying the tensor product as a unique composition map.
+		
+		Another way to look at this is that Hermitian operators, and therefore all 
+		the physics, are invariant under an anti-linear transformation.
+		In contrast, anti-Hermitian operators will change sign. This 
+		changes the connection between the generators and the generated 
+		transformations (i.e.~while $A$ generates $exp(\frac{Ab}{\imath\hbar})$ 
+		on one space, the mapped $A$ will generate 
+		$exp(-\frac{Ab}{\imath\hbar})$ in the mapped space). Note that the 
+		choice of whether to put the minus or not is arbitrary as long as one is consistent across all generators and transformations.
+		Similarly, we typically define $[A, B] = AB - BA$ but we could have 
+		alternatively chosen $[A, B] = BA - AB$. The anti-linear map is simply 
+		a change of that convention.
+		
 		Note that this unnecessary subtlety could in principle be avoided by
 		reformulating quantum mechanics in terms of quantum states given by
 		density matrices $\rho=|\psi\>\<\psi|$ (which contain both  kets and
