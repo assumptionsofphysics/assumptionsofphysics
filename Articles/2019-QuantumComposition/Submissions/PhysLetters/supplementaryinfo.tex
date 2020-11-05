@@ -1,0 +1,452 @@
+%ATTENZIONE: PER COMPILARE BISOGNA FARE A MANO
+%dvipdf tensor.dvi ;mv tensor.pdf temp.pdf 
+%Dovremmo forse aggiungere due parole sulle C* algebras: non sono stateintrodotte proprio per evitare il tensor product in infinitedimensional systems?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The four postulates of quantum mechanics are three
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[aps,prl,amsmath,amssymb,twocolumn,nofootinbib]{revtex4}
+%\documentclass[twocolumn,aps,showpacs,prl,groupedaddress]{revtex4}
+%\usepackage{amssymb,stackengine}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epsfig,amssymb,amsmath,amsthm}
+%\usepackage[active]{srcltx}
+%\usepackage[hypertex,linkcolor=red]{hyperref}
+
+\usepackage{color}
+\usepackage{cancel}
+\usepackage{tikz-cd}
+
+\theoremstyle{plain}
+\newtheorem{thrm}{Theorem}[section]
+\newtheorem{form}[thrm]{Formalization}
+\newtheorem{prop}[thrm]{Proposition}
+\newtheorem{lem}[thrm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thrm]{Definition}
+\newtheorem{post}{Postulate}[]
+\renewcommand*{\thepost}{(\alph{post})}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\newcommand{\blue}{\color{blue}}  %NON LINEAR
+\newcommand{\red}{\color{red}}
+\newcommand{\cyan}{\color{cyan}}
+\newcommand{\green}{\color{green}} %THEORY quantum state estimation
+\newcommand{\yellow}{\color{yellow}} %THEORY quantum channel estimation
+
+\DeclareMathOperator{\spn}{span}
+
+\newcommand{\pj}[1] {\underbar{$#1$}}
+%\newcommand{\pj}[1] {\overline{#1}}
+
+\def\>{\rangle}
+\def\<{\langle}
+\def\ca{_{\cal A}}
+\def\cb{_{\cal B}}
+\def\cc{_{\cal C}}
+%\def\comment#1{}
+\def\comment#1{ [{\bf Comment Lor:} {\sf #1}]}
+\def\commentg#1{ [{\bf Comment Gabriele:} {\sf #1}]}
+\def\labell#1{\label{#1}}
+%\def\labell#1{\label{#1}{\mbox{{\tiny #1}}}}
+%\def\section#1{{\par\em #1:--- }}
+\def\togli#1{}
+\def\sh{\mbox{sh}}
+\def\iden{\openone}
+\begin{document}
+	
+	
+	\section{Supplementary information for ``The four postulates of quantum
+		mechanics are three''. }\label{app}
+	\par\noindent 
+	Gabriele Carcassi, Lorenzo Maccone, Christine A. Aidala
+	\subsection{ Mathematical formulation.}
+	\setcounter{section}{1}
+	\setcounter{equation}{0}
+	\counterwithout{equation}{section}
+	\renewcommand{\theequation}{S\arabic{equation}}
+	
+	Here we give the mathematical details of the proof sketched in the
+	main paper.
+	
+	The following section needs to distinguish the projective space from
+	the Hilbert space itself. As this is seldom done in quantum mechanics,
+	we review some concepts in that context and introduce the notation
+	that we will be using. If $X$ is a Hilbert space, we denote $\pj{X}$
+	the projective space. The projective space is mathematically
+	constructed from the Hilbert space by removing the origin and
+	quotienting by the equivalence relationship $v \sim \lambda v$, $v\in
+	X$ and $\lambda\in\mathbb{C}$. A quantum state is a point in
+	projective space. Each point of the projective space is called a ray,
+	because for a real vector space to would correspond to a line going through
+	the origin, with the origin removed. As we are in a complex space, the
+	ray should be thought as a complex plane without the origin, which is
+	the space of the vectors reachable from a fixed one through
+	multiplication by a complex number. It can also be thought as a
+	subspace of dimension one.
+	
+	Given a vector $v \in X$, we will denote $\pj{v}$ the ray in the
+	projective space corresponding to $v$. Note that $\pj{v}$ denotes a
+	quantum state, without having picked a modulus or phase. Given two or
+	more vectors $v_1, ..., v_n \in X$, the subspace of $X$ they span
+	(i.e.~all the vectors reached by linear combinations) is noted by
+	$Sp(v_1, ..., v_n)$. Note that this subspace will correspond to a set
+	of rays in the projective space, which we note as $\pj{Sp(v_1, ...,
+		v_n)}$. Given $v,w \in X$, we can write $P(v|w) = \frac{|\< v | w
+		\>|^2}{\< v | v \>\< w | w \>}$ which corresponds to the probability
+	of observing $v$ given $w$ was prepared. Note that $P(v|w) = P(\lambda
+	v| \mu w)$, with non-null $\lambda,\mu\in{\mathbb C}$, and therefore
+	one can write $P(\pj{v} | \pj{w})\equiv P(v|w)$ as a function of the
+	rays.
+	
+	
+	\begin{post}\label{post_state}
+		The state of a quantum system is described by a ray $\pj{\psi} = \{
+		\alpha |\psi\> \, |$ non-null $\alpha \in
+		\mathbb{C},|\psi\>\in\mathcal{H}\}$ in a separable complex Hilbert space
+		$\mathcal{H}$, and the system's observable properties are described
+		by self-adjoint operators acting on that space. %All vectors represent possible   system system states and all self-adjoint operators represent possible system   observables.
+	\end{post}
+	
+	\begin{remark}
+		All proofs, except one, do not depend on the dimensionality of
+		the space. The exception is proposition \ref{prop_fundProj} for which we prove the finite case by induction and then show that it holds in the limit. This would not work in the non-separable case, since the basis would not be countable.
+	\end{remark}
+	
+	\begin{post}\label{post_measurements}
+		The probability that a measurement of a property $X$, described by the operator with
+		spectral decomposition $X = \sum_{x,i }x \frac{| x_i \> \< x_i |}{\< x_i | x_i \>}$  where $i$ is a degeneracy index, returns a value $x$ depends only on $X$ and on the state of the system $\pj{\psi}$ and is given by $P(x|\pj{\psi})=\sum_i \frac{\<\psi| x_i \> \< x_i |\psi\>}{\< \psi | \psi \>\< x_i | x_i \>}$
+		(Born rule).\end{post}
+	
+	
+	\begin{defn}[Compatible states]\label{def_compatible}
+		Let A and B be two systems. Let ${\mathcal{A}}$ and ${\mathcal{B}}$
+		be their corresponding state spaces. We say two (pure) states $(\pj{a},
+		\pj{b}) \in \pj{\mathcal{A}} \times \pj{\mathcal{B}}$ are compatible
+		iff the respective systems can be prepared in such states at the
+		same time. Formally, the proposition $\pj{a} \wedge \pj{b}$ is
+		possible, which means it does not correspond to the empty set in the
+		$\sigma$-algebra of the probability space\footnote{The impossible event is not an event with probability zero, rather it is an event that cannot be created at all. For example, ``the dice shows a number that is even and less than two'', or ``the electron is prepared in spin up along $x$ and also along $z$'' are impossible events.}.
+	\end{defn}
+	
+	{Note that the proposition $\pj{a} \wedge \pj{b}$ refers to either
+		preparation or measurement of both systems  in the respective state.
+		The proposition $\pj{a} | \pj{b}$, instead, is the one that
+		corresponds to preparing one system in one state and measuring the
+		other system in the other state \cite{cox}. Incompatible states
+		refer to non-commuting observables.}
+	
+	\begin{defn}[Preparation independence]\label{def_indep}
+		Two systems are said independent iff the preparation of one does not affect the preparation of the other. Formally, all (pure) state pairs $(\pj{a}, \pj{b}) \in \pj{\mathcal{A}}\times \pj{\mathcal{B}}$ are compatible.
+	\end{defn}
+	
+	\begin{prop}\label{prop_singleBorn}
+		Given two systems, each prepared independently in their own state, the probability of measuring a value for one system depends only on the preparation of that system. That is, $P(\pj{a_1}|\pj{a_2}\wedge \pj{b})=P(\pj{a_1}|\pj{a_2})$.
+	\end{prop}
+	\begin{proof}
+		We first note that, by postulate \ref{post_measurements}, the probability of measuring a value for one system depends only on the preparation of that system, which means that it is independent of the properties of any other system. Therefore $P(\pj{a_1} | \pj{a_2} \wedge \pj{b}) = \frac{\<a_1| a_2 \> \< a_2 |a_1\>}{\< a_1 | a_1 \>\< a_2 | a_2 \>} = P(\pj{a_1} | \pj{a_2})$
+	\end{proof}
+	
+	\begin{defn}[Composite systems]\label{def_comp}
+		Let A and B be two systems. The composite system C of A and B is formed by the simple collection of those and only those two systems, in the sense that it satisfies the following two requirements.
+		\begin{enumerate}
+			\item Every preparation of both subsystems is a preparation of the
+			composite. Formally, let $\pj{\mathcal{C}}$ be the state space
+			for C, there exists a map (not yet specified)
+			$M:\pj{\mathcal{A}}\times\pj{\mathcal{B}}\to\pj{\mathcal{C}}$
+			such that, for any compatible pair of (pure) states $(\pj{a},\pj{b}) \in \pj{\mathcal{A}}\times\pj{\mathcal{B}}$, the proposition $\pj{a} \wedge \pj{b}$ is equivalent to the (pure) state $M(\pj{a},\pj{b}) \in \pj{\mathcal{C}}$ where $M$ returns the state of the composite system where the subsystems were prepared in the given states. In other words, $\pj{a} \wedge \pj{b}$ and $M(\pj{a},\pj{b})$ correspond to the same event in probability space\footnote{We will end up proving that the map $M$ leads to the tensor product.}.
+			\item Every preparation of the composite gives a non-trivial measurement on the components. Formally, for every $\pj{c} \in \pj{\mathcal{C}}$, we can find at least $\pj{a} \in \pj{\mathcal{A}}$ and $\pj{b} \in \pj{\mathcal{B}}$ such that $P(\pj{a} \wedge \pj{b}|\pj{c})\neq 0$. 
+		\end{enumerate}
+		Requirement 1 ensures that the composite system contains all the properties of the components. Requirement 2 ensures that it does not contain properties that are orthogonal to all the components' properties, i.e.~that the composite system contains {\em only} the components.
+	\end{defn}
+	
+	\begin{prop}[Span surjectivity, H3]\label{prop_spanSurj}
+		The map $M :
+		\pj{\mathcal{A}}\times\pj{\mathcal{B}} \to \pj{\mathcal{C}}$ is span
+		surjective, meaning that the span of the image coincides with the
+		whole space. That is $Sp(\{ c \in \mathcal{C} \, | \, \pj{c} \in
+		M(\pj{\mathcal{A}}, \pj{\mathcal{B}})\}) = \mathcal{C}$.
+	\end{prop}
+	\begin{proof}
+		Consider $I=\{ c \in \mathcal{C} \, | \, \pj{c} \in M(\pj{\mathcal{A}}, \pj{\mathcal{B}})\}$ and its span. This forms a subspace of $\mathcal{C}$. By requirement 2 of \ref{def_comp}, for any $c \in \mathcal{C}$ we can always find $a \in \mathcal{A}$ and $b \in \mathcal{B}$ such that $P(\pj{a} \wedge \pj{b} | \pj{c} )\neq 0$. This means there is no element in $\mathcal{C}$ that is orthogonal to $Sp(I)$, therefore $Sp(I)$ must cover the whole $\mathcal{C}$.
+	\end{proof}
+	
+	\begin{prop}[Totality, H1]\label{prop_totality}
+		The map $M$ is in general a partial function.\footnote{A partial
+			function is one that is not defined on the full domain. For
+			example, $\sqrt(x)$ is a partial function since is not defined for
+			$x<0$.} However, if A and B are independent, $M$ is a total function.\footnote{A total function is one that is defined on the full domain. For example, $x^2$ is a total function since it is defined for any $x$.}
+	\end{prop}
+	\begin{proof}
+		As $M(\pj{a},\pj{b})$ is defined only if $(\pj{a},\pj{b}) \in \pj{\mathcal{A}}\times\pj{\mathcal{B}}$ are a compatible pair of pure states, it is not defined on pairs that are not compatible. If the two systems are independent, however, all pairs are allowed and $M$ is a total function.
+	\end{proof}
+	
+	\begin{remark}
+		As noted in \ref{def_comp}, if $\pj{a}$ and $\pj{b}$ are incompatible, $\pj{a} \wedge \pj{b}=\emptyset$ corresponds to the impossible event (i.e.~the empty set in the $\sigma$-algebra). This is not a state, and therefore $M(\pj{a},\pj{b})$ is not defined on incompatible pairs.
+		
+		However, in the end we will construct a map $m : \mathcal{A} \times \mathcal{B} \to \mathcal{C}$ on the vector spaces. There the zero vector plays the role of the impossible event. Therefore independent systems will map each pair to a non-zero element of the tensor product, while systems that are not independent will map incompatible states to the zero vector (e.g. the composite state of two electrons will exclude the cases where both electrons are in the same state).
+	\end{remark}
+	
+	\begin{prop}[Statistical independence]\label{prop_statInd}
+		Let $\pj{\mathcal{A}}$ and $\pj{\mathcal{B}}$ be the state spaces of two quantum systems and $\pj{\mathcal{C}}$ be the state space of their composite. The map $M : \pj{\mathcal{A}} \times \pj{\mathcal{B}} \to \pj{\mathcal{C}}$ is such that:
+		\begin{align}
+		P(M(\pj{a_1},\pj{b}) | M(\pj{a_2},\pj{b})) = P(\pj{a_1} | \pj{a_2})  \\ P(M(\pj{a},\pj{b_1}) | M(\pj{a},\pj{b_2})) = P(\pj{b_1} | \pj{b_2})
+		\end{align}
+		for all $a, a_1, a_2 \in \mathcal{A}$ and $b, b_1, b_2 \in \mathcal{B}$
+	\end{prop}
+	\begin{proof}
+		By \ref{prop_singleBorn} we have $P(\pj{a_1} | \pj{a_2} \wedge \pj{b}) = P(\pj{a_1} | \pj{a_2})$ and similarly $P(\pj{b_1} | \pj{a} \wedge \pj{b_2}) = P(\pj{b_1} | \pj{b_2})$.  Using standard probability rules and remembering that $M(\pj{a},\pj{b})\equiv \pj{a} \wedge \pj{b}$ by \ref{def_comp}, we have $P(M(\pj{a_1},\pj{b}) | M(\pj{a_2},\pj{b})) = P(\pj{a_1} \wedge \pj{b} | \pj{a_2} \wedge \pj{b})  = P(\pj{b} | \pj{a_2} \wedge \pj{b}) P(\pj{a_1} | \pj{a_2} \wedge \pj{b} \wedge \pj{b})  = P(\pj{b} | \pj{b}) P(\pj{a_1} | \pj{a_2} \wedge \pj{b}) = P(\pj{a_1} | \pj{a_2})$, since trivially $P(\pj{b}|\pj{b})=1$. Similarly $P(M(\pj{a},\pj{b_1}) | M(\pj{a},\pj{b_2})) =P(\pj{a} \wedge \pj{b_1} | \pj{a} \wedge \pj{b_2}) = P(\pj{b_1} | \pj{b_2})$
+	\end{proof}
+	
+	\begin{prop}[Fundamental theorem of projective geometry]\label{prop_fundProj}
+		Let $X$ and $Y$ be two separable complex Hilbert spaces and $\pj{X}$ and $\pj{Y}$ their respective projective spaces. Let $M : \pj{X} \to \pj{Y}$ be a map such that $P(\pj{v}|\pj{w}) = P(M(\pj{v})|M(\pj{w}))$. Then we can find, up to a total phase, a unique map $m : X \to Y$ such that $\pj{m(v)}=M(\pj{v})$. Moreover, $m$ is either linear, $\<v|w\> = \<m(v)|m(w)\>$, or anti-linear, $\<v|w\> = \<m(w)|m(v)\>$.
+	\end{prop}
+	
+	\begin{remark}
+		The above proposition is, for the most part, an adaptation of the fundamental theorem of projective geometry \cite{fun}. The conservation of the probability imposes the semi-linear map to be either linear or anti-linear (i.e. conjugate-linear). This is not new, it is essentially Wigner's theorem, but the proof we offer is insightful as it clearly shows the connection between the construction of the map and the choice of gauge.
+	\end{remark}
+	
+	\begin{proof}
+		First we note that, given an orthonormal basis $\{e_i\}_{i \in I}$ over $X$, we can use $M$ to construct a corresponding basis over $Y' \subseteq Y$ where $\pj{Y'} = M(\pj{X})$. In fact, for each $\pj{e_i}$, pick a unit $u_i \in M(\pj{e_i})$. We have $\delta_{ij} = |\<e_i | e_j \>|^2 = P(e_i | e_j) = P(\pj{e_i}|\pj{e_j}) = P(M(\pj{e_i})|M(\pj{e_j})) = P(\pj{u_i}|\pj{u_j})= |\<u_i | u_j \>|^2$. The set $\{u_i\}_{i \in I}$ spans the entire $Y'$ since for all $y \in Y'$ we can find $x \in X$ and at least one $u_i$ such that $|\<y | u_i \>|^2 = P(\pj{y}|\pj{u_i}) = P(M(\pj{x})|M(\pj{e_i})) = P(x | e_i) = |\<x | e_i \>|^2 \neq 0$. Note that we have an arbitrary choice for each $u_i$, since we have to pick a vector from the unit circle (i.e. a phase for each basis vector). This corresponds to a choice of gauge.
+		
+		We also note that the map is colinear, meaning that if $U_X, V_X \subseteq X$ are two subspaces such that $U_X \subset V_X$, then $U_Y, V_Y \subseteq Y$ such that $\pj{U_Y} = M(\pj{U_X})$ and $\pj{V_Y} = M(\pj{V_X})$ are subspaces of $Y$ and $U_Y \subset V_Y$. In fact, take an orthonormal basis $\{e_i\}_{i \in I} \subset X$ such that $\{e_i\}_{i \in I_U \subset I} \subset \{e_i\}_{i \in I_V \subset I}$ are bases for $U_X$ and $V_X$ respectively. An element of $X$ belongs to $U_X$ if and only if it is not orthogonal only to elements of the basis of $U_X$ and belongs to $V_X$ only if it not orthogonal only to elements of the basis of $V_X$. As the map $M$ preserves orthogonality, these relationships are preserved by the map. Therefore $U_Y$ and $V_Y$ are subspaces of $Y$ such that $U_Y \subset V_Y$.
+		
+		Additionally we note that, for any colinear map, given two subspaces $U_1, U_2 \subseteq X$ we have $M(\pj{Sp(U_1, U_2)}) = \pj{Sp(M(\pj{U_1}), M(\pj{U_2}))}$. In fact, $\pj{Sp(U_1,U_2)}$ is the smallest subspace containing all vectors in $\pj{U_1}$ and $\pj{U_2}$. In the same way, $\pj{Sp(M(U_1),M(U_2))}$ is the smallest subspace containing all vectors in $M(\pj{U_1})$ and $M(\pj{U_2})$. Since the subspace inclusion is preserved by $M$, we must have $M(\pj{Sp(U_1, U_2)}) = \pj{Sp(M(\pj{U_1}), M(\pj{U_2}))}$.
+		
+		We now use the gauge freedom to redefine the basis such that for all $i$ we have $M(\pj{e_i}) = \pj{v_i}$ and $M(\pj{e_1 + e_i}) = \pj{v_1 + v_i}$. Let $v_1 = u_1$. This is the only arbitrary choice we make, and corresponds to the choice of a global phase. For each $i>1$, consider $e_1 + e_i$. This will belong to the subspace $Sp(e_1, e_i)$. This subspace, when mapped through $M$, will give us the subspace spanned by $v_1$ and $u_i$. That is, $M(\pj{Sp(e_1, e_i)})=\pj{Sp(v_1, u_i)}$. This means we can find a unique $k \in \mathbb{C}$ such that $M(\pj{e_1+e_i})=\pj{v_1+ku_i}$. We fix $v_i = k u_i$. Note that $P(\pj{e_1} | \pj{e_1+e_i}) = \frac{1}{2}=  P(\pj{e_i} | \pj{e_1+e_i})=P(\pj{v_1} | \pj{v_1+k u_i})=P(\pj{u_i} | \pj{v_1+k u_i})$. Therefore $|k| = 1$ and $k u_i = v_i$ is a unit vector.
+		
+		Now we want to show that $M(\pj{e_1 + c e_i})=\pj{v_1 + \tau_i(c)
+			v_i}$ where either $\tau_i(c) = c$ or $\tau_i(c) = c^\dagger$. For
+		each $i$, consider $w = e_1 + c e_i \in Sp(e_1, e_i)$. Since
+		$M(\pj{w}) \subset \pj{Sp(v_1, v_i)}$, there must be a $\tau_i(c)$
+		such that $\pj{v_1 + \tau_i(c) v_i} = M(\pj{w})$. Since we must have
+		$P(\pj{e_i} | \pj{w}) = P(\pj{v_i} | M(\pj{w}))$ and $P(\pj{e_1 +
+			e_i} | \pj{w}) = P(\pj{v_1 + v_i} | M(\pj{w}))$, we must have
+		$|c| = |\tau_i(c)|$ and $cos(arg(c)) = cos(arg(\tau_i(c)))$ for any
+		$c$. This means that either $\tau_i(c) = c$ or $\tau_i(c) =
+		c^*$.
+		
+		Next we want to show that $\tau_i(c) = \tau_j(c)$ for all pairs $(i,j)$. That is, either we have to take the complex conjugate of all components or of none. Consider $e_i - e_j$. We have $\pj{e_i - e_j} \subset \pj{Sp(e_i, e_j)}$ and, for any $c \in \mathbb{C}$, $\pj{e_i - e_j} \subset \pj{Sp(e_1 + c e_i, e_1 + c e_j)}$. By construction, we have $M(\pj{e_i - e_j})\subset \pj{Sp(v_i, v_j)}$ and $M(\pj{e_i - e_j})\subset \pj{Sp(v_1 + \tau_i(c) v_i, v_1 + \tau_j(c) v_j)}$. Therefore $M(\pj{e_i - e_j}) = \pj{Sp(v_i, v_j)} \cap \pj{Sp(v_1 + \tau_i(c) v_i, v_1 + \tau_j(c) v_j)} = \pj{\tau_i(c) v_i - \tau_j(c) v_j}$. This means that, for all $c$, $\tau_i(c) = \tau_j(c)$.
+		
+		Now we show that for all $c_2, ..., c_n \in \mathbb{C}$ we have $M(\pj{e_1 + c_2 e_2 + ... + c_n e_n}) = \pj{v_1 + \tau(c_2) v_2 + ... + \tau(c_n) v_n}$. We prove this by induction. If only the first two components are non-zero, we have  $M(\pj{e_1 + c_2 e_2}) = \pj{v_1 + \tau(c_2) v_2}$ by construction. Let $2 < p \leq n$. If we assume $M(\pj{e_1 + c_2 e_2 + ... + c_{p-1} e_{p-1}}) = \pj{v_1 + \tau(c_2) v_2 + ... + \tau(c_{p-1}) v_{p-1}}$, then $M(\pj{e_1 + c_2 e_2 + ... + c_p e_p}) \subset M(\pj{Sp(e_1 + c_2 e_2 + ... + c_{p-1} e_{p-1}, e_p})) = \pj{Sp(v_1 + c_2 v_2 + ... + c_{p-1} v_{p-1}, v_p)}$. This means that there exists $k_p \in \mathbb{C}$ such that $M(\pj{e_1 + c_2 e_2 + ... + c_p e_p}) = \pj{v_1 + c_2 v_2 + ... + c_{p-1} v_{p-1} + k_p v_p)}$. But we also have $M(\pj{e_1 + c_2 e_2 + ... + c_p e_p}) \subset M(\pj{Sp(e_1 + c_p e_p, c_2 e_2 + ... + c_{p-1} e_{p-1}})) = \pj{Sp(v_1 + \tau(c_p) v_p, c_2 v_2 + ... + c_{p-1} v_{p-1}, v_p)}$. The only way this can work is if $k_p = \tau(c_p)$.
+		
+		The above works also over a countable sum. That is, for all $c_2, ..., c_n, ... \in \mathbb{C}$ we have $M(\pj{e_1 + c_2 e_2 + ... + c_n e_n + ...}) = \pj{v_1 + \tau(c_2) v_2 + ... + \tau(c_n) v_n + ...}$. Let $X$ be a separable space. Let $a = \sum_{k=1}^\infty c_k e_k$ such that $c_1 = 1$. Let $a_i = \sum_{k=1}^i c_k e_k$ be the sum of the first $i$ components. We have $\lim\limits_{i \to \infty} a_i = a$. Let $b_i = \sum_{k=1}^i \tau(c_k) v_k$ and $b = \sum_{k=1}^\infty \tau(c_k) e_k$. We have $\lim\limits_{i \to \infty} b_i = b$. We already know that $\pj{b_i} = M(\pj{a_i})$ for all finite $i$. We need to show that $\pj{b} = M(\pj{a})$. First note that, given $a,b \in Y$, $a=b$ if and only if $\<a,c\> = \<b,c\>$ for all $c \in Y$. Therefore $\pj{a}=\pj{b}$ if and only if $P(\pj{a}, \pj{c}) = P(\pj{b}, \pj{c})$ for all $c \in Y$. For all $c \in X$ we have $\lim\limits_{i \to \infty} P(\pj{a_i}, \pj{c}) = P(\pj{a}, \pj{c}) = P(M(\pj{a}), M(\pj{c}))$ we also have  $\lim\limits_{i \to \infty} P(\pj{a_i}, \pj{c}) = \lim\limits_{i \to \infty} P(M(\pj{a_i}), M(\pj{c})) = \lim\limits_{i \to \infty} P(b_i, M(\pj{c})) = P(\pj{b}, M(\pj{c}))$. Therefore $P(M(\pj{a}), M(\pj{c})) = P(\pj{b}, M(\pj{c}))$ for all $c \in X$. Note that $M$ is bijective over $Y'=M(\pj{X})$. Therefore $P(M(\pj{a}), \pj{c}) = P(\pj{b}, \pj{c})$ for all $c \in Y$ and $\pj{b} = M(\pj{a})$.
+		
+		We also need to show the above works when there is no component on the first element of the basis. That is, for all $c_2, ..., c_n \in \mathbb{C}$ we have $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) = \underbar{$\tau(c_2) v_2 + ... + \tau(c_n) v_n$}$. First note that $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) \subset M(\underbar{$Sp(e_2, ..., e_n)$)} = \underbar{$Sp(v_2, ..., v_n)$}$. Also note that $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) \subset M(\underbar{$Sp(e_1, e_1 + c_2 e_2 + ... + c_n e_n)$)} = \underbar{$Sp(v_1, v_1 + \tau(c_2) v_2 + ... + \tau(c_n) v_n)$}$. The only way this can work is if $M(\underbar{$c_2 e_2 + ... + c_n e_n$}) = \underbar{$\tau(c_2) v_2 + ... + \tau(c_n) v_n$}$. With same reasoning as before, we can extend the sum to the countably infinite case.
+		
+		We can now define $m : X \to Y$ such that $m(e_i) = v_i$ for all $i$ and $m(\sum_{i \in I} c_i e_i) = \sum_{i \in I} \tau(c_i) v_i$. This means $\underbar{$m(\sum_{i \in I} c_i e_i)$} = M(\underbar{$\sum_{i \in I} c_i e_i$})$. Moreover, if $\tau(c) = c$ we have $\<m(\sum_{i \in I} c_i e_i)|m(\sum_{j \in I} d_j e_j)\> = \<\sum_{i \in I} c_i v_i|\sum_{j \in I} d_j v_j\> = c_i^* d_j \delta_{ij} = \<\sum_{i \in I} c_i e_i|\sum_{j \in I} d_j e_j\>$. On the other hand, if $\tau(c) = c^*$ we have $\<m(\sum_{i \in I} c_i e_i)|m(\sum_{j \in I} d_j e_j)\> = \<\sum_{i \in I} c_i^* v_i|\sum_{j \in I} d_j^* v_j\> = \<\sum_{j \in I} d_j v_j|\sum_{i \in I} c_i v_i\> = d_i^* c_j \delta_{ij} = \<\sum_{j \in I} d_j e_j|\sum_{i \in I} c_i e_i\>$. This can be extended to the case where the basis is countable.
+	\end{proof}
+	
+	\begin{remark}
+		The fact that the proposition identifies either a linear map or an anti-linear (i.e.~conjugate-linear) corresponds, in physics terms, to a choice of convention. As analogies: a change in metric signature in relativity would change the mathematical space but not the physics; in classical phase-space, a change in signature of the symplectic form would change the mathematical space, but not the physics it represents. These choices are widely recognized as a matter of personal preference.
+		
+		In simple terms, for a Hilbert space, the conjugate
+                vector space is equivalent to the dual space, so we
+                could equivalently choose one or the other. For
+                example, Schr\"odinger in the papers in which he
+                introduces the Schr\"odinger equation, he writes it
+                with both signs, as the choice of sign of the imaginary part of the wave function is arbitrary: one sign refers to
+                the Hilbert space, the other to the dual space, namely
+                to the complex-conjugate wave function \cite{sch}. So we can think of the anti-linear map as one that preserves the inner product but maps ket vectors into bra vectors. Looking ahead, the above result does not exclude a composition map similar to the tensor product, but that maps the kets of one or both subsystems into bras in the composite system. This would only make the representation of the composite physical system more complicated, as we need to keep track of the different conventions in the different subspaces. Therefore, without changing the physics, we can always mathematically redefine the second space so that the resulting map is linear. With this in mind, we will assume that the map between the spaces is linear, which will in turn lead to identifying the tensor product as a unique composition map.
+
+Another way to look at this is that Hermitian operators, and therefore all 
+ the physics, are invariant under an anti-linear transformation.
+ In contrast, anti-Hermitian operators will change sign. This 
+ changes the connection between the generators and the generated 
+ transformations (i.e.~while $A$ generates $exp(\frac{Ab}{\imath\hbar})$ 
+ on one space, the mapped $A$ will generate 
+ $exp(-\frac{Ab}{\imath\hbar})$ in the mapped space). Note that the 
+ choice of whether to put the minus or not is arbitrary as long as one is consistent across all generators and transformations.
+ Similarly, we typically define $[A, B] = AB - BA$ but we could have 
+ alternatively chosen $[A, B] = BA - AB$. The anti-linear map is simply 
+ a change of that convention.
+
+		Note that this unnecessary subtlety could in principle be avoided by
+		reformulating quantum mechanics in terms of quantum states given by
+		density matrices $\rho=|\psi\>\<\psi|$ (which contain both  kets and
+		bras), as is done, for example in \cite{ozawa,holevo}. In this paper
+		we employed the more familiar formulation in which quantum states are
+		rays in Hilbert space (identified either by kets or bras).
+	\end{remark}
+	
+	\begin{prop}[Bilinearity, H2]\label{prop_bilinearity}
+		Given $M$ in \ref{def_comp}, if we can find an $m : \mathcal{A} \times \mathcal{B} \to \mathcal{C}$ such that for all $(a,b) \in \mathcal{A} \times \mathcal{B}$, we have $\pj{m(a,b)} = M(\pj{a}, \pj{b})$, then $m$ must be bilinear. That is:
+		\begin{align}
+		m(k_1a_1 + k_2a_2, b)=k_1m(a_1, b) + k_2m(a_2, b) \\
+		m(a, k_1b_1 + k_2b_2)=k_1m(a, b_1) + k_2m(a, b_2)
+		\end{align}
+		for all $a, a_1, a_2 \in \mathcal{A}$, $b, b_1, b_2 \in \mathcal{B}$ and $k_1, k_2 \in \mathbb{C}$.
+	\end{prop}
+	
+	\begin{proof}
+		If we fix $b \in \mathcal{B}$, then we have $M_b : \pj{\mathcal{A}} \to \pj{\mathcal{C}}$ where $M_b(\pj{a}) = M(\pj{a}, \pj{b})$. By \ref{prop_statInd} and \ref{prop_fundProj} we can find a linear map $m_b : \mathcal{A} \to \mathcal{C}$ such that $\pj{m_b(a)} = M_b(\pj{a}) = M(\pj{a}, \pj{b})$. As this must map subspace to subspace, we must have $m(a, b) = k m_b(a)$ for some $k \in \mathbb{C}$. Since $m_b$ is linear, we have $m(k_1a_1 + k_2a_2, b)=k_1m(a_1, b) + k_2m(a_2, b)$ for any $a_1, a_2 \in \mathcal{A}$ and $k_1, k_2 \in \mathbb{C}$. We can repeat the argument fixing $a \in \mathcal{A}$, and find $m(a, k_1b_1 + k_2b_2)=k_1m(a, b_1) + k_2m(a, b_2)$ for any $b_1, b_2 \in \mathcal{B}$ and $k_1, k_2 \in \mathbb{C}$.
+	\end{proof}
+	
+	\begin{prop}[Subsystems' basis gives composite system
+		basis]\label{prop_basis}
+		Let $\{a_i\}_{i\in I}$ and $\{b_j\}_{j \in J}$ be bases of $\mathcal{A}$ and $\mathcal{B}$ respectively, then a set of unit vectors $\{e_{ij}\}_{(i,j) \in I \times J} \subset \mathcal{C}$  such that $e_{ij} \in M(\underbar{$a_i$}, \underbar{$b_j$})$ forms a basis for $\mathcal{C}$.
+	\end{prop}
+	
+	\begin{proof}
+		
+		Since $M$ is a map on the projective spaces, it maps spans to spans.
+		Since the span of the basis of $\mathcal{A}$ and $\mathcal{B}$ is
+		the whole space, then the span of the image of the basis is the
+		whole image of $M$. By \ref{prop_spanSurj}, the image of $M$
+		coincides with the whole $\mathcal{C}$. Therefore, given
+		$\{a_i\}_{i\in I}$ and $\{b_j\}_{j \in J}$ bases of $\mathcal{A}$
+		and $\mathcal{B}$ respectively, any set of unit vectors
+		$\{e_{ij}\}_{(i,j) \in I \times J} \subset \mathcal{C}$ such that
+		$e_{ij} \in M(\pj{a_i}, \pj{b_j})$ spans the whole $\mathcal{C}$.
+		
+		Now consider $P(M(\pj{a_i},\pj{b_j})|M(\pj{a_k},\pj{b_l}))$. If $i=k$ and $j=l$ we have $P(M(\pj{a_i},\pj{b_j})|M(\pj{a_k},\pj{b_l}))= P(M(\pj{a_i},\pj{b_j})|M(\pj{a_i},\pj{b_j})) = 1$. If $i\neq k$, we have $P(M(\pj{a_i},\pj{b_j})|M(\pj{a_k},\pj{b_l})) = P(\pj{a_i} \wedge \pj{b_j} | \pj{a_k} \wedge \pj{b_l}) \leq P(\pj{a_i} | \pj{a_k} \wedge \pj{b_l})$. By \ref{prop_singleBorn} we have $P(\pj{a_i} | \pj{a_k} \wedge \pj{b_l}) = P(\pj{a_i} | \pj{a_k}) = 0$ since $a_i$ and $a_k$ are different elements of an orthogonal basis. Therefore we have $P(M(\pj{a_i},\pj{b_j})|M(\pj{a_k},\pj{b_l}))=\delta_{ik}\delta_{jl}$ which means $\<e_{ij} | e_{kl} \> = \delta_{ik}\delta_{jl}$.
+		
+		The elements $e_{ij}$ form a set of orthonormal vectors that span the whole space and are therefore a basis.
+	\end{proof}
+	
+	\begin{thrm}[Composite system theorem]\label{theo}
+		The state space of a composite system of independent systems is given by the tensor product of the spaces of the component systems.
+	\end{thrm}
+	
+	\begin{proof}
+		We are looking for a map $m : \mathcal{A} \times \mathcal{B} \to \mathcal{C}$ such that, for all $(a,b) \in \mathcal{A} \times \mathcal{B}$ we have $\pj{m(a,b)} = M(\pj{a}, \pj{b})$. We saw in \ref{prop_bilinearity} that if $m$ exists, it must be bilinear.
+		
+		Now we show that, if $m$ exists, then $\mathcal{C} \cong \mathcal{A}
+		\otimes \mathcal{B}$ (where $\cong$ indicates an isomorphism) and $m :
+		\mathcal{A} \times \mathcal{B} \to \mathcal{A} \otimes \mathcal{B}$ is
+		the standard map from the Cartesian product to the tensor product. As $m
+		: \mathcal{A} \times \mathcal{B} \to \mathcal{C}$ is a bilinear
+		operator, by the universal property of the tensor product we can find
+		a linear operator $\hat{m} : \mathcal{A} \otimes \mathcal{B} \to
+		\mathcal{C}$ such that $m(a, b) = \hat{m}(a \otimes b)$. By
+		\ref{prop_basis} the set $\{ m(a_i, b_j)\}_{(i,j) \in I \times J}$
+		forms a basis since $ m(a_i, b_j) \in M(\pj{a_i}, \pj{b_j})$ for all
+		$(i, j)$, therefore $\hat{m}(\{ a_i \otimes b_j\}_{(i,j) \in I \times
+			J})$ also forms a basis since $\hat{m}(a_i\otimes b_j)=m(a_i, b_j)$.
+		By \ref{prop_totality}, each $m(a_i,b_j)$ will correspond to a unit
+		vector in $\mathcal{C}$. We have $\<\hat m(a_i\otimes b_j)| \hat
+		m(a_k\otimes b_\ell)\>_\mathcal{C} =\<m(a_i, b_j)| m(a_k,
+		b_\ell)\>_\mathcal{C} = \delta_{ik}\delta_{j\ell} = \<a_i\otimes b_j|
+		a_k \otimes b_\ell\>_{\otimes}$. The function $\hat{m}$, then,
+		preserves the inner product across all elements of the basis and is
+		therefore an isomorphism for Hilbert spaces. We have $\mathcal{C}
+		\cong \mathcal{A} \otimes \mathcal{B}$ and $m(a, b) = \hat{m}(a
+		\otimes b) \cong a \otimes b$.
+		
+		Given that the tensor product map exists and it satisfies all the properties $m$ must satisfy, then $m$ exists and it is the tensor product.
+	\end{proof}
+	
+	
+	To conclude, we give a schematic outline of the logical implications
+	that led us to the result. This is an expanded version of Fig.~1 of
+	the main paper:
+	\begin{enumerate}
+		\item P\ref{post_state}: states and observables postulate.
+		
+		\item P\ref{post_measurements}: Born rule (measurement postulate). 
+		
+		\item Def \ref{def_indep}: Preparation independence: systems are independent if the preparation of one does not affect the other.
+		
+		\item P\ref{post_measurements} $\Rightarrow$ \ref{prop_singleBorn}: the outcome probabilities depend only on the
+		inner product.
+		
+		\item Def \ref{def_comp}: Composite system definition: A composite system is a
+		collection of the subsystems (i.e.~all compatible states give a preparation) and only of the subsystems
+		(i.e.~all composite preparations give non-trivial measurements on the
+		subsystems).
+		
+		
+		\item P\ref{post_measurements} + Def \ref{def_comp} $\Rightarrow$ \ref{prop_spanSurj} (H3): Span
+		surjectivity (all composiste $\cal C$ are superpositions of ${\cal A}$ and ${\cal B}$).
+		
+		\item Def \ref{def_indep} + Def \ref{def_comp} $\Rightarrow$ \ref{prop_totality} (H1):
+		Totality (all possible state pairs of the subsystems correspond to a state of the composite). 
+		
+		\item P\ref{post_state} + \ref{prop_singleBorn} +  Def \ref{def_comp} $\Rightarrow$ \ref{prop_statInd}: Statistical
+		independence (if one subsystem does not change, the probability on the composite system is given by the probability of the subsystem that changes).
+		
+		\item \ref{prop_fundProj}: Fundamental theorem of projective geometry (preserving square of inner product leads to unique linear map)
+		
+		\item \ref{prop_statInd} + \ref{prop_fundProj} $\Rightarrow$ \ref{prop_bilinearity} (H2) composition map on vector spaces is bilinear.
+		
+		\item P\ref{post_measurements} + Def \ref{def_comp} + \ref{prop_spanSurj} (H3) $\Rightarrow$ \ref{prop_basis}: Basis
+		carries over from subsystems to composite
+		
+		\item \ref{prop_totality} + \ref{prop_bilinearity} + \ref{prop_basis} $\Rightarrow$ \ref{theo}: the composition map is the tensor product.
+	\end{enumerate}
+	
+	\begin{references}
+		\bibitem{zurek} W.H. Zurek, Quantum Darwinism, Nature Phys. {\bf 5},
+		181 (2009).
+		\bibitem{diracbook}P.A.M. Dirac, The principles of quantum mechanics,
+		(Clarendon Press, Oxford, 1966).
+		\bibitem{vonneumannbook}J. von Neumann, Mathematical Foundations of
+		Quantum Mechanics (Princeton Univ.  Press, 1955).
+		\bibitem{jauch}J.M. Jauch, Foundations of quantum mechanics
+		(Addison-Welsey, 1968), pg.~176.
+		\bibitem{weyl} H. Weyl, Gruppentheorie und Quantenmechanik (Hirzel,
+		Leipzig, 1928); translated by H. P. Robertson, The Theory of Groups
+		and Quantum Mechanics (Methuen, London, 1931); reprinted by Dover,
+		p. 91.
+		\bibitem{epr}A. Einstein, B. Podolsky, N. Rosen, Can
+		quantum-mechanical description of physical reality be considered
+		complete?, Phys. Rev. {\bf 47}, 777 (1935).
+		\bibitem{ozawa}M. Ozawa, {Uncertainty relations for noise and
+			disturbance in generalized quantum measurements}, Ann. Phys.  {\bf
+			311}, 350 (2004).
+		\bibitem{masanes}L. Masanes, T.D. Galley, M.P. M\" uller, The
+		measurement postulates of quantum mechanics are operationally
+		redundant, Nat. Commun. {\bf 10}, 1361 (2019).
+		\bibitem{wootters}W.K. Wootters, Optimal Information Transfer and
+		Real-Vector-Space Quantum Theory. In: Chiribella G., Spekkens R.
+		(eds) Quantum Theory: Informational Foundations and Foils,
+		Fundamental Theories of Physics, vol 181. Springer, Dordrecht
+		(2016).
+		\bibitem{nielsenchuang}M. A. Nielsen and I. L. Chuang, Quantum Computation
+		and Quantum Information (Cambridge University Press, Cambridge,
+		2000).
+		\bibitem{ballentinebook}L.E. Ballentine, Quantum Mechanics, a modern
+		development (World Scientific, 2014).
+		\bibitem{ballentinepaper}L.E. Ballentine, Probability theory in
+		quantum mechanics, Am. J. Phys. {\bf 54}, 883 (1986).
+		\bibitem{peres}A.~Peres, Classical interventions in quantum systems.
+		II. Relativistic invariance, Phys. Rev. A {\bf 61}, 022117 (2000).
+		\bibitem{matolcsi} T. Matolcsi, Tensor product of Hilbert lattices and
+		free orthodistributive product of orthomodular lattices, Acta Sci.
+		Math. (Szeged), {\bf 37}, 263 (1975).
+		\bibitem{aerts} D. Aerts, I. Daubechies, Physical justification for
+		using the tensor product to describe two quantum systems as one
+		joint system, Helv. Phys. Acta {\bf 51}, 661 (1979).
+		\bibitem{giddins}S.B.~Giddings, Hilbert space structure in quantum
+		gravity: an algebraic perspective. J. High Energ. Phys. 2015, 1
+		(2015).% https://doi.org/10.1007/JHEP12(2015)099
+		\bibitem{mipre}Z. Ji, A. Natarajan, T. Vidick, J. Wright, H. Yuen, MIP*=RE, arXiv:2001.04383 (2020). %https://quantumfrontiers.com/2020/03/01/the-shape-of-mip-re/
+		\bibitem{susskind}Y. Aharonov, L. Susskind, Charge superselection
+		rule, Phys. Rev. {\bf 155}, 1428 (1967).
+		\bibitem{zanardi}P. Zanardi, Virtual Quantum Subsystems, Phys. Rev.
+		Lett {\bf 87}, 077901 (2001).
+		\bibitem{zanardilloyd} P. Zanardi, D.A. Lidar, S. Lloyd, Quantum
+		Tensor Product Structures are Observable Induced, Phys. Rev. Lett.
+		{\bf 92},060402 (2004).
+		\bibitem{cox}R.T. Cox, The Algebra of Probable Inference (J. Hopkins
+		press, 1961).
+		\bibitem{fun} E. Artin: Geometric algebra, Interscience Publishers Inc (1957)
+		\bibitem{tellerbook}P. Teller, An Interpretive Introduction to Quantum
+		Field Theory (Princeton Univ. Press, 1997).  
+		\bibitem{teller}M. Redhead, P. Teller, Particles, Particle Labels, and
+		Quanta: The Toll of Unacknowledged Metaphysics, Found. Phys. {\bf
+			21}, 43 (1991).
+		\bibitem{holevo}A. Holevo, Probabilistic and statistical aspects of
+		quantum theory, (North Holland, 1982).
+		\bibitem{sch}E. Schr\"odinger, Annalen der Physik {\bf 102}, 81 (1926); English translation in E. Schr\"odinger, {\em Collected papers on Wave Mechanics} (Blackie \& Son, London, 1928).
+	\end{references}
+	
+	
+	\vskip 1\baselineskip
+	
+\end{document}
