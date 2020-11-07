@@ -155,7 +155,7 @@ Deterministic and reversible evolution assumption: given the present state of th
 
 [Should we footnote that these two assumptions leave out some classical systems, e.g. Norton's dome, Earman's space invaders?]
 
-In our case, this applies to both the state of the whole system and to the state of its parts. That is, given an initial state $s_0$ there will be one and only one evolution $s(t)$ such that $s(t_0) = t_0$ [is $s$ an evolution that transports the state variables, i.e. labeling future states by the original state variables so that the initial time is transported to itself? I think we need to explain more about how evolutions are defined]. Moreover, if $\rho(s(t_0), t_0)$ is the density associated to the initial particle [what exactly does `initial particle' mean? Do we mean the initial state of the composite system or just a particular particle?] at the initial time, we must have that $\rho(s(t), t) = \rho(s(t_0), t_0)$, i.e. the density remains the same throughout the evolution. In other words, all particles that begin in a given initial state must end up in the same final state and vice-versa [could two different particles occupy the same initial state?].
+In our case, this applies to both the state of the whole system and to the state of its parts. Let $\lambda : \mathbb{R} \to \mathcal{S}$ be the evolution over time of the state of a particle. Under the assumption, this will be uniquely identified by the initial state $s_0 = \lambda(t_0)$ at the initial time $t_0$. [is $s$ an evolution that transports the state variables, i.e. labeling future states by the original state variables so that the initial time is transported to itself? I think we need to explain more about how evolutions are defined]. Moreover, if $\rho(\lambda(t_0), t_0)$ is the density associated to the initial particle [what exactly does `initial particle' mean? Do we mean the initial state of the composite system or just a particular particle?] at the initial time, we must have that $\rho(\lambda(t), t) = \rho(\lambda(t_0), t_0)$, i.e. the density remains the same throughout the evolution. In other words, all particles that begin in a given initial state must end up in the same final state and vice-versa [could two different particles occupy the same initial state?].
 
 Now consider the integral $\int_{\Sigma} \rho_c \omega(d\Sigma)$. The region $\Sigma$ will be mapped to a new region, but the fraction of the system found in both the old and new regions must be the same. Since both the integral and $\rho_c$ must remain constant during the evolution, the two-form $\omega$ must also remain the same. That is, the areas in phase space must be mapped to areas of equal size, and independent degrees of freedom must be mapped to independent degrees of freedom (otherwise, volumes would not be mapped to equal volumes, which would violate determinism). The evolution is a symplectomorphism and corresponds to Hamiltonian evolution. Intuitively, this argument is the inverse of Liouville's theorem: instead of positing Hamiltonian evolution and finding conservation of areas and volumes, deterministic and reversible evolution imposes the conservation of areas and volumes which leads to Hamiltonian evolution.
 
@@ -178,15 +178,18 @@ In this case, which we call \textit{weak equivalence}, $v^i(q^j, p_k)$ must be i
 
 If we look at the whole distribution, we have $\rho(q^i, p_j) = |J| \rho(x^i, v^j) = \left|\frac{\partial v^i}{\partial p_j}\right| \rho(x^i, v^j)$ since
 \begin{equation}
-|J| = \begin{bmatrix}
-\frac{\partial x^i}{\partial q^j} & \frac{\partial v^i}{\partial q^j} \\
-\frac{\partial x^i}{\partial p_j} & \frac{\partial v^i}{\partial p_j}
-\end{bmatrix}
-= \begin{bmatrix}
-\delta^i_j & \frac{\partial v^i}{\partial q^j} \\
-0 & \frac{\partial v^i}{\partial p_j}
-\end{bmatrix}
+\begin{aligned}
+|J| &= \begin{vmatrix}
+\frac{\partial x^i}{\partial q^j} & \frac{\partial x^i}{\partial p_j} \\
+\frac{\partial v^i}{\partial q^j} & \frac{\partial v^i}{\partial p_j}
+\end{vmatrix}
+= \begin{vmatrix}
+\delta^i_j & 0 \\
+\frac{\partial v^i}{\partial q^j} & \frac{\partial v^i}{\partial p_j}
+\end{vmatrix} \\
+&= \left|\delta^i_j\right| \left|\frac{\partial v^i}{\partial p_j}\right| - \left|0\right| \left|\frac{\partial v^i}{\partial q^j}\right|
 = \left|\frac{\partial v^i}{\partial p_j}\right|.
+\end{aligned}
 \end{equation}
 Note that while the value given by $\rho(q^i, p_j)$ is coordinate independent, the value given by $\rho(x^i, v^j)$ depends on the choice of coordinate through $\left|\frac{\partial v^i}{\partial p_j}\right|$. If $x^i$ truly sets the unit system by itself, then $\left|\frac{\partial v^i}{\partial p_j}\right|$ must be a function of position only. Similar considerations will also hold for marginal distributions (i.e. distributions on a subset of the coordinates) which means all components of $\frac{\partial v^i}{\partial p_j}$ must be a function of position only. We set:
 \begin{equation}
