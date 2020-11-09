@@ -74,7 +74,7 @@
 	Here we give the mathematical details of the proof sketched in the
 	main paper.
 	
-	The core idea is that the probability space constrains what the state space for the composite system can be. Therefore we must develop a precise map between events in probability and their correspondents in terms of Hilbert space. Conceptually, the event $X = x_0$, the observable $X$ is equal to the value $x_0$, will correspond to the subspace spanned by all eigenstates of $X$ with eigenvalue $x_0$. The event $\psi$, the system was prepared in state $\psi$, will correspond to the ray (one-dimensional complex subspace) corresponding to the $\psi$ vector. Therefore, in general, all events in probability will corresponds to subspaces (of different dimensionality) of the Hilbder space. Projective spaces are the right tool to keep track of subspaces. The proof, then, consists in establishing what are the correct definitions in the space of events, map those into elements of the projective space and then, from the projective space, construct a map on the vector space directly.
+	The core idea is that the probability space constrains what the state space for the composite system can be. Therefore we must develop a precise map between events in probability and their correspondents in terms of Hilbert space. Conceptually, the event $X = x_0$, the observable $X$ is equal to the value $x_0$, will correspond to the subspace spanned by all eigenstates of $X$ with eigenvalue $x_0$. The event $\psi$, the system was prepared in state $\psi$, will correspond to the ray (one-dimensional complex subspace) corresponding to the $\psi$ vector. Therefore, in general, all events in probability will correspond to subspaces (of different dimensionality) of the Hilbert space. Projective spaces are the right tool to keep track of subspaces. The proof, then, consists of establishing the correct definitions in the space of events, mapping those into elements of the projective space and then, from the projective space, constructing a map on the vector space directly.
 	
 	Let us establish, then, the notation we will be using to distinguish the projective space from
 	the Hilbert space itself. If $X$ is a Hilbert space, we denote $\pj{X}$
@@ -83,7 +83,7 @@
 	quotienting by the equivalence relationship $v \sim \lambda v$, $v\in
 	X$ and $\lambda\in\mathbb{C}$. A quantum state is a point in
 	projective space. Each point of the projective space is called a ray,
-	because for a real vector space to would correspond to a line going through
+	because for a real vector space it would correspond to a line going through
 	the origin, with the origin removed. As we are in a complex space, the
 	ray should be thought as a complex plane without the origin, which is
 	the space of the vectors reachable from a fixed one through
@@ -123,7 +123,7 @@
 		spectral decomposition $X = \sum_{x,i }x \frac{| x_i \> \< x_i |}{\< x_i | x_i \>}$  where $i$ is a degeneracy index, returns a value $x$ depends only on $X$ and on the state of the system $\pj{\psi}$ and is given by $P(x|\pj{\psi})=\sum_i \frac{\<\psi| x_i \> \< x_i |\psi\>}{\< \psi | \psi \>\< x_i | x_i \>}$
 		(Born rule).\end{post}
 	
-	{Given two events $\pj{a}$ and $\pj{b}$, for example $X > x_1$ and $X < x_2$, their conjunction $\pj{a} \wedge \pj{b}$ is the event where both are true, $ x_1 < X < x_2$ in the example. In terms of our Hilbert spaces, both $\pj{a}$ and $\pj{b}$ corresponds to subspaces and $\pj{a} \wedge \pj{b}$ is exactly the intersection of the two, which is also a subspace. We should not confuse $\pj{a} \wedge \pj{b}$ with $\pj{a} | \pj{b}$: the first refers to either
+	{Given two events $\pj{a}$ and $\pj{b}$, for example $X > x_1$ and $X < x_2$, their conjunction $\pj{a} \wedge \pj{b}$ is the event where both are true, $ x_1 < X < x_2$ in the example. In terms of our Hilbert spaces, both $\pj{a}$ and $\pj{b}$ correspond to subspaces and $\pj{a} \wedge \pj{b}$ is exactly the intersection of the two, which is also a subspace. We should not confuse $\pj{a} \wedge \pj{b}$ with $\pj{a} | \pj{b}$: the first refers to either
 		preparation or measurement of both systems  in the respective state, while the second corresponds to preparing one system in one state and measuring the
 		other system in the other state \cite{cox}.}
 	
@@ -136,13 +136,6 @@
 		possible, which means it does not correspond to the empty set in the
 		$\sigma$-algebra of the probability space\footnote{The impossible event is not an event with probability zero, rather it is an event that cannot be created at all. For example, ``the dice shows a number that is even and less than two'', or ``the electron is prepared in spin up along $x$ and also along $z$'' are impossible events.}.
 	\end{defn}
-	
-	{Note that the proposition $\pj{a} \wedge \pj{b}$ refers to either
-		preparation or measurement of both systems  in the respective state. 
-		The proposition $\pj{a} | \pj{b}$, instead, is the one that
-		corresponds to preparing one system in one state and measuring the
-		other system in the other state \cite{cox}. Incompatible states
-		refer to non-commuting observables.}
 	
 	\begin{defn}[Preparation independence]\label{def_indep}
 		Two systems are said independent iff the preparation of one does not affect the preparation of the other. Formally, all (pure) state pairs $(\pj{a}, \pj{b}) \in \pj{\mathcal{A}}\times \pj{\mathcal{B}}$ are compatible.
@@ -166,7 +159,7 @@
 			\item For every preparation of the composite, local projective measurements must have at least one
 			outcome with non-zero probability. Formally, for every $\pj{c} \in \pj{\mathcal{C}}$, we can find at least $\pj{a} \in \pj{\mathcal{A}}$ and $\pj{b} \in \pj{\mathcal{B}}$ such that $P(\pj{a} \wedge \pj{b}|\pj{c})\neq 0$. 
 		\end{enumerate}
-		It is important to understand that these requirements are necessary. Requirement 1 ensures that the composite system is well defined at least when the components are prepared independently. Conceptually, this ensures that the composite system contains all the properties of the components. Note that superselection rules or other restriction may prevent the independent preparation of all possible pairs (e.g.~two fermions cannot be jointly prepared in the same state). The tensor product is recovered only all pairs are compatible. Requirement 2 ensures that it does not contain properties that are orthogonal to all the components' properties, i.e.~that the composite system contains {\em only} the components.
+		It is important to understand that these requirements are necessary. Requirement 1 ensures that the composite system is well defined at least when the components are prepared independently. Conceptually, this ensures that the composite system contains all the properties of the components. Note that superselection rules or other restrictions may prevent the independent preparation of all possible pairs (e.g.~two fermions cannot be jointly prepared in the same state). The tensor product is recovered only when all pairs are compatible. Requirement 2 ensures that it does not contain properties that are orthogonal to all the components' properties, i.e.~that the composite system contains {\em only} the components.
 	\end{defn}
 	
 	\begin{prop}[Span surjectivity, H3]\label{prop_spanSurj}

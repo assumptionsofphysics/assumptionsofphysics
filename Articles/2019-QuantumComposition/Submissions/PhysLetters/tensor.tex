@@ -97,7 +97,7 @@ principle is encoded into the quantum axioms by requiring that the
 state space is a {\em linear} vector space. This is, by itself,
 insufficient to single out the tensor product, as other linear
 products of linear spaces exist, such as the direct product, the exterior/wedge roduct or the direct sum of vector spaces, which is used
-	in classical mechanics to combine state spaces of linear systems. These are all maps from linear spaces to linear spaces but they differ in how the linearity of one is mapped to the linearity of the other.\footnote{For example, in the tensor product $a \otimes (b+c) = a \otimes b + a \otimes c$ while in the direct product $a \times (b+c) = a \times b + 0 \otimes c$ where $0$ is the zero vector. Also, in the tensor product $r * (a \otimes b) = (r*a) \otimes b = a \otimes (r*b)$ while in the direct product $r * (a \times b) = r*a \times r*b$.}
+	in classical mechanics to combine state spaces of linear systems. These are all maps from linear spaces to linear spaces but they differ in how the linearity of one is mapped to the linearity of the other.\footnote{For example, in the tensor product $a \otimes (b+c) = a \otimes b + a \otimes c$ while in the direct product $a \times (b+c) = a \times b + 0 \times c$ where $0$ is the zero vector. Also, in the tensor product $r * (a \otimes b) = (r*a) \otimes b = a \otimes (r*b)$ while in the direct product $r * (a \times b) = r*a \times r*b$.}
 	
 	This belief may have arisen from the seminal book of Dirac
 	\cite{diracbook}, who introduces tensor products (Chap.~20) by
@@ -167,9 +167,9 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	since the tensor product formalism is very convenient and is often
 	used also in these cases, but it is something we need to bring out.
 	
-	While conceptually the derivation is straight forward, it requires the
-	use of projective space, which may be unfamiliar to the reader. This is
-	necessary because events in probability space do not correspond to vectors in the Hilbert space, but to subspaces. If $\psi$ is a vector, the state corresponds to the ray $\pj{\psi}$, which is the subspace spanned by $\psi$. Note that ``ray'' can be misleading since $\pj{\psi}$ is really a complex { \em plane }. In the same way, the event $X = x_0$ corresponds to the subspace spanned by all eigenstates such that $X | \psi \> = x_0 |\psi\>$. The map $M$ derived from the probability space is a map between states as events in probability space, and therefore will be a map from rays to rays, which is a map between the projectives spaces. The technical work, then, is to show that the map $M$ on the projective spaces corresponds to a map $m$ on the vector spaces and that $m$ can be taken to be, without loss of generality, the tensor product.
+	While conceptually the derivation is straightforward, it requires the
+	use of projective spaces, which may be unfamiliar to the reader. This is
+	necessary because events in probability space do not correspond to vectors in the Hilbert space, but to subspaces. If $\psi$ is a vector, the state corresponds to the ray $\pj{\psi}$, which is the subspace spanned by $\psi$. Note that ``ray'' can be misleading since $\pj{\psi}$ is really a complex { \em plane }. In the same way, the event $X = x_0$ corresponds to the subspace spanned by all eigenstates such that $X | \psi \> = x_0 |\psi\>$. The map $M$ derived from the probability space is a map between states as events in probability space, and therefore will be a map from rays to rays, which is a map between the projective spaces. The technical work, then, is to show that the map $M$ on the projective spaces corresponds to a map $m$ on the vector spaces and that $m$ can be taken to be, without loss of generality, the tensor product.
 	
 	This is done by showing that preparation independence and
 	statistical independence imply three conditions on the map $m$:
@@ -254,7 +254,7 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	the subsystems ($\pj{\cal A}$ and $\pj{\cal B }$ represent the
 	projective spaces and the Cartesian product is the set of all possible
 	pairs) and returns a state in the projective space $\pj{\cal C}$ for
-	the composite. To visualize this geometrically, given a ray (a complex plane) in each of $\cal A$ and $\cal B$, $M$ returns a ray (a complex plane) in $\cal C$.  Our final goal will be to find a map
+	the composite. To visualize the geometrical meaning of $M$ directly within the Hilbert spaces, given a ray (a complex plane) in each of $\cal A$ and $\cal B$, $M$ returns a ray (a complex plane) in $\cal C$.  Our final goal will be to find a map
 	$m:{\cal A}\times{\cal B}\to{\cal C}$ that acts on vectors in the
 	Hilbert spaces $\cal A$, $\cal B$ and $\cal C$ consistently with $M$. Namely,
 	$\pj{m(a,b)}=M(\pj{a},\pj{b})$ where the underline sign indicates the
@@ -282,7 +282,7 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	
 	We note that the Born
 	probability formula in postulate (b) is of the form $p(a|\psi_{\cal A}$ and contains only quantities of the
-	system (the pure state $\psi_{\cal A}$ and the observable's eigenstates $a$). Now, suppose that, unknown to us, an additional second system was prepared in a pure state $\psi_{\cal B}$ and consider $p(a|\psi_{\cal A}\wedge \psi_{\cal B})$. In what cases are allowed to use the Born rune? That is, in what cases we can say $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = |\<a|\psi_{\cal A}\>|^2$? Only in the cases where $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = p(a|\psi_{\cal A}$ are statistically independent. In this sense, postulate (b) already implies  ``statistical independence'' between
+	system (the pure state $\psi_{\cal A}$ and the observable's eigenstates $a$). Now, suppose that, unknown to us, an additional second system was prepared in a pure state $\psi_{\cal B}$ and consider $p(a|\psi_{\cal A}\wedge \psi_{\cal B})$. In what cases are we allowed to use the Born rule? That is, in what cases can we say $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = |\<a|\psi_{\cal A}\>|^2$? Only in the cases where $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = p(a|\psi_{\cal A}$, where the systems  are statistically independent. In this sense, postulate (b) already implies  ``statistical independence'' between
 	different systems if they are prepared independently. Namely, the
 	outcome probability of one is independent of any properties of any
 	other in the absence of any dynamical coupling and supposing
@@ -348,7 +348,7 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	in terms of operators acting on ket vectors, one can write an
 	equivalent equation in terms of bra vectors by simply taking the
 	Hermitian conjugate of both sides of the first equation. Namely, the
-	equation A|psi>=B|phi> is equivalent to $<psi|A^dag=<phi|B^dag$. Mathematically, there is nothing preventing one to represent state preparation and kets to represent measurements. It is a matter of convention. We can now repeat the same analysis for the second
+	equation A|psi>=B|phi> is equivalent to $<psi|A^dag=<phi|B^dag$.  Mathematically, there is nothing preventing one from representing state preparation with bras and measurements with kets. It is a matter of convention. We can now repeat the same analysis for the second
 	argument of $m$ to conclude that it is a bilinear map, condition (H2).
 	
 	The last condition (H3) follows directly from the definition of a
