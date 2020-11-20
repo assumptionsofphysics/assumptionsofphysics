@@ -375,7 +375,21 @@
 		carries over from subsystems to composite
 		
 		\item \ref{prop_totality} + \ref{prop_bilinearity} + \ref{prop_basis} $\Rightarrow$ \ref{theo}: the composition map is the tensor product.
+		
 	\end{enumerate}
+
+	\subsection{Addendum}
+	
+	The above proof relies only on the independent preparation of subsystem and not their measurement. However, during the review process, an anonymous referee contributed a sketch for a proof that shows very directly that the state and measurement postulates also imply independence of measurements. The insight is that the mixture created by all possible measurement outcomes on $B$ must behave overall as a pure state on $A$. Since pure states are extreme points, this can only happen if every measurement outcome on $B$ leaves $A$ in a pure state, which makes the probability factorize.
+	
+	\begin{prop}
+		Let $\pj{\psi}$ and $\pj{\phi}$ be two preparations for $A$ and $B$. Let $\pj{a}$ and $\pj{b}$ two measurements on the respective systems. Then $P(\pj{a} \wedge \pj{b} | \pj{\psi} \wedge \pj{\phi}) = P(\pj{a} | \pj{\psi}) P(\pj{b} | \pj{\phi})$.
+	\end{prop}
+	\begin{proof}
+		Consider $P(\pj{a} \wedge \pj{b} | \pj{\psi} \wedge \pj{\phi})$. We can imagine first performing the measurement on $B$ and then conditioning the result on $A$. We have $P(\pj{a} \wedge \pj{b} | \pj{\psi} \wedge \pj{\phi}) = P(\pj{a} | \pj{b}, \pj{\psi} \wedge \pj{\phi}) P(\pj{b} | \pj{\psi} \wedge \pj{\phi})$ where by ``$\pj{b}, \pj{\psi} \wedge \pj{\phi}$'' we mean that the systems were prepared in $\pj{\psi}$ and $\pj{\phi}$ respectively and $\pj{b}$ was measured. Any preparation on $A$ can be expressed with a mixed state, and any measurement on $B$ depends only on $\phi$, so we have $P(\pj{a} | \pj{b}, \pj{\psi} \wedge \pj{\phi}) P(\pj{b} | \pj{\psi} \wedge \pj{\phi}) = P(\pj{a} | \rho(\pj{b}, \pj{\psi}, \pj{\phi})) P(\pj{b} | \pj{\phi})$. We also must have $\sum_b P(\pj{a} \wedge \pj{b} | \pj{\psi} \wedge \pj{\phi}) = P(\pj{a} | \pj{\psi} \wedge \pj{\phi}) = P(\pj{a} | \pj{\psi})$.
+		
+		Putting it all together, we have $P(\pj{a} | \pj{\psi}) = \sum_b P(\pj{a} | \rho(\pj{b}, \pj{\psi}, \pj{\phi})) P(\pj{b} | \pj{\phi})$. Which means $|\psi\>\<\psi| = \sum_b P(\pj{b} | \pj{\phi}) \rho(\pj{b}, \pj{\psi}, \pj{\phi})$. But the only way that a mixture of mixed states can be equal to a pure state is if all mixed states are the same pure state. Therefore $\rho(\pj{b}, \pj{\psi}, \pj{\phi}) = |\psi\>\<\psi|$ for all $b$ and $\phi$. We finally have $P(\pj{a} \wedge \pj{b} | \pj{\psi} \wedge \pj{\phi}) = P(\pj{a} | \rho(\pj{b}, \pj{\psi}, \pj{\phi})) P(\pj{b} | \pj{\phi}) = P(\pj{a} | \pj{\psi}) P(\pj{b} | \pj{\phi})$.
+	\end{proof}
 	
 	\begin{references}
 		\bibitem{zurek} W.H. Zurek, Quantum Darwinism, Nature Phys. {\bf 5},
