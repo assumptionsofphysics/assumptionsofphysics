@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The four postulates of quantum mechanics are three
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[aps,prl,amsmath,amssymb,twocolumn,nofootinbib]{revtex4}
+\documentclass[aps,prl,amsmath,amssymb,twocolumn]{revtex4}
 %\documentclass[twocolumn,aps,showpacs,prl,groupedaddress]{revtex4}
 %\usepackage{amssymb,stackengine}
 \usepackage{amssymb}
@@ -44,13 +44,14 @@
 \newcommand{\pj}[1] {\underbar{$#1$}}
 %\newcommand{\pj}[1] {\overline{#1}}
 
+
 \def\>{\rangle}
 \def\<{\langle}
 \def\ca{_{\cal A}}
 \def\cb{_{\cal B}}
 \def\cc{_{\cal C}}
-%\def\comment#1{}
-\def\comment#1{ [{\bf Comment Lor:} {\sf #1}]}
+\def\comment#1{}
+%\def\comment#1{ [{\bf Comment Lor:} {\sf #1}]}
 \def\commentg#1{ [{\bf Comment Gabriele:} {\sf #1}]}
 \def\labell#1{\label{#1}}
 %\def\labell#1{\label{#1}{\mbox{{\tiny #1}}}}
@@ -60,51 +61,52 @@
 \def\iden{\openone}
 \begin{document}
 	
-%\fbox{{\scriptsize Preprint. \today}}
-\title{The four postulates of quantum mechanics are three}
-\author{Gabriele Carcassi$^1$, Lorenzo Maccone$^{2}$ and Christine A. Aidala$^1$
-}\affiliation{\vbox{1.~Physics Department, University of Michigan, 450 Church Street,
-		Ann Arbor, MI 48109-1040,
-		United States}\\
-	\vbox{2.~Dip.~Fisica and INFN Sez.\ Pavia, University
-		of Pavia, via Bassi 6, I-27100 Pavia, Italy}}
-\begin{abstract}
-The tensor product postulate of quantum mechanics states that the
-Hilbert space of a composite system is the tensor product of the
-components' Hilbert spaces. All current formalizations of quantum
-mechanics that do not contain this postulate contain some equivalent
-postulate or assumption (sometimes hidden). Here we give a natural
-definition of composite system as a set containing the component
-systems and show how one can logically derive the tensor product
-rule from the state postulate and from the measurement postulate. In
-other words, our paper reduces by one the number of postulates
-necessary to quantum mechanics.
-\end{abstract}
-\pacs{}
-% Measurement theory (quantum mechanics), 03.65.Ta Mechanics quantum,
-% 03.65.-w noise quantum, 42.50.Lc quantum information, 03.67.Ac
-% Quantum information, 03.67.-a Quantum fluctuations, 42.50.Lc quantum
-% mechanics, 03.65.Ta quantum optics, 42.50.Gy
-\maketitle
-
-
-The tensor product postulate does not appear in all axiomatizations of
-quantum mechanics: it has even been called ``postulate 0'' in some
-literature \cite{zurek}. A widespread belief is that it is a direct
-consequence of the superposition principle, and it is hence not a
-necessary axiom. {\em This belief is mistaken}: the superposition
-principle is encoded into the quantum axioms by requiring that the
-state space is a {\em linear} vector space. This is, by itself,
-insufficient to single out the tensor product, as other linear
-products of linear spaces exist, such as the direct product, the exterior/wedge roduct or the direct sum of vector spaces, which is used
-	in classical mechanics to combine state spaces of linear systems. These are all maps from linear spaces to linear spaces but they differ in how the linearity of one is mapped to the linearity of the other.\footnote{For example, in the tensor product $a \otimes (b+c) = a \otimes b + a \otimes c$ while in the direct product $a \times (b+c) = a \times b + 0 \times c$ where $0$ is the zero vector. Also, in the tensor product $r * (a \otimes b) = (r*a) \otimes b = a \otimes (r*b)$ while in the direct product $r * (a \times b) = r*a \times r*b$.}
+	%\fbox{{\scriptsize Preprint. \today}}
+	\title{The four postulates of quantum mechanics are three}
+	\author{Gabriele Carcassi$^1$, Lorenzo Maccone$^{2}$ and Christine A. Aidala$^1$
+	}\affiliation{\vbox{1.~Physics Department, University of Michigan, 450 Church Street,
+			Ann Arbor, MI 48109-1040,
+			United States}\\
+		\vbox{2.~Dip.~Fisica and INFN Sez.\ Pavia, University
+			of Pavia, via Bassi 6, I-27100 Pavia, Italy}}
+	\begin{abstract}
+		The tensor product postulate of quantum mechanics states that the
+		Hilbert space of a composite system is the tensor product of the
+		components' Hilbert spaces. All current formalizations of quantum
+		mechanics that do not contain this postulate contain some equivalent
+		postulate or assumption (sometimes hidden). Here we give a natural
+		definition of composite system as a set containing the component
+		systems and show how one can logically derive the tensor product
+		rule from the state postulate and from the measurement postulate. In
+		other words, our paper reduces by one the number of postulates
+		necessary to quantum mechanics.
+	\end{abstract}
+	\pacs{}
+	% Measurement theory (quantum mechanics), 03.65.Ta Mechanics quantum,
+	% 03.65.-w noise quantum, 42.50.Lc quantum information, 03.67.Ac
+	% Quantum information, 03.67.-a Quantum fluctuations, 42.50.Lc quantum
+	% mechanics, 03.65.Ta quantum optics, 42.50.Gy
+	\maketitle
 	
+	In this paper we derive the tensor product postulate (which, hence,
+	loses its status of postulate) from two other postulates of quantum
+	mechanics: the state postulate and the measurement postulate.
+	The tensor product postulate does not appear in all axiomatizations of
+	quantum mechanics: it has even been called ``postulate 0'' in some
+	literature \cite{zurek}. A widespread belief is that it is a direct
+	consequence of the superposition principle, and it is hence not a
+	necessary axiom. {\em This belief is mistaken}: the superposition
+	principle is encoded into the quantum axioms by requiring that the
+	state space is a {\em linear} vector space. This is, by itself,
+	insufficient to single out the tensor product, as other linear
+	products of linear spaces exist, such as the direct product, the exterior/wedge product or the direct sum of vector spaces, which is used
+	in classical mechanics to combine state spaces of linear systems. These are all maps from linear spaces to linear spaces but they differ in how the linearity of one is mapped to the linearity of the other.\footnote{For example, in the tensor product $a \otimes (b+c) = a \otimes b + a \otimes c$ while in the direct product $a \times (b+c) = a \times b + 0 \times c$ where $0$ is the zero vector. Also, in the tensor product $r  (a \otimes b) = (r a) \otimes b = a \otimes (r b)$ while in the direct product $r  (a \times b) = r a \times r b$, where $r$ is a scalar.}
 	This belief may have arisen from the seminal book of Dirac
 	\cite{diracbook}, who introduces tensor products (Chap.~20) by
 	appealing to linearity. However, he adds the seemingly innocuous
 	request that the product among spaces be distributive (rather,
 	bilinear), which is equivalent to postulating tensor products (or
-	linear functions of them). This is not an innocuous request. For
+	linear functions of them). It is not an innocuous request. For
 	example it does not hold where the composite vector space of two
 	linear spaces is described by the direct product, e.g.~in classical
 	mechanics, for two strings of a guitar: it is not distributive.
@@ -133,43 +135,43 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	which (in contrast to what is done here) are not connected to the
 	other postulates. Similar approaches appear in \cite{marmo,aerts}
 	where tensor products were obtained by specifying additional physical
-	or mathematical requirements. In quantum field theory one tends to
-	avoid problems connected with tensor products of infinite dimensional
-	spaces by focusing on algebraic commutation structures,
-	e.g.~\cite{giddins,roos}.  In particular, the recent MIP*=RE result
-	\cite{mipre} implies that, in infinite dimensions, the tensor product
-	is strictly less computationally powerful than the commutation
-	structures, emphasizing the difference among these two structures, at
-	least for the infinite-dimensional case. We will consider the
-	non-relativistic setting here.
+	or mathematical requirements. \comment{ {\em Il resto della frase da spostare in supp material} In quantum field theory one tends to
+		avoid problems connected with tensor products of infinite dimensional
+		spaces by focusing on algebraic commutation structures,
+		e.g.~\cite{giddins,roos}.  In particular, the recent MIP*=RE result
+		\cite{mipre} implies that, in infinite dimensions, the tensor product
+		is strictly less computationally powerful than the commutation
+		structures, emphasizing the difference among these two structures, at
+		least for the infinite-dimensional case. We will consider the
+		non-relativistic setting here.}
 	
-	In this paper we derive the tensor product postulate (which, hence,
-	loses its status of postulate) from two other postulates of quantum
-	mechanics: the state postulate and the measurement postulate. We start
+	We start
 	from the natural definition of a composite system as the set of two
 	(or more) quantum systems. The composite system is therefore
-	made of system $A$ {\em and} (joined with) system $B$ and {\em nothing else},
-	it's state being fully described by all observables and only the observables
-	that fully describe its constituents. The first key insight is that first two postulates already assume that, at least in some cases, the probability distribution of the
-	measurement outcomes of one system is independent of the other systems' (statistical independence). While we will see specifically how the Born implies this, it should be clear conceptually that we would not be able to talk about a system in the first place if we would not be able to characterize it independently. The second key insight is that, since all measurement
-	outcomes and all states of the subsystems plus the composite live in the same probability space, we will automatically have a map $M$ that for a pair of subsystems' states gives us the composite state that corresponds to the statistically independent case. These insights are enough to characterize mathematically the state space of the composite: the linearity given by the Hilbert space, together with the fact that the composite system is fully described by the observables of $A$ and $B$, allows to extend the construction to the composite states that do not satisfy statistical independence (the entangled states). So the work consists of two interrelated efforts: a physical argument that start from the first two postulates and leads to the necessary existence of the composition map $M$ and its properties together with a formal argument that shows how $M$ leads to the tensor product.
+	made of system $A$ {\em and} (joined with) system $B$ and {\em nothing else}\comment{da mettere altrove:, namely, 
+		its state is fully described by the probability amplitudes of the system's observables and nothing else}. The first key insight is that the first two postulates of quantum theory (introduced below) already assume that, at least in some cases, the probability distribution of the
+	measurement outcomes of one system is independent of the other systems' (statistical independence). We cannot even talk about a system in the first place if we cannot characterize it independently. The second key insight is that, since all measurement
+	outcomes and all states of the subsystems plus the composite live in the same probability space, we will automatically have a map $M$ that for a pair of subsystems' states gives us the composite state that corresponds to the statistically independent case. These insights are enough to characterize mathematically the state space of the composite: the linearity given by the Hilbert space, together with the fact that the composite system is fully described by the observables of $A$ and $B$, allows to extend the construction to the composite states that do not satisfy statistical independence (the entangled states). So the work consists of two interrelated efforts: a physical argument that starts from the first two postulates and leads to the necessary existence of the composition map $M$ and its properties together with a formal argument that shows how $M$ leads to the tensor product.
 	
-	We will mainly focus on
-	kine\-mati\-cal\-ly-inde\-pen\-dent systems, namely no superselection rules or
-	other restrictions to the state space are present: it is possible to
-	prepare each subsystem of a composite system in a state that is
-	independent of the other systems (preparation independence).  This is
-	the only case in which the tensor product can be properly employed
-	\cite{susskind,zanardi,zanardilloyd}: the Hilbert space of composite
-	systems that have restrictions is {\em not} the tensor product of the
-	component spaces, but a subspace of it (e.g.~the anti-symmetric
-	subspace for fermions). Typically this is ignored in the literature,
-	since the tensor product formalism is very convenient and is often
-	used also in these cases, but it is something we need to bring out.
+	\comment{mettere nel supplementary:	We will mainly focus on
+		kine\-mati\-cal\-ly-inde\-pen\-dent systems, namely no superselection rules or
+		other restrictions to the state space are present: it is possible to
+		prepare each subsystem of a composite system in a state that is
+		independent of the other systems (preparation independence).  This is
+		the only case in which the tensor product can be properly employed: the Hilbert space of composite
+		systems that have restrictions is {\em not} the tensor product of the
+		component spaces, but a subspace of it (e.g.~the anti-symmetric
+		subspace for fermions). Typically this is ignored in the literature,
+		since the tensor product formalism is very convenient and is often
+		used also in these cases, and superselection rules are typically avoidable \cite{susskind,zanardi,zanardilloyd}. }
 	
-	While conceptually the derivation is straightforward, it requires the
-	use of projective spaces, which may be unfamiliar to the reader. This is
-	necessary because events in probability space do not correspond to vectors in the Hilbert space, but to subspaces. If $\psi$ is a vector, the state corresponds to the ray $\pj{\psi}$, which is the subspace spanned by $\psi$. Note that ``ray'' can be misleading since $\pj{\psi}$ is really a complex { \em plane }. In the same way, the event $X = x_0$ corresponds to the subspace spanned by all eigenstates such that $X | \psi \> = x_0 |\psi\>$. The map $M$ derived from the probability space is a map between states as events in probability space, and therefore will be a map from rays to rays, which is a map between the projective spaces. The technical work, then, is to show that the map $M$ on the projective spaces corresponds to a map $m$ on the vector spaces and that $m$ can be taken to be, without loss of generality, the tensor product.
+	
+	TODO: pensarci con calma: riscrivere il paragrafo seguente, magari partendo da un esempio e introducendo il concetto seguente:
+	Frase in cui diciamo che abbiamo bisogno di projective spaces perche' i vettori $|\psi\>$ non rappresentano proprieta' (direbbe Lorenzo) o events (o proposizioni) in probability space (direbbe Gabriele) ma sono i sottospazi che lo fanno.
+	
+	
+	Since quantum states are rays in Hilbert space, we need projective spaces
+	Events in probability space do not correspond to vectors in the Hilbert space, but to subspaces, which means we will need elements of projective geometry. If $\psi$ is a vector, the state corresponds to the ray $\pj{\psi}$, which is the subspace spanned by $\psi$. Note that ``ray'' can be misleading since $\pj{\psi}$ is really a complex { \em plane }. In the same way, the event $X = x_0$ corresponds to the subspace spanned by all eigenstates such that $X | \psi \> = x_0 |\psi\>$. The map $M$ derived from the probability space is a map between states as events in probability space, and therefore will be a map from rays to rays, which is a map between the projective spaces. The technical work, then, is to show that the map $M$ on the projective spaces corresponds to a map $m$ on the vector spaces and that $m$ can be taken to be, without loss of generality, the tensor product.
 	
 	This is done by showing that preparation independence and
 	statistical independence imply three conditions on the map $m$:
@@ -183,8 +185,7 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	product ``postulate'', which hence loses its status of a postulate. An
 	overview of all these logical implications is given in
 	Fig.~\ref{f:fig}. The rest of the paper contains the sketch of this
-	argument. Refer to the Supplementary Information for a more rigorous
-	proof of the \emph{same} argument.
+	argument. The supplementary material contains the mathematical details.
 	
 	%%BoundingBox: 45 418 630 588
 	%(%old BoundingBox: 45 382 649 547)
@@ -200,7 +201,7 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	non-zero vectors $|\psi\>$ in a complex Hilbert space, and the
 	system's observable properties are described by self-adjoint operators
 	acting on that space; (b)~The probability that a measurement of a
-	property $X$, described by the operator with spectral decomposition
+	property $X$, described by the operator with spectral decomposition \comment{Normalizzare qui e in altri posti!}
 	$\sum_{x,i}x|x_i\>\<x_i|$ ($i$ a degeneracy index), returns a value
 	$x$ given that the system is in state $\pj{\psi}$ is
 	$p(x|\psi)=\sum_i|\<\psi|x_i\>|^2$ (Born rule). (c)~The state
@@ -234,11 +235,11 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	that restrictions due to superselection rules arise either from
 	practical (not fundamental) limitations on the actions of the
 	experimenter \cite{susskind,zanardi,zanardilloyd} or from the use of
-	ill-defined quantum systems. For example, in situations where
-	indistinguishability plays a role (e.g.~in QFT), one cannot consider
-	an electron as a quantum system: in this case the quantum system is
-	the field. The electron is an excitation of the field, {\em not} a
-	(sub)system. We call this condition ``preparation independence''.  [We
+	ill-defined quantum systems. \footnote{For example, in situations where
+		indistinguishability plays a role (e.g.~in QFT), one cannot consider
+		an electron as a quantum system: in this case the quantum system is
+		the field. The electron is an excitation of the field, {\em not} a
+		(sub)system.} We call this condition ``preparation independence''.  [We
 	emphasize that the kinematic independence is inequivalent to dynamical
 	independence (or isolation).  Indeed if two systems interact, their
 	interaction may lead to dynamical restrictions in the state spaces.
@@ -260,14 +261,14 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	$\pj{m(a,b)}=M(\pj{a},\pj{b})$ where the underline sign indicates the
 	elements in the projective space. Again geometrically, $m$ takes a vector in each of $\cal A$ and $\cal B$, and returns a vector in $\cal C$ and we want this to be consistent with $M$ such that vectors picked from the same rays will return vectors in the same ray. We will prove that the map $m$ is
 	the tensor product. We focus on pure states here: the argument can be
-	extended to mixed states using standard tools \cite{nielsenchuang}.
+	extended to mixed states using standard tools \cite{ballentine}.
 	
 	The map $M$ must be injective: as said above, different states of the
 	subsystems must correspond, by definition of composite system, to
 	different states of the composite. Moreover, preparation independence
-	implies that $M$, and hence $m$, must be total maps: each subsystem of
+	implies that $M$, and hence $m$, must be total maps (condition H1): each subsystem of
 	the composite system can be independently prepared and gives rise to a
-	state of the composite (condition H1).  H1 is not sufficient
+	state of the composite.  H1 is not sufficient
 	to identify the tensor product: by itself it does not even guarantee
 	that the map $m$ is linear.
 	
@@ -277,9 +278,10 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	\cite{ballentinepaper,ballentinebook,cox}. One of the axioms of
 	probability theory (axiom 4 in \cite{ballentinepaper}) asserts that
 	the joint probability of events $a$ and $b$ given $z$ is
-	$p(a\wedge b|z)=p(a|z)\:p(b|z\wedge a)$. This essentially the definition of conditional probability: $p(b|z\wedge a) = \frac{p(a\wedge b|z)}{p(a|z)}$. Two events $a$ and $b$ are defined to be 
-	independent given $z$ if and only if $p(a\wedge b|z)=p(a|z)\:p(b|z)$. However, it is more instructive to define independence with $p(b|z\wedge a)=p(b|z)$. This makes it more evident that the probability of $b$ does not depend on conditioning on $a$. If we imagine $a$ and $b$ to be outcomes for particular measurements, we are saying that the probability of observing $b$ is not a function of the value measured by $a$. We can recover the first definition from the second. In fact, $p(b|z\wedge a)=\frac{p(a\wedge b|z)}{p(a|z)} =p(b|z)$ which leads to $p(a\wedge b|z)=p(a|z)\:p(b|z)$.
+	$p(a\wedge b|z)=p(a|z)\:p(b|z\wedge a)$. Two events $a$ and $b$ are defined to be 
+	independent given $z$ if $p(a\wedge b|z)=p(a|z)\:p(b|z)$, which is true if and only if $p(b|z\wedge a)=p(b|z)$. If $a$ and $b$ are measurement outcomes, the probability of $b$ is not a function of $a$. 
 	
+	Riscrivere questo: scritto cosi', sembra che la regola di Born non si possa applicare sempre....
 	We note that the Born
 	probability formula in postulate (b) is of the form $p(a|\psi_{\cal A}$ and contains only quantities of the
 	system (the pure state $\psi_{\cal A}$ and the observable's eigenstates $a$). Now, suppose that, unknown to us, an additional second system was prepared in a pure state $\psi_{\cal B}$ and consider $p(a|\psi_{\cal A}\wedge \psi_{\cal B})$. In what cases are we allowed to use the Born rule? That is, in what cases can we say $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = |\<a|\psi_{\cal A}\>|^2$? Only in the cases where $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = p(a|\psi_{\cal A}$, where the systems  are statistically independent. In this sense, postulate (b) already implies  ``statistical independence'' between
@@ -326,8 +328,7 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	when one subsystem is prepared in an eigenstate of what is measured
 	there, the state space of the other is mapped preserving the square of
 	the inner product.
-	
-	Since the square of the inner product is preserved, orthogonality and
+	This implies orthogonality and
 	the hierarchy of subspaces are preserved through $M_b$, making $M_b$ a
 	colinear transformation by definition. Geometrically, recall that $M_b$ maps rays to rays. The fact that $M_b$ is colinear means that it also maps higher order subspaces to higher order subspaces (lines to lines, planes to planes, and so on) while preserving inclusion (if a line is within a plane, the mapped line will be within the mapped plane). In this case, the fundamental
 	theorem of projective geometry \cite{fun} applies, which tells us that
@@ -341,14 +342,10 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	\\\mbox{ or }
 	\<a|\psi\>=\<m(\psi,b)|m(a,b)\> \labell{h2b}.
 	\end{align}
-	In this setting, the antilinear case \eqref{h2b} corresponds to a change of convention (much like a change of sign in the symplectic form for classical mechanics) and can be ignored. Given a Hilbert space, in fact, we can imagine replacing all wavefunctions and all the operators with their complex-conjugate. These changes would effectively cancel out leaving the physics being represented unchanged  (for example, in his first papers
+	In this setting, the antilinear case \eqref{h2b} corresponds to a change of convention (much like a change of sign in the symplectic form for classical mechanics) and can be ignored. Given a Hilbert space, in fact, we can imagine replacing all vectors and all the operators with their Hermitian conjugate, mapping vectors into duals $|\psi\>^\dag=\<\psi|$. These changes would effectively cancel out leaving the physics unchanged. The two equations $A|w\>=B|z\>$ and $\<w|A^\dag=\<z|B^\dag$.  (For example, in his first papers
 	Schr\"odinger used both signs in his equation: effectively writing
 	{\em two} equivalent equations with complex-conjugate solutions
-	\cite{sch}). Another way to see this is noting that, given any equation 
-	in terms of operators acting on ket vectors, one can write an
-	equivalent equation in terms of bra vectors by simply taking the
-	Hermitian conjugate of both sides of the first equation. Namely, the
-	equation A|psi>=B|phi> is equivalent to $<psi|A^dag=<phi|B^dag$.  Mathematically, there is nothing preventing one from representing state preparation with bras and measurements with kets. It is a matter of convention. We can now repeat the same analysis for the second
+	\cite{sch}). We can repeat the same analysis for the second
 	argument of $m$ to conclude that it is a bilinear map, condition (H2).
 	
 	The last condition (H3) follows directly from the definition of a
@@ -454,26 +451,26 @@ products of linear spaces exist, such as the direct product, the exterior/wedge 
 	different set of observables. Where one agent sees a single system, an
 	agent that has access to less refined observables (and is then limited
 	by some superselection rules) can consider the same system as composed
-	of multiple subsystems. A typical example \cite{tellerbook} comes from
-	quantum field theory. It is customary in basically all quantum optics
-	literature to treat different modes of the radiation field (e.g.~the
-	output of two lasers) as independent systems composed through the
-	tensor product.  Clearly the electromagnetic field is a single system
-	and an agent who is able to access an optical mode that is a linear
-	combination of the two will give a quantum description for it that
-	cannot easily accommodate tensor products. Similarly, an agent can
-	consider two electrons as two systems, joined with the tensor product,
-	whenever they are distinguishable for all practical purposes (e.g.~the
-	electrons are in widely separated physical locations). Yet, in
-	principle, electrons are just excitations of a field, and the `true'
-	quantum system is the field, not the single electrons
-	\cite{teller,tellerbook}.  So, in quantum field theory, the quantum
-	systems that should be joined through tensor products are the
-	different fields and {\em not} the particles, which are just
-	excitations (states) of the fields. In the words of Teller
-	(\cite{tellerbook}, pg.22), tensor products can be safely used only if
-	there is a ``primitive thisness'', which is captured in the definition
-	of system.
+	of multiple subsystems. \comment{Supplementary material? A typical example \cite{tellerbook} comes from
+		quantum field theory. It is customary in basically all quantum optics
+		literature to treat different modes of the radiation field (e.g.~the
+		output of two lasers) as independent systems composed through the
+		tensor product.  Clearly the electromagnetic field is a single system
+		and an agent who is able to access an optical mode that is a linear
+		combination of the two will give a quantum description for it that
+		cannot easily accommodate tensor products. Similarly, an agent can
+		consider two electrons as two systems, joined with the tensor product,
+		whenever they are distinguishable for all practical purposes (e.g.~the
+		electrons are in widely separated physical locations). Yet, in
+		principle, electrons are just excitations of a field, and the `true'
+		quantum system is the field, not the single electrons
+		\cite{teller,tellerbook}.  So, in quantum field theory, the quantum
+		systems that should be joined through tensor products are the
+		different fields and {\em not} the particles, which are just
+		excitations (states) of the fields. In the words of Teller
+		(\cite{tellerbook}, pg.22), tensor products can be safely used only if
+		there is a ``primitive thisness'', which is captured in the definition
+		of system.}
 	
 	
 	It has been pointed out before that the quantum postulates are
