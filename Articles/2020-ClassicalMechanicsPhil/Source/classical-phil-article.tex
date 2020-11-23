@@ -1,8 +1,9 @@
 \documentclass[letterpaper]{article}
 
 \usepackage{amsmath, hyperref, enumerate, comment}
-\usepackage{amsfonts}
+\usepackage{amsfonts, esint}
 \usepackage{graphicx}
+\usepackage{mathrsfs} %for script font 
 
 \usepackage[backend=biber,  style=chicago-authordate, url=false, doi=false, eprint=false]{biblatex}
 %\usepackage[backend=biber,  style=authoryear-icomp, url=false, doi=false, eprint=false]{biblatex}
@@ -15,9 +16,14 @@
 }
 
 
+\newcommand{\diff}{\mathop{}\!\mathrm{d}} %defines exterior derivative 
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\renewcommand{\vector}[1]{\ensuremath{\vec{#1}}} % redefines vector to vec
+\newcommand{\integral}{\int}
+
 
 \begin{document}
-
 %% testing from desktop
 
 \title{TBD}
@@ -84,6 +90,7 @@ Current section ideas:
 \end{enumerate}
 
 \section{Introduction}
+
 
 % TODO: Lagrangian assumption vs kinematic assumption. Investigate what happens when the transformation is non-linear.
 
@@ -356,7 +363,26 @@ The action principle can be understood geometrically in the extended phase space
 
 Upshot: can better understand Lagrangian mechanics as a special case of Hamiltonian mechanics. Explain how the geometrical understanding of the stationary action in extended phase space should meet any criterion of ``naturalness" or ``natural construction." Lagrangian mechanics is actually less natural because contingent on having a bijection between velocity and conjugate momentum.
 
+
+\subsection{A geometric interpretation of the action principle}
+
+Hamilton's principle of stationary action serves as a foundational principle for Lagrangian mechanics. According to this principle, infinitesimal variations of the action $ \mathscr{A}$ along the system's trajectory $\gamma $ equal zero: $\delta  \mathscr{A}[\gamma] = 0 $. Although central to Lagrangian mechanics, we can actually derive the stationary action principle using Hamiltonian mechanics. Our derivation simply assumes that 1) the system trajectory follows a deterministic and reversible evolution and 2) the system's motion always advances in time (so that $dt/dt = 1$).
+
+Knowing that the system is deterministic and reversible, it follows that possible trajectories of the system are never pushed toward each other or pulled apart [try to make this more precise]. In other words, the flux of trajectories through any closed surface is always zero. Formally, this simply means that the displacement of the states in time is divergenceless: $\nabla \cdot \vector{S} = 0 $. Here, $\vec{S} := (\frac{d q }{d t }, \frac{d p }{d t }, \frac{d t }{d t })$ defines a vector field in the extended phase space $(q, p , t ) $. $\vector{S}$ characterizes the displacement of states in time. In particular, it is tangent to the trajectory $\gamma [q, p, t] (t)$, in extended phase space, where the variable $t$ functions as both a coordinate and parameter of the trajectory. 
+
+Since $\vector{S}$ is divergenceless, there exists another vector field $-\vector{\theta}$ such that $\vector{S} = curl(-\vector{\theta} )$.\footnote{For reasons that will become clear, we choose $-\vector{\theta}$ rather than $\vector{\theta}$.} As a vector field in the extended phase space, $\vector{\theta}$ can be written in terms of its components $\vector{\theta} = (\theta_q, \theta_p, \theta_t) $. Since the curl of the gradient of a scalar function is always zero, the displacement vector $\vector{S}$ is invariant under the gauge transformation $\vector{\theta'} =\vector{\theta} + grad(f)$, where $f$ is an arbitrary scalar function. Hence, we can choose $f$ such that $\partial f/ \partial p = -\theta_p $. Without loss of generality, we can thereby redefine $\vector{\theta}$ as $(\theta_q, 0, \theta_t) $.
+
+Assuming that the motion of the system always advances in time, the time component of the displacement, $S_t = dt/ dt = 1$. This places another constraint on $\vector{\theta} $, since $\vector{S} = -curl(\vector{\theta}) $. In components, this means that $S_t = - (\frac{\partial}{\partial q} \cdot \theta_p - \frac{\partial}{\partial p} \cdot \theta_q) = - (\frac{\partial}{\partial q} \cdot 0 - \frac{\partial}{\partial p} \cdot \theta_q) = \frac{\partial q}{\partial p}$. Hence, $S_t = 1$ entails that $\frac{\partial q}{\partial p} = 1$. Integrating this expression, we find that $\theta_q = p$ up to addition by an arbitrary constant function $g(q)$. Again using the gauge freedom of $\vector{S}$ we can set $g(q)=0$, so that $\theta_q = p$. Thus, so far, we have shown that $\vector{\theta} = (p, 0,\theta_t) $.
+
+Since the system is deterministic and reversible, it satisfies Hamilton's equations: $\frac{\partial H}{\partial p} =\frac{dq}{dt} \equiv S_q$ and $-\frac{\partial H}{\partial q} =\frac{dp}{dt} \equiv S_p $. Additionally, since $\vector{S} = -curl(\vector{\theta}) $, we know that $S_q = -\frac{\partial \theta_t}{\partial p}$ and $S_p = \frac{\partial \theta_t}{\partial q}$. Integrating the first equation for $\theta_t$ gives $-H$ up to an arbitrary constant function of q, while the second gives $\theta_t = -H$ up to an arbitrary constant function of p. For consistency, these two constant functions must vanish, so that $\theta_t = -H$ [check argument here; do we actually need to appeal to the gauge freedom of S again?]. Hence, it follows that we can take $-\vector{\theta} = (-p, 0, H) $ as the vector potential for the displacement vector $\vector{S} $. 
+
+At this point, we return to the action $ \mathscr{A}$, defined as the integral of the Lagrangian over a trajectory beginning at time $t_0$ and ending at time $t_1$: $\integral^{t_1}_{t_0} L (q, \dot{q}, t) dt$. Provided that the Legendre transform is well-defined (i.e. the motion equivalence assumption is satisfied), then $H = p \dot{q} - L$. Hence, we can reexpress the action as $\integral^{t_1}_{t_0} L (q, \dot{q}, t) dt = \integral^{t_1}_{t_0} [p \frac{dq}{dt} - H(q, p, t) ]dt$. Multiplying the Hamiltonian by $dt/dt = 1$ and adding a vanishing $0 \cdot \frac{dp}{dt}$, we obtain $ \mathscr{A} = \integral^{t_1}_{t_0} [p \frac{dq}{dt} + 0 \cdot \frac{dp}{dt} - H(q, p, t) \frac{dt}{dt} ]dt$. We notice that the integrand simply equals the inner product of $\vector{\theta}$ with $\vector{S} $, entailing that the Lagrangian $L =\vector{\theta} \cdot \vector{S} $. Consequently, the action $ \mathscr{A} [\gamma] = \integral^{t_1}_{t_0} \vector{\theta} \cdot \vector{S}  dt$. Changing variables, we take the line integral of $\vector{\theta}$ along the trajectory $\gamma $: $ \mathscr{A} [\gamma] =\integral_{\gamma} \vector{\theta} \cdot d\vector{\gamma}$. To derive Hamilton's principle of stationary action, it suffices to show that $\delta \mathscr{A} [\gamma] =\delta \integral_{\gamma} \vector{\theta} \cdot d\vector{\gamma} = 0$. 
+
+By definition, a variation over the integral $\integral_{\gamma} \vector{\theta} \cdot d\vector{\gamma}$ consists in taking the difference between the integrand and a corresponding integral over a nearby trajectory $\gamma'$: $\delta \integral_{\gamma} \vector{\theta} \cdot d\vector{\gamma} = \integral_{\gamma} \vector{\theta} \cdot d\vector{\gamma} - \integral_{\gamma'} \vector{\theta} \cdot d\vector{\gamma}$ [is the measure of the latter integral given according to $\gamma'$?]. Since the trajectories $\gamma$ and $\gamma'$ have the same endpoints, they define a closed-curve $C$, enclosing a region $\Sigma $. Hence, by Stoke's theorem $\delta \integral_{\gamma} \vector{\theta} \cdot d\vector{\gamma} = \integral_{C} [\vector{\theta} + \vector{\theta}] \cdot d\vector{\gamma} = \oiint \limits_{\Sigma} curl(\vector{\theta}) \cdot \diff \vector{\Sigma}$. Recalling now that 1) the $- curl(\vector{\theta})$ equals the negative of the displacement vector $\vector{S}$ and 2),  $\vector{S}$ is tangent to the trajectory $\gamma $, we see that $\vector{\theta}$ is tangent to [part of?] the surface $\Sigma $. Hence, the surface integral must vanish, showing that $\delta \integral_{\gamma} \vector{\theta} \cdot d\vector{\gamma}$ does indeed equal zero. This establishes Hamilton's principle of stationary action, which we have derived from Hamiltonian mechanics (deterministic and reversible evolution), using the Legendre transform, with the further weak assumption that the motion always advances in time.
+
 %Discussion of gauge transformations in the context of Lagrangian vs. Hamiltonian mechanics; contrast with North [77] privileging the momentum variables as significant (look for Wallace 2003 quotations along these lines as well):
+
+\subsection{Gauge redundancy in Lagrangian mechanics}
 
 Claim to clarify: motion equivalence allows us to understand the gauge redundancy of the Lagrangian. However, it is not true that the Lagrangian has these redundancies in virtue of the system satisfying motion equivalence.
 
