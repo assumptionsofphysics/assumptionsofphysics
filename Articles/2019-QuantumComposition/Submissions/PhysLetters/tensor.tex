@@ -148,9 +148,7 @@
 	We start
 	from the natural definition of a composite system as the set of two
 	(or more) quantum systems. The composite system is therefore
-	made of system $A$ {\em and} (joined with) system $B$ and {\em nothing else}\comment{da mettere altrove:, namely, 
-		its state is fully described by the probability amplitudes of the system's observables and nothing else}. The first key insight is that the first two postulates of quantum theory (introduced below) already assume that, at least in some cases, the probability distribution of the
-	measurement outcomes of one system is independent of the other systems' (statistical independence). We cannot even talk about a system in the first place if we cannot characterize it independently. The second key insight is that, since all measurement
+	made of system $A$ {\em and} (joined with) system $B$ and {\em nothing else}.\footnote{Note that this does not exclude entangled states since they too are characterized by the observables and only the observables of the constituents.} The first key insight is that the first two postulates of quantum theory (introduced below) already assume that the preparation of one system is independent from the preparation of another (statistical independence). In fact, we cannot even talk about a system in the first place if we cannot characterize it independently. The second key insight is that, since all measurement
 	outcomes and all states of the subsystems plus the composite live in the same probability space, we will automatically have a map $M$ that for a pair of subsystems' states gives us the composite state that corresponds to the statistically independent case. These insights are enough to characterize mathematically the state space of the composite: the linearity given by the Hilbert space, together with the fact that the composite system is fully described by the observables of $A$ and $B$, allows to extend the construction to the composite states that do not satisfy statistical independence (the entangled states). So the work consists of two interrelated efforts: a physical argument that starts from the first two postulates and leads to the necessary existence of the composition map $M$ and its properties together with a formal argument that shows how $M$ leads to the tensor product.
 	
 	\comment{mettere nel supplementary:	We will mainly focus on
@@ -165,14 +163,9 @@
 		since the tensor product formalism is very convenient and is often
 		used also in these cases, and superselection rules are typically avoidable \cite{susskind,zanardi,zanardilloyd}. }
 	
-	
-	TODO: pensarci con calma: riscrivere il paragrafo seguente, magari partendo da un esempio e introducendo il concetto seguente:
-	Frase in cui diciamo che abbiamo bisogno di projective spaces perche' i vettori $|\psi\>$ non rappresentano proprieta' (direbbe Lorenzo) o events (o proposizioni) in probability space (direbbe Gabriele) ma sono i sottospazi che lo fanno.
-	
-	
-	Since quantum states are rays in Hilbert space, we need projective spaces
-	Events in probability space do not correspond to vectors in the Hilbert space, but to subspaces, which means we will need elements of projective geometry. If $\psi$ is a vector, the state corresponds to the ray $\pj{\psi}$, which is the subspace spanned by $\psi$. Note that ``ray'' can be misleading since $\pj{\psi}$ is really a complex { \em plane }. In the same way, the event $X = x_0$ corresponds to the subspace spanned by all eigenstates such that $X | \psi \> = x_0 |\psi\>$. The map $M$ derived from the probability space is a map between states as events in probability space, and therefore will be a map from rays to rays, which is a map between the projective spaces. The technical work, then, is to show that the map $M$ on the projective spaces corresponds to a map $m$ on the vector spaces and that $m$ can be taken to be, without loss of generality, the tensor product.
-	
+	To make these arguments precise, we will need to use elements of projective geometry.
+	If $\psi$ is a vector in our Hilbert space, the pure states is represented by the ray $\pj{\psi}$, which is the subspace spanned by $\psi$. This includes not only vectors with arbitrary phase, but also arbitrary modulus. The term ``ray'' can therefore be misleading since $\pj{\psi}$ is really a complex { \em plane }. In the same way, constraining the observable $X$ to a particular value $x_0$ means identifying the subspace spanned by all eigenstates such that $X | \psi \> = x_0 |\psi\>$. As we need to map states and observables between subsystems and composite system, the map $M$ derived from the probability space is really a map between subspaces, between the projective spaces. The technical work, then, is to show that the map $M$ on the projective spaces corresponds to a map $m$ on the vector spaces and that $m$ can be taken to be, without loss of generality, the tensor product.
+
 	This is done by showing that preparation independence and
 	statistical independence imply three conditions on the map $m$:
 	(H1)~totality: the map is defined on all states of the subsystems;
@@ -228,23 +221,21 @@
 			postulate (a), these values correspond to a basis of the space,
 			given by the eigenvectors of the observable corresponding to that
 			property''}. \commentg{We may have to revise to be more clear.
-			Where is this used?} } As discussed, we limit ourselves to
+			Where is this used?} }
+	
+	Note that we limit ourselves to
 	kinemati\-cal\-ly-inde\-pen\-dent systems, where all state vectors
 	$|\psi\>$ in the system's Hilbert space $\cal H$ describe a valid
-	state, {\em unconditioned on anything else}. In particular, we note
+	state, {\em unconditioned on anything else}. We call this condition ``preparation independence'' and it should be noted that the tensor product applies only in this case. For example, the composite system of two electrons is not the tensor product, rather the anti-symmetrized tensor product, precisely because the second electron cannot be prepared in the same state of the first. We note
 	that restrictions due to superselection rules arise either from
 	practical (not fundamental) limitations on the actions of the
 	experimenter \cite{susskind,zanardi,zanardilloyd} or from the use of
-	ill-defined quantum systems. \footnote{For example, in situations where
-		indistinguishability plays a role (e.g.~in QFT), one cannot consider
-		an electron as a quantum system: in this case the quantum system is
-		the field. The electron is an excitation of the field, {\em not} a
-		(sub)system.} We call this condition ``preparation independence''.  [We
+	ill-defined quantum systems. In the example above, the field is the proper quantum system and the electrons are its excitations. \footnote{We
 	emphasize that the kinematic independence is inequivalent to dynamical
 	independence (or isolation).  Indeed if two systems interact, their
 	interaction may lead to dynamical restrictions in the state spaces.
 	Here we will not consider dynamical evolution, which is contained in
-	postulate (d).]
+	postulate (d).}
 	
 	The definition of a composite system as containing {\em only} the
 	collection of the subsystems means that any preparation of both
@@ -278,43 +269,14 @@
 	\cite{ballentinepaper,ballentinebook,cox}. One of the axioms of
 	probability theory (axiom 4 in \cite{ballentinepaper}) asserts that
 	the joint probability of events $a$ and $b$ given $z$ is
-	$p(a\wedge b|z)=p(a|z)\:p(b|z\wedge a)$. Two events $a$ and $b$ are defined to be 
-	independent given $z$ if $p(a\wedge b|z)=p(a|z)\:p(b|z)$, which is true if and only if $p(b|z\wedge a)=p(b|z)$. If $a$ and $b$ are measurement outcomes, the probability of $b$ is not a function of $a$. 
+	$p(a\wedge b|z)=p(a|z)\:p(b|z\wedge a)$. Consider $p(a \wedge b | \psi \wedge b)$ which represents the probability of measuring $a$ on system $A$ and $b$ on system $B$ having prepared system $A$ in $\psi$ and system $B$ in $b$. We have $p(a \wedge b | \psi \wedge b) = p(a | \psi \wedge b \wedge b) p(b | \psi \wedge b) = p(a | \psi \wedge b ) p(b | \psi \wedge b)$. The Born rule tells us that $p(a | \psi \wedge b) = |\<a|\psi\>|^2$ and that $p(b | \psi \wedge b) = |\<b|b\>|^2 = 1$, where $a$, $b$ and $\psi$ are assumed to be normalized. We have:
+	\begin{align}
+	p(a\wedge b|\psi \wedge b)&=p(a|\psi)\\
+	p(a\wedge b|a \wedge \phi)&=p(b|\phi)
+	\end{align}
+	In other words, since the probability for a measurement on one system depends only on its pure state, the Born rule automatically assume that the measurement of one system is independent from the preparation of the other. We call this property ``statistical independence''.\footnote{One can also prove that the measurements on the components are independent as well, but we only strictly need preparation.}
 	
-	Riscrivere questo: scritto cosi', sembra che la regola di Born non si possa applicare sempre....
-	We note that the Born
-	probability formula in postulate (b) is of the form $p(a|\psi_{\cal A}$ and contains only quantities of the
-	system (the pure state $\psi_{\cal A}$ and the observable's eigenstates $a$). Now, suppose that, unknown to us, an additional second system was prepared in a pure state $\psi_{\cal B}$ and consider $p(a|\psi_{\cal A}\wedge \psi_{\cal B})$. In what cases are we allowed to use the Born rule? That is, in what cases can we say $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = |\<a|\psi_{\cal A}\>|^2$? Only in the cases where $p(a|\psi_{\cal A}\wedge \psi_{\cal B}) = p(a|\psi_{\cal A}$, where the systems  are statistically independent. In this sense, postulate (b) already implies  ``statistical independence'' between
-	different systems if they are prepared independently. Namely, the
-	outcome probability of one is independent of any properties of any
-	other in the absence of any dynamical coupling and supposing
-	independent preparation. [Of course, the dynamics may couple the state
-	of the system to other systems so that the outcomes may depend on what
-	happens to other systems.  Analogously, one may prepare the system in
-	a way that depends on other systems. But we consider independent
-	preparations and do not consider dynamics, as it is sufficient for our
-	aims.] We can then formalize ``statistical independence'' of
-	independently prepared systems by saying that their Born rule
-	satisfies:
-	\begin{eqnarray}
-	p(a\wedge b|\psi_{\cal A}\wedge \psi_{\cal B})&=&p(a|\psi_{\cal A}\wedge \psi_{\cal
-		B})\:p(b|\psi_{\cal A}\wedge \psi_{\cal B})\nonumber\\&=& p(a|\psi_{\cal
-		A})\:p(b|\psi_{\cal B})
-	\labell{bindip}\;,
-	\end{eqnarray}
-	where $\psi_{\cal A}$, $\psi_{\cal B}$ represent the independent
-	preparations of the states of the systems $\cal A$, $\cal B$ and $a$,
-	$b$ the measurement outcomes of two observables on $\cal A$ and $\cal
-	B$ respectively. The first equality in equation \eqref{bindip} embodies the
-	definition of statistical independence, the second follows from the
-	form of the Born rule for independently prepared systems (the
-	probability depends only on the state and observables of each system
-	on its own).
-	
-	A particular case is when one system is
-	prepared in a fixed eigenstate $|b\>$ of the observable measured on it,
-	$p(a\wedge b|\psi\wedge b)=p(a|\psi)\:p(b|b)=p(a|\psi)$, where the last equality follows from the Born rule since $\<b|b\>=1$. 
-	If we define $M_b(\pj{a}) = M(\pj{a},\pj{b})$, substituting the values of the
+	We can use this fact to characterize our map $M$. Note that $M(\pj{a}, \pj{b})$ will correspond to the composite state where $A$ and $B$ are prepared in the respective states. We can define define $M_b(\pj{a}) = M(\pj{a},\pj{b})$ and, substituting the values of the
 	probabilities from the Born rule, we have:
 	\begin{align} &\Big|\Big\<M\left(\pj{a},\pj{b}\right)\Big|M\left(\pj{\psi},\pj{b}\right)\Big\>_{\cal C}\Big|^2
 	=\Big|\Big\<M_b\left(\pj{a}\right)\Big|M_b\left(\pj{\psi}\right)\Big\>_{\cal C}\Big|^2
@@ -342,7 +304,7 @@
 	\\\mbox{ or }
 	\<a|\psi\>=\<m(\psi,b)|m(a,b)\> \labell{h2b}.
 	\end{align}
-	In this setting, the antilinear case \eqref{h2b} corresponds to a change of convention (much like a change of sign in the symplectic form for classical mechanics) and can be ignored. Given a Hilbert space, in fact, we can imagine replacing all vectors and all the operators with their Hermitian conjugate, mapping vectors into duals $|\psi\>^\dag=\<\psi|$. These changes would effectively cancel out leaving the physics unchanged. The two equations $A|w\>=B|z\>$ and $\<w|A^\dag=\<z|B^\dag$.  (For example, in his first papers
+	In this setting, the antilinear case \eqref{h2b} corresponds to a change of convention (much like a change of sign in the symplectic form for classical mechanics) and can be ignored. Given a Hilbert space, in fact, we can imagine replacing all vectors and all the operators with their Hermitian conjugate, mapping vectors into duals $|\psi\>^\dag=\<\psi|$. These changes would effectively cancel out leaving the physics unchanged. The two equations $A|w\>=B|z\>$ and $\<w|A^\dag=\<z|B^\dag$ are equivalent.  (For example, in his first papers
 	Schr\"odinger used both signs in his equation: effectively writing
 	{\em two} equivalent equations with complex-conjugate solutions
 	\cite{sch}). We can repeat the same analysis for the second
