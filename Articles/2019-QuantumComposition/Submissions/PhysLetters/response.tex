@@ -1,0 +1,637 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epsfig,amssymb,amsmath,amsthm}
+%\usepackage[active]{srcltx}
+%\usepackage[hypertex,linkcolor=red]{hyperref}
+
+\usepackage{color}
+\usepackage{cancel}
+\usepackage{tikz-cd}
+
+\DeclareMathOperator{\spn}{span}
+
+\newcommand{\pj}[1] {\underbar{$#1$}}
+%\newcommand{\pj}[1] {\overline{#1}}
+
+
+\def\>{\rangle}
+\def\<{\langle}
+\def\ca{_{\cal A}}
+\def\cb{_{\cal B}}
+\def\cc{_{\cal C}}
+\def\comment#1{}
+%\def\comment#1{ [{\bf Comment Lor:} {\sf #1}]}
+\def\commentg#1{ [{\bf Comment Gabriele:} {\sf #1}]}
+\def\labell#1{\label{#1}}
+%\def\labell#1{\label{#1}{\mbox{{\tiny #1}}}}
+%\def\section#1{{\par\em #1:--- }}
+\def\togli#1{}
+\def\sh{\mbox{sh}}
+\def\iden{\openone}
+
+
+
+\begin{document}
+
+Dear Dr. Robert Garisto, 
+
+thank you very much for having provided us
+good quality referee reports for our paper. We appreciate that this is
+not an easy task.
+
+We believe we have overcome the criticisms pointed out by the referees
+and we detail below our point-by-point response. Referee A suggested
+that our paper ``could be published in PRL after substantial re-writing
+and polishing of the arguments", which we have carefully done
+following his/her useful suggestions, even though it took a
+substantial effort to rewrite most of the paper. Referee B appreciates
+our work (``There is no doubt that this paper represents some fine
+mathematical work"), but questions its suitability for PRL. However,
+the Referee has essentially focused on the supplementary material, in
+his/her words: ``The essence of the paper, to my mind, lies in the
+supplementary information." We agree with the Referee that the
+supplementary information is not suitable as a paper for PRL. However,
+the paper itself was carefully written to emphasize the PHYSICAL
+arguments whereas the supplementary material just contains the
+(nontrivial) mathematical details behind the physics. We urge the
+Referee to take a fresh look at the paper with this in mind. Of course
+we take full responsibility for the Referee's misconception: the
+Referee is clearly very qualified, and in our previous version of the
+paper we had failed to make this distinction clear. (Indeed we had
+inaccurately claimed that the supplementary material contained the same
+material formulated in a different manner.)
+
+Thank you for your time. 
+
+In the following we include our detailed answers to the Referees. Note 
+that we will not enclose the changes made to
+the paper, as we have modified most of it as requested by Referee A (removing some parts to make
+space).
+
+
+\section*{Referee A}
+
+\begin{quote}
+The authors address a very interesting problem that has
+not received much attention, and they present an important result
+about the internal logical structure of quantum theory.
+\end{quote}
+
+We thank the Referee for the positive assessment of our work.
+\begin{quote}
+I would say that the result is correct, but I could not
+completely follow the argumentation of the article. I found the text
+quite confusing and I think that it does not meet the writing
+standards of PRL. In my opinion the arguments could be simplified and
+expressed with simpler mathematics (see below). I think that the paper
+could be published in PRL after substantial re-writing and polishing
+of the arguments.
+\end{quote}
+
+We appreciate the suggestion that our paper can be published in
+PRL. As suggested, we have substantially rewritten our paper following
+the useful and insightful suggestions by the Referee, which we
+sincerely thank for the feedback. We should remark that this was not
+an easy undertaking, and we had to devote substantial effort in
+rewording most of the paper. Nonetheless, we believe it was worth it,
+because the argument is much clearer now.
+
+\begin{quote}
+1. Regarding 'statistical independence is not an
+additional requirement: it is already contained in the measurement
+postulate.' I think that this is a bit more subtle. [...]
+\end{quote}
+
+This is a great argument! We had not thought of that. The Referee is
+correct, one can indeed prove the statistical independence of the
+outcomes as the Referee does. And indeed the Referee is correct that
+we had not considered that.
+
+However, upon re-checking our proof very carefully, we realized that
+we do not need the statistical independence of the outcomes. We just
+need the statistical independence of the preparations. Nonetheless, we
+believe that the argument the Referee proposes is really nice and we
+respectfully ask the Referee if we can add it to our paper (citing an
+anonymous Referee, or the Referee may contact us separately if he/she
+wants to be properly acknowledged). For now we have added this at the end of the
+supplementary material, but, if the Referee disagrees, we can remove
+it and replace it with a sentence of the type: ``The statistical
+independence of the outcomes is not an additional assumption, as it
+can be proved independently."
+
+The Referee's comment made us realize that we didn't discuss the
+statistical independence in sufficient detail, and that is actually
+one of the critical steps in the demonstration (i.e. making explicit an
+implicit assumption). We rewrote and expanded the part of the paper
+(and the supplementary material) where we discuss this, mainly in the
+first column of page 3.
+
+\begin{quote}
+2. I would say that physicists are familiar with the
+notion of `colinear'.  Hence, I would either (i) provide a definition
+or (ii) express the argument with the more familiar notions `linear'
+and `anti-linear' I would be inclined for the second (if possible).
+\end{quote}
+
+We presume that the Referee intended ``physicists are UNfamiliar".  We
+agree and we also agree that we have not done enough in the text to
+guide the reader in that respect. As suggested, we have explained what
+``colinear" means. As far as we understand, we cannot remove this
+notion from our proof, unfortunately. Indeed, the use of projective
+geometry is necessary. We now have a paragraph that clearly says that
+and why we need projective geometry.
+
+This is necessary to understand the properties of the maps M and m
+that we need to derive the tensor products.
+
+\begin{quote}
+3. Regarding `the dual-space description of a quantum
+system through bras is equivalent to the description using kets', what
+means `equivalent' here? Can you justify it with an argument instead
+of the anecdote that `in his first papers Schroedinger used both signs
+in his equation, effectively writing two equivalent equations with
+complex-conjugate solutions'?
+\end{quote}
+
+We simply meant the following. Given any equation in quantum mechanics
+in terms of operators acting on ket vectors, one can write an
+EQUIVALENT equation in terms of bra vectors by simply taking the
+Hermitian conjugate of both sides of the first equation. Namely, the
+equation $A|\psi\>=B|\phi\>$ is equivalent to $\<\psi|A^\dag=\<\phi|B^\dag$. In
+terms of wave functions, it means taking the complex conjugate (which
+entails a change of sign in the case of the Schroedinger equation). We
+apologize this was unclear (upon re-reading that part, we agree) and
+we have now specified it explicitly. We rewrote that part completely,
+and we added the previous equivalence explicitly.
+
+\begin{quote}
+4. Regarding `The function m, then, is an isomorphism over
+all elements of the basis $|a_i\>|b_j\>$'. What it means to be an
+`isomorphism over' some vectors?
+\end{quote}
+
+We mean that the function m is a one-to-one mapping, that maps the
+elements of the basis into elements of a basis of a tensor product
+space. We understand our notation could lead to confusion. We rewrote that part, and also changed the (admittedly confusing)
+notation to clarify the whole thing.
+
+\begin{quote}
+5. Regarding `other linear products of linear spaces
+exist'. Is the direct product of two vector spaces a vector space? (I
+am assuming that a composite system is also a system and hence it has
+an associated Hilbert space.)
+\end{quote}
+
+Yes, a direct product of vector spaces is a vector space. You can
+certainly define a Hilbert space using direct products of vectors of
+two Hilbert spaces (you just need to make sure the norm doesn't
+diverge). Of course, that is not the correct thing to do in quantum
+mechanics. We are simply pointing out that there are many ways to map
+two linear spaces to another linear space, so requiring linearity on
+the spaces is not sufficient to single out the tensor product. In
+fact, linearity by itself is not sufficient to warrant use of a
+product to create the joint space.
+
+We have changed that sentence to make it clearer, and have also added
+a footnote to further clarify the distinction.
+
+\begin{quote}
+How you define multiplication by scalars? If it is defined
+distributively then this direct product becomes the direct sum of the
+two spaces. And similarly with the topological product. Therefore,
+these three examples of product of linear spaces are the same one.
+\end{quote}
+
+Each linear space comes with its own sum (e.g. $+ : A \times A \to A$)
+and its own scalar multiplication (e.g. $* : \mathbb{R} \times A \to
+A$). Distributivity is $r * (a + b) = (r*a) + (r*b)$. Each space
+individually will retain that property.
+
+If we imagine a map $m : A \times B \to C$, we can ask how can we
+express $r*m(a,b)$ as a function of $m(r*a)$ and $m(r*b)$. This
+differs from product to product. For the direct product, we have $r *
+(a \times b) = r*a \times r*b$ which is distributive. For the tensor
+product, we have $r * (a \otimes b) = r*a \otimes b = a \otimes r*b$
+which makes it not distributive.
+
+We can also ask how we can express $m(a,b+c)$ in terms of $m(a,b)$ and
+$m(a,c)$. For the tensor product we have $a \otimes (b+c) = a \otimes
+b + a \otimes c$ which is distributive. For the direct product we have
+$a \times (b+c) = a \times b + 0 \times c$ where $0$ is the zero
+vector. So the direct product is not distributive.
+
+The direct sum and direct product are the same in the finite case but
+not in the infinite case. In that case, one can only take finitely
+many non-zero vectors for the direct sum, while this is not required
+in the direct product.
+
+The overall point is: there are many choices. For distributivity, one
+has to decide if it's distributivity over the addition or the scalar
+multiplication. That choice needs to be motivated. The exterior
+product is also distributive over the addition, like the tensor
+product (as it is a quotient of the tensor product). So, why the
+tensor product and not the exterior product?
+
+We added a footnote which succinctly highlights
+the issue. 
+
+\begin{quote}
+6. Regarding `(Dirac) adds the seemingly innocuous
+request'. I understand that requiring the product of vectors to be
+distributive is the same as requiring it to be bilinear, that is $|a\>
+(|b\> + |c\>) = |a\>|b\> + |a\>|c\>$. Am I missing something?
+\end{quote}
+
+No, what the Referee states is correct. Our point is that such request
+is far from innocuous, as for example it excludes (without any
+physical justification whatsoever) the direct product. The requirement
+of distributivity (or bilinearity) introduced by Dirac is an
+ADDITIONAL assumption that is certainly not warranted and it is even
+NOT natural. For example, it does not hold in classical mechanics,
+where the state space of composite systems is obtained through the
+direct product, and (a,b+c) is DIFFERENT from (a,b)+(a,c). We explained it better in the new version of the paper.
+
+\begin{quote}
+Supplementary information 1. Definition of composite
+system. Why do you say `for any compatible pair' instead of `for any
+pair'? Can we have a pair of systems where not all pair of states are
+compatible?
+\end{quote}
+
+We can have a pair of systems where not all pairs of states are
+compatible. Consider two electrons. They cannot be prepared in the
+same state. Therefore the state space of the composite system should
+exclude those cases. We use the exterior product (i.e. the
+anti-symmetrized tensor product) in those cases. As we explicitly say
+elsewhere, electrons cannot be properly considered as quantum
+subsystems (at least in the case in which indistinguishability plays a
+role): the quantum system is the field, and electrons are just field
+excitations (quanta).
+
+We now made this more explicit after the definition, with a more detailed physical motivation of the requirements. 
+
+\begin{quote}
+``I would say that this high degree of generality obscures
+the argument. Perhaps this case of systems with non-compatible pairs
+of states can be left for a discussion after the main proof."
+\end{quote}
+We agree with the Referee, but we suppose that the Supplementary
+information section will be only read by people who want to understand
+the full details of our argument. This type of reader will not be
+scared by the full generality of the argument. Instead in the main
+paper we were more careful to consider first the compatible states and
+then the general issues. In the Supplementary information we need to
+consider the situation in full generality, e.g.  systems of multiple
+fermions and bosons when considered as systems as is sometimes done
+improperly (a common enough case that we have to justify why, in those
+cases, the tensor product is not used directly). In the proof, we
+already concentrate on the preparation independent case as we also
+didn't want to make the derivation too heavy. We hope that the above
+clarification explains why we believe we have to make that distinction
+mathematically and why it is also interesting physically. In any case,
+we have clarified this point both in the paper and the supplementary
+material.
+
+\begin{quote}
+2. Regarding 'the proposition a wedge b is equivalent to
+the (pure) state $M (a, b)$'. The authors do not define what it means
+for a logical proposition to be equivalent to a ray? Is it necessary
+to use the formalism of logical propositions to derive the tensor
+product? If so, some definitions should be introduced.  Similarly,
+what it means to say that a state $M (a, b)$ corresponds to an event in
+probability space. I have the feeling that the same can be said in
+more plain words.
+\end{quote}
+
+We agree that we hadn't clearly explained the formalism and we have
+now done so. We do not really need the formalism of logical
+propositions, but just the logical connective ``AND" that we indicated
+with the wedge symbol. That's all we need, and it's necessary for
+defining the JOINT probability. We could remove the wedge symbol and
+replace it with the connective ``AND". We tried, but the formulas
+become quite heavy, so we believe that this (minimal) concession to
+the formalism is useful. 
+	
+We have modified the paper (and the supplementary material) in
+multiple places to clarify the formalism: not only the formalism of
+logical propositions, but also how these are mapped in the formalism of quantum mechanics
+(e.g. rays and Hilbert subspaces).
+
+\begin{quote}
+3. Regarding `Every preparation of the composite gives a
+nontrivial measurement on the components.' Do you mean that, for any
+state of the composite system, local projective measurements must have
+at least one outcome with non-zero probability? I think that this
+phrasing is easier to accept.
+\end{quote}
+Yes. That is exactly what we meant. We agree that the Referee's
+wording is clearer and we have replaced it in the new version of our
+paper. 
+
+In conclusion, we thank the Referee for the careful reading and the
+thoughtful suggestions. They have been all very valuable in enhancing
+the paper.
+
+\section*{Referee B}
+
+\begin{quote}
+This paper shows how the tensor-product assumption of
+quantum theory can be derived from two standard postulates of quantum
+theory--specifically, the postulates about states and
+measurements--together with a set of assumptions reflecting reasonable
+interpretations of the expressions `composite system' and `independent
+systems'. The essence of the paper, to my mind, lies in the
+supplementary information.
+\end{quote}
+
+We respectfully disagree with this assessment: while the supplementary
+information contains the nontrivial mathematical formulation of the
+ideas presented in our paper, we believe that our main contribution is
+in the PHYSICS, rather than in the MATHEMATICS. Namely, we show how
+some PHYSICAL ASSUMPTIONS (contained in the other postulates of
+quantum mechanics) must give rise to tensor products. We have
+carefully written our paper on two separate levels (actually three):
+at a first level, a physicist interested in the main physical ideas
+will only read the paper, and can easily skip the sketch of the proof
+presented there, while still understanding the main results. At a
+second level, a reader that wants more details can also follow the
+sketch of the proof that we put in the main paper. Finally, a
+specialist of quantum mechanics (such as, clearly, the Referee) can
+get into the fine details of the argument by looking at the physical
+considerations in the paper and the mathematical details in the
+supplementary information. We understand that this distinction was not
+clear in the first version of the paper, and we take
+responsibility for this (we ourselves had mischaracterized our
+supplementary information). We urge the Referee to re-read the paper
+keeping in mind that the main paper is written for a more general
+audience and mostly contains the physics, and the supplementary
+information only contains the details of the mathematical proofs.
+\begin{quote}
+This is where one finds a precise statement of each
+assumption and a precise articulation of the logical connections
+between statements. Indeed, the authors' main contribution is the
+articulation of this logical argument. A number of physicists may
+already hold the intuition that the tensor product rule is the only
+composition rule one can imagine in light of the rest of the theory;
+however, making this intuition precise, as the authors have done, is
+another matter.\end{quote}
+
+We thank the Referee for this compliment. We agree: most physicists do
+hold the intuition that the tensor product is the natural composition
+rule for quantum mechanics, but, as the Referee suggests, this had
+indeed never been shown previously, at least using the conventional
+formulation of quantum mechanics as we do.
+
+\begin{quote}There is no doubt that this paper represents some fine
+mathematical work.\end{quote}
+
+Thank you!
+
+\begin{quote}The question is whether it meets the criteria for
+publication in PRL.  As the authors point out, the tensor product
+postulate has been addressed by other authors. Some authors explain
+why this postulate is reasonable but do not prove in detail how it
+follows from other assumptions. Within the quantum logic community,
+the tensor product rule has been derived rigorously from simpler
+axioms. The authors' approach is different in that they are starting
+with two other standard postulates of quantum theory and thereby aim
+to show that there is some redundancy in the standard postulates.
+\end{quote}
+We agree: this is a good characterization of our work.
+
+\begin{quote}In this respect, the authors' approach could be compared
+to that of Ref. [8], which derives the measurement postulate from
+other standard postulates (including the tensor product
+postulate). Ref. [8] derives not only the mathematical representation
+of measurement outcomes, but also the Born rule and the general form
+of the rule for determining the post-measurement state of the
+system. That paper was published in Nature Communications. Another
+paper, Ref. [28], which also derives the Born rule from the postulate
+about states and the tensor product rule, was published many years ago
+in American Journal of Physics.
+\end{quote}
+
+It is true that both our result and theirs shows that there is a certain redundancy in the postulates, even though our result is completely different from theirs. So, following the Referee's suggestion we have emphasized this.
+
+\begin{quote}However, I think there is an important difference between
+the tensor product postulate and the measurement postulate. The
+measurement postulate is the central focus of the notorious
+measurement problem of quantum theory, which has been addressed in
+many books and papers and which many would argue is the root of all
+the interpretational difficulties. (Indeed, Ref. [28] explicitly
+addresses the measurement problem.) The tensor product postulate does
+not have this status. So, whereas a paper deriving the measurement
+postulate might well be read by any physicist with even a passing
+interest in the conceptual foundations of the theory, a paper deriving
+the tensor product postulate will not have the same breadth of
+appeal. Also, I think it is somehow less surprising that the tensor
+product postulate emerges in this way than that the measurement
+postulate does. The most obvious alternative to the tensor product is
+the direct sum, which one immediately sees does not capture what is
+meant by 'composite system'.\end{quote}
+
+We certainly agree with the Referee that a solution of the measurement
+problem would be more interesting than our result. BUT it is quite
+debatable (and actually debated) whether any of the above results
+resolved the measurement problem: the general consensus is that it is
+still OPEN. In contrast, our result is quite solid (and neither
+Referee objects to that): we DO show that the tensor product postulate
+is not a necessary postulate, and believe (more on this below) that
+our result is certainly suitable for publication in PRL. Referee A
+shares this belief.
+
+\begin{quote}
+As I look over the four criteria the editors of PRL have
+given for determining whether a paper should be published in PRL, I do
+not see that any of them clearly applies to this paper. This paper
+will be read with interest by physicists who have thought carefully
+about the logical structure of quantum theory, but I do not think PRL
+is the right place to publish it.
+\end{quote}
+
+We believe the Referee has seen these four criteria in a too
+restrictive light. We please ask the Referee to take a look at the PRL
+papers that are usually accepted for publication. As a typical
+example, the first paper that currently appears on the PRL web site is
+titled ``Stochastic Interpolation of Sparsely Sampled Time Series via
+Multipoint Fractional Brownian Bridges". We have been professional
+physicists for decades, and none of us has any idea of what that even
+means. (We emphasize that this is the first paper on the PRL web site
+today: we did not choose a particularly cryptic one!) Instead, any
+physicist (or even a physics student) that has taken a quantum
+mechanics course (i.e. all physicists?) will understand our title and
+abstract: they have met tensor products when dealing with multiple
+systems.
+
+In addition, we also believe that the way in which we construct
+Hilbert spaces from physical statements is also relevant: we cannot
+claim that this is a new result, of course (although we could not find
+a paper where our same formalization is presented), but this is
+typically not emphasized in existing literature. In particular, we
+show how the link between events in probability and observables in
+Hilbert spaces goes through the projective spaces, and how the choice
+of representation, the choice of gauge (phase and modulus of the state
+vectors), plays into that. So, in addition to our main result, we also
+claim that popularizing this particular connection is also a strength
+of our paper.
+
+\begin{quote}
+I also have a couple of specific comments. 1. I think the
+authors are emphasizing too strongly the smallness of the number of
+postulates they are using (e.g., in the paper's title).
+\end{quote}
+
+We used the usual quantum postulates that appear in the literature,
+e.g. in the referenced literature. We have no qualms in adding
+postulates if the Referee suggests that we should do it. Our title is
+invariant: indeed, we could also title our paper ``The five postulates
+of quantum mechanics are four" or so on for any n: ``The n postulates
+of quantum mechanics are n-1". Our main result is that we can remove
+one of the postulates (the tensor product one): how many we start from
+is not very relevant.
+
+\begin{quote} As I was
+reading the main text, it felt as if the authors were sometimes
+finding new postulates in their interpretations of the words used in
+definitions, and yet they were declining to call them postulates,
+possibly because to do so would contradict the paper's title. I
+understand that these `smaller' assumptions can be thought of as
+simply making precise the meanings of commonly used expressions-- this
+fact becomes clearer in the supplementary information. But strictly speaking, these are genuine assumptions.\end{quote}
+
+We disagree: we did not add ``new postulates". 
+Let us first be precise as to what a postulate is.
+If one looks carefully, all postulates of quantum mechanics link something
+defined within the physics world (e.g. states, observables, composite system,
+time evolution) to some mathematical object (e.g. rays in a Hilbert space, Hermitian
+operators, tensor product, unitary evolution). The idea is that we are
+establishing a link between two different definitions (the physical
+and the mathematical) that has no a priori justification. But each
+element is well defined within its realm. We are not adding new postulates in the sense that we are not adding any
+new link of this kind. What we are doing is showing that the definition of 
+a composite system, which is ultimately a definition (NOT a postulate) within the physics
+realm, together with the links already established between state space/Hilbert
+space and measurement/Born rule is enough to demonstrate that the state space of the composite
+system must be the tensor product of the subsystems.
+
+
+More specifically, for example, there is a fundamental difference between a statement
+like ``the state of a quantum system is represented by a vector in a
+Hilbert space" and something like ``the state of a composite system
+will fully determine the probability distribution of the observables of
+all its parts and only of its parts." The first connects two
+completely distinct elements, the physical preparation of a quantum
+system and the mathematical construct of a Hilbert space. There is no
+a priori reason for that and we are not giving one in this paper. The
+second is defining one object based on others. That is, we do not
+define composite systems in some other way and than later we
+independently find that they have the property of characterizing the
+subsystems.  We define the composite system to be that. There is no
+assumption being made: it is just a definition, and it is the natural
+definition that comes from our physical intuition.
+
+In any case, the Referee's observations were very useful to us: we realized that the connection between postulates and physics should have been explained much better and we did so in the new version of the paper.
+
+\begin{quote} For
+example, Definition I.4, part 2, which says essentially that no new
+orthogonal states arise when one combines two systems, is a
+substantial postulate. After all, it is not the case that no new
+states at all arise when one combines two systems-- entangled states
+arise, and they are new. One can imagine a world in which not only
+entangled states but also new orthogonal states arise. We do not live
+in that world, but one needs a postulate to rule out that world. For
+the authors, that postulate is Definition I.4, part 2.
+\end{quote}
+
+That ``world" would simply correspond to a different definition of a composite system. Whereas we used the natural one: the (set) union of the subsystems. 
+In the standard definition, the
+composite system must still define all the properties of the subsystems. A new orthogonal state would not be part of the set of eigenstates of the
+operators corresponding to the observables of the subsystem.
+
+Again, the Referee's comment made us understand that our paper was definitely unclear on this and we have
+clarified it in the new version. 
+
+Of course, entangled states arise and that is a
+trivial consequence of linearity: we start from FACTORIZED states,
+those are all we need to obtain tensor products, but once tensor
+products are established, then ENTANGLED states arise immediately from
+linearity in the composite system's Hilbert space.
+
+\begin{quote}
+(Note that the authors' informal definition of a composite
+system, which is that it consists of nothing but the two systems,
+could alternatively be read as excluding entangled states. Indeed, a
+reader not familiar with quantum theory might well read it that way. I
+mention this just to point out the ambiguity associated with an
+informal definition and to highlight the importance of the actual
+mathematical postulate.)
+\end{quote}
+
+We do agree that the mathematical definitions are important to precisely
+address the issue: that is why we have included all the mathematical
+details in the supplementary material. However, the mathematical definitions
+are not as arbitrary as the referee implies.
+
+As the Referee correctly points out, our definition certainly does not
+exclude entangled states. However, we see the Referee's point and we
+agree that a reader unfamiliar with quantum theory might get confused,
+so we added an explicit mention that our construction can be extended
+to include entangled states, which are the ones that do not satisfy
+statistical independence. We added this at the end of the paragraph,
+rather than at the end of that sentence, because we did not want to
+ruin the flow of the narration by introducing the concept of ``states"
+in that sentence (which refers to systems).
+
+\begin{quote}
+2. On page 2, postulate (a) begins, `The state of a system
+is described by a ray...'. As expressed here, this postulate actually
+contradicts the authors' ultimate conclusion, which allows entangled
+states of the combined system. As the authors certainly know very
+well, if the combined system is in an entangled state, the state of
+each component system is not described by a ray in that system's
+Hilbert space. I'm not sure why the authors didn't say, `A pure state
+of a system is described by a ray...'. (The word 'pure' is missing
+also in the statement of this postulate in the supplementary
+information.)
+\end{quote}
+
+Definitely: the word `pure' is missing! We apologize for this
+oversight and thank the Referee for pointing it out. We certainly
+should have added the specification that the postulate (as expressed
+in our paper) refers to pure states. Also Referee A implicitly pointed
+this out. We have now corrected it.
+
+In conclusion, we thank Referee B for his/her insightful
+observations and helpful comments. We believe that his/her assessment
+on the suitability of our paper for PRL stems for an overly
+restrictive interpretation of the publishing criteria, as discussed
+above, and from giving more weight to the supplementary information
+than to the paper. The paper mainly contains the physical ideas (which
+we believe are our main contribution) whereas the supplementary
+information contains only the mathematical details, as the Referee
+also pointed out.
+
+In this respect, before it was possible to attach supplementary
+material to PRLs, we used to write a PRL to give the main idea and
+then an adjoining PRA or PRD paper to provide the technical
+details. If the Referee suggests so, we can do it also in this case
+(by transforming the supplementary material into a PRA
+paper). However, we would rather not do that.
+
+--------------------
+
+
+In closing, we were very pleasantly surprised by the quality of both
+reports and we thank both Referees for the time they spent in
+evaluating our paper.
+
+Sincerely,
+
+The Authors
+
+\end{document}
