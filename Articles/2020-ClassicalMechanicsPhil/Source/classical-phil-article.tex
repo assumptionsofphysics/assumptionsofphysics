@@ -343,23 +343,34 @@ where V is another arbitrary function. We recognize this as the Hamiltonian for 
 \section{The physical significance of invariant densities}
 \label{density}
 
-* ``Fundamentality" because it makes the physics more prominent.
+* ``Fundamentality" because it makes the physics more prominent. Some people use coordinate-free/independence as necessary conditions for fundemantaly/physical significance. This means coordinates do not appear in the definition. Yet, densities require coordinate for the definition, therefore cannot be coordinate-free/independent, therefore there are some physically significant quantities that do not satisfy that. Why fundamental??? (reverse mathematics? fundamental because it recovers the correct math from the physical assumption?)
+
+---
+Section on densities and riemmanian geometry. (Gabriele)
+
+* A paragraph to show how densities work. In general are coordinate dependent and you can't simply compare values at different points. This is the case in Lagrangian mechanics because both differentials in position vary controvariantly.
+
+
+* Contrast this with densities over position and velocity. But! We can understand some aspects of Riemmanian geometry in terms of how states densities are represented over position and velocity. Hyper-regularity allows us to express densities from "states" to "kinematic variables". The fact that this expression depends only on position (and not on velocity), tells us we have a Riemannnian manifold. Norm of the metric tensor gives us the ``conversion'' factor. Note that norm of the metric tensor in general depends on the coordinate system and is in general point-dependent. There always exists a coordinate system in which the norm of the metric tensor is constant. The conversion factor for marginal distributions is linked to the eigenvalues along each coordinate. Flatness means there exists a coordinate system where we can factorize the distribution (if it factorizes in phase space), which is exactly the Cartesian coordinate system. (Note, we can always factorize in phase space) -> Therefore this focus on densities also allows us to get a better intuition even on the tangent space. [Still need to incorporate much of this discussion]
+
+---
+
+Section on Ham. Not everything physical has to be coordinate independent or invariant.
+
+* In phase space, we do have coordinate invariance and point-wise comparison.  Momentum changes covariantly. It is the density that is truly fundamental, not the coordinates in general. Though, the q's are priviledged from epistemic access. The p's are not, in fact we can define gauge transformation as things that keep the q's the same but change the p.
+
+*[Could save the following for discussion of gauge redundancy in section 5.2] Not all ``state variables" are physical. Hamiltonian mechanics does not really care what the q's and p's are. It is the motion assumption that tells us that q's are position, simply because they define the unit system. P is a guage quantity (we care about the trajectory, the velocity). In this view, p is simply a ``label'' we can use to express the density over states. Therefore we do care about the physicality of the invariant distribution more than the physicality of the state variables themselves. -> Invariant density is really the important physical element/object in Hamiltonian mechanics.
+
+
+* Units are physically significant. In fact, the ability to express the densities in units is what gives us the symplectic structure. It's a physical requirement that we must be able to express the density in some unit.
 
 * Invariant densities: physical significance connected to coordinate independence. [incorporated]
 
 * Density comparison is independent of coordinates. We can compare densities point-wise without worry. [incorporated]
 
-* Contrast this with densities over position and velocity. But! We can understand some aspects of Riemmanian geometry in terms of how states densities are represented over position and velocity. Hyper-regularity allows us to express densities from "states" to "kinematic variables". The fact that this expression depends only on position (and not on velocity), tells us we have a Riemannnian manifold. Norm of the metric tensor gives us the ``conversion'' factor. Note that norm of the metric tensor in general depends on the coordinate system and is in general point-dependent. There always exists a coordinate system in which the norm of the metric tensor is constant. The conversion factor for marginal distributions is linked to the eigenvalues along each coordinate. Flatness means there exists a coordinate system where we can factorize the distribution (if it factorizes in phase space), which is exactly the Cartesian coordinate system. (Note, we can always factorize in phase space) -> Therefore this focus on densities also allows us to get a better intuition even on the tangent space. [Still need to incorporate much of this discussion]
-
 * Makes the fundamental role that phase space plays in statistical mechanics more physically salient/perspicuous. Areas/volumes are measures of number of states. They are coordinate invariant. Also the Shannon/Gibbs entropy are coordinate independent (see physicality of quantities that are coordinate invariant)
 
-** Not everything physical has to be coordinate invariant.
-
-* Units are physically significant. In fact, the ability to express the densities in units is what gives us the symplectic structure. It's a physical requirement that we must be able to express the density in some unit.
-
-*[Could save the following for discussion of gauge redundancy in section 5.2] Not all ``state variables" are physical. Hamiltonian mechanics does not really care what the q's and p's are. It is the motion assumption that tells us that q's are position, simply because they define the unit system. P is a guage quantity (we care about the trajectory, the velocity). In this view, p is simply a ``label'' we can use to express the density over states. Therefore we do care about the physicality of the invariant distribution more than the physicality of the state variables themselves. -> Invariant density is really the important physical element/object in Hamiltonian mechanics.
-
-[To do: is there a physically or conceptually important distinction between coordinate-invariance vs. coordinate-independence? (vs. co-variance?)]
+* Close the section with a more general discussion on physicality/fundamentality and all those other physical goodness.
 
 
 We have now substantiated the claim of Section~\ref{privileging} that Hamiltonian mechanics requires less structure than Lagrangian mechanics, in virtue of requiring fewer physical conditions. While this provides one reason for privileging Hamiltonian mechanics, it is not the only one. A further---possibly even more important---reason stems from the relationship between Hamiltonian mechanics and invariant densities. As we argue in this section, viewing physics through the lens of invariant densities has much to commend it. In general, it provides a better understanding of classical systems. Specifically, we will see that invariant densities are of fundamental physical significance due to their coordinate-independence [invariance?]. Hamiltonian mechanics---unlike Lagrangian mechanics---allows us to compare these densities point-wise in any coordinate system. Although the density is physically significant because it is coordinate-invariant, we will nevertheless argue that coordinate-invariance is not a necessary condition for physical significance. In fact, the ability to express densities in some choice of units is closely connected with symplectic structure. Hence, we will argue that some coordinate-dependent representational choices are nevertheless physically significant. This view is at odds with metaphysically-driven demands to represent physical theories in exclusively ``intrinisic" terms [get citations: Field 1980; Chen papers; North]. 
@@ -458,6 +469,38 @@ By definition, a variation over the integral $\integral_{\gamma} \vector{\theta}
 
 % Last page of Halvorson/Swanson article seems to broach this issue of gauge redundancy, although they seem to think it is possibly a positive feature of Lagrangian mechanics (a source of additional representational flexibility) rather than a defect.
 
+Understanding both mechanics in terms of our assumptions gives us a way to understand gauge transformations that is both more physically grounded and intuitive. Recall that motion equivalence entails that knowledge of the trajectory in physical space suffices for knowledge of the state in phase space. In other words, we can completely characterize states in terms of the canonical position coordinate $q$ and its first derivative $\dot{q}$. Hence, any transformation that leaves $(q,\dot{q}) $ invariant \textit{ipso facto} leaves the physical state invariant. We want such transformation to be canonical as to preserve the invariant densities. This means that the new state variable $(q, \hat{p})$ will respect the usual Poisson brackets:
+\begin{equation}
+\begin{aligned}
+	\{q^i, q^j\} &= 0 \\
+	\{q^i, \hat{p}_j\} &= \delta^i_j \\
+	\{\hat{p}_i, \hat{p}_j\} &= 0
+\end{aligned}
+\end{equation}
+Using the second equation we find:
+\begin{equation}
+\begin{aligned}
+	\{q^i, \hat{p}_j\} &= \frac{\partial q^i}{\partial q^k} \frac{\partial \hat{p}_j}{\partial p_k} - \frac{\partial q^i}{\partial p_k} \frac{\partial \hat{p}_j}{\partial q^k} \\
+	&= \delta^i_k \frac{\partial \hat{p}_j}{\partial p_k} - 0 \frac{\partial \hat{p}_j}{\partial q^k} = \frac{\partial \hat{p}_j}{\partial p_i} = \delta^i_j
+\end{aligned}
+\end{equation}
+Integrating we have:
+\begin{equation}
+\begin{aligned}
+\hat{p}_j = p_j + A_j(q^i)
+\end{aligned}
+\end{equation}
+where $A_j$ are arbitrary functions of position. Using the third Poisson bracket, we have:
+\begin{equation}
+\begin{aligned}
+0 = \{\hat{p}_i, \hat{p}_j\} &= \{p_i + A_i, p_j + A_j\} \\
+&= \{p_i, p_j \} + \{p_i , A_j\} + \{A_i, p_j \} + \{A_i, A_j\} \\
+&= 0 - \{A_j, p_i\} + \{A_i, p_j \} + 0 \\
+&= - \frac{\partial A_j}{\partial q^i} + \frac{\partial A_i}{\partial q^j} \\
+&= curl(A_j) \\
+\end{aligned}
+\end{equation}
+Since $A_j$ is curl free, we can express it as the gradient of a function $f$. Therefore changes of state variable of the form $\hat{p}_j = p_j + \partial_j f$ do not change either the equations of motion or the trajectories. We recognize these as the gauge transformations.
 
 Understanding the action principle in terms of Hamiltonian mechanics also provides a better understanding of gauge transformations. If motion equivalence holds, then gauge transformations leave the variables $(q,\dot{q}) $ invariant. To see this, recall that motion equivalence entails that knowledge of the trajectory in physical space suffices for knowledge of the state in phase space. In other words, we can completely characterize states in terms of the canonical position coordinate $q$ and its first derivative $\dot{q}$. Hence, any transformation that leaves $(q,\dot{q}) $ invariant \textit{ipso facto} leaves the physical state invariant, i.e. is a gauge transformation. [To do: make it more clear how the discussion in this section is intrinsically connected with the earlier geometric treatment of the action and our overall privileging of Hamiltonian mechanics]
 
