@@ -1,0 +1,8 @@
+Dear Editors:
+
+The paper we are submitting tries to give a better characterization of the Shannon entropy that holds across multiple fields, not just information theory.  It also goes through some of the misconceptions to which more narrow views can lead, and some seldom-discussed issues such as the lack of coordinate independence over continuous spaces in general.  The target audience includes physics students and educators as well as practitioners, and therefore we believe it should be a good fit for EJP. 
+We understand that the article is somewhat longer than typically published by EJP.  We have already shortened it with respect to earlier drafts, but we feel that reducing the length further would undermine the goal of the article to be comprehensive.  If you agree that this work is appropriate for the journal, we would be happy to have it published in two parts; however, it should be reviewed as a whole.
+
+Sincerely,
+The Authors
+
