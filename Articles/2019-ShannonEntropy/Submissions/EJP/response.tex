@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epsfig,amssymb,amsmath,amsthm}
+%\usepackage[active]{srcltx}
+%\usepackage[hypertex,linkcolor=red]{hyperref}
+
+\usepackage{color}
+\usepackage{cancel}
+\usepackage{tikz-cd}
+
+\DeclareMathOperator{\spn}{span}
+
+\newcommand{\pj}[1] {\underbar{$#1$}}
+%\newcommand{\pj}[1] {\overline{#1}}
+
+
+\def\>{\rangle}
+\def\<{\langle}
+\def\ca{_{\cal A}}
+\def\cb{_{\cal B}}
+\def\cc{_{\cal C}}
+\def\comment#1{}
+%\def\comment#1{ [{\bf Comment Lor:} {\sf #1}]}
+\def\commentg#1{ [{\bf Comment Gabriele:} {\sf #1}]}
+\def\labell#1{\label{#1}}
+%\def\labell#1{\label{#1}{\mbox{{\tiny #1}}}}
+%\def\section#1{{\par\em #1:--- }}
+\def\togli#1{}
+\def\sh{\mbox{sh}}
+\def\iden{\openone}
+
+
+
+\begin{document}
+	
+	Thanks editor.
+
+
+\section*{Referee 1}
+
+\begin{quote}
+Overall this paper is clearly written. This paper gives a comprehensive review of the Shannon entropy. The Shannon entropy characterizes the variability of the discrete random variables. This is widely known to an expert but this paper state this idea clearly with examples. This kind of heuristics and intuitive ideas are very valuable for newcomers.
+\end{quote}
+We thank the referee for the kind words and for appreciating the goal of the paper.
+
+\begin{quote}
+However, the authors miss the key reference: Mathematical foundations of information theory by Khinchin. The requirements on page 3 were rigorously presented in this book. 
+\end{quote}
+We added the reference.
+
+\begin{quote}
+The entropy is invariant under the transformation if and only if the transformation is volume-preserving. This statement should be clearly stated on page 6.
+\end{quote}
+We agree: we only highlighted unitarity of the Jacobian, which not everyone will intuitively connect to volume preservation. We also lacked a comment on marginal distributions. We revised the paragraph which now reads:
+
+\emph{[...] This has a couple of important consequences. First of all, (1) the volumes are preserved during the transformation, which means (2) the Jacobian is unitary and (3) the Shannon variability is invariant. In fact, these three properties are mathematically the same property: each one implies all others. Second, something similar happens to the areas for each independent degree of freedom, meaning that the Shannon variability associated to the marginal distributions is also invariant. These properties can be taken to be the defining characteristics of phase space: phase space has exactly such geometrical properties.}
+
+\begin{quote}
+Another minor thing, on page 14, should be 13/12 split instead of 13/14.  
+\end{quote}
+We sincerely thank the referee for catching it: these types of minor mistakes are a source of distraction to newcomers.
+
+\section*{Referee 2}
+
+\begin{quote}
+	The key conceptual flaw is that the authors clearly consider that Information is not a physical quantity;
+\end{quote}
+
+No such claim is made in the paper. The following claim is made:
+
+\emph{The use of information in physics, then, does not warrant a fundamental change of perspective in what constitutes a physical object, as some physicists have claimed.}
+
+\noindent which is not at all the same. This simply means, as it is explained, that while matter and energy carry information through their physical processes, they are not themselves ``made'' of information.
+
+\begin{quote}
+	even though they wrote in their introduction “we do not discuss the relationship [of the Shannon entropy] to the thermodynamic entropy, which is a separate concept,” in an apparently neutral and unpartisan view of this important issue.
+\end{quote}
+Thermodynamic entropy is defined in terms of temperature and heat. The paper does not talk about temperature and heat, which are essential if one wants to link thermodynamic entropy to Shannon entropy. That has nothing to do with information being physical.
+
+TODO add footnote
+
+\begin{quote}
+However, since the underlying implicit thesis to their paper is that the Shannon information is not physical, they should justify this fundamental premise still further.
+\end{quote}
+That is not our thesis. We simply state, which is not a matter of personal opinion, that the nature of the Shannon entropy depends on the nature of the ``probability'' one is using. In ecology, for example, $p_i$ often represent the fraction of the population of animals that belong to the same species $i$. The Shannon entropy, which is called Shannon diversity index, is an objective (and physically grounded) quantity. In machine learning and Bayesian probability, the $p_i$ represent the degree of belief of an agent that something will happen. The Shannon entropy will represent, by definition, something subjective. We stated this very clearly in the original submission:
+
+\emph{This expression quantifies the variability of the elements within the distribution, the variety of values one finds. The precise meaning of this variability is context dependent, as the choices of the elements and binning are not fixed and the meaning of the weights depends on what the distribution is describing. But this is true for any mathematical object: a real number may represent mass, color in the frequency spectrum, the total money supply, the half-life for an isotope, a probability and so on.}
+
+TODO: add here that similar comments are throughout the paper
+
+\begin{quote}
+ Their main reference supporting this premise appears to be their ref.[4] – however, this particular reference [4] is itself highly flawed (having both numerous technical and conceptual errors, and also completely ignoring the highly relevant work of E.T. Jaynes – it also a paper not published in an appropriate physics journal – however, I’m not writing here a review of this flawed ref.[4] paper.) But, the fact that the authors of this present paper considered the ref.[4] to be an appropriate reference to support their fundamental assumption about the ‘unphysicality’ of information therefore also unfortunately casts a negative light on their scientific judgement.
+\end{quote}
+That reference appears after the sentence ``it is still surrounded by a great deal of confusion''. Therefore it is only used as evidence to show that there is confusion surrounding entropy. This can be taken as the reference showing the confusion, or the reference itself being confused, as the referee argues. In either case, it proves the point: there is confusion.
+
+We find the attacks on the reference completely out of place, inappropriate and distasteful. Ad hominem attacks have no place in the scientific discourse.
+
+\begin{quote}
+Hence, their wish to use the word ‘variability’ as an alternative synonym to the word ‘entropy’.
+\end{quote}
+
+The referee, once again, puts words in our mouth that are not on the page. The use of `variability' for the Shannon formula is justified by this paragraph:
+
+\emph{The first problem is that the formula is attached to different concepts that are specific to each field. [...] In this paper we show that the idea of variability of the elements within a distribution, how diverse the objects are from each other within the collection, can serve as such a general concept. We will therefore use the term \emph{``Shannon variability,''} leaving ``entropy'' to the physical concept.}
+
+So, ``variability'' is used for something that works not only in physics, but also ecology, information theory, machine learning, communication theory, economics... ``Entropy'' is used for the physical concepts in statistical mechanics. That helps the reader understand that some properties of that concept are more general than physics. Given that we make a distinction between the two words, ``variability'' and ``entropy'' are \textbf{not} synonyms in our work. That is the whole point. The variability of species in ecology has nothing to do with entropy in statistical mechanics.
+
+\begin{quote}
+Rather, it is clear to me the Shannon formula is actually the fundamental physical quantity from which all entropy types (be it the information, Gibbs, and Boltzmann entropies etc.) can be derived.
+\end{quote}
+This claim is hotly contested in the literature of the foundations of thermodynamics. [cite] In modern textbooks of statistical mechanics, the Shannon entropy is not the starting point, rather an approximation that is valid only at equilibrium [cite]. The referee is therefore expressing his personal view.
+
+We are staying out of that debate and we would find inappropriate, in the context of a paper aimed at scientific education, to take a side as the referee suggests.
+
+TODO: add in the introduction
+
+\begin{quote}
+The current authors appear to have completely neglected the more recent and highly relevant work written by Jaynes in the 1970s, 1980s, and 1990s, but relied only on his original seminal papers of 1957 and 1965.
+\end{quote}
+
+This is beyond the scope of the paper, which is simply to introduce in a clear way to newcomers what the expression $- \sum p \, \log p$ represents.
+
+\begin{quote}
+In particular, the authors here complain that the information entropy is ‘subjective’ in contrast to thermodynamic entropy which is ‘objective’. However, their treatment of this is completely superficial. They need to address Jaynes’ more nuanced and deeper treatment of this issue in his 1992 paper.
+\end{quote}
+Again, we are in no way disproving what he says and the referee is engaging in what philosophers define as ``verbal dispute'', where one disagrees on the meaning of the words rather than on an actual fact of the matter. We mean `subjective' in the Bayesian/machine learning sense, where each agent has a different take on how much something is likely. Jaynes, unfortunately, used language that sometimes seems Bayesian to refer to cases where the experimental setup matters (which is not Bayesian). This language is then taken out of context and used to support claims that do not follow from Jaynes' examples. So our discussion is there to caution the target reader, who is a newcomer to all of this, of these differences.
+
+Given that the referee keeps mis-characterizing our prose, it is difficult for us to understand what, if anything, gave him the wrong impression. Note that we tested the article on a group of students and none of these misunderstandings emerged.
+
+TODO: review the 1992 paper, see if there is something about physicality
+
+\begin{quote}
+	There is an egregious technical error in this paper: In the discussion of the Continuous Distributions (Section IV) after Eq.1 the authors discuss the quantity log(b-a) and suggest that it can be negative for $0<b-a<1$. However, on the assumption that b and a (i.e. the co-ordinate x) in general represent some kind of physical quantity, e.g. length [m]) you simply cannot take the logarithm of a dimensioned quantity! A normalising unit quantity, e.g. $\Delta$, which also defines the granularity or resolution is required to normalise the argument of the logarithm; i.e. we need log\{ (b-a)/$\Delta$ \}. The choice of the granularity (which is a key aspect to any entropic analysis) automatically solves this apparent problem raised by the authors. But they have overlooked even this simple (mathematical and physical) aspect.
+\end{quote}
+Let $\Delta > b - a > 0$. Then $\frac{b-a}{\Delta} < 1$. Therefore $\log \frac{b-a}{\Delta} < 0$. The resolution does not fix the possible negative value of the Shannon entropy for continuous distributions. The importance of granularity, of unit choice, not only was already present in the introduction, but is literally given in the following paragraph of the original submission:
+
+\emph{	When considering continuous distributions, we have to remember that the densities are given per unit. [...] A distribution over half a unit interval will correspond to minus one bit, since we would need to ``lose'' one bit of information to widen the variability back to one unit. In other words, the variability is measured by the number of bits needed to identify an element up to one unit.}
+
+Again, given the complete mis-characterization of the prose and the erroneous claim that somehow the choice of unit/granularity makes the Shannon entropy always positive, we find it impossible to understand whether there is any meaningful item to address.
+
+TODO: add "granularity"
+
+\begin{quote}
+Actually, the authors clearly show their general lack of understanding of the importance of granularity in entropy considerations (especially entropy essentially being a scale-less quantity) since they consider the Shannon entropy to be somehow ‘perplexing’ since it changes when the scale is stretched, shrunk, or changed. However, this is simply equivalent to a change of granularity (or scale) where it is well known that the calculated entropy will therefore always concomitantly change. 
+\end{quote}
+Again, it is difficult to understand whether, hidden under all the ad hominem, there is an actual point. The word `perplexing' is used in the following paragraph:
+
+\emph{	This should be particularly perplexing if we want to use this quantity in a physical setting. If we want $\rho(x)$ to represent the state of a macroscopic system and $H(\rho(x))$ to represent entropy, a state variable, how can $H$ change value if we merely express $\rho$ over different coordinates? How can maximization of entropy be meaningful if it yields different results depending on the coordinate system? Does that mean that we can use the Shannon formula only on distributions over discrete values?}
+
+The word `perplexing' is used as a rhetorical device, to introduce questions a newcomer might find puzzling, which we answer in the following paragraph. Does the referee really think that means we find the issue perplexing? This would leave us very perplexed...
+
+\begin{quote}
+The authors comment that “infinitesimally narrow distributions, like delta functions, do not work well with the Shannon [entropy]”. It is well known that delta functions always require extreme care in their handling, since they are intrinsically unphysical (not conforming to many of the key requirements of physically plausible functions, such as causality and the absence of infinities etc.); so to suggest that the Shannon entropy is somehow inappropriate due to its having apparent problems with the delta function is fatuous – it just means that the delta function is not being appropriately applied. 
+\end{quote}
+Again, if the referee actually read what we wrote, he would have seen that we say exactly the same thing: that one has to work with functions that have small but still finite support.
+
+\begin{quote}
+The authors make a curious comment about the Boltzmann constant, that it “is really just set by the unit system”, as if it isn’t a universal constant and is simply a matter of convention! 
+\end{quote}
+In the last revision of the SI, universal constants \textbf{are} set to selected values, no longer measured: they are a matter of convention. They are called \textbf{defining constants} because they define the unit system, which is a convention. Before engaging in comments that imply we are incompetent, the referee may want to read the relevant literature.
+
+TODO: add footnote
+
+\begin{quote}
+There are numerous other contentious and erroneous (careless) statements made by the authors. I’ve merely focussed on the larger, fundamental issues to indicate that this paper is not fit for publication. 
+
+Overall, the authors have created a ‘strawman’ argument (by using only partial and weak sources for their argumentation) against the Shannon entropy, so that their paper makes no useful contribution into the literature for a more fundamental understanding of entropy.
+\end{quote}
+
+
+
+
+--------------------
+
+
+Closing.
+
+Sincerely,
+
+The Authors
+
+\end{document}
