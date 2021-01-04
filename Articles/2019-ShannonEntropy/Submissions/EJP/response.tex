@@ -82,7 +82,9 @@ No such claim is made in the paper. The following claim is made:
 \end{quote}
 Thermodynamic entropy is defined in terms of temperature and heat. The paper does not talk about temperature and heat, which are essential if one wants to link thermodynamic entropy to Shannon entropy. That has nothing to do with information being physical.
 
-TODO add footnote
+We added a footnote that reads:
+
+\emph{We will not discuss its relation to thermodynamic entropy. Thermodynamic entropy is defined on the notions of heat and work while the Shannon entropy is defined on the notion of a distribution. The contexts are different and relating them goes beyond the scope of this work.}
 
 \begin{quote}
 However, since the underlying implicit thesis to their paper is that the Shannon information is not physical, they should justify this fundamental premise still further.
@@ -91,12 +93,12 @@ That is not our thesis. We simply state, which is not a matter of personal opini
 
 \emph{This expression quantifies the variability of the elements within the distribution, the variety of values one finds. The precise meaning of this variability is context dependent, as the choices of the elements and binning are not fixed and the meaning of the weights depends on what the distribution is describing. But this is true for any mathematical object: a real number may represent mass, color in the frequency spectrum, the total money supply, the half-life for an isotope, a probability and so on.}
 
-TODO: add here that similar comments are throughout the paper
+There are multiple comments to that effect throughout the paper. The referee is attributing us an ``implicit'' thesis that is not our own, instead of confronting the explicit ``thesis'' that is repeated throughout the paper.  It is not apparent to us how we could modify the manuscript to avoid that, particularly because he is the only one that has done so.
 
 \begin{quote}
  Their main reference supporting this premise appears to be their ref.[4] – however, this particular reference [4] is itself highly flawed (having both numerous technical and conceptual errors, and also completely ignoring the highly relevant work of E.T. Jaynes – it also a paper not published in an appropriate physics journal – however, I’m not writing here a review of this flawed ref.[4] paper.) But, the fact that the authors of this present paper considered the ref.[4] to be an appropriate reference to support their fundamental assumption about the ‘unphysicality’ of information therefore also unfortunately casts a negative light on their scientific judgement.
 \end{quote}
-That reference appears after the sentence ``it is still surrounded by a great deal of confusion''. Therefore it is only used as evidence to show that there is confusion surrounding entropy. This can be taken as the reference showing the confusion, or the reference itself being confused, as the referee argues. In either case, it proves the point: there is confusion.
+That reference appeared after the sentence ``it is still surrounded by a great deal of confusion''. Therefore it is only used as evidence to show that there is confusion surrounding entropy. This can be taken as the reference showing the confusion, or the reference itself being confused, as the referee argues. In either case, it proves the point: there is confusion.
 
 We find the attacks on the reference completely out of place, inappropriate and distasteful. Ad hominem attacks have no place in the scientific discourse.
 
@@ -104,46 +106,44 @@ We find the attacks on the reference completely out of place, inappropriate and 
 Hence, their wish to use the word ‘variability’ as an alternative synonym to the word ‘entropy’.
 \end{quote}
 
-The referee, once again, puts words in our mouth that are not on the page. The use of `variability' for the Shannon formula is justified by this paragraph:
+The referee puts words in our mouth that are not on the page. The use of `variability' for the Shannon formula is justified by this paragraph:
 
 \emph{The first problem is that the formula is attached to different concepts that are specific to each field. [...] In this paper we show that the idea of variability of the elements within a distribution, how diverse the objects are from each other within the collection, can serve as such a general concept. We will therefore use the term \emph{``Shannon variability,''} leaving ``entropy'' to the physical concept.}
 
-So, ``variability'' is used for something that works not only in physics, but also ecology, information theory, machine learning, communication theory, economics... ``Entropy'' is used for the physical concepts in statistical mechanics. That helps the reader understand that some properties of that concept are more general than physics. Given that we make a distinction between the two words, ``variability'' and ``entropy'' are \textbf{not} synonyms in our work. That is the whole point. The variability of species in ecology has nothing to do with entropy in statistical mechanics.
+So, ``variability'' is used for something that works not only in physics, but also ecology, information theory, machine learning, communication theory, economics... ``Entropy'' is used for the physical concepts in statistical mechanics. That helps the reader understand that some properties of that concept are more general than physics, which is the proper setting to understand the concept. Given that we make a distinction between the two words, ``variability'' and ``entropy'' are \textbf{not} synonyms in our work. That is the whole point. The variability of species in ecology is not a measure of entropy in statistical mechanics.
 
 \begin{quote}
 Rather, it is clear to me the Shannon formula is actually the fundamental physical quantity from which all entropy types (be it the information, Gibbs, and Boltzmann entropies etc.) can be derived.
 \end{quote}
-This claim is hotly contested in the literature of the foundations of thermodynamics. [cite] In modern textbooks of statistical mechanics, the Shannon entropy is not the starting point, rather an approximation that is valid only at equilibrium [cite]. The referee is therefore expressing his personal view.
+The referee is expressing a view that, though shared by others, is contested in the literature of the foundations of thermodynamics. For example, see ``Time-reversal and entropy'' by Christian Maes et al, or ``Gibbs and Boltzmann Entropy in Classical and Quantum Mechanics''
+Sheldon Goldstein et al. In many modern textbooks of statistical mechanics, the Shannon entropy is not the starting point, rather an approximation that is valid only at equilibrium. See, for example, ``Statistical mechanics in a nutshell'' by Luca Peliti, where the starting point is state counting. We are staying out of that debate as we would find inappropriate, in the context of a paper aimed at scientific education, to push a particular view.
 
-We are staying out of that debate and we would find inappropriate, in the context of a paper aimed at scientific education, to take a side as the referee suggests.
+We do believe that part of the confusion surrounding entropy does come from these unresolved contentions. This was clear while doing literature review with some of our students. We therefore added the following sentence in the introduction:
 
-TODO: add in the introduction
+\emph{[... entropy ...] is surrounded by a great deal of confusion. Partly because, at a fundamental level, there is still disagreement on what is the ``correct'' notion of entropy, particularly out of equilibrium.}
 
 \begin{quote}
 The current authors appear to have completely neglected the more recent and highly relevant work written by Jaynes in the 1970s, 1980s, and 1990s, but relied only on his original seminal papers of 1957 and 1965.
 \end{quote}
 
-This is beyond the scope of the paper, which is simply to introduce in a clear way to newcomers what the expression $- \sum p \, \log p$ represents.
+Doing a comparative analysis of this kind is beyond the scope of the paper, which is simply to introduce in a clear way to newcomers what the expression $- \sum p \, \log p$ represents. See, for example, "Compendium of the foundations of classical statistical physics" by Jos Uffink.
 
 \begin{quote}
 In particular, the authors here complain that the information entropy is ‘subjective’ in contrast to thermodynamic entropy which is ‘objective’. However, their treatment of this is completely superficial. They need to address Jaynes’ more nuanced and deeper treatment of this issue in his 1992 paper.
 \end{quote}
-Again, we are in no way disproving what he says and the referee is engaging in what philosophers define as ``verbal dispute'', where one disagrees on the meaning of the words rather than on an actual fact of the matter. We mean `subjective' in the Bayesian/machine learning sense, where each agent has a different take on how much something is likely. Jaynes, unfortunately, used language that sometimes seems Bayesian to refer to cases where the experimental setup matters (which is not Bayesian). This language is then taken out of context and used to support claims that do not follow from Jaynes' examples. So our discussion is there to caution the target reader, who is a newcomer to all of this, of these differences.
+Again, we are in no way disproving what Jaynes says. What the referee (but he is not the only one) is engaging in what philosophers define as ``verbal dispute'', where one disagrees on the meaning of the words rather than on an actual fact of the matter. The problem is what one means by ``subjective''. Jaynes, unfortunately, used language that sometimes seems Bayesian to refer to cases where the experimental setup matters (which is not Bayesian). This language is then taken out of context and used to support claims that do not follow from Jaynes' examples. So our discussion is there to caution the target reader, who is a newcomer to all of this, of these differences.
 
-Given that the referee keeps mis-characterizing our prose, it is difficult for us to understand what, if anything, gave him the wrong impression. Note that we tested the article on a group of students and none of these misunderstandings emerged.
+We have expanded the section to clarify that and also cited the 1992 which does not change anything. [TODO include]
 
-TODO: review the 1992 paper, see if there is something about physicality
 
 \begin{quote}
 	There is an egregious technical error in this paper: In the discussion of the Continuous Distributions (Section IV) after Eq.1 the authors discuss the quantity log(b-a) and suggest that it can be negative for $0<b-a<1$. However, on the assumption that b and a (i.e. the co-ordinate x) in general represent some kind of physical quantity, e.g. length [m]) you simply cannot take the logarithm of a dimensioned quantity! A normalising unit quantity, e.g. $\Delta$, which also defines the granularity or resolution is required to normalise the argument of the logarithm; i.e. we need log\{ (b-a)/$\Delta$ \}. The choice of the granularity (which is a key aspect to any entropic analysis) automatically solves this apparent problem raised by the authors. But they have overlooked even this simple (mathematical and physical) aspect.
 \end{quote}
-Let $\Delta > b - a > 0$. Then $\frac{b-a}{\Delta} < 1$. Therefore $\log \frac{b-a}{\Delta} < 0$. The resolution does not fix the possible negative value of the Shannon entropy for continuous distributions. The importance of granularity, of unit choice, not only was already present in the introduction, but is literally given in the following paragraph of the original submission:
+Let $\Delta > b - a > 0$. Then $\frac{b-a}{\Delta} < 1$. Therefore $\log \frac{b-a}{\Delta} < 0$. The resolution does not fix the possible negative value of the Shannon entropy for continuous distributions. The importance of granularity, of unit choice, not only was already present in the introduction, but is literally given in the original submission in paragraph following the one the referee refers to:
 
 \emph{	When considering continuous distributions, we have to remember that the densities are given per unit. [...] A distribution over half a unit interval will correspond to minus one bit, since we would need to ``lose'' one bit of information to widen the variability back to one unit. In other words, the variability is measured by the number of bits needed to identify an element up to one unit.}
 
-Again, given the complete mis-characterization of the prose and the erroneous claim that somehow the choice of unit/granularity makes the Shannon entropy always positive, we find it impossible to understand whether there is any meaningful item to address.
-
-TODO: add "granularity"
+Given the complete mis-characterization of the prose and the erroneous claim that somehow the choice of unit/granularity makes the Shannon entropy always positive, we find it impossible to understand whether there is any meaningful item to address. One possible answer is that the referreee does not realize that choosing a unit, in the context of information entropy, is equivalent to choosing the resolution since it changes the zero for entropy... The $\Delta$ \textbf{is} the unit. We added the words ``granularity'' and ``resolution'' in a few places where units are discussed. 
 
 \begin{quote}
 Actually, the authors clearly show their general lack of understanding of the importance of granularity in entropy considerations (especially entropy essentially being a scale-less quantity) since they consider the Shannon entropy to be somehow ‘perplexing’ since it changes when the scale is stretched, shrunk, or changed. However, this is simply equivalent to a change of granularity (or scale) where it is well known that the calculated entropy will therefore always concomitantly change. 
@@ -164,7 +164,7 @@ The authors make a curious comment about the Boltzmann constant, that it “is r
 \end{quote}
 In the last revision of the SI, universal constants \textbf{are} set to selected values, no longer measured: they are a matter of convention. They are called \textbf{defining constants} because they define the unit system, which is a convention. Before engaging in comments that imply we are incompetent, the referee may want to read the relevant literature.
 
-TODO: add footnote
+We added the following footnotes, merely as a pointer for the curious reader. [TODO]
 
 \begin{quote}
 There are numerous other contentious and erroneous (careless) statements made by the authors. I’ve merely focussed on the larger, fundamental issues to indicate that this paper is not fit for publication. 
@@ -172,7 +172,42 @@ There are numerous other contentious and erroneous (careless) statements made by
 Overall, the authors have created a ‘strawman’ argument (by using only partial and weak sources for their argumentation) against the Shannon entropy, so that their paper makes no useful contribution into the literature for a more fundamental understanding of entropy.
 \end{quote}
 
+This referee report, while abundant in ad hominen, mischaracterizations and demeaning language, was outstandingly lacking in constructive criticism. This is peer reviewing at its worst. The most likely scenario is that, after a very cursory look, he framed the manuscript in some diatribe the referee has with some other colleagues, stopped reading carefully and engaged in a tirade, assigning to us views that are not our own. This means that most of the comments weren't even directly relevant to our manuscript: even after sifting the report carefully, we found few actionable items.
 
+We urge the referee to conduct himself in a more professional manner. Whether or not variability is a better characterization for the Shannon entropy can be debated rationally without resorting to mockery.
+
+\section*{Referee 3}
+
+\begin{quote}
+	I think that the manuscript is well written, well organised and generally speaking, the main topic is interesting also for a not expert reader. 
+\end{quote}
+
+We thank the referee for the kind words.
+
+\begin{quote}
+The idea of the Shannon entropy as a way to quantify the number of yes/no questions (i.e. bits) that are needed to identify an element within the distribution is not new. However, I appreciate the authors' presentation because this could have validity in the field of Physics Education.
+\end{quote}
+
+This is our belief as well and one of the reasons we wrote the article.
+
+\begin{quote}
+Although I think that the manuscript deserves to be published, I would like that the authors add some bibliographic references on the topic they deal with but in the field of Physics Education.
+\end{quote}
+
+Most of the literature we found in Physics Education focuses on the Gibbs, Boltzmann and Thermodynamic entropies. We added references for those in the first paragraph of the introduction, along with a remark stating that the Shannon entropy itself has received less attention.
+
+\begin{quote}
+As a minor issue, I noted a typo at line 27.
+\end{quote}
+
+
+\section*{Referee 4}
+
+\begin{quote}
+After reading the paper, Referee’s and Adjudicator’s comments I think that it is proper to send all the correspondence to the Authors. I suggest the Authors to give their replies directly on the pages of the paper: such and similar comments/questions appear in a natural way when one reads the manuscript. The paper (and readers as well) will benefit from modifications along the lines raised by Referees. In fact, I am convinced that  Referee 2 reflections  (the most critical one) will be very useful in this context and can be properly incorporated in the paper. I think that they are well based and clearly explained, however, I do not think that the Authors ‘...have created an ...arguments against the Shannon entropy..’ (as the Referee states). Rather they aim to explain for a wide audience that ‘the Shannon entropy measures the variability of the elements within a given distribution, giving it a crisp intuitive meaning that is general and applicable to all branches of science’ (as the Authors say in their Conclusions).
+\end{quote}
+
+We thank the referee for appreciating the goal and the intended audience of the paper. We tried addressing as best we could the points raised by the second referee.
 
 
 --------------------
