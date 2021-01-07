@@ -98,11 +98,16 @@ To finish, consider a \textbf{deterministic processes with equilibria}. We can s
 
 We already reached an important result: with only a handful of simple definitions we have found a quantity, $\mu(x(t))$, that can never decrease in a deterministic process, stays the same if the process is reversible and is maximized at equilibrium. We have done so with no assumption on the type of system, the type of forces acting on the system, the internal composition of the system or the internal dynamics of the system. It knows nothing of uncertainty, disorder, information, statistical or probability distribution, phase space volumes. It only knows about evolutions and how to count them. The result is completely general and the justification is very straight forward. It is conceptually a perfect candidate for the thermodynamic entropy, though we have one questions left: how does it combine under system composition?
 
-Suppose we now have two systems, with their respective state space $X$ and $Y$. The state space of the composite system is the set of all possible pairs $X \times Y$. A process defined on the composite system will come with a measure $\mu_{X \times Y}$ that enables us to count evolutions $\{x(t), y(t)\}$ of the composite system. In general, the evolution of one system will affect the evolution of the other system. This will not happen, however, if the systems are independent. That is, for each possible evolution $x(t)$ of the first system and $y(t)$ of the second system, there will be a possible evolution $\{x(t), y(t)\}$ on the composite. In other words,
+Suppose we now have two systems, with their respective state space $X$ and $Y$. The state space of the composite system is the set of all possible pairs $X \times Y$. A process defined on the composite system will come with a measure $\mu_{X \times Y}$ that enables us to count evolutions $\{x(t), y(t)\}$ of the composite system. In general, the evolution of one system will affect the evolution of the other system. This will not happen, however, if the systems are independent. That is, as shown in \ref{fig_independence}, for each possible evolution $x(t)$ of the first system and $y(t)$ of the second system, there will be a possible evolution $\{x(t), y(t)\}$ on the composite. In other words,
 \begin{equation}
 	\mu_{X \times Y} = \mu_X \mu_Y
 \end{equation}
 the measure factorizes. We say two system are \textbf{independent} at given time $t$ if the evolutions per state factorizes: $\mu_{X \times Y}(x(t), y(t)) = \mu_X (x(t)) \mu_Y (y(t))$.
+
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{images/Slide7.png}
+	\caption{Independent system. If two systems are independent, the evolution of one does not restrict the evolution of the other: all pairs are possible. The number of evolutions factorizes.}\label{fig_independence}
+\end{figure}
 
 We define the \textbf{process entropy} as $S = \log(\mu)$. Since the logarithm is a monotonic function, the process entropy will preserve monotonicity and maximization of $\mu$ under deterministic process with equilibria. Which means:
 \begin{equation}\label{ov_entropy_increases}
