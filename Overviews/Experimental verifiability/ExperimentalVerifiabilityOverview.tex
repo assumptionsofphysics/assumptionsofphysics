@@ -2,10 +2,11 @@
 %\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
 %\documentclass[10pt,twocolumn,letterpaper]{article}
 
-\usepackage{amsmath}
-\usepackage{amsfonts}
+\input{include/basicstyle}
+\input{include/logic}
+\input{include/theorems}
+
 \usepackage{graphicx}
-\usepackage{enumitem}
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
@@ -45,7 +46,25 @@ The set of points of a topological space represent the possible cases (e.g. all 
 
 \section{Logical context and fundamental axioms}
 
+The guiding principle is that \emph{science is universal, non-contradictory and evidence based.} This means that any scientific theory must specify a set of \textbf{statements} that are logically consistent, whose truth can be confirmed experimentally by everybody. This starting point is codified in the axioms that form the formal foundation of the theory. We start with the axioms of logic.
+
+The \emph{axiom of context} tells us that statements are organized into a \textbf{logical context} $\logCtx$, and a well defined truth value for each statement must exist. This recognizes that the logical consistency and meaning of each statement depends on definitions and relationships that depends on the context, on a set of statements.\footnote{For example, if one is performing particle identification, the mass of an electron is assumed to be given. If one is measuring the mass, the identify is assumed to be given, which the value of the mass is unknown.}
+
+The \emph{axiom of possibility} tell us that the statements in a context cannot be assigned arbitrary truth values, but only in a way that is consistent with the meaning defined by the context.\footnote{For example, \statement{the mass of the object is one kilogram} and \statement{the mass of the object is two kilograms} cannot be both true.} Therefore each context comes with a set $\pAss$ of possible assignments, where each possible assignment is a function $a : \logCtx \to \Bool$ that returns a value of truth for each statement. The truth is a possible assignment.
+
+The \emph{axiom of closure} tells us that we can always find a statements whose truth arbitrarily depends on the truth of other statements.
+
+From the logic axioms one can show that each logical context is a complete Boolean algebra; that the narroness operator $\narrower$ that tells us whether a statement is more specific than another\footnote{For example, \statement{the mass of the object is between 4 and 5 kilograms} is narrower than \statement{the mass of the object is between 0 and 100 kilograms}.} provides a partial order for the context; that we can define intuitive relationship between statements, such as compatibility or independence.
+
+Next, we introduce the axioms of verifiable logic. The \emph{axiom of verifiability} tells us that some statements are \textbf{verifiable}, meaning we have a test at our disposal that will terminate successfully in finite time if and only if the statement is true. Note that the test is not guaranteed to terminate, to give an answer, if the test is false.\footnote{For example, a test for \statement{there exists extra-terrestrial life} may terminate successfully if life is found, but it will not be conclusive if life is not found.} Therefore the negation of a verifiable statement is not necessarily verifiable.
+
+The remaining two axioms tell us that the finite conjunction and the countable disjunction of verifiable statements is verifiable. That is, we can use the tests of the statement to construct the test for the logical AND (i.e. check that all tests terminates successfully) and the logical OR (i.e. check that at least one test terminates).
+
+These axioms provide the ability to keep track the logical relationships between a set of statements and their connection to experimental evidence.
+
 \section{Experimental and theoretical domains}
+
+
 
 \section{Topologies and $\sigma$-algebras}
 
