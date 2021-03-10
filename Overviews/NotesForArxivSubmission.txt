@@ -1,0 +1,4 @@
+1. Prepare zip file with tex, bbl, diagrams and includes
+2. In the abstract, use "(see https://assumptionsofphysics.org )"
+   That is, remove \url and leave space after link
+
