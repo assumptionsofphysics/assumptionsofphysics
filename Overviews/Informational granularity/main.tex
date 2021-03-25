@@ -1,0 +1,979 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Remove line spaces between items of enumerate and itemize
+\usepackage{enumitem}
+\setlist{noitemsep}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\input{basicstyle}
+\input{logic}
+\input{theorems}
+
+\newtheorem{conj}[equation]{Conjecture}
+
+
+\title{Assumptions of Physics blueprint: information granularity as a common foundation for geometry, measures and probability.}
+\author{Gabriele Carcassi, Mark Greenfield, Christine Aidala }
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    This paper presents ideas and progress towards an order theoretic framework that can be used as a common foundation for geometrical, measure theoretic and probabilistic concepts in the sciences. This would address foundational questions such as: under what assumptions standard tools like calculus are physically meaningful? How do geometrical structures arise in physics? How can the idea of physical dimension be properly captured mathematically? The working theory is that geometrical and measure theoretic structures capture one and only one thing: how coarse or fine grained are the statements within a scientific theory. They should  be recovered from a single binary operator, that allows to compare two statements and say whether one provides a finer level of description than the other. Mathematically, fineness imposes a preorder on the algebra of statements of a scientific theory. Measure theoretical and geometrical notions will be recovered by picking a unit and quantifying the degree of precision in terms of that unit: ``the mass of the object is between 1 and 3 Kg'' is twice less precise than ``the mass of the object is between 0 and 1 Kg''. The objective is to find necessary and/or sufficient conditions for such constructions which can be given a straight forward physical motivation.
+%    As in comparative probability, we start with a $\sigma$-complete Boolean algebra that represents all possible descriptions in a given context and impose a preorder. In our case, the preorder does not represent likelyhood comparison, but rather whether one description is at a finer level of granularity than another. At this point, any statement (apart from an impossible one) can be chosen to act as a unit, and a measure (not necessarily bounded) can be constructed to quantify the degree to which the other statements give a more or less refined account. The starting lattice is not necessarily Archimedean, therefore the choice of unit will decide which elements are finite, infinite or infinitesimal. The family of measures so obtained are able to give a size to sets at different level of scale (e.g. points, lines, surfaces, ...) much like geometrical structures do. Our hope is that this structure recovers as special cases the geometrical, measure theoretical and probabilistic constructions we currently use in the sciences while giving a generalization that still works in the case where they fail (e.g. lack of $\sigma$-additivity in quantum probability) or expected to fail (e.g. breakdown at Planck's length).
+    
+	This work is part of Assumptions of Physics (\url{https://assumptionsofphysics.org}), a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived.
+\end{abstract}
+
+\def\eqgran{\doteq}
+\def\finer{\leqdot}
+\def\nfiner{\nleqdot}
+\def\coarser{\geqdot}
+\def\ncoarser{\ngeqdot}
+\def\sfiner{\lessdot}
+\def\scoarser{\gtrdot}
+
+\section{Introduction}
+
+\emph{This paper presents the goal and the current status of our research. It is intended to gather early feedback, including pointers to other relevant work.}
+
+The overall goal of Assumptions of physics is to to identify a handful of physical principles from which the basic laws can be rigorously derived. We have already established that topologies and $\sigma$-algebras can be recovered from requirements of experimental verifiability.\cite{AoPBook,AoPOverviewVerifiability} The next step is to understand what are the underpinning of geometrical and measure theoretic structures (including probability) which are layered on top of topologies and $\sigma$-algebras. As usual, a formal construction from scratch will force us to make explicit the physical requirements that are baked into the use of the common concepts and provide us with a framework that is, hopefully, still valid when those assumptions fail.
+
+Note that often in physics geometric structures are recovered from other geometric structures through the idea of emergence. For example, substantial effort is put in constructing theories where space-time emerge from other more fundamental structures. This does not solve the problem: it simply pushes it backwards. We are interested in the more fundamental problem of how the first geometric structure, and in fact any geometric structure, is defined.
+
+The idea is that while experimental verifiability keeps track of which statements in the theory are experimentally verifiable, informational granularity keeps track of which provides a finer level of description. \textbf{The working theory is that this, and only this, is what geometrical and measure theoretic structure capture: how coarse or fine grained are the statements within a scientific theory.} Finding the fundamental axioms associated to the notion of information granularity is therefore the central problem.
+
+%This working draft summarizes the status of our work on a new approach to the foundations of geometry and measure theory and is intended to gather early feedback. The goal is to rederive the usual concepts in geometry, measure theory and probability theory from a simpler more general structure, namely a preorder. This construction will 
+
+%The general idea is similar to what is done in comparative probability, yet we want the techniques extend from a single measure to a family of measures that allow us to define and compare sizes of sets at different scales (e.g. points, lines, surfaces, ...).
+
+To give a sense of how this would work, we start with our notion of a theoretical domain $\tdomain$, which is a $\sigma$-complete Boolean algebra that represents a set of statements, a set of descriptions, for a physical system in a given context. Mathematically, a Boolean algebra is also a lattice, and therefore already comes equipped with a partial order $\narrower$ such that $\stmt_1 \narrower \stmt_2$ if $\stmt_1 \OR \stmt_2 \equiv \stmt_2$. This partial order indicates whether one statement gives a \textbf{narrower}, more specific, description than the other. For example:
+\begin{itemize}
+    \item \statement{The position of the object is between 0 and 1 meters} $\narrower$ \statement{The position of the object is between 0 and 1 kilometers}
+    \item \statement{The fair die landed on 1} $\narrower$ \statement{The fair die landed on 1 or 2}
+    \item \statement{The first bit is 0 and the second bit is 1} $\narrower$ \statement{The first bit is 0}
+\end{itemize}
+In these cases, the first statement has to be ``contained'' in the second, which is more general.
+
+We then suppose we have a way to compare any two statements and decide which one provides a description at a finer level of granularity. This defines an additional preorder $\finer : \tdomain \times \tdomain \to \mathbb{B}$. Saying $\stmt_1 \finer \stmt_2$ means that the description provided by $\stmt_1$ is \textbf{finer}, gives more information, is more precise, than the description provided by $\stmt_2$. For example:
+\begin{itemize}
+    \item \statement{The position of the object is between 0 and 1 meters} $\finer$ \statement{The position of the object is between 2 and 3 kilometers}
+    \item \statement{The fair die landed on 1} $\finer$ \statement{The fair die landed on 3 or 4}
+    \item \statement{The first bit is 0 and the second bit is 1} $\finer$ \statement{The third bit is 0}
+\end{itemize}
+In these cases, the first statement may not be contained or overlap with the second. Even though the statements come from different disciplines (i.e. geometry, probability and information theory) they all work nicely with the same notion of fineness.
+
+Note that, conceptually, a statement is finer than another if it is true in fewer cases. Therefore the notion of fineness is linked to the notion of ``counting'' of the possible outcomes. It should be no surprise, then, that the same concept is compatible with the different disciplines above: geometrical size quantifies the ways we can arrange objects; probability theory quantifies the ratio of expected cases; information theory needs to quantify the different possible messages stored, computed or transmitted through an information system. Therefore the common structure we propose is not simply a mathematical pattern among disconnected structures: it is a single conceptual framework.
+
+We found a few ideas from comparative probability useful, but our goal cannot be achieved with a single measure. A single measure can only compare objects with a finite measure. All objects with zero measure (or infinite measure) are indistinguishable. For example, we want to say:
+\begin{itemize}
+    \item $\stmt_1$ = \statement{The horizontal position of the object is exactly 0 meters}
+    \item $\stmt_2$ = \statement{The horizontal position of the object is exactly 1 or 2 meters}
+    \item $\stmt_3$ = \statement{The horizontal position of the object is between 0.5 and 1.5 meters}
+    \item $\stmt_4$ = \statement{The horizontal position of the object is between 1.5 and 3.5 meters}
+    \item $\stmt_1 \finer \stmt_2 \finer \stmt_3 \finer \stmt_4$
+    \item $\stmt_1 \ncoarser \stmt_2 \ncoarser \stmt_3 \ncoarser \stmt_4$
+\end{itemize}
+Therefore we need to construct a family of measures, each identified by picking a particular statement that acts as a reference, as a unit. This provides a much richer structure, that is both interesting mathematically and more scientifically useful.
+
+As for geometry, geometric structures provide measures for different dimensionality by starting from a lowest definition (i.e. line distance for Riemannian and surface are for symplectic) and then constructing higher dimensional measures through products. While want to recover those cases as well, this is not general enough. In physics there will be dimensions that are not directly comparable (e.g. pressure, volume, number of particles, chemical potential) but are still comparable under appropriate composition (i.e. pressure times volume with number of particles times chemical potential). We want to have a structure rich enough to capture these physical ideas (i.e. systems of units) which is not typically done.
+
+\section{Overview}
+
+We now give a more detailed overview of the goal and status. This will also cover the conceptual understanding and physical motivation, not just the mathematical aspects. Later sections will present both what has been established to work and what not to work in full mathematical detail.
+
+We were not able to find similar work in the literature.\footnote{If the reader has relevant suggestions, we would appreciate them.} The closest is in the context of comparative probability\cite{definetti, villegas} from which we have taken some mathematical ideas. The problem is that the preorder they typically use is essentially equivalent to the probability measure they recover, while the whole point in our case, as mentioned in the introduction, is that the preorder should give us a richer structure.
+
+As we will see later, the notion of infinitesimals plays an important role. Therefore there may be overlap with ideas in non-standard analysis, though we have not researched that literature.
+
+\subsection{Fineness and granularity}
+
+We start with a $\sigma$-complete Boolean algebra $\tdomain$, which we call \textbf{theoretical domain}, that can be generated from a countable subset, a countable basis. Conceptually, this represents all the statements that can be associated with an experimental verification procedure. The full detail of why this is the correct abstraction is discussed in detail in our previous work.\cite{AoPBook} It is a property of this type of spaces that each statement $\stmt \in \tdomain$ can be expressed as a disjunction of possible cases, of the  \textbf{possibilities} of the domain.\footnote{For example, ``the mass of the object is less than 1 Kg'' is the disjunction (i.e. the logical OR) of all the statements of the form ``the mass of the object is exact $x$ Kg'' where $0 \leq x < 1$.} Formally, each possibility is a minterm\footnote{A minterm is a disjunction in which each term appears once, either negated or not.} of the countable basis. The theoretical domain can then equivalently be represented by a $\sigma$-algebra.\footnote{This conceptually maps perfectly to what one has in probability: a sample space (i.e. the set of possibilities) and a set of events (i.e. the statements in the domain). The advantage of our ``pointless'' constructions is that we can treat domains, subdomains and composite domains in the same manner.}
+
+A Boolean algebra is also a lattice, and therefore $\tdomain$ already comes with a partial order $\narrower$ such that $\stmt_1 \narrower \stmt_2$ if $\stmt_1 \OR \stmt_2 \equiv \stmt_2$. We call \textbf{narrowness} this partial order as it describes whether a statement gives a narrower description of another as we saw in the introduction. The narrowest statement in the domain is the impossibility $\impossibility$ and the broadest one is the certainty $\certainty$.\footnote{In terms of the $\sigma$-algebra, narrowness corresponds to set inclusion, the certainty is the full set and the impossibility is the empty set.}
+
+Conceptually, narrowness allows us to say that a description is more refined than another only if the first is fully contained in the second. It cannot compare descriptions that do not overlap, that are incompatible. That is why it is not sufficient to quantify the granularity, the level of detail, of the description. The ability to compare the granularity of the description of two statements, therefore, is captured by an additional binary relationship $\finer$ we call \textbf{fineness}.\footnote{In terms of the $\sigma$-algebra, fineness allows us to say that one set is ``bigger'' than another.}
+
+The whole program can be summarized in the following question: what intuitive conceptual properties does fineness have physically that, once properly formalized mathematically, allow us to recover measures, probability and geometrical structures?\footnote{In terms of the $\sigma$-algebra, how do we go from being able to compare the size of sets to being able to quantify it?}
+
+\subsubsection{Necessary properties for fineness}
+
+The first set of properties are the ones we must expect fineness to have in all cases. At this point, there are three, identified by DeFinetti\cite{definetti} for comparative probability, that we believe are necessary and that work as simple and intuitive starting points.
+
+\textbf{Boundness}. As we mentioned in the introduction, a description is finer than another if it can be true in fewer cases. This intuitive notion is in general ill-defined except for two cases. A certainty $\certainty$ (e.g. \statement{the position is between minus infinity and plus infinity}) is true in all cases, therefore it must be the coarsest statement. An impossibility (e.g. \statement{the position is between 0 and 1 and also between 2 and 3}) is false in all cases, therefore it must be the finest statement. This means that fineness must be uniquely bound by the impossibility and the certainty. Any contingent statement (i.e. one that can in principle be either true or false) must be strictly between the two since there are some cases in which it will be true and others in which it will be false. This is the first required property.\footnote{In terms of the $\sigma$-algebra, the full set is strictly the biggest set and the empty set is strictly the smallest set.}
+
+\textbf{Transitivity}. Additionally, if $\stmt_1$ gives finer description than $\stmt_2$ and $\stmt_2$ gives a finer description than $\stmt_3$ then it must be that $\stmt_1$ gives a finer description than $\stmt_3$. This means that fineness is transitive, and this is the second required property.
+
+\textbf{Offset monotonicity}. Lastly, if we take two descriptions and we make them less precise ``in the same way'', we must have the same relationship in fineness. More precisely, suppose we have two descriptions $\stmt_1$ and $\stmt_2$ and we pick a third description $\stmt$ that is incompatible\footnote{Two statements are incompatible if they can't be both true at the same time: their conjunction $\stmt_1 \AND \stmt \equiv \impossibility$ is impossible. This is the analogue of disjoint sets in a $\sigma$-algebra.} with both. The respective disjunctions $\stmt_1 \OR \stmt$ and $\stmt_2 \OR \stmt$ will be respectively ``equally'' broader than the respective original statement. Therefore we will want them to be ``equally'' coarser as well. In other words, it must be that $\stmt_1 \finer \stmt_2$ if and only if $\stmt_1 \OR \stmt \finer \stmt_2 \OR \stmt$: fineness must be offset monotonic\footnote{Some authors call this property ``monotony'', which we don't find descriptive. We prefer ``offset monotonicity'' as it makes it clear that adding or removing a ``constant'' on both sides is a monotonic operation.} in the sense that it is invariant if we add or remove a statement from both sides, and this is the third and last required property.\footnote{In terms of the $\sigma$-algebra, a set is smaller than another if and only if it is also smaller when we increase both sets with another disjoint from the two.}
+
+From these three properties, we can show the following:
+\begin{description}
+    \item[Preorder.] Fineness is a preorder over the theoretical domain $\tdomain$.
+    \item[Monotonicity.] Fineness respects narrowness: $\stmt_1 \narrower \stmt_2$ implies $\stmt_1 \finer \stmt_2$.
+    \item[Equigranularity is an equivalence.] Equigranularity, the symmetrization of fineness, is an equivalence class, and fineness is an order of those equivalence classes. That is, fineness orders the levels of description.
+\end{description}
+
+While we are not convinced these are sufficient properties to define fineness, we are also not found other properties that must be convincingly necessary. This is still an open area.
+
+\subsubsection{Optional properties for fineness}
+
+Optional properties for fineness include properties that are desirable, but are known to fail in some cases. These will be properties of a particular domain, rather than fineness itself.
+
+\textbf{Equigranularity of possibilities}. Possibilities provide a complete characterization of a domain: if we know one possibility to be true (e.g. \statement{the mass of the photon is exactly 0 eV}), we know the truth value of all other statements (e.g. \statement{the mass of the photon is between x and y eV}). Therefore it is natural to assume that all possibilities are equigranular. In fact, this is a necessary property if we want to have a unique measure when we take a possibility as a unit.\footnote{The measure, in this case, is simply the counting measure and equigranularity of the possibilities plays a role similar to the principle of indifference in classical probability} However, this property can be easily violated by creating a subdomain.
+
+Suppose we have a uniform domain with three possibilities: red, green, blue. We can take a ``color blind'' subdomain that cannot distinguish between red and green. This would have two possibilities: red/green and blue. This will not be uniform. The idea is that if the domain is not uniform, the cases are not really describing ``the same thing'': some information is missing. Equigranularity of possibilities, then, is not a property of fineness itself, but a property of a domain that is ``well-posed''.
+
+\textbf{Totality and physical dimensions}. If our objective is to construct a measure, totality is needed in the sense that every statement (i.e. every Borel set of possibilities) needs to be comparable with every other if we are to assign a unique number. However, statements whose size is defined in units of different physical dimensions (i.e. length, pressure, mass) should not be comparable. Lack of totality, in fact, should be a feature that allows us to formally construct a unit system.
+
+For example, in phase space (i.e. symplectic manifold) we would expect points to be comparable and equigranular $\eqgran$: each state gives the same description. This means that we can compare sets of finite points. Finite areas are also comparable to each other (through integration of the symplectic form), and are comparable to points. However, vertical lines (i.e. ranges in momentum alone) are not comparable to horizontal lines (i.e. ranges in position alone). Symplectic geometry, in fact, gives a size to areas and not to lines.
+
+Another counter example come from infinite ranges. Take the real line and consider the set of all positive numbers and the set of all negative numbers: should they be comparable? If we say they are equal, then that would tell us that there are more cases before 0 than after. This means that the space is not symmetrical under translation. If the real values represent distance between points, this is bad as it violates the idea that space is uniform. If the real values represents charge, however, this would actually make sense: the idea that there are exactly the same values for positive and negative charges does make sense, and the symmetry we are imposing is natural since zero is really a special number. Therefore different choices of comparability for the same Borel algebra is actually a feature we do not want to lose in general.
+
+However, once we pick the unit, we should be able to find the ``right'' set of statements on which to create the measure. Roughly speaking, two description of the same units are ``finitely comparable'' in the sense that one gives a finer description of the other of a finite factor. Descriptions of different unites are either ``infinitely comparable'' (i.e. areas are always bigger than lengths) or not comparable (i.e. position and momentum). One approach would be to ask the ``largest set of statements mutually comparable in fineness that contain the unit''. In general, we have no expectation that this would be unique. So one question would be: when is this true?
+
+\subsubsection{Unsettled properties for fineness}
+
+\textbf{Boolean lattice}. Granularity levels (i.e. equigranularity equivalence classes) form a bounded partially ordered set. One wonders whether they form a lattice. Physically this would make sense: we would be saying that given a set of statements $S \subseteq \tdomain$, we can always find a level of description that is the finest among all coarser descriptions than all the statements (i.e. $\bigveedot S$) and a level of description that is the coarsest among all finest descriptions than all the statements (i.e. $\bigwedgedot S$). However, it is not clear whether this is required, something only to be imposed in some cases or something that can be already proven.
+
+Regardless, the map from a statement to its level of description (i.e. equivalence class in equigranularity), while it is an order isomorphism and preserves the top and bottom, is not a lattice isomorphism. That is, it does not preserve the meet and join. Let us note $\dot{\stmt} = {\stmt}_{/\eqgran}$ the level of granularity of $\stmt$. Now suppose that $\stmt_1 \eqgran \stmt_2 \nequiv \impossibility$ and $\stmt_1 \ncomp \stmt_2$. Then $\dot{\stmt}_1 = \dot{\stmt}_2 \neq \dot{\impossibility}$. Now suppose that $\stmt \to \dot{\stmt}$ is a lattice isomorphism. Then $\dot{\impossibility} = (\stmt_1 \AND \stmt_2)_{/\eqgran} = \dot{\stmt}_1 \wedgedot \dot{\stmt}_2 = \dot{\stmt}_1 \wedgedot \dot{\stmt}_1 = \dot{\stmt}_1$, which contradicts the premise.
+
+\textbf{Addition}. We also need to understand how to define the addition and subtraction. Conceptually, the addition of two level of precision $\dot{\stmt}_1 + \dot{\stmt}_2$ means returning the level of precision that can be achieved by taking the disjunction $\stmt_1 \OR \stmt_2$ of two incompatible statements $\stmt_1 \in \dot{\stmt}_1$ and $\stmt_2 \in \dot{\stmt}_2$. This, of course, is not possible if the statements are ``bigger'' than ``half'' the space (e.g. $\stmt_1 \eqgran \stmt_2$, $\stmt_1 \comp \stmt_2$ and $\stmt_1 \OR \stmt_2 \equiv \certainty$). A more order theoretical definition would be to take all possible disjuctions of $\stmt[v]_1 \OR \stmt[v]_2$ such that $\stmt[v]_1 \in \dot{\stmt}_1$ and $\stmt[v]_2 \in \dot{\stmt}_2$ and return the coarsest level of description. That is, the sum is the least upper bound in fineness of all possible disjunctions. One should be able to prove that the incompatible disjunction corresponds to that level of description.
+
+It is not clear whether the axioms above are enough to show that the addition always exists. It may be that the existence of the addition, or a premise that leads to it, needs to be added. It is not clear whether, physically, such addition always makes sense, particularly in the context of incomparable descriptions (e.g. descriptions quantified in different units).
+
+\textbf{Product}. Another thing that needs to be defined/recovered is that independent domains lead to the product of the measure. This means that there must be some compatibility condition between statement independence and fineness. It is not clear whether this compatibility is already embedded in the given axioms or not. The issue is that, in comparative probability, independence is only defined later in terms of the probability measure. In our framework, we have already a notion of independence that is defined on statements and logic operation, which is based on the idea of whether fixing the truth value of some statements will also fix the truth value of other statements.
+
+\textbf{Missing axioms}. In many of our proofs, we ran into an issue of not being able to guarantee existence of certain statements. Several of the definitions we wanted included statements like ``say x holds if there exist statement y such that w." However, we have no axioms that guarantee any existence of any statements beyond $\certainty$ and $\impossibility$. In the case of an infinite collection of possibilities, we have no way to guarantee existence of statements of various levels of fineness when all statements in question are compatible with infinitely many possibilities. 
+
+To summarize, we may want to add something about existence of statements in equigranularity classes so as to have no ``gaps" (e.g. the order on $\tdomain/_{\eqgran}$ is complete). We may also want to say something about existence of enough statements representing each equivalence class so that sum and product can be well-defined. For example, if $\stmt_1\finer\stmt_2$, we want to say that there exists $\stmt_1'$ with $\stmt_1'\eqgran\stmt_1$ and $\stmt_1'\narrower\stmt_2$, as well as $\stmt_1''$ such that $\stmt_2\AND\stmt_1''$ is minimal in some sense ($\stmt_2\ncomp\stmt_1''$ if they do not fill the space). This is not at all guaranteed by the decomposition of statements into possibilities, since cardinality does not help us here.
+
+\textbf{Bigger and smaller halfs}. One thing that appears to be missing is the following. Consider the following domain with four possibilities $\{x_1, x_2, x_3, x_4\}$. Each statement is the disjunction of a set of possibilities and let us use the lower indexes to indicate them. For example, $\stmt_{12} = x_1 \OR x_2$. Now, suppose $\stmt_{12} \broader \stmt_{34}$ and $\stmt_{14} \broader \stmt_{23}$. The two pairs are incompatible (disjoint) statements whose conjunction is the certainty. In a sense $\stmt_{14}$ is more than half the certainty while $\stmt_{34}$ is less than half the certainty. So, we would expect $\stmt_{14} \broader \stmt_{34}$. Yet, our axioms do not guarantee that. To prove that, we wrote a program that constructed all possible relationships given the axioms, and that relationship was not derived.
+
+One may think we are then able to create a nonsensical situation, where $\stmt_{34} \broader \stmt_{14}$. What happens is that now we can apply offset monotonicity multiple times like so: $\stmt_{34} \broader \stmt_{14} \implies \stmt_{3} \broader \stmt_{1} \implies \stmt_{23} \broader \stmt_{12}$. Therefore $\stmt_{12} \broader \stmt_{34} \broader \stmt_{14} \broader \stmt_{23} \broader \stmt_{12}$. Which means $\stmt_{12} \eqgran \stmt_{34} \eqgran \stmt_{14} \eqgran \stmt_{23}$. Therefore, while we can't derive the fact that the bigger halfs are coarser than smaller halfs, if we try to force a smaller half to be coarser than a bigger half we actually get equal halfs. That is: if the two halfs are comparable, then we must have at least that the bigger half is coarser than the smaller half. This is interesting because, in this case, the mere assumption of comparability force at least a specific relationship.
+
+So the real issue is: does it make sense for those halfs to not be comparable? It is still not clear one way or the other.
+
+\subsection{A family of measures}
+
+The main goal is to understand under what conditions we can pick a statement $\stmt[u]$ and find a unique measure $\mu_{\stmt[u]} : \tdomain \to \mathbb{R}$ with the following properties:
+\begin{description}
+    \item[Normalization.] The value for the unit is one,  $\mu_{\stmt[u]}(\stmt[u]) = 1$.
+    \item[Monotonicity.] It is a monotonic function with respect to fineness; if $\stmt_1 \finer \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$.
+    \item[Finite additivity.] If $\stmt_1 \ncomp \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1 \OR \stmt_2) = \mu_{\stmt[u]}(\stmt_1) + \mu_{\stmt[u]}(\stmt_2)$.
+\end{description}
+
+\textbf{Countable additivity}. Additionally, we want to understand when finite additivity can be extended to countable additivity. In general, countable additivity will fail. Consider a space with countably many possibilities, all of them equigranular. If we take the certainty as a unit, each possibility is infinitely smaller, and therefore it must be assigned a measure zero. Therefore, the sum (i.e. the disjunction) of infinitely many measure zero statements is one. 
+
+\textbf{Equigranular possibilities}. If a possibility is taken as a unit, then the equigranularity of possibilities is a sufficient condition and it leads to the counting measure on the possibilities. This is strictly not necessary: we could have a domain with 5 possibilities $\{x_1, x_2, x_3, y_1, y_2\}$ such that $x_1 \eqgran x_2 \eqgran x_3$, $y_1 \eqgran y_2$ and $x_1 \OR x_2 \OR x_3 \eqgran y_1 \OR y_2$. If we took $x_1$ as a unit, this would lead to a unique measure such that $\mu(x_1)=\mu(x_2)=\mu(x_3)=1$ and $\mu(y_1)=\mu(y_2)=3/2$. This also tells us that we may not be really interested in necessary conditions, since these cases are contrived. Rather, we are interested in sufficient conditions that can be well justified from the physics.
+
+\textbf{Lack of reverse monotonicity}. Monotonicity only works in one direction. If a statement describing an area is taken as unit, all statements about lines, points and countable sets of both are going to be measure zero. Therefore equal measure does not mean equal fineness. This is why fineness can generate a family of measures: it has more information than a single one. When we pick a unit, then, the measure has to ``collapse`` the equivalence classes of equigranularity appropriately. This is tightly linked with a notion of infinitesimal (i.e. the ordering over the level of granularity is non-archemedian, while the real numbers are) which we will see in the next subsection. The address this collapse in a controlled way, the idea is to proceed in the following way:
+\begin{enumerate}
+    \item pick a unit $\stmt[u]$ and define the notion of infinitesimal
+    \item define the preorder $\lequ$ and the equivalence $\equ$ that compares levels of description up to infinitesimals
+    \item show that $\lequ$ is order isomorphic to the reals
+    \item show that we can pick a particular isomorphism that respects linear addittivity.
+\end{enumerate}
+
+\subsubsection{Infinitesimals and finite comparison}
+
+\textbf{Overview}. The measure zero sets are related to the notion of infinitesimals and the Archimedean property. The Archimedean property is typically discussed in terms of linearly ordered groups and fields. Roughly speaking, if we pick an element $y$ an element $x$ is infinitesimal with respect to $y$ if $\sum\limits_{i=1}^n x < y$ for any $n$. The group is Archimedean if no element is infinitesimal with respect to another.
+
+The (positive) real numbers are Archimedean. If we take a lattice of sets and use disjoint union as addition, the lattice is not Archimedean. A measure will therefore need a non-Archimedean structure (i.e the sets) into an Archimedean one (i.e. the positive reals). Infinitesimals therefore need to be mapped to zero. Note that for the measure to be countably additive, we need to have that the countable sum of infinitesimals is still infinitesimals. This will not be true in general: a set with finitely many integers is infinitesimal with respect to the set of all integers; yet the set of all integers is the disjoint union of countably many finite sets of integers.
+
+Note that on Page 21 de Finetti\cite{definetti} specifically says that $P(E) \geq P(E’)$ implies $E \geq E’$ but not vice-versa. And that we can have $P(A)=P(B)=0$ even if $A<B$ if $A$ is impossible and $B$ is not. So, the ordering he has in mind is fineness for us. And then he says that this means that the 4 postulates give a non-Archimedean structure. But you can make it Archimedean by ignoring the probabilities that are “infinitesimally small”: those that multiplied by a number, however big, will never become the certainty. On the other hand, Villegas\cite{villegas} starts already with an ordering where the infinitesimals are equal to the empty set. This maps to $\lequ$ defined later, where the comparison is done up to infinitesimals.
+
+\textbf{Definition of infinitesimals}. The first issue is to find the correct definition to extend this concept on ordering. The addition discussed above (i.e. the disjoint union of statements) should play the role of the group operation. Conceptually, a statement $\stmt$ is infinitesimal with respect to another $\stmt[u]$ if for any $n$ we can find a finite set of equigranular incompatible statements whose disjunction is finer than $\stmt[u]$. That is, we need infinitely many statements equigranular to $\stmt$ to cover a statement of the same granularity than $\stmt[u]$.
+
+The main issue here is that, since the ordering is potentially not total, it is not clear how one can prove the existence of said sets of statements even in the simplest cases. Therefore we have to find a definition that works well also in the case of non-comparability.
+
+\textbf{Definition of infinitesimals}. Assuming those issues are solved, infinitesimals come in two types: countable and uncountable. A countable infinitesimal will be such that the disjoint conjunction of countably many equigranular statements may be bigger than the unit. This is the case where, in the end, the measure will only be finitely additive: infinitely many zero measure elements will sum to a finite element. If all infinitesimal with respect to the unit are uncountable, instead, countably many zero measure elements will still form a zero measure element.
+
+This insight may give us a way to define ``finite'' and ``infinite'' elements in an absolute way. A finite element has no countable infinitesimal. For example, take the unit interval over the reals and consider the standard Lebesque measure over the Borel sets (which would correspond to our theoretical domain). All sets of measure zero are uncountable infinitesimals with respect to the unit: since the measure is countably additive, any disjoint union of countably many measure zero sets is going to be measure zero, therefore it will not be as big as the unit. Naturally, if we take a uncountably many sets (i.e. all the singletons) we can cover the whole unit. Conversely, the full real line can be covered by countably many sets of unit size. While the unit interval is infinitesimally small with the respect with the whole line, it is a countable infinitesimal. This definition of ``finiteness'' may map to physical requirements much better than, for example, the topological notion of compactness.
+
+Once a notion of infinitesimals is well defined, we would define a preorder $\lequ$ and an equivalence relationship $\equ$ that compares the level of description of the statements up to infinitesimals.
+
+\subsubsection{Recovering bounded measures}
+
+The next step is to understand how the properties of $\lequ$ would compare to the requirements set by, for example Villegas \cite{villegas}. In the context of comparative probability, there are theorems that allow to go from a preorder to a probability measure. The idea would be to reuse, as much as possible, the ideas from that literature. Once we pick a unit $\stmt[u]$, we can restrict ourselves to all statements narrower than $\stmt[u]$. At that point, we are looking for has all the mathematical properties of a probability measure as the biggest element, $\stmt[u]$, has to have measure one.
+
+\textbf{Countable addittivity}. One issue will be the problem of countable infinitesimals, which are incompatible with a countable measure. Therefore one of the assumptions in comparative probability will effectively exclude the case. We need to understand how that works, so that we can adapt the proofs and allow for only finitely additive measures. The hope is that if we pick a unit for which all infinitesimals are uncountable, then one can demonstrate the requirements for the previous theorems
+
+\textbf{Measure domain}. The other issue is that the measure will not be, in general, on the whole domain $\tdomain$, but on a subset $\tdomain_{\stmt[u]}$ that must be totally comparable under $\lequ$. It is not clear how to recover this set. It may be that the equivalence classes of $\equ$ will make our job easier: if two infinitesimal are not comparable in fineness, they will still be merged together. Therefore  incomparable statements may be comparable in $\lequ$ if they can be compared up to an infinitesimal.
+
+The goal here is to solve the above problems to be find the prerequisites for the following proposition: given a statement $\stmt[u] \in \tdomain$ we can define a maximal set of mutually comparable statements in $\lequ$ that contains $\stmt[u]$, upon which we can define a unique $\mu_{\stmt[u]} : \tdomain_{\stmt[u]} \to \mathbb{R}$ such that:
+\begin{description}
+    \item[Normalization.] The value for the unit is one,  $\mu_{\stmt[u]}(\stmt[u]) = 1$.
+    \item[Order isomorphism.] $\stmt_1 \lequ \stmt_2$ if and only if $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$.
+    \item[Finite additivity.] If $\stmt_1 \ncomp \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1 \OR \stmt_2) = \mu_{\stmt[u]}(\stmt_1) + \mu_{\stmt[u]}(\stmt_2)$.
+\end{description}
+Moreover, if $\stmt[u]$ has no countable infinitesimals, $\mu_{\stmt[u]}$ is countably additive.
+
+\subsubsection{Extending the measures}
+
+Once we know how to construct measures on the sub-algebra of statements narrower than the unit, we should be able to ``stitch them together'' in the following way. 
+
+\begin{enumerate}
+    \item Prove that if $\stmt[v] \narrower \stmt[u]$ then $\mu_{\stmt[u]}(\stmt[w]) = \mu_{\stmt[u]}(\stmt[v]) \mu_{\stmt[v]}(\stmt[w]) $ for all $\stmt[w] \narrower \stmt[v]$. There are going to be two cases. If $\stmt[v]$ is infinitesimal with respect to $\stmt[u]$ then $\mu_{\stmt[u]}(\stmt[w])$ is zero and $\mu_{\stmt[u]}(\stmt[v])$ is zero. If not, we know that the infinitesimals with respect to $\stmt[u]$ are exactly the infinitesimals with resepect to $\stmt[v]$, so the equivalence classes of $\equ$ and $\equ[v]$ are the same. At that point, one should be able to use the properties of the measures to prove the rest.
+    \item Given two statements $\stmt[u] \narrower \stmt[v]$, we extend the measure on $\stmt[u]$ by defining $\mu_{\stmt[u]}(\stmt[v]) = 1/ \mu_{\stmt[v]}(\stmt[u])$. If $\mu_{\stmt[v]}(\stmt[u]) = 0$ then $\mu_{\stmt[u]}(\stmt[v]) = \infty$.
+    \item To extend the measure on all other statements. Given two statements $\stmt[v]$ and $\stmt[u]$ we can construct the measure $\mu_{\stmt[u]\OR\stmt[v]}$. We have $\mu_{\stmt[u]}(\stmt[v]) = \mu_{\stmt[u]}(\stmt[u]\OR\stmt[v]) \mu_{\stmt[u]\OR\stmt[v]}(\stmt[v])$.
+\end{enumerate}
+
+One issue will be, again, proving the consistent of comparability with different units since all the domains $\tdomain_{\stmt[u]}$ do not contain all the statements.
+
+\section{Current attempt}
+
+\subsection{Basic fineness definitions}
+
+\begin{defn}
+    A \textbf{theoretical domain} $\tdomain$ is a $\sigma$-complete Boolean algebra that can be generated by a countable subset. We call \textbf{narrowness} the partial order of the algebra, that is $x \narrower y$ when $x \OR y = y$. We say $x \in \tdomain$ is a \textbf{possibility} if it is the immediate successor of the impossibility $\impossibility$. That is, $\impossibility \snarrower x$ and there is no $\stmt \in \tdomain$ such that $\impossibility \snarrower \stmt \snarrower x$.
+\end{defn}
+
+The fact that the $\sigma$-algebra is generated by a countable set means it is separable. It also means that each element can be constructed as a disjunction of a set of possibilities. For the full definitions, see \cite{AoPBook}.
+
+\begin{defn}\label{fineness}
+	 Fineness is a binary relationship $\finer : \tdomain \times \tdomain \to \Bool$ with the following properties:
+	\begin{itemize}
+		\item boundedness: for each contingent statement $\stmt \in \tdomain$ we have $\impossibility \sfiner \stmt \sfiner \certainty$
+		\item transitivity: if $\stmt_1 \finer \stmt_2$ and $\stmt_2 \finer \stmt_3$ then $\stmt_1 \finer \stmt_3$
+		\item offset monotonicity: if $\stmt \ncomp \stmt_1$ and $\stmt \ncomp \stmt_2$ then $\stmt_1 \finer \stmt_2$ if and only if $\stmt \OR \stmt_1 \finer \stmt \OR \stmt_2$.
+	\end{itemize}
+\end{defn}
+
+\begin{defn}
+    We say $\stmt_1$ is \textbf{equigranular} to $\stmt_2$ (noted $\stmt_1 \eqgran \stmt_2$) if $\stmt_1 \finer \stmt_2$ and $\stmt_2 \finer \stmt_1$. We say $\stmt_1$ is \textbf{strictly finer} than $\stmt_2$ (noted $\stmt_1 \sfiner \stmt_2$) if $\stmt_1 \finer \stmt_2$ but not $\stmt_2 \finer \stmt_1$.
+\end{defn}
+
+\begin{prop}\label{fineness_properties}
+    Fineness obeys the following properties:
+    \begin{enumerate}
+        \item if $\stmt \ncomp \stmt_1$ and $\stmt \ncomp \stmt_2$ then $\stmt_1 \sfiner \stmt_2$ if and only if $\stmt \OR \stmt_1 \sfiner \stmt \OR \stmt_2$ (these two tell us that offset monotonicity can be extend to strict fineness and equigranularity)
+        \item if $\stmt \ncomp \stmt_1$ and $\stmt \ncomp \stmt_2$ then $\stmt_1 \eqgran \stmt_2$ if and only if $\stmt \OR \stmt_1 \eqgran \stmt \OR \stmt_2$
+        \item if $\stmt_1 \narrower \stmt_2$ then $\stmt_1 \finer \stmt_2$ (these three tell us fineness and narrowness are monotonically ordered)
+        \item if $\stmt_1 \snarrower \stmt_2$ then $\stmt_1 \sfiner \stmt_2$
+        \item if $\stmt_1 \equiv \stmt_2$ then $\stmt_1 \eqgran \stmt_2$
+        \item $\stmt_1 \finer \stmt_2$ if and only if $\stmt_1 \AND \NOT \stmt_2 \finer \stmt_2 \AND \NOT \stmt_1$ (these three tell us the region of overlap does not matter)
+        \item $\stmt_1 \sfiner \stmt_2$ if and only if $\stmt_1 \AND \NOT \stmt_2 \sfiner \stmt_2 \AND \NOT \stmt_1$
+        \item $\stmt_1 \eqgran \stmt_2$ if and only if $\stmt_1 \AND \NOT \stmt_2 \eqgran \stmt_2 \AND \NOT \stmt_1$
+        \item if $\stmt_1 \finer \stmt_2$ then $\NOT \stmt_2 \finer \NOT \stmt_1$ (these two tell us that fineness works well with negation)
+        \item if $\stmt_1 \sfiner \stmt_2$ then $\NOT \stmt_2 \sfiner \NOT \stmt_1$
+        \item if $\certainty \finer \stmt$ then $\certainty \narrower \stmt$ and therefore $\stmt \equiv \certainty$ (these two tells us that fineness can recover narrowness for certainties and impossibilities)
+        \item if $\stmt \finer \impossibility$ then $\stmt \narrower \impossibility$ and therefore $\stmt \equiv \impossibility$
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+For 1, let $\stmt \ncomp \stmt_1$ and $\stmt \ncomp \stmt_2$. Suppose $\stmt_1 \sfiner \stmt_2$, then $\stmt_1 \finer \stmt_2$ and $\stmt_1 \ncoarser \stmt_2$. By offset monotonicity we have $\stmt \OR \stmt_1 \finer \stmt \OR \stmt_2$ and $\stmt \OR \stmt_1 \ncoarser \stmt \OR \stmt_2$. Therefore $\stmt \OR \stmt_1 \sfiner \stmt \OR \stmt_2$. Conversely, if $\stmt \OR \stmt_1 \sfiner \stmt \OR \stmt_2$ then $\stmt \OR \stmt_1 \finer \stmt \OR \stmt_2$ and $\stmt \OR \stmt_1 \ncoarser \stmt \OR \stmt_2$. By offset monotonicity $\stmt_1 \finer \stmt_2$ and $\stmt_1 \ncoarser \stmt_2$, which means $\stmt_1 \sfiner \stmt_2$.
+
+For 2, now suppose $\stmt_1 \eqgran \stmt_2$, then $\stmt_1 \finer \stmt_2$ and $\stmt_1 \coarser \stmt_2$. By offset monotonicity we have $\stmt \OR \stmt_1 \finer \stmt \OR \stmt_2$ and $\stmt \OR \stmt_1 \coarser \stmt \OR \stmt_2$. Therefore $\stmt \OR \stmt_1 \eqgran \stmt \OR \stmt_2$. Conversely, if $\stmt \OR \stmt_1 \eqgran \stmt \OR \stmt_2$ then $\stmt \OR \stmt_1 \finer \stmt \OR \stmt_2$ and $\stmt \OR \stmt_1 \coarser \stmt \OR \stmt_2$. By offset monotonicity $\stmt_1 \finer \stmt_2$ and $\stmt_1 \coarser \stmt_2$, which means $\stmt_1 \eqgran \stmt_2$.
+
+For 3, suppose $\stmt_1 \narrower \stmt_2$. Then $\NOT \stmt_2 \ncomp \stmt_2$ and $\NOT \stmt_2 \ncomp \stmt_1$. Since fineness is uniquely bounded, we have $\NOT \stmt_2 \OR \stmt_1 \finer \certainty$. We have $\certainty \equiv \NOT \stmt_2 \OR \stmt_2 \coarser \NOT \stmt_2 \OR \stmt_1$. By offset monotonicity we have $\stmt_2 \coarser \stmt_1$.
+
+For 4, suppose $\stmt_1 \snarrower \stmt_2$. Then $\NOT \stmt_2 \OR \stmt_1$ is a contingent statement and, since fineness is uniquely bounded, $\NOT \stmt_2 \OR \stmt_1 \sfiner \certainty \equiv \NOT \stmt_2 \OR \stmt_2$. By 1 we have $\stmt_1 \sfiner \stmt_2$.
+
+For 5, suppose $\stmt_1 \equiv \stmt_2$. Then $\stmt_1 \narrower \stmt_2$ and $\stmt_2 \narrower \stmt_1$, which means $\stmt_1 \finer \stmt_2$ and $\stmt_1 \finer \stmt_2$ and therefore $\stmt_1 \eqgran \stmt_2$.
+
+For 6, note that $\stmt_1 \equiv (\stmt_1 \AND \NOT \stmt_2) \OR (\stmt_1 \AND \stmt_2)$, $\stmt_2 \equiv (\NOT \stmt_1 \AND \stmt_2) \OR (\stmt_1 \AND \stmt_2)$ with $\stmt_1 \AND \stmt_2 \ncomp \stmt_1 \AND \NOT \stmt_2$ and $\stmt_1 \AND \stmt_2 \ncomp \NOT \stmt_1 \AND \stmt_2$. By offset monotonicity, $\stmt_1 \finer \stmt_2$ if and only if $\stmt_1 \AND \NOT \stmt_2 \finer \NOT \stmt_1 \AND \stmt_2$.
+
+For 7 and 8, use 1 and 2 respectively in the final step.
+
+For 9, note that $\stmt_1 \AND \NOT \stmt_2 \equiv (\NOT \stmt_2) \AND \NOT (\NOT \stmt_1)$ while $\NOT \stmt_1 \AND \stmt_2 \equiv \NOT (\NOT \stmt_2) \AND (\NOT \stmt_1)$. We have $\stmt_1 \finer \stmt_2$ if and only if (by 6)  $\stmt_1 \AND \NOT \stmt_2 \finer \NOT \stmt_1 \AND \stmt_2$ if and only if (by the equivalence) $(\NOT \stmt_2) \AND \NOT (\NOT \stmt_1) \finer \NOT (\NOT \stmt_2) \AND (\NOT \stmt_1)$ if and only if (by 6 again) $\NOT \stmt_2 \finer \NOT \stmt_1$.
+
+For 10, use 7 whenever 6 was used.
+
+For 11, suppose $\certainty \finer \stmt$. By unique boundedness, $\stmt$ can neither be contingent nor impossible. Therefore $\stmt$ must be certain.
+
+For 12, suppose $\stmt \finer \impossibility$. By unique boundedness, $\stmt$ can neither be contingent nor certain. Therefore $\stmt$ must be impossible.
+\end{proof}
+
+\begin{prop}
+    Fineness is a preorder.
+\end{prop}
+
+\begin{proof}
+    Let $\stmt \in \tdomain$. Since $\stmt \narrower \stmt$, by \ref{fineness_properties}.3 $\stmt \finer \stmt$ and therefore fineness is reflexive. By \ref{fineness} fineness is also transitive and therefore is a preorder.
+\end{proof}
+
+\begin{prop}
+Other properties satisfied by fineness:
+\begin{enumerate}
+    \item if $\stmt[s]_1 \ncomp \stmt[s]_2$ and $\stmt[v]_1 \ncomp \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ and $\stmt_2 \finer \stmt[v]_2$ imply  $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
+    \item (monotony as in Villegas) if $\stmt[v]_1 \ncomp \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ and $\stmt_2 \finer \stmt[v]_2$ imply  $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
+    \item if $\stmt_1 \ncomp \stmt_2$, $\stmt[v]_1 \ncomp \stmt[v]_2$ and $\stmt_2 \eqgran \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ if and only if $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
+\end{enumerate}
+\end{prop}
+
+\begin{center}
+\includegraphics[scale=.2]{VillegasDiagram.jpg}
+\end{center}
+
+\begin{proof}
+For 1, using the diagram as an aid, let us decompose the four statements into the disjunction of eight pairwise incompatible statements. We have
+\begin{itemize}
+    \item $\stmt[v]_1 \equiv \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_8 $
+    \item $\stmt[v]_2 \equiv \stmt[w]_4 \OR \stmt[w]_5 \OR \stmt[w]_6 $
+    \item $\stmt[s]_2 \equiv \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_4 $
+    \item $\stmt[s]_1 \equiv \stmt[w]_6 \OR \stmt[w]_7 \OR \stmt[w]_8 $
+\end{itemize}
+where
+\begin{itemize}
+    \item $\stmt[w]_1 \equiv \stmt[v]_1 \AND \NOT \stmt[s]_1 \AND \NOT \stmt[s]_2 $
+    \item $\stmt[w]_2 \equiv \stmt[v]_1 \AND \stmt[s]_2 $
+    \item $\stmt[w]_3 \equiv \stmt[s]_2 \AND \NOT \stmt[v]_1 \AND \NOT \stmt[v]_2 $
+    \item $\stmt[w]_4 \equiv \stmt[v]_2 \AND \stmt[s]_2 $
+    \item $\stmt[w]_5 \equiv \stmt[v]_2 \AND \NOT \stmt[s]_1 \AND \NOT \stmt[s]_2 $
+    \item $\stmt[w]_6 \equiv \stmt[v]_2 \AND \stmt[s]_1 $
+    \item $\stmt[w]_7 \equiv \stmt[s]_1 \AND \NOT \stmt[v]_1 \AND \NOT \stmt[v]_2 $
+    \item $\stmt[w]_8 \equiv \stmt[v]_1 \AND \stmt[s]_1 $
+\end{itemize}
+
+Since all $\{ \stmt[w]_i \}$ are pair-wise incompatible, offset monotonicity allows to remove or add the same statement on both sides of a fineness relationship. Therefore
+\begin{itemize}
+    \item $\stmt[v]_1 \coarser \stmt[s]_1 \implies  \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_8 \coarser \stmt[w]_6 \OR \stmt[w]_7 \OR \stmt[w]_8 \implies \stmt[w]_1 \OR \stmt[w]_2 \coarser \stmt[w]_6 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_7$
+    \item $\stmt[v]_2 \coarser \stmt[s]_2 \implies  \stmt[w]_4 \OR \stmt[w]_5 \OR \stmt[w]_6 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_4 \implies \stmt[w]_5 \OR \stmt[w]_6 \coarser \stmt[w]_2 \OR \stmt[w]_3 \implies \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_7 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7$
+    \item $\stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_7 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_5 \coarser \OR \stmt[w]_3 \OR \stmt[w]_7$
+\end{itemize}
+Finally $\stmt[w]_1 \OR \stmt[w]_5 \coarser \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_4 \OR \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_8 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_4 \OR \stmt[w]_6 \OR \stmt[w]_7 \OR \stmt[w]_8 \implies \stmt[v]_1 \OR \stmt[v]_2 \coarser \stmt[s]_1 \OR \stmt[s]_2$.
+
+For 2, let $\hat{\stmt[s]}_2 = \stmt[s]_2 \AND \NOT \stmt[s]_1$. We have $\stmt[s]_1 \ncomp \hat{\stmt[s]}_2$ and $\hat{\stmt[s]}_2 \finer \stmt[s]_2 \finer \stmt[v]_2$ since $\hat{\stmt[s]}_2 \narrower \stmt[s]_2$. By 1, we have $\stmt[s]_1 \OR \hat{\stmt[s]}_2 \finer \stmt[v]_1 \OR \stmt[v]_2$. But since $\stmt[s]_1 \OR \hat{\stmt[s]}_2 \equiv \stmt[s]_1 \OR (\stmt[s]_2 \AND \NOT \stmt[s]_1) \equiv (\stmt[s]_1 \OR \stmt[s]_2) \AND (\stmt[s]_1 \OR \NOT \stmt[s]_1) \equiv \stmt[s]_1 \OR \stmt[s]_2$, we have $\stmt[s]_1 \OR \stmt[s]_2 \finer \stmt[v]_1 \OR \stmt[v]_2$..
+
+\end{proof}
+
+\begin{conj}
+Other properties that show how the most you can broaden something within an equigranular equivalence class is by a disjunction with something incompatible.
+	
+\begin{itemize}
+	\item if $\stmt_1 \ncomp \stmt_2$, $\stmt[v]_1 \ncomp \stmt[v]_2$ and $\stmt_2 \eqgran \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ if and only if $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
+	
+	\item if $\stmt[v]_1\ncomp\stmt[v]_2$, $\stmt[v]_2\eqgran\stmt_2$, and $\stmt_1\finer\stmt[v]_1$. Then $\stmt_1\OR\stmt_2\finer\stmt[v]_1\OR\stmt[v]_2$.
+\end{itemize}
+
+\end{conj}
+
+\begin{prop}
+    Equigranularity is an equivalence relationship.
+\end{prop}
+
+\begin{proof}
+    It is an equivalence relationship because it is the symmetrization of a preorder. Since fineness is reflexive then equigranularity is also reflexive: for all $\stmt \in \tdomain$ $\stmt \finer \stmt$ and therefore $\stmt \eqgran \stmt$. Since fineness is transitive then equigranularity is also transitive: $\stmt_1 \eqgran \stmt_2 \eqgran \stmt_3$ means $\stmt_1 \finer \stmt_2 \finer \stmt_3$ therefore $\stmt_1 \finer \stmt_3$ but also $\stmt_3 \finer \stmt_2 \finer \stmt_1$ therefore $\stmt_3 \finer \stmt_1$ and finally $\stmt_1 \eqgran \stmt_3$. Additionally, equigranularity is reflexive by definition and is therefore an equivalence relationship.
+\end{proof}
+
+\begin{defn}
+    Let $\tdomain_{/\eqgran}$ be the equivalence classes of equigranularity. We call \textbf{granularity level} an equivalence class of equigranularity. Let $(\cdot)_{/\eqgran} : \tdomain \to \tdomain_{/\eqgran}$ the map from a statement to its granularity level, which we also note $\dot{\stmt} = {\stmt}_{/\eqgran}$. We say $\dot{\stmt}$ is the granularity level of $\stmt$.
+\end{defn}
+
+\begin{prop}
+    The function $(\cdot)_{/\eqgran}$ is an order homomorphism.
+\end{prop}
+
+\begin{proof}
+    Let $\stmt_1, \stmt_2 \in \tdomain$. Suppose $\stmt_1 \narrower \stmt_2$ then by \ref{fineness_properties}.3 $\stmt_1 \finer \stmt_2$ and therefore ${\stmt_1}_{/\eqgran} \finer {\stmt_2}_{/\eqgran}$. Then $(\cdot)_{/\eqgran}$ is an order isomorphism.
+\end{proof}
+
+\begin{remark}
+    Regardless of whether $\tdomain_{/\eqgran}$ is a lattice, $(\cdot)_{/\eqgran}$ can never be a lattice homomorphism. It will be crucial that two equigranular statements can be incompatible, and this in contradiction with $(\cdot)_{/\eqgran}$ being a lattice homomorphism. Let us note $\dot{\stmt} = {\stmt}_{/\eqgran}$ the level of granularity of $\stmt$. Now suppose that $\stmt_1 \eqgran \stmt_2 \nequiv \impossibility$ and $\stmt_1 \ncomp \stmt_2$. Then $\dot{\stmt}_1 = \dot{\stmt}_2 \neq \dot{\impossibility}$. Now suppose that $\stmt \to \dot{\stmt}$ is a lattice isomorphism. Then $\dot{\impossibility} = (\stmt_1 \AND \stmt_2)_{/\eqgran} = \dot{\stmt}_1 \wedgedot \dot{\stmt}_2 = \dot{\stmt}_1 \wedgedot \dot{\stmt}_1 = \dot{\stmt}_1$, which contradicts the premise.
+\end{remark}
+
+\begin{remark}
+We claim there exist domains which have all possibilities equigranular but fineness is not a total order. Suppose we have a theoretical domain in bijection with the power set of the natural numbers, $\mathcal{P}(\mathbb{N})$. The partial order of narrowness may be given by the ordering of the power set by set containment, and the possibilities (which also serve as a countable generating set) are given by $\mathbb{N}$. The hypotheses of the fineness relation (Definition \ref{fineness}) are satisfied if we order contingent statements by cardinality, with the additional requirement that infinite strict subsets of $\mathbb{N}$ are considered strictly finer than the certainty $\mathbb{N}\in\mathcal{P}(\mathbb{N})$. All finite sets will be totally (pre)ordered, but infinite sets will not be ordered. We note that one could just say that $\stmt_1\finer\stmt_2$ for every pair of infinite contingent statements $\stmt_1,\stmt_2$, but even if we remove those from the relation $\finer$, the axioms are still satisfied, and the (pre)order is not total. 
+\end{remark}
+
+\begin{defn}
+    A theoretical domain $\tdomain$ is \textbf{uniform} if fineness has the following additional properties:
+    \begin{itemize}
+        \item totality: for all $\stmt_1, \stmt_2 \in \tdomain$ either $\stmt_1 \finer \stmt_2$ or $\stmt_2 \finer \stmt_1$
+        \item uniformity: all possibilities are equigranular.
+    \end{itemize}
+
+\end{defn}
+
+It would be nice to be able to prove the following either true or false.
+
+\begin{conj}\label{uniformconsequence}
+    Let $\tdomain$ be uniform. Let $\stmt, \stmt_1 \in \tdomain$ such that $\stmt \sfiner \stmt_1$. Then there exist $\stmt_2 \in \tdomain$ such that $\stmt_2 \narrower \stmt_1$ and $\stmt \eqgran \stmt_2$.
+\end{conj}
+
+[TODO: clean-up what follows]
+
+The start of a proof....
+Let $S = \{\stmt[t]\in\tdomain : \stmt[t]\narrower\stmt_1 \text{ and } \stmt[t]\finer\stmt\}$. We will find a maximal element with respect to fineness (OR narrowness??). 
+
+The difficulty here is that for Zorn we need to find an upper bound of an arbitrary chain which also lies in $S$. But such an upper bound is entirely unclear on how to obtain without using the proposition to begin with. Uniformity is difficult to make much use of for infinite domains (beyond that $S$ is nonempty). 
+
+
+This set $S$ is nonempty, since any possibility narrower than $\stmt_1$ must also be finer than $\stmt$ by uniformity, and the statement $\stmt_1$ must not be the impossibility since it is strictly coarser than the statement $\stmt$. 
+
+Now, given any chain (with respect to narrowness), consider its disjunction. But again this may be coarser than $\stmt$!
+
+
+Note: problem with chains for fineness. Taking the disjunction of a chain with respect to fineness can yield something much coarser (i.e. outside of $\{\stmt[t]\in\tdomain : \stmt[t]\narrower\stmt_1 \text{ and } \stmt[t]\finer\stmt\}$) if they do not overlap. 
+
+Idea: given chains in fineness, can we construct new chains which are, at each level, equigranular, but now they are also chains in narrowness? 
+
+Lemma: If $C$ is a chain in fineness and $\stmt$ is such that $\stmt[t]\finer\stmt$ for all $\stmt[t]\in C$, then there exists a set $N$ and a bijection $f:C\to N$ such that $N$ is a chain in narrowness, $\OR N \narrower \stmt$, and for all $\stmt[t]\in C$, $\stmt[t]\eqgran f(\stmt[t])$. 
+Use this to move chains in fineness over to chains in narrowness and then can find maximal elements in the set $S$ above ``up to equigranular equivalence classes".
+
+Problem: this is actually much harder. Prop 6 is the case of this Lemma for a chain of length 2 and the top of the chain being equal to $\stmt$. 
+
+\subsection{Infinitesimals}
+
+The following is an attempt to define infinitesimal in a way that puts the least constraints on fineness.
+
+\begin{defn}\label{infinitesimals}
+	Let $\stmt[u],\stmt[s] \in \tdomain$. Then $\stmt$ is \textbf{infinitesimal} with respect to $\stmt[u]$ if for any natural number $n$ we can find a set of $n$ statements $\{ \stmt_i \}_{i=1}^n$ such that:
+	\begin{enumerate}
+		\item $\stmt \finer \stmt_i$ for all $i$
+		\item $\stmt_i \ncomp \stmt_j$ for all $i \neq j$
+		\item $\bigOR\limits_{i=1}^n \stmt_i \finer \stmt[u]$ 
+	\end{enumerate}
+	In words, $\stmt$ is infinitesimal with respect to $\stmt[u]$ if for any number, there is a disjunction of that many broader mutually incompatible statements $\stmt_i$ is finer than $\stmt[u]$.
+\end{defn}
+
+\begin{remark}
+	Note that we do not require the $\stmt_i$ to be equigranular to $\stmt$. Also note that, with this definition, a statement can fail to be infinitesimal simply because one cannot find enough statements comparable to both $\stmt$ and $\stmt[u]$.
+\end{remark}
+
+\begin{coro}
+	The impossibility $\impossibility$ is an infinitesimal with respect to any $\stmt[u] \in \tdomain$.
+\end{coro}
+
+\begin{proof}
+	Let $\stmt[u] \in \tdomain$ and consider $\{ \stmt_i \}_{i=1}^n$ where $\stmt_i \equiv \impossibility$ for all $i$. Then $\impossibility \finer \impossibility \equiv \stmt_i$ for all $i$. Since $\impossibility \ncomp \impossibility$, $\stmt_i \ncomp \stmt_j$ for all $i$ and $j$. Lastly, $\bigOR\limits_{i=1}^n \stmt_i \equiv \impossibility \finer \stmt[u]$. This means that $\{ \stmt_i \}_{i=1}^n$ realizes infinitesimality for $\impossibility$, which is an infinitesimal of $\stmt[u]$.
+\end{proof}
+
+\begin{prop}\label{infinitesimal_conjunction}
+	Let $\stmt \in \tdomain$ be an infinitesimal with respect to $\stmt[u] \in \tdomain$. Then any $\stmt[v] \finer \stmt$ is also an infinitesimal with respect to $\stmt[u]$.
+\end{prop}
+\begin{proof}
+	Since $\stmt$ is an infinitesimal with respect to $\stmt[u]$, for any $n$ we can find a set of statements $\{ \stmt_i \}_{i=1}^n$ that realizes its infinitesimality. We have $\stmt[v] \finer \stmt \finer \stmt_i$ for all $i$. The other two properties do not depend on $\stmt$. Therefore $\{ \stmt_i \}_{i=1}^n$ realizes infinitesimality for $\stmt[v]$ as well so $\stmt[v]$ is an infinitesimal with respect to $\stmt[u]$.
+\end{proof}
+
+\begin{coro}
+	The conjunction of two infinitesimals with respect to $\stmt[u]$ is infinitesimal with respect to $\stmt[u]$.
+\end{coro}
+\begin{proof}
+	Let $\stmt[v]_1, \stmt[v]_2 \in \tdomain$ be infinitesimal with respect to $\stmt[u]$. Since $\stmt[v]_1 \AND \stmt[v]_2 \narrower \stmt[v]_1$, $\stmt[v]_1 \AND \stmt[v]_2 \finer \stmt[v]_1$ and therefore $\stmt[v]_1 \AND \stmt[v]_2$ by \ref{infinitesimal_conjunction}.
+\end{proof}
+
+\begin{prop}
+	The disjunction of two infinitesimals with respect to $\stmt[u]$ that are comparable\footnote{Is comparability required? Can it be proved one way or another?} to each other is infinitesimal with respect to $\stmt[u]$.
+\end{prop}
+\begin{proof}
+	Let $\stmt[v],\stmt[w]$ be infinitesimal with respect to $\stmt[u]$. Without loss of generality, suppose $\stmt[v] \finer \stmt[w]$. Let $n>0$. Let $\{\stmt[w]_i\}_{i=1}^{2n}$ be a collection realizing infinitesimality for $2n$ for $\stmt[w]$. Define $\stmt_j = \stmt[w]_j\OR\stmt[w]_{j+n}$ for $j=1,\ldots,n$. Notice that the $\stmt_j$'s are mutually incompatible, and their disjunction must be finer than $\stmt[u]$. Further, since $\stmt[v]\finer\stmt[w]$ we have that $\stmt[v]\finer\stmt[w]_i$ for all $i$. It follows that:
+	$$
+	\stmt[v]\OR\stmt[w] \finer \stmt[w]_j\OR\stmt[w]_{j+n} = \stmt_j
+	$$
+	for all $j=1,\ldots,n$. Thus the collection $\{\stmt_j\}_{j=1}^n$ realizes $\stmt[v]\OR\stmt[w]$ being infinitesimal with respect to $\stmt[u]$ for $n$. We conclude that $\stmt[v]\OR\stmt[w]$ is infinitesimal with respect to $\stmt[u]$. 
+\end{proof}
+
+\begin{prop}[Infinitesimality is consistent with fineness]\label{infinitesimal_finess}
+	Let $\stmt[u],\stmt[v]$ be statements such that $\stmt[v]\finer\stmt[u]$. Let $\stmt$ be an infinitesimal with respect to $\stmt[v]$. Then $\stmt$ is infinitesimal with respect to $\stmt[u]$. 
+\end{prop}
+\begin{proof}
+	Let $n>0$ be a natural number, and let $\{ \stmt_i \}_{i=1}^n$ be as in the definition of infinitesimal for $\stmt$ with respect to $\stmt[v]$. Then $\{ \stmt_i \}_{i=1}^n$ also satisfies the requirements for infinitesimal with respect to $\stmt[u]$. The first two requirements are unchanged, and the third is easy to see:
+	$$
+	\bigOR\limits_{i=1}^n \stmt_i \finer\stmt[v]\finer \stmt[u]
+	$$
+\end{proof}
+
+\begin{coro}[Infinitesimality is consistent with narrowness]
+	Let $\stmt[u],\stmt[v]$ be statements such that $\stmt[v]\narrower\stmt[u]$. Let $\stmt$ be an infinitesimal with respect to $\stmt[v]$. Then $\stmt$ is infinitesimal with respect to $\stmt[u]$.
+\end{coro}
+\begin{proof}
+	Since $\stmt[v]\narrower\stmt[u]$ implies $\stmt[v]\finer\stmt[u]$, proposition \ref{infinitesimal_finess} applies.
+\end{proof}
+
+We wish to also show some form of compatibility in the reverse direction. That is, if we shrink by a ``finite" amount, the sets which were previously infinitesimal should remain so (of course, if we shrink by an ``infinite" amount, e.g. by dropping a dimension, previously infinitesimal sets may no longer be so). 
+
+\begin{prop}
+	Let $\tdomain$ be uniform. Let $\stmt[u],\stmt[v] \in \tdomain$ be statements such that $\stmt[v]$ is not infinitesimal with respect to $\stmt[u]$. Let $\stmt$ be a statement $\stmt\narrower\stmt[v]$ such that $\stmt$ is infinitesimal with respect to $\stmt[u]$. Then $\stmt$ is infinitesimal with respect to $\stmt[v]$. 
+\end{prop}
+\begin{proof}
+	Note: the use of totality is highlighted as we would like to, if possible, remove it.
+	
+	Let $\stmt[u]$, $\stmt[v]$, and $\stmt$ be as in the Proposition statement. We will show that $\stmt$ is infinitesimal with respect to $\stmt[v]$. To do so, we will show that for any $n>0$, we can find a set of $n$ statements $\{\stmt_i\}_{i=1}^n$ such that: 
+	\begin{enumerate}
+		\item $\stmt \finer \stmt_i$ for all $i$
+		\item $\stmt_i \ncomp \stmt_j$ for all $i \neq j$
+		\item $\bigOR\limits_{i=1}^n \stmt_i \finer \stmt[v]$ 
+	\end{enumerate}
+	We will show this for arbitrary $n$, which will be sufficient to prove that $\stmt$ is infinitesimal with respect to $\stmt[v]$. 
+	
+	First, since $\stmt[v]$ is not infinitesimal with respect to $\stmt[u]$, there exists some $N>0$ such that for any set of $N$ statements, at least one of the conditions of infinitesimality of $\stmt[v]$ with respect to $\stmt[u]$ fails. 
+	
+	Let $n>0$. Let $\{\stmt_i\}_{i=1}^{nN}$ be a set of $n\cdot N$ statements realizing infinitesimality of $\stmt$ with respect to $\stmt[u]$ (i.e. they are mutually incompatible, broader than $\stmt$, and their disjunction is narrower than $\stmt[u]$). 
+	
+	{\bf By totality of $\finer$}\footnote{What we needed here is that there is a partition of the collection into $N$ sets of size $n$ such that for one of them, their disjunction is finer than each of $N-1$ disjunctions of the other subsets in the partition.}, we may assume the collection $\{\stmt_i\}_{i=1}^{nN}$ is ordered by fineness ($\stmt_1\finer\stmt_2\finer\cdots$). Consider the finest $n$ statements, that is, consider the collection $\{\stmt_i\}_{i=1}^{n}$. We will show that this collection satisfies the conditions for $\stmt$ being infinitesimal with respect to $\stmt[v]$ for $n$ statements. 
+	
+	By construction, this satisfies properties 1 and 2 for infinitesimality of $\stmt$ in $\stmt[v]$, since it is a subset of a collection which already satisfied those properties. 
+	
+	Now suppose it fails property 3\footnote{We will use totality since we need $\NOT \big(\stmt[x]\sfiner\stmt[y]\big) \implies \stmt[x]\coarser\stmt[y]$.}, that is, suppose 
+	$$
+	\bigOR\limits_{i=1}^n \stmt_i \scoarser\stmt[v].
+	$$
+	We will show that this will lead to a contradiction by implying that there is a collection of statements of size $N$ realizing $\stmt[v]$ being infinitesimal with respect to $\stmt[u]$. 
+	
+	Consider now the collection of $N$ statements $\{\stmt[a]_j\}_{j=1}^N$ defined by $$\stmt[a]_j = \bigOR\limits_{i=n(j-1)+1}^{nj}\stmt_i.$$
+	These statements are built from the collection $\{\stmt_i\}_{i=1}^{n}$ by taking $N$ disjunctions each consisting of $n$ of the statements. Notice that $\stmt[a]_1$ is the disjunction of the collection $\{\stmt_i\}_{i=1}^{n}$ considered above. 
+	
+	First, this collection is mutually incompatible, since it is made up of disjunctions of mutually incompatible statements. This is property 2 for $\stmt[v]$ being infinitesimal with respect to $\stmt[u]$. 
+	
+	Next, these must satisfy property 1 for $\stmt[v]$ being infinitesimal with respect to $\stmt[u]$. To see why, notice that by our assumption, we have $\stmt[a]_1\scoarser\stmt[v]$, and by construction, we have $\stmt[a]_j\coarser\stmt[a]_1$ for all $j=1,\ldots,N$, and so $\stmt[v]\finer\stmt[a]_j$ for all $j=1,\ldots,N$. 
+	
+	Finally, they also must satisfy property 3: $$\stmt[a]_1\OR\cdots\OR\stmt[a]_N = \bigOR\limits_{i=1}^{nN}\stmt_i\finer\stmt[u].$$
+	
+	Thus, this new collection violates the assumption that no set of $N$ statements satisfies all three properties for $\stmt[v]$ being infinitesimal in $\stmt[u]$. 
+	
+	{\bf By totality of $\finer$},\footnote{Here we are using totality as specified in the previous footnote.} we conclude that we must have $\bigOR\limits_{i=1}^n \stmt_i \finer\stmt[v]$ as required, and so the collection $\{\stmt_i\}_{i=1}^{n}$ realizes $\stmt$ being infinitesimal with respect to $\stmt[v]$ for $n$ statements. Since $n$ was arbitrary, it must be the case that $\stmt$ is infinitesimal with respect to $\stmt[v]$. 
+\end{proof}
+
+\section{Notes}
+
+\subsection{Mark Notes again again}
+
+Question: Fix $\stmt[u]\in\tdomain$, and assume the following holds. Let $\stmt\in\tdomain$ such that $\stmt$ is compatible with infinitely many possibilities. Then there exist statements $\stmt_1,\stmt_2$ with $\stmt_1\ncomp\stmt_2$ and $\stmt_1\eqgran\stmt_2$ such that $\stmt_1\OR\stmt_2\narrower\stmt$ and $\stmt\AND\NOT(\stmt_1\OR\stmt_2)$ is an infinitesimal with respect to $\stmt[u]$. This means we can split statements in half (up to infinitesimals, with respect to fineness). 
+Further, assume $\stmt[u]$ does not admit countable infinitesimals. That is, for any countable collection $S\subseteq\tdomain$ of infinitesimals, $\OR S$ is still an infinitesimal. 
+
+We wish to know whether $\leq_{\stmt[u]}$ will have monotone continuity up to infinitesimals (this may or may not be related to the above). While we cannot quite answer that yet since we have not proven that $\lequ$ is transitive, we can think about it for $\finer$. The statement to understand is: 
+
+Let $\{\stmt_i:i\in\mathbb{N}\}$ be a sequence of statements monotone increasing in narrowness (i.e. $\stmt_i\narrower\stmt_j$ for all $i\leq j$), and write $\stmt=\OR_i\stmt_i$ be the disjunction. Assume that $\stmt$ is finitely comparable to $\stmt[u]$. If $\stmt[t]\in\tdomain$ such that $\stmt[t]$ is finitely comparable to $\stmt[u]$, and $\stmt_i\finer\stmt[t]$ for all $i$, then $\stmt\finer\stmt[t]\OR\stmt[w]$ for some infinitesimal (with respect to $\stmt[u]$) $\stmt[w]$. 
+
+Idea: added terms approach infinitesimal. 
+
+Consider the new sequence defined by $\stmt'_i := \stmt_i \AND \NOT\stmt_{i-1}$ for $i\geq2$ and $\stmt'_1 := \stmt_1$. Then $\OR_{i=1}^n\stmt'_i = \stmt_n\finer\stmt[t]$ for all $n$. It follows that $\stmt = \OR_{i=1}^{\infty}\stmt'_i$, and so $\stmt$ is a countably infinite disjunction of disjoint statements. Since $\stmt$ is finitely comparable to $\stmt[u]$, not all of the $\stmt_i'$s can be infinitesimals. 
+
+Consider $\stmt[v]_n = \OR_{i=n}^{\infty}\stmt'_i = \stmt \AND\NOT\stmt_{n-1}$. Observe that $$\AND_{n=1}^{\infty}\stmt[v]_n = \AND_{n=1}^{\infty}\stmt\AND\NOT\stmt_{n-1} = \stmt\AND\NOT\OR_{n=1}^{\infty}\stmt_n = \stmt\AND\NOT\stmt \equiv \impossibility$$
+
+We wish to show that $\stmt = \stmt_{n-1}\OR\stmt[v]_n\finer \stmt[t]\OR \stmt[w]$. Or equivalently, assuming there exist statements $\stmt[x]_n\eqgran\stmt_n$ with $\stmt[x]_n\narrower\stmt[t]$ and $\stmt[x]_{n-1}\narrower\stmt[x]_n$, we wish to show that $\stmt[w]' := \stmt[t]\AND\NOT\stmt[x]$ is an infinitesimal, where $\stmt[x]=\OR_{i=1}^n\stmt[x]_i$. Note: if we have a very robust collection of possibilities and a dense enough fineness relation, we can ``move statements around" to find equigranular copies inside other statements, so the claim to show reduces to the case in this paragraph. If $\stmt[x]$ is not narrower than $\stmt[t]$, then there must exist some possibility in $\stmt[x]$ outside of $\stmt[t]$, and this must have shown up in some $\stmt[x]_i$. Is this sufficient? 
+
+Suppose $\{\stmt_i\}_{i=1}^{\infty}$ is such that $\AND_{i=1}^{\infty}\stmt_i = \impossibility$? Not sure. We need more theorems about characterizing infinitesimals beyond the definition. We don't have much in the way of finding arbitrarily large (finite) sets of equigranular statements. 
+
+Comment: Let $\stmt[u] = \mathbb{R}$. Then let $\stmt[t] = (0,\infty)$ and $\stmt = \mathbb{R}$. These are both finitely comparable to $\stmt[u]$. Next, let $\stmt_n = (-n,n)$. Then this is an increasing sequence of statements in narrowness, each of which is finer than $\stmt[t]$. But their disjunction is $\stmt$ which is (strictly) coarser than $\stmt[t]$, and no infinitesimal $\stmt[w]$ (with respect to $\stmt[u]$) will be enough to have $\stmt\finer\stmt[t]\OR \stmt[w]$. Interestingly, in this case, each $\stmt_n\AND\NOT\stmt_{n-1}$ is a countable infinitesimal in $\stmt[u]$. This shows us that a natural space which we might like to consider (e.g. $\mathbb{R}$) will fail the above conclusion; however, each set $(-n,n)$ for $n\geq1$ is a countable infinitesimal in $\mathbb{R}$, and so not admitting countable infinitesimals will be an important and strict condition. 
+
+Let $\stmt[u]$ be a statement. Suppose there exist statements $\stmt_i$, $i=1,\ldots$ which are mutually incompatible, equigranular, and $\stmt[u] = \OR_{i=1}^{\infty}\stmt_i$. Then all the $\stmt_i$'s are countable infinitesimals. So if it is possible to split a statement into countably infinitely many incompatible equigranular statements, then it admits countable infinitesimals. Not admitting countable infinitesimals is a strict one, but examples are provided by the standard Borel measure on bounded intervals in $\mathbb{R}$. 
+
+
+
+\subsection{Unique measures}
+
+One condition for the measure to be unique given a unit statements is that all points (i.e. possibilities in our framework) are equigranular. In fact, consider a domain with just three points not equigranular to each other, but each finer than the other. We can construct any measure that satisfies the requirement by picking three numbers and assigning them accordingly, since we can't determine ``how bigger'' is one point with respect to the other.
+
+\subsection{Finding a probability measure}
+
+Our first goal is to find a measure which is compatible with the fineness preorder. The idea is that fineness tells us which sets are ``larger" (less precise) than each other, regardless of any overlap.  A measure will quantify this and allow us to assign numbers to the sizes.
+
+The paper \cite{probexistence} seems to be extremely relevant here. The basic idea in this paper is to find necessary and sufficient conditions for the existence of a probability measure on a Boolean algebra (e.g. of subsets of some set) which is compatible with a total pre-order. There are a few points to keep in mind. 
+
+First, we need a \emph{total} pre-order. This means for every pair of elements, one is finer than the other. This is certainly not the case for fineness in general: color and position, for example, cannot be compared. This is the goal of defining the \emph{unit} above. The unit serves as a baseline statement against which others can be compared for fineness. For example, a statement about position singles out length as the dimension to compare, or a statement about numbers of objects specifies ``count" as the dimension to compare (e.g. the discrete unit of number of objects). 
+
+Next, we need the three properties specified in the paper, to be written up later! We are optimistic that these three properties are present in our situation. 
+
+There is one additional caveat. The measure constructed by the main theorem in the above-mentioned paper is always a probability measure. This means the whole space has finite measure. For example, one could put the Lebesgue measure on $(0,1)$ but under a homeomorphism $(0,1)\to\mathbb{R}$ induce a finite (probability) measure on  $\mathbb{R}$. If we chose the full set as a unit, we are exactly looking for a probability measure. If we pick a unit that is not the full set, we can also "constrain" the problem to that subset, so that we still have a probability measure. Then we may be able to "stich together" the measures constructed on all equigranular sets assuming they cover the full space. 
+
+\subsection{Applying results of the paper \cite{villegas}}
+
+In this part, we will assume that $\tdomain_{\stmt[u]}$ is a subset of the theoretical domain, $\stmt[u]\in \tdomain_{\stmt[u]}$ is a distinguished element (we'll refer to it as the \emph{unit} when needed), and there is a total pre-order $\leq_{\stmt[u]}$ defined on $\tdomain_{\stmt[u]}$. We will write $=_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and $\geq_{\stmt[u]}$, and we write $<_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and not $=_{\stmt[u]}$. We will use the word ``equiprobable" for $=_{\stmt[u]}$ since it means something different from equigranular (since $\leq_{\stmt[u]}$ is a different ordering from fineness, even though it will be derived from fineness). We assume $\tdomain_{\stmt[u]}$ is closed under complement and countable union (and hence countable intersection), and that there are two additional elements, $\certainty$ and $\impossibility$, which are maximal and minimal in this ordering, respectively.
+
+\begin{remark}
+In defining the subset $\tdomain_{\stmt[u]}$ and the total preorder $\leq_{\stmt[u]}$, we will have to be very careful. We want to ``squash" together all the sets which should be measure zero in this unit (e.g. anything ``lower-dimensional"), ``blow up" all the ``infinite measure" subsets (e.g. ``higher dimensional"), and ensure that everything is compatible under this order, so there can be only one ``type" of property under consideration. 
+\end{remark}
+
+We write out the main axioms and statements from \cite{villegas} which interest us in this situation, in the notation established earlier. On page 1789, we have the following:
+
+Axiom of Pre-order:
+\begin{itemize}
+    \item Totality: If $\stmt_1,\stmt_2\in \tdomain_{\stmt[u]}$, then $\stmt_1 \leq_{\stmt[u]} \stmt_2$ or $\stmt_2\leq_{\stmt[u]} \stmt_1$
+    \item Reflexivity: For all statements $\stmt\in \tdomain_{\stmt[u]}$, we have $\stmt\leq_{\stmt[u]}\stmt$
+    \item Transitivity: For all statements $\stmt_1,\stmt_2,\stmt_3\in \tdomain_{\stmt[u]}$, if $\stmt_1\leq_{\stmt[u]}\stmt_2$ and $\stmt_2\leq_{\stmt[u]}\stmt_3$, then $\stmt_1\leq_{\stmt[u]}\stmt_3$.
+    \item Existence of max and min: We have $\impossibility\leq_{\stmt[u]}\certainty$ and \emph{not} $\certainty\leq_{\stmt[u]}\impossibility$. For all $\stmt\in \tdomain_{\stmt[u]}$ we have $\impossibility\leq_{\stmt[u]}\stmt\leq_{\stmt[u]}\certainty$
+\end{itemize}
+
+The above list is simply the requirement that $\leq_{\stmt[u]}$ is a total pre-order and that there are a maximal and minimal element. 
+
+
+Axiom of Monotony: 
+Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$. Assume that $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, and $\stmt_2\ncomp \stmt_4$ (i.e. $\stmt_2\AND \stmt_4 =_{\stmt[u]} \impossibility$). Then we have $\stmt_1\OR \stmt_3 \leq_{\stmt[u]} \stmt_2\OR \stmt_4.$
+
+Monotony guarantees that given two incompatible statements, each ``bigger" than another statement, then their disjunction is still bigger than the disjunction of the smaller statements. 
+
+The following are consequences of the two axioms above. Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$.
+\begin{itemize}
+    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ and $\stmt_2<_{\stmt[u]} \stmt_3$, then $\stmt_1<_{\stmt[u]}\stmt_3$. 
+    \item If $\stmt_1\narrower \stmt_2$ then $\stmt_1\leq_{\stmt[u]} \stmt_2$
+    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, $\stmt_2\leq_{\stmt[u]} \stmt_4$, and $v\leq_{\stmt[u]} \stmt_1$, then $\stmt_2 \AND \NOT \stmt_1 \leq_{\stmt[u]} \stmt_4 \AND \NOT \stmt_3$
+    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ then $\NOT \stmt_2 \leq_{\stmt[u]}\NOT \stmt_1$
+\end{itemize}
+
+Next, we will need a more subtle axiom in order to make sense of infinite combinations of statements. 
+
+\begin{remark}
+The \emph{fineness} relation $\finer$ should satisfy all of the axioms of pre-order and the axiom of monotony, except for totality. We restrict to $\tdomain_{\stmt[u]}$ in order to get totality. 
+\end{remark}
+
+Axiom of Monotone Continuity:
+Let $\{\stmt_i : i\in \mathbb{Z}^+\}$ be a sequence of statements which is monotone increasing with respect to narrowness (containment), and let $\stmt = \cup_i\stmt_i$ be the disjunction. Let $t\in \tdomain_{\stmt[u]}$ such that $\stmt_i\leq_{\stmt[u]} t$ for all $i$. Then $\stmt\leq_{\stmt[u]} t$. 
+
+In other words, an infinite disjunction can only strictly exceed a statement in coarseness if the disjunction of a finite subset of them already exceeds it. Here is an interesting consequence of the combination of the above axioms:
+
+\begin{prop}[Corollary to Lemma 1 in \cite{villegas}]
+\label{infinitenull}
+Let $\{\stmt_i : i\in \mathbb{Z}^+\}$ be an infinite collection such that $\stmt_i\AND\stmt_j =_{\stmt[u]} \impossibility$ for all $i\neq j$, and $\stmt_i =_{\stmt[u]} \stmt_j$ for all $i,j$. Then it must be the case that $\stmt_i=_{\stmt[u]}\impossibility$ for all $i$. 
+\end{prop}
+This says that infinite collections of equiprobable statements with null overlaps must be null themselves. 
+
+An \emph{atom} is a statement $\stmt\in S$ such that $\impossibility<_{\stmt[u]}\stmt$ and there does not exist any statement $\stmt_2\in S$ such that $\impossibility<_{\stmt[u]} \stmt_2<_{\stmt[u]} \stmt$. In particular, Theorem 5 in \cite{villegas} \S3 includes the fact that $\tdomain_{\stmt[u]}$ is atomless if and only if every statement can be partitioned into two equiprobable statements. Theorem 3 in \S4 states that if $\tdomain_{\stmt[u]}$ is atomless, then there exists a unique probability measure compatible with $\leq_{\stmt[u]}$, and it is countably additive!
+
+\subsection{Using Monotone Continuity}
+
+The core of the proof of Theorem 3 in Section 4 of \cite{villegas} comes from Theorem 5 (iv) in Section 3. In the terminology of Villegas, a \emph{qualitative probability $\sigma$-algebra} is a $\sigma$-algebra of subsets of a space with an ordering that satisfies the Axiom of Pre-order, the Axiom of Monotony, and the Axiom of Monotone Continuity. We also need the language of \emph{atoms}, defined earlier. We will reproduce some of the ideas in the proofs of these theorems in the language of statements and our theoretical domain, while attempting to keep track of the usages of Monotone Continuity. The hope is that there is a weakened version of the axiom that gets us the desired result, or that we can build the ordering $\leq_{\stmt[u]}$ with Monotone Continuity but it can still distinguish the infinite sets described earlier. 
+
+Let $A$ be a statement in $\tdomain_{\stmt[u]}$ with $A>_{\stmt[u]} \impossibility$. A \emph{minor incomplete partition} of $A$ is a collection $M_A$ of statements with the following properties:
+\begin{itemize}
+    \item We have $\stmt>_{\stmt[u]}\impossibility$ and $\stmt \narrower A$ for all $\stmt\in M_A$, that is, they are non-null and narrower than $A$
+    \item For all $\stmt_1,\stmt_2\in M_A$, we have $\stmt_1\AND\stmt_2 =_{\stmt[u]} \impossibility$, that is, they overlap only on statements ``squashed" to zero. 
+    \item The disjunction of $M_A$ is finer than its complement in $A$: $$\bigOR_{\stmt\in M_A}\stmt \finer (A\AND \NOT\bigOR_{\stmt\in M_A}\stmt).$$ This is the condition of being \emph{minor}.
+    %UM_A finer than A - UM_A^C
+\end{itemize}
+
+It is shown in \cite{villegas} that any (minor) incomplete partition is at most countable (Theorem 3). Rather than give the full proof of this fact, we note that it follows from a large collection of lemmas, the most interesting of which is the following, which we will prove below: 
+
+\begin{prop}[Lemma 1 from \cite{villegas}]
+If $\{\stmt[a]_i: i\in I\}$ is an infinite set of statements such that (1) $\stmt[a]_i \AND \stmt[a]_j =_{\stmt[u]}\impossibility$ for all $i\neq j$ and (2) $\stmt[a]_i>_{\stmt[u]}\impossibility$ for all $i$, then the following holds. Given a statement $\stmt>_{\stmt[u]}\impossibility$, only finitely many of the $\stmt[a]_i$'s have $\stmt[a]_i>_{\stmt[u]}\stmt$.  
+\end{prop}
+\begin{proof}
+By way of contradiction, let $\stmt[a]_1,\ldots$ be a sequence of statements violating the conclusion (i.e. infinitely many statements $\stmt[a]_i$ with $\stmt[a]_i>_{\stmt[u]}\stmt>_{\stmt[u]}\impossibility$. Consider the new sequence $$\stmt_i = \bigOR\limits_{n=i}^{\infty}\stmt[a]_n.$$ This sequence is monotonely decreasing to the impossibility in narrowness (and hence in fineness and in $>_{\stmt[u]}$), but we also have $\stmt_i\geq_{\stmt[u]}\stmt$ for all $i$. By monotone continuity (the contrapositive), we have $\stmt[s]\leq_{\stmt[u]}\impossibility$, a contradiction. 
+\end{proof}
+
+A quick corollary of this is Proposition \ref{infinitenull}, above. Using minor incomplete partitions, we prove the following. 
+
+\begin{prop}[Theorem 4, \S3 \cite{villegas}]
+\label{split}
+If there are no atoms, then for every statement $\stmt$ there exist statements $\stmt_1$ and $\stmt_2$ such that: $\stmt_1\ncomp \stmt_2$, $\stmt_1\equ\stmt_2$, and $\stmt_1\OR\stmt_2 = \stmt$. In other words, $\stmt$ can be partitioned into two equiprobable (note: I remember we don't like this word but I don't remember if we replaced it or not) statements. 
+\end{prop}
+\begin{proof}
+Let $S$ be the set of minor incomplete partitions of $\stmt$, and endow it with a partial order by inclusion. Given a totally ordered chain in $S$, its union is still a minor incomplete partition, and is thus an upper bound for the chain. We may apply Zorn's lemma to find a maximal element of $S$, the disjunction of which we call $\stmt_1$. We claim that $\stmt_1$ and $\stmt_2:= \stmt\AND\NOT\stmt_1$ are equiprobable, incompatible statements. Incompatibility is immediate from the definition. For equiprobability, first note that by definition of being a minor incomplete partition we have $\stmt_1\lequ\stmt_2$. Next, if $\stmt[t]_1,\ldots$ is a monotone decreasing (with respect to $\lequ$) sequence of statements $\stmt[t]_n>_{\stmt[u]}\impossibility$ narrower than $\stmt_2$ and converging to a zero-comparable event, we have that $\stmt_1\OR\stmt[t]_n>_{\stmt[u]}\stmt_2\OR\stmt[t]_n$ since $\stmt_1$ is maximal. We needed no atoms in order to guarantee this sequence exists (Lemma 3 in Section 3 of \cite{villegas}). It follows by monotone continuity that $\stmt_1\geq_{\stmt[u]} \stmt_2$. 
+\end{proof}
+
+We will also need a few types of \emph{random variables} as defined in \cite{villegas} \S3. Let $A({\stmt[u]}) = \{x \in X : x \comp \stmt[u]\}$ be the set of possibilities associated with $\stmt[u]$. This is a subset of the collection of possibilities which will serve as the ``sample space" after picking a unit $\stmt[u]$.
+
+A \emph{uniform sequence of finitely-valued random variables} is a sequence of functions (random variables in the traditional sense) $X_1,X_2,\ldots: A({\stmt[u]})\to E$ where $E$ is a finite set, with the following property: for all $\{x_1,\ldots,x_n\}\subseteq E$, all the events $$\{p\in A({\stmt[u]}): X_i(p) = x_i, i=1,\ldots,n\}$$
+are equiprobable ($\equ$ with each other). 
+
+Notice that monotone continuity allows us to let $n\to\infty$ to define events where the whole sequence is specified with the resulting events all being equiprobable. By Proposition \ref{infinitenull} above, all such events are null.
+
+Building on these sequences of random variables, we will use \emph{uniform random variables} to define probability measures. Let $X:A({\stmt[u]})\to[0,1]$ be a random variable, and let $I$ and $J$ be intervals contained in $[0,1]$. We say $X$ is a uniform random variable if $X^{-1}(I)\lequ X^{-1}(J)$ if and only if $|I|\leq|J|$ for all such $I,J$. 
+
+From Proposition \ref{infinitenull}, $X^{-1}(a)$ is a zero-comparable event for all $a\in[0,1]$, and if $0=a_0<a_1<\cdots<a_n=1$, then $X^{-1}([a_i,a_{i+1}))$ are a finite partition of $\tdomain$. 
+
+Next, we will pull many of the above concepts together to show how we obtain a probability measure on $A({\stmt[u]})$ realized as a function on $\tdomain$ compatible with $\lequ$. 
+
+\begin{prop}\label{uniformexist}
+If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a uniform random variable.
+\end{prop}
+\begin{proof}
+By Proposition \ref{split} we may split any statement into two equiprobable, null-compatible sets. Starting with the statement $\stmt[u]$ (here, the ``universe" which we want to have probability 1), repeatedly divide into two statements in stages. At stage $n$ (starting with $n=0$), we will have statements $\stmt[u]^{(n)}_1,\ldots,\stmt[u]^{(n)}_{2^n}$. Now, take the disjunction of alternating statements in each collection so that there is a ``right" and ``left" (odd and even index) half at each stage. For example, at stage $n=1$, the odd and even halves are simply $\stmt[u]^{(1)}_1$ and $\stmt[u]^{(1)}_2$; at stage $n=2$ we have $\stmt[u]^{(2)}_1\OR\stmt[u]^{(2)}_3$ and $\stmt[u]^{(2)}_2\OR\stmt[u]^{(2)}_4$. 
+
+Define a sequence of random variables $X_n:A(\stmt[u])\to\{0,1\}$ by $X_n(a) = 1$ if and only if $a$ is in the odd half in stage $n$. This gives each $a\in A(\stmt[u])$ a binary ``address". By the construction, it follows that this is a uniform sequence of finitely-valued random variables (defined above). 
+
+Now, we define a uniform random variable $X:A(\stmt[u])\to[0,1]$. For $a\in A(\stmt[u])$, define $X(a) = \sum_{n=1}^{\infty}2^{-n}X_n(a)$. In other words, $X(a)$ is the binary expansion $0.X_1(a)X_2(a)\ldots_2$. 
+
+One can show immediately that $X^{-1}(I)\lequ X^{-1}(J)$ if and only if $|I|\leq |J|$ when $I$ and $J$ have endpoints on numbers with finite binary expansions (since $X_1,\ldots,X_n$ are uniform), and by monotone continuity, the uniformity condition extends to arbitrary intervals in $[0,1]$. 
+\end{proof}
+
+Finally, we reach our goal of building a probability measure on $A(\stmt[u])$. 
+
+\begin{prop}
+If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a unique compatible probability measure, and it is countably additive. 
+\end{prop}
+\begin{proof}
+By Propsition \ref{uniformexist}, let $X:POSS_{\stmt[u]}\to[0,1]$ be a uniform random variable.
+%Define $F:[0,1]\to\tdomain$ by $F(x) = X^{-1}([0,x])$. It is straightforward to see that $F$ is monotone in $x$ (with respect to $\lequ$), and that if $x_n\to x$, then $\lim_nF(x_n) \equ F(x)$. %Started writing this part from paper, but it is not directly used in construction. Will add details later as needed. 
+We claim that for any statement $\stmt\in\tdomain_{\stmt[u]}$, there exists a unique number $p\in[0,1]$ such that $\stmt\equ X^{-1}([0,p])$. Define $P:\tdomain_{\stmt[u]}\to[0,1]$ by $P(\stmt)= p$. This defines a probability measure compatible with $\lequ$. Details forthcoming as needed....
+\end{proof}
+
+Ideas involved: Defines a function $X:A(\stmt[u])\to [0,1]$ in a way that is consistent with $\lequ$ by having ``larger" sets of possibilities (i.e. coarser statements) corresponding to larger intervals in $[0,1]$. Then, the measure of any other statement is given by finding an equiprobable statement which is the preimage of $[0,p]$ under $X$ and defining the measure to be $p$.  
+
+Wish: find a way to prove the above statements in an order-theoretic way. In particular, we wish to show that the order type of the equigranular-equivalence classes is equivalent to (a subset of) $\mathbb{R}$. Sufficient conditions to be isomorphic to $\mathbb{R}$ are (1) lacking endpoints (2) complete (i.e. has Least Upper Bound property) (3) has dense countable subset. The use of random variables may be very similar to an approach using order theory. For example, the transition from a uniform sequence of finitely-valued random variables into a (single) uniform random variable makes use of a countable dense subset. 
+
+
+
+
+
+
+
+
+\subsection{Example with lack of monotonicity}
+
+Consider a Euclidian two dimensional space charted by $\{x,y\}$. Let $U_{i,j}$ be the square in the interval $x \in (i, i+1)$ and $y \in (j, j+1)$. Let $V$ be the vertical (infinite) strip in the interval $x \in (0, 1)$ and $W$ the vertical strip in the interval $x \in (0, 2)$. Define the sequence $W_i = \{ U_{0,0}, U_{1,0}, U_{0,1}, U_{1,1}, U_{0,2}, U_{1,2}, U_{0,3}, U_{1,3}, ... \}$. We have $\bigcup\limits_0^\infty W_i = W$. This means $\bigcup\limits_0^n W\finer V$ for all finite $n$ but $\bigcup\limits_0^\infty W_i = W \coarser V$. 
+
+\subsection{Some thoughts on Example in 3.3}
+
+The construction above hints at some fundamental concepts in measure theory which will be important for us to consider. 
+
+Notice that the two sets $V$ and $W$ are both of infinite Lebesgue measure (area). With respect to Lebesgue measure, monotone continuity is immediate since if $\bigcup\limits_0^n W\finer V$ for all $n$ then $\lim\limits_{n\to\infty}\mu(\bigcup\limits_0^n W) = \mu(W)\finer V$. Even the above example does not violate this, since there, both would be ``equivalent" in fineness, namely they are infinitely coarse.
+
+Our goal is to have a measure which is able to distinguish sets which may be of infinite Lebesgue measure as well. This will be very difficult to fully capture. Consider the following procedure. Starting with the vertical strip $V$, slide all the squares at even $y$-values to the right by one, and then allow the squares to collapse down to rest on the square below. Now, by simply rearranging regions, we have (almost) a cover of the wider strip $W$. The only missing points are the line $x=1, y>0$. If instead we used $(0,1]$ and $(0,2]$ for the strips, this procedure would cover them exactly. One could continue and cover the entire plane with similar translations. 
+
+Here is one approach to distinguish $V$ and $W$, and similar methods will enable one to distinguish many more infinite-measure subsets. Let $S_n$ be the $2n\times 2n$ square centered the origin with vertices at $(\pm n, \pm n)$. Then for all $n$, $V\cap S_n$ has area $n$, and $W\cap S_n$ has area $2n$. This holds for all $n$ and so we might use something like this to think about how we would distinguish infinite areas. Notice that this is in some sense writing $V$ and $W$ as countable unions of nested sets in a standardized way (e.g. $V = \bigcup\limits_n V\cap S_n$) and then comparing the finite-area subsets. One could choose shapes other than $S_n$ for this purpose. Another way to distinguish them would be to look at the limit $\lim\limits_{n\to\infty}\text{Area}(V\cap S_n)/\text{Area}(S_n)$; in this case they are both 0 but for a different choice of $S_n$ one could find an asymptotic difference. 
+The point of the above discussion is to try to gain a better idea of which (infinite/unbounded) sets we want to be related by $\finer$. It is not clear even for ``nice" regions of $\mathbb{R}^2$, let alone at the full generality we are seeking. 
+
+Regardless, the goal is not just to distinguish infinite-Lebesgue-measure sets. We need to understand when monotone continuity is relevant and what happens without it. 
+
+\subsection{Infinitesimals}
+
+\subsubsection{Equivalence at $\stmt[u]$ scale}
+
+\def\equivu{\cong_{\stmt[u]}}
+
+\begin{defn}
+Let $\stmt_1, \stmt_2 \in \tdomain$. We say $\stmt_1$ is \textbf{equivalent to $\stmt_2$ at $\stmt[u]$ scale}, noted $\stmt_1 \equivu \stmt_2$, if we can find $\stmt[v]_1, \stmt[v]_2 \in \tdomain$ that are infinitesimal with respect to $\stmt[u]$ such that $\stmt_1 \OR \stmt[v]_1 \equiv \stmt_2 \OR \stmt[v]_2$.
+\end{defn}
+
+\begin{prop}
+Equivalence at $\stmt[u]$ scale is an equivalence class.
+\end{prop}
+\begin{proof}
+For reflexivity, let $\stmt \in \tdomain$. We have $\stmt \OR \impossibility \equiv \stmt \OR \impossibility$. Since $\impossibility$ is an infinitesimal for all $\stmt[u]$ (TODO: add proposition), $\stmt \equivu \stmt$. For symmetry, note that the definition itself is symmetrical. For transitivity, let $\stmt_1 \equivu \stmt_2 \equivu \stmt_3$. Then we have $\stmt_1 \OR \stmt[v]_1 \equiv \stmt_2 \OR \stmt[v]_2$ and $\stmt_2 \OR \stmt[w]_2 \equiv \stmt_3 \OR \stmt[w]_3$.
+\end{proof}
+
+\subsubsection{Greatness in $\stmt[u]$}
+
+First define ``as big in $\stmt[u]$'' $\equ$.
+
+\begin{defn}
+Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{as big as} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \equ \stmt_2$, if we can find $\stmt[v]_1, \stmt[v]_2 \in \tdomain$ that are infinitesimal with respect to $\stmt[u]$ such that $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$.
+\end{defn}
+
+\begin{prop}
+Suppose $\tdomain$ is uniform. Let $\stmt_1, \stmt_2 \in \tdomain$ such that $\stmt_1 \equ \stmt_2$ and $\stmt_1 \finer \stmt_2$, then for all $\stmt_1 \finer \stmt \finer \stmt_2$ we have $\stmt_1 \equ \stmt \equ \stmt_2$.
+\end{prop}
+
+We start with a simpler case:
+
+\begin{prop}
+Let $\stmt_1,\stmt,\stmt[v]_1\in\tdomain$ such that $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$, and suppose $\stmt[v]_1$ is infinitesimal with respect to $\stmt[u]$. Then $\stmt\equ\stmt_1$. 
+\end{prop}
+\begin{proof}[Using Prop \ref{uniformconsequence}]
+If both of the $\finer$'s are actually equigranular, there is nothing to show. Next consider the case that $\stmt_1\sfiner\stmt\finer\stmt_1\OR\stmt[v]_1$. Then by Proposition \ref{uniformconsequence} there exists $\stmt_2$ such that $\stmt_2\narrower\stmt$ and $\stmt_2\eqgran\stmt_1$. But how do we put this together?? What about the even simpler version of the lemma with $\narrower$ instead of $\finer$? Just use $\stmt\OR (\stmt_1\OR\stmt[v]_1 \AND \NOT\stmt)$.
+\end{proof}
+
+This seems problematic already:
+
+We have $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$. We need to find some $\stmt[w],\stmt[w]_1$ infinitesimal with respect to $\stmt[u]$, such that $\stmt\OR\stmt[w]\eqgran\stmt_1\OR\stmt[w]_1$. Since we don't know anything about the overlap of $\stmt$ and $\stmt_1$, we can't use any operations like $\stmt\AND\NOT\stmt_1$ to find something small. We need to know that additional statements exist in order to find $\stmt[w]$ and $\stmt[w]_1$. 
+
+For example, what if every infinitesimal statement was narrower $(\narrower)$ than $\stmt$? In this case, we could have something like $\stmt_1\sfiner\stmt\sfiner\stmt_1\OR\stmt[x]$ for all statements (including all infinitesimals) $\stmt[x]$. It would then not be the case that $\stmt\equ\stmt_1$. 
+
+
+
+
+
+\begin{prop}[Need something like this but not clear if correct!]
+Suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$. Then there exist statements  $\stmt[v]_1,\stmt[v]_2,\stmt[w]_2,\stmt[w]_3$, infinitesimal in $\stmt[u]$, such that:
+$$
+\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2 \eqgran \stmt_2\OR\stmt[v]_2\OR\stmt[w]_2 \eqgran \stmt_3\OR\stmt[w]_3\OR\stmt[v]_2.
+$$
+\end{prop}
+
+Note that the existence of the right combination of incompatible statements is sufficient. However, that is stronger than we need and may be harder to prove. Problem: we have very few propositions about existence of statements! It is hard to ensure certain ones exist. 
+
+Consider the following (extreme) case. Suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$, but the infinitesimals which realize these relationships are $\stmt[v]_1$ and $\stmt[v]_2$, as follows:
+$$
+\stmt_1\OR\stmt[v]_1 \eqgran \stmt_2\OR\stmt[v]_2,\ \stmt_2\OR\stmt[v]_1\eqgran\stmt_3\OR\stmt[v]_2
+$$
+Without further axioms, it may not be possible to put this together to get transitivity (i.e. to find that $\stmt_1\equ\stmt_3$). 
+
+
+\begin{prop}
+The relation $\equ$ is an equivalence relation.
+\end{prop}
+\begin{proof}
+Reflexivity and symmetry are immediate since $\eqgran$ is an equivalence relation. For transitivity, suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$. Let $\stmt[v]_1,\stmt[v]_2,\stmt[w]_2,\stmt[w]_3$ be infinitesimals with respect to $\stmt[u]$, such that $\stmt_1\OR\stmt[v]_1\eqgran\stmt_2\OR\stmt[v]_2$ and $\stmt_2\OR\stmt[w]_2\eqgran\stmt_3\OR\stmt[w]_3$. Then we have:
+$$
+\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2 \eqgran \stmt_2\OR\stmt[v]_2\OR\stmt[w]_2 \eqgran \stmt_3\OR\stmt[w]_3\OR\stmt[v]_2.
+$$
+Since $\stmt[v]_1\OR\stmt[w]_2$ and $\stmt[w]_3\OR\stmt[v]_2$ are infinitesimal with respect to $\stmt[u]$ (being finite disjuncts of infinitesimals), we have $\stmt_1\equ\stmt_3$. 
+\end{proof}
+
+\begin{defn}\label{smalleru}
+Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{smaller than} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \lequ \stmt_2$, if $\stmt_1 \finer \stmt_2$ or $\stmt_1 \equ \stmt_2$. We define $\stmt_1\leu\stmt_2$ by $\stmt_1\lequ\stmt_2$ and not $\stmt_1\equ\stmt_2$. 
+\end{defn}
+{\bf Warning:} Transitivity doesn't seem to work as stated (see the proof attempt below). We propose the following modification: say $\stmt_1\lequ\stmt_2$ if there exist statements $\stmt_1'$ and $\stmt_2'$ with $\stmt_1'\equ\stmt_1$ and $\stmt_2'\equ\stmt_2$ such that $\stmt_1'\finer\stmt_2'$. Note that {\bf by totality}, it is sufficient to just say $\stmt_1\finer\stmt_2'$ (no need for $\stmt_1'$). 
+
+ \begin{prop}
+$\stmt_1 \leu \stmt_2$ if for every statement $\stmt[v]$ infinitesimal in $\stmt[u]$, we have $\stmt_1\OR\stmt[v] \sfiner \stmt_2$. 
+\end{prop}
+\begin{proof}
+Since $\impossibility$ is infinitesimal, we have $\stmt_1 = \stmt_1\OR\impossibility \sfiner \stmt_2$, and so by Definition \ref{smalleru}, we have that $\stmt_1\lequ\stmt_2$. Now, we must show it is not the case that $\stmt_1\equ \stmt_2$. 
+
+Let $\stmt[v]_1,\stmt[v]_2\in\tdomain$ be infinitesimals. Then $\stmt_1\OR\stmt[v]_1 \sfiner \stmt_2 \finer\stmt_2\OR\stmt[v]_2$. We conclude that it cannot be the case that $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$ for any infinitesimals (with respect to $\stmt[u]$) $\stmt[v]_1,\stmt[v]_2$. 
+\end{proof}
+
+We next show that $\lequ$ is a pre-order, and that it is a partial order with respect to $\equ$-equivalence classes. 
+
+\begin{prop}
+The relation $\lequ$ is reflexive and transitive.  
+\end{prop}
+\begin{proof}
+Reflexivity is immediate since for any $\stmt\in\tdomain$, we have $\stmt\finer\stmt$, so $\stmt\lequ\stmt$. (This works for both the new and old definition)
+
+Transitivity requires a little more work. Let $\stmt_1,\stmt_2,\stmt_3\in\tdomain$ with $\stmt_1\lequ\stmt_2\lequ\stmt_3$. 
+
+{\bf Using the original definition:}
+We have several cases to consider. 
+
+\emph{Case 1:} $\stmt_1\finer\stmt_2\finer\stmt_3$. Then $\stmt_1\finer\stmt_3$ and so $\stmt_1\lequ\stmt_3$. 
+
+\emph{Case 2:} $\stmt_1\equ\stmt_2\equ\stmt_3$. Then $\stmt_1\equ\stmt_3$ (since $\equ$ is an equivalence relation), and so $\stmt_1\lequ\stmt_3$. 
+
+\emph{Case 3:} $\stmt_1\equ\stmt_2\finer\stmt_3$. Then for some infinitesimals $\stmt[v]_1$ and $\stmt[v]_2$ (with respect to $\stmt[u]$), we have:
+$$
+\stmt_1\finer\stmt_1\OR\stmt[v]_1\eqgran\stmt_2\OR\stmt[v]_2\finer\stmt_3\OR\stmt[v]_2
+$$
+Unclear what to do here -- need $\stmt_3$ alone on the right-hand side somehow. Case 4 has the same problem. Let's try it with the modified definition (in the ``warning").
+
+{\bf Using the new definition:}
+Let $\stmt_1'\equ\stmt_1$ and $\stmt_2'\equ\stmt_2$ with $\stmt_1'\finer\stmt_2'$, and let $\stmt_2''\equ\stmt_2$ and $\stmt_3''\equ\stmt_3$ with $\stmt_2''\finer\stmt_3''$. 
+Then for an appropriate choice of infinitesimals (with respect to $\stmt[u]$) $\stmt[v]_i,\stmt[w]_i,\stmt[v]_i',\stmt[w]_i'$, $i=1,2,3$, we have:
+$$
+\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2'\OR\stmt[w]_3'' \eqgran \stmt_1'\OR\stmt[v]_1'\OR\stmt[w]_2'\OR\stmt[w]_3'' \finer \stmt_2'\OR\stmt[v]_1'\OR\stmt[w]_2'\OR\stmt[w]_3'' \eqgran \stmt_2''\OR\stmt[w]_2''\OR\stmt[v]_1'\OR\stmt[w]_3'' \finer
+$$
+$$
+\stmt_3''\OR\stmt[w]_2''\OR\stmt[v]_1'\OR\stmt[w]_3'' \eqgran
+\stmt_3\OR\stmt[w]_3 \OR\stmt[w]_2''\OR\stmt[v]_1'
+$$
+Since $\stmt_1 \equ \stmt_1\OR\stmt[v]_1\OR\stmt[w]_2'\OR\stmt[w]_3''$ and $\stmt_3 \equ \stmt_3\OR\stmt[w]_3 \OR\stmt[w]_2''\OR\stmt[v]_1' $, we have that $\stmt_1\lequ\stmt_3$. 
+
+\end{proof}
+
+\begin{prop}
+If $\stmt_1\lequ\stmt_2$ and $\stmt_1\gequ \stmt_2$, then $\stmt_1\equ\stmt_2$.
+\end{prop}
+\begin{proof}
+With the original definition, this is immediate, since we would either have $\stmt_1\eqgran\stmt_2$ (which implies $\stmt_1\equ\stmt_2$), or we would already have $\stmt_1\equ\stmt_2$.
+
+With the modified definition, we need a bit more work. 
+\end{proof}
+
+Question: is the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes well-defined and monotone? 
+
+% case: possibilities in u: (1) finite: impose counting measure (2) countable: finitely additive but not countably (3) uncountable: countably additive, legitimate measure
+
+\subsection{Collapsing Orders}
+
+Searching around did not yield the theorems desired, so we will discuss the tools needed here. It turns out that it is not so straightforward to collapse a poset by an equivalence relation. Let's start with a possible definition: 
+
+If $(P,\leq)$ is a poset and $\sim$ is a collapsing equivalence relation, then endow the set $P/\sim$ with the relation $\leq/\sim$ defined by $x/\sim \leq/\sim y/\sim$ whenever there exist $x'\in x/\sim$ and $y'\in y/\sim$ with $x'\leq y'$. 
+
+It turns out that this is not sufficient. Here is an important example. Let our set be $\{w,x,y,z\}$ and a poset relation defined by $x\leq w$, $y\leq w$, $y\leq z$, with the following Hasse diagram:
+
+\begin{tikzpicture}
+    % First, locate each of the nodes and name them
+    \node (top) at (0,0) {$w$};
+    \node [below left  of=top] (left)  {$x$};
+    \node [below right of=top] (bottom right) {$y$};
+    \node [above right of=bottom right] (right) {$z$};
+
+    % Now draw the lines:
+    \draw [shorten <=-2pt, shorten >=-2pt] (top) -- (left);
+    \draw [shorten <=-2pt, shorten >=-2pt] (top) -- (bottom right);
+    \draw [shorten <=-2pt, shorten >=-2pt] (bottom right) -- (right);
+\end{tikzpicture}
+
+Let's consider two possible cases. Suppose first $w\sim y$, and $x$ and $z$ are only $\sim$ with themselves. Then in order to collapse $\leq$ under $\sim$, we will need $x \leq w\sim y \leq z$ for transitivity. 
+
+Consider next the case that $w\sim y$ and $x\sim z$. In order to collapse this, we will need that $w\sim x\sim y \sim z$.
+
+These examples show that not every equivalence relation can collapse a poset into a poset (even if it only collapses a chain). 
+
+Note that neither of the above problems are possible with {\bf totality}. It seems that what makes the most sense is collapsing by some equivalence relation, and then extending both the ordering and the equivalence relation to generate a legitimate poset. We can explore this later if needed. 
+
+\section{Possible example}
+
+Let $\mathbb{N}$ be the set of natural numbers. We define the sets $D_{i,k} = \{ x \in \mathbb{N} \, | \, x \mod i = k \}$ with $k < i$. Therefore $D_{1,0} = \mathbb{N}$, $D_{2,0} = \{ 2, 4, 6, ... \}$, $D_{2,1} = \{ 1, 3, 5, ... \}$ and so on. Additionally, we say $D_{i,j} \finer D_{k,l}$ for all $k \leq i$ and for all $j$ and $l$. As needed, we may overload the notation by letting $D_{i,j} =  D_{i, j \mod i}$ where $j\mod i$ is the smallest positive residue of $j$ under $i$. 
+
+Let $D_{i,j}$ and $D_{k,l}$ be two of these subsets. Consider the intersection $D_{i,j}\cap D_{k,l}$ and suppose it is nonempty; let $n$ be in this intersection. Then $D_{i,j} = D_{i,n}$ and $D_{k,l} = D_{k,n}$, so the intersection is given by $D_{i,n}\cap D_{j,n} = \{x\in \mathbb{N} \, | \, x \mod \gcd(i,j) = n\} = D_{\gcd(i,j),n}$. 
+
+Note also that $D_{i,j}^C = \cup_{k=1,k\neq j}^{i-1}D_{i,k}$. 
+
+It follows that any finite combination of unions, intersections, and complements of sets of the form $D_{i,j}$ will be empty, or countably infinite. 
+
+Next, let $n\in\mathbb{N}$. Consider the union $S_n = \cup_{i=n+1}^{\infty}D_{i,0} = \{n+1,n+2,\ldots\}$, which may be generated by a countable union. Thus $S_n^C = \{1,2,\ldots,n\}$. By combining complements and intersections, we can obtain $\{n\} = S_{n-1}\cap S_n^C$. We can then generate arbitrary subsets of $\mathbb{N}$ using countable operations of union, intersection, and complement on the sets $D_{i,j}$. 
+
+Claim: all finite operations of union, intersection, and complement of $D_{i,j}$'s yield sets that may be written as finite unions of $D_{i,j}$'s. Countable operations yield arbitrary subsets of $\mathbb{N}$. 
+
+Possible source to read from: http://www.stat.cmu.edu/tr/tr814/tr814.pdf
+Note in abstract, gives $1/m$ probability (measure) to $D_{m,j}$ for each $j$. 
+
+\section{Insightful failures}
+
+\subsection{Maximal chains}
+
+The idea was to see whether, instead of requiring totality, we could require that we could always find statements at a desired level of description. We wanted to say that a maximal chain in narrowness, that is a sequence of statements ordered by narrowness where no other statement could be added, would touch all levels of descriptions, all equivalence classes in equigranularity. This does not work.
+
+The issue is that the granularity of a countable sequence ``jumps'' at infinity. For example, take the sequence $\{1\}$, $\{1, 3\}$, $\{1, 3, 5\}$, ... , \{ all odd natural numbers\}. Compare to $\{1\}$, $\{1, 2\}$, $\{1, 2, 3\}$, ... , \{ all natural numbers\}. They all are maximal chains. They both go through all finite sets, but they reach infinity at two different levels. Effectively, the above property is only true over finite sets.
+
+\begin{defn}
+Let $(S,\leq)$ be a poset. A \textbf{chain} is a subset $T\subseteq S$ which is totally ordered (i.e. every pair of elements in $T$ is comparable in $\leq$). A chain is said to be \textbf{maximal} if it is not a proper subset of any other chain, i.e. there are no ``gaps" in the chain. 
+\end{defn}
+Observe that in a totally ordered set, there is only one maximal chain, namely the entire set. 
+
+\begin{defn}
+A theoretical domain $\tdomain$ is said to have the \textbf{maximal chains property} (MCP) if given any chain $S\subseteq\tdomain$ totally ordered by narrowness ($\narrower$), the following holds. There exists a maximum chain $S'\supseteq S$, and a maximal chain $C$ in the set of equigranularity equivalence classes, such that for all statements $s \in S'$, there exists an equivalence class $\overline{c}\in C$ with $s\in \overline{c}$.
+\end{defn}
+
+\begin{prop}
+Suppose there is a (partial) pre-ordering on the countably infinite proper subsets of $\mathbb{N}$ which satisfies offset monotonicity. Then there exists a uniform theoretical domain which lacks the maximal chains property.
+\end{prop}
+\begin{proof}
+Consider the following example. Let the set of possibilities be given by $\mathbb{N}$ and let the theoretical domain be the powerset $\mathcal{P}(\mathbb{N})$. Let fineness be defined as follows. All finite subsets are ordered by their cardinality (with $\impossibility = \emptyset$). Put any ordering on the countably infinite strict subsets of $\mathbb{N}$, and impose that they are strictly coarser than all finite sets and strictly finer than the entire set $\mathbb{N} = \certainty$. This is an example of a uniform theoretical domain, where all possibilities (natural numbers) are equigranular (singleton sets of cardinality 1), and the ordering of equigranular equivalence classes is total. 
+
+Consider the following chain $C$ in $\tdomain$: $c_0 = \emptyset$, $c_n = \{1,\ldots, n\}$ for $n<\infty$ and write $c_{\infty} = \mathbb{N}$. Then $c_m \snarrower c_n$ for all $m<n$. We claim that this is a maximal chain (see below for an explanation).
+
+Now, notice that there are no infinite proper subsets of $\mathbb{N}$ which are in the chain $C$. This represents an equigranularity class which is not represented in the maximal chain $C$, which is a failure of the maximal chains condition. 
+
+To see why $C$ is maximal, let $c\in\mathcal{P}(\mathbb{N})$ but that $c\neq c_{\lambda}$ for $\lambda\in\mathbb{N}\cup\{0,\infty\}$. Then there exists some $l\in\mathbb{N}$ with $l+1\in c$ but $l\notin c$. Thus $c$ is not broader than $c_p$ for any $p\geq l$, and $c$ is not narrower than $c_q$ for any $q\leq l+1$. It follows that for $c$ to fit in the chain, it must be higher up than $c_{l+1}$ but lower down that $c_l$, which is not possible. 
+\end{proof}
+
+\begin{prop}\label{chainimpliesuniform}
+Let $\tdomain$ be a theoretical domain with the maximal chains property. Then the following are equivalent:
+\begin{enumerate}
+    \item the possibilities are comparable
+    \item the possibilities are equigranular
+    \item all statements compatible with only finitely many possibilities are comparable to each other.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+
+Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p,\certainty\}$ and $\{\impossibility, q, \certainty\}$. By the MCP, these may be extended to maximal chains in narrowness, with corresponding maximal chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represent by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. Now, since all possibilities are comparable, and the fineness class of $p$ is an immediate successor to that of the impossibility, we must have $p\finer q$. Similarly, we must have $q\finer p$. It follows that $p\eqgran q$. 
+
+Assume all possibilities are equigranular. We show that any two statements compatible with only finitely many possibilities are comparable. In fact, we will prove that the equigranularity equivalence classes for finite disjunctions of possibilities are given by the size of the disjunction. We proceed by induction on $N$, the larger number of compatible possibilities for the two statements. The case of $N=1$ follows from equigranularity of possibilities. Now suppose the claim holds for some $N$. Let $\stmt_1 = p_1\OR\cdots\OR p_{N+1}$ and $\stmt_2 = q_1\OR\cdots\OR q_m$ be statements compatible with only finitely many possibilities $p_i,i=1,\ldots,N+1$ and $q_j,j=1,\ldots,m$ respectively, where $m\leq N+1$. 
+
+Consider first the case where $m\leq N$. Then $\stmt_2 \finer p_1\OR\cdots\OR p_N \sfiner p_1\OR\cdots\OR p_N\OR p_{N+1} = \stmt_1$, so they are comparable, and in particular all statements compatible with fewer than $N+1$ possibilities are strictly finer than $\stmt_1$. Next, suppose $m=N+1$. Write $\stmt_1' = p_1\OR\cdots\OR p_N$ and $\stmt_2' = q_1\OR\cdots\OR q_N$. We have already that all disjunctions of $N$ possibilties are equigranular, so $\stmt_1'\eqgran\stmt_2'$. Possibly by rearranging the order of the possibilties in the disjunction, we may assume $q_{N+1}\ncomp\stmt_1'$ and $q_{N+1}\ncomp\stmt_2'$. By Proposition \ref{fineness_properties}, we have $\stmt_1\OR q_{N+1}\eqgran\stmt_2$. Similarly, since $p_{N+1}\eqgran q_{N+1}$, we have $\stmt_1\eqgran\stmt_1'\OR q_{N+1}$. We conclude that $\stmt_1\eqgran\stmt_2$. This completes the proof that $2\Rightarrow3$. 
+
+The claim $3\Rightarrow1$ is immediate since 1 is a special case of 3. 
+\end{proof}
+
+
+
+\begin{remark}
+The above observations and propositions show that MCP and comparability of possibilities imply equigranular possibilities, but equigrangular possibilities and totality do \emph{not} imply MCP. 
+
+Further, MCP alone implies neither totality nor equigranular possibilities. Indeed, consider a theoretical domain with only two possibilities and a fineness ordering which has two unequal successors to the fineness of $\impossibility$. This satisfies the MCP but fails the other conditions. 
+\end{remark}
+
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
