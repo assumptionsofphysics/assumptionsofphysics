@@ -466,7 +466,7 @@ The following is an attempt to define infinitesimal in a way that puts the least
 	Let $\stmt[v]_1, \stmt[v]_2 \in \tdomain$ be infinitesimal with respect to $\stmt[u]$. Since $\stmt[v]_1 \AND \stmt[v]_2 \narrower \stmt[v]_1$, $\stmt[v]_1 \AND \stmt[v]_2 \finer \stmt[v]_1$ and therefore $\stmt[v]_1 \AND \stmt[v]_2$ by \ref{infinitesimal_conjunction}.
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{infinitesimal_disjunction}
 	The disjunction of two infinitesimals with respect to $\stmt[u]$ that are comparable\footnote{Is comparability required? Can it be proved one way or another?} to each other is infinitesimal with respect to $\stmt[u]$.
 \end{prop}
 \begin{proof}
@@ -537,6 +537,197 @@ We wish to also show some form of compatibility in the reverse direction. That i
 	
 	{\bf By totality of $\finer$},\footnote{Here we are using totality as specified in the previous footnote.} we conclude that we must have $\bigOR\limits_{i=1}^n \stmt_i \finer\stmt[v]$ as required, and so the collection $\{\stmt_i\}_{i=1}^{n}$ realizes $\stmt$ being infinitesimal with respect to $\stmt[v]$ for $n$ statements. Since $n$ was arbitrary, it must be the case that $\stmt$ is infinitesimal with respect to $\stmt[v]$. 
 \end{proof}
+
+\subsection{Comparision and equivalence at $\stmt[u]$ scale}
+
+The general idea is to collapse the preorder given by fineness $\finer$ so that statements that are different up to an infinitesimal are equal.
+
+\def\equivu{\cong_{\stmt[u]}}
+
+\begin{defn}
+	Let $\stmt_1, \stmt_2 \in \tdomain$. We say $\stmt_1$ is \textbf{equivalent to $\stmt_2$ at $\stmt[u]$ scale}, noted $\stmt_1 \equ \stmt_2$, if we can find $\stmt[v]_1, \stmt[v]_2 \in \tdomain$ that are infinitesimal with respect to $\stmt[u]$ such that $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$.
+\end{defn}
+
+\begin{conj}
+	Equivalence at $\stmt[u]$ scale is an equivalence class.
+\end{conj}
+
+\begin{remark}
+	For reflexivity, let $\stmt \in \tdomain$. We have $\stmt \OR \impossibility \equiv \stmt \OR \impossibility$. Since $\impossibility$ is an infinitesimal for all $\stmt[u]$, $\stmt \equ \stmt$. For symmetry, note that the definition itself is symmetrical.
+	
+	Transitivity is unclear. Let $\stmt_1 \equ \stmt_2 \equ \stmt_3$. Then we can write $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$ and $\stmt_2 \OR \stmt[w]_2 \eqgran \stmt_3 \OR \stmt[w]_3$. If the infinitesimal where incompatible we would have $\stmt_1 \OR \stmt[v]_1 \OR \stmt[w]_2 \eqgran \stmt_2 \OR \stmt[v]_2 \OR \stmt[w]_2 \eqgran \stmt_3 \OR \stmt[w]_3 \OR \stmt[v]_2$. If the infinitesimals were comparable, by proposition \ref{infinitesimal_disjunction} we would have that $\stmt[v]_1 \OR \stmt[w]_2$ and $\stmt[w]_3 \OR \stmt[v]_2$ are infinitesimals and therefore $\stmt_1 \equ \stmt_3$.
+	
+	If we assume a uniform domain, we would have totality and we may also be able to show that incompatible infinitesimals can always be found. It may be that totality is not needed for proposition \ref{infinitesimal_disjunction}. It may be that we need to amend the definition of infinitesimals, such that the disjunction of two infinitesimals is an infinitesimals. We could also force the transitivity, even if the disjunction of two infinitesimals is not an infinitesimals. This would be like saying that, yes, in principles the assertions correspond to different granularity levels, but we are not to distinguish between them because the different is effectively zero. Understanding which options is best requires more work.
+\end{remark}
+
+\begin{conj}
+	Let $\stmt_1, \stmt_2 \in \tdomain$ such that $\stmt_1 \equ \stmt_2$ and $\stmt_1 \finer \stmt_2$, then for all $\stmt_1 \finer \stmt \finer \stmt_2$ we have $\stmt_1 \equ \stmt \equ \stmt_2$.
+\end{conj}
+
+\begin{remark}
+	What we'd like to have is that equivalence at $\stmt[u]$ scale merges contiguous granularity levels. It is yet to be understood what are the necessary preconditions for which this happens. One conjecture is that a uniform domain would be sufficient, though probably not necessary.
+\end{remark}
+
+[TODO: is there anything to be salvaged between here]
+
+We start with a simpler case:
+
+\begin{prop}
+	Let $\stmt_1,\stmt,\stmt[v]_1\in\tdomain$ such that $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$, and suppose $\stmt[v]_1$ is infinitesimal with respect to $\stmt[u]$. Then $\stmt\equ\stmt_1$. 
+\end{prop}
+\begin{proof}[Using Prop \ref{uniformconsequence}]
+	If both of the $\finer$'s are actually equigranular, there is nothing to show. Next consider the case that $\stmt_1\sfiner\stmt\finer\stmt_1\OR\stmt[v]_1$. Then by Proposition \ref{uniformconsequence} there exists $\stmt_2$ such that $\stmt_2\narrower\stmt$ and $\stmt_2\eqgran\stmt_1$. But how do we put this together?? What about the even simpler version of the lemma with $\narrower$ instead of $\finer$? Just use $\stmt\OR (\stmt_1\OR\stmt[v]_1 \AND \NOT\stmt)$.
+\end{proof}
+
+This seems problematic already:
+
+We have $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$. We need to find some $\stmt[w],\stmt[w]_1$ infinitesimal with respect to $\stmt[u]$, such that $\stmt\OR\stmt[w]\eqgran\stmt_1\OR\stmt[w]_1$. Since we don't know anything about the overlap of $\stmt$ and $\stmt_1$, we can't use any operations like $\stmt\AND\NOT\stmt_1$ to find something small. We need to know that additional statements exist in order to find $\stmt[w]$ and $\stmt[w]_1$. 
+
+For example, what if every infinitesimal statement was narrower $(\narrower)$ than $\stmt$? In this case, we could have something like $\stmt_1\sfiner\stmt\sfiner\stmt_1\OR\stmt[x]$ for all statements (including all infinitesimals) $\stmt[x]$. It would then not be the case that $\stmt\equ\stmt_1$. 
+
+\begin{prop}[Need something like this but not clear if correct!]
+	Suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$. Then there exist statements  $\stmt[v]_1,\stmt[v]_2,\stmt[w]_2,\stmt[w]_3$, infinitesimal in $\stmt[u]$, such that:
+	$$
+	\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2 \eqgran \stmt_2\OR\stmt[v]_2\OR\stmt[w]_2 \eqgran \stmt_3\OR\stmt[w]_3\OR\stmt[v]_2.
+	$$
+\end{prop}
+
+Note that the existence of the right combination of incompatible statements is sufficient. However, that is stronger than we need and may be harder to prove. Problem: we have very few propositions about existence of statements! It is hard to ensure certain ones exist. 
+
+Consider the following (extreme) case. Suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$, but the infinitesimals which realize these relationships are $\stmt[v]_1$ and $\stmt[v]_2$, as follows:
+$$
+\stmt_1\OR\stmt[v]_1 \eqgran \stmt_2\OR\stmt[v]_2,\ \stmt_2\OR\stmt[v]_1\eqgran\stmt_3\OR\stmt[v]_2
+$$
+Without further axioms, it may not be possible to put this together to get transitivity (i.e. to find that $\stmt_1\equ\stmt_3$). 
+
+
+\begin{prop}
+	The relation $\equ$ is an equivalence relation.
+\end{prop}
+\begin{proof}
+	Reflexivity and symmetry are immediate since $\eqgran$ is an equivalence relation. For transitivity, suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$. Let $\stmt[v]_1,\stmt[v]_2,\stmt[w]_2,\stmt[w]_3$ be infinitesimals with respect to $\stmt[u]$, such that $\stmt_1\OR\stmt[v]_1\eqgran\stmt_2\OR\stmt[v]_2$ and $\stmt_2\OR\stmt[w]_2\eqgran\stmt_3\OR\stmt[w]_3$. Then we have:
+	$$
+	\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2 \eqgran \stmt_2\OR\stmt[v]_2\OR\stmt[w]_2 \eqgran \stmt_3\OR\stmt[w]_3\OR\stmt[v]_2.
+	$$
+	Since $\stmt[v]_1\OR\stmt[w]_2$ and $\stmt[w]_3\OR\stmt[v]_2$ are infinitesimal with respect to $\stmt[u]$ (being finite disjuncts of infinitesimals), we have $\stmt_1\equ\stmt_3$. 
+\end{proof}
+
+[TODO: and here?]
+
+\begin{defn}\label{smalleru}
+	Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{smaller than} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \lequ \stmt_2$, if $\stmt_1 \finer \stmt_2$ or $\stmt_1 \equ \stmt_2$. We define $\stmt_1\leu\stmt_2$ by $\stmt_1\lequ\stmt_2$ and not $\stmt_1\equ\stmt_2$. 
+\end{defn}
+
+\begin{defn}\label{smalleru2}
+	Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{smaller than} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \lequ \stmt_2$, if there exist statements $\stmt_1'$ and $\stmt_2'$ with $\stmt_1'\equ\stmt_1$ and $\stmt_2'\equ\stmt_2$ such that $\stmt_1'\finer\stmt_2'$.
+\end{defn}
+
+\begin{conj}
+	The two definitions are equivalent.
+\end{conj}
+
+\begin{remark}
+	The idea is that smallness in $\stmt[u]$ compares the equivalence classes at $\stmt[u]$ scale. In other words, we should be able to show that the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes is well-defined and monotonic. There may be a more natural order theoretic definition that automatically does this, and shows that smallness in $\stmt[u]$ is a preorder.
+\end{remark}
+
+[TODO: would remove this]
+
+{\bf Warning:} Transitivity doesn't seem to work as stated (see the proof attempt below). We propose the following modification: say $\stmt_1\lequ\stmt_2$ if there exist statements $\stmt_1'$ and $\stmt_2'$ with $\stmt_1'\equ\stmt_1$ and $\stmt_2'\equ\stmt_2$ such that $\stmt_1'\finer\stmt_2'$. Note that {\bf by totality}, it is sufficient to just say $\stmt_1\finer\stmt_2'$ (no need for $\stmt_1'$). 
+
+[TODO: proof not clear]
+
+\begin{prop}
+	$\stmt_1 \leu \stmt_2$ if for every statement $\stmt[v]$ infinitesimal in $\stmt[u]$, we have $\stmt_1\OR\stmt[v] \sfiner \stmt_2$. 
+\end{prop}
+\begin{proof}
+	Since $\impossibility$ is infinitesimal, we have $\stmt_1 = \stmt_1\OR\impossibility \sfiner \stmt_2$, and so by Definition \ref{smalleru}, we have that $\stmt_1\lequ\stmt_2$. Now, we must show it is not the case that $\stmt_1\equ \stmt_2$. 
+	
+	Let $\stmt[v]_1,\stmt[v]_2\in\tdomain$ be infinitesimals. Then $\stmt_1\OR\stmt[v]_1 \sfiner \stmt_2 \finer\stmt_2\OR\stmt[v]_2$. We conclude that it cannot be the case that $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$ for any infinitesimals (with respect to $\stmt[u]$) $\stmt[v]_1,\stmt[v]_2$. 
+\end{proof}
+
+We next show that $\lequ$ is a pre-order, and that it is a partial order with respect to $\equ$-equivalence classes. 
+
+\begin{conj}
+	The relation $\lequ$ is reflexive and transitive and therefore a preorder.
+\end{conj}
+
+[TODO: not clear that this works... don't we have to find infinitesimals that do not overlap?]
+\begin{proof}
+	Reflexivity is immediate since for any $\stmt\in\tdomain$, we have $\stmt\finer\stmt$, so $\stmt\lequ\stmt$. (This works for both the new and old definition)
+	
+	Transitivity requires a little more work. Let $\stmt_1,\stmt_2,\stmt_3\in\tdomain$ with $\stmt_1\lequ\stmt_2\lequ\stmt_3$. 
+	
+	{\bf Using the original definition:}
+	We have several cases to consider. 
+	
+	\emph{Case 1:} $\stmt_1\finer\stmt_2\finer\stmt_3$. Then $\stmt_1\finer\stmt_3$ and so $\stmt_1\lequ\stmt_3$. 
+	
+	\emph{Case 2:} $\stmt_1\equ\stmt_2\equ\stmt_3$. Then $\stmt_1\equ\stmt_3$ (since $\equ$ is an equivalence relation), and so $\stmt_1\lequ\stmt_3$. 
+	
+	\emph{Case 3:} $\stmt_1\equ\stmt_2\finer\stmt_3$. Then for some infinitesimals $\stmt[v]_1$ and $\stmt[v]_2$ (with respect to $\stmt[u]$), we have:
+	$$
+	\stmt_1\finer\stmt_1\OR\stmt[v]_1\eqgran\stmt_2\OR\stmt[v]_2\finer\stmt_3\OR\stmt[v]_2
+	$$
+	Unclear what to do here -- need $\stmt_3$ alone on the right-hand side somehow. Case 4 has the same problem. Let's try it with the modified definition (in the ``warning").
+	
+	{\bf Using the new definition:}
+	Let $\stmt_1'\equ\stmt_1$ and $\stmt_2'\equ\stmt_2$ with $\stmt_1'\finer\stmt_2'$, and let $\stmt_2''\equ\stmt_2$ and $\stmt_3''\equ\stmt_3$ with $\stmt_2''\finer\stmt_3''$. 
+	Then for an appropriate choice of infinitesimals (with respect to $\stmt[u]$) $\stmt[v]_i,\stmt[w]_i,\stmt[v]_i',\stmt[w]_i'$, $i=1,2,3$, we have:
+	$$
+	\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2'\OR\stmt[w]_3'' \eqgran \stmt_1'\OR\stmt[v]_1'\OR\stmt[w]_2'\OR\stmt[w]_3'' \finer \stmt_2'\OR\stmt[v]_1'\OR\stmt[w]_2'\OR\stmt[w]_3'' \eqgran \stmt_2''\OR\stmt[w]_2''\OR\stmt[v]_1'\OR\stmt[w]_3'' \finer
+	$$
+	$$
+	\stmt_3''\OR\stmt[w]_2''\OR\stmt[v]_1'\OR\stmt[w]_3'' \eqgran
+	\stmt_3\OR\stmt[w]_3 \OR\stmt[w]_2''\OR\stmt[v]_1'
+	$$
+	Since $\stmt_1 \equ \stmt_1\OR\stmt[v]_1\OR\stmt[w]_2'\OR\stmt[w]_3''$ and $\stmt_3 \equ \stmt_3\OR\stmt[w]_3 \OR\stmt[w]_2''\OR\stmt[v]_1' $, we have that $\stmt_1\lequ\stmt_3$. 
+	
+\end{proof}
+
+\begin{prop}
+	If $\stmt_1\lequ\stmt_2$ and $\stmt_1\gequ \stmt_2$, then $\stmt_1\equ\stmt_2$.
+\end{prop}
+\begin{proof}
+	This is immediate from the first definition, since we would either have $\stmt_1\eqgran\stmt_2$ (which implies $\stmt_1\equ\stmt_2$), or we would already have $\stmt_1\equ\stmt_2$.
+\end{proof}
+
+\begin{remark}
+	content...
+\end{remark}
+
+Question: is the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes well-defined and monotone? 
+
+% case: possibilities in u: (1) finite: impose counting measure (2) countable: finitely additive but not countably (3) uncountable: countably additive, legitimate measure
+
+\subsubsection{Collapsing Orders}
+[TODO: didn't we find a reference for this?]
+
+Searching around did not yield the theorems desired, so we will discuss the tools needed here. It turns out that it is not so straightforward to collapse a poset by an equivalence relation. Let's start with a possible definition: 
+
+If $(P,\leq)$ is a poset and $\sim$ is a collapsing equivalence relation, then endow the set $P/\sim$ with the relation $\leq/\sim$ defined by $x/\sim \leq/\sim y/\sim$ whenever there exist $x'\in x/\sim$ and $y'\in y/\sim$ with $x'\leq y'$. 
+
+It turns out that this is not sufficient. Here is an important example. Let our set be $\{w,x,y,z\}$ and a poset relation defined by $x\leq w$, $y\leq w$, $y\leq z$, with the following Hasse diagram:
+
+\begin{tikzpicture}
+% First, locate each of the nodes and name them
+\node (top) at (0,0) {$w$};
+\node [below left  of=top] (left)  {$x$};
+\node [below right of=top] (bottom right) {$y$};
+\node [above right of=bottom right] (right) {$z$};
+
+% Now draw the lines:
+\draw [shorten <=-2pt, shorten >=-2pt] (top) -- (left);
+\draw [shorten <=-2pt, shorten >=-2pt] (top) -- (bottom right);
+\draw [shorten <=-2pt, shorten >=-2pt] (bottom right) -- (right);
+\end{tikzpicture}
+
+Let's consider two possible cases. Suppose first $w\sim y$, and $x$ and $z$ are only $\sim$ with themselves. Then in order to collapse $\leq$ under $\sim$, we will need $x \leq w\sim y \leq z$ for transitivity. 
+
+Consider next the case that $w\sim y$ and $x\sim z$. In order to collapse this, we will need that $w\sim x\sim y \sim z$.
+
+These examples show that not every equivalence relation can collapse a poset into a poset (even if it only collapses a chain). 
+
+Note that neither of the above problems are possible with {\bf totality}. It seems that what makes the most sense is collapsing by some equivalence relation, and then extending both the ordering and the equivalence relation to generate a legitimate poset. We can explore this later if needed. 
 
 \section{Notes}
 
@@ -730,177 +921,16 @@ The point of the above discussion is to try to gain a better idea of which (infi
 
 Regardless, the goal is not just to distinguish infinite-Lebesgue-measure sets. We need to understand when monotone continuity is relevant and what happens without it. 
 
-\subsection{Infinitesimals}
+\section{Examples}
 
-\subsubsection{Equivalence at $\stmt[u]$ scale}
+Some ideas on distributions on natural numbers can be found in \cite{Schirokauer2007}.
+% Also available at http://www.stat.cmu.edu/tr/tr814/tr814.pdf
 
-\def\equivu{\cong_{\stmt[u]}}
+\subsection{Distribution on natural numbers through mod classes}
 
-\begin{defn}
-Let $\stmt_1, \stmt_2 \in \tdomain$. We say $\stmt_1$ is \textbf{equivalent to $\stmt_2$ at $\stmt[u]$ scale}, noted $\stmt_1 \equivu \stmt_2$, if we can find $\stmt[v]_1, \stmt[v]_2 \in \tdomain$ that are infinitesimal with respect to $\stmt[u]$ such that $\stmt_1 \OR \stmt[v]_1 \equiv \stmt_2 \OR \stmt[v]_2$.
-\end{defn}
+Let $\mathbb{N}$ be the set of natural numbers. We define the sets $D_{i,k} = \{ x \in \mathbb{N} \, | \, x \mod i = k \}$ with $k < i$. Therefore $D_{1,0} = \mathbb{N}$, $D_{2,0} = \{ 2, 4, 6, ... \}$, $D_{2,1} = \{ 1, 3, 5, ... \}$ and so on. Additionally, we say $D_{i,j} \finer D_{k,l}$ for all $k \leq i$ and for all $j$ and $l$. As needed, we may overload the notation by letting $D_{i,j} =  D_{i, j \mod i}$ where $j\mod i$ is the smallest positive residue of $j$ under $i$.
 
-\begin{prop}
-Equivalence at $\stmt[u]$ scale is an equivalence class.
-\end{prop}
-\begin{proof}
-For reflexivity, let $\stmt \in \tdomain$. We have $\stmt \OR \impossibility \equiv \stmt \OR \impossibility$. Since $\impossibility$ is an infinitesimal for all $\stmt[u]$ (TODO: add proposition), $\stmt \equivu \stmt$. For symmetry, note that the definition itself is symmetrical. For transitivity, let $\stmt_1 \equivu \stmt_2 \equivu \stmt_3$. Then we have $\stmt_1 \OR \stmt[v]_1 \equiv \stmt_2 \OR \stmt[v]_2$ and $\stmt_2 \OR \stmt[w]_2 \equiv \stmt_3 \OR \stmt[w]_3$.
-\end{proof}
-
-\subsubsection{Greatness in $\stmt[u]$}
-
-First define ``as big in $\stmt[u]$'' $\equ$.
-
-\begin{defn}
-Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{as big as} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \equ \stmt_2$, if we can find $\stmt[v]_1, \stmt[v]_2 \in \tdomain$ that are infinitesimal with respect to $\stmt[u]$ such that $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$.
-\end{defn}
-
-\begin{prop}
-Suppose $\tdomain$ is uniform. Let $\stmt_1, \stmt_2 \in \tdomain$ such that $\stmt_1 \equ \stmt_2$ and $\stmt_1 \finer \stmt_2$, then for all $\stmt_1 \finer \stmt \finer \stmt_2$ we have $\stmt_1 \equ \stmt \equ \stmt_2$.
-\end{prop}
-
-We start with a simpler case:
-
-\begin{prop}
-Let $\stmt_1,\stmt,\stmt[v]_1\in\tdomain$ such that $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$, and suppose $\stmt[v]_1$ is infinitesimal with respect to $\stmt[u]$. Then $\stmt\equ\stmt_1$. 
-\end{prop}
-\begin{proof}[Using Prop \ref{uniformconsequence}]
-If both of the $\finer$'s are actually equigranular, there is nothing to show. Next consider the case that $\stmt_1\sfiner\stmt\finer\stmt_1\OR\stmt[v]_1$. Then by Proposition \ref{uniformconsequence} there exists $\stmt_2$ such that $\stmt_2\narrower\stmt$ and $\stmt_2\eqgran\stmt_1$. But how do we put this together?? What about the even simpler version of the lemma with $\narrower$ instead of $\finer$? Just use $\stmt\OR (\stmt_1\OR\stmt[v]_1 \AND \NOT\stmt)$.
-\end{proof}
-
-This seems problematic already:
-
-We have $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$. We need to find some $\stmt[w],\stmt[w]_1$ infinitesimal with respect to $\stmt[u]$, such that $\stmt\OR\stmt[w]\eqgran\stmt_1\OR\stmt[w]_1$. Since we don't know anything about the overlap of $\stmt$ and $\stmt_1$, we can't use any operations like $\stmt\AND\NOT\stmt_1$ to find something small. We need to know that additional statements exist in order to find $\stmt[w]$ and $\stmt[w]_1$. 
-
-For example, what if every infinitesimal statement was narrower $(\narrower)$ than $\stmt$? In this case, we could have something like $\stmt_1\sfiner\stmt\sfiner\stmt_1\OR\stmt[x]$ for all statements (including all infinitesimals) $\stmt[x]$. It would then not be the case that $\stmt\equ\stmt_1$. 
-
-
-
-
-
-\begin{prop}[Need something like this but not clear if correct!]
-Suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$. Then there exist statements  $\stmt[v]_1,\stmt[v]_2,\stmt[w]_2,\stmt[w]_3$, infinitesimal in $\stmt[u]$, such that:
-$$
-\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2 \eqgran \stmt_2\OR\stmt[v]_2\OR\stmt[w]_2 \eqgran \stmt_3\OR\stmt[w]_3\OR\stmt[v]_2.
-$$
-\end{prop}
-
-Note that the existence of the right combination of incompatible statements is sufficient. However, that is stronger than we need and may be harder to prove. Problem: we have very few propositions about existence of statements! It is hard to ensure certain ones exist. 
-
-Consider the following (extreme) case. Suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$, but the infinitesimals which realize these relationships are $\stmt[v]_1$ and $\stmt[v]_2$, as follows:
-$$
-\stmt_1\OR\stmt[v]_1 \eqgran \stmt_2\OR\stmt[v]_2,\ \stmt_2\OR\stmt[v]_1\eqgran\stmt_3\OR\stmt[v]_2
-$$
-Without further axioms, it may not be possible to put this together to get transitivity (i.e. to find that $\stmt_1\equ\stmt_3$). 
-
-
-\begin{prop}
-The relation $\equ$ is an equivalence relation.
-\end{prop}
-\begin{proof}
-Reflexivity and symmetry are immediate since $\eqgran$ is an equivalence relation. For transitivity, suppose $\stmt_1\equ\stmt_2$ and $\stmt_2\equ\stmt_3$. Let $\stmt[v]_1,\stmt[v]_2,\stmt[w]_2,\stmt[w]_3$ be infinitesimals with respect to $\stmt[u]$, such that $\stmt_1\OR\stmt[v]_1\eqgran\stmt_2\OR\stmt[v]_2$ and $\stmt_2\OR\stmt[w]_2\eqgran\stmt_3\OR\stmt[w]_3$. Then we have:
-$$
-\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2 \eqgran \stmt_2\OR\stmt[v]_2\OR\stmt[w]_2 \eqgran \stmt_3\OR\stmt[w]_3\OR\stmt[v]_2.
-$$
-Since $\stmt[v]_1\OR\stmt[w]_2$ and $\stmt[w]_3\OR\stmt[v]_2$ are infinitesimal with respect to $\stmt[u]$ (being finite disjuncts of infinitesimals), we have $\stmt_1\equ\stmt_3$. 
-\end{proof}
-
-\begin{defn}\label{smalleru}
-Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{smaller than} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \lequ \stmt_2$, if $\stmt_1 \finer \stmt_2$ or $\stmt_1 \equ \stmt_2$. We define $\stmt_1\leu\stmt_2$ by $\stmt_1\lequ\stmt_2$ and not $\stmt_1\equ\stmt_2$. 
-\end{defn}
-{\bf Warning:} Transitivity doesn't seem to work as stated (see the proof attempt below). We propose the following modification: say $\stmt_1\lequ\stmt_2$ if there exist statements $\stmt_1'$ and $\stmt_2'$ with $\stmt_1'\equ\stmt_1$ and $\stmt_2'\equ\stmt_2$ such that $\stmt_1'\finer\stmt_2'$. Note that {\bf by totality}, it is sufficient to just say $\stmt_1\finer\stmt_2'$ (no need for $\stmt_1'$). 
-
- \begin{prop}
-$\stmt_1 \leu \stmt_2$ if for every statement $\stmt[v]$ infinitesimal in $\stmt[u]$, we have $\stmt_1\OR\stmt[v] \sfiner \stmt_2$. 
-\end{prop}
-\begin{proof}
-Since $\impossibility$ is infinitesimal, we have $\stmt_1 = \stmt_1\OR\impossibility \sfiner \stmt_2$, and so by Definition \ref{smalleru}, we have that $\stmt_1\lequ\stmt_2$. Now, we must show it is not the case that $\stmt_1\equ \stmt_2$. 
-
-Let $\stmt[v]_1,\stmt[v]_2\in\tdomain$ be infinitesimals. Then $\stmt_1\OR\stmt[v]_1 \sfiner \stmt_2 \finer\stmt_2\OR\stmt[v]_2$. We conclude that it cannot be the case that $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$ for any infinitesimals (with respect to $\stmt[u]$) $\stmt[v]_1,\stmt[v]_2$. 
-\end{proof}
-
-We next show that $\lequ$ is a pre-order, and that it is a partial order with respect to $\equ$-equivalence classes. 
-
-\begin{prop}
-The relation $\lequ$ is reflexive and transitive.  
-\end{prop}
-\begin{proof}
-Reflexivity is immediate since for any $\stmt\in\tdomain$, we have $\stmt\finer\stmt$, so $\stmt\lequ\stmt$. (This works for both the new and old definition)
-
-Transitivity requires a little more work. Let $\stmt_1,\stmt_2,\stmt_3\in\tdomain$ with $\stmt_1\lequ\stmt_2\lequ\stmt_3$. 
-
-{\bf Using the original definition:}
-We have several cases to consider. 
-
-\emph{Case 1:} $\stmt_1\finer\stmt_2\finer\stmt_3$. Then $\stmt_1\finer\stmt_3$ and so $\stmt_1\lequ\stmt_3$. 
-
-\emph{Case 2:} $\stmt_1\equ\stmt_2\equ\stmt_3$. Then $\stmt_1\equ\stmt_3$ (since $\equ$ is an equivalence relation), and so $\stmt_1\lequ\stmt_3$. 
-
-\emph{Case 3:} $\stmt_1\equ\stmt_2\finer\stmt_3$. Then for some infinitesimals $\stmt[v]_1$ and $\stmt[v]_2$ (with respect to $\stmt[u]$), we have:
-$$
-\stmt_1\finer\stmt_1\OR\stmt[v]_1\eqgran\stmt_2\OR\stmt[v]_2\finer\stmt_3\OR\stmt[v]_2
-$$
-Unclear what to do here -- need $\stmt_3$ alone on the right-hand side somehow. Case 4 has the same problem. Let's try it with the modified definition (in the ``warning").
-
-{\bf Using the new definition:}
-Let $\stmt_1'\equ\stmt_1$ and $\stmt_2'\equ\stmt_2$ with $\stmt_1'\finer\stmt_2'$, and let $\stmt_2''\equ\stmt_2$ and $\stmt_3''\equ\stmt_3$ with $\stmt_2''\finer\stmt_3''$. 
-Then for an appropriate choice of infinitesimals (with respect to $\stmt[u]$) $\stmt[v]_i,\stmt[w]_i,\stmt[v]_i',\stmt[w]_i'$, $i=1,2,3$, we have:
-$$
-\stmt_1\OR\stmt[v]_1\OR\stmt[w]_2'\OR\stmt[w]_3'' \eqgran \stmt_1'\OR\stmt[v]_1'\OR\stmt[w]_2'\OR\stmt[w]_3'' \finer \stmt_2'\OR\stmt[v]_1'\OR\stmt[w]_2'\OR\stmt[w]_3'' \eqgran \stmt_2''\OR\stmt[w]_2''\OR\stmt[v]_1'\OR\stmt[w]_3'' \finer
-$$
-$$
-\stmt_3''\OR\stmt[w]_2''\OR\stmt[v]_1'\OR\stmt[w]_3'' \eqgran
-\stmt_3\OR\stmt[w]_3 \OR\stmt[w]_2''\OR\stmt[v]_1'
-$$
-Since $\stmt_1 \equ \stmt_1\OR\stmt[v]_1\OR\stmt[w]_2'\OR\stmt[w]_3''$ and $\stmt_3 \equ \stmt_3\OR\stmt[w]_3 \OR\stmt[w]_2''\OR\stmt[v]_1' $, we have that $\stmt_1\lequ\stmt_3$. 
-
-\end{proof}
-
-\begin{prop}
-If $\stmt_1\lequ\stmt_2$ and $\stmt_1\gequ \stmt_2$, then $\stmt_1\equ\stmt_2$.
-\end{prop}
-\begin{proof}
-With the original definition, this is immediate, since we would either have $\stmt_1\eqgran\stmt_2$ (which implies $\stmt_1\equ\stmt_2$), or we would already have $\stmt_1\equ\stmt_2$.
-
-With the modified definition, we need a bit more work. 
-\end{proof}
-
-Question: is the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes well-defined and monotone? 
-
-% case: possibilities in u: (1) finite: impose counting measure (2) countable: finitely additive but not countably (3) uncountable: countably additive, legitimate measure
-
-\subsection{Collapsing Orders}
-
-Searching around did not yield the theorems desired, so we will discuss the tools needed here. It turns out that it is not so straightforward to collapse a poset by an equivalence relation. Let's start with a possible definition: 
-
-If $(P,\leq)$ is a poset and $\sim$ is a collapsing equivalence relation, then endow the set $P/\sim$ with the relation $\leq/\sim$ defined by $x/\sim \leq/\sim y/\sim$ whenever there exist $x'\in x/\sim$ and $y'\in y/\sim$ with $x'\leq y'$. 
-
-It turns out that this is not sufficient. Here is an important example. Let our set be $\{w,x,y,z\}$ and a poset relation defined by $x\leq w$, $y\leq w$, $y\leq z$, with the following Hasse diagram:
-
-\begin{tikzpicture}
-    % First, locate each of the nodes and name them
-    \node (top) at (0,0) {$w$};
-    \node [below left  of=top] (left)  {$x$};
-    \node [below right of=top] (bottom right) {$y$};
-    \node [above right of=bottom right] (right) {$z$};
-
-    % Now draw the lines:
-    \draw [shorten <=-2pt, shorten >=-2pt] (top) -- (left);
-    \draw [shorten <=-2pt, shorten >=-2pt] (top) -- (bottom right);
-    \draw [shorten <=-2pt, shorten >=-2pt] (bottom right) -- (right);
-\end{tikzpicture}
-
-Let's consider two possible cases. Suppose first $w\sim y$, and $x$ and $z$ are only $\sim$ with themselves. Then in order to collapse $\leq$ under $\sim$, we will need $x \leq w\sim y \leq z$ for transitivity. 
-
-Consider next the case that $w\sim y$ and $x\sim z$. In order to collapse this, we will need that $w\sim x\sim y \sim z$.
-
-These examples show that not every equivalence relation can collapse a poset into a poset (even if it only collapses a chain). 
-
-Note that neither of the above problems are possible with {\bf totality}. It seems that what makes the most sense is collapsing by some equivalence relation, and then extending both the ordering and the equivalence relation to generate a legitimate poset. We can explore this later if needed. 
-
-\section{Possible example}
-
-Let $\mathbb{N}$ be the set of natural numbers. We define the sets $D_{i,k} = \{ x \in \mathbb{N} \, | \, x \mod i = k \}$ with $k < i$. Therefore $D_{1,0} = \mathbb{N}$, $D_{2,0} = \{ 2, 4, 6, ... \}$, $D_{2,1} = \{ 1, 3, 5, ... \}$ and so on. Additionally, we say $D_{i,j} \finer D_{k,l}$ for all $k \leq i$ and for all $j$ and $l$. As needed, we may overload the notation by letting $D_{i,j} =  D_{i, j \mod i}$ where $j\mod i$ is the smallest positive residue of $j$ under $i$. 
+\subsubsection{The $\sigma$-algebra generated by the sets is the powerset}
 
 Let $D_{i,j}$ and $D_{k,l}$ be two of these subsets. Consider the intersection $D_{i,j}\cap D_{k,l}$ and suppose it is nonempty; let $n$ be in this intersection. Then $D_{i,j} = D_{i,n}$ and $D_{k,l} = D_{k,n}$, so the intersection is given by $D_{i,n}\cap D_{j,n} = \{x\in \mathbb{N} \, | \, x \mod \gcd(i,j) = n\} = D_{\gcd(i,j),n}$. 
 
@@ -912,12 +942,20 @@ Next, let $n\in\mathbb{N}$. Consider the union $S_n = \cup_{i=n+1}^{\infty}D_{i,
 
 Claim: all finite operations of union, intersection, and complement of $D_{i,j}$'s yield sets that may be written as finite unions of $D_{i,j}$'s. Countable operations yield arbitrary subsets of $\mathbb{N}$. 
 
-Possible source to read from: http://www.stat.cmu.edu/tr/tr814/tr814.pdf
-Note in abstract, gives $1/m$ probability (measure) to $D_{m,j}$ for each $j$. 
+\subsubsection{A finitely-additive measure on infinite sets}
+
+Take $\mathbb{N}$ as the unit. For any $i$, we have $D_{i,j} \finer D_{i,l} \finer D_{i,j}$. Therefore $D_{i,j} \eqgran D_{i,l}$ for any $j$ and $l$. We have $1 = \mu_{\mathbb{N}}(\mathbb{N}) = \mu_{\mathbb{N}}(\bigOR_{j=1}^i D_{i,j}) = \sum_{j=1}^i \mu_{\mathbb{N}}( D_{i,j}) = \sum_{j=1}^i \mu_{\mathbb{N}}( D_{i,0}) = i \mu_{\mathbb{N}}( D_{i,0}) $. Therefore $\mu_{\mathbb{N}}( D_{i,j}) = 1/i$ for any $i$ and $j$.
 
 \section{Insightful failures}
 
+In this section we summarize ideas that did not work.
+
+\subsection{Transport of sequences}
+
+[TODO: example on how moving a sequence to one that is equigranular at all finite steps does not give the same limit]
+
 \subsection{Maximal chains}
+[TODO: boil this down to the essentials
 
 The idea was to see whether, instead of requiring totality, we could require that we could always find statements at a desired level of description. We wanted to say that a maximal chain in narrowness, that is a sequence of statements ordered by narrowness where no other statement could be added, would touch all levels of descriptions, all equivalence classes in equigranularity. This does not work.
 
