@@ -1,4 +1,4 @@
-\documentclass[10pt, onecolumn, nofootinbib]{revtex4-2}
+\documentclass[10pt, onecolumn, longbibliography, nofootinbib]{revtex4-2}
 
 \usepackage{assumptionsofphysics}
 
@@ -45,7 +45,7 @@
 
 \emph{This paper presents the goal and the current status of our research. It is intended to gather early feedback, including pointers to other relevant work. Feedback is welcome and encouraged.}
 
-The overall goal of Assumptions of Physics is to identify a handful of physical principles from which the basic laws can be rigorously derived. We have already established that topologies and $\sigma$-algebras can be recovered from requirements of experimental verifiability.\cite{AoPBook,AoPOverviewVerifiability} See also (TODO: Kevin Kelly). The next step is to understand the underpinnings of geometric and measure theoretic structures (including probability) which are layered on top of topologies and $\sigma$-algebras. As usual, a formal construction from scratch will force us to make explicit the physical requirements that are baked into the use of the common concepts and provide us with a framework that is, hopefully, still valid when those assumptions fail.
+The overall goal of Assumptions of Physics is to identify a handful of physical principles from which the basic laws can be rigorously derived. We have already established that topologies and $\sigma$-algebras can be recovered from requirements of experimental verifiability.\cite{aop-book,aop-overview-verifiability} See also (TODO: Kevin Kelly). The next step is to understand the underpinnings of geometric and measure theoretic structures (including probability) which are layered on top of topologies and $\sigma$-algebras. As usual, a formal construction from scratch will force us to make explicit the physical requirements that are baked into the use of the common concepts and provide us with a framework that is, hopefully, still valid when those assumptions fail.
 %TODO: add topology proceeding, update book reference
 
 Note that often in physics, geometric structures are recovered from other geometric structures through the idea of emergence. For example, substantial effort is put into constructing theories where space-time emerges from other more fundamental structures. This does not solve the problem: it simply pushes it backwards. We are interested in the more fundamental problem of how the first geometric structure, and in fact any geometric structure, is defined.
@@ -97,7 +97,7 @@ As we will see later, the notion of infinitesimals plays an important role. Ther
 
 \subsection{Fineness and granularity}
 
-We start with a $\sigma$-complete Boolean algebra $\tdomain$, which we call \textbf{theoretical domain}, that can be generated from a countable subset, a countable basis. Conceptually, this represents all the statements that can be associated with an experimental verification procedure. The full detail of why this is the correct abstraction is discussed in detail in our previous work.\cite{AoPBook} It is a property of this type of spaces that each statement $\stmt \in \tdomain$ can be expressed as a disjunction of possible cases, of the  \textbf{possibilities} of the domain.\footnote{For example, ``the mass of the object is less than 1 Kg'' is the disjunction (i.e. the logical OR) of all the statements of the form ``the mass of the object is exactly $x$ Kg'' where $0 \leq x < 1$.} Formally, each possibility is a minterm\footnote{A minterm is a disjunction in which each term appears once, either negated or not.} of the countable basis. The theoretical domain can then equivalently be represented by a $\sigma$-algebra.\footnote{This conceptually maps perfectly to what one has in probability: a sample space (i.e. the set of possibilities) and a set of events (i.e. the statements in the domain). The advantage of our ``pointless'' constructions is that we can treat domains, subdomains and composite domains in the same manner.}
+We start with a $\sigma$-complete Boolean algebra $\tdomain$, which we call \textbf{theoretical domain}, that can be generated from a countable subset, a countable basis. Conceptually, this represents all the statements that can be associated with an experimental verification procedure. The full detail of why this is the correct abstraction is discussed in detail in our previous work.\cite{aop-book} It is a property of this type of spaces that each statement $\stmt \in \tdomain$ can be expressed as a disjunction of possible cases, of the  \textbf{possibilities} of the domain.\footnote{For example, ``the mass of the object is less than 1 Kg'' is the disjunction (i.e. the logical OR) of all the statements of the form ``the mass of the object is exactly $x$ Kg'' where $0 \leq x < 1$.} Formally, each possibility is a minterm\footnote{A minterm is a disjunction in which each term appears once, either negated or not.} of the countable basis. The theoretical domain can then equivalently be represented by a $\sigma$-algebra.\footnote{This conceptually maps perfectly to what one has in probability: a sample space (i.e. the set of possibilities) and a set of events (i.e. the statements in the domain). The advantage of our ``pointless'' constructions is that we can treat domains, subdomains and composite domains in the same manner.}
 
 A Boolean algebra is also a lattice, and therefore $\tdomain$ already comes with a partial order $\narrower$ such that $\stmt_1 \narrower \stmt_2$ if $\stmt_1 \OR \stmt_2 \equiv \stmt_2$. We call \textbf{narrowness} this partial order as it describes whether a statement gives a narrower description of another as we saw in the introduction. The narrowest statement in the domain is the impossibility $\impossibility$ and the broadest one is the certainty $\certainty$.\footnote{In terms of the $\sigma$-algebra, narrowness corresponds to set inclusion, the certainty is the full set and the impossibility is the empty set.}
 
@@ -237,7 +237,7 @@ One issue will be, again, proving the consistent of comparability with different
     A \textbf{theoretical domain} $\tdomain$ is a $\sigma$-complete Boolean algebra that can be generated by a countable subset. We call \textbf{narrowness} the partial order of the algebra, that is $x \narrower y$ when $x \OR y = y$. We say $x \in \tdomain$ is a \textbf{possibility} if it is the immediate successor of the impossibility $\impossibility$. That is, $\impossibility \snarrower x$ and there is no $\stmt \in \tdomain$ such that $\impossibility \snarrower \stmt \snarrower x$.
 \end{defn}
 
-The fact that the $\sigma$-algebra is generated by a countable set means it is separable. It also means that each element can be constructed as a disjunction of a set of possibilities. For the full definitions, see \cite{AoPBook}.
+The fact that the $\sigma$-algebra is generated by a countable set means it is separable. It also means that each element can be constructed as a disjunction of a set of possibilities. For the full definitions, see \cite{aop-book}.
 
 \begin{defn}\label{fineness}
 	 Fineness is a binary relationship $\finer : \tdomain \times \tdomain \to \Bool$ with the following properties:
@@ -1008,7 +1008,7 @@ Further, MCP alone implies neither totality nor equigranular possibilities. Inde
 \end{remark}
 
 
-\bibliographystyle{plain}
+\bibliographystyle{apsrev4-2}
 \bibliography{bibliography}
 
 \end{document}
