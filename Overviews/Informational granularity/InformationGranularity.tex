@@ -197,7 +197,7 @@ The main issue here is that, since the ordering is potentially not total, it is 
 
 \textbf{Definition of infinitesimals}. Assuming those issues are solved, infinitesimals come in two types: countable and uncountable. A countable infinitesimal will be such that the disjoint conjunction of countably many equigranular statements may be bigger than the unit. This is the case where, in the end, the measure will only be finitely additive: infinitely many zero measure elements will sum to a finite element. If all infinitesimal with respect to the unit are uncountable, instead, countably many zero measure elements will still form a zero measure element.
 
-This insight may give us a way to define ``finite'' and ``infinite'' elements in an absolute way. A finite element has no countable infinitesimal. For example, take the unit interval over the reals and consider the standard Lebesque measure over the Borel sets (which would correspond to our theoretical domain). All sets of measure zero are uncountable infinitesimals with respect to the unit: since the measure is countably additive, any disjoint union of countably many measure zero sets is going to be measure zero, therefore it will not be as big as the unit. Naturally, if we take a uncountably many sets (i.e. all the singletons) we can cover the whole unit. Conversely, the full real line can be covered by countably many sets of unit size. While the unit interval is infinitesimally small with the respect with the whole line, it is a countable infinitesimal. This definition of ``finiteness'' may map to physical requirements much better than, for example, the topological notion of compactness.
+This insight may give us a way to define ``finite'' and ``infinite'' elements in an absolute way. A finite element has no countable infinitesimal. For example, take the unit interval over the reals and consider the standard Lebesgue measure over the Borel sets (which would correspond to our theoretical domain). All sets of measure zero are uncountable infinitesimals with respect to the unit: since the measure is countably additive, any disjoint union of countably many measure zero sets is going to be measure zero, therefore it will not be as big as the unit. Naturally, if we take a uncountably many sets (i.e. all the singletons) we can cover the whole unit. Conversely, the full real line can be covered by countably many sets of unit size. While the unit interval is infinitesimally small with the respect with the whole line, it is a countable infinitesimal. This definition of ``finiteness'' may map to physical requirements much better than, for example, the topological notion of compactness.
 
 Once a notion of infinitesimals is well defined, we would define a preorder $\lequ$ and an equivalence relationship $\equ$ that compares the level of description of the statements up to infinitesimals.
 
@@ -395,13 +395,26 @@ We claim there exist domains which have all possibilities equigranular but finen
 
 \end{defn}
 
+\begin{prop}
+	Let $\tdomain$ be a theoretical domain. If all possibilities are equigranular, then the fineness class of statements compatible with only finitely many possibilities is determined by the number of possibilities with which they are compatible.
+\end{prop}
+\begin{proof}
+	Assume all possibilities are equigranular and let $\stmt_1$ and $\stmt_2$ be compatible with finitely many possibilities. We show that if $\stmt_1$ is compatible with at least as many possibilities as $\stmt_2$, then $\stmt_2\finer\stmt_1$. We proceed by induction on $N$, the number of possibilities compatible with $\stmt_1$. The case of $N=1$ follows from equigranularity of possibilities. Now suppose the claim holds for some $N$. Let $\stmt_1 = p_1\OR\cdots\OR p_{N+1}$ and $\stmt_2 = q_1\OR\cdots\OR q_m$ be statements compatible with only finitely many possibilities $p_i,i=1,\ldots,N+1$ and $q_j,j=1,\ldots,m$ respectively, where $m\leq N+1$. 
+	
+	Consider first the case where $m\leq N$. Then $\stmt_2 \finer p_1\OR\cdots\OR p_N \sfiner p_1\OR\cdots\OR p_N\OR p_{N+1} = \stmt_1$, so $\stmt_2\finer\stmt_1$. Next, suppose $m=N+1$. Write $\stmt_1' = p_1\OR\cdots\OR p_N$ and $\stmt_2' = q_1\OR\cdots\OR q_N$. We have already that all disjunctions of $N$ possibilties are equigranular, so $\stmt_1'\eqgran\stmt_2'$. Possibly by rearranging the order of the possibilties in the disjunction, we may assume $q_{N+1}\ncomp\stmt_1'$ and $q_{N+1}\ncomp\stmt_2'$. By Proposition \ref{fineness_properties}, we have $\stmt_1\OR q_{N+1}\eqgran\stmt_2$. Similarly, since $p_{N+1}\eqgran q_{N+1}$, we have $\stmt_1\eqgran\stmt_1'\OR q_{N+1}$. We conclude that $\stmt_1\eqgran\stmt_2$. 
+\end{proof}
+
+
+\begin{coro}
+	Let $\tdomain$ be such that all possibilities are equigranular. Let $x \in \tdomain$ be a possibility. Then there exists a unique measure $\mu_{x} : \tdomain \to \mathbb{R} \cup \{+\infty\}$ which corresponds to the counting measure of possibilities compatible to the statement.
+\end{coro}
+
 We expect the following to not be provable from the given axioms:
 
 \begin{desid}\label{uniformconsequence}
     Let $\tdomain$ be uniform. Let $\stmt, \stmt_1 \in \tdomain$ such that $\stmt \sfiner \stmt_1$. Then there exist $\stmt_2 \in \tdomain$ such that $\stmt_2 \narrower \stmt_1$ and $\stmt \eqgran \stmt_2$.
 \end{desid}
 However, it would be nice to understand why as it would give us insights into which additional premises are needed. The idea is that we can always ``move" a statement to an equigranular one to sit within any other (coarser) statement. This would allow us to make use of various properties of narrowness. Interestingly, this would not give additional insight into limiting behaviors, as equigranular sequences may have vastly different limits (and so ``moving" a sequence could drastically change the equigranularity class of the limit).
-
 
 \subsection{Infinitesimals}
 
@@ -645,50 +658,39 @@ Under these assumptions, $(P_{/\sim},\leq_{/\sim})$ is also a poset.
 
 As for a minimum element, we have the impossibility $\impossibility$ which will be unique in its equigranularity class, but being infinitesimal it will share its $\equ$ equivalence class, so perhaps modification of the above lemma will be necessary. 
 
-\section{Notes}
+\subsection{Monotone continuity up to infinitesimals}
 
-\subsection{Mark Notes again again}
+The established results in the literature of comparable probability require a specific axiom, called monotone continuity, that essentially make sure that sequences converge. This is necessary because their goal is to recover a probability measure that is countably additive.
 
-Question: Fix $\stmt[u]\in\tdomain$, and assume the following holds. Let $\stmt\in\tdomain$ such that $\stmt$ is compatible with infinitely many possibilities. Then there exist statements $\stmt_1,\stmt_2$ with $\stmt_1\ncomp\stmt_2$ and $\stmt_1\eqgran\stmt_2$ such that $\stmt_1\OR\stmt_2\narrower\stmt$ and $\stmt\AND\NOT(\stmt_1\OR\stmt_2)$ is an infinitesimal with respect to $\stmt[u]$. This means we can split statements in half (up to infinitesimals, with respect to fineness). 
-Further, assume $\stmt[u]$ does not admit countable infinitesimals. That is, for any countable collection $S\subseteq\tdomain$ of infinitesimals, $\OR S$ is still an infinitesimal. 
+\begin{defn}[Monotone continuity]
+	Given a domain $\tdomain$ and a unit $\stmt[u] \in\tdomain$, we say that $\lequ$ satisfies \textbf{monotone continuity} if the following is true: given a sequence $\{\stmt_i\}_{i=1}^{\infty}$ such that $\stmt_i \narrower \stmt_j$ for all $ i \leq j$ and $\stmt = \bigOR_i\stmt_i$ the disjunction, for every $\stmt[t] \in \tdomain$ such that $\stmt_i\leq_{\stmt[u]} \stmt[t]$ for all $i$ we have $\stmt\leq_{\stmt[u]} \stmt[t]$.
+\end{defn}
 
-We wish to know whether $\leq_{\stmt[u]}$ will have monotone continuity up to infinitesimals (this may or may not be related to the above). While we cannot quite answer that yet since we have not proven that $\lequ$ is transitive, we can think about it for $\finer$. The statement to understand is: 
+Note that, in general, monotone continuity is not satisfied. See examples in \ref{lack_of_monotone_continuity}. In terms of measures, the issue is that we may have that the disjoint disjuntion of countably many infinitesimals is not necessarily an infinitesimal, which means countably meany sets of measure zero would not sum up to a set of measure zero.
 
-Let $\{\stmt_i:i\in\mathbb{N}\}$ be a sequence of statements monotone increasing in narrowness (i.e. $\stmt_i\narrower\stmt_j$ for all $i\leq j$), and write $\stmt=\OR_i\stmt_i$ be the disjunction. Assume that $\stmt$ is finitely comparable to $\stmt[u]$. If $\stmt[t]\in\tdomain$ such that $\stmt[t]$ is finitely comparable to $\stmt[u]$, and $\stmt_i\finer\stmt[t]$ for all $i$, then $\stmt\finer\stmt[t]\OR\stmt[w]$ for some infinitesimal (with respect to $\stmt[u]$) $\stmt[w]$. 
+We therefore want to make the following distinction. TODO: define countable vs uncountable
 
-Idea: added terms approach infinitesimal. 
-
-Consider the new sequence defined by $\stmt'_i := \stmt_i \AND \NOT\stmt_{i-1}$ for $i\geq2$ and $\stmt'_1 := \stmt_1$. Then $\OR_{i=1}^n\stmt'_i = \stmt_n\finer\stmt[t]$ for all $n$. It follows that $\stmt = \OR_{i=1}^{\infty}\stmt'_i$, and so $\stmt$ is a countably infinite disjunction of disjoint statements. Since $\stmt$ is finitely comparable to $\stmt[u]$, not all of the $\stmt_i'$s can be infinitesimals. 
-
-Consider $\stmt[v]_n = \OR_{i=n}^{\infty}\stmt'_i = \stmt \AND\NOT\stmt_{n-1}$. Observe that $$\AND_{n=1}^{\infty}\stmt[v]_n = \AND_{n=1}^{\infty}\stmt\AND\NOT\stmt_{n-1} = \stmt\AND\NOT\OR_{n=1}^{\infty}\stmt_n = \stmt\AND\NOT\stmt \equiv \impossibility$$
-
-We wish to show that $\stmt = \stmt_{n-1}\OR\stmt[v]_n\finer \stmt[t]\OR \stmt[w]$. Or equivalently, assuming there exist statements $\stmt[x]_n\eqgran\stmt_n$ with $\stmt[x]_n\narrower\stmt[t]$ and $\stmt[x]_{n-1}\narrower\stmt[x]_n$, we wish to show that $\stmt[w]' := \stmt[t]\AND\NOT\stmt[x]$ is an infinitesimal, where $\stmt[x]=\OR_{i=1}^n\stmt[x]_i$. Note: if we have a very robust collection of possibilities and a dense enough fineness relation, we can ``move statements around" to find equigranular copies inside other statements, so the claim to show reduces to the case in this paragraph. If $\stmt[x]$ is not narrower than $\stmt[t]$, then there must exist some possibility in $\stmt[x]$ outside of $\stmt[t]$, and this must have shown up in some $\stmt[x]_i$. Is this sufficient? 
-
-Suppose $\{\stmt_i\}_{i=1}^{\infty}$ is such that $\AND_{i=1}^{\infty}\stmt_i = \impossibility$? Not sure. We need more theorems about characterizing infinitesimals beyond the definition. We don't have much in the way of finding arbitrarily large (finite) sets of equigranular statements. 
-
-Comment: Let $\stmt[u] = \mathbb{R}$. Then let $\stmt[t] = (0,\infty)$ and $\stmt = \mathbb{R}$. These are both finitely comparable to $\stmt[u]$. Next, let $\stmt_n = (-n,n)$. Then this is an increasing sequence of statements in narrowness, each of which is finer than $\stmt[t]$. But their disjunction is $\stmt$ which is (strictly) coarser than $\stmt[t]$, and no infinitesimal $\stmt[w]$ (with respect to $\stmt[u]$) will be enough to have $\stmt\finer\stmt[t]\OR \stmt[w]$. Interestingly, in this case, each $\stmt_n\AND\NOT\stmt_{n-1}$ is a countable infinitesimal in $\stmt[u]$. This shows us that a natural space which we might like to consider (e.g. $\mathbb{R}$) will fail the above conclusion; however, each set $(-n,n)$ for $n\geq1$ is a countable infinitesimal in $\mathbb{R}$, and so not admitting countable infinitesimals will be an important and strict condition. 
-
-Let $\stmt[u]$ be a statement. Suppose there exist statements $\stmt_i$, $i=1,\ldots$ which are mutually incompatible, equigranular, and $\stmt[u] = \OR_{i=1}^{\infty}\stmt_i$. Then all the $\stmt_i$'s are countable infinitesimals. So if it is possible to split a statement into countably infinitely many incompatible equigranular statements, then it admits countable infinitesimals. Not admitting countable infinitesimals is a strict one, but examples are provided by the standard Borel measure on bounded intervals in $\mathbb{R}$. 
+\begin{defn}
+	We say that $\stmt$ is a \textbf{uncountable} infinitesimal with respect to $\stmt[u]$ if all there exists a sequences $\{ \stmt_i \}_{i=1}^\infty$ such that:
+	\begin{enumerate}
+		\item $\stmt \finer \stmt_i$ for all $i$
+		\item $\stmt_i \ncomp \stmt_j$ for all $i \neq j$
+		\item $\bigOR\limits_{i=1}^n \stmt_i \finer \stmt[u]$ 
+	\end{enumerate}
+	In words, $\stmt$ is a countable infinitesimal with respect to $\stmt[u]$ if we can find for any number, there is a disjunction of that many broader mutually incompatible statements $\stmt_i$ is finer than $\stmt[u]$.
+\end{defn}
 
 
+TODO: desiderata that if there are no countable infinitesimal, then we have monotone continuity
 
-\subsection{Unique measures}
+We wish to understand the following. This is monotone continuity up to infinitesimals, and so with the right definitions, it should translate to monotone continuity for $\lequ$. 
 
-One condition for the measure to be unique given a unit statements is that all points (i.e. possibilities in our framework) are equigranular. In fact, consider a domain with just three points not equigranular to each other, but each finer than the other. We can construct any measure that satisfies the requirement by picking three numbers and assigning them accordingly, since we can't determine ``how bigger'' is one point with respect to the other.
+Let $\stmt[u]$ be a statement which does not admit countable infinitesimals, and let $\{\stmt_i:i\in\mathbb{N}\}$ be a sequence of statements monotone increasing in narrowness (i.e. $\stmt_i\narrower\stmt_j$ for all $i\leq j$). Write $\stmt=\OR_i\stmt_i$ for the disjunction and assume $\stmt$ is finitely comparable to $\stmt[u]$. If $\stmt[t]\in\tdomain$ such that $\stmt[t]$ is finitely comparable to $\stmt[u]$, and $\stmt_i\finer\stmt[t]$ for all $i$, then $\stmt\finer\stmt[t]\OR\stmt[w]$ for some infinitesimal (with respect to $\stmt[u]$) $\stmt[w]$. 
 
-\subsection{Finding a probability measure}
 
-Our first goal is to find a measure which is compatible with the fineness preorder. The idea is that fineness tells us which sets are ``larger" (less precise) than each other, regardless of any overlap.  A measure will quantify this and allow us to assign numbers to the sizes.
 
-The paper \cite{probexistence} seems to be extremely relevant here. The basic idea in this paper is to find necessary and sufficient conditions for the existence of a probability measure on a Boolean algebra (e.g. of subsets of some set) which is compatible with a total pre-order. There are a few points to keep in mind. 
 
-First, we need a \emph{total} pre-order. This means for every pair of elements, one is finer than the other. This is certainly not the case for fineness in general: color and position, for example, cannot be compared. This is the goal of defining the \emph{unit} above. The unit serves as a baseline statement against which others can be compared for fineness. For example, a statement about position singles out length as the dimension to compare, or a statement about numbers of objects specifies ``count" as the dimension to compare (e.g. the discrete unit of number of objects). 
-
-Next, we need the three properties specified in the paper, to be written up later! We are optimistic that these three properties are present in our situation. 
-
-There is one additional caveat. The measure constructed by the main theorem in the above-mentioned paper is always a probability measure. This means the whole space has finite measure. For example, one could put the Lebesgue measure on $(0,1)$ but under a homeomorphism $(0,1)\to\mathbb{R}$ induce a finite (probability) measure on  $\mathbb{R}$. If we chose the full set as a unit, we are exactly looking for a probability measure. If we pick a unit that is not the full set, we can also "constrain" the problem to that subset, so that we still have a probability measure. Then we may be able to "stich together" the measures constructed on all equigranular sets assuming they cover the full space. 
-
-\subsection{Applying results of the paper \cite{villegas}}
+\section{Adapting results from \cite{villegas}}
 
 In this part, we will assume that $\tdomain_{\stmt[u]}$ is a subset of the theoretical domain, $\stmt[u]\in \tdomain_{\stmt[u]}$ is a distinguished element (we'll refer to it as the \emph{unit} when needed), and there is a total pre-order $\leq_{\stmt[u]}$ defined on $\tdomain_{\stmt[u]}$. We will write $=_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and $\geq_{\stmt[u]}$, and we write $<_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and not $=_{\stmt[u]}$. We will use the word ``equiprobable" for $=_{\stmt[u]}$ since it means something different from equigranular (since $\leq_{\stmt[u]}$ is a different ordering from fineness, even though it will be derived from fineness). We assume $\tdomain_{\stmt[u]}$ is closed under complement and countable union (and hence countable intersection), and that there are two additional elements, $\certainty$ and $\impossibility$, which are maximal and minimal in this ordering, respectively.
 
@@ -820,9 +822,6 @@ Wish: find a way to prove the above statements in an order-theoretic way. In par
 
 
 
-\subsection{Example with lack of monotonicity}
-
-Consider a Euclidian two dimensional space charted by $\{x,y\}$. Let $U_{i,j}$ be the square in the interval $x \in (i, i+1)$ and $y \in (j, j+1)$. Let $V$ be the vertical (infinite) strip in the interval $x \in (0, 1)$ and $W$ the vertical strip in the interval $x \in (0, 2)$. Define the sequence $W_i = \{ U_{0,0}, U_{1,0}, U_{0,1}, U_{1,1}, U_{0,2}, U_{1,2}, U_{0,3}, U_{1,3}, ... \}$. We have $\bigcup\limits_0^\infty W_i = W$. This means $\bigcup\limits_0^n W\finer V$ for all finite $n$ but $\bigcup\limits_0^\infty W_i = W \coarser V$. 
 
 \subsection{Some thoughts on Example in 3.3}
 
@@ -862,20 +861,34 @@ Claim: all finite operations of union, intersection, and complement of $D_{i,j}$
 
 Take $\mathbb{N}$ as the unit. For any $i$, we have $D_{i,j} \finer D_{i,l} \finer D_{i,j}$. Therefore $D_{i,j} \eqgran D_{i,l}$ for any $j$ and $l$. We have $1 = \mu_{\mathbb{N}}(\mathbb{N}) = \mu_{\mathbb{N}}(\bigOR_{j=1}^i D_{i,j}) = \sum_{j=1}^i \mu_{\mathbb{N}}( D_{i,j}) = \sum_{j=1}^i \mu_{\mathbb{N}}( D_{i,0}) = i \mu_{\mathbb{N}}( D_{i,0}) $. Therefore $\mu_{\mathbb{N}}( D_{i,j}) = 1/i$ for any $i$ and $j$.
 
+
+\subsection{Example with lack of monotone continuity}\label{lack_of_monotone_continuity}
+
+Consider the subset $[0,\infty)\times[0,\infty)\subseteq\mathbb{R}^2$. Let $U_{i,j} = [i, i+1)\times[j,j+1)$ be the unit square with bottom-left corner $(i,j)$. Let $V$ be the vertical (infinite) strip $V = [0,1)\times[0,\infty)$ and $W = [0,2)\times[0,\infty)$. Define the sequence $W_i = \{ U_{0,0}, U_{1,0}, U_{0,1}, U_{1,1}, U_{0,2}, U_{1,2}, U_{0,3}, U_{1,3}, ... \}$ building upwards row by row. We have $\bigcup\limits_0^\infty W_i = W$. This means $\bigcup\limits_{i=0}^n W_i\finer V$ for all finite $n$ but $\bigcup\limits_{i=0}^\infty W_i = W \coarser V$. 
+
+TODO: show that this is a problem for $\lequ$
+
 \section{Insightful failures}
 
 In this section we summarize ideas that did not work.
 
+\subsection{Transport of statements}
+
+TODO: Make this an example of how measure zero is not equigranularity
+
+Consider the Borel sigma-algebra on $(0,1)$. Let $\stmt_1 = (1/2,1) \setminus \mathbb{Q}$, and let $\stmt = (0,1/3)$. The hope is that there would exist some $\stmt_2\narrower\stmt_1$ with $\stmt_2\eqgran\stmt$. In Lebesgue measure (and perhaps any reasonable measure of fineness), we would have $\stmt\finer\stmt_1$. However, if we try to ``move" $\stmt$ to an equigranular copy inside $\stmt_1$, it will have infinitely many ``holes" - if we wish to use other points of $\stmt_1$ to fill them, there are numerous countable subsets which we consider non-equigranular, and so it is unclear if there is any canonical choice of equigranularity class for such an $\stmt_2$. 
+
 \subsection{Transport of sequences}
 
-[TODO: example on how moving a sequence to one that is equigranular at all finite steps does not give the same limit]
+Consider the following two sequences of subsets of $\mathbb{N}$. Let $\stmt_n = \{1,2,3,\ldots,n\}$, and let $\stmt[t]_n = \{2,4,6,\ldots,2n\}$. If we are treating $\mathbb{N}$ as a uniform domain, we should have $\stmt_n\eqgran\stmt[t]_n$ for all $n$. However, the limit $\bigOR_n\stmt_n = \mathbb{N}$, while $\bigOR_n\stmt[t]_n = \{2,4,6,\ldots\} = 2\mathbb{N} \subset \mathbb{N}$. These are not equigranular limits despite the sequences being equigranular. 
+
+Here is another example which does not rely on countable infinitesimals. In the domain $[0,1]$, considered with its Borel sigma-algebra, there are no countable infinitesimals. Consider the sequences $\stmt_n = (1/n,1]$ and $\stmt[t]_n = (1/2n, 1 - 1/2n]$. These should be equigranular as they are simply offset by a shift of $1/2n$ from each other. Then the limits are $\bigOR_n\stmt_n = (0,1]$ and $\bigOR_n\stmt[t]_n = (0,1)$. While they have the same Lebesgue measure, the former has the point 1, and so it should not be equigranular to the latter.
+
 
 \subsection{Maximal chains}
-[TODO: boil this down to the essentials
 
 The idea was to see whether, instead of requiring totality, we could require that we could always find statements at a desired level of description. We wanted to say that a maximal chain in narrowness, that is a sequence of statements ordered by narrowness where no other statement could be added, would touch all levels of descriptions, all equivalence classes in equigranularity. This does not work.
 
-The issue is that the granularity of a countable sequence ``jumps'' at infinity. For example, take the sequence $\{1\}$, $\{1, 3\}$, $\{1, 3, 5\}$, ... , \{ all odd natural numbers\}. Compare to $\{1\}$, $\{1, 2\}$, $\{1, 2, 3\}$, ... , \{ all natural numbers\}. They all are maximal chains. They both go through all finite sets, but they reach infinity at two different levels. Effectively, the above property is only true over finite sets.
 
 \begin{defn}
 Let $(S,\leq)$ be a poset. A \textbf{chain} is a subset $T\subseteq S$ which is totally ordered (i.e. every pair of elements in $T$ is comparable in $\leq$). A chain is said to be \textbf{maximal} if it is not a proper subset of any other chain, i.e. there are no ``gaps" in the chain. 
@@ -886,39 +899,19 @@ Observe that in a totally ordered set, there is only one maximal chain, namely t
 A theoretical domain $\tdomain$ is said to have the \textbf{maximal chains property} (MCP) if given any chain $S\subseteq\tdomain$ totally ordered by narrowness ($\narrower$), the following holds. There exists a maximum chain $S'\supseteq S$, and a maximal chain $C$ in the set of equigranularity equivalence classes, such that for all statements $s \in S'$, there exists an equivalence class $\overline{c}\in C$ with $s\in \overline{c}$.
 \end{defn}
 
-\begin{prop}
-Suppose there is a (partial) pre-ordering on the countably infinite proper subsets of $\mathbb{N}$ which satisfies offset monotonicity. Then there exists a uniform theoretical domain which lacks the maximal chains property.
-\end{prop}
-\begin{proof}
-Consider the following example. Let the set of possibilities be given by $\mathbb{N}$ and let the theoretical domain be the powerset $\mathcal{P}(\mathbb{N})$. Let fineness be defined as follows. All finite subsets are ordered by their cardinality (with $\impossibility = \emptyset$). Put any ordering on the countably infinite strict subsets of $\mathbb{N}$, and impose that they are strictly coarser than all finite sets and strictly finer than the entire set $\mathbb{N} = \certainty$. This is an example of a uniform theoretical domain, where all possibilities (natural numbers) are equigranular (singleton sets of cardinality 1), and the ordering of equigranular equivalence classes is total. 
+The issue is that the granularity of a countable sequence with each term a finite size but an infinite limit ``jumps'' at infinity. For example, take the sequence $\{1\}$, $\{1, 3\}$, $\{1, 3, 5\}$, ... , \{ all odd natural numbers\}. Compare to $\{1\}$, $\{1, 2\}$, $\{1, 2, 3\}$, ... , \{ all natural numbers\}. They are both maximal chains. They both go through all sizes of finite sets, but they reach infinity at two different levels. Effectively, the above property is only true over finite sets.
 
-Consider the following chain $C$ in $\tdomain$: $c_0 = \emptyset$, $c_n = \{1,\ldots, n\}$ for $n<\infty$ and write $c_{\infty} = \mathbb{N}$. Then $c_m \snarrower c_n$ for all $m<n$. We claim that this is a maximal chain (see below for an explanation).
 
-Now, notice that there are no infinite proper subsets of $\mathbb{N}$ which are in the chain $C$. This represents an equigranularity class which is not represented in the maximal chain $C$, which is a failure of the maximal chains condition. 
-
-To see why $C$ is maximal, let $c\in\mathcal{P}(\mathbb{N})$ but that $c\neq c_{\lambda}$ for $\lambda\in\mathbb{N}\cup\{0,\infty\}$. Then there exists some $l\in\mathbb{N}$ with $l+1\in c$ but $l\notin c$. Thus $c$ is not broader than $c_p$ for any $p\geq l$, and $c$ is not narrower than $c_q$ for any $q\leq l+1$. It follows that for $c$ to fit in the chain, it must be higher up than $c_{l+1}$ but lower down that $c_l$, which is not possible. 
-\end{proof}
+The following consequences of the MCP are interesting, but only use much weaker statements about the fineness classes of possibilities. 
 
 \begin{prop}\label{chainimpliesuniform}
-Let $\tdomain$ be a theoretical domain with the maximal chains property. Then the following are equivalent:
-\begin{enumerate}
-    \item the possibilities are comparable
-    \item the possibilities are equigranular
-    \item all statements compatible with only finitely many possibilities are comparable to each other.
-\end{enumerate}
+Let $\tdomain$ be a theoretical domain with the maximal chains property, and suppose all possibilities are comparable. Then they must be equigranular.
 \end{prop}
 \begin{proof}
-
-Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p,\certainty\}$ and $\{\impossibility, q, \certainty\}$. By the MCP, these may be extended to maximal chains in narrowness, with corresponding maximal chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represent by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. Now, since all possibilities are comparable, and the fineness class of $p$ is an immediate successor to that of the impossibility, we must have $p\finer q$. Similarly, we must have $q\finer p$. It follows that $p\eqgran q$. 
-
-Assume all possibilities are equigranular. We show that any two statements compatible with only finitely many possibilities are comparable. In fact, we will prove that the equigranularity equivalence classes for finite disjunctions of possibilities are given by the size of the disjunction. We proceed by induction on $N$, the larger number of compatible possibilities for the two statements. The case of $N=1$ follows from equigranularity of possibilities. Now suppose the claim holds for some $N$. Let $\stmt_1 = p_1\OR\cdots\OR p_{N+1}$ and $\stmt_2 = q_1\OR\cdots\OR q_m$ be statements compatible with only finitely many possibilities $p_i,i=1,\ldots,N+1$ and $q_j,j=1,\ldots,m$ respectively, where $m\leq N+1$. 
-
-Consider first the case where $m\leq N$. Then $\stmt_2 \finer p_1\OR\cdots\OR p_N \sfiner p_1\OR\cdots\OR p_N\OR p_{N+1} = \stmt_1$, so they are comparable, and in particular all statements compatible with fewer than $N+1$ possibilities are strictly finer than $\stmt_1$. Next, suppose $m=N+1$. Write $\stmt_1' = p_1\OR\cdots\OR p_N$ and $\stmt_2' = q_1\OR\cdots\OR q_N$. We have already that all disjunctions of $N$ possibilties are equigranular, so $\stmt_1'\eqgran\stmt_2'$. Possibly by rearranging the order of the possibilties in the disjunction, we may assume $q_{N+1}\ncomp\stmt_1'$ and $q_{N+1}\ncomp\stmt_2'$. By Proposition \ref{fineness_properties}, we have $\stmt_1\OR q_{N+1}\eqgran\stmt_2$. Similarly, since $p_{N+1}\eqgran q_{N+1}$, we have $\stmt_1\eqgran\stmt_1'\OR q_{N+1}$. We conclude that $\stmt_1\eqgran\stmt_2$. This completes the proof that $2\Rightarrow3$. 
-
-The claim $3\Rightarrow1$ is immediate since 1 is a special case of 3. 
+Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p\}$ and $\{\impossibility, q\}$. By the MCP, these may be extended to maximal chains in narrowness, with corresponding maximal chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represent by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. It follows that $p\finer q$, and similarly $q\finer p$, and so $p\eqgran q$. 
 \end{proof}
 
-
+TODO: add remark that MCP -> finite domain
 
 \begin{remark}
 The above observations and propositions show that MCP and comparability of possibilities imply equigranular possibilities, but equigrangular possibilities and totality do \emph{not} imply MCP. 
