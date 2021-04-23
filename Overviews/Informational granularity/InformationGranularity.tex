@@ -302,7 +302,7 @@ For 12, suppose $\stmt \finer \impossibility$. By unique boundedness, $\stmt$ ca
     Let $\stmt \in \tdomain$. Since $\stmt \narrower \stmt$, by \ref{fineness_properties}.3 $\stmt \finer \stmt$ and therefore fineness is reflexive. By \ref{fineness} fineness is also transitive and therefore is a preorder.
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{fineness_monotony}
 Other properties satisfied by fineness:
 \begin{enumerate}
     \item if $\stmt[s]_1 \ncomp \stmt[s]_2$ and $\stmt[v]_1 \ncomp \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ and $\stmt_2 \finer \stmt[v]_2$ imply  $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
@@ -442,6 +442,17 @@ The following is an attempt to define infinitesimal in a way that puts the least
 	Let $\stmt[u] \in \tdomain$ and consider $\{ \stmt_i \}_{i=1}^n$ where $\stmt_i \equiv \impossibility$ for all $i$. Then $\impossibility \finer \impossibility \equiv \stmt_i$ for all $i$. Since $\impossibility \ncomp \impossibility$, $\stmt_i \ncomp \stmt_j$ for all $i$ and $j$. Lastly, $\bigOR\limits_{i=1}^n \stmt_i \equiv \impossibility \finer \stmt[u]$. This means that $\{ \stmt_i \}_{i=1}^n$ realizes infinitesimality for $\impossibility$, which is an infinitesimal of $\stmt[u]$.
 \end{proof}
 
+\begin{defn}
+	Let $\stmt_1, \stmt_2 \in \tdomain$ be two statements such that $\stmt_1 \finer \stmt_2$. We say that they are \textbf{finitely comparable} to each other if we can find a finite set $\{ \stmt[t]_i \}_{i=1}^n$ such that $\stmt[t]_i \finer \stmt_1$ for all $i \leq n$ and $\stmt_2 \finer \bigOR_{i=1}^n \stmt[t]_i$.
+\end{defn}
+
+\begin{prop}
+	If two statements are finitely comparable then they cannot be infinitesimals with respect to each other.
+\end{prop}
+\begin{proof}
+	TODO
+\end{proof} 
+
 \begin{prop}\label{infinitesimal_conjunction}
 	Let $\stmt \in \tdomain$ be an infinitesimal with respect to $\stmt[u] \in \tdomain$. Then any $\stmt[v] \finer \stmt$ is also an infinitesimal with respect to $\stmt[u]$.
 \end{prop}
@@ -576,6 +587,8 @@ In addition to defining equivalence at scale $\stmt[u]$, we also wish to have th
 
 This is the final notion of ordering. After narrowness orders the actual content of the statements and fineness gives a very precise ordering of size, ordering by scale in $\stmt[u]$ aims to give a less universal notion of size relative to a fixed unit statement $\stmt[u]$, where we collapse by equivalence at scale. 
 
+
+
 An alternative definition is as follows. 
 
 \begin{defn}\label{smalleru2}
@@ -592,6 +605,14 @@ We still need to show the following:
 	The idea is that smallness in $\stmt[u]$ compares the equivalence classes at $\stmt[u]$ scale. In other words, we should be able to show that the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes is well-defined and monotonic. There may be a more natural order theoretic definition that automatically does this, and shows that smallness in $\stmt[u]$ is a preorder.
 \end{remark}
 
+The following property is crucial for the theory of qualitative probability, but fortunately it is immediate from either definition. 
+
+\begin{prop}
+For all statements $\stmt$ and $\stmt[u]$, we have $\impossibility\lequ\stmt\lequ\certainty$.
+\end{prop}
+\begin{proof}
+	TODO
+\end{proof}
 
 \begin{prop}
 	If for every statement $\stmt[v]$ infinitesimal in $\stmt[u]$, we have $\stmt_1\OR\stmt[v] \sfiner \stmt_2$, then we have $\stmt_1 \leu \stmt_2$. 
@@ -604,11 +625,11 @@ We still need to show the following:
 
 We need it to be the case that $\lequ$ is a pre-order, and that it is a partial order with respect to $\equ$-equivalence classes. 
 
-\begin{conj}
-	The relation $\lequ$ is reflexive and transitive and therefore a preorder.
-\end{conj}
+\begin{desid}
+	The relation $\lequ$ is reflexive and transitive and therefore a preorder. 
+\end{desid}
 
-Fortunately, the current definitions of $\lequ$ and $\equ$ behave well together:
+Fortunately, at least the first definitions of $\lequ$ and $\equ$ behave well together:
 
 \begin{prop}
 	If $\stmt_1\lequ\stmt_2$ and $\stmt_1\gequ \stmt_2$, then $\stmt_1\equ\stmt_2$.
@@ -617,9 +638,12 @@ Fortunately, the current definitions of $\lequ$ and $\equ$ behave well together:
 	This is immediate from the first definition, since we would either have $\stmt_1\eqgran\stmt_2$ (which implies $\stmt_1\equ\stmt_2$), or we would already have $\stmt_1\equ\stmt_2$.
 \end{proof}
 
-
+For the second definition of $\lequ$, transitivity of $\equ$ is needed which we have not proven. 
 
 Question: is the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes well-defined and monotone? 
+
+Eventually, we wish to use $\lequ$ as a total pre-order in order to use it as a qualitative probability. We will need an interesting-enough subset of $\tdomain$ to capture the desired notions while still having $\lequ$ as a total order.
+
 
 % case: possibilities in u: (1) finite: impose counting measure (2) countable: finitely additive but not countably (3) uncountable: countably additive, legitimate measure
 
@@ -662,50 +686,99 @@ As for a minimum element, we have the impossibility $\impossibility$ which will 
 
 The established results in the literature of comparable probability require a specific axiom, called monotone continuity, that essentially make sure that sequences converge. This is necessary because their goal is to recover a probability measure that is countably additive.
 
-\begin{defn}[Monotone continuity]
+\begin{defn}[Monotone continuity]\label{monotone_continuity}
 	Given a domain $\tdomain$ and a unit $\stmt[u] \in\tdomain$, we say that $\lequ$ satisfies \textbf{monotone continuity} if the following is true: given a sequence $\{\stmt_i\}_{i=1}^{\infty}$ such that $\stmt_i \narrower \stmt_j$ for all $ i \leq j$ and $\stmt = \bigOR_i\stmt_i$ the disjunction, for every $\stmt[t] \in \tdomain$ such that $\stmt_i\leq_{\stmt[u]} \stmt[t]$ for all $i$ we have $\stmt\leq_{\stmt[u]} \stmt[t]$.
 \end{defn}
 
 Note that, in general, monotone continuity is not satisfied. See examples in \ref{lack_of_monotone_continuity}. In terms of measures, the issue is that we may have that the disjoint disjuntion of countably many infinitesimals is not necessarily an infinitesimal, which means countably meany sets of measure zero would not sum up to a set of measure zero.
 
-We therefore want to make the following distinction. TODO: define countable vs uncountable
+We therefore want to make the following distinction.
 
 \begin{defn}
-	We say that $\stmt$ is a \textbf{uncountable} infinitesimal with respect to $\stmt[u]$ if all there exists a sequences $\{ \stmt_i \}_{i=1}^\infty$ such that:
-	\begin{enumerate}
-		\item $\stmt \finer \stmt_i$ for all $i$
-		\item $\stmt_i \ncomp \stmt_j$ for all $i \neq j$
-		\item $\bigOR\limits_{i=1}^n \stmt_i \finer \stmt[u]$ 
-	\end{enumerate}
-	In words, $\stmt$ is a countable infinitesimal with respect to $\stmt[u]$ if we can find for any number, there is a disjunction of that many broader mutually incompatible statements $\stmt_i$ is finer than $\stmt[u]$.
+We say that $\stmt$ is a \textbf{countable infinitesimal} with respect to $\stmt[u]$ if it satisfies the following conditions:
+\begin{enumerate}
+    \item $\stmt$ is an infinitesimal with respect to $\stmt[u]$
+    \item there exists a (countable) sequence $\{\stmt_i\}_{i=1}^{\infty}$ such that $\stmt_i\finer\stmt$ for all $i$, and $\bigOR\limits_{i=1}^{\infty}\stmt_i$ is comparable but not infinitesimal with respect to $\stmt[u]$
+\end{enumerate}
+An infinitesimal which is not a countable infinitesimal will be called an \textbf{uncountable infinitesimal}. 
 \end{defn}
 
 
-TODO: desiderata that if there are no countable infinitesimal, then we have monotone continuity
+An example of a space with countable infinitesimals is the natural numbers $\mathbb{N}$. If the possibilities are natural numbers themselves and they are equigranular, for any infinite subset $S$ of $\mathbb{N}$, each natural number is infinitesimal with respect to $S$. However, a countable sequence of natural numbers may not be infinitesimal with respect to $S$ (and indeed may surpass $S$ in coarseness). Another example of countable infinitesimals is any subset of $\mathbb{R}$ of finite positive Lebesgue measure. 
 
-We wish to understand the following. This is monotone continuity up to infinitesimals, and so with the right definitions, it should translate to monotone continuity for $\lequ$. 
+An example of a space with no countable infinitesimals with respect to the full space is an interval of finite length in $\mathbb{R}$ (any positive-Lebesgue measure subset will work). To see why, note that all infinitesimals are measure zero, and any countable union of measure zero sets is still measure zero. 
 
-Let $\stmt[u]$ be a statement which does not admit countable infinitesimals, and let $\{\stmt_i:i\in\mathbb{N}\}$ be a sequence of statements monotone increasing in narrowness (i.e. $\stmt_i\narrower\stmt_j$ for all $i\leq j$). Write $\stmt=\OR_i\stmt_i$ for the disjunction and assume $\stmt$ is finitely comparable to $\stmt[u]$. If $\stmt[t]\in\tdomain$ such that $\stmt[t]$ is finitely comparable to $\stmt[u]$, and $\stmt_i\finer\stmt[t]$ for all $i$, then $\stmt\finer\stmt[t]\OR\stmt[w]$ for some infinitesimal (with respect to $\stmt[u]$) $\stmt[w]$. 
+It seems possible that the only obstruction to monotone continuity is countable infinitesimals, since they allow limits of equigranular sequences to be of different granularity classes. 
+
+\begin{desid}
+    If $\stmt[u]$ is such that there are no countable infinitesimals, then $\lequ$ has monotone continuity. 
+\end{desid}
+
+Before achieving the above, it may be possible to obtain a related result about fineness and monotone continuity, which could translate to monotone continuity for $\lequ$. 
+
+
+\begin{desid}
+Let $\stmt[u]$ be a statement which does not admit countable infinitesimals, and let $\{\stmt_i\}_{i=1}^{\infty}$ be a sequence of statements monotone increasing in narrowness (i.e. $\stmt_i\narrower\stmt_j$ for all $i\leq j$). Write $\stmt=\OR_i\stmt_i$ for the disjunction and assume $\stmt$ is finitely comparable to $\stmt[u]$. If $\stmt[t]\in\tdomain$ such that $\stmt[t]$ is finitely comparable to $\stmt[u]$, and $\stmt_i\finer\stmt[t]$ for all $i$, then $\stmt\finer\stmt[t]\OR\stmt[w]$ for some infinitesimal (with respect to $\stmt[u]$) $\stmt[w]$. 
+\end{desid}
 
 
 
+\section{Adapting results from \cite{villegas}}
+
+Tentative layout:
+- summarize the result in terms of input requirements (stated with our notation) and output
+- discussion of how far we are from getting those requirements
+- sketch of the main steps of the proof (the key propositions and the approach of the proof of each in our notation)
+- discussion on whether it is feasable and how to relax the proof for finite additivity
+
+The paper \cite{villegas} by Villegas gives what seems to be an extremely relevant overview of qualitative probability, including many of the axioms which we seek in our structures. 
+
+In this part, we will assume that $\tdomain_{\stmt[u]}$ is a subset of the theoretical domain on which $\lequ$ is total, $\stmt[u]\in \tdomain_{\stmt[u]}$ is a distinguished element (we'll refer to it as the \emph{unit} when needed). We will use the word ``equiprobable" for $=_{\stmt[u]}$ since it means something different from equigranular (since $\leq_{\stmt[u]}$ is a different ordering from fineness, even though it will be derived from fineness). 
+
+The goal is to use $\lequ$ as a qualitative probability. The first basic requirement is that $\leq_{\stmt[u]}$ is a total pre-order with maximal and minimal elements. These were contained in several desiderata earlier. 
+
+Below is the version of the Axiom of Monotony for $\lequ$; earlier in Proposition \ref{fineness_monotony} it was shown that fineness satisfies this, and Definition \ref{smalleru} would allow this to descend to $\lequ$ as well. 
+
+Axiom of Monotony: 
+Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$. Assume that $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, and $\stmt_2\ncomp \stmt_4$ (i.e. $\stmt_2\AND \stmt_4 =_{\stmt[u]} \impossibility$). Then we have $\stmt_1\OR \stmt_3 \leq_{\stmt[u]} \stmt_2\OR \stmt_4.$
+
+The following are consequences of $\lequ$ being a total pre-order with the Axiom of Monotony. Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$.
+\begin{itemize}
+    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ and $\stmt_2<_{\stmt[u]} \stmt_3$, then $\stmt_1<_{\stmt[u]}\stmt_3$. 
+    \item If $\stmt_1\narrower \stmt_2$ then $\stmt_1\leq_{\stmt[u]} \stmt_2$
+    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, $\stmt_2\leq_{\stmt[u]} \stmt_4$, and $v\leq_{\stmt[u]} \stmt_1$, then $\stmt_2 \AND \NOT \stmt_1 \leq_{\stmt[u]} \stmt_4 \AND \NOT \stmt_3$
+    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ then $\NOT \stmt_2 \leq_{\stmt[u]}\NOT \stmt_1$
+\end{itemize}
+
+Beyond the above, we will also utilize Monotone Continuity (Definition \ref{monotone_continuity}) in much of what follows. 
+
+Another important notion for qualitative probability is the idea of atoms. 
+
+\begin{defn}
+An \textbf{atom} is a statement $\stmt\in S$ such that $\impossibility<_{\stmt[u]}\stmt$ and there does not exist any statement $\stmt_2\in S$ such that $\impossibility<_{\stmt[u]} \stmt_2<_{\stmt[u]} \stmt$. 
+\end{defn}
+In our framework, if possibilities are equigranular and not equivalent at $\stmt[u]$ scale to $\impossibility$, then they will be atoms. The presence or lack of atoms has several important consequences. In particular, Theorem 5 in \cite{villegas} \S3 includes the fact that $\tdomain_{\stmt[u]}$ is atomless if and only if every statement can be partitioned into two equiprobable statements. Theorem 3 in \S4 states that if $\tdomain_{\stmt[u]}$ is atomless, then there exists a unique probability measure compatible with $\leq_{\stmt[u]}$, and it is countably additive. 
+
+A major goal of this work is to discover the right axioms and definitions that will lead to a notion of $\lequ$ which has the properties necessary for the existence (and uniqueness) of a compatible probability measure on $\tdomain_{\stmt[u]}$. The above axioms discussed are enough - several theorems from \cite{villegas} give the desired result (in particular, see Theorem 3 in Section 4 and Theorem 5(iv) in Section 3, as well as their proofs). However, we have not as of yet been able to prove that $\lequ$ has the right properties. It is also possible that our framework will allow us to make use of different sets of axioms that lead to a similar conclusion. The survey \cite{fishburnsurvey} contains some examples of different axioms which may be very helpful. 
+
+\subsection{Old notes}
 
 \section{Adapting results from \cite{villegas}}
 
 In this part, we will assume that $\tdomain_{\stmt[u]}$ is a subset of the theoretical domain, $\stmt[u]\in \tdomain_{\stmt[u]}$ is a distinguished element (we'll refer to it as the \emph{unit} when needed), and there is a total pre-order $\leq_{\stmt[u]}$ defined on $\tdomain_{\stmt[u]}$. We will write $=_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and $\geq_{\stmt[u]}$, and we write $<_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and not $=_{\stmt[u]}$. We will use the word ``equiprobable" for $=_{\stmt[u]}$ since it means something different from equigranular (since $\leq_{\stmt[u]}$ is a different ordering from fineness, even though it will be derived from fineness). We assume $\tdomain_{\stmt[u]}$ is closed under complement and countable union (and hence countable intersection), and that there are two additional elements, $\certainty$ and $\impossibility$, which are maximal and minimal in this ordering, respectively.
 
 \begin{remark}
-In defining the subset $\tdomain_{\stmt[u]}$ and the total preorder $\leq_{\stmt[u]}$, we will have to be very careful. We want to ``squash" together all the sets which should be measure zero in this unit (e.g. anything ``lower-dimensional"), ``blow up" all the ``infinite measure" subsets (e.g. ``higher dimensional"), and ensure that everything is compatible under this order, so there can be only one ``type" of property under consideration. 
+	In defining the subset $\tdomain_{\stmt[u]}$ and the total preorder $\leq_{\stmt[u]}$, we will have to be very careful. We want to ``squash" together all the sets which should be measure zero in this unit (e.g. anything ``lower-dimensional"), ``blow up" all the ``infinite measure" subsets (e.g. ``higher dimensional"), and ensure that everything is compatible under this order, so there can be only one ``type" of property under consideration. 
 \end{remark}
 
 We write out the main axioms and statements from \cite{villegas} which interest us in this situation, in the notation established earlier. On page 1789, we have the following:
 
 Axiom of Pre-order:
 \begin{itemize}
-    \item Totality: If $\stmt_1,\stmt_2\in \tdomain_{\stmt[u]}$, then $\stmt_1 \leq_{\stmt[u]} \stmt_2$ or $\stmt_2\leq_{\stmt[u]} \stmt_1$
-    \item Reflexivity: For all statements $\stmt\in \tdomain_{\stmt[u]}$, we have $\stmt\leq_{\stmt[u]}\stmt$
-    \item Transitivity: For all statements $\stmt_1,\stmt_2,\stmt_3\in \tdomain_{\stmt[u]}$, if $\stmt_1\leq_{\stmt[u]}\stmt_2$ and $\stmt_2\leq_{\stmt[u]}\stmt_3$, then $\stmt_1\leq_{\stmt[u]}\stmt_3$.
-    \item Existence of max and min: We have $\impossibility\leq_{\stmt[u]}\certainty$ and \emph{not} $\certainty\leq_{\stmt[u]}\impossibility$. For all $\stmt\in \tdomain_{\stmt[u]}$ we have $\impossibility\leq_{\stmt[u]}\stmt\leq_{\stmt[u]}\certainty$
+	\item Totality: If $\stmt_1,\stmt_2\in \tdomain_{\stmt[u]}$, then $\stmt_1 \leq_{\stmt[u]} \stmt_2$ or $\stmt_2\leq_{\stmt[u]} \stmt_1$
+	\item Reflexivity: For all statements $\stmt\in \tdomain_{\stmt[u]}$, we have $\stmt\leq_{\stmt[u]}\stmt$
+	\item Transitivity: For all statements $\stmt_1,\stmt_2,\stmt_3\in \tdomain_{\stmt[u]}$, if $\stmt_1\leq_{\stmt[u]}\stmt_2$ and $\stmt_2\leq_{\stmt[u]}\stmt_3$, then $\stmt_1\leq_{\stmt[u]}\stmt_3$.
+	\item Existence of max and min: We have $\impossibility\leq_{\stmt[u]}\certainty$ and \emph{not} $\certainty\leq_{\stmt[u]}\impossibility$. For all $\stmt\in \tdomain_{\stmt[u]}$ we have $\impossibility\leq_{\stmt[u]}\stmt\leq_{\stmt[u]}\certainty$
 \end{itemize}
 
 The above list is simply the requirement that $\leq_{\stmt[u]}$ is a total pre-order and that there are a maximal and minimal element. 
@@ -718,16 +791,16 @@ Monotony guarantees that given two incompatible statements, each ``bigger" than 
 
 The following are consequences of the two axioms above. Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$.
 \begin{itemize}
-    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ and $\stmt_2<_{\stmt[u]} \stmt_3$, then $\stmt_1<_{\stmt[u]}\stmt_3$. 
-    \item If $\stmt_1\narrower \stmt_2$ then $\stmt_1\leq_{\stmt[u]} \stmt_2$
-    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, $\stmt_2\leq_{\stmt[u]} \stmt_4$, and $v\leq_{\stmt[u]} \stmt_1$, then $\stmt_2 \AND \NOT \stmt_1 \leq_{\stmt[u]} \stmt_4 \AND \NOT \stmt_3$
-    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ then $\NOT \stmt_2 \leq_{\stmt[u]}\NOT \stmt_1$
+	\item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ and $\stmt_2<_{\stmt[u]} \stmt_3$, then $\stmt_1<_{\stmt[u]}\stmt_3$. 
+	\item If $\stmt_1\narrower \stmt_2$ then $\stmt_1\leq_{\stmt[u]} \stmt_2$
+	\item If $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, $\stmt_2\leq_{\stmt[u]} \stmt_4$, and $v\leq_{\stmt[u]} \stmt_1$, then $\stmt_2 \AND \NOT \stmt_1 \leq_{\stmt[u]} \stmt_4 \AND \NOT \stmt_3$
+	\item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ then $\NOT \stmt_2 \leq_{\stmt[u]}\NOT \stmt_1$
 \end{itemize}
 
 Next, we will need a more subtle axiom in order to make sense of infinite combinations of statements. 
 
 \begin{remark}
-The \emph{fineness} relation $\finer$ should satisfy all of the axioms of pre-order and the axiom of monotony, except for totality. We restrict to $\tdomain_{\stmt[u]}$ in order to get totality. 
+	The \emph{fineness} relation $\finer$ should satisfy all of the axioms of pre-order and the axiom of monotony, except for totality. We restrict to $\tdomain_{\stmt[u]}$ in order to get totality. 
 \end{remark}
 
 Axiom of Monotone Continuity:
@@ -736,8 +809,8 @@ Let $\{\stmt_i : i\in \mathbb{Z}^+\}$ be a sequence of statements which is monot
 In other words, an infinite disjunction can only strictly exceed a statement in coarseness if the disjunction of a finite subset of them already exceeds it. Here is an interesting consequence of the combination of the above axioms:
 
 \begin{prop}[Corollary to Lemma 1 in \cite{villegas}]
-\label{infinitenull}
-Let $\{\stmt_i : i\in \mathbb{Z}^+\}$ be an infinite collection such that $\stmt_i\AND\stmt_j =_{\stmt[u]} \impossibility$ for all $i\neq j$, and $\stmt_i =_{\stmt[u]} \stmt_j$ for all $i,j$. Then it must be the case that $\stmt_i=_{\stmt[u]}\impossibility$ for all $i$. 
+	\label{infinitenull}
+	Let $\{\stmt_i : i\in \mathbb{Z}^+\}$ be an infinite collection such that $\stmt_i\AND\stmt_j =_{\stmt[u]} \impossibility$ for all $i\neq j$, and $\stmt_i =_{\stmt[u]} \stmt_j$ for all $i,j$. Then it must be the case that $\stmt_i=_{\stmt[u]}\impossibility$ for all $i$. 
 \end{prop}
 This says that infinite collections of equiprobable statements with null overlaps must be null themselves. 
 
@@ -749,29 +822,29 @@ The core of the proof of Theorem 3 in Section 4 of \cite{villegas} comes from Th
 
 Let $A$ be a statement in $\tdomain_{\stmt[u]}$ with $A>_{\stmt[u]} \impossibility$. A \emph{minor incomplete partition} of $A$ is a collection $M_A$ of statements with the following properties:
 \begin{itemize}
-    \item We have $\stmt>_{\stmt[u]}\impossibility$ and $\stmt \narrower A$ for all $\stmt\in M_A$, that is, they are non-null and narrower than $A$
-    \item For all $\stmt_1,\stmt_2\in M_A$, we have $\stmt_1\AND\stmt_2 =_{\stmt[u]} \impossibility$, that is, they overlap only on statements ``squashed" to zero. 
-    \item The disjunction of $M_A$ is finer than its complement in $A$: $$\bigOR_{\stmt\in M_A}\stmt \finer (A\AND \NOT\bigOR_{\stmt\in M_A}\stmt).$$ This is the condition of being \emph{minor}.
-    %UM_A finer than A - UM_A^C
+	\item We have $\stmt>_{\stmt[u]}\impossibility$ and $\stmt \narrower A$ for all $\stmt\in M_A$, that is, they are non-null and narrower than $A$
+	\item For all $\stmt_1,\stmt_2\in M_A$, we have $\stmt_1\AND\stmt_2 =_{\stmt[u]} \impossibility$, that is, they overlap only on statements ``squashed" to zero. 
+	\item The disjunction of $M_A$ is finer than its complement in $A$: $$\bigOR_{\stmt\in M_A}\stmt \finer (A\AND \NOT\bigOR_{\stmt\in M_A}\stmt).$$ This is the condition of being \emph{minor}.
+	%UM_A finer than A - UM_A^C
 \end{itemize}
 
 It is shown in \cite{villegas} that any (minor) incomplete partition is at most countable (Theorem 3). Rather than give the full proof of this fact, we note that it follows from a large collection of lemmas, the most interesting of which is the following, which we will prove below: 
 
 \begin{prop}[Lemma 1 from \cite{villegas}]
-If $\{\stmt[a]_i: i\in I\}$ is an infinite set of statements such that (1) $\stmt[a]_i \AND \stmt[a]_j =_{\stmt[u]}\impossibility$ for all $i\neq j$ and (2) $\stmt[a]_i>_{\stmt[u]}\impossibility$ for all $i$, then the following holds. Given a statement $\stmt>_{\stmt[u]}\impossibility$, only finitely many of the $\stmt[a]_i$'s have $\stmt[a]_i>_{\stmt[u]}\stmt$.  
+	If $\{\stmt[a]_i: i\in I\}$ is an infinite set of statements such that (1) $\stmt[a]_i \AND \stmt[a]_j =_{\stmt[u]}\impossibility$ for all $i\neq j$ and (2) $\stmt[a]_i>_{\stmt[u]}\impossibility$ for all $i$, then the following holds. Given a statement $\stmt>_{\stmt[u]}\impossibility$, only finitely many of the $\stmt[a]_i$'s have $\stmt[a]_i>_{\stmt[u]}\stmt$.  
 \end{prop}
 \begin{proof}
-By way of contradiction, let $\stmt[a]_1,\ldots$ be a sequence of statements violating the conclusion (i.e. infinitely many statements $\stmt[a]_i$ with $\stmt[a]_i>_{\stmt[u]}\stmt>_{\stmt[u]}\impossibility$. Consider the new sequence $$\stmt_i = \bigOR\limits_{n=i}^{\infty}\stmt[a]_n.$$ This sequence is monotonely decreasing to the impossibility in narrowness (and hence in fineness and in $>_{\stmt[u]}$), but we also have $\stmt_i\geq_{\stmt[u]}\stmt$ for all $i$. By monotone continuity (the contrapositive), we have $\stmt[s]\leq_{\stmt[u]}\impossibility$, a contradiction. 
+	By way of contradiction, let $\stmt[a]_1,\ldots$ be a sequence of statements violating the conclusion (i.e. infinitely many statements $\stmt[a]_i$ with $\stmt[a]_i>_{\stmt[u]}\stmt>_{\stmt[u]}\impossibility$. Consider the new sequence $$\stmt_i = \bigOR\limits_{n=i}^{\infty}\stmt[a]_n.$$ This sequence is monotonely decreasing to the impossibility in narrowness (and hence in fineness and in $>_{\stmt[u]}$), but we also have $\stmt_i\geq_{\stmt[u]}\stmt$ for all $i$. By monotone continuity (the contrapositive), we have $\stmt[s]\leq_{\stmt[u]}\impossibility$, a contradiction. 
 \end{proof}
 
 A quick corollary of this is Proposition \ref{infinitenull}, above. Using minor incomplete partitions, we prove the following. 
 
 \begin{prop}[Theorem 4, \S3 \cite{villegas}]
-\label{split}
-If there are no atoms, then for every statement $\stmt$ there exist statements $\stmt_1$ and $\stmt_2$ such that: $\stmt_1\ncomp \stmt_2$, $\stmt_1\equ\stmt_2$, and $\stmt_1\OR\stmt_2 = \stmt$. In other words, $\stmt$ can be partitioned into two equiprobable (note: I remember we don't like this word but I don't remember if we replaced it or not) statements. 
+	\label{split}
+	If there are no atoms, then for every statement $\stmt$ there exist statements $\stmt_1$ and $\stmt_2$ such that: $\stmt_1\ncomp \stmt_2$, $\stmt_1\equ\stmt_2$, and $\stmt_1\OR\stmt_2 = \stmt$. In other words, $\stmt$ can be partitioned into two equiprobable (note: I remember we don't like this word but I don't remember if we replaced it or not) statements. 
 \end{prop}
 \begin{proof}
-Let $S$ be the set of minor incomplete partitions of $\stmt$, and endow it with a partial order by inclusion. Given a totally ordered chain in $S$, its union is still a minor incomplete partition, and is thus an upper bound for the chain. We may apply Zorn's lemma to find a maximal element of $S$, the disjunction of which we call $\stmt_1$. We claim that $\stmt_1$ and $\stmt_2:= \stmt\AND\NOT\stmt_1$ are equiprobable, incompatible statements. Incompatibility is immediate from the definition. For equiprobability, first note that by definition of being a minor incomplete partition we have $\stmt_1\lequ\stmt_2$. Next, if $\stmt[t]_1,\ldots$ is a monotone decreasing (with respect to $\lequ$) sequence of statements $\stmt[t]_n>_{\stmt[u]}\impossibility$ narrower than $\stmt_2$ and converging to a zero-comparable event, we have that $\stmt_1\OR\stmt[t]_n>_{\stmt[u]}\stmt_2\OR\stmt[t]_n$ since $\stmt_1$ is maximal. We needed no atoms in order to guarantee this sequence exists (Lemma 3 in Section 3 of \cite{villegas}). It follows by monotone continuity that $\stmt_1\geq_{\stmt[u]} \stmt_2$. 
+	Let $S$ be the set of minor incomplete partitions of $\stmt$, and endow it with a partial order by inclusion. Given a totally ordered chain in $S$, its union is still a minor incomplete partition, and is thus an upper bound for the chain. We may apply Zorn's lemma to find a maximal element of $S$, the disjunction of which we call $\stmt_1$. We claim that $\stmt_1$ and $\stmt_2:= \stmt\AND\NOT\stmt_1$ are equiprobable, incompatible statements. Incompatibility is immediate from the definition. For equiprobability, first note that by definition of being a minor incomplete partition we have $\stmt_1\lequ\stmt_2$. Next, if $\stmt[t]_1,\ldots$ is a monotone decreasing (with respect to $\lequ$) sequence of statements $\stmt[t]_n>_{\stmt[u]}\impossibility$ narrower than $\stmt_2$ and converging to a zero-comparable event, we have that $\stmt_1\OR\stmt[t]_n>_{\stmt[u]}\stmt_2\OR\stmt[t]_n$ since $\stmt_1$ is maximal. We needed no atoms in order to guarantee this sequence exists (Lemma 3 in Section 3 of \cite{villegas}). It follows by monotone continuity that $\stmt_1\geq_{\stmt[u]} \stmt_2$. 
 \end{proof}
 
 We will also need a few types of \emph{random variables} as defined in \cite{villegas} \S3. Let $A({\stmt[u]}) = \{x \in X : x \comp \stmt[u]\}$ be the set of possibilities associated with $\stmt[u]$. This is a subset of the collection of possibilities which will serve as the ``sample space" after picking a unit $\stmt[u]$.
@@ -788,53 +861,36 @@ From Proposition \ref{infinitenull}, $X^{-1}(a)$ is a zero-comparable event for 
 Next, we will pull many of the above concepts together to show how we obtain a probability measure on $A({\stmt[u]})$ realized as a function on $\tdomain$ compatible with $\lequ$. 
 
 \begin{prop}\label{uniformexist}
-If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a uniform random variable.
+	If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a uniform random variable.
 \end{prop}
 \begin{proof}
-By Proposition \ref{split} we may split any statement into two equiprobable, null-compatible sets. Starting with the statement $\stmt[u]$ (here, the ``universe" which we want to have probability 1), repeatedly divide into two statements in stages. At stage $n$ (starting with $n=0$), we will have statements $\stmt[u]^{(n)}_1,\ldots,\stmt[u]^{(n)}_{2^n}$. Now, take the disjunction of alternating statements in each collection so that there is a ``right" and ``left" (odd and even index) half at each stage. For example, at stage $n=1$, the odd and even halves are simply $\stmt[u]^{(1)}_1$ and $\stmt[u]^{(1)}_2$; at stage $n=2$ we have $\stmt[u]^{(2)}_1\OR\stmt[u]^{(2)}_3$ and $\stmt[u]^{(2)}_2\OR\stmt[u]^{(2)}_4$. 
-
-Define a sequence of random variables $X_n:A(\stmt[u])\to\{0,1\}$ by $X_n(a) = 1$ if and only if $a$ is in the odd half in stage $n$. This gives each $a\in A(\stmt[u])$ a binary ``address". By the construction, it follows that this is a uniform sequence of finitely-valued random variables (defined above). 
-
-Now, we define a uniform random variable $X:A(\stmt[u])\to[0,1]$. For $a\in A(\stmt[u])$, define $X(a) = \sum_{n=1}^{\infty}2^{-n}X_n(a)$. In other words, $X(a)$ is the binary expansion $0.X_1(a)X_2(a)\ldots_2$. 
-
-One can show immediately that $X^{-1}(I)\lequ X^{-1}(J)$ if and only if $|I|\leq |J|$ when $I$ and $J$ have endpoints on numbers with finite binary expansions (since $X_1,\ldots,X_n$ are uniform), and by monotone continuity, the uniformity condition extends to arbitrary intervals in $[0,1]$. 
+	By Proposition \ref{split} we may split any statement into two equiprobable, null-compatible sets. Starting with the statement $\stmt[u]$ (here, the ``universe" which we want to have probability 1), repeatedly divide into two statements in stages. At stage $n$ (starting with $n=0$), we will have statements $\stmt[u]^{(n)}_1,\ldots,\stmt[u]^{(n)}_{2^n}$. Now, take the disjunction of alternating statements in each collection so that there is a ``right" and ``left" (odd and even index) half at each stage. For example, at stage $n=1$, the odd and even halves are simply $\stmt[u]^{(1)}_1$ and $\stmt[u]^{(1)}_2$; at stage $n=2$ we have $\stmt[u]^{(2)}_1\OR\stmt[u]^{(2)}_3$ and $\stmt[u]^{(2)}_2\OR\stmt[u]^{(2)}_4$. 
+	
+	Define a sequence of random variables $X_n:A(\stmt[u])\to\{0,1\}$ by $X_n(a) = 1$ if and only if $a$ is in the odd half in stage $n$. This gives each $a\in A(\stmt[u])$ a binary ``address". By the construction, it follows that this is a uniform sequence of finitely-valued random variables (defined above). 
+	
+	Now, we define a uniform random variable $X:A(\stmt[u])\to[0,1]$. For $a\in A(\stmt[u])$, define $X(a) = \sum_{n=1}^{\infty}2^{-n}X_n(a)$. In other words, $X(a)$ is the binary expansion $0.X_1(a)X_2(a)\ldots_2$. 
+	
+	One can show immediately that $X^{-1}(I)\lequ X^{-1}(J)$ if and only if $|I|\leq |J|$ when $I$ and $J$ have endpoints on numbers with finite binary expansions (since $X_1,\ldots,X_n$ are uniform), and by monotone continuity, the uniformity condition extends to arbitrary intervals in $[0,1]$. 
 \end{proof}
 
 Finally, we reach our goal of building a probability measure on $A(\stmt[u])$. 
 
 \begin{prop}
-If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a unique compatible probability measure, and it is countably additive. 
+	If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a unique compatible probability measure, and it is countably additive. 
 \end{prop}
 \begin{proof}
-By Propsition \ref{uniformexist}, let $X:POSS_{\stmt[u]}\to[0,1]$ be a uniform random variable.
-%Define $F:[0,1]\to\tdomain$ by $F(x) = X^{-1}([0,x])$. It is straightforward to see that $F$ is monotone in $x$ (with respect to $\lequ$), and that if $x_n\to x$, then $\lim_nF(x_n) \equ F(x)$. %Started writing this part from paper, but it is not directly used in construction. Will add details later as needed. 
-We claim that for any statement $\stmt\in\tdomain_{\stmt[u]}$, there exists a unique number $p\in[0,1]$ such that $\stmt\equ X^{-1}([0,p])$. Define $P:\tdomain_{\stmt[u]}\to[0,1]$ by $P(\stmt)= p$. This defines a probability measure compatible with $\lequ$. Details forthcoming as needed....
+	By Propsition \ref{uniformexist}, let $X:POSS_{\stmt[u]}\to[0,1]$ be a uniform random variable.
+	%Define $F:[0,1]\to\tdomain$ by $F(x) = X^{-1}([0,x])$. It is straightforward to see that $F$ is monotone in $x$ (with respect to $\lequ$), and that if $x_n\to x$, then $\lim_nF(x_n) \equ F(x)$. %Started writing this part from paper, but it is not directly used in construction. Will add details later as needed. 
+	We claim that for any statement $\stmt\in\tdomain_{\stmt[u]}$, there exists a unique number $p\in[0,1]$ such that $\stmt\equ X^{-1}([0,p])$. Define $P:\tdomain_{\stmt[u]}\to[0,1]$ by $P(\stmt)= p$. This defines a probability measure compatible with $\lequ$. Details forthcoming as needed....
 \end{proof}
 
 Ideas involved: Defines a function $X:A(\stmt[u])\to [0,1]$ in a way that is consistent with $\lequ$ by having ``larger" sets of possibilities (i.e. coarser statements) corresponding to larger intervals in $[0,1]$. Then, the measure of any other statement is given by finding an equiprobable statement which is the preimage of $[0,p]$ under $X$ and defining the measure to be $p$.  
 
 Wish: find a way to prove the above statements in an order-theoretic way. In particular, we wish to show that the order type of the equigranular-equivalence classes is equivalent to (a subset of) $\mathbb{R}$. Sufficient conditions to be isomorphic to $\mathbb{R}$ are (1) lacking endpoints (2) complete (i.e. has Least Upper Bound property) (3) has dense countable subset. The use of random variables may be very similar to an approach using order theory. For example, the transition from a uniform sequence of finitely-valued random variables into a (single) uniform random variable makes use of a countable dense subset. 
 
+% END OF NOTES
 
 
-
-
-
-
-
-
-\subsection{Some thoughts on Example in 3.3}
-
-The construction above hints at some fundamental concepts in measure theory which will be important for us to consider. 
-
-Notice that the two sets $V$ and $W$ are both of infinite Lebesgue measure (area). With respect to Lebesgue measure, monotone continuity is immediate since if $\bigcup\limits_0^n W\finer V$ for all $n$ then $\lim\limits_{n\to\infty}\mu(\bigcup\limits_0^n W) = \mu(W)\finer V$. Even the above example does not violate this, since there, both would be ``equivalent" in fineness, namely they are infinitely coarse.
-
-Our goal is to have a measure which is able to distinguish sets which may be of infinite Lebesgue measure as well. This will be very difficult to fully capture. Consider the following procedure. Starting with the vertical strip $V$, slide all the squares at even $y$-values to the right by one, and then allow the squares to collapse down to rest on the square below. Now, by simply rearranging regions, we have (almost) a cover of the wider strip $W$. The only missing points are the line $x=1, y>0$. If instead we used $(0,1]$ and $(0,2]$ for the strips, this procedure would cover them exactly. One could continue and cover the entire plane with similar translations. 
-
-Here is one approach to distinguish $V$ and $W$, and similar methods will enable one to distinguish many more infinite-measure subsets. Let $S_n$ be the $2n\times 2n$ square centered the origin with vertices at $(\pm n, \pm n)$. Then for all $n$, $V\cap S_n$ has area $n$, and $W\cap S_n$ has area $2n$. This holds for all $n$ and so we might use something like this to think about how we would distinguish infinite areas. Notice that this is in some sense writing $V$ and $W$ as countable unions of nested sets in a standardized way (e.g. $V = \bigcup\limits_n V\cap S_n$) and then comparing the finite-area subsets. One could choose shapes other than $S_n$ for this purpose. Another way to distinguish them would be to look at the limit $\lim\limits_{n\to\infty}\text{Area}(V\cap S_n)/\text{Area}(S_n)$; in this case they are both 0 but for a different choice of $S_n$ one could find an asymptotic difference. 
-The point of the above discussion is to try to gain a better idea of which (infinite/unbounded) sets we want to be related by $\finer$. It is not clear even for ``nice" regions of $\mathbb{R}^2$, let alone at the full generality we are seeking. 
-
-Regardless, the goal is not just to distinguish infinite-Lebesgue-measure sets. We need to understand when monotone continuity is relevant and what happens without it. 
 
 \section{Examples}
 
@@ -864,9 +920,9 @@ Take $\mathbb{N}$ as the unit. For any $i$, we have $D_{i,j} \finer D_{i,l} \fin
 
 \subsection{Example with lack of monotone continuity}\label{lack_of_monotone_continuity}
 
-Consider the subset $[0,\infty)\times[0,\infty)\subseteq\mathbb{R}^2$. Let $U_{i,j} = [i, i+1)\times[j,j+1)$ be the unit square with bottom-left corner $(i,j)$. Let $V$ be the vertical (infinite) strip $V = [0,1)\times[0,\infty)$ and $W = [0,2)\times[0,\infty)$. Define the sequence $W_i = \{ U_{0,0}, U_{1,0}, U_{0,1}, U_{1,1}, U_{0,2}, U_{1,2}, U_{0,3}, U_{1,3}, ... \}$ building upwards row by row. We have $\bigcup\limits_0^\infty W_i = W$. This means $\bigcup\limits_{i=0}^n W_i\finer V$ for all finite $n$ but $\bigcup\limits_{i=0}^\infty W_i = W \coarser V$. 
+Consider the subset $[0,\infty)\times[0,\infty)\subseteq\mathbb{R}^2$. Let $U_{i,j} = [i, i+1)\times[j,j+1)$ be the unit square with bottom-left corner $(i,j)$. Let $V$ be the vertical (infinite) strip $V = [0,1)\times[0,\infty)$ and $W = [0,2)\times[0,\infty)$. Define the sequence $W_i = \{ U_{0,0}, U_{1,0}, U_{0,1}, U_{1,1}, U_{0,2}, U_{1,2}, U_{0,3}, U_{1,3}, ... \}$ building upwards row by row. We have $\bigcup\limits_0^\infty W_i = W$. This means $\bigcup\limits_{i=0}^n W_i\sfiner V$ for all finite $n$ but $\bigcup\limits_{i=0}^\infty W_i = W \scoarser V$. This is a violation of monotone continuity, including the definition given up to infinitesimals (since $\bigcup\limits_{i=0}^{\infty}W_i$ is more than an infinitesimal greater than $V$). 
 
-TODO: show that this is a problem for $\lequ$
+By either definition of $\lequ$, this would give us an increasing sequence $W_n' := \bigcup\limits_{i=0}^n$, all of whose terms are (strictly) bounded by $V$, but whose limit (strictly) exceeds $V$ (in $\lequ$ terms), and so this violates monotone continuity of $\lequ$. 
 
 \section{Insightful failures}
 
@@ -874,9 +930,13 @@ In this section we summarize ideas that did not work.
 
 \subsection{Transport of statements}
 
-TODO: Make this an example of how measure zero is not equigranularity
+TODO(GC): Make this an example of how measure zero is not equigranularity
 
 Consider the Borel sigma-algebra on $(0,1)$. Let $\stmt_1 = (1/2,1) \setminus \mathbb{Q}$, and let $\stmt = (0,1/3)$. The hope is that there would exist some $\stmt_2\narrower\stmt_1$ with $\stmt_2\eqgran\stmt$. In Lebesgue measure (and perhaps any reasonable measure of fineness), we would have $\stmt\finer\stmt_1$. However, if we try to ``move" $\stmt$ to an equigranular copy inside $\stmt_1$, it will have infinitely many ``holes" - if we wish to use other points of $\stmt_1$ to fill them, there are numerous countable subsets which we consider non-equigranular, and so it is unclear if there is any canonical choice of equigranularity class for such an $\stmt_2$. 
+
+Note that even two countable subsets of possibilities need not be equigranular. For example, if $\{\stmt[x]_i\}_{i=0}^{\infty}$ is a set of countably many (equigranular) possibilities, and $\stmt = \bigOR\limits_{i=0}^{\infty}\stmt[x]_i$, then $\stmt' = \bigOR\limits_{i=0}^{\infty}\stmt[x]_{2i}$ is strictly finer. 
+
+Note: I didn't quite recall what we were thinking with this TODO. But if we are wanting to show that two measure zero sets can be non-equigranular, we can go much more generally and not rely on a measure with the above example of countable sets. 
 
 \subsection{Transport of sequences}
 
@@ -889,20 +949,19 @@ Here is another example which does not rely on countable infinitesimals. In the 
 
 The idea was to see whether, instead of requiring totality, we could require that we could always find statements at a desired level of description. We wanted to say that a maximal chain in narrowness, that is a sequence of statements ordered by narrowness where no other statement could be added, would touch all levels of descriptions, all equivalence classes in equigranularity. This does not work.
 
+The problem is that infinite sets disrupt the relationship between narrowness and fineness, such that a maximal chain in narrowness is not necessarily a maximal chain in fineness. For example, if we have a countable set of possibilities (e.g. the natural numbers), a maximal chain in narrowness can start from the empty set, start by adding possibilities one be one until we end with the full set. The set with all possibilities except one, for example, cannot be added to the chain, but still represents a level of description that is in between all the finite sets and the full infinite set. The only case where we can construct maximal chains is precisely when the possibilities are finite, and is therefore not interesting.
 
 \begin{defn}
-Let $(S,\leq)$ be a poset. A \textbf{chain} is a subset $T\subseteq S$ which is totally ordered (i.e. every pair of elements in $T$ is comparable in $\leq$). A chain is said to be \textbf{maximal} if it is not a proper subset of any other chain, i.e. there are no ``gaps" in the chain. 
+Let $(S,\leq)$ be a poset. A \textbf{chain} is a subset $T\subseteq S$ which is totally ordered (i.e. every pair of elements in $T$ is comparable in $\leq$). A chain is said to be \textbf{saturated} if there are no ``gaps" in the chain. That is, there is no $s \in S$ such that $s \notin T$, $t_1 \leq s \leq t_2$ for some $t_1, t_2 \in T$ and $T \cup \{s\}$ is a chain. 
 \end{defn}
-Observe that in a totally ordered set, there is only one maximal chain, namely the entire set. 
+
+TODO(GC): everything needs to be changed to saturated
 
 \begin{defn}
 A theoretical domain $\tdomain$ is said to have the \textbf{maximal chains property} (MCP) if given any chain $S\subseteq\tdomain$ totally ordered by narrowness ($\narrower$), the following holds. There exists a maximum chain $S'\supseteq S$, and a maximal chain $C$ in the set of equigranularity equivalence classes, such that for all statements $s \in S'$, there exists an equivalence class $\overline{c}\in C$ with $s\in \overline{c}$.
 \end{defn}
 
-The issue is that the granularity of a countable sequence with each term a finite size but an infinite limit ``jumps'' at infinity. For example, take the sequence $\{1\}$, $\{1, 3\}$, $\{1, 3, 5\}$, ... , \{ all odd natural numbers\}. Compare to $\{1\}$, $\{1, 2\}$, $\{1, 2, 3\}$, ... , \{ all natural numbers\}. They are both maximal chains. They both go through all sizes of finite sets, but they reach infinity at two different levels. Effectively, the above property is only true over finite sets.
-
-
-The following consequences of the MCP are interesting, but only use much weaker statements about the fineness classes of possibilities. 
+The following made the idea look promising.
 
 \begin{prop}\label{chainimpliesuniform}
 Let $\tdomain$ be a theoretical domain with the maximal chains property, and suppose all possibilities are comparable. Then they must be equigranular.
@@ -911,14 +970,16 @@ Let $\tdomain$ be a theoretical domain with the maximal chains property, and sup
 Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p\}$ and $\{\impossibility, q\}$. By the MCP, these may be extended to maximal chains in narrowness, with corresponding maximal chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represent by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. It follows that $p\finer q$, and similarly $q\finer p$, and so $p\eqgran q$. 
 \end{proof}
 
-TODO: add remark that MCP -> finite domain
+\begin{prop}
+Let $\tdomain$ be a theoretical domain with the maximal chains property. Then they must have finitely many possibilities.
+\end{prop}
+\begin{proof}
+Let $\tdomain$ be a theoretical domain with the maximal chains property and such that the set $X$ of possibilities is infinite. Let $X' = \{x_i\}_{i=0}^{\infty} \subseteq X$ be a countable subset. Let $s_j = \bigOR_{j=0}^{i} x_i$ be the disjunction of the first $j$ possibilities. Let $\stmt = \bigOR_{i=0}^{\infty} x_i$ be the disjuction of all the possibilities in the sequence. The set $C = \{ \impossibility, \stmt \} \cup \{\stmt_j\}_{j=0}^{\infty}$ is a chain. In fact $\impossibility \snarrower \stmt_j \snarrower \stmt$ for all $j$ and $\stmt_i \narrower \stmt_j$ if $i \leq j$.
 
-\begin{remark}
-The above observations and propositions show that MCP and comparability of possibilities imply equigranular possibilities, but equigrangular possibilities and totality do \emph{not} imply MCP. 
+To show that $C$ is maximal, take a statement $\hat{\stmt} \narrower \stmt$ such that $\hat{\stmt} \notin C$. Let $A \subseteq X'$ be the set of possibilities compatible with $\hat{\stmt}$. If $A$ is infinite, since $\hat{\stmt} \nequiv \stmt$, there exists an $x_i \in X'$ such that $x_i \notin A$. Therefore $\stmt_{i} \nnarrower \hat{\stmt}$ since the first is compatible with a possibility that is not compatible with the second, and $\hat{\stmt} \nnarrower \stmt_{i}$ since $\hat{\stmt}$ is compatible with infinitely many statements and $\stmt_{i}$. If $A$ is finite, let the $x_i \in A$ for which $i$ is highest. Note that $A$ cannot contain all previous $x_j$ in the sequence, since $\hat{\stmt} \notin C$. Let $x_j$ the possibility with the highest $j \leq i$ that is not in $A$. We have $\hat{\stmt} \nnarrower \stmt_{j}$ and $\stmt_{i} \nnarrower \hat{\stmt}$ since each is compatible with a possibility incompatible with the other. Since we cannot add other statement, $C$ is maximal.
 
-Further, MCP alone implies neither totality nor equigranular possibilities. Indeed, consider a theoretical domain with only two possibilities and a fineness ordering which has two unequal successors to the fineness of $\impossibility$. This satisfies the MCP but fails the other conditions. 
-\end{remark}
-
+Now we show that, even though $C$ is maximal, it does not go through all levels of granularity. Let $x \in X'$ and consider $\stmt \AND \NOT x$. This is finer than $\stmt$ and is coarser than all other statements statements in $C$ since they are all compatible with finitely many possibilities. Therefore MCP does not hold. Therefore, if MCP holds, the domain cannot have infinitely many possibilities.
+\end{proof}
 
 \bibliography{bibliography}
 
