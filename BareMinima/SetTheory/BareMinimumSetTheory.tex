@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage{assumptionsofphysics}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\frenchspacing
+
+\title{Bare minimum: set theory}
+
+\date{\vspace{-5ex}}
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+This note presents a condensed summary of set theory.
+
+Bare minima are not meant to be either didactic or complete. They are meant to condense areas of knowledge in a few pages and function as a knowledge check, refresher and/or reference. They collect what we feel is the bare minimum of a subject an intellectually curious mind should be aware of, particularly in the context of foundational questions. This work is part of Assumptions of Physics (\url{https://assumptionsofphysics.org}), a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived.
+\end{abstract}
+
+\section{Introduction}
+
+Set theory is important for those working on the Assumptions of Physics for at least three reasons. First, it is a foundational framework in mathematics. Second, it showcases a successful attempt at concept generalization. Third, it shows how a formal system is bootstrapped.
+
+There are two rough branches of set theory: naive and axiomatic. Naive set theory is built on intuitive concepts, and as such is not fully formalized and is open to potential paradoxes. Axiomatic set theory provides a fully formalized axiomatic system that aims to close those problems. We will start with naive set theory, which is the best setting for defining all the basic notions and getting a sense of how the framework works. Then we will turn our attention to axiomatic set theory to get a sense of what problems it solves and how, and whether those solutions are aligned with the aims of the foundations of physics.
+
+TODO: cite https://www.math24.net/topics-set-theory and set theory book
+
+\section{Naive set theory}
+
+We take sets and elements as primitive objects, with no formal definition. A \textbf{set} $A$ is a collection of elements. If an element $e$ belongs to the set we say $e$ \textbf{is in} $A$, noted $ e 
+\in A$. A set $A$ can be defined by listing the elements, noted $A = \{ e_1, e_2, e_3 \}$. A set $A$ can be defined by specifying how to build the elements through a rule (i.e. predicate) $P(e)$, and is noted $A = \{e \, | \,  P(e) \}$. The rule may include symbols like for all $\forall$, exists $\exists$, logical connectors AND $\AND$, OR $\OR$ and $\NOT$.
+
+\begin{defn}[Common sets] The \textbf{empty set} $\emptyset$ is the set with no elements. The \textbf{set of natural numbers} $\mathbb{N} = \{ 0, 1, 2, ... \}$. The \textbf{set of positive natural numbers} $\mathbb{N}^+ = \{n \in \mathbb{N} \, | \, n > 0\}$. The \textbf{set of integer numbers} $\mathbb{Z} = \{ ... , -2, -1, 0, +1, +2, ...\}$. The \textbf{set of rational numbers} $\mathbb{Q}$. The \textbf{set of real numbers} $\mathbb{R}$. The \textbf{set of complex numbers} $\mathbb{C}$.
+\end{defn}
+
+\subsection{Basic definitions}
+
+\begin{defn}[Set relationships]
+	Let $A$ and $B$ be two sets. If all elements in $A$ are also contained in $B$, we say $A$ is a \textbf{subset} of $B$, noted $A \subseteq B$. In this case, we also say $B$ is a \textbf{superset} of $A$, noted $B \supseteq A$. Additionally, if $B$ contains elements that $A$ does not contain, we say $A$ is a \textbf{strict subset} of $B$, noted $A \subset B$, and $B$ is a \textbf{strict superset} of $A$, noted $B \supset A$. If the two sets contain exactly the same elements, then we say the sets are \textbf{equal}, noted $A = B$. If the two sets have no element in common they are said to be \textbf{disjoint}.
+\end{defn}
+
+\begin{defn}[Power set]
+	Given a set $A$, its \textbf{power set}, noted $\mathcal{P}(A)$ or $2^{A}$, is the set of all subsets of $A$. That is, $\mathcal{P}(A) = \{B \, | \, B \subset A \}$.
+\end{defn}
+
+\begin{defn}[Set operations]
+	We define the following operations between two sets $A$ and $B$:
+	\begin{description}
+		\item[Union.] Noted $A \cup B$, the union of $A$ and $B$ is the set of all elements that are contained by $A$, $B$ or both.
+		\item[Intersection.] Noted $A \cap B$, the intersection of $A$ and $B$ is the set of all elements that are contained by both.
+		\item[Set difference (or relative complement).] Noted $A \setminus B$, $A$ minus $B$ is the set of all elements in $A$ that are not contained by $B$.
+		\item[Complement (or absolute complement).] Noted $A^{\complement}$, represents all elements that are not contained in $A$. Note that his operation is context specific: we need to know that, within a certain context, $U$ is the set of all elements under study; then the complement of $A \subseteq U$ is $A^{\complement} = U \setminus A$.
+	\end{description}
+\end{defn}
+
+We give the following informal definition. Given two elements $a$ and $b$, the \textbf{ordered pair} $(a, b)$ specifies two objects in that order. That is $(a, b) \neq (b, a)$ and $(a, a) \neq \{a\}$.
+
+\begin{defn}[Cartesian product]
+	Given two sets $A$ and $B$, the \textbf{Cartesian product} $A \times B = \{ (a,b) \, | \, \forall a \in A, b \in B \}$ is the set of all possible ordered pairs between the elements of $A$ and $B$.
+\end{defn}
+
+\subsection{Relations and function}
+
+\begin{defn}[Binary relation]
+	Given a set $A$, called \textbf{domain}, and a set $B$, called \textbf{codomain}, a \textbf{binary relation} is a set $R \subseteq A \times B$ of ordered pairs. We say $a$ is \textbf{$R$-related} to $b$, noted $aRb$ if $(a,b) \in R$. If $A=B$ the relation is said \textbf{homogeneous}, \textbf{heterogeneous} if not.
+\end{defn}
+	
+\begin{defn}[Image and preimage]
+	If $X \subseteq A$, the \textbf{image of $X$ under $R$} is the set of all elements in $B$ that are related to at least one element in $X$. The \textbf{image of $R$} is set of all elements in $B$ that are related to at least one element in $A$ (i.e. the image of the full set $A$).
+	
+	If $Y \subseteq B$, the \textbf{preimage of $Y$ under $R$} is the set of all elements in $A$ that are related to at least one element in $Y$. The \textbf{preimage of $R$} is set of all elements in $A$ that are related to at least one element in $B$ (i.e. the preimage of the full set $B$).
+\end{defn}
+
+\begin{defn}[Relation properties]
+	Let $R$ be a binary relation between $A$ and $B$. We define the following properties:
+	\begin{description}
+		\item[Functional or right-unique.] An element $a \in A$ is related to at most one element $b \in B$. That is, if $aRb$ and $cRb$ then $a = c$.
+		\item[Injective or left-unique.] An element $b \in B$ is related to at most one element $a \in A$. That is, if $aRb$ and $aRc$ then $b = c$.
+		\item[Serial or left-total.] Every element $a \in A$ is related to at least one element $b \in B$. That is, for each $a \in A$ there exists at least one $b \in B$ such that $aRb$. In this case, the preimage of $R$ is the whole $A$.
+		\item[Surjective or right-total.] Every element $b \in B$ is related to at least one element $a \in B$. That is, for each $b \in B$ there exists at least one $a \in A$ such that $aRb$. In this case, the image of $R$ is the whole $B$.
+	\end{description}
+	From those basic properties, we define the following:
+	\begin{description}
+		\item[One-to-one.] Injective and functional (i.e. left-unique and right-unique).
+		\item[One-to-many.] Injective and not functional (i.e. left-unique and not right-unique).
+		\item[Many-to-one.] Not injective and functional (i.e. not left-unique and right-unique).
+		\item[Many-to-many.] Not injective nor functional (i.e. not left-unique nor right-unique).
+	\end{description}	
+\end{defn}
+
+\begin{defn}[Function]
+	A \textbf{partial function} $f : A \to B$ is a binary relationship between $A$ and $B$ that is functional (i.e. right-unique). The \textbf{graph} of the function $G \subset A \times B$ is the function expressed as ordered pairs. A \textbf{total function}, or simply a \textbf{function}, is a partial function that is also serial (i.e. left-total, defined on the whole domain).
+\end{defn}
+
+\begin{defn}[Composition]
+	Let $A$, $B$ and $C$ be three sets. Let $R$ be a binary relationship between $A$ and $B$ and $S$ be a binary relationship between $B$ and $C$. Then the \textbf{composition of $R$ and $S$}, noted $S \circ R$, is the binary relationship between $A$ and $C$ such that $(a, c) \in S \circ R$ if we can find $b \in B$ such that $aRb$ and $bSc$.
+\end{defn}
+
+\begin{remark}
+	The order of composition follows those of functions: if $f : A \to B$ and $g : B \to C$, composition leads to $c = g(f(a)) = (g \circ f)(a)$.
+\end{remark}
+
+\begin{prop}[Composition properties]
+	Relation composition follows the following properties:
+	\begin{itemize}
+		\item Composition is associative: $R \circ (T \circ S) = (R \circ T) \circ S$
+		\item Composition of functional/injective/serial/surjective relationship is functional/injective/serial/surjective.
+		\item Specifically, if $f : A \to B$ and $g : B \to C$ are (partial) functions, then $g \circ f$ is a (partial) function.
+	\end{itemize}
+\end{prop}
+
+\begin{defn}[Families]
+
+\end{defn}
+
+\begin{itemize}
+	\item families (and operations on families)
+	\item properties (boolean algebra, lattice)
+	\item Ordered pairs and Cartesian product
+	\item distribution rules of cartesian product
+	\item power set
+	\item cardinality
+	\item Notable sets (empty, universal, natural, integers, rationals, reals, complex)
+\end{itemize}
+
+Functions
+\begin{itemize}
+	\item ...
+\end{itemize}
+
+\section{Axiomatic set theory}
+
+Classes, elements, sets and proper classes.
+
+%\bibliographystyle{plain}
+%\bibliography{bibliography}
+
+\end{document}
