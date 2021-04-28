@@ -23,6 +23,24 @@
 % Allows to create negation symbols
 \RequirePackage{MnSymbol}
 
+% Redeclaration for section numbering
+% -----------------------------------
+
+\DeclareOption{sectionnum}{
+	% Usual (decimal) numbering
+	\renewcommand{\thesection}{\arabic{section}}
+	\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+	\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+	
+	% Fix references
+	\makeatletter
+	\renewcommand{\p@subsection}{}
+	\renewcommand{\p@subsubsection}{}
+	\makeatother
+}
+
+\ProcessOptions\relax
+
 % Theorem styles
 % --------------
 
@@ -141,5 +159,5 @@
 \def\lequ{\leq_{\stmt[u]}}
 \def\gequ{\geq_{\stmt[u]}}
 \newcommand{\equ}[1][u] {=_{\stmt[#1]}}
-\def\leu{<_{\stmt[u]}}
+\def\ltu{<_{\stmt[u]}}
 \def\nequ{\neq_{\stmt[u]}}

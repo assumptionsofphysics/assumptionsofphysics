@@ -1,6 +1,6 @@
 \documentclass[10pt, onecolumn, longbibliography, nofootinbib]{revtex4-2}
 
-\usepackage{assumptionsofphysics}
+\usepackage[sectionnum]{assumptionsofphysics}
 
 \usepackage{tikz}
 \usepackage{hyperref}
@@ -11,6 +11,7 @@
 	linkcolor=blue
 }
 \frenchspacing
+
 
 \begin{document}
 
@@ -32,14 +33,6 @@
 \end{abstract}
 
 \maketitle
-
-\def\eqgran{\doteq}
-\def\finer{\leqdot}
-\def\nfiner{\nleqdot}
-\def\coarser{\geqdot}
-\def\ncoarser{\ngeqdot}
-\def\sfiner{\lessdot}
-\def\scoarser{\gtrdot}
 
 \section{Introduction}
 
@@ -91,7 +84,7 @@ As for geometry, geometric structures provide measures for different dimensional
 
 We now give a more detailed overview of the goal and status. This will also cover the conceptual understanding and physical motivation, not just the mathematical aspects. Later sections will present both what has been established to work and what not to work in full mathematical detail.
 
-We were not able to find similar work in the literature.\footnote{If the reader has relevant suggestions, we would appreciate them.} The closest is in the context of comparative probability\cite{definetti, villegas} from which we have taken some mathematical ideas. The problem is that the preorder they typically use is essentially equivalent to the probability measure they recover, while the whole point in our case, as mentioned in the introduction, is that the preorder should give us a richer structure.
+We were not able to find similar work in the literature.\footnote{If the reader has relevant suggestions, we would appreciate them.} The closest is in the context of comparative probability\cite{definetti, villegas} from which we have taken some mathematical ideas. The survey \cite{fishburnsurvey} contains some examples of different axioms which may be very helpful. In general, the problem is that the preorder they typically use is essentially equivalent to the probability measure they recover, while the whole point in our case, as mentioned in the introduction, is that the preorder should give us a richer structure.
 
 As we will see later, the notion of infinitesimals plays an important role. Therefore there may be overlap with ideas in non-standard analysis, though we have not researched that literature.
 
@@ -582,7 +575,7 @@ A special case of the above may be a good first goal for testing appropriate axi
 In addition to defining equivalence at scale $\stmt[u]$, we also wish to have the ordering. Eventually, the goal is to use this as a qualitative probability, as in Fishburn \cite{fishburnsurvey}. 
 
 \begin{defn}\label{smalleru}
-	Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{smaller than} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \lequ \stmt_2$, if $\stmt_1 \finer \stmt_2$ or $\stmt_1 \equ \stmt_2$. We define $\stmt_1\leu\stmt_2$ by $\stmt_1\lequ\stmt_2$ and not $\stmt_1\equ\stmt_2$. 
+	Let $\stmt_1, \stmt_2 \in \tdomain$. Then $\stmt_1$ is \textbf{smaller than} $\stmt_2$ \textbf{in} $\stmt[u]$, noted $\stmt_1 \lequ \stmt_2$, if $\stmt_1 \finer \stmt_2$ or $\stmt_1 \equ \stmt_2$. We define $\stmt_1\ltu\stmt_2$ by $\stmt_1\lequ\stmt_2$ and not $\stmt_1\equ\stmt_2$. 
 \end{defn}
 
 This is the final notion of ordering. After narrowness orders the actual content of the statements and fineness gives a very precise ordering of size, ordering by scale in $\stmt[u]$ aims to give a less universal notion of size relative to a fixed unit statement $\stmt[u]$, where we collapse by equivalence at scale. 
@@ -615,7 +608,7 @@ For all statements $\stmt$ and $\stmt[u]$, we have $\impossibility\lequ\stmt\leq
 \end{proof}
 
 \begin{prop}
-	If for every statement $\stmt[v]$ infinitesimal in $\stmt[u]$, we have $\stmt_1\OR\stmt[v] \sfiner \stmt_2$, then we have $\stmt_1 \leu \stmt_2$. 
+	If for every statement $\stmt[v]$ infinitesimal in $\stmt[u]$, we have $\stmt_1\OR\stmt[v] \sfiner \stmt_2$, then we have $\stmt_1 \ltu \stmt_2$. 
 \end{prop}
 \begin{proof}
 	First, using $\stmt[v] = \impossibility$ (an infinitesimal) in the hypothesis of the statement, we have $\stmt_1 = \stmt_1\OR\impossibility \sfiner \stmt_2$, and so by Definition \ref{smalleru}, we have that $\stmt_1\lequ\stmt_2$. Now, we must show it is not the case that $\stmt_1\equ \stmt_2$. 
@@ -714,6 +707,12 @@ It seems possible that the only obstruction to monotone continuity is countable 
     If $\stmt[u]$ is such that there are no countable infinitesimals, then $\lequ$ has monotone continuity. 
 \end{desid}
 
+A hint in that direction is given by the following proposition, given with no proof by \cite{villegas}.
+
+\begin{prop}
+	A necessary and sufficient condition for $\lequ$ to be monotonely continuous is the following. Let  $\{\stmt_i\}_{i=1}^{\infty}$ be a monotone sequence, that is $\stmt_i \narrower \stmt_j$ for all $i \leq j$ and $\stmt = \bigOR_i\stmt_i$ the disjunction, and let $\stmt[t] \in \tdomain$ such that $\stmt[t] \ltu \stmt$, then there exists an $n > 0$ such that $\stmt[t] \ltu \stmt_n$.
+\end{prop}
+
 Before achieving the above, it may be possible to obtain a related result about fineness and monotone continuity, which could translate to monotone continuity for $\lequ$. 
 
 
@@ -725,172 +724,32 @@ Let $\stmt[u]$ be a statement which does not admit countable infinitesimals, and
 
 \section{Adapting results from \cite{villegas}}
 
-Tentative layout:
-- summarize the result in terms of input requirements (stated with our notation) and output
-- discussion of how far we are from getting those requirements
-- sketch of the main steps of the proof (the key propositions and the approach of the proof of each in our notation)
-- discussion on whether it is feasable and how to relax the proof for finite additivity
+The paper \cite{villegas} by Villegas gives us some conditions under which we can recover a probability measure given a preorder. Here we state the conditions required in terms of $\lequ$ and $\tdomain_{\stmt[u]}$, which we take it to be the set of statements narrower than $\stmt[u]$. We start from the axioms of pre-order:
 
-The paper \cite{villegas} by Villegas gives what seems to be an extremely relevant overview of qualitative probability, including many of the axioms which we seek in our structures. 
-
-In this part, we will assume that $\tdomain_{\stmt[u]}$ is a subset of the theoretical domain on which $\lequ$ is total, $\stmt[u]\in \tdomain_{\stmt[u]}$ is a distinguished element (we'll refer to it as the \emph{unit} when needed). We will use the word ``equiprobable" for $=_{\stmt[u]}$ since it means something different from equigranular (since $\leq_{\stmt[u]}$ is a different ordering from fineness, even though it will be derived from fineness). 
-
-The goal is to use $\lequ$ as a qualitative probability. The first basic requirement is that $\leq_{\stmt[u]}$ is a total pre-order with maximal and minimal elements. These were contained in several desiderata earlier. 
-
-Below is the version of the Axiom of Monotony for $\lequ$; earlier in Proposition \ref{fineness_monotony} it was shown that fineness satisfies this, and Definition \ref{smalleru} would allow this to descend to $\lequ$ as well. 
-
-Axiom of Monotony: 
-Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$. Assume that $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, and $\stmt_2\ncomp \stmt_4$ (i.e. $\stmt_2\AND \stmt_4 =_{\stmt[u]} \impossibility$). Then we have $\stmt_1\OR \stmt_3 \leq_{\stmt[u]} \stmt_2\OR \stmt_4.$
-
-The following are consequences of $\lequ$ being a total pre-order with the Axiom of Monotony. Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$.
 \begin{itemize}
-    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ and $\stmt_2<_{\stmt[u]} \stmt_3$, then $\stmt_1<_{\stmt[u]}\stmt_3$. 
-    \item If $\stmt_1\narrower \stmt_2$ then $\stmt_1\leq_{\stmt[u]} \stmt_2$
-    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, $\stmt_2\leq_{\stmt[u]} \stmt_4$, and $v\leq_{\stmt[u]} \stmt_1$, then $\stmt_2 \AND \NOT \stmt_1 \leq_{\stmt[u]} \stmt_4 \AND \NOT \stmt_3$
-    \item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ then $\NOT \stmt_2 \leq_{\stmt[u]}\NOT \stmt_1$
+	\item Totality: If $\stmt_1,\stmt_2\in \tdomain_{\stmt[u]}$, then $\stmt_1 \lequ \stmt_2$ or $\stmt_2 \lequ \stmt_1$
+	\item Reflexivity: For all statements $\stmt\in \tdomain_{\stmt[u]}$, we have $\stmt\lequ\stmt$
+	\item Transitivity: For all statements $\stmt_1,\stmt_2,\stmt_3\in \tdomain_{\stmt[u]}$, if $\stmt_1\lequ\stmt_2$ and $\stmt_2\lequ\stmt_3$, then $\stmt_1\lequ\stmt_3$.
+	\item Boundedness: We have $\impossibility\ltu\certainty$. For all $\stmt\in \tdomain_{\stmt[u]}$ we have $\impossibility\leq_{\stmt[u]}\stmt\lequ\certainty$
 \end{itemize}
 
-Beyond the above, we will also utilize Monotone Continuity (Definition \ref{monotone_continuity}) in much of what follows. 
+Next is the axiom of monotony. Let $\stmt_1,\stmt_2,\stmt[t]_1,\stmt[t]_2 \in \tdomain_{\stmt[u]}$ with $\stmt[t]_1 \ncomp \stmt[t]_2$. Then from $\stmt_1 \lequ \stmt[t]_1$ and $\stmt_2 \lequ \stmt[t]_2$ if follows that $\stmt_1\OR \stmt_2 \lequ \stmt[t]_1\OR \stmt[t]_2$. Moreover, if $\lequ$ is replace by $\ltu$ in one of the first two equality, then the last one holds with $\ltu$.
 
-Another important notion for qualitative probability is the idea of atoms. 
+Apart from totality, we have similar properties already defined on fineness. We will need to understand on what conditions they can be carried to $\lequ$. The best way forward will be to assume totality and see whether the other properties can be derived at least in that case.
+
+Next we have the axiom of monotone continuity (Definition \ref{monotone_continuity}). This we have seen before and we suspect is connected to the lack of countable infinitesimals.
+
+The last condition is the lack of atoms. An atom is defined in the following way:
 
 \begin{defn}
-An \textbf{atom} is a statement $\stmt\in S$ such that $\impossibility<_{\stmt[u]}\stmt$ and there does not exist any statement $\stmt_2\in S$ such that $\impossibility<_{\stmt[u]} \stmt_2<_{\stmt[u]} \stmt$. 
+An \textbf{atom} is a statement $\stmt\in S$ such that $\impossibility \ltu \stmt$ and there does not exist any statement $\stmt_2\in S$ such that $\impossibility \ltu \stmt_2 \ltu \stmt$. 
 \end{defn}
-In our framework, if possibilities are equigranular and not equivalent at $\stmt[u]$ scale to $\impossibility$, then they will be atoms. The presence or lack of atoms has several important consequences. In particular, Theorem 5 in \cite{villegas} \S3 includes the fact that $\tdomain_{\stmt[u]}$ is atomless if and only if every statement can be partitioned into two equiprobable statements. Theorem 3 in \S4 states that if $\tdomain_{\stmt[u]}$ is atomless, then there exists a unique probability measure compatible with $\leq_{\stmt[u]}$, and it is countably additive. 
+
+Essentially, an atom is an immediate successor of the impossibility. In our framework, the possibilities are the immediate successor of the impossibility under narrowness and fineness. If the unit contains finitely many possibilities, then we will have atoms for $\lequ$. However, in that case we will assume equigranular possibilities, and therefore the counting measure will apply. If the unit has infinitely many possibilities and the possibilities are equigranular, then all possibilities are infinitesimals. We should be able to show that, in that case, there are no atoms.
+
+The presence or lack of atoms has several important consequences. In particular, Theorem 5 in \cite{villegas} \S3 includes the fact that $\tdomain_{\stmt[u]}$ is atomless if and only if every statement can be partitioned into two equiprobable statements. Theorem 3 in \S4 states that if $\tdomain_{\stmt[u]}$ is atomless, then there exists a unique probability measure compatible with $\leq_{\stmt[u]}$, and it is countably additive. 
 
 A major goal of this work is to discover the right axioms and definitions that will lead to a notion of $\lequ$ which has the properties necessary for the existence (and uniqueness) of a compatible probability measure on $\tdomain_{\stmt[u]}$. The above axioms discussed are enough - several theorems from \cite{villegas} give the desired result (in particular, see Theorem 3 in Section 4 and Theorem 5(iv) in Section 3, as well as their proofs). However, we have not as of yet been able to prove that $\lequ$ has the right properties. It is also possible that our framework will allow us to make use of different sets of axioms that lead to a similar conclusion. The survey \cite{fishburnsurvey} contains some examples of different axioms which may be very helpful. 
-
-\subsection{Old notes}
-
-\section{Adapting results from \cite{villegas}}
-
-In this part, we will assume that $\tdomain_{\stmt[u]}$ is a subset of the theoretical domain, $\stmt[u]\in \tdomain_{\stmt[u]}$ is a distinguished element (we'll refer to it as the \emph{unit} when needed), and there is a total pre-order $\leq_{\stmt[u]}$ defined on $\tdomain_{\stmt[u]}$. We will write $=_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and $\geq_{\stmt[u]}$, and we write $<_{\stmt[u]}$ for $\leq_{\stmt[u]}$ and not $=_{\stmt[u]}$. We will use the word ``equiprobable" for $=_{\stmt[u]}$ since it means something different from equigranular (since $\leq_{\stmt[u]}$ is a different ordering from fineness, even though it will be derived from fineness). We assume $\tdomain_{\stmt[u]}$ is closed under complement and countable union (and hence countable intersection), and that there are two additional elements, $\certainty$ and $\impossibility$, which are maximal and minimal in this ordering, respectively.
-
-\begin{remark}
-	In defining the subset $\tdomain_{\stmt[u]}$ and the total preorder $\leq_{\stmt[u]}$, we will have to be very careful. We want to ``squash" together all the sets which should be measure zero in this unit (e.g. anything ``lower-dimensional"), ``blow up" all the ``infinite measure" subsets (e.g. ``higher dimensional"), and ensure that everything is compatible under this order, so there can be only one ``type" of property under consideration. 
-\end{remark}
-
-We write out the main axioms and statements from \cite{villegas} which interest us in this situation, in the notation established earlier. On page 1789, we have the following:
-
-Axiom of Pre-order:
-\begin{itemize}
-	\item Totality: If $\stmt_1,\stmt_2\in \tdomain_{\stmt[u]}$, then $\stmt_1 \leq_{\stmt[u]} \stmt_2$ or $\stmt_2\leq_{\stmt[u]} \stmt_1$
-	\item Reflexivity: For all statements $\stmt\in \tdomain_{\stmt[u]}$, we have $\stmt\leq_{\stmt[u]}\stmt$
-	\item Transitivity: For all statements $\stmt_1,\stmt_2,\stmt_3\in \tdomain_{\stmt[u]}$, if $\stmt_1\leq_{\stmt[u]}\stmt_2$ and $\stmt_2\leq_{\stmt[u]}\stmt_3$, then $\stmt_1\leq_{\stmt[u]}\stmt_3$.
-	\item Existence of max and min: We have $\impossibility\leq_{\stmt[u]}\certainty$ and \emph{not} $\certainty\leq_{\stmt[u]}\impossibility$. For all $\stmt\in \tdomain_{\stmt[u]}$ we have $\impossibility\leq_{\stmt[u]}\stmt\leq_{\stmt[u]}\certainty$
-\end{itemize}
-
-The above list is simply the requirement that $\leq_{\stmt[u]}$ is a total pre-order and that there are a maximal and minimal element. 
-
-
-Axiom of Monotony: 
-Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$. Assume that $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, and $\stmt_2\ncomp \stmt_4$ (i.e. $\stmt_2\AND \stmt_4 =_{\stmt[u]} \impossibility$). Then we have $\stmt_1\OR \stmt_3 \leq_{\stmt[u]} \stmt_2\OR \stmt_4.$
-
-Monotony guarantees that given two incompatible statements, each ``bigger" than another statement, then their disjunction is still bigger than the disjunction of the smaller statements. 
-
-The following are consequences of the two axioms above. Let $\stmt_1,\stmt_2,\stmt_3,\stmt_4\in \tdomain_{\stmt[u]}$.
-\begin{itemize}
-	\item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ and $\stmt_2<_{\stmt[u]} \stmt_3$, then $\stmt_1<_{\stmt[u]}\stmt_3$. 
-	\item If $\stmt_1\narrower \stmt_2$ then $\stmt_1\leq_{\stmt[u]} \stmt_2$
-	\item If $\stmt_1\leq_{\stmt[u]} \stmt_2$, $\stmt_3\leq_{\stmt[u]} \stmt_4$, $\stmt_2\leq_{\stmt[u]} \stmt_4$, and $v\leq_{\stmt[u]} \stmt_1$, then $\stmt_2 \AND \NOT \stmt_1 \leq_{\stmt[u]} \stmt_4 \AND \NOT \stmt_3$
-	\item If $\stmt_1\leq_{\stmt[u]} \stmt_2$ then $\NOT \stmt_2 \leq_{\stmt[u]}\NOT \stmt_1$
-\end{itemize}
-
-Next, we will need a more subtle axiom in order to make sense of infinite combinations of statements. 
-
-\begin{remark}
-	The \emph{fineness} relation $\finer$ should satisfy all of the axioms of pre-order and the axiom of monotony, except for totality. We restrict to $\tdomain_{\stmt[u]}$ in order to get totality. 
-\end{remark}
-
-Axiom of Monotone Continuity:
-Let $\{\stmt_i : i\in \mathbb{Z}^+\}$ be a sequence of statements which is monotone increasing with respect to narrowness (containment), and let $\stmt = \cup_i\stmt_i$ be the disjunction. Let $t\in \tdomain_{\stmt[u]}$ such that $\stmt_i\leq_{\stmt[u]} t$ for all $i$. Then $\stmt\leq_{\stmt[u]} t$. 
-
-In other words, an infinite disjunction can only strictly exceed a statement in coarseness if the disjunction of a finite subset of them already exceeds it. Here is an interesting consequence of the combination of the above axioms:
-
-\begin{prop}[Corollary to Lemma 1 in \cite{villegas}]
-	\label{infinitenull}
-	Let $\{\stmt_i : i\in \mathbb{Z}^+\}$ be an infinite collection such that $\stmt_i\AND\stmt_j =_{\stmt[u]} \impossibility$ for all $i\neq j$, and $\stmt_i =_{\stmt[u]} \stmt_j$ for all $i,j$. Then it must be the case that $\stmt_i=_{\stmt[u]}\impossibility$ for all $i$. 
-\end{prop}
-This says that infinite collections of equiprobable statements with null overlaps must be null themselves. 
-
-An \emph{atom} is a statement $\stmt\in S$ such that $\impossibility<_{\stmt[u]}\stmt$ and there does not exist any statement $\stmt_2\in S$ such that $\impossibility<_{\stmt[u]} \stmt_2<_{\stmt[u]} \stmt$. In particular, Theorem 5 in \cite{villegas} \S3 includes the fact that $\tdomain_{\stmt[u]}$ is atomless if and only if every statement can be partitioned into two equiprobable statements. Theorem 3 in \S4 states that if $\tdomain_{\stmt[u]}$ is atomless, then there exists a unique probability measure compatible with $\leq_{\stmt[u]}$, and it is countably additive!
-
-\subsection{Using Monotone Continuity}
-
-The core of the proof of Theorem 3 in Section 4 of \cite{villegas} comes from Theorem 5 (iv) in Section 3. In the terminology of Villegas, a \emph{qualitative probability $\sigma$-algebra} is a $\sigma$-algebra of subsets of a space with an ordering that satisfies the Axiom of Pre-order, the Axiom of Monotony, and the Axiom of Monotone Continuity. We also need the language of \emph{atoms}, defined earlier. We will reproduce some of the ideas in the proofs of these theorems in the language of statements and our theoretical domain, while attempting to keep track of the usages of Monotone Continuity. The hope is that there is a weakened version of the axiom that gets us the desired result, or that we can build the ordering $\leq_{\stmt[u]}$ with Monotone Continuity but it can still distinguish the infinite sets described earlier. 
-
-Let $A$ be a statement in $\tdomain_{\stmt[u]}$ with $A>_{\stmt[u]} \impossibility$. A \emph{minor incomplete partition} of $A$ is a collection $M_A$ of statements with the following properties:
-\begin{itemize}
-	\item We have $\stmt>_{\stmt[u]}\impossibility$ and $\stmt \narrower A$ for all $\stmt\in M_A$, that is, they are non-null and narrower than $A$
-	\item For all $\stmt_1,\stmt_2\in M_A$, we have $\stmt_1\AND\stmt_2 =_{\stmt[u]} \impossibility$, that is, they overlap only on statements ``squashed" to zero. 
-	\item The disjunction of $M_A$ is finer than its complement in $A$: $$\bigOR_{\stmt\in M_A}\stmt \finer (A\AND \NOT\bigOR_{\stmt\in M_A}\stmt).$$ This is the condition of being \emph{minor}.
-	%UM_A finer than A - UM_A^C
-\end{itemize}
-
-It is shown in \cite{villegas} that any (minor) incomplete partition is at most countable (Theorem 3). Rather than give the full proof of this fact, we note that it follows from a large collection of lemmas, the most interesting of which is the following, which we will prove below: 
-
-\begin{prop}[Lemma 1 from \cite{villegas}]
-	If $\{\stmt[a]_i: i\in I\}$ is an infinite set of statements such that (1) $\stmt[a]_i \AND \stmt[a]_j =_{\stmt[u]}\impossibility$ for all $i\neq j$ and (2) $\stmt[a]_i>_{\stmt[u]}\impossibility$ for all $i$, then the following holds. Given a statement $\stmt>_{\stmt[u]}\impossibility$, only finitely many of the $\stmt[a]_i$'s have $\stmt[a]_i>_{\stmt[u]}\stmt$.  
-\end{prop}
-\begin{proof}
-	By way of contradiction, let $\stmt[a]_1,\ldots$ be a sequence of statements violating the conclusion (i.e. infinitely many statements $\stmt[a]_i$ with $\stmt[a]_i>_{\stmt[u]}\stmt>_{\stmt[u]}\impossibility$. Consider the new sequence $$\stmt_i = \bigOR\limits_{n=i}^{\infty}\stmt[a]_n.$$ This sequence is monotonely decreasing to the impossibility in narrowness (and hence in fineness and in $>_{\stmt[u]}$), but we also have $\stmt_i\geq_{\stmt[u]}\stmt$ for all $i$. By monotone continuity (the contrapositive), we have $\stmt[s]\leq_{\stmt[u]}\impossibility$, a contradiction. 
-\end{proof}
-
-A quick corollary of this is Proposition \ref{infinitenull}, above. Using minor incomplete partitions, we prove the following. 
-
-\begin{prop}[Theorem 4, \S3 \cite{villegas}]
-	\label{split}
-	If there are no atoms, then for every statement $\stmt$ there exist statements $\stmt_1$ and $\stmt_2$ such that: $\stmt_1\ncomp \stmt_2$, $\stmt_1\equ\stmt_2$, and $\stmt_1\OR\stmt_2 = \stmt$. In other words, $\stmt$ can be partitioned into two equiprobable (note: I remember we don't like this word but I don't remember if we replaced it or not) statements. 
-\end{prop}
-\begin{proof}
-	Let $S$ be the set of minor incomplete partitions of $\stmt$, and endow it with a partial order by inclusion. Given a totally ordered chain in $S$, its union is still a minor incomplete partition, and is thus an upper bound for the chain. We may apply Zorn's lemma to find a maximal element of $S$, the disjunction of which we call $\stmt_1$. We claim that $\stmt_1$ and $\stmt_2:= \stmt\AND\NOT\stmt_1$ are equiprobable, incompatible statements. Incompatibility is immediate from the definition. For equiprobability, first note that by definition of being a minor incomplete partition we have $\stmt_1\lequ\stmt_2$. Next, if $\stmt[t]_1,\ldots$ is a monotone decreasing (with respect to $\lequ$) sequence of statements $\stmt[t]_n>_{\stmt[u]}\impossibility$ narrower than $\stmt_2$ and converging to a zero-comparable event, we have that $\stmt_1\OR\stmt[t]_n>_{\stmt[u]}\stmt_2\OR\stmt[t]_n$ since $\stmt_1$ is maximal. We needed no atoms in order to guarantee this sequence exists (Lemma 3 in Section 3 of \cite{villegas}). It follows by monotone continuity that $\stmt_1\geq_{\stmt[u]} \stmt_2$. 
-\end{proof}
-
-We will also need a few types of \emph{random variables} as defined in \cite{villegas} \S3. Let $A({\stmt[u]}) = \{x \in X : x \comp \stmt[u]\}$ be the set of possibilities associated with $\stmt[u]$. This is a subset of the collection of possibilities which will serve as the ``sample space" after picking a unit $\stmt[u]$.
-
-A \emph{uniform sequence of finitely-valued random variables} is a sequence of functions (random variables in the traditional sense) $X_1,X_2,\ldots: A({\stmt[u]})\to E$ where $E$ is a finite set, with the following property: for all $\{x_1,\ldots,x_n\}\subseteq E$, all the events $$\{p\in A({\stmt[u]}): X_i(p) = x_i, i=1,\ldots,n\}$$
-are equiprobable ($\equ$ with each other). 
-
-Notice that monotone continuity allows us to let $n\to\infty$ to define events where the whole sequence is specified with the resulting events all being equiprobable. By Proposition \ref{infinitenull} above, all such events are null.
-
-Building on these sequences of random variables, we will use \emph{uniform random variables} to define probability measures. Let $X:A({\stmt[u]})\to[0,1]$ be a random variable, and let $I$ and $J$ be intervals contained in $[0,1]$. We say $X$ is a uniform random variable if $X^{-1}(I)\lequ X^{-1}(J)$ if and only if $|I|\leq|J|$ for all such $I,J$. 
-
-From Proposition \ref{infinitenull}, $X^{-1}(a)$ is a zero-comparable event for all $a\in[0,1]$, and if $0=a_0<a_1<\cdots<a_n=1$, then $X^{-1}([a_i,a_{i+1}))$ are a finite partition of $\tdomain$. 
-
-Next, we will pull many of the above concepts together to show how we obtain a probability measure on $A({\stmt[u]})$ realized as a function on $\tdomain$ compatible with $\lequ$. 
-
-\begin{prop}\label{uniformexist}
-	If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a uniform random variable.
-\end{prop}
-\begin{proof}
-	By Proposition \ref{split} we may split any statement into two equiprobable, null-compatible sets. Starting with the statement $\stmt[u]$ (here, the ``universe" which we want to have probability 1), repeatedly divide into two statements in stages. At stage $n$ (starting with $n=0$), we will have statements $\stmt[u]^{(n)}_1,\ldots,\stmt[u]^{(n)}_{2^n}$. Now, take the disjunction of alternating statements in each collection so that there is a ``right" and ``left" (odd and even index) half at each stage. For example, at stage $n=1$, the odd and even halves are simply $\stmt[u]^{(1)}_1$ and $\stmt[u]^{(1)}_2$; at stage $n=2$ we have $\stmt[u]^{(2)}_1\OR\stmt[u]^{(2)}_3$ and $\stmt[u]^{(2)}_2\OR\stmt[u]^{(2)}_4$. 
-	
-	Define a sequence of random variables $X_n:A(\stmt[u])\to\{0,1\}$ by $X_n(a) = 1$ if and only if $a$ is in the odd half in stage $n$. This gives each $a\in A(\stmt[u])$ a binary ``address". By the construction, it follows that this is a uniform sequence of finitely-valued random variables (defined above). 
-	
-	Now, we define a uniform random variable $X:A(\stmt[u])\to[0,1]$. For $a\in A(\stmt[u])$, define $X(a) = \sum_{n=1}^{\infty}2^{-n}X_n(a)$. In other words, $X(a)$ is the binary expansion $0.X_1(a)X_2(a)\ldots_2$. 
-	
-	One can show immediately that $X^{-1}(I)\lequ X^{-1}(J)$ if and only if $|I|\leq |J|$ when $I$ and $J$ have endpoints on numbers with finite binary expansions (since $X_1,\ldots,X_n$ are uniform), and by monotone continuity, the uniformity condition extends to arbitrary intervals in $[0,1]$. 
-\end{proof}
-
-Finally, we reach our goal of building a probability measure on $A(\stmt[u])$. 
-
-\begin{prop}
-	If $\tdomain_{\stmt[u]}$ has no atoms with respect to $\lequ$, then there exists a unique compatible probability measure, and it is countably additive. 
-\end{prop}
-\begin{proof}
-	By Propsition \ref{uniformexist}, let $X:POSS_{\stmt[u]}\to[0,1]$ be a uniform random variable.
-	%Define $F:[0,1]\to\tdomain$ by $F(x) = X^{-1}([0,x])$. It is straightforward to see that $F$ is monotone in $x$ (with respect to $\lequ$), and that if $x_n\to x$, then $\lim_nF(x_n) \equ F(x)$. %Started writing this part from paper, but it is not directly used in construction. Will add details later as needed. 
-	We claim that for any statement $\stmt\in\tdomain_{\stmt[u]}$, there exists a unique number $p\in[0,1]$ such that $\stmt\equ X^{-1}([0,p])$. Define $P:\tdomain_{\stmt[u]}\to[0,1]$ by $P(\stmt)= p$. This defines a probability measure compatible with $\lequ$. Details forthcoming as needed....
-\end{proof}
-
-Ideas involved: Defines a function $X:A(\stmt[u])\to [0,1]$ in a way that is consistent with $\lequ$ by having ``larger" sets of possibilities (i.e. coarser statements) corresponding to larger intervals in $[0,1]$. Then, the measure of any other statement is given by finding an equiprobable statement which is the preimage of $[0,p]$ under $X$ and defining the measure to be $p$.  
-
-Wish: find a way to prove the above statements in an order-theoretic way. In particular, we wish to show that the order type of the equigranular-equivalence classes is equivalent to (a subset of) $\mathbb{R}$. Sufficient conditions to be isomorphic to $\mathbb{R}$ are (1) lacking endpoints (2) complete (i.e. has Least Upper Bound property) (3) has dense countable subset. The use of random variables may be very similar to an approach using order theory. For example, the transition from a uniform sequence of finitely-valued random variables into a (single) uniform random variable makes use of a countable dense subset. 
-
-% END OF NOTES
-
-
 
 \section{Examples}
 
