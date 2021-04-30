@@ -27,7 +27,6 @@
 
 \begin{abstract}
     This paper presents ideas and progress towards an order theoretic framework that can be used as a common foundation for geometric, measure theoretic and probabilistic concepts in the sciences. This would address foundational questions such as: under what assumptions are standard tools like calculus physically meaningful? How do geometric structures arise in physics? How can the idea of physical dimension be properly captured mathematically? The working hypothesis is that geometric and measure theoretic structures capture one and only one thing: how coarse or fine grained the statements are within a scientific theory. Those structures should be recovered from a single binary operator, which allows us to compare two statements and say whether one provides a finer level of description than the other. Mathematically, fineness imposes a preorder on the algebra of statements of a scientific theory. Measure theoretic and geometric notions will be recovered by picking a unit and quantifying the degree of precision in terms of that unit: ``the mass of the object is between 1 and 3 Kg'' is half as precise as ``the mass of the object is between 0 and 1 Kg''. The objective is to find necessary and/or sufficient conditions for such constructions which can be given a straightforward physical motivation.
-%    As in comparative probability, we start with a $\sigma$-complete Boolean algebra that represents all possible descriptions in a given context and impose a preorder. In our case, the preorder does not represent likelyhood comparison, but rather whether one description is at a finer level of granularity than another. At this point, any statement (apart from an impossible one) can be chosen to act as a unit, and a measure (not necessarily bounded) can be constructed to quantify the degree to which the other statements give a more or less refined account. The starting lattice is not necessarily Archimedean, therefore the choice of unit will decide which elements are finite, infinite or infinitesimal. The family of measures so obtained are able to give a size to sets at different level of scale (e.g. points, lines, surfaces, ...) much like geometrical structures do. Our hope is that this structure recovers as special cases the geometrical, measure theoretical and probabilistic constructions we currently use in the sciences while giving a generalization that still works in the case where they fail (e.g. lack of $\sigma$-additivity in quantum probability) or expected to fail (e.g. breakdown at Planck's length).
     
 	This work is part of Assumptions of Physics (\url{https://assumptionsofphysics.org}), a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived.
 \end{abstract}
@@ -38,16 +37,11 @@
 
 \emph{This paper presents the goal and the current status of our research. It is intended to gather early feedback, including pointers to other relevant work. Feedback is welcome and encouraged.}
 
-The overall goal of Assumptions of Physics is to identify a handful of physical principles from which the basic laws can be rigorously derived. We have already established that topologies and $\sigma$-algebras can be recovered from requirements of experimental verifiability.\cite{aop-book,aop-overview-verifiability} See also (TODO: Kevin Kelly). The next step is to understand the underpinnings of geometric and measure theoretic structures (including probability) which are layered on top of topologies and $\sigma$-algebras. As usual, a formal construction from scratch will force us to make explicit the physical requirements that are baked into the use of the common concepts and provide us with a framework that is, hopefully, still valid when those assumptions fail.
-%TODO: add topology proceeding, update book reference
+The overall goal of Assumptions of Physics is to identify a handful of physical principles from which the basic laws can be rigorously derived. We have already established that topologies and $\sigma$-algebras can be recovered from requirements of experimental verifiability.\cite{aop-book,aop-overview-verifiability,aop-math-topologydistinguishability} For similar ideas see also \cite{kelly1996logic}. The next step is to understand the underpinnings of geometric and measure theoretic structures (including probability) which are layered on top of topologies and $\sigma$-algebras. As usual, a formal construction from scratch will force us to make explicit the physical requirements that are baked into the use of the common concepts and provide us with a framework that is, hopefully, still valid when those assumptions fail.
 
 Note that often in physics, geometric structures are recovered from other geometric structures through the idea of emergence. For example, substantial effort is put into constructing theories where space-time emerges from other more fundamental structures. This does not solve the problem: it simply pushes it backwards. We are interested in the more fundamental problem of how the first geometric structure, and in fact any geometric structure, is defined.
 
 The idea is that while experimental verifiability keeps track of which statements in the theory are experimentally verifiable, informational granularity keeps track of which provide a finer level of description. \textbf{The working hypothesis is that this, and only this, is what geometric and measure theoretic structures capture: how coarse or fine grained the statements are within a scientific theory.} Finding the fundamental axioms associated to the notion of information granularity is therefore the central problem.
-
-%This working draft summarizes the status of our work on a new approach to the foundations of geometry and measure theory and is intended to gather early feedback. The goal is to rederive the usual concepts in geometry, measure theory and probability theory from a simpler more general structure, namely a preorder. This construction will 
-
-%The general idea is similar to what is done in comparative probability, yet we want the techniques extend from a single measure to a family of measures that allow us to define and compare sizes of sets at different scales (e.g. points, lines, surfaces, ...).
 
 To give a sense of how this would work, we start with our notion of a theoretical domain $\tdomain$, which is a $\sigma$-complete Boolean algebra that represents a set of statements, a set of descriptions, for a physical system in a given context. Mathematically, a Boolean algebra is also a lattice, and therefore already comes equipped with a partial order $\narrower$ such that $\stmt_1 \narrower \stmt_2$ if $\stmt_1 \OR \stmt_2 \equiv \stmt_2$. This partial order indicates whether one statement gives a \textbf{narrower}, more specific, description than the other. For example:
 \begin{itemize}
@@ -436,14 +430,15 @@ The following is an attempt to define infinitesimal in a way that puts the least
 \end{proof}
 
 \begin{defn}
-	Let $\stmt_1, \stmt_2 \in \tdomain$ be two statements such that $\stmt_1 \finer \stmt_2$. We say that they are \textbf{finitely comparable} to each other if we can find a finite set $\{ \stmt[t]_i \}_{i=1}^n$ such that $\stmt[t]_i \finer \stmt_1$ for all $i \leq n$ and $\stmt_2 \finer \bigOR_{i=1}^n \stmt[t]_i$.
+	Let $\stmt, \stmt[u] \in \tdomain$ be two statements such that $\stmt \finer \stmt[u]$. We say that they are \textbf{finitely comparable} to each other if we can find a finite set $\{ \stmt_i \}_{i=1}^n$ such that $\stmt_i \finer \stmt$ for all $i \leq n$ and $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i$.
 \end{defn}
 
+TODO[Mark]: check the proof
 \begin{prop}
 	If two statements are finitely comparable then they cannot be infinitesimals with respect to each other.
 \end{prop}
 \begin{proof}
-	TODO
+	Suppose $\stmt$ and $\stmt[u]$ are finitely comparable. Then we can find a set of $n$ statements $\{ \stmt_i \}_{i=1}^n$ such that $\stmt_i \finer \stmt$ for all $i \leq n$ and $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i$. Now suppose we have a set of statements $\{ \stmt[t]_i \}_{i=1}^n$ such that $\stmt \finer \stmt[t]_i$ for all $i$ and $\stmt[t]_i \ncomp \stmt[t]_j$ for all $i \neq j$. Then we also have $\stmt_i \finer \stmt \finer \stmt[t]_i$ for all $i$. By \ref{fineness_monotony} we have $\bigOR_{i=1}^n \stmt_i \finer \bigOR_{i=1}^n \stmt[t]_i$ and therefore $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i \finer \bigOR_{i=1}^n \stmt[t]_i$. Therefore we cannot find a set of $n$ statement that satisfy the definition of infinitesimal and therefore $\stmt$ is not an infinitesimal with respect to $\stmt[u]$.
 \end{proof} 
 
 \begin{prop}\label{infinitesimal_conjunction}
@@ -580,8 +575,6 @@ In addition to defining equivalence at scale $\stmt[u]$, we also wish to have th
 
 This is the final notion of ordering. After narrowness orders the actual content of the statements and fineness gives a very precise ordering of size, ordering by scale in $\stmt[u]$ aims to give a less universal notion of size relative to a fixed unit statement $\stmt[u]$, where we collapse by equivalence at scale. 
 
-
-
 An alternative definition is as follows. 
 
 \begin{defn}\label{smalleru2}
@@ -604,7 +597,7 @@ The following property is crucial for the theory of qualitative probability, but
 For all statements $\stmt$ and $\stmt[u]$, we have $\impossibility\lequ\stmt\lequ\certainty$.
 \end{prop}
 \begin{proof}
-	TODO
+	Since $\impossibility \finer \stmt$ for any $\stmt$, we have $\impossibility\lequ\stmt$ regardless of the choice of $\stmt[u]$. Conversely, since $\stmt \finer \certainty$ for any $\stmt$, we have $\stmt\lequ\certainty$ regardless of the choice of $\stmt[u]$.
 \end{proof}
 
 \begin{prop}
@@ -636,9 +629,6 @@ For the second definition of $\lequ$, transitivity of $\equ$ is needed which we 
 Question: is the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes well-defined and monotone? 
 
 Eventually, we wish to use $\lequ$ as a total pre-order in order to use it as a qualitative probability. We will need an interesting-enough subset of $\tdomain$ to capture the desired notions while still having $\lequ$ as a total order.
-
-
-% case: possibilities in u: (1) finite: impose counting measure (2) countable: finitely additive but not countably (3) uncountable: countably additive, legitimate measure
 
 \subsubsection{Collapsing Orders}
 In Section 2.1 of \cite{quotientposets}, the idea of collapsing a poset by an equivalence relation is introduced. 
@@ -715,12 +705,9 @@ A hint in that direction is given by the following proposition, given with no pr
 
 Before achieving the above, it may be possible to obtain a related result about fineness and monotone continuity, which could translate to monotone continuity for $\lequ$. 
 
-
 \begin{desid}
 Let $\stmt[u]$ be a statement which does not admit countable infinitesimals, and let $\{\stmt_i\}_{i=1}^{\infty}$ be a sequence of statements monotone increasing in narrowness (i.e. $\stmt_i\narrower\stmt_j$ for all $i\leq j$). Write $\stmt=\OR_i\stmt_i$ for the disjunction and assume $\stmt$ is finitely comparable to $\stmt[u]$. If $\stmt[t]\in\tdomain$ such that $\stmt[t]$ is finitely comparable to $\stmt[u]$, and $\stmt_i\finer\stmt[t]$ for all $i$, then $\stmt\finer\stmt[t]\OR\stmt[w]$ for some infinitesimal (with respect to $\stmt[u]$) $\stmt[w]$. 
 \end{desid}
-
-
 
 \section{Adapting results from \cite{villegas}}
 
@@ -756,7 +743,7 @@ A major goal of this work is to discover the right axioms and definitions that w
 Some ideas on distributions on natural numbers can be found in \cite{Schirokauer2007}.
 % Also available at http://www.stat.cmu.edu/tr/tr814/tr814.pdf
 
-\subsection{Distribution on natural numbers through mod classes}
+\subsection{Fineness on natural numbers through mod classes}\label{example_naturals}
 
 Let $\mathbb{N}$ be the set of natural numbers. We define the sets $D_{i,k} = \{ x \in \mathbb{N} \, | \, x \mod i = k \}$ with $k < i$. Therefore $D_{1,0} = \mathbb{N}$, $D_{2,0} = \{ 2, 4, 6, ... \}$, $D_{2,1} = \{ 1, 3, 5, ... \}$ and so on. Additionally, we say $D_{i,j} \finer D_{k,l}$ for all $k \leq i$ and for all $j$ and $l$. As needed, we may overload the notation by letting $D_{i,j} =  D_{i, j \mod i}$ where $j\mod i$ is the smallest positive residue of $j$ under $i$.
 
@@ -785,59 +772,59 @@ By either definition of $\lequ$, this would give us an increasing sequence $W_n'
 
 \section{Insightful failures}
 
-In this section we summarize ideas that did not work.
+In this section we give some counterexamples for ideas that may seem reasonable but in the end do not work.
 
-\subsection{Transport of statements}
+\subsection{Notes on cardinality}
 
-TODO(GC): Make this an example of how measure zero is not equigranularity
+\textbf{Takeaway: as cardinality ``collapses'' all infinite sets into few categories, it does not tell us much in terms of measure and fineness.} Two sets having the same measure does not imply having the same cardinality and vice-versa. Two sets with infinitely many possibilities can be equigranular, one finer than the other or not even comparable.
 
-Consider the Borel sigma-algebra on $(0,1)$. Let $\stmt_1 = (1/2,1) \setminus \mathbb{Q}$, and let $\stmt = (0,1/3)$. The hope is that there would exist some $\stmt_2\narrower\stmt_1$ with $\stmt_2\eqgran\stmt$. In Lebesgue measure (and perhaps any reasonable measure of fineness), we would have $\stmt\finer\stmt_1$. However, if we try to ``move" $\stmt$ to an equigranular copy inside $\stmt_1$, it will have infinitely many ``holes" - if we wish to use other points of $\stmt_1$ to fill them, there are numerous countable subsets which we consider non-equigranular, and so it is unclear if there is any canonical choice of equigranularity class for such an $\stmt_2$. 
+Consider the reals with the standard measure. A set of finitely many points points has measure zero. The rationals are countable and have measure zero. The Cantor set is uncountable and have measure zero. Therefore sets of real numbers with all possible cardinality can have measure zero. On the other hand, any finite open interval has uncountably many points and non-zero measure. Therefore two sets with the same cardinality can have different measure.
 
-Note that even two countable subsets of possibilities need not be equigranular. For example, if $\{\stmt[x]_i\}_{i=0}^{\infty}$ is a set of countably many (equigranular) possibilities, and $\stmt = \bigOR\limits_{i=0}^{\infty}\stmt[x]_i$, then $\stmt' = \bigOR\limits_{i=0}^{\infty}\stmt[x]_{2i}$ is strictly finer. 
+Take example \ref{example_naturals}. We have $D_{2,0} \eqgran D_{2,1}$, which both have infinitely many elements. We also have $D_{2,0} \supset D_{4,0}$, which are both infinite sets but the first will have to be coarser than the second. Now consider the set of prime numbers. It is not clear how that can be compared with the mod classes as it is not expressible with finite intersection or union.
 
-Note: I didn't quite recall what we were thinking with this TODO. But if we are wanting to show that two measure zero sets can be non-equigranular, we can go much more generally and not rely on a measure with the above example of countable sets. 
+\subsection{Limits and levels of granularity}
 
-\subsection{Transport of sequences}
+\textbf{Takeaway: given a sequence of sets with a limit, the level of granularity of the limit is not uniquely determined by the level of granularity of the members of the sequence.}
 
 Consider the following two sequences of subsets of $\mathbb{N}$. Let $\stmt_n = \{1,2,3,\ldots,n\}$, and let $\stmt[t]_n = \{2,4,6,\ldots,2n\}$. If we are treating $\mathbb{N}$ as a uniform domain, we should have $\stmt_n\eqgran\stmt[t]_n$ for all $n$. However, the limit $\bigOR_n\stmt_n = \mathbb{N}$, while $\bigOR_n\stmt[t]_n = \{2,4,6,\ldots\} = 2\mathbb{N} \subset \mathbb{N}$. These are not equigranular limits despite the sequences being equigranular. 
 
 Here is another example which does not rely on countable infinitesimals. In the domain $[0,1]$, considered with its Borel sigma-algebra, there are no countable infinitesimals. Consider the sequences $\stmt_n = (1/n,1]$ and $\stmt[t]_n = (1/2n, 1 - 1/2n]$. These should be equigranular as they are simply offset by a shift of $1/2n$ from each other. Then the limits are $\bigOR_n\stmt_n = (0,1]$ and $\bigOR_n\stmt[t]_n = (0,1)$. While they have the same Lebesgue measure, the former has the point 1, and so it should not be equigranular to the latter.
 
 
-\subsection{Maximal chains}
+\subsection{Saturated chains}
 
-The idea was to see whether, instead of requiring totality, we could require that we could always find statements at a desired level of description. We wanted to say that a maximal chain in narrowness, that is a sequence of statements ordered by narrowness where no other statement could be added, would touch all levels of descriptions, all equivalence classes in equigranularity. This does not work.
+\textbf{Takeaway: chains of narrowness do not go through all granularity levels.}
 
-The problem is that infinite sets disrupt the relationship between narrowness and fineness, such that a maximal chain in narrowness is not necessarily a maximal chain in fineness. For example, if we have a countable set of possibilities (e.g. the natural numbers), a maximal chain in narrowness can start from the empty set, start by adding possibilities one be one until we end with the full set. The set with all possibilities except one, for example, cannot be added to the chain, but still represents a level of description that is in between all the finite sets and the full infinite set. The only case where we can construct maximal chains is precisely when the possibilities are finite, and is therefore not interesting.
+The idea was to see whether, instead of requiring totality, we could require that we could always find statements at a desired level of description. We wanted to say that a saturated chain in narrowness, that is a sequence of statements ordered by narrowness where no other statement could be added, would touch all levels of descriptions, all equivalence classes in equigranularity. This does not work.
+
+The problem is that infinite sets disrupt the relationship between narrowness and fineness, such that a saturated chain in narrowness is not necessarily a saturated chain in fineness. For example, if we have a countable set of possibilities (e.g. the natural numbers), a saturated chain in narrowness can start from the empty set, start by adding possibilities one be one until we end with the full set. The set with all possibilities except one, for example, cannot be added to the chain, but still represents a level of description that is in between all the finite sets and the full infinite set. The only case where we can construct saturated chains is precisely when the possibilities are finite, and is therefore not interesting.
 
 \begin{defn}
 Let $(S,\leq)$ be a poset. A \textbf{chain} is a subset $T\subseteq S$ which is totally ordered (i.e. every pair of elements in $T$ is comparable in $\leq$). A chain is said to be \textbf{saturated} if there are no ``gaps" in the chain. That is, there is no $s \in S$ such that $s \notin T$, $t_1 \leq s \leq t_2$ for some $t_1, t_2 \in T$ and $T \cup \{s\}$ is a chain. 
 \end{defn}
 
-TODO(GC): everything needs to be changed to saturated
-
 \begin{defn}
-A theoretical domain $\tdomain$ is said to have the \textbf{maximal chains property} (MCP) if given any chain $S\subseteq\tdomain$ totally ordered by narrowness ($\narrower$), the following holds. There exists a maximum chain $S'\supseteq S$, and a maximal chain $C$ in the set of equigranularity equivalence classes, such that for all statements $s \in S'$, there exists an equivalence class $\overline{c}\in C$ with $s\in \overline{c}$.
+A theoretical domain $\tdomain$ is said to have the \textbf{saturated chains property} (SCP) if given any chain $S\subseteq\tdomain$ totally ordered by narrowness ($\narrower$), the following holds. There exists a maximum chain $S'\supseteq S$, and a saturated chain $C$ in the set of equigranularity equivalence classes, such that for all statements $s \in S'$, there exists an equivalence class $\overline{c}\in C$ with $s\in \overline{c}$.
 \end{defn}
 
 The following made the idea look promising.
 
 \begin{prop}\label{chainimpliesuniform}
-Let $\tdomain$ be a theoretical domain with the maximal chains property, and suppose all possibilities are comparable. Then they must be equigranular.
+Let $\tdomain$ be a theoretical domain with the saturated chains property, and suppose all possibilities are comparable. Then they must be equigranular.
 \end{prop}
 \begin{proof}
-Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p\}$ and $\{\impossibility, q\}$. By the MCP, these may be extended to maximal chains in narrowness, with corresponding maximal chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represent by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. It follows that $p\finer q$, and similarly $q\finer p$, and so $p\eqgran q$. 
+Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p\}$ and $\{\impossibility, q\}$. By the SCP, these may be extended to saturated chains in narrowness, with corresponding saturated chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represent by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. It follows that $p\finer q$, and similarly $q\finer p$, and so $p\eqgran q$. 
 \end{proof}
 
 \begin{prop}
-Let $\tdomain$ be a theoretical domain with the maximal chains property. Then they must have finitely many possibilities.
+Let $\tdomain$ be a theoretical domain with the saturated chains property. Then they must have finitely many possibilities.
 \end{prop}
 \begin{proof}
-Let $\tdomain$ be a theoretical domain with the maximal chains property and such that the set $X$ of possibilities is infinite. Let $X' = \{x_i\}_{i=0}^{\infty} \subseteq X$ be a countable subset. Let $s_j = \bigOR_{j=0}^{i} x_i$ be the disjunction of the first $j$ possibilities. Let $\stmt = \bigOR_{i=0}^{\infty} x_i$ be the disjuction of all the possibilities in the sequence. The set $C = \{ \impossibility, \stmt \} \cup \{\stmt_j\}_{j=0}^{\infty}$ is a chain. In fact $\impossibility \snarrower \stmt_j \snarrower \stmt$ for all $j$ and $\stmt_i \narrower \stmt_j$ if $i \leq j$.
+Let $\tdomain$ be a theoretical domain with the saturated chains property and such that the set $X$ of possibilities is infinite. Let $X' = \{x_i\}_{i=0}^{\infty} \subseteq X$ be a countable subset. Let $s_j = \bigOR_{j=0}^{i} x_i$ be the disjunction of the first $j$ possibilities. Let $\stmt = \bigOR_{i=0}^{\infty} x_i$ be the disjuction of all the possibilities in the sequence. The set $C = \{ \impossibility, \stmt \} \cup \{\stmt_j\}_{j=0}^{\infty}$ is a chain. In fact $\impossibility \snarrower \stmt_j \snarrower \stmt$ for all $j$ and $\stmt_i \narrower \stmt_j$ if $i \leq j$.
 
-To show that $C$ is maximal, take a statement $\hat{\stmt} \narrower \stmt$ such that $\hat{\stmt} \notin C$. Let $A \subseteq X'$ be the set of possibilities compatible with $\hat{\stmt}$. If $A$ is infinite, since $\hat{\stmt} \nequiv \stmt$, there exists an $x_i \in X'$ such that $x_i \notin A$. Therefore $\stmt_{i} \nnarrower \hat{\stmt}$ since the first is compatible with a possibility that is not compatible with the second, and $\hat{\stmt} \nnarrower \stmt_{i}$ since $\hat{\stmt}$ is compatible with infinitely many statements and $\stmt_{i}$. If $A$ is finite, let the $x_i \in A$ for which $i$ is highest. Note that $A$ cannot contain all previous $x_j$ in the sequence, since $\hat{\stmt} \notin C$. Let $x_j$ the possibility with the highest $j \leq i$ that is not in $A$. We have $\hat{\stmt} \nnarrower \stmt_{j}$ and $\stmt_{i} \nnarrower \hat{\stmt}$ since each is compatible with a possibility incompatible with the other. Since we cannot add other statement, $C$ is maximal.
+To show that $C$ is saturated, take a statement $\hat{\stmt} \narrower \stmt$ such that $\hat{\stmt} \notin C$. Let $A \subseteq X'$ be the set of possibilities compatible with $\hat{\stmt}$. If $A$ is infinite, since $\hat{\stmt} \nequiv \stmt$, there exists an $x_i \in X'$ such that $x_i \notin A$. Therefore $\stmt_{i} \nnarrower \hat{\stmt}$ since the first is compatible with a possibility that is not compatible with the second, and $\hat{\stmt} \nnarrower \stmt_{i}$ since $\hat{\stmt}$ is compatible with infinitely many statements and $\stmt_{i}$. If $A$ is finite, let the $x_i \in A$ for which $i$ is highest. Note that $A$ cannot contain all previous $x_j$ in the sequence, since $\hat{\stmt} \notin C$. Let $x_j$ the possibility with the highest $j \leq i$ that is not in $A$. We have $\hat{\stmt} \nnarrower \stmt_{j}$ and $\stmt_{i} \nnarrower \hat{\stmt}$ since each is compatible with a possibility incompatible with the other. Since we cannot add other statement, $C$ is saturated.
 
-Now we show that, even though $C$ is maximal, it does not go through all levels of granularity. Let $x \in X'$ and consider $\stmt \AND \NOT x$. This is finer than $\stmt$ and is coarser than all other statements statements in $C$ since they are all compatible with finitely many possibilities. Therefore MCP does not hold. Therefore, if MCP holds, the domain cannot have infinitely many possibilities.
+Now we show that, even though $C$ is saturated, it does not go through all levels of granularity. Let $x \in X'$ and consider $\stmt \AND \NOT x$. This is finer than $\stmt$ and is coarser than all other statements statements in $C$ since they are all compatible with finitely many possibilities. Therefore SCP does not hold. Therefore, if SCP holds, the domain cannot have infinitely many possibilities.
 \end{proof}
 
 \bibliography{bibliography}
