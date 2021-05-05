@@ -154,24 +154,70 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 	Given two sets \marginleft{Cartesian product: $\times$}  $A$ and $B$, the \textbf{Cartesian product} $A \times B = \{ (a,b) \, | \, \forall a \in A, b \in B \}$ is the set of all possible ordered pairs between the elements of $A$ and $B$.
 \end{defn}
 
-\subsection{Relations and function}
+\subsection{Relations and functions}
 
 \begin{remark}
 	Relations provide a common foundation for functions (i.e. the relation is the set of pairs $(x, f(x))$), equivalences and order (i.e. the relation is the set of pairs $(a, b)$ such that $a=b$ or $a\leq b$ respectively). This is an example of highly fruitful generalization.
 \end{remark}
 
 \begin{defn}[Binary relation]
-	Given a set $A$, called \textbf{domain}, and a set $B$, called \textbf{codomain}, a \textbf{binary relation} is a set $R \subseteq A \times B$ of ordered pairs. We say $a$ is \textbf{$R$-related} to $b$, noted $aRb$ if $(a,b) \in R$. If $A=B$ (i.e. domain and codomain coincide) the relation is said \textbf{homogeneous}, \textbf{heterogeneous} if not.
+	Given a set $A$, \marginleft{Binary\\ relation} called \textbf{domain}, and a set $B$, called \textbf{codomain}, a \textbf{binary relation} is a set $R \subseteq A \times B$ of ordered pairs. We say $a$ is \textbf{$R$-related} to $b$, noted $aRb$ if $(a,b) \in R$. If $A=B$ (i.e. domain and codomain coincide) the relation is said \textbf{homogeneous}, \textbf{heterogeneous} if not.
 \end{defn}
+
+\marginright{
+\begin{tikzpicture}[scale = 0.3] 
+	\node at (-2.5,-4) {$A$};
+	\node at (3,2.3) {$B$};
+	\draw[rounded corners] (0,0.2) rectangle (6,1.5);
+	\draw[rounded corners] (-0.2,0) rectangle (-1.5,-8);
+	\draw[rounded corners] (0,0) rectangle (6,-8);
+	
+	\def\circlepath{circle (0.45)}
+	\def\rectanglepath{ ++(-0.45,-0.45)  -- ++(0,0.9)  -- ++(0.9,0) -- ++(0,-0.9) -- ++(-0.9,0)}
+	\def\diamondpath{ ++(-0.5,0)  -- ++(0.5,0.5)  -- ++(0.5,-0.5) -- ++(-0.5,-0.5) -- ++(-0.5,0.5)}
+	
+	% B elements
+	\node at (1,0.85) {\includegraphics[scale=0.25]{cat.png}};
+	\node at (3,0.85) {\includegraphics[scale=0.25]{dog.png}};
+	\node at (5,0.85) {\includegraphics[scale=0.25]{swan.png}};
+	
+	\definecolor{a}{rgb}{1.0, 1.0, 1.0}
+	\definecolor{b}{rgb}{1, 0.509, 0}
+	\definecolor{c}{rgb}{0.45, 0.225, 0}
+	\definecolor{d}{rgb}{0, 0, 0}
+	
+	% A elements
+	\filldraw[fill=a] (-0.85, -1) circle (0.5);
+	\fill[b] (-0.85, -3) circle (0.5);
+	\fill[c] (-0.85, -5) circle (0.5);
+	\fill[d] (-0.85, -7) circle (0.5);
+	
+	% AxB elements
+	\node at (1, -1) {$\checkmark$};
+	\node at (1, -3) {$\checkmark$};
+	\node at (1, -5) {};
+	\node at (1, -7) {$\checkmark$};
+	\node at (3, -1) {$\checkmark$};
+	\node at (3, -3) {};
+	\node at (3, -5) {$\checkmark$};
+	\node at (3, -7) {$\checkmark$};
+	\node at (5, -1) {$\checkmark$};
+	\node at (5, -3) {};
+	\node at (5, -5) {};
+	\node at (5, -7) {$\checkmark$};
+	
+	\node at (3,-9) {$R$};
+\end{tikzpicture} 
+}
 	
 \begin{defn}[Image and preimage]
-	If $X \subseteq A$, the \textbf{image of $X$ under $R$} is the set of all elements in $B$ that are related to at least one element in $X$. The \textbf{image of $R$} is set of all elements in $B$ that are related to at least one element in $A$ (i.e. the image of the full set $A$).
+	If $X \subseteq A$, \marginleft{Image and\\ preimage} the \textbf{image of $X$ under $R$} is the set of all elements in $B$ that are related to at least one element in $X$. The \textbf{image of $R$} is set of all elements in $B$ that are related to at least one element in $A$ (i.e. the image of the full set $A$).
 	
 	If $Y \subseteq B$, the \textbf{preimage of $Y$ under $R$} is the set of all elements in $A$ that are related to at least one element in $Y$. The \textbf{preimage of $R$} is set of all elements in $A$ that are related to at least one element in $B$ (i.e. the preimage of the full set $B$).
 \end{defn}
 
-\begin{defn}
-	Given a relationship $R$ between $A$ and $B$, the \textbf{converse} or \textbf{inverse} relationship $R^{-1}$ is the relationship where the order of the pairs is inverted. That is, $R^{-1} = \{ (b, a) \, | \, (a, b) \in R\}$.
+\begin{defn}[Converse relationship]
+	Given a relationship  \marginleft{Converse: $R^{-1}$} $R$ between $A$ and $B$, the \textbf{converse} or \textbf{inverse} relationship $R^{-1}$ is the relationship where the order of the pairs is inverted. That is, $R^{-1} = \{ (b, a) \, | \, (a, b) \in R\}$.
 \end{defn}
 
 \begin{defn}[Relation properties]
@@ -206,7 +252,6 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 \end{defn}
 
 
-\marginpar[Left]{Right}
 \begin{prop}[Inverse function]
 	Let $f : A \to B$ be a function. The corresponding converse relationship $f^{-1}$ is a function if and only if $f$ is bijective. In this case $f^{-1} : B \to A$ is also bijective and is called the \textbf{inverse} of $f$.
 \end{prop}
