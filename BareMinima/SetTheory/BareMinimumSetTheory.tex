@@ -1,8 +1,9 @@
 \documentclass{article}
 
+\usepackage[left=1.8in,right=1.8in,top=.6in,bottom=1in]{geometry}
+
 \usepackage{assumptionsofphysics}
 \usepackage{tikz}
-\usetikzlibrary{shapes,snakes}
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
@@ -42,12 +43,24 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 
 \begin{defn}[Common sets]
 	 The \textbf{empty set}
-	 \marginleft{Common sets: $\emptyset$, $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, $\mathbb{C}$}
+	 \marginleft{Common sets: $\emptyset$, $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$}
 	  $\emptyset$ is the set with no elements.
 	 The \textbf{set of natural numbers} $\mathbb{N} = \{ 0, 1, 2, ... \}$. The \textbf{set of positive natural numbers} $\mathbb{N}^+ = \{n \in \mathbb{N} \, | \, n > 0\}$. The \textbf{set of integer numbers} $\mathbb{Z} = \{ ... , -2, -1, 0, +1, +2, ...\}$. The \textbf{set of rational numbers} $\mathbb{Q}$. The \textbf{set of real numbers} $\mathbb{R}$. The \textbf{set of complex numbers} $\mathbb{C}$. A \textbf{universe} $U$ is the set that, within a specific context, contains all entities under study.
 \end{defn}
 
 \subsection{Basic definitions}
+
+\marginright{~\\
+	\def\setA{ (-1,0) circle (2) }
+	\def\setB{ (1,0) circle (2) }
+	\begin{tikzpicture}[scale = 0.3]
+		\draw (0,0) circle (3); 
+		\draw (-0.5,-0.5) circle (1.5);
+		\node at (-4.7,0) {$A \subset B$};
+		\node at (-0.5,-0.5) {$A$};
+		\node at (1.3,1.3) {$B$};
+	\end{tikzpicture} 
+}
 
 \begin{defn}[Set relationships]
 	Let $A$ and $B$ be two sets. \marginleft{Subset, superset: $\subseteq$, $\supseteq$} If all elements in $A$ are also contained in $B$, we say $A$ is a \textbf{subset} of $B$, noted $A \subseteq B$. In this case, we also say $B$ is a \textbf{superset} of $A$, noted $B \supseteq A$. Additionally, if $B$ contains elements that $A$ does not contain, we say $A$ is a \textbf{strict subset} of $B$, noted $A \subset B$, and $B$ is a \textbf{strict superset} of $A$, noted $B \supset A$. If the two sets contain exactly the same elements, then we say the sets are \textbf{equal}, noted $A = B$. If the two sets have no element in common they are said to be \textbf{disjoint}.
@@ -57,49 +70,57 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 	Given a set $A$, its \textbf{power set}, \marginleft{Power set: $2^{A}$, $\mathcal{P}(A)$} noted $\mathcal{P}(A)$ or $2^{A}$, is the set of all subsets of $A$. That is, $\mathcal{P}(A) = \{B \, | \, B \subset A \}$.
 \end{defn}
 
+\marginright{
+	~\\
+	\def\setA{ (-1,0) circle (2) }
+	\def\setB{ (1,0) circle (2) }
+	\vspace{1pt}
+	\begin{tikzpicture}[scale = 0.3]
+		\filldraw[black!10] \setA;
+		\filldraw[black!10] \setB;
+		\draw \setA; 
+		\draw \setB;
+		\node at (-4.7,0) {$A\!\cup \! B$};
+	\end{tikzpicture} 
+	\vspace{1pt}
+	\begin{tikzpicture}[scale = 0.3]
+		\begin{scope}
+			\clip \setA;
+			\filldraw[black!10] \setB;
+		\end{scope}
+		\draw \setA; 
+		\draw \setB;
+		\node at (-4.7,0) {$A\!\cap \! B$};
+	\end{tikzpicture} 
+	\vspace{1pt}
+	\begin{tikzpicture}[scale = 0.3]
+		\filldraw[black!10] \setA;
+		\filldraw[white] \setB;
+		\draw \setA; 
+		\draw \setB;
+		\node at (-4.7,0) {$A\!\setminus \! B$};
+	\end{tikzpicture}
+	\def\setU{ (-3,-2) rectangle (3,2) }
+	\def\setA{ (0,0) circle (1.8) }
+	\begin{tikzpicture}[scale = 0.3] 
+		\filldraw[black!10] \setU;
+		\filldraw[white] \setA;
+		\draw \setU;
+		\draw \setA;
+		\node at (-5.3,0) {$A^{\complement}$};
+	\end{tikzpicture} 
+}
+
 \begin{defn}[Set operations]
 	We define \marginleft{Set operations: $\cup$, $\cap$, $\setminus$, $^{\complement}$} the following operations between two sets $A$ and $B$:
 	\begin{description}
 		\item[Union.]Noted $A \cup B$, the union of $A$ and $B$ is the set of all elements that are contained by $A$, $B$ or both.
-		\marginright{
-			\def\setA{ (-1,0) circle (2) }
-			\def\setB{ (1,0) circle (2) }
-			\begin{tikzpicture}[scale = 0.3]
-				\filldraw[black!10] \setA;
-				\filldraw[black!10] \setB;
-				\draw \setA; 
-				\draw \setB;
-				\node at (-4.7,0) {$A\!\cup \! B$};
-			\end{tikzpicture} 
-			\begin{tikzpicture}[scale = 0.3]
-				\begin{scope}
-					\clip \setA;
-					\filldraw[black!10] \setB;
-				\end{scope}
-				\draw \setA; 
-				\draw \setB;
-				\node at (-4.7,0) {$A\!\cap \! B$};
-			\end{tikzpicture} 
-			\begin{tikzpicture}[scale = 0.3]
-				\filldraw[black!10] \setA;
-				\filldraw[white] \setB;
-				\draw \setA; 
-				\draw \setB;
-				\node at (-4.7,0) {$A\!\setminus \! B$};
-			\end{tikzpicture} 
-			\def\setU{ (-3,-2) rectangle (3,2) }
-			\def\setA{ (0,0) circle (1.8) }
-			\begin{tikzpicture}[scale = 0.3] 
-				\filldraw[black!10] \setU;
-				\filldraw[white] \setA;
-				\draw \setU;
-				\draw \setA;
-				\node at (-5.3,0) {$A^{\complement}$};
-			\end{tikzpicture} 
-		}\item[Intersection.] Noted $A \cap B$, the intersection of $A$ and $B$ is the set of all elements that are contained by both.
+		\item[Intersection.] Noted $A \cap B$, the intersection of $A$ and $B$ is the set of all elements that are contained by both.
 		\item[Set difference (or relative complement).] Noted $A \setminus B$, $A$ minus $B$ is the set of all elements in $A$ that are not contained by $B$.
 		\item[Complement (or absolute complement).] Noted $A^{\complement}$, represents all elements that are not contained in $A$. Note that this operation is context specific: we need to know that, within a certain context, $U$ is the set of all elements under study; then the complement of $A \subseteq U$ is $A^{\complement} = U \setminus A$.
 	\end{description}
+
+	Let $X \subseteq \mathcal{P}(A)$ be a set of subsets of $A$. The operations of union $\bigcup\limits_{Y \in X} Y$ and intersection $\bigcap\limits_{Y \in X} Y$ can be extend to span all elements.
 \end{defn}
 
 
@@ -160,55 +181,100 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 	Relations provide a common foundation for functions (i.e. the relation is the set of pairs $(x, f(x))$), equivalences and order (i.e. the relation is the set of pairs $(a, b)$ such that $a=b$ or $a\leq b$ respectively). This is an example of highly fruitful generalization.
 \end{remark}
 
+\marginright{~\\
+	\begin{tikzpicture}[scale = 0.3] 
+		\node at (-2.5,-4) {$A$};
+		\node at (3,2.3) {$B$};
+		\draw[rounded corners] (0,0.2) rectangle (6,1.5);
+		\draw[rounded corners] (-0.2,0) rectangle (-1.5,-8);
+		\draw[rounded corners] (0,0) rectangle (6,-8);
+		
+		\def\circlepath{circle (0.45)}
+		\def\rectanglepath{ ++(-0.45,-0.45)  -- ++(0,0.9)  -- ++(0.9,0) -- ++(0,-0.9) -- ++(-0.9,0)}
+		\def\diamondpath{ ++(-0.5,0)  -- ++(0.5,0.5)  -- ++(0.5,-0.5) -- ++(-0.5,-0.5) -- ++(-0.5,0.5)}
+		
+		% B elements
+		\node at (1,0.85) {\includegraphics[scale=0.25]{cat.png}};
+		\node at (3,0.85) {\includegraphics[scale=0.25]{dog.png}};
+		\node at (5,0.85) {\includegraphics[scale=0.25]{swan.png}};
+		
+		\definecolor{a}{rgb}{1.0, 1.0, 1.0}
+		\definecolor{b}{rgb}{1, 0.509, 0}
+		\definecolor{c}{rgb}{0.45, 0.225, 0}
+		\definecolor{d}{rgb}{0, 0, 0}
+		
+		% A elements
+		\filldraw[fill=a] (-0.85, -1) circle (0.5);
+		\fill[b] (-0.85, -3) circle (0.5);
+		\fill[c] (-0.85, -5) circle (0.5);
+		\fill[d] (-0.85, -7) circle (0.5);
+		
+		% AxB elements
+		\node at (1, -1) {$\checkmark$};
+		\node at (1, -3) {$\checkmark$};
+		\node at (1, -5) {};
+		\node at (1, -7) {$\checkmark$};
+		\node at (3, -1) {$\checkmark$};
+		\node at (3, -3) {};
+		\node at (3, -5) {$\checkmark$};
+		\node at (3, -7) {$\checkmark$};
+		\node at (5, -1) {$\checkmark$};
+		\node at (5, -3) {};
+		\node at (5, -5) {};
+		\node at (5, -7) {$\checkmark$};
+		
+		\node at (3,-9) {$R$};
+	\end{tikzpicture} 
+	
+	\begin{tikzpicture}[scale = 0.3] 
+		\node at (-2.5,-3) {$B$};
+		\node at (4,2.3) {$A$};
+		\draw[rounded corners] (0,0.2) rectangle (8,1.5);
+		\draw[rounded corners] (-0.2,0) rectangle (-1.5,-6);
+		\draw[rounded corners] (0,0) rectangle (8,-6);
+		
+		\def\circlepath{circle (0.45)}
+		\def\rectanglepath{ ++(-0.45,-0.45)  -- ++(0,0.9)  -- ++(0.9,0) -- ++(0,-0.9) -- ++(-0.9,0)}
+		\def\diamondpath{ ++(-0.5,0)  -- ++(0.5,0.5)  -- ++(0.5,-0.5) -- ++(-0.5,-0.5) -- ++(-0.5,0.5)}
+		
+		% B elements
+		\node at (-0.85, -1) {\includegraphics[scale=0.25]{cat.png}};
+		\node at (-0.85, -3) {\includegraphics[scale=0.25]{dog.png}};
+		\node at (-0.85, -5) {\includegraphics[scale=0.25]{swan.png}};
+		
+		\definecolor{a}{rgb}{1.0, 1.0, 1.0}
+		\definecolor{b}{rgb}{1, 0.509, 0}
+		\definecolor{c}{rgb}{0.45, 0.225, 0}
+		\definecolor{d}{rgb}{0, 0, 0}
+		
+		% A elements
+		\filldraw[fill=a] (1,0.85) circle (0.5);
+		\fill[b] (3,0.85) circle (0.5);
+		\fill[c] (5,0.85) circle (0.5);
+		\fill[d] (7,0.85) circle (0.5);
+		
+		% AxB elements
+		\node at (1, -1) {$\checkmark$};
+		\node at (3, -1) {$\checkmark$};
+		\node at (5, -1) {};
+		\node at (7, -1) {$\checkmark$};
+		\node at (1, -3) {$\checkmark$};
+		\node at (3, -3) {};
+		\node at (5, -3) {$\checkmark$};
+		\node at (7, -3) {$\checkmark$};
+		\node at (1, -5) {$\checkmark$};
+		\node at (3, -5) {};
+		\node at (5, -5) {};
+		\node at (7, -5) {$\checkmark$};
+		
+		\node at (4,-7) {$R^{-1}$};
+	\end{tikzpicture} 
+	
+}
 \begin{defn}[Binary relation]
 	Given a set $A$, \marginleft{Binary\\ relation} called \textbf{domain}, and a set $B$, called \textbf{codomain}, a \textbf{binary relation} is a set $R \subseteq A \times B$ of ordered pairs. We say $a$ is \textbf{$R$-related} to $b$, noted $aRb$ if $(a,b) \in R$. If $A=B$ (i.e. domain and codomain coincide) the relation is said \textbf{homogeneous}, \textbf{heterogeneous} if not.
 \end{defn}
 
-\marginright{
-\begin{tikzpicture}[scale = 0.3] 
-	\node at (-2.5,-4) {$A$};
-	\node at (3,2.3) {$B$};
-	\draw[rounded corners] (0,0.2) rectangle (6,1.5);
-	\draw[rounded corners] (-0.2,0) rectangle (-1.5,-8);
-	\draw[rounded corners] (0,0) rectangle (6,-8);
-	
-	\def\circlepath{circle (0.45)}
-	\def\rectanglepath{ ++(-0.45,-0.45)  -- ++(0,0.9)  -- ++(0.9,0) -- ++(0,-0.9) -- ++(-0.9,0)}
-	\def\diamondpath{ ++(-0.5,0)  -- ++(0.5,0.5)  -- ++(0.5,-0.5) -- ++(-0.5,-0.5) -- ++(-0.5,0.5)}
-	
-	% B elements
-	\node at (1,0.85) {\includegraphics[scale=0.25]{cat.png}};
-	\node at (3,0.85) {\includegraphics[scale=0.25]{dog.png}};
-	\node at (5,0.85) {\includegraphics[scale=0.25]{swan.png}};
-	
-	\definecolor{a}{rgb}{1.0, 1.0, 1.0}
-	\definecolor{b}{rgb}{1, 0.509, 0}
-	\definecolor{c}{rgb}{0.45, 0.225, 0}
-	\definecolor{d}{rgb}{0, 0, 0}
-	
-	% A elements
-	\filldraw[fill=a] (-0.85, -1) circle (0.5);
-	\fill[b] (-0.85, -3) circle (0.5);
-	\fill[c] (-0.85, -5) circle (0.5);
-	\fill[d] (-0.85, -7) circle (0.5);
-	
-	% AxB elements
-	\node at (1, -1) {$\checkmark$};
-	\node at (1, -3) {$\checkmark$};
-	\node at (1, -5) {};
-	\node at (1, -7) {$\checkmark$};
-	\node at (3, -1) {$\checkmark$};
-	\node at (3, -3) {};
-	\node at (3, -5) {$\checkmark$};
-	\node at (3, -7) {$\checkmark$};
-	\node at (5, -1) {$\checkmark$};
-	\node at (5, -3) {};
-	\node at (5, -5) {};
-	\node at (5, -7) {$\checkmark$};
-	
-	\node at (3,-9) {$R$};
-\end{tikzpicture} 
-}
 	
 \begin{defn}[Image and preimage]
 	If $X \subseteq A$, \marginleft{Image and\\ preimage} the \textbf{image of $X$ under $R$} is the set of all elements in $B$ that are related to at least one element in $X$. The \textbf{image of $R$} is set of all elements in $B$ that are related to at least one element in $A$ (i.e. the image of the full set $A$).
@@ -216,12 +282,13 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 	If $Y \subseteq B$, the \textbf{preimage of $Y$ under $R$} is the set of all elements in $A$ that are related to at least one element in $Y$. The \textbf{preimage of $R$} is set of all elements in $A$ that are related to at least one element in $B$ (i.e. the preimage of the full set $B$).
 \end{defn}
 
+
 \begin{defn}[Converse relationship]
 	Given a relationship  \marginleft{Converse: $R^{-1}$} $R$ between $A$ and $B$, the \textbf{converse} or \textbf{inverse} relationship $R^{-1}$ is the relationship where the order of the pairs is inverted. That is, $R^{-1} = \{ (b, a) \, | \, (a, b) \in R\}$.
 \end{defn}
 
 \begin{defn}[Relation properties]
-	Let $R$ be a binary relation between $A$ and $B$. We define the following properties:
+	Let $R$ \marginleft{Relation properties} be a binary relation between $A$ and $B$. We define the following properties:
 	\begin{description}
 		\item[Functional or right-unique.] An element $a \in A$ is related to at most one element $b \in B$. That is, if $aRb$ and $cRb$ then $a = c$.
 		\item[Injective or left-unique.] An element $b \in B$ is related to at most one element $a \in A$. That is, if $aRb$ and $aRc$ then $b = c$.
@@ -238,7 +305,7 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 \end{defn}
 
 \begin{defn}[Function]
-	A \textbf{partial function} $f : A \to B$ is a binary relationship between $A$ and $B$ that is functional (i.e. right-unique). The \textbf{graph} of the function $G \subset A \times B$ is the function expressed as ordered pairs. A \textbf{total function}, or simply a \textbf{function}, is a partial function that is also serial (i.e. left-total, defined on the whole domain). A function is \textbf{bijective} if it is injective and surjective.
+	A \textbf{partial function} \marginleft{(Partial) \\ functions: \\ $f : A \to B$} $f : A \to B$ is a binary relationship between $A$ and $B$ that is functional (i.e. right-unique). The \textbf{graph} of the function $G \subset A \times B$ is the function expressed as ordered pairs. A \textbf{total function}, or simply a \textbf{function}, is a partial function that is also serial (i.e. left-total, defined on the whole domain). A function is \textbf{bijective} if it is injective and surjective.
 	
 	When the functional form $f(a)$ is known, this can be expressed as $a \mapsto f(a)$ (read ``$a$ maps to $f$ of $a$'').
 \end{defn}
@@ -248,16 +315,16 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 \end{remark}
 
 \begin{defn}[Identity function]
-	Given a set $A$, the identity function $\Id_A : A \to A$ is the function such that $\Id_A(a) = a$ for all $a \in A$.
+	Given a set $A$, \marginleft{Identity: $\Id_A(a)$} the identity function $\Id_A : A \to A$ is the function such that $\Id_A(a) = a$ for all $a \in A$.
 \end{defn}
 
 
 \begin{prop}[Inverse function]
-	Let $f : A \to B$ be a function. The corresponding converse relationship $f^{-1}$ is a function if and only if $f$ is bijective. In this case $f^{-1} : B \to A$ is also bijective and is called the \textbf{inverse} of $f$.
+	Let $f : A \to B$ \marginleft{Inverse: $f^{-1}$} be a function. The corresponding converse relationship $f^{-1}$ is a function if and only if $f$ is bijective. In this case $f^{-1} : B \to A$ is also bijective and is called the \textbf{inverse} of $f$.
 \end{prop}
 
 \begin{defn}[Composition]
-	Let $A$, $B$ and $C$ be three sets. Let $R$ be a binary relationship between $A$ and $B$ and $S$ be a binary relationship between $B$ and $C$. Then the \textbf{composition of $R$ and $S$}, noted $S \circ R$, is the binary relationship between $A$ and $C$ such that $(a, c) \in S \circ R$ if we can find $b \in B$ such that $aRb$ and $bSc$.
+	Let $A$, $B$ and $C$ \marginleft{Function and relation composition: $R \circ S$, $f \circ g$} be three sets. Let $R$ be a binary relationship between $A$ and $B$ and $S$ be a binary relationship between $B$ and $C$. Then the \textbf{composition of $R$ and $S$}, noted $S \circ R$, is the binary relationship between $A$ and $C$ such that $(a, c) \in S \circ R$ if we can find $b \in B$ such that $aRb$ and $bSc$.
 \end{defn}
 
 \begin{remark}
@@ -265,7 +332,7 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 \end{remark}
 
 \begin{prop}[Composition properties]
-	Relation composition follows the following properties:
+	Relation composition \marginleft{Composition properties} follows the following properties:
 	\begin{itemize}
 		\item Composition is associative: $R \circ (T \circ S) = (R \circ T) \circ S$
 		\item Converse of composition: $(R \circ S)^{-1} = S^{-1} \circ R^{-1}$
@@ -276,29 +343,46 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 \end{prop}
 
 \begin{defn}[Sets of functions]
-	The set of all possible functions $f : A \to B$ is noted $B^A$.
+	The set \marginleft{Sets of functions: $B^A$} of all possible functions $f : A \to B$ is noted $B^A$.
 \end{defn}
 
 \begin{remark}
 	The notation is due to the cardinality. If $|A| = n$ and $|B| = m$, each function is given by choosing an element of $B$ for each element of $A$, that is $m$ choices $n$ times, that is $m^n$. The power set is noted $2^A$ because each subset can be identified by a function $U : A \to \{0 , 1\}$, where $f(a)=0$ corresponds to $a \notin U$ and $f(a)=0$ corresponds to $b \in U$.
 \end{remark}
 
+TODO: add definition of set closed under operation
+
 \subsection{Indexed families and sequences}
 
 \begin{defn}[Families]
-	An \textbf{indexed family}, or simply a \textbf{family}, $\{x_i\}_{i \in I}$ is a collection of elements identified by an \textbf{index set} $I$. More formally, an indexed family is a tuple $\langle X, I, x \rangle$ where $X$ and $I$ are sets and $x: I \to X$ is a function such that $i \mapsto x_i$. A \textbf{sequence} is an family for which the index set is a continuous interval of natural numbers. A \textbf{finite sequence} of $n$ elements is noted $\{x_i\}_{i=1}^{n}$ while an \textbf{infinite sequence} is noted $\{x_i\}_{i=1}^{\infty}$.
+	An \textbf{indexed family}, \marginleft{Families, sequences: $\{x_i\}_{i \in I}$, $\{x_i\}_{i=1}^{\infty}$} or simply a \textbf{family}, $\{x_i\}_{i \in I}$ is a collection of elements identified by an \textbf{index set} $I$. More formally, an indexed family is a tuple $\langle X, I, x \rangle$ where $X$ and $I$ are sets and $x: I \to X$ is a function such that $i \mapsto x_i$. A \textbf{sequence} is an family for which the index set is a continuous interval of natural numbers. A \textbf{finite sequence} of $n$ elements is noted $\{x_i\}_{i=1}^{n}$ while an \textbf{infinite sequence} is noted $\{x_i\}_{i=1}^{\infty}$.
 \end{defn}
 
 \begin{defn}[Operations on families of sets]
-	Let $\{A_i\}_{i \in I}$ be a family of sets, the operations of intersection $\bigcap\limits_{i \in I} A_i $ and union $\bigcup\limits_{i \in I} A_i$ can be extended to span all members.
+	Let $\{A_i\}_{i \in I}$ \marginleft{$\bigcap\limits_{i \in I} A_i $, $\bigcup\limits_{i \in I} A_i$} be a family of sets, the operations of intersection $\bigcap\limits_{i \in I} A_i $ and union $\bigcup\limits_{i \in I} A_i$ can be extended to span all members.
 \end{defn}
 
 \begin{defn}[Set-theoretic limit]
-	Let $\{A_i\}_{i=0}^{\infty}$ be a sequence of sets. We define the \textbf{limit infimum} as $\liminf\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1}\bigcap\limits_{j \geq i} A_j$ and the \textbf{limit supremum} as $\limsup\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1}\bigcup\limits_{j \geq i} A_j$. If the two are equal to the same set then we say the sequence \textbf{converges}, the \textbf{set-theoretic limit} exists and it is equal to that set.
+	Let $\{A_i\}_{i=0}^{\infty}$ \marginleft{Set limit: \\ $\lim\limits_{i \to \infty} A_i = A$} be a sequence of sets. We define the \textbf{limit infimum} as $\liminf\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1}\bigcap\limits_{j \geq i} A_j$ and the \textbf{limit supremum} as $\limsup\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1}\bigcup\limits_{j \geq i} A_j$. If the two are equal to the same set then we say the sequence \textbf{converges}, the \textbf{set-theoretic limit} $\lim\limits_{i \to \infty} A_i = A$ exists and it is equal to that set.
 \end{defn}
 
+\marginright{~\\
+	\def\setA{ (-1,0) circle (2) }
+	\def\setB{ (1,0) circle (2) }
+	\begin{tikzpicture}[scale = 0.3]
+		\draw (0,0) ellipse (5 and 4); 
+		\draw (0.5,-0.7) ellipse (3.5 and 2.7);
+		\draw (1.05,-1.3) ellipse (2.2 and 1.6);
+		\draw (1.25,-1.45) ellipse (1.6 and 1.05);
+		\draw (1.3,-1.6) ellipse (1.05 and 0.55);
+		\node at (0,-5) {$A_i \supset A_{i+1}$};
+		\node at (-2.6, 2.1) {$A_1$};
+		\node at (-1.05,0.55) {$A_2$};
+		\node at (1.3,-1.6) {$...$};
+	\end{tikzpicture} 
+}
 \begin{defn}[Monotone sequence]
-	A \textbf{monotone sequence} is a sequence of sets $\{A_i\}_{i=0}^{\infty}$ where each set is a superset (or subset) of the preceding. More specifically, we distinguish four cases:
+	A \textbf{monotone sequence} \marginleft{Monotone sequence: \\ $A_1 \subseteq A_2 \subseteq ...$\\ $A_1 \supseteq A_2 \supseteq ...$} is a sequence of sets $\{A_i\}_{i=0}^{\infty}$ where each set is a superset (or subset) of the preceding. More specifically, we distinguish four cases:
 	\begin{description}
 		\item[Increasing] when $A_i \subseteq A_{i+1}$ for all $i>0$
 		\item[Decreasing] when $A_i \supseteq A_{i+1}$ for all $i>0$
@@ -307,11 +391,56 @@ We give the following informal definition. Given two elements $a$ and $b$, the \
 	\end{description}
 \end{defn}
 
-\begin{prop}
-	All monotone sequences converge. For increasing sequences the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1} A_i$, while for decreasing sequences  the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1} A_i$.
+\begin{prop}[Monotone convergence]
+	All monotone \marginleft{Monotone convergence} sequences converge. For increasing sequences the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1} A_i$, while for decreasing sequences  the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1} A_i$.
 \end{prop}
 
 \subsection{Homogeneous relations, equivalences and orders}
+
+\begin{remark}
+	We will cover the notions of orders that are necessary for the definition of ordinals and cardinal numbers. Orders will treated more in detail in a Bare Minimum dedicated to order theory.
+\end{remark}
+
+\begin{defn}[Homogeneous relation properties]
+	Let $R \subseteq A \times A$ \marginleft{Reflexivity, symmetry, transitivity, ...} be a homogeneous binary relation between $A$ and itself. We define the following properties:
+	\begin{description}
+		\item[Reflexive.] Every element $a \in A$ is related to itself. That is, $aRa$ for all $a \in A$.
+		\item[Irreflexive.] No element $a \in A$ is related to itself. That is, $aRa$ for no $a \in A$.
+		\item[Symmetric.] If $a$ is related to $b$, then $b$ is related to $a$. That is, if $aRb$ then $bRa$.
+		\item[Antisymmetric.] If $a$ is related to $b$ and $b$ is related to $a$, then $a$ and $b$ are the same element. That is, if $aRb$ and $aRb$ then $a=b$.
+		\item[Transitive.] If $a$ is related to $b$ and $b$ is related to $c$, then $a$ is related to $c$. That is, if $aRb$ and $bRc$ then $aRc$.
+		\item[Total.] Given two distinct elements, one is related to the other.That is, given $a \neq b$, either $aRb$ or $bRa$.
+	\end{description}
+	
+\end{defn}
+
+\begin{defn}[Orders and equivalence]
+	A \textbf{partial order} (noted $\leq$, $\lesssim$, $\preceq$) \marginleft{Order, equivalence: $\leq$, $<$, $\equiv$} is a homogeneous binary relationship that is reflexive, antisymmetric and transitive. A \textbf{linear order} or \textbf{total order} is an order that is total. An order is \textbf{strict} (noted $<$, $\prec$) if it is irreflexive instead of reflexive.
+	
+	An \textbf{equivalence relation} (noted $\equiv$, $\sim$) is a homogeneous binary relationship that is reflexive, symmetric and transitive.
+\end{defn}
+
+
+\begin{defn}[Partitions]
+	A \textbf{partition} \marginleft{Partitions} of a set $A$ is a collections $P \subset \mathcal{P}(A)$ of disjoint subsets that cover all of $A$. That is:
+	\begin{enumerate}
+		\item $\bigcup\limits_{X \in P} X = A$
+		\item $X \cap Y = \emptyset$ for all $X, Y \in P$ where $X \neq Y$
+	\end{enumerate}
+\end{defn}
+
+
+\begin{defn}[Equivalence classes and quotient set]
+	Let $A$ \marginleft{Eq. classes and quotient set: \\ $[a]_{\sim}, a_{/\sim}, A_{/\sim}$} be a set and $\sim$ an equivalence relation on $A$. Let $a \in A$. The \textbf{equivalence class of $a$ by $\sim$} is the set $[a]_{\sim} = a_{/\sim} = \{b \in A \, | \, b \sim a \}$ of all the elements of $A$ equivalent to $a$. The \textbf{quotient set of $A$ by $\sim$} $A_{/\sim} = \{ a_{/\sim} \, | \, a \in A \}$ all of the equivalences classes by $\sim$.
+\end{defn}
+
+\begin{prop}
+	Every quotient set is a partition, and every partition is a quotient set. That is, let $A$ be a set and $\sim$ an equivalence class, then $A_{/\sim}$ is a partition. Conversely, let $P$ be a partition of $A$, then $\sim \; = \{ (a,b) \, | \, a, b \in X \text{ for some } X \in P \} $ is an equivalence relation and $A_{/\sim} = P$.
+\end{prop}
+
+%\begin{prop}[Set inclusion as ordering]
+%	Set inclusion \marginleft{$\subseteq$ and $\supseteq$ are partial orders} (either $\subseteq$ or $\supseteq$) is a partial order. Strict set inclusion (either $\subset$ or $\supset$) is a strict partial order.
+%\end{prop}
 
 \subsection{Numeric constructions}
 \begin{remark}
