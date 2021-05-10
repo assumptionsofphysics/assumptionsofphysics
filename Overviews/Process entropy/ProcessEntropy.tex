@@ -1,0 +1,321 @@
+\documentclass[10pt, onecolumn, longbibliography, nofootinbib]{revtex4-2}
+
+\usepackage{assumptionsofphysics}
+
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\frenchspacing
+
+% Usual (decimal) numbering
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+% Fix references
+\makeatletter
+\renewcommand{\p@subsection}{}
+\renewcommand{\p@subsubsection}{}
+\makeatother
+
+\begin{document}
+
+\title{Assumptions of Physics blueprint: counting evolutions as a foundation for entropy and system/state definition}
+\author{Gabriele Carcassi}
+\email{carcassi@umich.edu}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+\author{Christine Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+\date{\today}
+
+\begin{abstract}
+    This paper presents ideas and progress towards a more general reconceptualization of entropy that can be used to recover and extend thermodynamics and statistical mechanics. This would address foundational questions such as: why does entropy posses both objective qualities (i.e. it is a measurable property) and in (i.e. it is an ensemble property)? What is entropy maximization and why is so successful in many fields, not just physics? Is there a general notion of equilibrium that includes both dynamical and thermodynamical equilibria in a way that is relativistically invariant? The working hypothesis is that entropy is the logarithm of the count of the possible evolutions of a system within a specific process. That is, given the description of system at the desired granularity level, we count all the way the system can evolve in time that are compatible with that description. This switch from counting states to counting evolutions makes the concept more relativistically sound and allows to properly keep track of how the information about the system is transported back and forward in time by the process, which is essential to apply the concept in a more general setting. The objective is to formulate a precise mathematical framework that makes this intuition precise and recovers the usual entropies in specific settings.
+    
+	This work is part of Assumptions of Physics (\url{https://assumptionsofphysics.org}), a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\emph{This paper presents the goal and the current status of our research. It is intended to gather early feedback, including pointers to other relevant work. Feedback is welcome and encouraged.}
+
+The overall goal of Assumptions of Physics is to identify a handful of physical principles from which the basic laws can be rigorously derived. Part of this work is establishing a formal framework for states and processes, of which the definition of entropy is a crucial aspect. We will not assume specific knowledge of the rest of our framework\cite{aop-book,aop-overview-verifiability}, though ultimately the goal is to integrate this work with the rest. As usual, a formal construction from scratch will force us to make explicit the physical requirements that are baked into the use of the common concepts and provide us with a framework that is, hopefully, still valid when those assumptions fail.
+
+Previous work focused on showing how requiring experimental verifiability of a theory leads to topological and $\sigma$-algebraic structures within that theory. We have also seen how the ability to compare the level of granularity within the theory is connected to geometric and measure theoretic structures, giving us a way to quantify the information contained in each statement of the theory. We now want to characterize the relationship between the granularity of the descriptions at different times (i.e their information content. \textbf{The working hypothesis is that entropy captures how coarse or fine grained is the description of a particular system within a particular process. It does so by measuring the logarithm of the count of the possible evolutions that are compatible.} Understanding what are the appropriate basic definitions, how do they map to the standard one and how they are required for the very definitions of systems and states is therefore the central problem of this paper.
+
+To give a sense of how this would work, we start with defining a \textbf{process domain} $\tdomain[P]$. This is a particular instance of our notion of a theoretical domain, and it will represent all meaningful statements, all descriptions at all times and at all scales, that apply to a particular process. Mathematically, it is a $\sigma$-complete Boolean algebra, which means it is closed under negation, countable disjunction (i.e. logical OR) and countable conjunction (i.e. logical AND). It will also come equipped with a partial order $\narrower$ such that $\stmt_1 \narrower \stmt_2$ if $\stmt_1 \OR \stmt_2 \equiv \stmt_2$ that indicates whether one statement gives a \textbf{narrower}, more specific, description than the other. For example:
+\begin{itemize}
+    \item \statement{The position of the object is between 0 and 1 meters} $\narrower$ \statement{The position of the object is between 0 and 1 kilometers}
+    \item \statement{The fair die landed on 1} $\narrower$ \statement{The fair die landed on 1 or 2}
+    \item \statement{The first bit is 0 and the second bit is 1} $\narrower$ \statement{The first bit is 0}
+\end{itemize}
+
+Additionally, we will have a way to compare any two statements and decide whether one provides a description at a finer level of granularity. Mathematically, we have an additional preorder $\finer : \tdomain \times \tdomain \to \mathbb{B}$. Saying $\stmt_1 \finer \stmt_2$ means that the description provided by $\stmt_1$ is \textbf{finer}, gives more information, is more precise, than the description provided by $\stmt_2$. We say that two descriptions are \textbf{equigranular}, noted $\stmt_1 \eqgran \stmt_2$, if they provide the same level of detail. For example:
+\begin{itemize}
+    \item \statement{The position of the object is between 0 and 1 meters} $\finer$ \statement{The position of the object is between 2 and 3 kilometers}
+    \item \statement{The fair die landed on 1} $\finer$ \statement{The fair die landed on 3 or 4}
+    \item \statement{The first bit is 0 and the second bit is 1} $\finer$ \statement{The third bit is 0}
+\end{itemize}
+In these cases, the first statement may not be contained or overlap with the second. We will assume fineness have all the properties it needs such that if a statement $\stmt[u] \in \tdomain[P]$ is chose, we can construct a measure $\mu_{\stmt[u]}$ that quantifies the granularity of a statement in terms of the unit. For example, if $\stmt[u]=$ \statement{the position of the ball is within 0 and 1 meters} and $\stmt=$ \statement{the position of the ball is within 3.5 and 5 meters}, then $\mu_{\stmt[u]}(\stmt) = 1.5$.
+
+Each process domain will include a set of possibilities $E$: these statements are the narrowest possible statement and provide the full description the whole process at all times and at all level of detail. We call \textbf{evolutions} these statements as they effectively describe the evolution of the all systems within the process. We will assume that all evolutions are equigranular (i.e. $e_1 \eqgran e_2$ for all $e_1, e_2 \in E$). The measure is therefore always uniform over the possibilities and therefore characterizing the granularity level of a description is effectively equivalent to counting the evolutions that are compatible with such description. The process entropy $S(\stmt) = \ln \mu (\stmt)$ is defined to bethe logarithm of that count, and therefore the logarithm of the measure.
+
+With these basic definitions we can transport statements back forth in time and see how the process entropy changes. More specifically, for each instant of time $t \in T$ we can define a respective subdomain $\tdomain_t \subseteq \tdomain[P]$ that contains all the descriptions at that particular time. Given a statement $\stmt_0$ at time $t_0$, we can define the best prediction $\stmt_1$ at time $t_1 > t_0$ and find that its process entropy must be greater (i.e. $S(\stmt_1) \geq S(\stmt_0)$). We can also define the best reconstruction $\stmt_{-1}$ at time $t_{-1} < t_0$ and find that its process entropy also must be greater (i.e. $S(\stmt_{-1}) \geq S(\stmt_0)$). Intuitively, information about a system at a particular time can only get worse (or stay the same) as we transport that description forward or backward in time along the process. This relationship is symmetric with time. Similarly we can study how states of a particular system evolve in time, define determinism and reversibility in the terms of the ability within a process to predict or reconstruct states.
+
+The strength of the approach is that these definitions will apply to processes independently of the discipline (i.e. physics, economics, ecology, ...)  or the kind (i.e. deterministic, irreversible, stochastic, classical/quantum, ...). In particular, it will work in dissipative systems or dynamical systems with equilibria, where the standard notion of entropy decreases as it proceeds toward equilibrium. Additionally it reduces to the standard notions in the appropriate settings. For example, if we assume the system is characterized by a Hamiltonian system over time (i.e. the extended phase space charted by $\{q^i, p_i, t\}$ with Hamiltonian flow), the measure reduces to counting the states at each time. If the flow is not Hamiltonian, however, the phase space measure is not the correct measure at all times (i.e. the same precision over $q$ and $p$ at different times corresponds to a different amount of information). On the other hand, if we assume the system over a small $\Delta t$ fluctuates randomly according to a distribution $\rho$, then the counting the possible evolutions means counting permutations. The process entropy, then, can be expressed as $\int \rho \ln \rho$, and the Shannon entropy is recovered.
+
+TOADD: as the Boltzmann entropy fails to take into account interactions and correlations between molecules, the count of the microstates and the Shannon/Gibbs entropy fail to take into account system/environment correlations. Since these correlations may change in time, the same description of the same system will corresponds to different entropy in time.
+
+\section{Overview}
+
+We now give a more detailed overview of the goal and status. This will also cover the conceptual understanding and physical motivation, not just the mathematical aspects. Later sections will present both what has been established to work and what not to work in full mathematical detail.
+
+The overall goal is to describe a generic system as it evolves in time by defining a minimal set of concepts that such a setup must define, thus bringing to light the tacit assumptions underlying state spaces and evolution laws. We want to find notions that are equally valid and useful within different settings (e.g. thermodynamics, dynamical systems, classical mechanics, ...).
+
+An excellent review of the history of thermodynamics and classical statistical mechanism, and therefore of the different concepts of entropy, has been compiled by Uffink (cite UFFINK). As for terminology, by Shannon entropy we will generally refer to the family of expressions based on the $p \log p$ formula. This will include the Shannon entropy, it's extension to the continuous, the Gibbs entropy and the Von Neumann entropy. By postulate entropy we will mean the one defined by the fundamental postulate of statistical mechanics, which is the logarithm of the count of microstates. We will not be discussing the Boltzmann entropy specifically, as this can be understood as a special case of the Gibbs entropy where all particles are identically and independently distributed.
+
+\subsection{Preamble}
+
+Before we start, we list of a set of problems this approach will need to solve. We also include common points of confusions on entropy, thermodynamics and statistical mechanics.
+
+\textbf{Success of entropy outside of physics}. As entropy maximization is increasingly used outside of physics, we need a coherent explanation as to why that happens. The postulate entropy at this level is not insightful: it is unlikely that the primary explanation for ecological distributions is fluctuations of atoms. Therefore we need a principled account for the entropy maximization on more general grounds.
+
+\textbf{Entropy increases for dynamical equilibria}. For a dynamical system, the presence of equilibria (or more in general attractors) leads to entropy decrease, which is the opposite of what one would expect. Take a dissipative system, like a damped harmonic oscillator: areas in phase space will shrink which leads to a lower count of states and therefore a lower postulate entropy; distributions will become more concentrated which leads a lower Shannon entropy. Therefore, as we approach equilibrium, the entropy decreases which is the opposite of what we would expect. This needs to be reconciled.
+
+\textbf{Ontological vs subjective view of entropy}. On the nature of entropy, there are two positions that we find untenable. One position takes entropy to be an objective ``ontological'' quantity, ontological in the sense that, like charge or position, is an inherent property of the single instance of the system, such as total energy or total momentum. This does not work as the entropy is a property of the ensemble: for the Shannon entropy is a functional of the distribution $\rho$ and for the postulate entropy is the volume of a phase space region. The other position takes entropy to be the subjective information one has about the system, which also does not work. The ensemble is connected to possible fluctuations of the system which are measurable and independent of what we may or may not believe about the system. The idea here is that the notion of equilibrium is process dependent: it depends on both the system and the environment. It depends what happens at the boundary. Even isolation is a type of boundary, which is also technically impossible (e.g. we cannot isolate from gravitational interactions). Therefore entropy should be epistemological but objective: it quantifies the level of information (epistemological) that is accessible through a particular process allows (objective).
+
+\textbf{Information content is time dependent}. Both the postulate and the Shannon entropy are time independent. This presents a problem because the same statement at different times can provide different information. Take \statement{Mark is in bed}. If it is 2 am, the statement is very likely to be true, therefore provides little information. If it is 1 pm, the statement is very unlikely to be true, and therefore provides more information. In the same vein, if we have a dissipative system, \statement{the energy of the system is less than 3 J} provides less and less information as time goes on. It should be clear that a proper definition of entropy that would work far from equilibrium will need to take this into account.
+
+\textbf{Equilibria and relativity}. Another problem related to time dependence is that, in general theromdynamic equilibria are not relativistic object. The notion of ``equilibria as nothing is changing'' is not invariant under boost. A volume of gas would be at equilibria only if at rest. For a boosted frame, something would be changing (i.e. the position). This also suggests an automatic interaction with gravitational forces: a volume of gas at rest would follow geodesics for other observers. Another failure of thermodynamic equilibria in a relativistic context is the following. Suppose a volume of gas is at rest for an observer reaches equilibrium at time $t_0$. This means there is a region of space $\Delta x$ that after $t_0$ can be considered at equilibrium. But equal time for a boosted frame is different, so different observers will observe different parts reaching equilibrium at different times.
+
+\textbf{Thermodynamic reversibility vs dynamical reversibility}. There are different notion of reversibility. Thermodynamic reversibility is the existence of a process that ``undoes the change''. This is problematic as this process technically does not exist in many cases. Dynamical reversibility is the ability to reconstruct the initial state. This is also called by some retrodictability or reverse determinism. A dissipative system should be regarded as thermodynamically irreversible, yet is technically retrodictable.
+
+\textbf{Units for entropy}. Units are often stripped out and not discussed, which leave the mathematics with imprecise physical meaning. If entropy is associated to phase space volume, we should note that the unit of phase space volume depends on the number of degrees of freedom of the system. This means that the entropy of two systems with different number of particles is not numerically comparable as the areas are not commensurable. We need a precise account for this in the math.
+
+\textbf{Entropy of a single microstate}. The entropy of a single microstate is minus infinity, and not zero. A single microstate occupies zero entropy and the logarithm of zero is minus infinity. In terms of Gibbs/Shannon entropy, a single microstate would correspond to a delta function. The infinite density at that point contributes minus infinite entropy, and since the distribution is zero everywhere else, there are no other contributions. In quantum mechanics, all pure states have zero von Neumann/Shannon entropy. In a way, that is the problem that quantum mechanics fixes.
+
+\textbf{Entropy over continuous variables}. The definitions of entropy are in general not invariant under coordinate transformations (i.e. change of continuous variables). It is the structure of phase space in classical mechanics and of the quantum Hilbert space that make entropy invariant. It can be shown that classical phase space (i.e. symplectic manifolds) is exactly the structure needed for a coordinate invariant (see \cite{aop-phil-Hamiltonianinformation}).
+
+
+\subsection{Descriptions and logical relationships}
+
+The first step is to give the most basic mathematical structure we must have to be able to describe a process at all levels of granularity. This consists of a purely logical structure that imposes logical relationships between all possible descriptions.
+
+\textbf{Process domain}. Our starting point is the \textbf{process domain} $\tdomain[P]$, which is the set that contains all possible descriptions of the system at all levels of detail at all possible times. Depending on the process, it will contain statements like \statement{the average volume of the system between 1 and 2 seconds is between 3 and 4 liters} or \statement{the trajectory of the particle is $y=10 \, m - t^2 \cdot 9.80665 \, m/s^2 $}. It does not matter at this point what the statements themselves are, except they must be, at least in line of principle, defined from experimentally well-defined starting points. The translation of these physical requirements into a formal structure has already been carried out in previous work (see \cite{aop-book}). Mathematically, $\tdomain[P]$ is a $\sigma$-complete Boolean algebra\footnote{A set of statements that is closed under negation (NOT), countable disjunction (OR) and countable conjunction (AND).} and it is the closure of the set of experimentally verifiable statements $\edomain[P] \subseteq \tdomain[P]$.\footnote{The set $\edomain[P]$ will form a Heyting algebra which, to be experimentally reachable, must allow a countable basis. The closure $\tdomain[P]$ is in terms of negation and countable disjunction.}
+
+\textbf{Logical relationships}. As $\tdomain[P]$ contains different levels of description, some statements will be more or less specific. For example, we say that \statement{the horizontal position is between 2.5 and 3 meters} is \textbf{narrower} than \statement{the horizontal position is between 2 and 3.5 meters}. Note that whenever the first statement is true, the second one must be true as well. Given two statements $\stmt_1, \stmt_2 \in \tdomain[P]$, we formally capture this relationship by noting $\stmt_1 \narrower \stmt_2$ (read ``is narrower than''). Narrowness can describe relationships at different scales, on different quantities (e.g. \statement{the horizontal position is between 2.5 and 3 meters and the vertical position is between 1 and 1.5 meters} $\narrower$ \statement{the horizontal position is between 2.5 and 3 meters}), constraints between variables at the same time (e.g. \statement{the temperature of the water in the glass is 3.98 $^\circ C$} $\narrower$ \statement{the density of the water in the glass is 1 $g/cm^3$}) or at different times (e.g. \statement{at time 0 s the position is 1 m and the velocity is 1 m/s} $\narrower$ \statement{at time 1 s the position is 2 m}). It is a general tool to capture relationships within the theory which intuitively can also be thought of as implication.\footnote{Technically, implication in classical logic is a truth function as classical logic does not incorporate the idea of different ``possible cases''. What we have is more similar in spirit to semantic consequence in modal logic, though modal logic brings in a lot of undesirable elements we do not want.} Mathematically, a Boolean algebra is also a lattice (i.e. a partially ordered set with supremums and infimums) and $\narrower$ is the ordering relationship for $\tdomain[P]$.
+
+We can define other two logical relationships, which will be useful later. For example, we want to say that \statement{the horizontal position is between 2.5 and 3.5 meters} is \textbf{compatible} with \statement{the horizontal position is between 2 and 3 meters}, meaning that they can be true at the same time. Given two statements $\stmt_1, \stmt_2 \in \tdomain[P]$ we denote $\stmt_1 \comp \stmt_2$ (read ``is compatible with'') if it is possible for them to be both true. Finally, we want to capture whether the truth of one or more statements influences the truth of others. For example, we want to say that \statement{the temperature of the water in the glass is 3.98 $^\circ C$} is \textbf{independent} from \statement{the volume of the water in the glass is 10 $cL$} but is not independent from \statement{the density of the water in the glass is 1 $g/cm^3$}. We note $\stmt_1 \indep \stmt_2$ (read ``is independent of'') when two statements are independent.
+
+\textbf{Possible evolutions, topology and $\sigma$-algebra}. Within our process domain $\tdomain[P]$ we can define the set $E$ of the narrowest possible statements. Its elements give a complete description of our system at all times and therefore we call them \textbf{evolutions} while we call $E \subset \tdomain[P]$ the set of all possible evolutions. In the Assumptions of Physics framework, $E$ is the set of possibilities.
+
+Every statement $\stmt \in \tdomain[P]$ can now be characterized by the set $A(\stmt) \subseteq E$ of all evolutions compatible with $\stmt$, that is all the evolutions for which $\stmt$ will be true. Mathematically,  $A(\edomain[P])$ is a \textbf{topology} over $E$ while $A(\tdomain[P])$ forms a $\sigma$-algebra over $E$, the \textbf{Borel algebra} of $A(\edomain[P])$. Narrowness and compatibility become set relationships in the $\sigma$-algebra: $\stmt_1 \narrower \stmt_2$ if and only if $A(\stmt_1) \subseteq A(\stmt_2)$ (i.e.~all evolutions for which $\stmt_1$ is true are such that $\stmt_2$ is also true) and $\stmt_1 \comp \stmt_2$ if and only if $A(\stmt_1) \cap A(\stmt_2) \neq \emptyset$ (i.e.~two descriptions are compatible if there is an evolution that is compatible with both). This connection gives a direct physical meaning to these foundational set-based mathematical structures.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|p{6cm}|}
+		\hline 
+		Symbol & Name & Meaning \\ 
+		\hline 
+		$\tdomain[P]$ & Process domain & The set of all possible descriptions at all times and at all levels of granularity \\ 
+		\hline 
+		$E \subset \tdomain[P]$ & Possible evolutions & The set of descriptions that give a full account of the process; they correspond to the narrowest statements within $\tdomain[P]$ \\ 
+		\hline 
+		$A(\stmt)$ & Compatible evolutions & The set of evolutions that are compatible with the statement $\stmt$ \\ 
+		\hline 
+		$\narrower$ & narrower & A statement is narrower than another $\stmt_1 \narrower \stmt_2$ if the second one is true whenever the first one is \\ 
+		\hline 
+		$\comp$ & compatible & A statement is compatible with another $\stmt_1 \comp \stmt_2$ if they can be true at the same time \\ 
+		\hline 
+		$\indep$ & independent & Two statements are independent  $\stmt_1 \indep \stmt_2$ if the truth of one does not influence the truth of the other \\ 
+		\hline 
+	\end{tabular}
+	\caption{Process descriptions and their logical relationships}
+	\label{table:logic}
+\end{table}
+
+\subsection{Granularity and quantifying evolutions}
+
+Now that we have a way to track all possible descriptions about a process and their logical relationship, we need to characterize their granularity. It turns out that this is equivalent to counting how many evolutions are compatible with each description: the more fine-grained the description, the fewer evolution (i.e. the fewer cases) it will identify.
+
+\textbf{Insufficiency of a single measure}. The next step is to quantify the granularity of the description provided by each statement. Since statements at a finer level of description will put a greater constraint on the set of compatible evolutions, quantifying the granularity of the description of $\stmt$ means quantifying the size of $A(\stmt)$. The statement \statement{at time 0 s the particle is between 0 m and 1 m} is doubly more specific than \statement{at time 0 s the particle is between 0 m and 2 m} precisely because it corresponds to half the evolutions of the second statement.
+
+The naive approach would be to assign a measure over $A(\tdomain[P])$: since this is a $\sigma$-algebra over $E$ and a measure is exactly what one uses to give a size to each set, it would seem we are done. Unfortunately it is not that simple: a single measure can only compare objects of the same dimensionality. If we imagine all evolutions to be points on an $n$-dimensional manifold, if the measure gives finite values for $k$-dimensional regions it will necessarily give measure zero for all regions with lesser dimensionality and infinite measure for those with greater dimensionality. Coarse grained and subsystem descriptions will have different dimensionality as they describe different numbers of degrees of freedom, therefore we need a way to quantify objects at all levels.\footnote{Typically one uses geometrical structures for his purpose. In phase space, the symplectic form allows us to define areas of two-dimensional surfaces, and use those to define volumes or even-dimensional areas. Note that it does not quantify the size of the points, which are implicitly assumed to be of equal size. This is a special case and cannot be the starting point.}
+
+\textbf{Fineness and equigranularity}. Our starting point will be the ability to compare two statements and decide which one gives a finer description of the process. Formally, we have preorder $\finer$ on $\tdomain[P]$ which, given two statements, tells us whether the description of one is \textbf{finer}, more refined, than the other. Two statements are \textbf{equigranualar}, noted $\stmt_1 \eqgran \stmt_2$, if they provide the same level of description. For example, we can say that \statement{the trajectory of the particle is $y=t \cdot 1 \, m/s$} $\eqgran$ \statement{the trajectory of the particle is $y=t \cdot 2 \, m/s$} and that \statement{the position at time 0 sec is between 0 and 1 m} $\eqgran$ \statement{the position at time 0 sec is between 1 and 2 m}, even though the second pair is infinitely less discerning than the first. Note that if one statement is narrower than the other (i.e. $\stmt_1 \narrower \stmt_2$) then it is also finer than the other (i.e. $\stmt_1 \finer \stmt_2$) while the converse is not necessarily true. 
+
+We say two statements are \textbf{comparable} if one is finer than the other. The preorder $\finer$ is partial because not all statements are comparable to each other. For example, consider the pressure/volume state space for an ideal gas. Comparing \statement{the pressure is 1 kPa and the volume is between 1 and 2 liters} and \statement{the pressure is between 1 and 2 kPa and the volume is 1 liter} would mean saying whether one liter is bigger or smaller than one kPa.\footnote{In phase space, for example, we cannot in general compare $q^i$ and $p_i$, yet we can always compare areas of phase space} The idea of physical dimension would therefore be something that is formally captured mathematically.
+
+The idea is that geometrical, measure theoretic, information theoretic and probabilistic structures all descend from this more fundamental structure, the partial order that describes this ``information granularity''. We note that all these structures can be used to determine a size and therefore a partial order on the set. It would be possible, given sufficient conditions, to recover those structures from the order itself. The mathematical detail of how exactly this would work (i.e. what conditions are necessary and sufficient) is out of the scope of this work (see CITE other blueprint). Here we will simply assume that the process domain is such that the geometrical structures can be rederived.
+
+\textbf{Measures of granularity}. To recover measures, we pick a statement $\stmt[u] \in \tdomain[P]$, called unit, and construct a \textbf{measure} $\mu_{\stmt[u]}$ that is normalized (i.e. $\mu_{\stmt[u]}(\stmt[u]) = 1$), monotonic (i.e. $\stmt_1 \finer \stmt_2$ will mean $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$) and additive (i.e. $\mu_{\stmt[u]}(\stmt_1 \OR \stmt_2) = \mu_{\stmt[u]}(\stmt_1) + \mu_{\stmt[u]}(\stmt_2)$ if $\stmt_1 \ncomp \stmt_2$).\footnote{Differentiating between finite or countable additivity is beyond the scope.} That is, we can quantify how much more or less precise a statement is compared to a fixed statement taken as a unit. If two statements are such that the measure of one with respect to the other is finite and non-zero, we say they are \textbf{finitely comparable}. We can show that if $\stmt[u]_1$ and $\stmt[u]_2$ are finitely comparable we have $ \mu_{\stmt[u]_1}(\stmt) = \mu_{\stmt[u]_1}(\stmt[u]_2) \mu_{\stmt[u]_2}(\stmt)$. Furthermore, since all evolutions give a complete description of the whole process, we will assume they are all equigranular. Therefore if we pick $\stmt[u] \in E$, then $\mu_{\stmt[u]}(\stmt)=\#(A(\stmt))$ would be the counting measure of evolutions compatible with $\stmt$.\footnote{We still need to understand the necessary and sufficient conditions under which such measures would exist and be unique. For the present work, we assume it can be done.}
+
+\textbf{Independence}. If we fix the evolution of one subsystem, it should be intuitive that the possible evolutions of another subsystem depends on the correlation between the two. The maximum number of joint evolutions corresponds to the case were the systems are independent: the choice of evolution for one does not contrain the choice of evolution for the other. In this case, we expect the measure to factorize. Mathematically, we take two subdomains $\tdomain[P]_1 \subset \tdomain[P]$ and $\tdomain[P]_2 \subset \tdomain[P]$. By subdomains we mean a set of descriptions that also form a $\sigma$-complete Boolean algebra. We say the two subdomains are \textbf{independent} if knowledge of one does not constrain knowledge of the other. Mathematically, any pair of statements $(\stmt_1, \stmt_2) \in \tdomain[P]_1 \times \tdomain[P]_2$ from the two domains is independent $\stmt_1 \indep \stmt_2$. As we expect the count of evolution to factorize, we have $ \mu_{\stmt[u]_1 \AND \stmt[u]_2}(\stmt_1 \AND \stmt_2) = \mu_{\stmt[u]_1}(\stmt_1) \mu_{\stmt[u]_2}(\stmt_2)$. In terms of the math, this can be imposed but it would be nice to show that this has to be the case. It can be shown for finite sets. It is not clear whether it must be for infinite ones. Also, note the units of the measures are different. As an analogy to classical phase-space, the area of each degree of freedom can be expressed in units of $\hbar$. The volume of two degrees of freedom, however, is in units of $\hbar^2$. This is an additional detail that needs to be fully understood mathematically in a way that is typically glossed over in statistical mechanics.
+
+\textbf{Process entropy}. We are now ready to define the \textbf{process entropy} with respect to $\stmt[u]$ as the quantity $S_{\stmt[u]}(\stmt) = \log \mu_{\stmt[u]}(\stmt)$. This can be thought of as the number of bits, yes/no questions, that separate the level of description of $\stmt[u]$ from the one provided by $\stmt$. Note that process entropy combines linearly for independent systems: $S_{\stmt[u]_1 \AND \stmt[u]_2}(\stmt_1 \AND \stmt_2) = \log \mu_{\stmt[u]_1 \AND \stmt[u]_2}(\stmt_1 \AND \stmt_2) = \log (\mu_{\stmt[u]_1}(\stmt_1) \mu_{\stmt[u]_2}(\stmt_2)) = \log \mu_{\stmt[u]_1}(\stmt_1) + \log \mu_{\stmt[u]_2}(\stmt_2) = S_{\stmt[u]_1}(\stmt_1) + S_{\stmt[u]_2}(\stmt_2)$. Also note that there is a unit dependence, so one can't simply compare the entropy of two different systems as they would be, most likely, expressed in different units.  It typically does not pose a problem because we compare entropy of different description of the same object. This issue already exists with the other entropies, we are simply making in explicit so that we can study it.\footnote{The phase space volume will be in units $\hbar^n$ where $n$ is the number of degrees of freedom, typically $n=3m$ where $m$ are then number of molecules. While $3 < 4$, there is no sense in which $3 \hbar^6$ is smaller than $4 \hbar^{12}$ therefore comparing the entropy of gasses with different number of particles is not well defined.}
+
+\textbf{Recovering the postulate entropy}. Entropy as the logarithm of the state count can be easily recovered as a special case. Suppose the process is deterministic and reversible in the sense that the state at one time identifies the whole evolution. Suppose that all state descriptions at one time are equigranular. In that case, the count of the evolution corresponds to the count of states and therefore the process entropy coincides with the postulate entropy.
+
+\textbf{Recovering the Shannon entropy}. One way to recover the Shannon entropy (though probably not the only one) is to assume we have a process that is fluctuating according to a stable distribution $\rho(s)$. That is, our time resolution is fixed at a scale $\Delta t$, the state $s$ keeps changing within that interval. The distribution $\rho(s)$ represents how often the system will visit the state $s$ within that timeframe. To calculate the process entropy we need to calculate how many possible evolutions we would have within $\Delta t$ that satisfy $\rho(s)$. An evolution is a sequence of states, one for each instant in time. If we assume the evolution is continuous, countably many states will suffice to identify one evolution. Therefore we are looking to count the possible permutations of a countably infinite sequence with recurrence set by $\rho(s)$. But this is exactly one way to recover the Shannon entropy. Therefore, in this case, the process entropy coincides with the Shannon entropy.
+
+\textbf{Probability}. Quantifying evolutions allows us to define probability. The idea is a process can be realized differently by each possible evolution. The more evolutions a statement is compatible with, the more it is likely to happen. For example, consider a process that implements a coin flip. If the coin (and the process flipping the coin) is fair, we must have that half the evolutions are compatible with \statement{the coin is head} while the other half are compatible with \statement{the coin is tails}.  Therefore we define that the \textbf{probability} of $\stmt_2$ given $\stmt_1$ is
+\begin{equation}
+	P(\stmt_2 | \stmt_1) = \mu_{\stmt_1}(\stmt_1 \AND \stmt_2) = \frac{\mu_{\stmt[u]}(\stmt_1 \AND \stmt_2)}{\mu_{\stmt[u]}(\stmt_1)}
+\end{equation} where $\stmt_1 \AND \stmt_2$ is the logical conjunction (AND) between the two statements and $\stmt[u]$ is finitely comparable to $\stmt_1$. In other words, the probability quantifies the ratio of evolutions compatible with $\stmt_1$ that are also compatible with $\stmt_2$. This can be shown to satisfy the standard axioms of probability.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|p{6cm}|}
+		\hline 
+		Symbol & Name & Meaning \\ 
+		\hline 
+		$\finer$ & finer & A statement is finer than another $\stmt_1 \finer \stmt_2$ if it provides a more refined description than the second \\ 
+		\hline 
+		$\eqgran$ & equigranular & A statement is equigranular to another $\stmt_1 \eqgran \stmt_2$ if they provide the same level of detail \\ 
+		\hline 
+		$\mu_{\stmt[u]}(\stmt)$ & Measure & Quantifies the precision of a statement $\stmt$ in terms of a reference unit statement $\stmt[u]$; it quantifies how many evolutions are compatible with $\stmt$ compared to the evolutions compatible with $\stmt[u]$  \\ 
+		\hline 
+		$S_{\stmt[u]}(\stmt)$ & Evolution entropy & Defined as $\log \mu_{\stmt[u]}(\stmt)$; represents the number of bits that separate the level of description of $\stmt$ from the one provided by the unit statement $\stmt[u]$; it quantifies the number of questions needed to go from the level of description of $\stmt$ to the level of description of $\stmt[u]$  \\ 
+		\hline 
+		$P(\stmt_2 | \stmt_1)$ & Probability & Defined as $\mu_{\stmt_1}(\stmt_1 \AND \stmt_2)$; quantifies the fraction of evolutions compatible with $\stmt_1$ that are also compatible with $\stmt_2$  \\ 
+		\hline 
+		& Comparable & Two statements are comparable if one is finer than the other \\ 
+		\hline 
+		& Finitely comparable & Two statements are finitely comparable if the measure of one in terms of the other is finite and non-zero \\ 
+		\hline 
+	\end{tabular} 
+	\caption{Granularity, measures and probability}
+	\label{table:states}
+\end{table}
+
+
+\subsection{Time, predictions and reconstructions}
+
+Now that we have a way to keep the logical structure and granularity of all descriptions of a process, we want to understand how the information is transported back and forward in time by the process. That is, once a particular description is verified at a particular time, what can we say about past and future times.
+
+\textbf{Time domains}. As a process extends over time and potentially describes multiple systems, we want to organize the statements into subdomains, one for each moment in time relative to a particular system. Given a \textbf{time parameter} $t \in T \subseteq \mathbb{R}$, we can imagine carving out a \textbf{system domain} $\tdomain_t$ that would correspond to all the statements about the system one can make at the given time. In particular, we define \textbf{one-step process} as one that only has an \textbf{initial domain} $\tdomain_{t_0}$ and a \textbf{final domain} $\tdomain_{t_1}$. Note that $\tdomain_t$ is a $\sigma$-complete Boolean sub-algebra of $\tdomain[P]$ since any logical operation on statements at fixed $t$ is also another statement at fixed $t$.
+
+\textbf{Temporal and scale coarse graining}. Technically, the statements are not defined at an infinitesimal moment $t$, but rather within a finite interval $[t, t + \Delta t]$. This represents the time-scale at which the process will be described, meaning the description within $\tdomain_t$ should not be sensitive to what happens at faster scales. The quantities used to represent states at time $t$, then, should really be thought of as averages within $\Delta t$. In the same way, $\tdomain_t$ will in general represent the system at the chosen level of description, not the narrowest level possible. Statements about the environment or at a finer level of description (i.e. the positions of all molecules for a gas) will not be included.
+
+\textbf{Optimal coarse graining}. In principle, this coarse graining is arbitrary and subjective in the sense that is completely at the mercy of the decision of the scientist. However, not all choices are equivalent. Ideally, we want the process at our level of description to not depend on the faster or smaller scale dynamics. If the dynamics at faster and smaller scale decouples from the one at slower and bigger scale, we can study the latter without worrying about the former. So, for example, we can study the trajectory of a cannonball without worrying about the motion of each individual molecule; we may not be able to predict the exact energy at a future time, as it fluctuates through interactions with the environment, but we may be able to predict it's average over a small $\Delta t$. We should stress here that \textbf{the process itself tells us whether and how the faster/smaller scale decouples decouple from the slower/bigger scale}. Therefore the choice of an \textbf{optimal} coarse graining is not arbitrary or subjective at all: it is determined by the process. The processes at our disposal guide us to carve domain at both temporal and size scale, and finding the optimal level of scale is part of the job of a physicist. At a theoretical level, we need to understand how a process guides us to that choice.
+
+\textbf{Predictions and reconstructions}. A crucial step, then, is to characterize how the information at one time is carried to other times by the process. Suppose we found that the statement $\stmt_0 \in \tdomain_{t_0}$ at time $t_0$ was true. What can we predict of the system at a future time $t \geq t_0$? Any future statement $\stmt \in \tdomain_{t}$ such that $\stmt_0 \narrower \stmt$ will be true if $\stmt_0$ is true. Therefore the best prediction will be the conjunction (the logical AND) of all such statement. In terms of order theory, it will be the narrowest broader statement. As all statements can be thought as sets of evolutions, it will be statement $\stmt \in \tdomain_{t}$ such that $A(\stmt)$ is the smallest set that contains $A(\stmt_0)$.
+
+In a similar way, we can ask what can be reconstructed about the system at a previous time $t \leq t_0$. Any past statement $\stmt \in \tdomain_{t}$ such that $\stmt_0 \narrower \stmt$ will be true if $\stmt_0$ is true. Therefore the best reconstruction will be the conjunction of all such statements, the narrowest broader statement, the smallest set $A(\stmt)$ that contains $A(\stmt_0)$.
+
+Given that the formal definition for predictions and reconstructions are similar, we note $P_{t}(\stmt_0)$ the prediction or recostribution for statement $\stmt_0$ at time $t$.
+
+\textbf{Predictions and reconstructions always have higher entropy}. Prediction and reconstruction are necessarily broader than the statement we start from and therefore they will necessarily be coarser: they cannot give us more information then what we started with. They may either give us the same information or less information. Mathematically, $\stmt_0 \finer P_t(\stmt_0)$ for any $\stmt_0$, $t_0$ and $t$. In this respect, there is no time asymmetry: information can only be diminished as we map it to past or future time.
+
+\textbf{The process dictates the relationship between the information at different moments in time}. How much the information diminishes depends exclusively on the process. Suppose we take a deck of cards and memorize the order and leave it on the table. If sits undisturbed, full knowledge is maintained. If a person takes the top card and puts it at the bottom, full knowledge is still maintained. If a person shuffles the deck, the information about the order of the deck is lost. If a person cuts the deck, the information about the first card is lost, yet the information about the order is not.
+
+\textbf{Natural graining}. As each process defines how information is transported over time, it will define optimal granularity levels for its description. We say $\stmt_0 \in \tdomain_{t_0}$ \textbf{cuts the process along the grain}, or simply \textbf{is a natural cut}, if its prediction and reconstructions do not lose information. That is, $\stmt_0 \eqgran P_t(\stmt_0)$ for all $t$. The certainty and the impossibility are both natural cuts of all process. More work needs to be done to understand the role of natural graining in a process, but the general sense is this would be a key element for a better definition of states and equilibria because of the following properties.
+
+\textbf{Natural graining is automatically relativistic}. Consider a free particle, whose state at a given time $x_0$ is fully determined by position and momentum. This will give us predictions and reconstructions at the same level of granularity for all times, therefore $x_0$ cuts along the grain. It doesn't matter whether the particle is at rest or in motion. It doesn't matter whether ``all properties'' remain the same.
+
+\textbf{Natural graining is compatible with both dynamic and thermodynamic equilibrium}. Continuing with the card deck example, suppose a person takes the deck of card, cuts in half, shuffles the bottom half and orders the top part by suit and rank. This process creates an equilibrium that is, in a way, a mix of dynamic (the top part) and thermodynamic (the bottom part) equilibria. If we apply the process another time, in fact, the top part remains exactly in the same configuration; the bottom part, while it will most likely change, will retain its statistical description.  Each equilibrium is fully identified by the cards in the top part. If we take the full description of the deck at the beginning, the prediction is coarser, therefore it is not a natural cut. The full description of the top half of the deck will also give a coarser prediction: the final order of the top half could have been reached by any initial order of the same cards in the top half. The description of what cards are in the top half, however, gives us exactly the information at equilibrium. Therefore it is a natural cut. This shows that the idea of natural cuts captures both types of behavior, even when they happen at the same time.
+
+\textbf{Natural graining is time independent}. One of the problems with the notion of equilibria is defining when the equilibria is reached. Natural graining is a time independent concept, so we do not need to define when it is reached. If we consider a dynamical equilibrium, we have a basin of attraction for an equilibrium. All evolutions that start in the basin of attraction will tend closer and closer to the equilibrium, without ever reaching it. The natural graining consists in the set of all evolutions taken together. In many cases, we are not interested in a specific evolution. For example, we have a cutoff at a certain time and we are only interested to note which equilibria the system was approaching. Mathematically, what needs to happen is that at the cutoff the description is a natural cut for both the previous and following process. At that point the behavior in the limit is not important, which makes the framework more compatible with realistic scenarios.
+
+\textbf{Natural graining decouples the internal dynamics}. Consider a macroscopic object, like a balloon. Though we know it is formed by on the order of $10^23$ molecules, we can still characterize its state with a few variables. Each molecule itself, maybe formed by a large number of fundamental constituents. At each level, the description is fairly independent of the description of the constituents. Natural graining picks out those descriptions that are effectively independent of the faster/smaller scale.
+
+
+\subsection{Snapshots, determinism and reversibility}
+
+In the previous section we explored how the information at a particular time moves across a process. Now we want to concentrate on the best possible descriptions of the system at each time. That is, how the descriptions with maximal information at each time relate to each other. This will give us straight forward definitions for determinism and reversibility.
+
+\textbf{Snapshots and trajectories}. For each time domain $\tdomain_t$ we can find the set of possibilities $X_t$, which represent the statements that will give the most precise description at that time; we call these the possible \textbf{snapshots} of our system at that time. A \textbf{trajectory} is a sequence $x(t)$ of snapshots at each time. A particular evolution will identify a trajectory: that is, given $\stmt[e] \in E$ we can find $x(t)$ such that $\stmt[e] \narrower x(t_0) \AND x(t_1) \AND x(t_2) \AND ... $. The converse is not necessarily true because $\tdomain_t$ will typically describe a particular system at a particular level of granularity and a particular time-scale. Therefore a single trajectory may correspond to multiple evolutions, since the evolutions potentially describe the same system at greater accuracy and/or other systems.
+
+\textbf{Snapshots are not states}. One key insight is that the set of possible snapshots $X_t$ may not be the same at all times and may not correspond to the state of the system. First of all $X_t$ will only include those configurations that are compatible with at least one possible evolution (i.e. $A(x) \neq \emptyset$ for all $x \in X_t$), which may change in time. For example, the set of possible configurations for a system under dissipative processes will shrink as they converge to equilibrium. In quantum mechanics, the possible configurations after a measurement are restricted to the eigenstates, and a different choice of measurement will lead to a different process with different possible evolutions. Secondly, the best possible description may be broader than the full state of the system (e.g. when external interference forces us to give only a statistical account within our $\Delta t$) or narrower (e.g. when there are known correlations to the other degrees of freedom of the environment or of the system itself). In other words: the snapshots depend on the process and on other systems within the same process. These correlations prevents the snapshots to be proper states of a system, since they are not descriptions about and only about the system.
+
+\textbf{Determinism}. We say a process is \textbf{deterministic} over the system domains $\{\tdomain_t\}_{t \in T}$ if given the snapshot at one time we can always predict the snapshot at all future times. Formally, let $t_1, t_2 \in T$ such that $t_1 \leq t_2$, for any $x_1 \in X_{t_1} \subset \tdomain_{t_1}$ we can find an $x_2 \in X_{t_2} \subset \tdomain_{t_2}$ such that $x_1 \narrower x_2$. Intuitively, all the evolutions that pass through $x_1$ will also pass through $x_2$. If $x(t)$ is the snapshot trajectory in time, we have $A(x(t)) \subseteq A(x(t + \Delta t))$: the set of compatible evolutions must stay the same or become larger. This also means that the process entropy associated to a snapshot cannot decrease during deterministic evolution:
+\begin{equation}\label{entropy_determinism}
+	S_{\stmt[u]}(x(t)) \leq S_{\stmt[u]}(x(t + \Delta t))
+\end{equation}
+since $x(t)\narrower x(t+\Delta t)$ means $x(t) \finer x(t+\Delta t)$ and $\mu_{\stmt[u]}(x(t)) \leq \mu_{\stmt[u]}(x(t+\Delta t))$.
+
+\textbf{Law of evolution}. Deterministic processes are exactly the ones for which a law of evolution can be written. For each $x_1 \in X_1$, the final snapshot $x_2 \in X_2$ must be unique as all snapshots in $X_2$ are incompatible with each other. Therefore we can write a function $f : X_1 \to X_2$ such that $x_1 \narrower f(x_1) \equiv x_2$ that describes that particular step in the process. We call $f$ the \textbf{law of evolution}. The law of evolution fully characterize the deterministic process.
+
+\textbf{Scientific privileging of deterministic processes}. Deterministic processes play a special role in science because, insofar we want to have theories that make prediction, we are going necessarily focus on deterministic processes. This privileging is not due to nature per se: it is due to the practice of scientific investigation. We setup initial conditions and measure results, not the other way around. The time asymmetry is built into the practice of science as a fundamental trait. As such, it is likely to be taken as starting point, and cannot further be explained through scientific investigation itself.
+
+\textbf{Reversibility}. Conversely, we say a process is \textbf{reversible} over the system domains $\{\tdomain_t\}_{t \in T}$ if given the snapshot at one time we can always reconstruct the snapshot at all past times. Formally, let $t_1, t_2 \in T$ such that $t_1 \leq t_2$, for any $x_2 \in X_{t_2} \subset \tdomain_{t_2}$ we can find an $x_1 \in X_{t_1} \subset \tdomain_{t_1}$ such that $x_2 \narrower x_1$. In this case, all the evolutions that pass through $x_2$ must have passed through $x_1$. If $x(t)$ is the snapshot trajectory in time, we have $A(x(t)) \subseteq A(x(t - \Delta t))$: the set of compatible evolutions must stay the same or become smaller.  This also means that the process entropy associated to a snapshot cannot increase during reversible evolution:
+\begin{equation}\label{entropy_reversibility}
+	S_{\stmt[u]}(x(t)) \leq S_{\stmt[u]}(x(t - \Delta t))
+\end{equation}
+since $x(t)\narrower x(t-\Delta t)$ means $x(t) \finer x(t-\Delta t)$ and $\mu_{\stmt[u]}(x(t)) \leq \mu_{\stmt[u]}(x(t-\Delta t))$.
+
+\textbf{Law of inverse evolution}. In a dual fashion, reversible processes allow us to write a law of inverse evolution. For each $x_2 \in X_2$, the initial snapshot $x_1 \in X_1$ must be unique as all snapshots in $X_1$ are incompatible with each other. Therefore we can write a function $g : X_2 \to X_1$ such that $x_2 \narrower g(x_2) \equiv x_1$ that describes that particular inverse step in the process. We call $g$ the \textbf{law of inverse evolution}.
+
+\textbf{Determinism and reversibility}. A deterministic and reversible process, then, will mean $x_1$ and $x_2$ are equivalent and that  $A(x(t)) = A(x(t + \Delta t))$: the set of evolutions remains the same. This also means that the process entropy remains conserved:
+\begin{equation}\label{entropy_detrev}
+	S_{\stmt[u]}(x(t)) = S_{\stmt[u]}(x(t - \Delta t))
+\end{equation}
+
+The fact that past and future snapshots are equivalent $x(t) \equiv x(t + \Delta t)$ does not mean they are the same statement in terms of the description at each time: it means there is an if-and-only-if relationship between the descriptions at different times. For example, \statement{at time $t$ the position is $q$ and the velocity is $v$} if and only if \statement{at time $t + \Delta t$ the position is $q + v \Delta t$ and the velocity is $v$}. The differential equation $\dot{v} = 0$ is a short hand for all such relationships.
+
+\textbf{Entropy increase and irreversibility}. According to these definitions, \textbf{entropy cannot decrease in deterministic processes}. Additionally, \textbf{reversible process (that are also deterministic) will conserve entropy}. For non-deterministic processes this may not be the case, therefore this is not an absolute law. However, insofar we want to write theories that give predictions, the result will apply. Therefore it is not that entropy never decreases, it never decreases for the processes we are interested in: the ones where we are able to properly define systems and make predictions. We can say that it is a \textbf{fundamental law of scientific theories but not a fundamental law of nature}.
+
+\textbf{Reversibility vs retrodictability}. If the process is deterministic and reversible we have that the inverse of law of evolution $f^{-1}=g$ is equal to the law of inverse evolution. It is possible for $f$ to be invertible even if the system is \emph{not} reversible. In fact, we would have $x_1 \equiv f^{-1}(x_2) \narrower x_2$, which is not the same as $x_2 \narrower g(x_2) \equiv x_1$: narrowness is in the opposite direction. In other words, \textbf{an invertible deterministic system is not necessarily reversible}. For example, consider a damped harmonic oscillator: the dynamics is in principle invertible (we can reconstruct the trajectory) but it is not reversible (as the evolutions bunch together, finite precision knowledge of the initial conditions gives us more information than the same finite precision knowledge of the final conditions). These types of distinctions are crucial and they emerge naturally within the framework. It can be shows that this is possible only for systems identified by continuous variables, and not when all variables are discrete.
+
+TODO: picture with deterministic evolution merging "streams" of evolutions, and detrev evolutions not merging
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|p{6cm}|}
+		\hline 
+		Symbol & Name & Meaning \\ 
+		\hline 
+		$t \in T$ & Time parameter & Time is treated as a real valued parameter within the range $T \subseteq \mathbb{R}$ \\ 
+		\hline 
+		$\tdomain_t \subset \tdomain[P]$ & System domain & The set of descriptions at a given time \\ 
+		\hline 
+		$X_t \subset \tdomain_t$ & Possible snapshots & The set of descriptions that give a full account at time $t$; they correspond to the narrowest statements within $\tdomain_t$ \\ 
+		\hline 
+		$x(t) \narrower x(t + \Delta t)$ & Determinism & Given the snapshot at one time we can predict the snapshot at future times \\ 
+		\hline 
+		$x(t) \narrower x(t - \Delta t)$ & Reversibility & Given the snapshot at one time we can reconstruct the snapshot at past times \\ 
+		\hline 
+	\end{tabular} 
+	\caption{System domain, snapshots, determinism and reversibility}
+	\label{table:states}
+\end{table}
+
+
+\subsection{Future: States and state spaces}
+
+
+In other words, the state space of the system (i.e. the set of all possible complete descriptions of the system and only about that system, independently of the process at hand) is something we need to construct. It is an endpoint, not a starting point. This construction comes with a set of assumptions about the system which are at the foundations of thermodynamics specifically and physics more in general, and they need to be made explicit. Best descriptions of a system at a time, instead, do not require any additional assumptions and therefore are more general concepts.
+
+
+\textbf{States and independence}. It should be noted that the same description for the same system in different conditions (i.e. in different processes or at different times in the same process) will not in general correspond to the same count of evolutions. Consider a dynamical system with an attractor, such as a damped harmonic oscillator. As time proceeds, more and more evolutions will converge to the attractor. The same finite region around the attractor will correspond to more and more evolutions. In general, a process may introduce correlations between different variables which influences the value of the process entropy for a specific description.
+
+If two systems are independent, however, the evolution of each system does not constrain the evolution of the others. In this case, the count of evolution, and therefore the entropy, of a particular system is only a function of the description of the independent system. The count of evolution factorizes and the entropy becomes additive.
+
+What is crucial to understand here is that \textbf{independence is a requirement for the definition of a system}: we can talk about a system only insofar we have at our disposal a process under which the system is independent for the rest, such that the description of the system is truly a description of the system, with no correlations. We can speak of a chair as its own system because we have circumstances in which we can interact with the chair in a way that does not affect the other chairs or the tables.
+
+Philosophers talk about description of reality that is joint-carving meaning that reality already contains divisions, prior to our investigation. This is an epistemological version of it: nature gives us access to processes for which some systems are independent from the rest. It is the accessibility of these processes that allows us to define systems, without them we cannot divide nature into parts. That is, if an object is really made of parts but the process driving their evolution is such that the correlations can never be eliminated in a controlled fashion, the parts cannot be defined as independent systems.
+
+
+
+
+
+\section{Current attempt}
+
+The math.
+
+
+
+\section{Examples}
+
+\section{Insightful failures}
+
+
+\bibliography{bibliography}
+
+\end{document}
