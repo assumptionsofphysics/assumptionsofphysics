@@ -153,56 +153,56 @@ So the real issue is: does it make sense for those halves to not be comparable? 
 
 The main goal is to understand under what conditions we can pick a statement $\stmt[u]$ and find a unique measure $\mu_{\stmt[u]} : \tdomain \to \mathbb{R}$ with the following properties:
 \begin{description}
-    \item[Normalization.] The value for the unit is one,  $\mu_{\stmt[u]}(\stmt[u]) = 1$.
-    \item[Monotonicity.] It is a monotonic function with respect to fineness; if $\stmt_1 \finer \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$.
-    \item[Finite additivity.] If $\stmt_1 \ncomp \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1 \OR \stmt_2) = \mu_{\stmt[u]}(\stmt_1) + \mu_{\stmt[u]}(\stmt_2)$.
+    \item[Normalization] the value for the unit is one,  $\mu_{\stmt[u]}(\stmt[u]) = 1$.
+    \item[Monotonicity] it is a monotonic function with respect to fineness; if $\stmt_1 \finer \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$.
+    \item[Finite additivity] if $\stmt_1 \ncomp \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1 \OR \stmt_2) = \mu_{\stmt[u]}(\stmt_1) + \mu_{\stmt[u]}(\stmt_2)$.
 \end{description}
 
 \textbf{Countable additivity}. Additionally, we want to understand when finite additivity can be extended to countable additivity. In general, countable additivity will fail. Consider a space with countably many possibilities, all of them equigranular. If we take the certainty as a unit, each possibility is infinitely smaller, and therefore it must be assigned a measure zero. Therefore, the sum (i.e. the disjunction) of infinitely many measure zero statements is one. 
 
-\textbf{Equigranular possibilities}. If a possibility is taken as a unit, then the equigranularity of possibilities is a sufficient condition and it leads to the counting measure on the possibilities. This is strictly not necessary: we could have a domain with 5 possibilities $\{x_1, x_2, x_3, y_1, y_2\}$ such that $x_1 \eqgran x_2 \eqgran x_3$, $y_1 \eqgran y_2$ and $x_1 \OR x_2 \OR x_3 \eqgran y_1 \OR y_2$. If we took $x_1$ as a unit, this would lead to a unique measure such that $\mu(x_1)=\mu(x_2)=\mu(x_3)=1$ and $\mu(y_1)=\mu(y_2)=3/2$. This also tells us that we may not be really interested in necessary conditions, since these cases are contrived. Rather, we are interested in sufficient conditions that can be well justified from the physics.
+\textbf{Equigranular possibilities}. If a possibility is taken as a unit, then the equigranularity of possibilities is a sufficient condition for a unique measure and it leads to the counting measure on the possibilities. This is strictly not necessary: we could have a domain with 5 possibilities $\{x_1, x_2, x_3, y_1, y_2\}$ such that $x_1 \eqgran x_2 \eqgran x_3$, $y_1 \eqgran y_2$ and $x_1 \OR x_2 \OR x_3 \eqgran y_1 \OR y_2$. If we took $x_1$ as a unit, this would lead to a unique measure such that $\mu(x_1)=\mu(x_2)=\mu(x_3)=1$ and $\mu(y_1)=\mu(y_2)=3/2$. This also tells us that we may not be really interested in necessary conditions, since these cases are contrived. Rather, we are interested in sufficient conditions that can be well justified from the physics.
 
-\textbf{Lack of reverse monotonicity}. Monotonicity only works in one direction. If a statement describing an area is taken as unit, all statements about lines, points and countable sets of both are going to be measure zero. Therefore equal measure does not mean equal fineness. This is why fineness can generate a family of measures: it has more information than a single one. When we pick a unit, then, the measure has to ``collapse`` the equivalence classes of equigranularity appropriately. This is tightly linked with a notion of infinitesimal (i.e. the ordering over the level of granularity is non-archemedian, while the real numbers are) which we will see in the next subsection. The address this collapse in a controlled way, the idea is to proceed in the following way:
+\textbf{Lack of reverse monotonicity}. Monotonicity only works in one direction. If a statement describing an area is taken as unit, all statements about lines, points and countable sets of both are going to be measure zero. Therefore equal measure does not mean equal fineness. This is why fineness can generate a family of measures: it has more information than a single one. When we pick a unit, then, the measure has to ``collapse`` the equivalence classes of equigranularity appropriately. This is tightly linked with a notion of infinitesimal (i.e. the ordering over the level of granularity is not Archimedean, while the real numbers are) which we will see in the next subsection. To address this collapse in a controlled way, the idea is to proceed in the following way:
 \begin{enumerate}
     \item pick a unit $\stmt[u]$ and define the notion of infinitesimal
     \item define the preorder $\lequ$ and the equivalence $\equ$ that compares levels of description up to infinitesimals
     \item show that $\lequ$ is order isomorphic to the reals
-    \item show that we can pick a particular isomorphism that respects linear addittivity.
+    \item show that we can pick a particular isomorphism that respects linear additivity.
 \end{enumerate}
 
 \subsubsection{Infinitesimals and finite comparison}
 
-\textbf{Overview}. The measure zero sets are related to the notion of infinitesimals and the Archimedean property. The Archimedean property is typically discussed in terms of linearly ordered groups and fields. Roughly speaking, if we pick an element $y$ an element $x$ is infinitesimal with respect to $y$ if $\sum\limits_{i=1}^n x < y$ for any $n$. The group is Archimedean if no element is infinitesimal with respect to another.
+\textbf{Archimedean property}. The measure zero sets are related to the notion of infinitesimals and the Archimedean property. The Archimedean property is typically discussed in terms of linearly ordered groups and fields. Roughly speaking, if we pick an element $y$, an element $x$ is infinitesimal with respect to $y$ if $\sum\limits_{i=1}^n x < y$ for any $n$. The group is Archimedean if no element is infinitesimal with respect to another.
 
-The (positive) real numbers are Archimedean. If we take a lattice of sets and use disjoint union as addition, the lattice is not Archimedean. A measure will therefore need a non-Archimedean structure (i.e the sets) into an Archimedean one (i.e. the positive reals). Infinitesimals therefore need to be mapped to zero. Note that for the measure to be countably additive, we need to have that the countable sum of infinitesimals is still infinitesimals. This will not be true in general: a set with finitely many integers is infinitesimal with respect to the set of all integers; yet the set of all integers is the disjoint union of countably many finite sets of integers.
+The (positive) real numbers are Archimedean. On the other hand, consider the lattice of subsets of the real numbers. If we use disjoint union as addition, the lattice is not Archimedean: the singletons will be infinitesimals with respect to any finite interval. A measure will therefore need to map a non-Archimedean structure (i.e the sets) into an Archimedean one (i.e. the positive reals). Infinitesimals therefore need to be mapped to zero. Note that for the measure to be countably additive, we need to have that the countable sum of infinitesimals is still infinitesimal. This will not be true in general: a set with finitely many integers is infinitesimal with respect to the set of all integers; yet the set of all integers is the disjoint union of countably many finite sets of integers.
 
-Note that on Page 21 de Finetti\cite{definetti} specifically says that $P(E) \geq P(E')$ implies $E \geq E'$ but not vice-versa. And that we can have $P(A)=P(B)=0$ even if $A<B$ if $A$ is impossible and $B$ is not. So, the ordering he has in mind is fineness for us. And then he says that this means that the 4 postulates give a non-Archimedean structure. But you can make it Archimedean by ignoring the probabilities that are ``infinitesimally small'': those that multiplied by a number, however big, will never become the certainty. On the other hand, Villegas\cite{villegas} starts already with an ordering where the infinitesimals are equal to the empty set. This maps to $\lequ$ defined later, where the comparison is done up to infinitesimals.
+Note that on Page 21 de Finetti\cite{definetti} specifically says that $P(E) \geq P(E')$ implies $E \geq E'$ but not vice-versa. And that we can have $P(A)=P(B)=0$ even if $A<B$ if $A$ is impossible and $B$ is not. So, the ordering he has in mind is fineness for us. And then he says that this means that his 4 postulates give a non-Archimedean structure. But you can make it Archimedean by ignoring the probabilities that are ``infinitesimally small'': those that multiplied by a number, however big, will never become the certainty. On the other hand, Villegas\cite{villegas} starts already with a preorder where the infinitesimals are equal to the empty set. This maps to $\lequ$ defined later, where the comparison is done up to infinitesimals.
 
-\textbf{Definition of infinitesimals}. The first issue is to find the correct definition to extend this concept on ordering. The addition discussed above (i.e. the disjoint union of statements) should play the role of the group operation. Conceptually, a statement $\stmt$ is infinitesimal with respect to another $\stmt[u]$ if for any $n$ we can find a finite set of equigranular incompatible statements whose disjunction is finer than $\stmt[u]$. That is, we need infinitely many statements equigranular to $\stmt$ to cover a statement of the same granularity than $\stmt[u]$.
+\textbf{Definition of infinitesimals}. The first issue is to find the correct definition to extend this concept to partially ordered sets. The addition discussed above (i.e. the disjoint disjunction of statements) should play the role of the group operation. Conceptually, a statement $\stmt$ is infinitesimal with respect to another $\stmt[u]$ if for any $n$ we can find a finite set of $n$ equigranular incompatible statements whose disjunction is finer than $\stmt[u]$. That is, we need infinitely many statements equigranular to $\stmt$ to cover a statement of the same granularity as $\stmt[u]$.
 
 The main issue here is that, since the ordering is potentially not total, it is not clear how one can prove the existence of said sets of statements even in the simplest cases. Therefore we have to find a definition that works well also in the case of non-comparability.
 
-\textbf{Definition of infinitesimals}. Assuming those issues are solved, infinitesimals come in two types: countable and uncountable. A countable infinitesimal will be such that the disjoint conjunction of countably many equigranular statements may be bigger than the unit. This is the case where, in the end, the measure will only be finitely additive: infinitely many zero measure elements will sum to a finite element. If all infinitesimal with respect to the unit are uncountable, instead, countably many zero measure elements will still form a zero measure element.
+\textbf{Countable and uncountable infinitesimals}. Assuming those issues are solved, infinitesimals come in two types: countable and uncountable. A countable infinitesimal will be such that the disjoint disjunction of countably many equigranular statements may be bigger than the unit. This is the case where, in the end, the measure will only be finitely additive: infinitely many zero measure elements will sum to a finite element. If all infinitesimals with respect to the unit are uncountable, instead, countably many zero measure elements will still form a zero measure element.
 
-This insight may give us a way to define ``finite'' and ``infinite'' elements in an absolute way. A finite element has no countable infinitesimal. For example, take the unit interval over the reals and consider the standard Lebesgue measure over the Borel sets (which would correspond to our theoretical domain). All sets of measure zero are uncountable infinitesimals with respect to the unit: since the measure is countably additive, any disjoint union of countably many measure zero sets is going to be measure zero, therefore it will not be as big as the unit. Naturally, if we take a uncountably many sets (i.e. all the singletons) we can cover the whole unit. Conversely, the full real line can be covered by countably many sets of unit size. While the unit interval is infinitesimally small with the respect with the whole line, it is a countable infinitesimal. This definition of ``finiteness'' may map to physical requirements much better than, for example, the topological notion of compactness.
+This insight may give us a way to define ``finite'' and ``infinite'' elements in an absolute way. A finite element has no countable infinitesimal. For example, take the unit interval over the reals and consider the standard Lebesgue measure over the Borel sets (which would correspond to our theoretical domain). All sets of measure zero are uncountable infinitesimals with respect to the unit: since the measure is countably additive, any disjoint union of countably many measure zero sets is going to be measure zero, therefore it will not be as big as the unit. Naturally, if we take uncountably many sets (i.e. all the singletons) we can cover the whole unit. Conversely, the full real line can be covered by countably many sets of unit size. While the unit interval is infinitesimally small with the respect to the whole line, it is a countable infinitesimal. This definition of ``finiteness'' may map to physical requirements much better than, for example, the topological notion of compactness.
 
 Once a notion of infinitesimals is well defined, we would define a preorder $\lequ$ and an equivalence relationship $\equ$ that compares the level of description of the statements up to infinitesimals.
 
 \subsubsection{Recovering bounded measures}
 
-The next step is to understand how the properties of $\lequ$ would compare to the requirements set by, for example Villegas \cite{villegas}. In the context of comparative probability, there are theorems that allow to go from a preorder to a probability measure. The idea would be to reuse, as much as possible, the ideas from that literature. Once we pick a unit $\stmt[u]$, we can restrict ourselves to all statements narrower than $\stmt[u]$. At that point, we are looking for has all the mathematical properties of a probability measure as the biggest element, $\stmt[u]$, has to have measure one.
+The next step is to understand how the properties of $\lequ$ would compare to the requirements set by, for example Villegas \cite{villegas}. In the context of comparative probability, there are theorems that allow one to go from a preorder to a probability measure. The idea would be to reuse, as much as possible, the ideas from that literature. Once we pick a unit $\stmt[u]$, we can restrict ourselves to all statements narrower than $\stmt[u]$. At that point, what we have has all the mathematical properties of a probability measure, since the biggest element, $\stmt[u]$, has to have measure one.
 
-\textbf{Countable addittivity}. One issue will be the problem of countable infinitesimals, which are incompatible with a countable measure. Therefore one of the assumptions in comparative probability will effectively exclude the case. We need to understand how that works, so that we can adapt the proofs and allow for only finitely additive measures. The hope is that if we pick a unit for which all infinitesimals are uncountable, then one can demonstrate the requirements for the previous theorems
+\textbf{Countable additivity}. One issue will be the problem of countable infinitesimals, which are incompatible with a countable measure. Therefore one of the assumptions in comparative probability will effectively exclude this case. We need to understand how that works, so that we can adapt the proofs and allow for only finitely additive measures. The hope is that if we pick a unit for which all infinitesimals are uncountable, then one can demonstrate the requirements for the previous theorems.
 
-\textbf{Measure domain}. The other issue is that the measure will not be, in general, on the whole domain $\tdomain$, but on a subset $\tdomain_{\stmt[u]}$ that must be totally comparable under $\lequ$. It is not clear how to recover this set. It may be that the equivalence classes of $\equ$ will make our job easier: if two infinitesimal are not comparable in fineness, they will still be merged together. Therefore  incomparable statements may be comparable in $\lequ$ if they can be compared up to an infinitesimal.
+\textbf{Measure domain}. The other issue is that the measure will not be, in general, on the whole domain $\tdomain$, but on a subset $\tdomain_{\stmt[u]}$ that must be totally comparable under $\lequ$. It is not clear how to recover this set. It may be that the equivalence classes of $\equ$ will make our job easier: all infinitesimals will end up in the same equivalence class as the impossibility, regardless of their comparability in fineness. Therefore incomparable statements may be comparable in $\lequ$ if they can be compared up to an infinitesimal.
 
-The goal here is to solve the above problems to be find the prerequisites for the following proposition: given a statement $\stmt[u] \in \tdomain$ we can define a maximal set of mutually comparable statements in $\lequ$ that contains $\stmt[u]$, upon which we can define a unique $\mu_{\stmt[u]} : \tdomain_{\stmt[u]} \to \mathbb{R}$ such that:
+The goal here is to solve the above problems to find the prerequisites for the following proposition. Given a statement $\stmt[u] \in \tdomain$ we can define a maximal set of mutually comparable statements in $\lequ$ that contains $\stmt[u]$, upon which we can define a unique $\mu_{\stmt[u]} : \tdomain_{\stmt[u]} \to \mathbb{R}$ such that:
 \begin{description}
-    \item[Normalization.] The value for the unit is one,  $\mu_{\stmt[u]}(\stmt[u]) = 1$.
-    \item[Order isomorphism.] $\stmt_1 \lequ \stmt_2$ if and only if $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$.
-    \item[Finite additivity.] If $\stmt_1 \ncomp \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1 \OR \stmt_2) = \mu_{\stmt[u]}(\stmt_1) + \mu_{\stmt[u]}(\stmt_2)$.
+	\item[Normalization] the value for the unit is one,  $\mu_{\stmt[u]}(\stmt[u]) = 1$.
+    \item[Order isomorphism] $\stmt_1 \lequ \stmt_2$ if and only if $\mu_{\stmt[u]}(\stmt_1) \leq \mu_{\stmt[u]}(\stmt_2)$.
+    \item[Finite additivity] if $\stmt_1 \ncomp \stmt_2$ then $\mu_{\stmt[u]}(\stmt_1 \OR \stmt_2) = \mu_{\stmt[u]}(\stmt_1) + \mu_{\stmt[u]}(\stmt_2)$.
 \end{description}
-Moreover, if $\stmt[u]$ has no countable infinitesimals, $\mu_{\stmt[u]}$ is countably additive.
+Moreover, if $\stmt[u]$ has no countable infinitesimals (or other more restrictive conditions), $\mu_{\stmt[u]}$ is countably additive.
 
 \subsubsection{Extending the measures}
 
@@ -214,7 +214,7 @@ Once we know how to construct measures on the sub-algebra of statements narrower
     \item To extend the measure on all other statements. Given two statements $\stmt[v]$ and $\stmt[u]$ we can construct the measure $\mu_{\stmt[u]\OR\stmt[v]}$. We have $\mu_{\stmt[u]}(\stmt[v]) = \mu_{\stmt[u]}(\stmt[u]\OR\stmt[v]) \mu_{\stmt[u]\OR\stmt[v]}(\stmt[v])$.
 \end{enumerate}
 
-One issue will be, again, proving the consistent of comparability with different units since all the domains $\tdomain_{\stmt[u]}$ do not contain all the statements.
+One issue will be, again, proving the consistency of comparability with different units since all the domains $\tdomain_{\stmt[u]}$ do not contain all the statements.
 
 \section{Current attempt}
 
@@ -242,7 +242,7 @@ The fact that the $\sigma$-algebra is generated by a countable set means it is s
 \begin{prop}\label{fineness_properties}
     Fineness obeys the following properties:
     \begin{enumerate}
-        \item if $\stmt \ncomp \stmt_1$ and $\stmt \ncomp \stmt_2$ then $\stmt_1 \sfiner \stmt_2$ if and only if $\stmt \OR \stmt_1 \sfiner \stmt \OR \stmt_2$ (these two tell us that offset monotonicity can be extend to strict fineness and equigranularity)
+        \item if $\stmt \ncomp \stmt_1$ and $\stmt \ncomp \stmt_2$ then $\stmt_1 \sfiner \stmt_2$ if and only if $\stmt \OR \stmt_1 \sfiner \stmt \OR \stmt_2$ (these two tell us that offset monotonicity can be extended to strict fineness and equigranularity)
         \item if $\stmt \ncomp \stmt_1$ and $\stmt \ncomp \stmt_2$ then $\stmt_1 \eqgran \stmt_2$ if and only if $\stmt \OR \stmt_1 \eqgran \stmt \OR \stmt_2$
         \item if $\stmt_1 \narrower \stmt_2$ then $\stmt_1 \finer \stmt_2$ (these three tell us fineness and narrowness are monotonically ordered)
         \item if $\stmt_1 \snarrower \stmt_2$ then $\stmt_1 \sfiner \stmt_2$
@@ -252,7 +252,7 @@ The fact that the $\sigma$-algebra is generated by a countable set means it is s
         \item $\stmt_1 \eqgran \stmt_2$ if and only if $\stmt_1 \AND \NOT \stmt_2 \eqgran \stmt_2 \AND \NOT \stmt_1$
         \item if $\stmt_1 \finer \stmt_2$ then $\NOT \stmt_2 \finer \NOT \stmt_1$ (these two tell us that fineness works well with negation)
         \item if $\stmt_1 \sfiner \stmt_2$ then $\NOT \stmt_2 \sfiner \NOT \stmt_1$
-        \item if $\certainty \finer \stmt$ then $\certainty \narrower \stmt$ and therefore $\stmt \equiv \certainty$ (these two tells us that fineness can recover narrowness for certainties and impossibilities)
+        \item if $\certainty \finer \stmt$ then $\certainty \narrower \stmt$ and therefore $\stmt \equiv \certainty$ (these two tell us that fineness can recover narrowness for certainties and impossibilities)
         \item if $\stmt \finer \impossibility$ then $\stmt \narrower \impossibility$ and therefore $\stmt \equiv \impossibility$
     \end{enumerate}
 \end{prop}
@@ -294,7 +294,6 @@ Other properties satisfied by fineness:
 \begin{enumerate}
     \item if $\stmt[s]_1 \ncomp \stmt[s]_2$ and $\stmt[v]_1 \ncomp \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ and $\stmt_2 \finer \stmt[v]_2$ imply  $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
     \item (monotony as in Villegas) if $\stmt[v]_1 \ncomp \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ and $\stmt_2 \finer \stmt[v]_2$ imply  $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
-    \item if $\stmt_1 \ncomp \stmt_2$, $\stmt[v]_1 \ncomp \stmt[v]_2$ and $\stmt_2 \eqgran \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ if and only if $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
 \end{enumerate}
 \end{prop}
 
@@ -322,15 +321,15 @@ where
     \item $\stmt[w]_8 \equiv \stmt[v]_1 \AND \stmt[s]_1 $
 \end{itemize}
 
-Since all $\{ \stmt[w]_i \}$ are pair-wise incompatible, offset monotonicity allows to remove or add the same statement on both sides of a fineness relationship. Therefore
+Since all $\{ \stmt[w]_i \}$ are pair-wise incompatible, offset monotonicity allows one to remove or add the same statement on both sides of a fineness relationship. Therefore
 \begin{itemize}
     \item $\stmt[v]_1 \coarser \stmt[s]_1 \implies  \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_8 \coarser \stmt[w]_6 \OR \stmt[w]_7 \OR \stmt[w]_8 \implies \stmt[w]_1 \OR \stmt[w]_2 \coarser \stmt[w]_6 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_7$
     \item $\stmt[v]_2 \coarser \stmt[s]_2 \implies  \stmt[w]_4 \OR \stmt[w]_5 \OR \stmt[w]_6 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_4 \implies \stmt[w]_5 \OR \stmt[w]_6 \coarser \stmt[w]_2 \OR \stmt[w]_3 \implies \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_7 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7$
-    \item $\stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_7 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_5 \coarser \OR \stmt[w]_3 \OR \stmt[w]_7$
+    \item $\stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_7 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_5 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_5 \coarser  \stmt[w]_3 \OR \stmt[w]_7$
 \end{itemize}
 Finally $\stmt[w]_1 \OR \stmt[w]_5 \coarser \stmt[w]_3 \OR \stmt[w]_7 \implies \stmt[w]_1 \OR \stmt[w]_2 \OR \stmt[w]_4 \OR \stmt[w]_5 \OR \stmt[w]_6 \OR \stmt[w]_8 \coarser \stmt[w]_2 \OR \stmt[w]_3 \OR \stmt[w]_4 \OR \stmt[w]_6 \OR \stmt[w]_7 \OR \stmt[w]_8 \implies \stmt[v]_1 \OR \stmt[v]_2 \coarser \stmt[s]_1 \OR \stmt[s]_2$.
 
-For 2, let $\hat{\stmt[s]}_2 = \stmt[s]_2 \AND \NOT \stmt[s]_1$. We have $\stmt[s]_1 \ncomp \hat{\stmt[s]}_2$ and $\hat{\stmt[s]}_2 \finer \stmt[s]_2 \finer \stmt[v]_2$ since $\hat{\stmt[s]}_2 \narrower \stmt[s]_2$. By 1, we have $\stmt[s]_1 \OR \hat{\stmt[s]}_2 \finer \stmt[v]_1 \OR \stmt[v]_2$. But since $\stmt[s]_1 \OR \hat{\stmt[s]}_2 \equiv \stmt[s]_1 \OR (\stmt[s]_2 \AND \NOT \stmt[s]_1) \equiv (\stmt[s]_1 \OR \stmt[s]_2) \AND (\stmt[s]_1 \OR \NOT \stmt[s]_1) \equiv \stmt[s]_1 \OR \stmt[s]_2$, we have $\stmt[s]_1 \OR \stmt[s]_2 \finer \stmt[v]_1 \OR \stmt[v]_2$..
+For 2, let $\hat{\stmt[s]}_2 = \stmt[s]_2 \AND \NOT \stmt[s]_1$. We have $\stmt[s]_1 \ncomp \hat{\stmt[s]}_2$ and $\hat{\stmt[s]}_2 \finer \stmt[s]_2 \finer \stmt[v]_2$ since $\hat{\stmt[s]}_2 \narrower \stmt[s]_2$. By 1, we have $\stmt[s]_1 \OR \hat{\stmt[s]}_2 \finer \stmt[v]_1 \OR \stmt[v]_2$. But since $\stmt[s]_1 \OR \hat{\stmt[s]}_2 \equiv \stmt[s]_1 \OR (\stmt[s]_2 \AND \NOT \stmt[s]_1) \equiv (\stmt[s]_1 \OR \stmt[s]_2) \AND (\stmt[s]_1 \OR \NOT \stmt[s]_1) \equiv \stmt[s]_1 \OR \stmt[s]_2$, we have $\stmt[s]_1 \OR \stmt[s]_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
 
 \end{proof}
 
@@ -340,7 +339,7 @@ Other properties that show how the most you can broaden something within an equi
 \begin{itemize}
 	\item if $\stmt_1 \ncomp \stmt_2$, $\stmt[v]_1 \ncomp \stmt[v]_2$ and $\stmt_2 \eqgran \stmt[v]_2$, then $\stmt_1 \finer \stmt[v]_1$ if and only if $\stmt_1 \OR \stmt_2 \finer \stmt[v]_1 \OR \stmt[v]_2$.
 	
-	\item if $\stmt[v]_1\ncomp\stmt[v]_2$, $\stmt[v]_2\eqgran\stmt_2$, and $\stmt_1\finer\stmt[v]_1$. Then $\stmt_1\OR\stmt_2\finer\stmt[v]_1\OR\stmt[v]_2$.
+	\item if $\stmt[v]_1\ncomp\stmt[v]_2$, $\stmt[v]_2\eqgran\stmt_2$, and $\stmt_1\finer\stmt[v]_1$, then $\stmt_1\OR\stmt_2\finer\stmt[v]_1\OR\stmt[v]_2$.
 \end{itemize}
 
 \end{conj}
@@ -354,7 +353,7 @@ Other properties that show how the most you can broaden something within an equi
 \end{proof}
 
 \begin{defn}
-    Let $\tdomain_{/\eqgran}$ be the equivalence classes of equigranularity. We call \textbf{granularity level} an equivalence class of equigranularity. Let $(\cdot)_{/\eqgran} : \tdomain \to \tdomain_{/\eqgran}$ the map from a statement to its granularity level, which we also note $\dot{\stmt} = {\stmt}_{/\eqgran}$. We say $\dot{\stmt}$ is the granularity level of $\stmt$.
+    Let $\tdomain_{/\eqgran}$ be the equivalence classes of equigranularity. We call \textbf{granularity level} an equivalence class of equigranularity. Let $(\cdot)_{/\eqgran} : \tdomain \to \tdomain_{/\eqgran}$ be the map from a statement to its granularity level, which we also note $\dot{\stmt} = {\stmt}_{/\eqgran}$. We say $\dot{\stmt}$ is the granularity level of $\stmt$.
 \end{defn}
 
 \begin{prop}
@@ -362,11 +361,11 @@ Other properties that show how the most you can broaden something within an equi
 \end{prop}
 
 \begin{proof}
-    Let $\stmt_1, \stmt_2 \in \tdomain$. Suppose $\stmt_1 \narrower \stmt_2$ then by \ref{fineness_properties}.3 $\stmt_1 \finer \stmt_2$ and therefore ${\stmt_1}_{/\eqgran} \finer {\stmt_2}_{/\eqgran}$. Then $(\cdot)_{/\eqgran}$ is an order isomorphism.
+    Let $\stmt_1, \stmt_2 \in \tdomain$. Suppose $\stmt_1 \narrower \stmt_2$ then by \ref{fineness_properties}.3 $\stmt_1 \finer \stmt_2$ and therefore ${\stmt_1}_{/\eqgran} \finer {\stmt_2}_{/\eqgran}$. Then $(\cdot)_{/\eqgran}$ is an order homomorphism.
 \end{proof}
 
 \begin{remark}
-    Regardless of whether $\tdomain_{/\eqgran}$ is a lattice, $(\cdot)_{/\eqgran}$ can never be a lattice homomorphism. It will be crucial that two equigranular statements can be incompatible, and this in contradiction with $(\cdot)_{/\eqgran}$ being a lattice homomorphism. Let us note $\dot{\stmt} = {\stmt}_{/\eqgran}$ the level of granularity of $\stmt$. Now suppose that $\stmt_1 \eqgran \stmt_2 \nequiv \impossibility$ and $\stmt_1 \ncomp \stmt_2$. Then $\dot{\stmt}_1 = \dot{\stmt}_2 \neq \dot{\impossibility}$. Now suppose that $\stmt \to \dot{\stmt}$ is a lattice isomorphism. Then $\dot{\impossibility} = (\stmt_1 \AND \stmt_2)_{/\eqgran} = \dot{\stmt}_1 \wedgedot \dot{\stmt}_2 = \dot{\stmt}_1 \wedgedot \dot{\stmt}_1 = \dot{\stmt}_1$, which contradicts the premise.
+    Regardless of whether $\tdomain_{/\eqgran}$ is a lattice, $(\cdot)_{/\eqgran}$ can never be a lattice homomorphism. It will be crucial that two equigranular statements can be incompatible, and this is in contradiction with $(\cdot)_{/\eqgran}$ being a lattice homomorphism. Let us note $\dot{\stmt} = {\stmt}_{/\eqgran}$ the level of granularity of $\stmt$. Now suppose that $\stmt_1 \eqgran \stmt_2 \nequiv \impossibility$ and $\stmt_1 \ncomp \stmt_2$. Then $\dot{\stmt}_1 = \dot{\stmt}_2 \neq \dot{\impossibility}$. Now suppose that $\stmt \to \dot{\stmt}$ is a lattice isomorphism. Then $\dot{\impossibility} = (\stmt_1 \AND \stmt_2)_{/\eqgran} = \dot{\stmt}_1 \wedgedot \dot{\stmt}_2 = \dot{\stmt}_1 \wedgedot \dot{\stmt}_1 = \dot{\stmt}_1$, which contradicts the premise.
 \end{remark}
 
 \begin{remark}
@@ -399,7 +398,7 @@ We claim there exist domains which have all possibilities equigranular but finen
 We expect the following to not be provable from the given axioms:
 
 \begin{desid}\label{uniformconsequence}
-    Let $\tdomain$ be uniform. Let $\stmt, \stmt_1 \in \tdomain$ such that $\stmt \sfiner \stmt_1$. Then there exist $\stmt_2 \in \tdomain$ such that $\stmt_2 \narrower \stmt_1$ and $\stmt \eqgran \stmt_2$.
+    Let $\tdomain$ be uniform. Let $\stmt_1, \stmt_2 \in \tdomain$ such that $\stmt_1 \sfiner \stmt_2$. Then there exists $\stmt \in \tdomain$ such that $\stmt \narrower \stmt_2$ and $\stmt \eqgran \stmt_1$.
 \end{desid}
 However, it would be nice to understand why as it would give us insights into which additional premises are needed. The idea is that we can always ``move" a statement to an equigranular one to sit within any other (coarser) statement. This would allow us to make use of various properties of narrowness. Interestingly, this would not give additional insight into limiting behaviors, as equigranular sequences may have vastly different limits (and so ``moving" a sequence could drastically change the equigranularity class of the limit).
 
@@ -408,13 +407,13 @@ However, it would be nice to understand why as it would give us insights into wh
 The following is an attempt to define infinitesimal in a way that puts the least constraints on fineness.
 
 \begin{defn}\label{infinitesimals}
-	Let $\stmt[u],\stmt[s] \in \tdomain$. Then $\stmt$ is \textbf{infinitesimal} with respect to $\stmt[u]$ if for any natural number $n$ we can find a set of $n$ statements $\{ \stmt_i \}_{i=1}^n$ such that:
+	Let $\stmt[u],\stmt[s] \in \tdomain$ such that $\stmt[u] \neq \impossibility$. Then $\stmt$ is \textbf{infinitesimal} with respect to $\stmt[u]$ if for any natural number $n$ we can find a set of $n$ statements $\{ \stmt_i \}_{i=1}^n$ such that:
 	\begin{enumerate}
 		\item $\stmt \finer \stmt_i$ for all $i$
 		\item $\stmt_i \ncomp \stmt_j$ for all $i \neq j$
 		\item $\bigOR\limits_{i=1}^n \stmt_i \finer \stmt[u]$ 
 	\end{enumerate}
-	In words, $\stmt$ is infinitesimal with respect to $\stmt[u]$ if for any number, there is a disjunction of that many broader mutually incompatible statements $\stmt_i$ is finer than $\stmt[u]$.
+	In words, $\stmt$ is infinitesimal with respect to $\stmt[u]$ if for any number, there is a disjunction of that many broader mutually incompatible statements $\stmt_i$ that is finer than $\stmt[u]$.
 \end{defn}
 
 \begin{remark}
@@ -433,12 +432,11 @@ The following is an attempt to define infinitesimal in a way that puts the least
 	Let $\stmt, \stmt[u] \in \tdomain$ be two statements such that $\stmt \finer \stmt[u]$. We say that they are \textbf{finitely comparable} to each other if we can find a finite set $\{ \stmt_i \}_{i=1}^n$ such that $\stmt_i \finer \stmt$ for all $i \leq n$ and $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i$.
 \end{defn}
 
-TODO[Mark]: check the proof
 \begin{prop}
 	If two statements are finitely comparable then they cannot be infinitesimals with respect to each other.
 \end{prop}
 \begin{proof}
-	Suppose $\stmt$ and $\stmt[u]$ are finitely comparable. Then we can find a set of $n$ statements $\{ \stmt_i \}_{i=1}^n$ such that $\stmt_i \finer \stmt$ for all $i \leq n$ and $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i$. Now suppose we have a set of statements $\{ \stmt[t]_i \}_{i=1}^n$ such that $\stmt \finer \stmt[t]_i$ for all $i$ and $\stmt[t]_i \ncomp \stmt[t]_j$ for all $i \neq j$. Then we also have $\stmt_i \finer \stmt \finer \stmt[t]_i$ for all $i$. By \ref{fineness_monotony} we have $\bigOR_{i=1}^n \stmt_i \finer \bigOR_{i=1}^n \stmt[t]_i$ and therefore $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i \finer \bigOR_{i=1}^n \stmt[t]_i$. Therefore we cannot find a set of $n$ statement that satisfy the definition of infinitesimal and therefore $\stmt$ is not an infinitesimal with respect to $\stmt[u]$.
+	Suppose $\stmt$ and $\stmt[u]$ are finitely comparable. Then we can find a set of $n$ statements $\{ \stmt_i \}_{i=1}^n$ such that $\stmt_i \finer \stmt$ for all $i \leq n$ and $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i$. Now suppose we have a set of statements $\{ \stmt[t]_i \}_{i=1}^n$ such that $\stmt \finer \stmt[t]_i$ for all $i$ and $\stmt[t]_i \ncomp \stmt[t]_j$ for all $i \neq j$. Then we also have $\stmt_i \finer \stmt \finer \stmt[t]_i$ for all $i$. By \ref{fineness_monotony} we have $\bigOR_{i=1}^n \stmt_i \finer \bigOR_{i=1}^n \stmt[t]_i$ and therefore $\stmt[u] \finer \bigOR_{i=1}^n \stmt_i \finer \bigOR_{i=1}^n \stmt[t]_i$. Therefore we cannot find a set of $n$ statements that satisfy the definition of infinitesimal and therefore $\stmt$ is not an infinitesimal with respect to $\stmt[u]$.
 \end{proof} 
 
 \begin{prop}\label{infinitesimal_conjunction}
@@ -459,7 +457,7 @@ TODO[Mark]: check the proof
 	The disjunction of two infinitesimals with respect to $\stmt[u]$ that are comparable\footnote{Is comparability required? Can it be proved one way or another?} to each other is infinitesimal with respect to $\stmt[u]$.
 \end{prop}
 \begin{proof}
-	Let $\stmt[v],\stmt[w]$ be infinitesimal with respect to $\stmt[u]$. Without loss of generality, suppose $\stmt[v] \finer \stmt[w]$. Let $n>0$. Let $\{\stmt[w]_i\}_{i=1}^{2n}$ be a collection realizing infinitesimality for $2n$ for $\stmt[w]$. Define $\stmt_j = \stmt[w]_j\OR\stmt[w]_{j+n}$ for $j=1,\ldots,n$. Notice that the $\stmt_j$'s are mutually incompatible, and their disjunction must be finer than $\stmt[u]$. Further, since $\stmt[v]\finer\stmt[w]$ we have that $\stmt[v]\finer\stmt[w]_i$ for all $i$. It follows that:
+	Let $\stmt[v],\stmt[w]$ be infinitesimal with respect to $\stmt[u]$. Without loss of generality, suppose $\stmt[v] \finer \stmt[w]$. Let $n>0$ be a natural number. Let $\{\stmt[w]_i\}_{i=1}^{2n}$ be a collection realizing infinitesimality for $2n$ for $\stmt[w]$. Define $\stmt_j = \stmt[w]_j\OR\stmt[w]_{j+n}$ for $j=1,\ldots,n$. Notice that the $\stmt_j$'s are mutually incompatible, and their disjunction must be finer than $\stmt[u]$. Further, since $\stmt[v]\finer\stmt[w]$ we have that $\stmt[v]\finer\stmt[w]_i$ for all $i$. It follows that:
 	$$
 	\stmt[v]\OR\stmt[w] \finer \stmt[w]_j\OR\stmt[w]_{j+n} = \stmt_j
 	$$
