@@ -530,73 +530,81 @@ TODO: add definition of set closed under operation
 	It can be shown that they obey Peano's axioms, another common way to axiomatize the natural numbers and their arithmetic.
 \end{remark}
 
+\section{Transfinite (i.e. infinite) numbers}
+\begin{remark}
+	Cardinal numbers (i.e. one, two, three, ...) identify the number of elements in a set. Ordinal numbers (i.e. first, second, third) identify a position within a sequence. Cardinals and ordinals are in one to one correspondence only for finite values.
+\end{remark}
+
 \subsection{Ordinal numbers}
 
-For infinite sets, cardinals and ordinals are different since sets of the same infinite size can be given different orderings. 
-
-\begin{remark}
-	Cardinal numbers (i.e. one, two, three, ...) identify the number of elements in a set. Ordinal numbers (i.e. first, second, third) identify a position within a sequence. Well-ordered sets extend the notion of sequence to arbitrary levels of infinity.
+\begin{remark}	
+	To define ordinals, we extend the notion of sequences to arbitrary levels of infinity using well-ordered sets.
 \end{remark}
 
 \begin{defn}[POS]
-	A \textbf{partially ordered set}, \marginleft{POS: $(A, \leq_A)$} or \textbf{POS}, is a tuple $(A, \leq_A)$ where $A$ is a set and $\leq_A$ is a partial order over $A$. A \textbf{linearly ordered set} is a POS whose order is linear.
+	A \textbf{partially ordered set}, \marginleft{POS: $(A, \leq_A)$} or \textbf{POS}, is a set with an associated partial order. That is, a tuple $(A, \leq_A)$ where $A$ is a set and $\leq_A$ is a partial order over $A$. A \textbf{linearly ordered set} is a POS whose order is linear.
 \end{defn}
 
 \begin{defn}[Initial segment]
-	The \textbf{initial segment} \marginleft{Initial segment} of a POS $(A, \leq_A)$ determined by $a \in A$ is the set of all elements less than $a$. That is, $S_a=\{ x \in A \, | \, x < a \}$.
+	The \textbf{initial segment} \marginleft{Initial segment} of a POS $(A, \leq_A)$ determined by $a \in A$ is the set of all elements before $a$. That is, $S_a=\{ x \in A \, | \, x < a \}$.
 \end{defn}
 
 \begin{defn}[Order morphisms]
-	Let $(A, \leq_A)$ \marginleft{Order homo/ \\ isomorphism} and $(B, \leq_B)$ be two POSs. An \textbf{order homomorphism} is a function $f : A \to B$ that preserves the ordering. That is, $a_1 \leq_A a_2$ implies $f(a_1) \leq_B f(a_2)$. An \textbf{order isomorphism} is a bijective order homomorphism whose inverse is also an order homomorphism. That is, $b_1 \leq_B b_2$ implies $f^{-1}(b_1) \leq_A f^{-1}(b_2)$.
+	Let $(A, \leq_A)$ \marginleft{Order homo/ \\ isomorphism} and $(B, \leq_B)$ be two POSs. An \textbf{order homomorphism} is a function $f : A \to B$ that preserves the ordering. That is, $a_1 \leq_A a_2$ implies $f(a_1) \leq_B f(a_2)$. An \textbf{order isomorphism} is a bijective order homomorphism whose inverse is also an order homomorphism (i.e. the POSs have identical order). That is, $b_1 \leq_B b_2$ implies $f^{-1}(b_1) \leq_A f^{-1}(b_2)$.
 \end{defn}
 
 \begin{defn}[Well-order]
-	A \textbf{well-ordered} \marginleft{Well-order} set is a linearly ordered set $(A, \leq_A)$ where each subset has a least element. That is, for every $B \subseteq A$, there exists an $a \in B$ such that $a \leq_A b$ for all $b \in B$. Let $A$ and $B$ be two well ordered set, we say $A$ \textbf{has lower ordinality than} $B$, noted $A \ordleq B$, if $A$ is order isomorphic to an initial segment of $B$. They have \textbf{the same ordinality}, noted $A \ordeq B$, if they are order isomorphic.
+	A \textbf{well-ordered} \marginleft{Well-order} set is a linearly ordered set $(A, \leq_A)$ where each subset has a least (i.e. first) element. That is, for every $B \subseteq A$, there exists an $a \in B$ such that $a \leq_A b$ for all $b \in B$. Let $A$ and $B$ be two well ordered set, we say $A$ \textbf{has lower ordinality than} $B$, noted $A \ordleq B$, if $A$ is orderwise identical to the beginning of $B$. That is, $A$ is order isomorphic to an initial segment of $B$. They have \textbf{the same ordinality}, noted $A \ordeq B$, if they have the same order. That is, they are order isomorphic.
 \end{defn}
 
 \begin{prop}[Ordinality]
-	If $A$ and $B$ are two well ordered sets, then either $A \ordleq B$ or $B \ordleq A$. If $\mathcal{A}$ is a collection of well-ordered sets, then one element has least ordinality.
+	If $A$ and $B$ are two well ordered sets, one of them has lower cardinality than the other. That is, either $A \ordleq B$ or $B \ordleq A$. If $\mathcal{A}$ is a collection of well-ordered sets, then one element has least ordinality.
 \end{prop}
 
 \begin{remark}
-	Examples of well-ordered sets:
+	Simple examples of well-ordered sets:
 	\begin{itemize}
 		\item a finite sequence: $(a_1, a_2, ..., a_n)$
-		\item an infinite sequence: $(a_1, a_2, ..., a_n, ...)$
-		\item an infinite sequence with elements afterwards: $(a_1, a_2, ..., a_n, ..., b_1, b_2, ... , b_6)$
+		\item an infinite sequence: $(a_1, a_2, ...)$
+		\item an infinite sequence with elements afterwards: $(a_1, a_2, ..., b_1, b_2, ... , b_6)$
+		\item three infinite sequences, one after the other: $(a_1, a_2, ..., b_1, b_2, ... , c_1, c_2, ...)$
 	\end{itemize}
-	In a well-ordered set, every element always has an immediate successor, but not necessarily an infinite predecessor (e.g. $b_1$ in the third example). 
-\end{remark}
-
-\begin{remark}
-	Ordinal numbers generalize the construction of von Neumann ordinals and cover all possible positions in well-ordered sets.
+	In a well-ordered set, every element always has an immediate successor, but not necessarily an infinite predecessor (e.g. $b_1$ in the third example).
 \end{remark}
 
 \begin{defn}[Ordinals]
-	An \textbf{ordinal} \marginleft{Ordinals: \ordinals} is a set $A$ with the following properties for all $a, b, c \in A$:
+	An \textbf{ordinal} \marginleft{Ordinals: \ordinals} is a set $A$ that includes the previous and only the previous ordinals. That is, for all elements $a, b, c \in A$ (i.e. previous ordinals of $A$):
 	\begin{enumerate}
-		\item $a \notin a$
-		\item $a \in b$ implies $b \notin a$
-		\item $a \in b$ and $b \in c$ implies $a \in c$
-		\item $x \in a$ implies $x \in A$
+		\item $a \notin a$ (each previous ordinal is not before itself)
+		\item $a \in b$ implies $b \notin a$ (if a previous ordinal is before another, then the latter is not before the former)
+		\item $a \in b$ and $b \in c$ implies $a \in c$ (previous ordinals are transitive)
+		\item $x \in a$ implies $x \in A$ (an ordinal before a previous ordinal is a previous ordinal)
 	\end{enumerate}
 	We note $\ordinals$ as the class of all ordinals.
 \end{defn}
 
-\begin{prop}[Ordinals are well-ordered]
-	Let $a \in \ordinals$ be an ordinal. Then $(a, \in)$ is a well-ordered set.
-\end{prop}
-
-\begin{prop}[Ordinality of a well-ordered set]
-	For every \marginleft{$\langle A \rangle$} well-ordered set $A$ there is a unique $\langle A \rangle \in \cardinals$ such that $a \ordeq A$. We say $\langle A \rangle$ is the \textbf{ordinality of $A$}. The natural numbers are the initial segment of the ordinals. $\omega$ is the ordinal associated with the natural numbers.
+\begin{prop}[Natural numbers are ordinals]
+	The natural numbers are ordinals. That is, $\mathbb{N} \subset \ordinals$.
 \end{prop}
 
 \begin{remark}
-	As an example, consider the von Neumann ordinal $3 = (0, 1, 2)$ as a well-ordered set. We can see it as a sequence of three element, which means the last is the third. Similarly, the ordinality of the set $(a_1, a_2, a_3)$ is $3 = (0, 1, 2)$ as they define well-ordered set with the same ordering. The definitions are such that these ideas extend to infinite sets.
+	Ordinal numbers so defined generalize the construction of von Neumann ordinals (i.e. a natural number is a set that includes all previous natural numbers) to all possible well-orders.
+\end{remark}
+
+\begin{prop}[Ordinals are well-ordered]
+	All ordinals are well-ordered sets. That is, for each $A \in \ordinals$, $(A, \leq_A)$ is a well-ordered set where $a \leq b$ if either $a \in b$ or $a = b$.
+\end{prop}
+
+\begin{prop}[Well-orders are ordinals]
+	For every \marginleft{$\langle A \rangle$} well-ordered set $A$ there is a unique ordinal that fully characterizes its order. That is, there is a unique $\langle A \rangle \in \cardinals$ such that $a \ordeq A$. We say $\langle A \rangle$ is the \textbf{ordinality of $A$}.
+\end{prop}
+
+\begin{remark}
+	As an example, consider the von Neumann ordinal $3 = (0, 1, 2)$ as a well-ordered set. Similarly, the ordinality of the well-ordered set $(a_1, a_2, a_3)$ is $3 = (0, 1, 2)$ as share the same ordering. The definitions are such that these ideas extend to infinite sets.
 \end{remark}
 
 \begin{defn}[Ordinal addition]
-	Let $(A, \leq_A)$ \marginleft{Ordinal addition: $\langle A \rangle + \langle B \rangle$} and $(B, \leq_B)$ be two well ordered sets. Let $(A \sqcup B, \leq)$ be the POS where:
+	The addition \marginleft{Ordinal addition: $\langle A \rangle + \langle B \rangle$} of two ordinals is defined by concatenating the first order with the second. Let $(A, \leq_A)$ and $(B, \leq_B)$ be two well ordered sets. Let $(A \sqcup B, \leq)$ be the POS where:
 	\begin{itemize}
 		\item $(A, a_1) \leq (A, a_2)$ if $a_1 \leq_A a_2$
 		\item $(B, b_2) \leq (B, b_2)$ if $b_1 \leq_B b_2$
@@ -615,11 +623,11 @@ For infinite sets, cardinals and ordinals are different since sets of the same i
 %\end{prop}
 
 \begin{remark}
-	Addition in non-commutative (i.e. $\langle A \rangle + \langle B \rangle \neq \langle B \rangle + \langle A \rangle$) for infinite ordinals. For example $(a_1, a_2, ..., a_n, ...) \sqcup (b_1, b_2, b_3) = (a_1, a_2, ..., a_n, ..., b_1, b_2, b_3)$ is not the same as $(b_1, b_2, b_3) \sqcup (a_1, a_2, ..., a_n, ...) = (b_1, b_2, b_3, a_1, a_2, ..., a_n, ...) \simeq (c_1, c_2, ..., c_n, ...)$. Therefore $\omega + 3 \neq 3 + \omega = \omega$.
+	Addition in non-commutative (i.e. $\langle A \rangle + \langle B \rangle \neq \langle B \rangle + \langle A \rangle$) for infinite ordinals. For example $(a_1, a_2, ...) \sqcup (b_1, b_2, b_3) = (a_1, a_2, ..., b_1, b_2, b_3)$ is not the same as $(b_1, b_2, b_3) \sqcup (a_1, a_2, ...) = (b_1, b_2, b_3, a_1, a_2, ...) \ordeq (c_1, c_2, ...)$. Therefore $\omega + 3 \neq 3 + \omega = \omega$.
 \end{remark}
 
 \begin{defn}[Ordinal multiplication]
-	Let $(A, \leq_A)$ \marginleft{Ordinal multiplication: $\langle A \rangle \langle B \rangle$} and $(B, \leq_B)$ be two well ordered sets. Let $(A \times B, \leq)$ be the POS where:
+	The multiplication \marginleft{Ordinal multiplication: $\langle A \rangle \langle B \rangle$} of two ordinals is defined by ordering their Cartesian product. Let $(A, \leq_A)$  and $(B, \leq_B)$ be two well ordered sets. Let $(A \times B, \leq)$ be the POS where:
 	\begin{itemize}
 		\item $(a_1, b_1) \leq (a_2, b_2)$ if $b_1 \leq_B b_2$
 		\item $(a_1, b) \leq (a_2, b)$ if $a_1 \leq_A a_2$
@@ -641,10 +649,12 @@ For infinite sets, cardinals and ordinals are different since sets of the same i
 %\end{prop}
 
 \begin{remark}
-	Muliplication is non-commutative (i.e. $\langle A \rangle \langle B \rangle \neq \langle B \rangle \langle A \rangle$) for infinite ordinals. For example $(a_1, a_2, ..., a_n, ...) \times (b_1, b_2) = ((a_1, b_1), (a_2, b_1), ..., (a_n, b_1), ..., \\ (a_1, b_2), (a_2, b_2), ..., (a_n, b_2), ...)$ is not the same as $(b_1, b_2) \times (a_1, a_2, ..., a_n, ...) = ((b_1, a_1), (b_2, a_1), (b_1, a_2), (b_2, a_2), ..., (b_1, a_n), (b_2, a_n), ...) \simeq (c_1, c_2, ..., c_n, ...)$. \\ Therefore $\omega 2 \neq 2 \omega = \omega$.
+	Muliplication is non-commutative (i.e. $\langle A \rangle \langle B \rangle \neq \langle B \rangle \langle A \rangle$) for infinite ordinals. For example $(a_1, a_2, ...) \times (b_1, b_2) = ((a_1, b_1), (a_2, b_1), ..., (a_1, b_2), (a_2, b_2), \\...)$ is not the same as $(b_1, b_2) \times (a_1, a_2, ..., a_n, ...) = ((b_1, a_1), (b_2, a_1), (b_1, a_2), \\ (b_2, a_2), ...) \ordeq (c_1, c_2, ...)$. Therefore $\omega 2 \neq 2 \omega = \omega$.
 	
-	With addition and multiplication, we can get a sense of how the ordinals work. $\omega$ represents a countable sequence. $\omega +3$ is a countable sequence followed by three elements. $\omega + \omega  = \omega2$ represents a countable sequence followed by a countable sequence. $\omega6$ represents a sequence of 6 countable sequences. $\omega\omega = \omega^2$ represents a countable sequence of countable sequences. $\omega^3$ represents a countable sequence of countable sequences of countable sequences. $\omega^\omega$ extends the recursion infinitely many times and so on. There is no upper limit to the ordinals.
+	With addition and multiplication, we can get a sense of how the ordinals work. $\omega$ represents a countable sequence (i.e. $\omega = (0, 1, 2, ...) = (\mathbb{N}, \leq)$). $\omega +3$ is a countable sequence followed by three elements. $\omega + \omega  = \omega2$ represents a countable sequence followed by a countable sequence. $\omega6$ represents a sequence of 6 countable sequences. $\omega\omega = \omega^2$ represents a countable sequence of countable sequences. $\omega^3$ represents a countable sequence of countable sequences of countable sequences. $\omega^\omega$ extends the recursion infinitely many times and so on. There is no upper limit to the ordinals.
 \end{remark}
+
+\subsection{Cardinal numbers}
 
 \begin{remark}
 	The cardinality of a set (i.e. how many elements it contains) is defined in terms of injection/bijection: a set is smaller than another if it can be injected into it, and it is as big as another if it can be put into a one-to-one correspondence.
@@ -655,7 +665,7 @@ For infinite sets, cardinals and ordinals are different since sets of the same i
 \end{defn}
 
 \begin{prop}[Cardinal comparability of sets]
-	Given two sets $A$ and $B$, either $A \crdleq B$ or $B \crdleq A$ one must have lower cardinality than the other (i.e. there exists an injective function from one two the other). Additionally, $A \crdeq B$ if and only if $A \crdleq B$ and $B \crdleq A$ (i.e. there exists a bijective function between $A$ and $B$ only if there exists an injective function in both direction).
+	Given two sets $A$ and $B$, one must have lower cardinality than the other. That is, either $A \crdleq B$ or $B \crdleq A$. Additionally, there exists a bijective function between $A$ and $B$ only if there exists an injective function in both direction. That is, $A \crdeq B$ if and only if $A \crdleq B$ and $B \crdleq A$.
 \end{prop}
 
 \begin{prop}[Well-ordering theorem]
@@ -667,14 +677,65 @@ For infinite sets, cardinals and ordinals are different since sets of the same i
 \end{remark}
 
 \begin{defn}[Cardinal number]
-	A \textbf{cardinal}  \marginleft{Cardinals: $\cardinals$} is an ordinal $a \in \ordinals$ that has lower ordinality of any ordinal that has the same cardinality. That is, $a \ordleq b$ for all $b \in \ordinals$ such that $a \crdeq b$. The set of all cardinals is noted $\cardinals \subset \ordinals$.
+	A \textbf{cardinal}  \marginleft{Cardinals: $\cardinals$} is an ordinal $a \in \ordinals$ that has lower ordinality of any ordinal that has the same cardinality. That is, $a \ordleq b$ for all $b \in \ordinals$ such that $a \crdeq b$. The set of all cardinals is noted $\cardinals$ and, by definition $\cardinals \subset \ordinals$.
 \end{defn}
 
 \begin{prop}[Cardinality of a set]
-	For every \marginleft{$|A|$} set $A$ there is a unique $|A| \in \cardinals$ such that $a \crdeq A$. We say $|A|$ is the \textbf{cardinality of $A$}.
+	For every \marginleft{$|A|$} set $A$ there is a unique cardinal that identifies the cardinality of $A$. That is, there exists a unique $|A| \in \cardinals$ such that $a \crdeq A$. We say $|A|$ is the \textbf{cardinality of $A$}.
 \end{prop}
 
+\begin{prop}[Cantor's theorem]
+	A set has strictly lower cardinality than its power set. That is, $|A| < |\mathcal{P}(A)|$. If $a = |A|$ then we note $|\mathcal{P}(A)| = 2^a$
+\end{prop}
+
+\begin{prop}[Aleph numbers]
+	The cardinality \marginleft{Aleph \\numbers: $\aleph_a$} of infinite sets are well-ordered. They are noted $\aleph_a$ where $a \in \ordinals$.
+\end{prop}
+
+\begin{defn}[Aleph-nought]
+	The smallest infinite cardinal \marginleft{$\aleph_0$} $\aleph_0$ denotes countable infinity.
+\end{defn}
+
+\begin{defn}[Cardinality of continuum]
+	The cardinality \marginleft{Continuum: $2^{\aleph_0}$} of the continuum is the cardinality of the powerset of a countable set $2^{\aleph_0}$.
+\end{defn}
+
 \begin{remark}
+	Sets that have countable cardinality:
+	\begin{itemize}
+		\item natural $\mathbb{N}$, integer $\mathbb{Z}$ and rational $\mathbb{Q}$ numbers 
+		\item ordinals such as $\omega$, $\omega + 3$, $\omega2$, $\omega^\omega$
+	\end{itemize}
+	Sets that have cardinality of the continuum:
+	\begin{itemize}
+		\item powerset of natural, integers and rationals: $\mathcal{P}(\mathbb{N})$, $\mathcal{P}(\mathbb{Z})$, $\mathcal{P}(\mathbb{Q})$
+		\item real $\mathbb{R}$ and complex $\mathbb{C}$ numbers
+		\item real and complex euclidean spaces: $\mathbb{R}^n$, $\mathbb{C}^n$
+		\item continuous function over euclidean spaces: $C(\mathbb{R}^n, \mathbb{R}^m)$
+		\item standard topology and Borel algebra on $\mathbb{R}^n$ (i.e. the set of open sets and Borel set respectively)
+		\item countable sequences of numbers: $\mathbb{N}^\mathbb{N}$, $\mathbb{Z}^\mathbb{N}$, $\mathbb{Q}^\mathbb{N}$, $\mathbb{R}^\mathbb{N}$, $\mathbb{C}^\mathbb{N}$
+	\end{itemize}
+	Sets that have cardinality greater than the continuum:
+	\begin{itemize}
+		\item powerset of the real and complex numbers: $\mathcal{P}(\mathbb{R})$, $\mathcal{P}(\mathbb{C})$
+		\item set of all functions from $\mathbb{R}^n$ to $\mathbb{R}^m$
+	\end{itemize}
+\end{remark}
+
+\begin{defn}[Aleph-one]
+	Let $\Omega$ \marginleft{$\aleph_1$} be the set of all countable ordinal numbers. Its cardinality $|\Omega| = \aleph_1$ is the second aleph number.
+\end{defn}
+
+\begin{remark}
+	 While it can be proven that the cardinality of the continuum $2^{\aleph_0}$, yet which one is undetermined.
+\end{remark}
+
+\begin{axiom}[Continuum hypothesis]
+	There is \marginleft{Continuum hypothesis} not infinite set with cardinality in between that of the continuum and countable infinity. That is: $2^{\aleph_0} = \aleph_1$.
+\end{axiom}
+
+\begin{remark}
+	The continuum hypothesis is proven to be independent on the axioms of set theory and is therefore an additional optional axiom.
 \end{remark}
 
 \section{Axiomatic set theory}
