@@ -19,17 +19,13 @@
 \def\ordinals{\textbf{ORD}}
 \def\cardinals{\textbf{CRD}}
 
-\def\ordless{\prec}
 \def\ordleq{\preceq}
 \def\ordeq{\sim}
 \def\ordgeq{\succeq}
-\def\ordgtr{\succ}
 
-\def\crdless{\sqsubset}
 \def\crdleq{\hookrightarrow}
 \def\crdeq{\leftrightarrow}
 \def\crdgeq{\hookleftarrow}
-\def\crdgtr{\sqsupset}
 
 
 \title{Bare minimum: set theory}
@@ -43,10 +39,6 @@
 \begin{abstract}
 This note presents a condensed summary of set theory which can function as a crash course, refresher and/or reference. Bare minima are meant to give a rough overview, by no means complete, of the subject to the intellectually curious, particularly in the context of foundational questions in physics. This work is part of Assumptions of Physics (\url{https://assumptionsofphysics.org}), a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived.
 \end{abstract}
-
-Ordinal: $\ordless \ordleq \ordeq \ordgeq \ordgtr$
-
-Cardinal: $\crdless \crdleq \crdeq \crdgeq \crdgtr$
 
 
 \section{Introduction}
@@ -88,7 +80,7 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{defn}
 
 \begin{defn}[Power set]
-	Given a set $A$, its \textbf{power set}, \marginleft{Power set:\\ $\mathcal{P}(A)$, $2^{A}$} noted $\mathcal{P}(A)$ or $2^{A}$, is the set of all subsets of $A$. That is, $\mathcal{P}(A) = \{B \, | \, B \subset A \}$.
+	Given a set $A$, its \textbf{power set}, \marginleft{Power set:\\ $\mathcal{P}(A)$, $2^{A}$} noted $\mathcal{P}(A)$ or $2^{A}$, is the set of all subsets of $A$. That is, $\mathcal{P}(A) = \{B \, | \, B \subseteq A \}$.
 \end{defn}
 
 \marginright{
@@ -201,10 +193,14 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 	Let $A$ and $B$ be two sets. The disjoint union $A \sqcup B$ is the union where the elements of the sets are always treated as distinct. That is, $A \sqcup B = \{A\} \times A \cup \{B\} \times B$.
 \end{defn}
 
+\begin{remark}
+	Ordered pairs and disjoint unions exemplify the effort in set theory to construct \emph{all object} starting from the primitives of set and set inclusion.
+\end{remark}
+
 \subsection{Relations and functions}
 
 \begin{remark}
-	Relations provide a common foundation for functions (i.e. the relation is the set of pairs $(x, f(x))$), equivalences and order (i.e. the relation is the set of pairs $(a, b)$ such that $a=b$ or $a\leq b$ respectively). This is an example of highly fruitful generalization.
+	Relations provide a common foundation for functions (i.e. the relation is the set of pairs $(x, f(x))$), equivalences and order (i.e. the relation is the set of pairs $(a, b)$ such that $a=b$ or $a\leq b$ respectively). This exemplifies the effort in set theory to find general structures.
 \end{remark}
 
 \marginright{~\\
@@ -298,7 +294,7 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 	
 }
 \begin{defn}[Binary relation]
-	Given a set $A$, \marginleft{Binary\\ relation} called \textbf{domain}, and a set $B$, called \textbf{codomain}, a \textbf{binary relation} is a set $R \subseteq A \times B$ of ordered pairs. We say $a$ is \textbf{$R$-related} to $b$, noted $aRb$ if $(a,b) \in R$. If $A=B$ (i.e. domain and codomain coincide) the relation is said \textbf{homogeneous}, \textbf{heterogeneous} if not.
+	Given a set $A$, \marginleft{Binary\\ relation: $aRb$} called \textbf{domain}, and a set $B$, called \textbf{codomain}, a \textbf{binary relation} is a set $R \subseteq A \times B$ of ordered pairs. We say $a$ is \textbf{$R$-related} to $b$, noted $aRb$ if $(a,b) \in R$. If $A=B$ (i.e. domain and codomain coincide) the relation is said \textbf{homogeneous}, \textbf{heterogeneous} if not.
 \end{defn}
 
 	
@@ -310,14 +306,14 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 
 
 \begin{defn}[Converse relationship]
-	Given a relationship  \marginleft{Converse: $R^{-1}$} $R$ between $A$ and $B$, the \textbf{converse} or \textbf{inverse} relationship $R^{-1}$ is the relationship where the order of the pairs is inverted. That is, $R^{-1} = \{ (b, a) \, | \, (a, b) \in R\}$.
+	Given a relationship  \marginleft{Converse: $R^{-1}$} $R$ between $A$ and $B$, the \textbf{converse} or \textbf{inverse} relationship $R^{-1} \subseteq B \times A$ is the relationship where the order of the pairs (i.e. domain and codomain) is inverted. That is, $R^{-1} = \{ (b, a) \, | \, (a, b) \in R\}$.
 \end{defn}
 
 \begin{defn}[Relation properties]
 	Let $R$ \marginleft{Relation properties} be a binary relation between $A$ and $B$. We define the following properties:
 	\begin{description}
-		\item[Functional or right-unique.] An element $a \in A$ is related to at most one element $b \in B$. That is, if $aRb$ and $cRb$ then $a = c$.
-		\item[Injective or left-unique.] An element $b \in B$ is related to at most one element $a \in A$. That is, if $aRb$ and $aRc$ then $b = c$.
+		\item[Functional or right-unique.] An element $a \in A$ is related to at most one element $b \in B$. That is, if $aRb$ and $aRc$ then $b = c$.
+		\item[Injective or left-unique.] An element $b \in B$ is related to at most one element $a \in A$. That is, if $aRb$ and $cRb$ then $a = c$.
 		\item[Serial or left-total.] Every element $a \in A$ is related to at least one element $b \in B$. That is, for each $a \in A$ there exists at least one $b \in B$ such that $aRb$. In this case, the preimage of $R$ is the whole $A$.
 		\item[Surjective or right-total.] Every element $b \in B$ is related to at least one element $a \in B$. That is, for each $b \in B$ there exists at least one $a \in A$ such that $aRb$. In this case, the image of $R$ is the whole $B$.
 	\end{description}
@@ -340,16 +336,20 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 	Note that the domain and the codomain can be any set, including scalar products. Therefore $f : \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ for which $(x,y) \mapsto \sqrt{x^2 + y^2}$ gives us the Euclidean norm of a two dimensional vector.
 \end{remark}
 
-\begin{defn}
-	Let $f : A \to B$ be a function. This induces a relation $f : \mathcal{P}(A) \to \mathcal{P}(B)$ that associates each subset of $A$ to its image and a relation $f^{-1} : \mathcal{P}(B) \to \mathcal{P}(A)$ that associates each subset of $B$ with its reverse image.
+\begin{defn}[Identity function]
+	Given a set $A$, \marginleft{Identity: $\Id_A$} the identity function $\Id_A : A \to A$ is the function such that $\Id_A(a) = a$ for all $a \in A$.
 \end{defn}
 
-\begin{defn}[Level set]
-	A level set \marginleft{Level set} of a function $f : A \to B$ is a set of where the function takes a given value $b$. In other words the reverse image $f^{-1}(\{c\})$ a singleton.
+\begin{prop}[Inverse function]
+	Let $f : A \to B$ \marginleft{Inverse: $f^{-1}$} be a function. The corresponding converse relationship $f^{-1}$ is a function if and only if $f$ is bijective. In this case $f^{-1} : B \to A$ is also bijective and is called the \textbf{inverse} of $f$.
+\end{prop}
+
+\begin{defn}[Image/preimage functions]
+	Let $f : A \to B$ \marginleft{$f(X), f^{-1}(Y)$} be a function. This induces a relation $f : \mathcal{P}(A) \to \mathcal{P}(B)$ that associates each subset of $A$ to its image and a relation $f^{-1} : \mathcal{P}(B) \to \mathcal{P}(A)$ that associates each subset of $B$ with its preimage.
 \end{defn}
 
-\begin{prop}
-	The induces relations $f : \mathcal{P}(A) \to \mathcal{P}(B)$ and $f^{-1} : \mathcal{P}(B) \to \mathcal{P}(A)$ are functions and satisfy the following properties:
+\begin{prop}[Properties of image/preimage functions]
+	The induced relations $f : \mathcal{P}(A) \to \mathcal{P}(B)$ and $f^{-1} : \mathcal{P}(B) \to \mathcal{P}(A)$ are functions and satisfy the following properties:
 	\begin{enumerate}
 		\item $f(\bigcup\limits_{A \in \mathcal{A}} A) = \bigcup\limits_{A \in \mathcal{A}} f(A)$
 		\item $f^{-1}(\bigcup\limits_{A \in \mathcal{A}} A) = \bigcup\limits_{A \in \mathcal{A}} f^{-1}(A)$
@@ -358,24 +358,20 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{prop}
 
 \begin{remark}
-	With abuse of notation, $f$ and$f^{-1}$ indicate both the function between elements and sets. The image of the intersection is not in general the intersection of the image. Note how in both topology and measure theory continuity and measurability are defined based on the reverse images.
+	With abuse of notation, $f$ and $f^{-1}$ indicate both the function between elements and sets. Note that $f^{-1} : \mathcal{P}(B) \to \mathcal{P}(A)$ always exists even if $f$ is not bijective. Also note that the image of the intersection is not in general the intersection of the image, and how maps that preserve set theoretic structures (e.g. topologies and $\sigma$-algebras) are defined based on reverse images.
 \end{remark}
 
-\begin{defn}[Identity function]
-	Given a set $A$, \marginleft{Identity: $\Id_A(a)$} the identity function $\Id_A : A \to A$ is the function such that $\Id_A(a) = a$ for all $a \in A$.
+\begin{defn}[Fiber]
+	Given \marginleft{Fiber} a function $f : A \to B$, the A \textbf{fiber of $b \in B$ under $f$} is the subset of $A$ of where the function takes the value $b$. That is, the reverse image $f^{-1}(\{b\})$ of the singleton. Fibers over real functions are also called \textbf{level sets}.
 \end{defn}
 
-
-\begin{prop}[Inverse function]
-	Let $f : A \to B$ \marginleft{Inverse: $f^{-1}$} be a function. The corresponding converse relationship $f^{-1}$ is a function if and only if $f$ is bijective. In this case $f^{-1} : B \to A$ is also bijective and is called the \textbf{inverse} of $f$.
-\end{prop}
 
 \begin{defn}[Restriction]
 	Let $f : A  \to B$ \marginleft{Restriction: $f|_C$} be a function and let $C \subseteq B$. Then the \textbf{restriction of $f$ over $C$} is the function $f|_C : C \to B$ such that $f|_C(c) = f(c)$.
 \end{defn}
 
 \begin{defn}[Composition]
-	Let $A$, $B$ and $C$ \marginleft{Function and relation composition: $R \circ S$, $f \circ g$} be three sets. Let $R$ be a binary relationship between $A$ and $B$ and $S$ be a binary relationship between $B$ and $C$. Then the \textbf{composition of $R$ and $S$}, noted $S \circ R$, is the binary relationship between $A$ and $C$ such that $(a, c) \in S \circ R$ if we can find $b \in B$ such that $aRb$ and $bSc$.
+	Let $A$, $B$ and $C$ \marginleft{Function and relation composition: $R \circ S$, $f \circ g$} be three sets. Let $R$ be a binary relationship between $A$ and $B$ and $S$ be a binary relationship between $B$ and $C$. Then the \textbf{composition of $R$ and $S$} is the binary relationship $S \circ R \subseteq A \times C$ between $A$ and $C$ such that $(a, c) \in S \circ R$ if we can find $b \in B$ such that $aRb$ and $bSc$.
 \end{defn}
 
 \begin{remark}
@@ -402,15 +398,22 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{prop}
 
 \begin{remark}
-	The notation is due to the cardinality. If $|A| = n$ and $|B| = m$, each function is given by choosing an element of $B$ for each element of $A$, that is $m$ choices $n$ times, that is $m^n$. The power set is noted $2^A$ because each subset can be identified by a function $U : A \to \{0 , 1\}$, where $f(a)=0$ corresponds to $a \notin U$ and $f(a)=0$ corresponds to $b \in U$.
+	The notation for function sets is due to the cardinality. If $A$ has $n$ elements and $|B|$ has $m$ elements, each function is given by choosing an element of $B$ for each element of $A$, that is $m$ choices $n$ times, that is $m^n$. The power set is noted $2^A$ because each subset can be identified by a function $U : A \to \{0 , 1\}$, where $f(a)=0$ corresponds to $a \notin U$ and $f(a)=0$ corresponds to $b \in U$.
 \end{remark}
 
-TODO: add definition of set closed under operation
+\begin{defn}[Set closure under operations]
+	Let $f : A_1 \times A_2 \times ... \times A_n \to B$ be an $n$-ary function. We say a set \textbf{$A$ is closed under $f$} if whenever the function is applied to elements of $A$ returns an element of $A$. That is, $A \subseteq A_i$ for all $1\leq i \leq n$, $A \subset B$ and $f(A, A, ..., A) \subseteq A$.
+\end{defn}
+
+\begin{remark}
+	For example, integers are closed under addition, subtraction and multiplication but are not closed under division. Most mathematical structures (groups, topologies, $\sigma$-algebra, vector spaces, ...) define sets closed under some operations.
+\end{remark}
+
 
 \subsection{Indexed families and sequences}
 
 \begin{defn}[Families]
-	An \textbf{indexed family}, \marginleft{Families, sequences: $\{x_i\}_{i \in I}$, $\{x_i\}_{i=1}^{\infty}$} or simply a \textbf{family}, $\{x_i\}_{i \in I}$ is a collection of elements identified by an \textbf{index set} $I$. More formally, an indexed family is a tuple $\langle X, I, x \rangle$ where $X$ and $I$ are sets and $x: I \to X$ is a function such that $i \mapsto x_i$. A \textbf{sequence} is an family for which the index set is a continuous interval of natural numbers. A \textbf{finite sequence} of $n$ elements is noted $\{x_i\}_{i=1}^{n}$ while an \textbf{infinite sequence} is noted $\{x_i\}_{i=1}^{\infty}$.
+	An \textbf{indexed family}, \marginleft{Families, sequences: $\{x_i\}_{i \in I}$, $\{x_i\}_{i=1}^{\infty}$} or simply a \textbf{family}, $\{x_i\}_{i \in I}$ is a collection of elements identified by an \textbf{index set} $I$. More formally, an indexed family is a tuple $\langle X, I, x \rangle$ where $X$ and $I$ are sets and $x: I \to X$ is a function such that $i \mapsto x_i$. A \textbf{sequence} is a family for which the index set is a continuous interval of natural numbers. A \textbf{finite sequence} of $n$ elements is noted $\{x_i\}_{i=1}^{n}$ while an \textbf{infinite sequence} is noted $\{x_i\}_{i=1}^{\infty}$.
 \end{defn}
 
 \begin{defn}[Operations on families of sets]
@@ -437,7 +440,7 @@ TODO: add definition of set closed under operation
 	\end{tikzpicture} 
 }
 \begin{defn}[Monotone sequence]
-	A \textbf{monotone sequence} \marginleft{Monotone sequence: \\ $A_1 \subseteq A_2 \subseteq ...$\\ $A_1 \supseteq A_2 \supseteq ...$} is a sequence of sets $\{A_i\}_{i=0}^{\infty}$ where each set is a superset (or subset) of the preceding. More specifically, we distinguish four cases:
+	A \textbf{monotone sequence} \marginleft{Monotone sequence: \\ $A_1 \subseteq A_2 \subseteq ...$\\ $A_1 \supseteq A_2 \supseteq ...$} is a sequence of sets $\{A_i\}_{i=0}^{\infty}$ where each set is a subset (or superset) of the preceding. More specifically, we distinguish four cases:
 	\begin{description}
 		\item[Increasing] when $A_i \subseteq A_{i+1}$ for all $i>0$
 		\item[Decreasing] when $A_i \supseteq A_{i+1}$ for all $i>0$
@@ -453,7 +456,7 @@ TODO: add definition of set closed under operation
 \subsection{Homogeneous relations, equivalences and orders}
 
 \begin{remark}
-	We will cover the notions of orders that are necessary for the definition of ordinals and cardinal numbers. Orders will treated more in detail in a Bare Minimum dedicated to order theory.
+	We will cover the notions of orders that are necessary for the definition of ordinals and cardinal numbers. Orders will be treated more in detail in a Bare Minimum dedicated to order theory.
 \end{remark}
 
 \begin{defn}[Homogeneous relation properties]
@@ -464,7 +467,7 @@ TODO: add definition of set closed under operation
 		\item[Symmetric.] If $a$ is related to $b$, then $b$ is related to $a$. That is, if $aRb$ then $bRa$.
 		\item[Antisymmetric.] If $a$ is related to $b$ and $b$ is related to $a$, then $a$ and $b$ are the same element. That is, if $aRb$ and $aRb$ then $a=b$.
 		\item[Transitive.] If $a$ is related to $b$ and $b$ is related to $c$, then $a$ is related to $c$. That is, if $aRb$ and $bRc$ then $aRc$.
-		\item[Total.] Given two distinct elements, one is related to the other.That is, given $a \neq b$, either $aRb$ or $bRa$.
+		\item[Total.] Given two distinct elements, one is related to the other.That is, given $a \neq b$, either $aRb$ or $bRa$. (This has no relation to left/right-total)
 	\end{description}
 	
 \end{defn}
@@ -486,10 +489,10 @@ TODO: add definition of set closed under operation
 
 
 \begin{defn}[Equivalence classes and quotient set]
-	Let $A$ \marginleft{Eq. classes and quotient set: \\ $[a]_{\sim}, a_{/\sim}, A_{/\sim}$} be a set and $\sim$ an equivalence relation on $A$. Let $a \in A$. The \textbf{equivalence class of $a$ by $\sim$} is the set $[a]_{\sim} = a_{/\sim} = \{b \in A \, | \, b \sim a \}$ of all the elements of $A$ equivalent to $a$. The \textbf{quotient set of $A$ by $\sim$} $A_{/\sim} = \{ a_{/\sim} \, | \, a \in A \}$ all of the equivalences classes by $\sim$.
+	Let $A$ \marginleft{Eq. classes and quotient set: \\ $[a]_{\sim}, a_{/\sim}, A_{/\sim}$} be a set and $\sim$ an equivalence relation on $A$. Let $a \in A$. The \textbf{equivalence class of $a$ by $\sim$} is the set $[a]_{\sim} = a_{/\sim} = \{b \in A \, | \, b \sim a \}$ of all the elements of $A$ equivalent to $a$. The \textbf{quotient set of $A$ by $\sim$} $A_{/\sim} = \{ a_{/\sim} \, | \, a \in A \}$  is the set of all of the equivalences classes by $\sim$.
 \end{defn}
 
-\begin{prop}
+\begin{prop}[Quotient sets are partitions]
 	Every quotient set is a partition, and every partition is a quotient set. That is, let $A$ be a set and $\sim$ an equivalence class, then $A_{/\sim}$ is a partition. Conversely, let $P$ be a partition of $A$, then $\sim \; = \{ (a,b) \, | \, a, b \in X \text{ for some } X \in P \} $ is an equivalence relation and $A_{/\sim} = P$.
 \end{prop}
 
@@ -506,11 +509,13 @@ TODO: add definition of set closed under operation
 	\end{description}
 \end{prop}
 
-%\begin{prop}[Set inclusion as ordering]
-%	Set inclusion \marginleft{$\subseteq$ and $\supseteq$ are partial orders} (either $\subseteq$ or $\supseteq$) is a partial order. Strict set inclusion (either $\subset$ or $\supset$) is a strict partial order.
-%\end{prop}
+\begin{remark}
+	All the above concepts are of general use in all areas of mathematics. Note that they are all constructed on two primitives: the notion of sets and of set inclusion.
+\end{remark}
 
-\subsection{Numeric constructions}
+
+
+\section{Numeric constructions}
 \begin{remark}
 	The constructions that follow exemplifies the standard way numbers are defines in mathematics and it is useful to gain certain insights. In the Assumptions of Physics, however, we prefer to understand numbers as order-theoretic concept (i.e. the integer numbers can be thought as a linearly ordered set where each element have an immediate successor and an immediate predecessor).
 \end{remark}
@@ -720,6 +725,8 @@ TODO: add definition of set closed under operation
 		\item powerset of the real and complex numbers: $\mathcal{P}(\mathbb{R})$, $\mathcal{P}(\mathbb{C})$
 		\item set of all functions from $\mathbb{R}^n$ to $\mathbb{R}^m$
 	\end{itemize}
+
+	We should note that all physically meaningful sets have at most the cardinality of the continuum. This is not a coincidence. In science we are interested in object that can be experimentally identified. Every experimental test can acquire finite information in finite time and, assuming arbitrarily long time, we can run at most countably many tests. Countable sequences of numbers have the cardinality of the continuum, which is therefore the best we can distinguish. Even if nature allows for wider variety, it would be merged into equivalence classes of objects that are experimentally indistinguishable. Much of issues of higher cardinals can therefore be safely set aside by those working on the Assumptions of Physics.
 \end{remark}
 
 \begin{defn}[Aleph-one]
@@ -730,12 +737,11 @@ TODO: add definition of set closed under operation
 	 While it can be proven that the cardinality of the continuum $2^{\aleph_0}$, yet which one is undetermined.
 \end{remark}
 
-\begin{axiom}[Continuum hypothesis]
+\textbf{Continuum hypothesis}
 	There is \marginleft{Continuum hypothesis} not infinite set with cardinality in between that of the continuum and countable infinity. That is: $2^{\aleph_0} = \aleph_1$.
-\end{axiom}
 
 \begin{remark}
-	The continuum hypothesis is proven to be independent on the axioms of set theory and is therefore an additional optional axiom.
+	The continuum hypothesis is proven to be independent on the axioms of set theory and is therefore an additional optional axiom. As the axiom deals with sets of cardinality lower than the continuum, this aspect of set theory may be interesting for those working on the Assumptions of Physics. It could be, in principle, that the distinguishable configurations in space-time have a cardinality that is neither countable nor that of the continuum.
 \end{remark}
 
 \section{Axiomatic set theory}
@@ -758,7 +764,7 @@ There are different approaches to the axiomatization of set theory with differen
 
 Another strategy, refered to as von Neumann–Bernays–Gödel (NBG), starts by defining classes and then defines sets as those classes that can be elements of classes. It avoids paradoxes by restricting set construction on predicates over elements. Since a proper class is not an element, if the definition creates a contradiction for an item $x$ (i.e. we have both $x \in S$ and $x \notin S$) than it must be that the element $x$ is a proper class.
 
-\textbf{Axioms}. Here are the axioms of a particular formulation of axiomatic set theory taken from CITE:
+\textbf{Axioms of set theory}. Here are the axioms of a particular formulation of axiomatic set theory taken from CITE:
 \begin{enumerate}
 	\item Axiom of extent. If two classes have the same elements, then they are identical.
 	\item Axiom of class construction. Let $P(x)$ be a predicate expressed in terms of the symbols $\in, \OR, \AND, \NOT, \Rightarrow, \exists, \forall$, brackets, variables $x, y, z, A, B, ...$ Then there exists a class $C$ that consists of all the elements x which satisfy $P(x)$.
@@ -773,26 +779,27 @@ Another strategy, refered to as von Neumann–Bernays–Gödel (NBG), starts by 
 	\item Axiom of infinity. There exists a successor set (as defined in \ref{defn_successor_set}).
 \end{enumerate}
 
-Cardinal numbers
-
-\begin{prop}[Well-ordering theorem]
-	Every set can be well-ordered.
-\end{prop}
-
-Define ordering by existence of injection.
-
-def equipotent set (bijective)
-
-prop no surjective funtion from a to P(A)
-
-talk about contiunuum hypo as example of work in set theory
-
 
 \begin{remark}
-	Axiom 1 serves to define class equality. Axiom 2 defines how to define classes based on predicates. Axioms 3-7 tells us that some classes, constructable by axiom 2, are sets. Axiom 8 guarantees that we cannot have an infinite sequences $\{ A_i \}_{i=1}^\infty$ such that $A_{i+1} \in A_i$. In particular, a set cannot be an element of itself. Axiom 9 tells us that any set that is ``smaller'' than a set (i.e. we can map another set onto it) is a set. Axiom 10 guarantees that we can always pick an element from a set, though it does not tell us how. Axiom 11 tells us that there are sets with infinite elements.
+	Axiom 1 serves to define class equality. Axiom 2 defines how to define classes based on predicates. Axioms 3-7 tells us that some classes, constructable by axiom 2, are sets. Axiom 8 guarantees that we cannot have an infinite sequences $\{ A_i \}_{i=1}^\infty$ such that $A_{i+1} \in A_i$. In particular, a set cannot be an element of itself. Axiom 9 tells us that any set that is ``smaller'' than a set (i.e. we can map another set onto it) is a set. Axiom 10 guarantees that we can always pick an element from a set, though it does not tell us how. Axiom 11 tells us that there are sets with infinite elements. Once the natural numbers are assumed to exist, higher cardinality of infinity can be constructed through, for example, the power set.
+	
+	A lot of work in set theory has been and is to clarify the relationship between the axioms, in particular which are independent from the others. The axiom of choice has been controversial for some time and therefore has been one of the most studied.
 \end{remark}
 
-Ugly elements of set theory: all mathematical objects are sets. Numbers are set.
+\begin{prop}
+	The following statements are equivalent:
+	\begin{itemize}
+		\item Axiom of choice: every set has a choice function
+		\item Well-ordering theorem: every set can be well ordered
+		\item Trichotomy: given two sets, either they have equal cardinality, or one has lower cardinality than the other
+		\item Zorn's lemma: every non-empty POS for which every chain (i.e. totally ordered subset) has an upper bound contains at least one maximal element
+		\item Every vector space has a basis
+	\end{itemize}
+\end{prop}
+
+\begin{remark}
+	It should be stressed that there are different approaches. Constructive set theory, as all constructive mathematics, rejects ``nonconstructive proofs'' in which the existence of an object is proved with no explicit algorithm as to how to constructive. This approach will, for example, exclude the axiom of choice. For those working on the Assumptions of Physics, then, it is important to understand that the foundations of math are not absolute. Therefore we have to understand the consequences of those choice and understand whether they are suitable for the foundations of physics.
+\end{remark}
 
 
 %\bibliographystyle{plain}
