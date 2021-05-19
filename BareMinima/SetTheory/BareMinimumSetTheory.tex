@@ -19,6 +19,7 @@
 \def\ordinals{\textbf{ORD}}
 \def\cardinals{\textbf{CRD}}
 
+\def\ordless{\prec}
 \def\ordleq{\preceq}
 \def\ordeq{\sim}
 \def\ordgeq{\succeq}
@@ -190,7 +191,7 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{defn}
 
 \begin{defn}[Disjoint union]
-	Let $A$ and $B$ be two sets. The disjoint union $A \sqcup B$ is the union where the elements of the sets are always treated as distinct. That is, $A \sqcup B = \{A\} \times A \cup \{B\} \times B$.
+	Let $A$ and $B$ be two sets. The disjoint union $A \sqcup B$ is the union where the elements of the sets are always treated as distinct. That is, given $A \sqcup B = \{0\} \times A \cup \{1\} \times B$.
 \end{defn}
 
 \begin{remark}
@@ -513,17 +514,87 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 	All the above concepts are of general use in all areas of mathematics. Note that they are all constructed on two primitives: the notion of sets and of set inclusion.
 \end{remark}
 
+\section{Axiomatic set theory}
 
+Axiomatic set theory was introduced to eliminate some technical problems that would make naive set theory inconsistent. There is no single approach and there is no single set of axioms. For example, constructive set theory, as all constructive mathematics, rejects ``nonconstructive proofs'' in which the existence of an object is proved with no explicit algorithm as to how to construct it. This will lead to different choices than the ones outlined here. Much of the work on the foundations of mathematics in set theory is to clarify the relationship between the axioms: which ones are required to get certain results, which ones are independent and which ones are inconsistent.
+
+This is an important insight for those working on the Assumptions of Physics: the foundations of mathematics are not absolute. We have to be conscious of the consequences of those choice and understand whether they are suitable for the foundations of physics.
+
+\subsection{Paradoxes}
+
+While they are generally called paradoxes, the following are really contradictions and that is why axiomatic set theory needs to avoid them. The first type of paradoxes to naive set theory arise from the use of natural language and the meaning of the words, typically when this is self-referential.
+
+\textbf{Berry's paradox}. Consider the expression ``the smallest positive integer not definable in under sixty letters.'' Given that there are only twenty-six letters in the English language, there are finitely many phrases under sixty letters and therefore only finitely many integers can be defined in under sixty letters. Therefore there are integers not definable under sixty letters and, since the integers are ordered, there will be a least one. However, the above expression contains fifty-seven letters. We have a contradiction.
+
+These type of paradoxes are solved by restricting to symbolic expressions of a formal language, such as predicate logic. The consequence is that, at the foundational level, mathematics does not keep track of what the symbols mean.
+
+The first type of paradoxes are purely logical, so they can be constructed in the formal system.
+
+\textbf{Russell's paradox}. Let $R$ be the set of all sets that contain themselves. That is, $R=\{ x \, | \, x \notin x\}$. Suppose $R \notin R$ then, by definition, $R \in R$. Suppose $R \in R$ then, by definition, $R \notin R$. We have a contradiction.
+
+These are solved by carefully specifying the rules that are allowed for the creation of sets, by picking the ``right'' axioms. Part of the solution revolves around the following concepts.
+
+%https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory
+
+%https://en.wikipedia.org/wiki/Von_Neumann–Bernays–Gödel_set_theory
+
+\subsection{Classes, sets and elements}
+
+A \textbf{class} \marginright{TODO: diagram with Classes, proper classes and sets.}  is any collection, therefore \textbf{sets are classes}. Some classes are not sets. These are called \textbf{proper classes} and are exactly the collections that cannot be elements of a class. Therefore, sets are classes that can be contained by other classes, while proper classes cannot. The difference between sets and proper classes is not in what they contain but in whether they can be contained. Proper classes are ``too large'' to be sets in the following sense: given a class $A$, if we can find a set $B$ that contains all elements of $A$, then $A$ will be a set as well. Therefore proper classes can never be subclasses of sets, they are bigger than all sets. The class of all sets, for example, is a proper class. So is the class of all cardinal numbers.
+
+Note that axiomatic set theory does not distinguish between objects that can or cannot contain other objects. All elements are classes, all element can, in principle, contain something. In fact, since equality of two objects coincides on whether they have the same elements, two objects must contain something different to be different. Numbers will be constructed as sets starting from the empty set. As a consequence, the proposition $3 \in 4$ is valid, and happens to be true if $3$ and $4$ are naturals, though it is not true if $3$ and $4$ are reals. From the perspective of the Assumptions of Physics, this is not great as the framework allows propositions that are not physically meaningful. Radical different approaches to the foundations of mathematics (e.g. through category theory) do not exhibit this particular problem, though they exhibit others (e.g. identity of an object can be defined only up to its relationships with other objects).
+
+\subsection{Axiomatization}
+
+One strategy for the axiomatization of set theory, refered to as Zermelo–Fraenkel (ZFC), only defines sets. It avoids paradoxes by restricting set construction to subsets only. Proper classes are not objects that live in the framework.
+
+Another strategy, refered to as von Neumann–Bernays–Gödel (NBG), starts by defining classes and then defines sets as those classes that can be elements of classes. It avoids paradoxes by restricting set construction on predicates over sets. Since a proper class cannot be an element, if the definition creates a contradiction for an item $x$ (i.e. we have both $x \in S$ and $x \notin S$) than it must be that the element $x$ is a proper class.
+
+The two approaches are proved to be equivalent.
+
+\textbf{Axioms of set theory}. Here are the axioms of a particular formulation of axiomatic set theory taken from CITE that follows NBG:
+\begin{enumerate}
+	\item Axiom of extent. If two classes have the same elements, then they are identical.
+	\item Axiom of class construction. Let $P(x)$ be a predicate expressed in terms of the symbols $\in, \OR, \AND, \NOT, \Rightarrow, \exists, \forall$, brackets, variables $x, y, z, A, B, ...$ Then there exists a class $C$ that consists of all the elements (i.e. sets) x which satisfy $P(x)$.
+	\item Every subclass of a set is a set.
+	\item $\emptyset$ is a set.
+	\item If $a$ and $b$ are sets, then $\{a, b\}$ is a set.
+	\item If $\mathcal{A}$ is a set of sets, then, $\bigcup\limits_{A \in \mathcal{A}} A$ is a set.
+	\item If $A$ is a set, the power set $\mathcal{P}(A)$ is a set.
+	\item Axiom of foundation. If $A \neq \emptyset$ is a set, there exists an element $a \in A$ such that $a \cap A = \emptyset$.
+	\item Axiom of replacement. If $A$ is a set and $f : A \to B$ is a surjective function, then $B$ is a set.
+	\item Axiom of choice. Every set has a choice function. That is, given a set $A$, there exists a function $f : \mathcal{P}(A) \setminus \{ \emptyset \} \to A$ such that $f(B) \in B$.
+	\item Axiom of infinity. There exists a successor set (as defined in \ref{defn_successor_set}).
+\end{enumerate}
+
+
+\begin{remark}
+	Axiom 1 serves to define class equality. Axiom 2 defines how to define classes based on predicates. Axioms 3-7 tells us that some classes, constructable by axiom 2, are sets. Axiom 8 guarantees that we cannot have an infinite sequences $\{ A_i \}_{i=1}^\infty$ such that $A_{i+1} \in A_i$. In particular, a set cannot be an element of itself. Axiom 9 tells us that any set that is ``smaller'' than a set (i.e. we can map another set onto it) is a set. Axiom 10 guarantees that we can always pick an element from a set, though it does not tell us how. Axiom 11 tells us that there are sets with infinite elements. Once the natural numbers are assumed to exist, higher cardinality of infinity can be constructed through, for example, the power set.
+\end{remark}
+
+The axiom of choice has been the focus of particular investigation as it has been regarded as controversial for some of its consequences. While most mainstream mathematicians accept it, constructive mathematics rejects the axiom of choice as it does not lead to constructive proofs: it claims some objects exist even though they may not even be expressible or computable. It also implies the law of excluded middle (i.e. a proposition is either true or not), which constructive mathematics rejects. What does or does not require the axiom of choice is therefore ample subject of study.
+
+\begin{prop}
+	The following statements are equivalent:
+	\begin{itemize}
+		\item Axiom of choice: every set has a choice function
+		\item Well-ordering theorem: every set can be well ordered
+		\item Trichotomy: given two sets, either they have equal cardinality, or one has lower cardinality than the other
+		\item Zorn's lemma: every non-empty poset (i.e. partially ordered set) for which every chain (i.e. totally ordered subset) has an upper bound contains at least one maximal element
+		\item Every vector space has a basis
+	\end{itemize}
+\end{prop}
 
 \section{Numeric constructions}
-\begin{remark}
-	The constructions that follow exemplifies the standard way numbers are defines in mathematics and it is useful to gain certain insights. In the Assumptions of Physics, however, we prefer to understand numbers as order-theoretic concept (i.e. the integer numbers can be thought as a linearly ordered set where each element have an immediate successor and an immediate predecessor).
-\end{remark}
+In set theory, numbers are defined to be sets with particular properties. These constructions are instructive to gain insights in the foundations of mathematics. Note that, for the Assumptions of Physics, we found more productive to understand numbers as order-theoretic concept (i.e. the integer numbers can be thought as a linearly ordered set where each element has an immediate successor and an immediate predecessor).
+
+\subsection{Standard numbers}
+
 \begin{defn}\label{defn_successor_set}
-	Let $A$ be a set. We define the \textbf{successor} $A^+ = A \cup \{A\}$. A set $S$ is called a \textbf{successor set} if it contains the empty set (i.e. $\emptyset \in S$ and if contains the successor of every element (i.e. if $X \in S$ then $X^+ \in S$). The set of \textbf{natural numbers} $\mathbb{N}$ is the intersection of all successor sets.
+	Let $A$ be a set. We define the \textbf{successor} $A^+ = A \cup \{A\}$. A set $S$ is called a \textbf{successor set} if it contains the empty set (i.e. $\emptyset \in S$ and if contains the successor of every element (i.e. if $X \in S$ then $X^+ \in S$). The set of \textbf{natural numbers} $\mathbb{N}$ is the intersection of all successor sets. The set of \textbf{positive naturals} is $\mathbb{N}^+ = \mathbb{N} \setminus \{ \emptyset \}$.
 \end{defn}
 \begin{remark}
-	The natural numbers so constructed are known as von Neumann ordinals. They are as follows:
+	The previous set exists only because one of the axioms tells us it does. The opposite axiom can be consistently chosen. The natural numbers so constructed are known as von Neumann ordinals. They are as follows:
 	\begin{itemize}
 		\item $0 = \{ \} = \emptyset$
 		\item $1 = \{ 0 \} = \{ \emptyset \}$
@@ -535,27 +606,40 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 	It can be shown that they obey Peano's axioms, another common way to axiomatize the natural numbers and their arithmetic.
 \end{remark}
 
-\section{Transfinite (i.e. infinite) numbers}
+\begin{defn}
+	The \textbf{integers} can be defined from the natural number as an ordered pair of sign and value. That is, $\mathbb{Z} = \{ 0 \} \times \mathbb{N} \cup \{ 1 \} \times \mathbb{N}^+$.
+\end{defn}
+
+\begin{defn}
+	The \textbf{rationals} can be defined from the integers number as the equivalence class that leads to the same simplification. That is, let $Q = \mathbb{Z} \times \mathbb{Z}$ be all pairs of integers. Let $\sim \, \subset Q \times Q$ be an equivalence relation such that $(a_1, b_1) \sim (a_2, b_2)$ if and only if $a_1 b_2 = a_2 b_1$ (i.e. the pairs are proportional). The set of rationals is $\mathbb{Q} = Q_{/\sim}$. Given two integers $a, b \in \mathbb{Z}$, the rational number $\frac{a}{b}$ is the equivalence class $[(a,b)]_{\sim}$.
+\end{defn}
+
+\begin{defn}
+	The \textbf{reals} can be defined from the rationals as ``cuts'' that divide the rational in two contiguous sets. That is, let a real number be a partition $(A, B)$ such that $A \cup B = \mathbb{Q}$, $A \neq \emptyset$, $B \neq \emptyset$ and $a < b$ for all $a \in A$ and $b \in B$. The set of all reals $\mathbb{R}$ is the set of all such partitions.
+\end{defn}
+
 \begin{remark}
-	Cardinal numbers (i.e. one, two, three, ...) identify the number of elements in a set. Ordinal numbers (i.e. first, second, third) identify a position within a sequence. Cardinals and ordinals are in one to one correspondence only for finite values.
+	Operations such as additions, multiplication, ... can be defined appropriately as functions of the respective sets.
 \end{remark}
 
 \subsection{Ordinal numbers}
 
-\begin{remark}	
-	To define ordinals, we extend the notion of sequences to arbitrary levels of infinity using well-ordered sets.
+To extend natural numbers beyond finite numbers we need to make a distinction. Cardinal numbers (i.e. one, two, three, ...) identify the number of elements in a set. Ordinal numbers (i.e. first, second, third) identify a position within a sequence. Cardinals and ordinals are in one to one correspondence only for finite values. For infinite values, cardinals are a subset of the ordinals.
+
+\begin{remark}
+	To define ordinals, we extend the notion of sequences to arbitrary levels of infinity through well-ordered sets.
 \end{remark}
 
-\begin{defn}[POS]
-	A \textbf{partially ordered set}, \marginleft{POS: $(A, \leq_A)$} or \textbf{POS}, is a set with an associated partial order. That is, a tuple $(A, \leq_A)$ where $A$ is a set and $\leq_A$ is a partial order over $A$. A \textbf{linearly ordered set} is a POS whose order is linear.
+\begin{defn}[Poset]
+	A \textbf{partially ordered set}, \marginleft{Poset: $(A, \leq_A)$} or \textbf{poset}, is a set with an associated partial order. That is, a tuple $(A, \leq_A)$ where $A$ is a set and $\leq_A$ is a partial order over $A$. A \textbf{linearly ordered set} is a poset whose order is linear.
 \end{defn}
 
 \begin{defn}[Initial segment]
-	The \textbf{initial segment} \marginleft{Initial segment} of a POS $(A, \leq_A)$ determined by $a \in A$ is the set of all elements before $a$. That is, $S_a=\{ x \in A \, | \, x < a \}$.
+	The \textbf{initial segment} \marginleft{Initial segment} of a poset $(A, \leq_A)$ determined by $a \in A$ is the set of all elements before $a$. That is, $S_a=\{ x \in A \, | \, x < a \}$.
 \end{defn}
 
 \begin{defn}[Order morphisms]
-	Let $(A, \leq_A)$ \marginleft{Order homo/ \\ isomorphism} and $(B, \leq_B)$ be two POSs. An \textbf{order homomorphism} is a function $f : A \to B$ that preserves the ordering. That is, $a_1 \leq_A a_2$ implies $f(a_1) \leq_B f(a_2)$. An \textbf{order isomorphism} is a bijective order homomorphism whose inverse is also an order homomorphism (i.e. the POSs have identical order). That is, $b_1 \leq_B b_2$ implies $f^{-1}(b_1) \leq_A f^{-1}(b_2)$.
+	Let $(A, \leq_A)$ \marginleft{Order homo/ \\ isomorphism} and $(B, \leq_B)$ be two posets. An \textbf{order homomorphism} is a function $f : A \to B$ that preserves the ordering. That is, $a_1 \leq_A a_2$ implies $f(a_1) \leq_B f(a_2)$. An \textbf{order isomorphism} is a bijective order homomorphism whose inverse is also an order homomorphism (i.e. the posets have identical order). That is, $b_1 \leq_B b_2$ implies $f^{-1}(b_1) \leq_A f^{-1}(b_2)$.
 \end{defn}
 
 \begin{defn}[Well-order]
@@ -574,11 +658,11 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 		\item an infinite sequence with elements afterwards: $(a_1, a_2, ..., b_1, b_2, ... , b_6)$
 		\item three infinite sequences, one after the other: $(a_1, a_2, ..., b_1, b_2, ... , c_1, c_2, ...)$
 	\end{itemize}
-	In a well-ordered set, every element always has an immediate successor, but not necessarily an infinite predecessor (e.g. $b_1$ in the third example).
+	In a well-ordered set, every element always has an immediate successor, but not necessarily an immediate predecessor (e.g. $b_1$ in the third example).
 \end{remark}
 
 \begin{defn}[Ordinals]
-	An \textbf{ordinal} \marginleft{Ordinals: \ordinals} is a set $A$ that includes the previous and only the previous ordinals. That is, for all elements $a, b, c \in A$ (i.e. previous ordinals of $A$):
+	An \textbf{ordinal} \marginleft{Ordinals: \ordinals} is a set $A$ that includes the previous and only the previous ordinals (this makes $a \in A$ mean $a \ordless A$). That is, for all elements $a, b, c \in A$ (i.e. previous ordinals of $A$):
 	\begin{enumerate}
 		\item $a \notin a$ (each previous ordinal is not before itself)
 		\item $a \in b$ implies $b \notin a$ (if a previous ordinal is before another, then the latter is not before the former)
@@ -597,23 +681,23 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{remark}
 
 \begin{prop}[Ordinals are well-ordered]
-	All ordinals are well-ordered sets. That is, for each $A \in \ordinals$, $(A, \leq_A)$ is a well-ordered set where $a \leq b$ if either $a \in b$ or $a = b$.
+	All ordinals are well-ordered sets. That is, for each $A \in \ordinals$, $(A, \leq_A)$ is a well-ordered set where $a \leq b$ if either $a \in b$ or $a = b$. Moreover, the class $\ordinals$ is well ordered. That is, given a set of ordinals, one has lower ordinality than all others.
 \end{prop}
 
 \begin{prop}[Well-orders are ordinals]
-	For every \marginleft{$\langle A \rangle$} well-ordered set $A$ there is a unique ordinal that fully characterizes its order. That is, there is a unique $\langle A \rangle \in \cardinals$ such that $a \ordeq A$. We say $\langle A \rangle$ is the \textbf{ordinality of $A$}.
+	For every \marginleft{$\langle A \rangle$, $\omega$} well-ordered set $A$ there is a unique ordinal that fully characterizes its order. That is, there is a unique $\langle A \rangle \in \cardinals$ such that $\langle A \rangle \ordeq A$. We say $\langle A \rangle$ is the \textbf{ordinality of $A$}. The ordinality of an infinite sequence is denote by $\omega$. That is, $\omega = (0, 1, 2, ...) = \langle \{x_i\}_{i=1}^\infty \rangle$ for all $\{x_i\}_{i=1}^\infty$.
 \end{prop}
 
 \begin{remark}
-	As an example, consider the von Neumann ordinal $3 = (0, 1, 2)$ as a well-ordered set. Similarly, the ordinality of the well-ordered set $(a_1, a_2, a_3)$ is $3 = (0, 1, 2)$ as share the same ordering. The definitions are such that these ideas extend to infinite sets.
+	As an example, consider the von Neumann ordinal $3 = (0, 1, 2)$ as a well-ordered set. Similarly, the ordinality of the well-ordered set $(a_1, a_2, a_3)$ is $3 = (0, 1, 2)$ as they share the same ordering. The definitions are such that these ideas extend to infinite sets.
 \end{remark}
 
 \begin{defn}[Ordinal addition]
-	The addition \marginleft{Ordinal addition: $\langle A \rangle + \langle B \rangle$} of two ordinals is defined by concatenating the first order with the second. Let $(A, \leq_A)$ and $(B, \leq_B)$ be two well ordered sets. Let $(A \sqcup B, \leq)$ be the POS where:
+	The addition \marginleft{Ordinal addition: $\langle A \rangle + \langle B \rangle$} of two ordinals is defined by concatenating the first order with the second. Let $(A, \leq_A)$ and $(B, \leq_B)$ be two well ordered sets. Let $(A \sqcup B, \leq)$ be the poset where:
 	\begin{itemize}
-		\item $(A, a_1) \leq (A, a_2)$ if $a_1 \leq_A a_2$
-		\item $(B, b_2) \leq (B, b_2)$ if $b_1 \leq_B b_2$
-		\item $(A, a) \leq (B, b)$ for all $a \in A$ and $b \in B$.  	
+		\item $(0, a_1) \leq (0, a_2)$ if $a_1 \leq_A a_2$
+		\item $(1, b_2) \leq (1, b_2)$ if $b_1 \leq_B b_2$
+		\item $(0, a) \leq (1, b)$ for all $a \in A$ and $b \in B$.  	
 	\end{itemize}
 	Then $(A \sqcup B, \leq)$ is well-ordered and the ordinal $\langle A \sqcup B \rangle$ is fully determined by $\langle A \rangle$ and $\langle B \rangle$. Therefore we can define the \textbf{ordinal addition} $\langle A \rangle + \langle B \rangle =  \langle A \sqcup B \rangle$.
 \end{defn}
@@ -632,7 +716,7 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{remark}
 
 \begin{defn}[Ordinal multiplication]
-	The multiplication \marginleft{Ordinal multiplication: $\langle A \rangle \langle B \rangle$} of two ordinals is defined by ordering their Cartesian product. Let $(A, \leq_A)$  and $(B, \leq_B)$ be two well ordered sets. Let $(A \times B, \leq)$ be the POS where:
+	The multiplication \marginleft{Ordinal multiplication: $\langle A \rangle \langle B \rangle$} of two ordinals is defined by ordering their Cartesian product. Let $(A, \leq_A)$  and $(B, \leq_B)$ be two well ordered sets. Let $(A \times B, \leq)$ be the poset where:
 	\begin{itemize}
 		\item $(a_1, b_1) \leq (a_2, b_2)$ if $b_1 \leq_B b_2$
 		\item $(a_1, b) \leq (a_2, b)$ if $a_1 \leq_A a_2$
@@ -657,7 +741,13 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 	Muliplication is non-commutative (i.e. $\langle A \rangle \langle B \rangle \neq \langle B \rangle \langle A \rangle$) for infinite ordinals. For example $(a_1, a_2, ...) \times (b_1, b_2) = ((a_1, b_1), (a_2, b_1), ..., (a_1, b_2), (a_2, b_2), \\...)$ is not the same as $(b_1, b_2) \times (a_1, a_2, ..., a_n, ...) = ((b_1, a_1), (b_2, a_1), (b_1, a_2), \\ (b_2, a_2), ...) \ordeq (c_1, c_2, ...)$. Therefore $\omega 2 \neq 2 \omega = \omega$.
 	
 	With addition and multiplication, we can get a sense of how the ordinals work. $\omega$ represents a countable sequence (i.e. $\omega = (0, 1, 2, ...) = (\mathbb{N}, \leq)$). $\omega +3$ is a countable sequence followed by three elements. $\omega + \omega  = \omega2$ represents a countable sequence followed by a countable sequence. $\omega6$ represents a sequence of 6 countable sequences. $\omega\omega = \omega^2$ represents a countable sequence of countable sequences. $\omega^3$ represents a countable sequence of countable sequences of countable sequences. $\omega^\omega$ extends the recursion infinitely many times and so on. There is no upper limit to the ordinals.
+	
+	Adding an ordinal of a lower power to the left does not change the ordinal. Adding finitely many elements at the beginning of an infinite sequence, still gives us an infinite sequence (i.e. $n + \omega = \omega$). In the same way, adding an infinite sequence before an infinite sequence of infinite sequences still gives us an infinite sequence of infinite sequences (i.e. $\omega +\omega^2 = \omega^2$).
 \end{remark}
+
+\begin{prop}[Cantor normal form]
+	Every ordinal number $\langle A \rangle$ can be written as a sum of powers of $\omega$. That is, $\langle A \rangle = \omega^{\alpha_1} c_1 + \omega^{\alpha_2} c_2 + ... + \omega^{\alpha_n} c_n$ where $n \in \mathbb{N}$, $c_i \in \mathbb{N}^+$ for all $1 \leq i \leq n$ and $\alpha_i \in \ordinals$ such that $\alpha_i > \alpha_j$ for all $i > j$.
+\end{prop}
 
 \subsection{Cardinal numbers}
 
@@ -670,7 +760,7 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{defn}
 
 \begin{prop}[Cardinal comparability of sets]
-	Given two sets $A$ and $B$, one must have lower cardinality than the other. That is, either $A \crdleq B$ or $B \crdleq A$. Additionally, there exists a bijective function between $A$ and $B$ only if there exists an injective function in both direction. That is, $A \crdeq B$ if and only if $A \crdleq B$ and $B \crdleq A$.
+	Given two sets $A$ and $B$, one must have lower cardinality than the other. That is, either $A \crdleq B$ or $B \crdleq A$. Additionally, there exists a bijective function between $A$ and $B$ if and only if there exists an injective function in both direction. That is, $A \crdeq B$ if and only if $A \crdleq B$ and $B \crdleq A$.
 \end{prop}
 
 \begin{prop}[Well-ordering theorem]
@@ -682,19 +772,19 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{remark}
 
 \begin{defn}[Cardinal number]
-	A \textbf{cardinal}  \marginleft{Cardinals: $\cardinals$} is an ordinal $a \in \ordinals$ that has lower ordinality of any ordinal that has the same cardinality. That is, $a \ordleq b$ for all $b \in \ordinals$ such that $a \crdeq b$. The set of all cardinals is noted $\cardinals$ and, by definition $\cardinals \subset \ordinals$.
+	A \textbf{cardinal}  \marginleft{Cardinals: $\cardinals$} is an ordinal $a \in \ordinals$ that has lower ordinality of any ordinal that has the same cardinality. That is, $a \ordleq b$ for all $b \in \ordinals$ such that $a \crdeq b$. The class of all cardinals is noted $\cardinals$ and, by definition $\cardinals \subset \ordinals$.
 \end{defn}
 
 \begin{prop}[Cardinality of a set]
-	For every \marginleft{$|A|$} set $A$ there is a unique cardinal that identifies the cardinality of $A$. That is, there exists a unique $|A| \in \cardinals$ such that $a \crdeq A$. We say $|A|$ is the \textbf{cardinality of $A$}.
+	For every \marginleft{$|A|$} set $A$ there is a unique cardinal that identifies the cardinality of $A$. That is, there exists a unique $|A| \in \cardinals$ such that $|A| \crdeq A$. We say $|A|$ is the \textbf{cardinality of $A$}.
 \end{prop}
 
 \begin{prop}[Cantor's theorem]
-	A set has strictly lower cardinality than its power set. That is, $|A| < |\mathcal{P}(A)|$. If $a = |A|$ then we note $|\mathcal{P}(A)| = 2^a$
+	A set has strictly lower cardinality than its power set. That is, $|A| < |\mathcal{P}(A)|$. If $\alpha = |A|$ then we note $|\mathcal{P}(A)| = 2^\alpha$
 \end{prop}
 
 \begin{prop}[Aleph numbers]
-	The cardinality \marginleft{Aleph \\numbers: $\aleph_a$} of infinite sets are well-ordered. They are noted $\aleph_a$ where $a \in \ordinals$.
+	The cardinality \marginleft{Aleph \\numbers: $\aleph_\alpha$} of infinite sets are well-ordered. They are noted $\aleph_\alpha$ where $\alpha \in \ordinals$.
 \end{prop}
 
 \begin{defn}[Aleph-nought]
@@ -738,67 +828,10 @@ We take sets and elements as primitive objects, with no formal definition. A \te
 \end{remark}
 
 \textbf{Continuum hypothesis}
-	There is \marginleft{Continuum hypothesis} not infinite set with cardinality in between that of the continuum and countable infinity. That is: $2^{\aleph_0} = \aleph_1$.
+	There is \marginleft{Continuum hypothesis} no infinite set with cardinality in between that of the continuum and countable infinity. That is: $2^{\aleph_0} = \aleph_1$.
 
 \begin{remark}
-	The continuum hypothesis is proven to be independent on the axioms of set theory and is therefore an additional optional axiom. As the axiom deals with sets of cardinality lower than the continuum, this aspect of set theory may be interesting for those working on the Assumptions of Physics. It could be, in principle, that the distinguishable configurations in space-time have a cardinality that is neither countable nor that of the continuum.
-\end{remark}
-
-\section{Axiomatic set theory}
-
-Introduce paradoxes. Axiomatic set theory is a family of attempt to solve those paradoxes. There are different variations.
-
-Formalization to remove semantic paradoxes. All approaches of axiomatic set theory do that.
-
-%https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory
-
-%https://en.wikipedia.org/wiki/Von_Neumann–Bernays–Gödel_set_theory
-
-\subsection{Classes, sets and elements}
-
-As some collections cannot \marginright{TODO: diagram with Classes, proper classes and sets.} be put into other collections without creating paradoxes, the resolution of syntactic paradoxes is through the distinction between classes and sets. Classes are all those objects that can contain elements. Sets are particular classes that can also be elements of other classes. Therefore we can have the class of all sets, but we cannot have the set of all sets or the class of all classes.
-
-\subsection{Axiomatization}
-
-There are different approaches to the axiomatization of set theory with different degree of variation. One strategy, refered to as Zermelo–Fraenkel (ZFC), only defines sets. It avoids paradoxes by restricting set construction to subsets only.
-
-Another strategy, refered to as von Neumann–Bernays–Gödel (NBG), starts by defining classes and then defines sets as those classes that can be elements of classes. It avoids paradoxes by restricting set construction on predicates over elements. Since a proper class is not an element, if the definition creates a contradiction for an item $x$ (i.e. we have both $x \in S$ and $x \notin S$) than it must be that the element $x$ is a proper class.
-
-\textbf{Axioms of set theory}. Here are the axioms of a particular formulation of axiomatic set theory taken from CITE:
-\begin{enumerate}
-	\item Axiom of extent. If two classes have the same elements, then they are identical.
-	\item Axiom of class construction. Let $P(x)$ be a predicate expressed in terms of the symbols $\in, \OR, \AND, \NOT, \Rightarrow, \exists, \forall$, brackets, variables $x, y, z, A, B, ...$ Then there exists a class $C$ that consists of all the elements x which satisfy $P(x)$.
-	\item Every subclass of a set is a set.
-	\item $\emptyset$ is a set.
-	\item If $a$ and $b$ are sets, then $\{a, b\}$ is a set.
-	\item If $\mathcal{A}$ is a set of sets, then, $\bigcup\limits_{A \in \mathcal{A}} A$ is a set.
-	\item If $A$ is a set, the power set $\mathcal{P}(A)$ is a set.
-	\item Axiom of foundation. If $A \neq \emptyset$ is a set, there exists an element $a \in A$ such that $a \cap A = \emptyset$.
-	\item Axiom of replacement. If $A$ is a set and $f : A \to B$ is a surjective function, then $B$ is a set.
-	\item Axiom of choice. Every set has a choice function. That is, given a set $A$, there exists a function $f : \mathcal{P}(A) \setminus \{ \emptyset \} \to A$ such that $f(B) \in B$.
-	\item Axiom of infinity. There exists a successor set (as defined in \ref{defn_successor_set}).
-\end{enumerate}
-
-
-\begin{remark}
-	Axiom 1 serves to define class equality. Axiom 2 defines how to define classes based on predicates. Axioms 3-7 tells us that some classes, constructable by axiom 2, are sets. Axiom 8 guarantees that we cannot have an infinite sequences $\{ A_i \}_{i=1}^\infty$ such that $A_{i+1} \in A_i$. In particular, a set cannot be an element of itself. Axiom 9 tells us that any set that is ``smaller'' than a set (i.e. we can map another set onto it) is a set. Axiom 10 guarantees that we can always pick an element from a set, though it does not tell us how. Axiom 11 tells us that there are sets with infinite elements. Once the natural numbers are assumed to exist, higher cardinality of infinity can be constructed through, for example, the power set.
-	
-	A lot of work in set theory has been and is to clarify the relationship between the axioms, in particular which are independent from the others. The axiom of choice has been controversial for some time and therefore has been one of the most studied.
-\end{remark}
-
-\begin{prop}
-	The following statements are equivalent:
-	\begin{itemize}
-		\item Axiom of choice: every set has a choice function
-		\item Well-ordering theorem: every set can be well ordered
-		\item Trichotomy: given two sets, either they have equal cardinality, or one has lower cardinality than the other
-		\item Zorn's lemma: every non-empty POS for which every chain (i.e. totally ordered subset) has an upper bound contains at least one maximal element
-		\item Every vector space has a basis
-	\end{itemize}
-\end{prop}
-
-\begin{remark}
-	It should be stressed that there are different approaches. Constructive set theory, as all constructive mathematics, rejects ``nonconstructive proofs'' in which the existence of an object is proved with no explicit algorithm as to how to constructive. This approach will, for example, exclude the axiom of choice. For those working on the Assumptions of Physics, then, it is important to understand that the foundations of math are not absolute. Therefore we have to understand the consequences of those choice and understand whether they are suitable for the foundations of physics.
+	The continuum hypothesis is proven to be independent of the axioms of set theory. It can be taken to be true or to be false without inconsistency. As the axiom deals with sets of cardinality lower than the continuum, this aspect of set theory may be interesting for those working on the Assumptions of Physics. It could be, in principle, that the distinguishable configurations in space-time have a cardinality that is neither countable nor that of the continuum.
 \end{remark}
 
 
