@@ -544,15 +544,15 @@ When the definitions and axioms are solidified, the following will be essential:
 \begin{remark}
 	For reflexivity, let $\stmt \in \tdomain$. We have $\stmt \OR \impossibility \equiv \stmt \OR \impossibility$. Since $\impossibility$ is an infinitesimal for all $\stmt[u]$, $\stmt \equ \stmt$. For symmetry, note that the definition itself is symmetrical.
 	
-	Transitivity is unclear. Let $\stmt_1 \equ \stmt_2 \equ \stmt_3$. Then we can write $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$ and $\stmt_2 \OR \stmt[w]_2 \eqgran \stmt_3 \OR \stmt[w]_3$. If the infinitesimal where incompatible we would have $\stmt_1 \OR \stmt[v]_1 \OR \stmt[w]_2 \eqgran \stmt_2 \OR \stmt[v]_2 \OR \stmt[w]_2 \eqgran \stmt_3 \OR \stmt[w]_3 \OR \stmt[v]_2$. If the infinitesimals were comparable, by proposition \ref{infinitesimal_disjunction} we would have that $\stmt[v]_1 \OR \stmt[w]_2$ and $\stmt[w]_3 \OR \stmt[v]_2$ are infinitesimals and therefore $\stmt_1 \equ \stmt_3$.
+	Transitivity is unclear. Let $\stmt_1 \equ \stmt_2 \equ \stmt_3$. Then we can write $\stmt_1 \OR \stmt[v]_1 \eqgran \stmt_2 \OR \stmt[v]_2$ and $\stmt_2 \OR \stmt[w]_2 \eqgran \stmt_3 \OR \stmt[w]_3$. If the infinitesimals were incompatible we would have $\stmt_1 \OR \stmt[v]_1 \OR \stmt[w]_2 \eqgran \stmt_2 \OR \stmt[v]_2 \OR \stmt[w]_2 \eqgran \stmt_3 \OR \stmt[w]_3 \OR \stmt[v]_2$. If the infinitesimals were comparable, by proposition \ref{infinitesimal_disjunction} we would have that $\stmt[v]_1 \OR \stmt[w]_2$ and $\stmt[w]_3 \OR \stmt[v]_2$ are infinitesimals and therefore $\stmt_1 \equ \stmt_3$.
 	
-	If we assume a uniform domain, we would have totality and we may also be able to show that incompatible infinitesimals can always be found. It may be that totality is not needed for proposition \ref{infinitesimal_disjunction}. It may be that we need to amend the definition of infinitesimals, such that the disjunction of two infinitesimals is an infinitesimals. We could also force the transitivity, even if the disjunction of two infinitesimals is not an infinitesimals. This would be like saying that, yes, in principles the assertions correspond to different granularity levels, but we are not to distinguish between them because the different is effectively zero. Understanding which options are best requires more work.
+	If we assume a uniform domain, we would have totality and we may also be able to show that incompatible infinitesimals can always be found. It may be that totality is not needed for proposition \ref{infinitesimal_disjunction}. It may be that we need to amend the definition of infinitesimals, such that the disjunction of two infinitesimals is an infinitesimal. We could also force the transitivity, even if the disjunction of two infinitesimals is not an infinitesimal. This would be like saying that, yes, in principle the assertions correspond to different granularity levels, but we are not to distinguish between them because the difference is effectively zero. Understanding which options are best requires more work.
 \end{remark}
 
 Another essential property of equivalence at $\stmt[u]$ scale is that it collapses the fineness ordering, formalized by the following statement:
 
 \begin{desid}
-	Let $\stmt_1, \stmt_2 \in \tdomain$ such that $\stmt_1 \equ \stmt_2$ and $\stmt_1 \finer \stmt_2$. Then for all $\stmt_1 \finer \stmt \finer \stmt_2$ we have $\stmt_1 \equ \stmt \equ \stmt_2$.
+	Let $\stmt_1, \stmt_2 \in \tdomain$ be such that $\stmt_1 \equ \stmt_2$ and $\stmt_1 \finer \stmt_2$. Then for all $\stmt_1 \finer \stmt \finer \stmt_2$ we have $\stmt_1 \equ \stmt \equ \stmt_2$.
 \end{desid}
 
 \begin{remark}
@@ -562,7 +562,7 @@ Another essential property of equivalence at $\stmt[u]$ scale is that it collaps
 A special case of the above may be a good first goal for testing appropriate axioms, or perhaps it could end up being an axiom itself:
 
 \begin{desid}
-	Let $\stmt_1,\stmt,\stmt[v]_1\in\tdomain$ such that $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$, and suppose $\stmt[v]_1$ is infinitesimal with respect to $\stmt[u]$. Then $\stmt\equ\stmt_1$. 
+	Let $\stmt_1,\stmt,\stmt[v]_1\in\tdomain$ be such that $\stmt_1\finer\stmt\finer\stmt_1\OR\stmt[v]_1$, and suppose $\stmt[v]_1$ is infinitesimal with respect to $\stmt[u]$. Then $\stmt\equ\stmt_1$. 
 \end{desid}
 
 In addition to defining equivalence at scale $\stmt[u]$, we also wish to have the ordering. Eventually, the goal is to use this as a qualitative probability, as in Fishburn \cite{fishburnsurvey}. 
@@ -624,7 +624,7 @@ Fortunately, at least the first definitions of $\lequ$ and $\equ$ behave well to
 
 For the second definition of $\lequ$, transitivity of $\equ$ is needed which we have not proven. 
 
-Question: is the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes well-defined and monotone? 
+Question: is the map $\tdomain / \eqgran \to \tdomain / \equ$ defined by collapsing equivalence classes well-defined and monotonic? 
 
 Eventually, we wish to use $\lequ$ as a total pre-order in order to use it as a qualitative probability. We will need an interesting-enough subset of $\tdomain$ to capture the desired notions while still having $\lequ$ as a total order.
 
@@ -665,13 +665,13 @@ As for a minimum element, we have the impossibility $\impossibility$ which will 
 
 \subsection{Monotone continuity up to infinitesimals}
 
-The established results in the literature of comparable probability require a specific axiom, called monotone continuity, that essentially make sure that sequences converge. This is necessary because their goal is to recover a probability measure that is countably additive.
+The established results in the literature of comparable probability require a specific axiom, called monotone continuity, that essentially makes sure that sequences converge. This is necessary because their goal is to recover a probability measure that is countably additive.
 
 \begin{defn}[Monotone continuity]\label{monotone_continuity}
 	Given a domain $\tdomain$ and a unit $\stmt[u] \in\tdomain$, we say that $\lequ$ satisfies \textbf{monotone continuity} if the following is true: given a sequence $\{\stmt_i\}_{i=1}^{\infty}$ such that $\stmt_i \narrower \stmt_j$ for all $ i \leq j$ and $\stmt = \bigOR_i\stmt_i$ the disjunction, for every $\stmt[t] \in \tdomain$ such that $\stmt_i\leq_{\stmt[u]} \stmt[t]$ for all $i$ we have $\stmt\leq_{\stmt[u]} \stmt[t]$.
 \end{defn}
 
-Note that, in general, monotone continuity is not satisfied. See examples in \ref{lack_of_monotone_continuity}. In terms of measures, the issue is that we may have that the disjoint disjuntion of countably many infinitesimals is not necessarily an infinitesimal, which means countably meany sets of measure zero would not sum up to a set of measure zero.
+Note that, in general, monotone continuity is not satisfied. See examples in \ref{lack_of_monotone_continuity}. In terms of measures, the issue is that we may have that the disjoint disjunction of countably many infinitesimals is not necessarily an infinitesimal, which means countably many sets of measure zero would not sum up to a set of measure zero.
 
 We therefore want to make the following distinction.
 
@@ -709,7 +709,7 @@ Let $\stmt[u]$ be a statement which does not admit countable infinitesimals, and
 
 \section{Adapting results from \cite{villegas}}
 
-The paper \cite{villegas} by Villegas gives us some conditions under which we can recover a probability measure given a preorder. Here we state the conditions required in terms of $\lequ$ and $\tdomain_{\stmt[u]}$, which we take it to be the set of statements narrower than $\stmt[u]$. We start from the axioms of pre-order:
+The paper \cite{villegas} by Villegas gives us some conditions under which we can recover a probability measure given a preorder. Here we state the conditions required in terms of $\lequ$ and $\tdomain_{\stmt[u]}$, which we take to be the set of statements narrower than $\stmt[u]$. We start from the axioms of pre-order:
 
 \begin{itemize}
 	\item Totality: If $\stmt_1,\stmt_2\in \tdomain_{\stmt[u]}$, then $\stmt_1 \lequ \stmt_2$ or $\stmt_2 \lequ \stmt_1$
@@ -718,7 +718,7 @@ The paper \cite{villegas} by Villegas gives us some conditions under which we ca
 	\item Boundedness: We have $\impossibility\ltu\certainty$. For all $\stmt\in \tdomain_{\stmt[u]}$ we have $\impossibility\leq_{\stmt[u]}\stmt\lequ\certainty$
 \end{itemize}
 
-Next is the axiom of monotony. Let $\stmt_1,\stmt_2,\stmt[t]_1,\stmt[t]_2 \in \tdomain_{\stmt[u]}$ with $\stmt[t]_1 \ncomp \stmt[t]_2$. Then from $\stmt_1 \lequ \stmt[t]_1$ and $\stmt_2 \lequ \stmt[t]_2$ if follows that $\stmt_1\OR \stmt_2 \lequ \stmt[t]_1\OR \stmt[t]_2$. Moreover, if $\lequ$ is replace by $\ltu$ in one of the first two equality, then the last one holds with $\ltu$.
+Next is the axiom of monotony. Let $\stmt_1,\stmt_2,\stmt[t]_1,\stmt[t]_2 \in \tdomain_{\stmt[u]}$ with $\stmt[t]_1 \ncomp \stmt[t]_2$. Then from $\stmt_1 \lequ \stmt[t]_1$ and $\stmt_2 \lequ \stmt[t]_2$ if follows that $\stmt_1\OR \stmt_2 \lequ \stmt[t]_1\OR \stmt[t]_2$. Moreover, if $\lequ$ is replaced by $\ltu$ in one of the first two inequalities, then the last one holds with $\ltu$.
 
 Apart from totality, we have similar properties already defined on fineness. We will need to understand on what conditions they can be carried to $\lequ$. The best way forward will be to assume totality and see whether the other properties can be derived at least in that case.
 
@@ -759,7 +759,7 @@ Claim: all finite operations of union, intersection, and complement of $D_{i,j}$
 
 \subsubsection{A finitely-additive measure on infinite sets}
 
-Take $\mathbb{N}$ as the unit. For any $i$, we have $D_{i,j} \finer D_{i,l} \finer D_{i,j}$. Therefore $D_{i,j} \eqgran D_{i,l}$ for any $j$ and $l$. We have $1 = \mu_{\mathbb{N}}(\mathbb{N}) = \mu_{\mathbb{N}}(\bigOR_{j=1}^i D_{i,j}) = \sum_{j=1}^i \mu_{\mathbb{N}}( D_{i,j}) = \sum_{j=1}^i \mu_{\mathbb{N}}( D_{i,0}) = i \mu_{\mathbb{N}}( D_{i,0}) $. Therefore $\mu_{\mathbb{N}}( D_{i,j}) = 1/i$ for any $i$ and $j$.
+Take $\mathbb{N}$ as the unit. For any $i$, we have $D_{i,j} \finer D_{i,l} \finer D_{i,j}$. Therefore $D_{i,j} \eqgran D_{i,l}$ for any $j$ and $l$. We have $1 = \mu_{\mathbb{N}}(\mathbb{N}) = \mu_{\mathbb{N}}(\bigOR_{j=0}^{i-1} D_{i,j}) = \sum_{j=0}^{i-1} \mu_{\mathbb{N}}( D_{i,j}) = \sum_{j=0}^{i-1} \mu_{\mathbb{N}}( D_{i,0}) = i \mu_{\mathbb{N}}( D_{i,0}) $. Therefore $\mu_{\mathbb{N}}( D_{i,j}) = 1/i$ for any $i$ and $j$.
 
 
 \subsection{Example with lack of monotone continuity}\label{lack_of_monotone_continuity}
@@ -776,7 +776,7 @@ In this section we give some counterexamples for ideas that may seem reasonable 
 
 \textbf{Takeaway: as cardinality ``collapses'' all infinite sets into few categories, it does not tell us much in terms of measure and fineness.} Two sets having the same measure does not imply having the same cardinality and vice-versa. Two sets with infinitely many possibilities can be equigranular, one finer than the other or not even comparable.
 
-Consider the reals with the standard measure. A set of finitely many points points has measure zero. The rationals are countable and have measure zero. The Cantor set is uncountable and have measure zero. Therefore sets of real numbers with all possible cardinality can have measure zero. On the other hand, any finite open interval has uncountably many points and non-zero measure. Therefore two sets with the same cardinality can have different measure.
+Consider the reals with the standard measure. A set of finitely many points has measure zero. The rationals are countable and have measure zero. The Cantor set is uncountable and has measure zero. Therefore sets of real numbers with all possible cardinality can have measure zero. On the other hand, any finite open interval has uncountably many points and non-zero measure. Therefore two sets with the same cardinality can have different measure.
 
 Take example \ref{example_naturals}. We have $D_{2,0} \eqgran D_{2,1}$, which both have infinitely many elements. We also have $D_{2,0} \supset D_{4,0}$, which are both infinite sets but the first will have to be coarser than the second. Now consider the set of prime numbers. It is not clear how that can be compared with the mod classes as it is not expressible with finite intersection or union.
 
@@ -784,7 +784,7 @@ Take example \ref{example_naturals}. We have $D_{2,0} \eqgran D_{2,1}$, which bo
 
 \textbf{Takeaway: given a sequence of sets with a limit, the level of granularity of the limit is not uniquely determined by the level of granularity of the members of the sequence.}
 
-Consider the following two sequences of subsets of $\mathbb{N}$. Let $\stmt_n = \{1,2,3,\ldots,n\}$, and let $\stmt[t]_n = \{2,4,6,\ldots,2n\}$. If we are treating $\mathbb{N}$ as a uniform domain, we should have $\stmt_n\eqgran\stmt[t]_n$ for all $n$. However, the limit $\bigOR_n\stmt_n = \mathbb{N}$, while $\bigOR_n\stmt[t]_n = \{2,4,6,\ldots\} = 2\mathbb{N} \subset \mathbb{N}$. These are not equigranular limits despite the sequences being equigranular. 
+Consider the following two sequences of subsets of $\mathbb{N}$. Let $\stmt_n = \{1,2,3,\ldots,n\}$, and let $\stmt[t]_n = \{2,4,6,\ldots,2n\}$. If we are treating $\mathbb{N}$ as a uniform domain, we should have $\stmt_n\eqgran\stmt[t]_n$ for all $n$. However, the limit $\bigOR_n\stmt_n = \mathbb{N}$, while $\bigOR_n\stmt[t]_n = \{2,4,6,\ldots\} \subset \mathbb{N}$. These are not equigranular limits despite the sequences being equigranular. 
 
 Here is another example which does not rely on countable infinitesimals. In the domain $[0,1]$, considered with its Borel sigma-algebra, there are no countable infinitesimals. Consider the sequences $\stmt_n = (1/n,1]$ and $\stmt[t]_n = (1/2n, 1 - 1/2n]$. These should be equigranular as they are simply offset by a shift of $1/2n$ from each other. Then the limits are $\bigOR_n\stmt_n = (0,1]$ and $\bigOR_n\stmt[t]_n = (0,1)$. While they have the same Lebesgue measure, the former has the point 1, and so it should not be equigranular to the latter.
 
@@ -795,14 +795,14 @@ Here is another example which does not rely on countable infinitesimals. In the 
 
 The idea was to see whether, instead of requiring totality, we could require that we could always find statements at a desired level of description. We wanted to say that a saturated chain in narrowness, that is a sequence of statements ordered by narrowness where no other statement could be added, would touch all levels of descriptions, all equivalence classes in equigranularity. This does not work.
 
-The problem is that infinite sets disrupt the relationship between narrowness and fineness, such that a saturated chain in narrowness is not necessarily a saturated chain in fineness. For example, if we have a countable set of possibilities (e.g. the natural numbers), a saturated chain in narrowness can start from the empty set, start by adding possibilities one be one until we end with the full set. The set with all possibilities except one, for example, cannot be added to the chain, but still represents a level of description that is in between all the finite sets and the full infinite set. The only case where we can construct saturated chains is precisely when the possibilities are finite, and is therefore not interesting.
+The problem is that infinite sets disrupt the relationship between narrowness and fineness, such that a saturated chain in narrowness is not necessarily a saturated chain in fineness. For example, if we have a countable set of possibilities (e.g. the natural numbers), a saturated chain in narrowness can start from the empty set, start by adding possibilities one by one until we end with the full set. The set with all possibilities except one, for example, cannot be added to the chain, but still represents a level of description that is in between all the finite sets and the full infinite set. The only case where we can construct saturated chains is precisely when the possibilities are finite, and is therefore not interesting.
 
 \begin{defn}
 Let $(S,\leq)$ be a poset. A \textbf{chain} is a subset $T\subseteq S$ which is totally ordered (i.e. every pair of elements in $T$ is comparable in $\leq$). A chain is said to be \textbf{saturated} if there are no ``gaps" in the chain. That is, there is no $s \in S$ such that $s \notin T$, $t_1 \leq s \leq t_2$ for some $t_1, t_2 \in T$ and $T \cup \{s\}$ is a chain. 
 \end{defn}
 
 \begin{defn}
-A theoretical domain $\tdomain$ is said to have the \textbf{saturated chains property} (SCP) if given any chain $S\subseteq\tdomain$ totally ordered by narrowness ($\narrower$), the following holds. There exists a maximum chain $S'\supseteq S$, and a saturated chain $C$ in the set of equigranularity equivalence classes, such that for all statements $s \in S'$, there exists an equivalence class $\overline{c}\in C$ with $s\in \overline{c}$.
+A theoretical domain $\tdomain$ is said to have the \textbf{saturated chains property} (SCP) if given any chain $S\subseteq\tdomain$ totally ordered by narrowness ($\narrower$), the following holds. There exists a saturated chain $S'\supseteq S$, and a saturated chain $C$ in the set of equigranularity equivalence classes, such that for all statements $s \in S'$, there exists an equivalence class $\overline{c}\in C$ with $s\in \overline{c}$.
 \end{defn}
 
 The following made the idea look promising.
@@ -811,18 +811,18 @@ The following made the idea look promising.
 Let $\tdomain$ be a theoretical domain with the saturated chains property, and suppose all possibilities are comparable. Then they must be equigranular.
 \end{prop}
 \begin{proof}
-Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p\}$ and $\{\impossibility, q\}$. By the SCP, these may be extended to saturated chains in narrowness, with corresponding saturated chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represent by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. It follows that $p\finer q$, and similarly $q\finer p$, and so $p\eqgran q$. 
+Suppose all possibilities are comparable. Let $p,q$ be possibilities. Consider the two chains $\{\impossibility, p\}$ and $\{\impossibility, q\}$. By the SCP, these may be extended to saturated chains in narrowness, with corresponding saturated chains in fineness equivalence classes. Then since possibilities are successors of the impossibility, the fineness equivalence classes represented by $p$ and $q$ must both be an immediate successor of the equivalence class representing the impossibility. It follows that $p\finer q$, and similarly $q\finer p$, and so $p\eqgran q$. 
 \end{proof}
 
 \begin{prop}
-Let $\tdomain$ be a theoretical domain with the saturated chains property. Then they must have finitely many possibilities.
+Let $\tdomain$ be a theoretical domain with the saturated chains property. Then it must have finitely many possibilities.
 \end{prop}
 \begin{proof}
 Let $\tdomain$ be a theoretical domain with the saturated chains property and such that the set $X$ of possibilities is infinite. Let $X' = \{x_i\}_{i=0}^{\infty} \subseteq X$ be a countable subset. Let $s_j = \bigOR_{j=0}^{i} x_i$ be the disjunction of the first $j$ possibilities. Let $\stmt = \bigOR_{i=0}^{\infty} x_i$ be the disjuction of all the possibilities in the sequence. The set $C = \{ \impossibility, \stmt \} \cup \{\stmt_j\}_{j=0}^{\infty}$ is a chain. In fact $\impossibility \snarrower \stmt_j \snarrower \stmt$ for all $j$ and $\stmt_i \narrower \stmt_j$ if $i \leq j$.
 
-To show that $C$ is saturated, take a statement $\hat{\stmt} \narrower \stmt$ such that $\hat{\stmt} \notin C$. Let $A \subseteq X'$ be the set of possibilities compatible with $\hat{\stmt}$. If $A$ is infinite, since $\hat{\stmt} \nequiv \stmt$, there exists an $x_i \in X'$ such that $x_i \notin A$. Therefore $\stmt_{i} \nnarrower \hat{\stmt}$ since the first is compatible with a possibility that is not compatible with the second, and $\hat{\stmt} \nnarrower \stmt_{i}$ since $\hat{\stmt}$ is compatible with infinitely many statements and $\stmt_{i}$. If $A$ is finite, let the $x_i \in A$ for which $i$ is highest. Note that $A$ cannot contain all previous $x_j$ in the sequence, since $\hat{\stmt} \notin C$. Let $x_j$ the possibility with the highest $j \leq i$ that is not in $A$. We have $\hat{\stmt} \nnarrower \stmt_{j}$ and $\stmt_{i} \nnarrower \hat{\stmt}$ since each is compatible with a possibility incompatible with the other. Since we cannot add other statement, $C$ is saturated.
+To show that $C$ is saturated, take a statement $\hat{\stmt} \narrower \stmt$ such that $\hat{\stmt} \notin C$. Let $A \subseteq X'$ be the set of possibilities compatible with $\hat{\stmt}$. If $A$ is infinite, since $\hat{\stmt} \nequiv \stmt$, there exists an $x_i \in X'$ such that $x_i \notin A$. Therefore $\stmt_{i} \nnarrower \hat{\stmt}$ since the first is compatible with a possibility that is not compatible with the second, and $\hat{\stmt} \nnarrower \stmt_{i}$ since $\hat{\stmt}$ is compatible with infinitely many statements and $\stmt_{i}$. If $A$ is finite, let the $x_i \in A$ for which $i$ is highest. Note that $A$ cannot contain all previous $x_j$ in the sequence, since $\hat{\stmt} \notin C$. Let $x_j$ be the possibility with the highest $j \leq i$ that is not in $A$. We have $\hat{\stmt} \nnarrower \stmt_{j}$ and $\stmt_{i} \nnarrower \hat{\stmt}$ since each is compatible with a possibility incompatible with the other. Since we cannot add other statements, $C$ is saturated.
 
-Now we show that, even though $C$ is saturated, it does not go through all levels of granularity. Let $x \in X'$ and consider $\stmt \AND \NOT x$. This is finer than $\stmt$ and is coarser than all other statements statements in $C$ since they are all compatible with finitely many possibilities. Therefore SCP does not hold. Therefore, if SCP holds, the domain cannot have infinitely many possibilities.
+Now we show that, even though $C$ is saturated, it does not go through all levels of granularity. Let $x \in X'$ and consider $\stmt \AND \NOT x$. This is finer than $\stmt$ and is coarser than all other statements in $C$ since they are all compatible with finitely many possibilities. Therefore SCP does not hold. Therefore, if SCP holds, the domain cannot have infinitely many possibilities.
 \end{proof}
 
 \bibliography{bibliography}
