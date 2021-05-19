@@ -4,6 +4,7 @@
 
 \usepackage{assumptionsofphysics}
 \usepackage{tikz}
+\usetikzlibrary{positioning}
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
@@ -46,9 +47,9 @@ This note presents a condensed summary of set theory which can function as a cra
 
 Set theory is important for those working on the Assumptions of Physics for at least three reasons. First, it is a foundational framework in mathematics. Second, it showcases a successful attempt at concept generalization. Third, it shows how a formal system is bootstrapped.
 
-There are two rough branches of set theory: naive and axiomatic. Naive set theory is built on intuitive concepts, and as such is not fully formalized and is open to potential paradoxes. Axiomatic set theory provides a fully formalized axiomatic system that aims to close those problems. We will start with naive set theory, which is the best setting for defining all the basic notions and getting a sense of how the framework works. Then we will turn our attention to axiomatic set theory to get a sense of what problems it solves and how, and whether those solutions mesh with foundational goals  in physics.
+There are two rough branches of set theory: naive and axiomatic. Naive set theory is built on intuitive concepts, and as such is not fully formalized and is open to potential paradoxes. Axiomatic set theory provides a fully formalized axiomatic system that aims to close those problems. We will start with naive set theory, which is the best setting for defining all the basic notions and getting a sense of how the framework works. Then we will turn our attention to axiomatic set theory to get a sense of what problems it solves and how, and whether those solutions mesh with foundational goals in physics.
 
-TODO: cite https://www.math24.net/topics-set-theory and set theory book
+For more details on set theory, see for example \cite{settheory-tutorial, pinter2014book}.
 
 \section{Naive set theory}
 
@@ -540,7 +541,21 @@ These are solved by carefully specifying the rules that are allowed for the crea
 
 \subsection{Classes, sets and elements}
 
-A \textbf{class} \marginright{TODO: diagram with Classes, proper classes and sets.}  is any collection, therefore \textbf{sets are classes}. Some classes are not sets. These are called \textbf{proper classes} and are exactly the collections that cannot be elements of a class. Therefore, sets are classes that can be contained by other classes, while proper classes cannot. The difference between sets and proper classes is not in what they contain but in whether they can be contained. Proper classes are ``too large'' to be sets in the following sense: given a class $A$, if we can find a set $B$ that contains all elements of $A$, then $A$ will be a set as well. Therefore proper classes can never be subclasses of sets, they are bigger than all sets. The class of all sets, for example, is a proper class. So is the class of all cardinal numbers.
+A \textbf{class} \marginright{ ~\\
+		\begin{tikzpicture}[scale = 0.3]
+		\node [draw, inner sep=6, rectangle] (class) {\small Class};
+		\node [below=.3 of class] (middle) {};
+		\node [below=1.3 of class] (lower) {};
+		\node [draw, inner sep=6, rectangle, align=center, left=0 of lower] (pclass) {\small Proper \\ class};
+		\node [draw, inner sep=6, rectangle, right=.2 of lower] (set) {\small Set};
+		\draw[->] (pclass.north) -| ++(0,.8) -|  (class.south);	
+		\draw[->] (set.north) -| ++(0,1.5) -|  (class.south);	
+		\draw[->] (class.east) -| ++(3,0) |-  (set.east);	
+		 %++(0,-1) -|
+		\node [left=-0.1 of middle] (isa) {\small is a};
+		\node at (4.1,.6) (contains) {\small contains};
+	\end{tikzpicture} 
+}  is any collection, therefore \textbf{sets are classes}. Some classes are not sets. These are called \textbf{proper classes} and are exactly the collections that cannot be elements of a class. Therefore, sets are classes that can be contained by other classes, while proper classes cannot. The difference between sets and proper classes is not in what they contain but in whether they can be contained. Proper classes are ``too large'' to be sets in the following sense: given a class $A$, if we can find a set $B$ that contains all elements of $A$, then $A$ will be a set as well. Therefore proper classes can never be subclasses of sets, they are bigger than all sets. The class of all sets, for example, is a proper class. So is the class of all cardinal numbers.
 
 Note that axiomatic set theory does not distinguish between objects that can or cannot contain other objects. All elements are classes, all element can, in principle, contain something. In fact, since equality of two objects coincides on whether they have the same elements, two objects must contain something different to be different. Numbers will be constructed as sets starting from the empty set. As a consequence, the proposition $3 \in 4$ is valid, and happens to be true if $3$ and $4$ are naturals, though it is not true if $3$ and $4$ are reals. From the perspective of the Assumptions of Physics, this is not great as the framework allows propositions that are not physically meaningful. Radical different approaches to the foundations of mathematics (e.g. through category theory) do not exhibit this particular problem, though they exhibit others (e.g. identity of an object can be defined only up to its relationships with other objects).
 
@@ -552,7 +567,7 @@ Another strategy, refered to as von Neumann–Bernays–Gödel (NBG), starts by 
 
 The two approaches are proved to be equivalent.
 
-\textbf{Axioms of set theory}. Here are the axioms of a particular formulation of axiomatic set theory taken from CITE that follows NBG:
+\textbf{Axioms of set theory}. Here \marginleft{Set theory axioms} are the axioms of a particular formulation of axiomatic set theory taken from \cite{pinter2014book} that follows NBG:
 \begin{enumerate}
 	\item Axiom of extent. If two classes have the same elements, then they are identical.
 	\item Axiom of class construction. Let $P(x)$ be a predicate expressed in terms of the symbols $\in, \OR, \AND, \NOT, \Rightarrow, \exists, \forall$, brackets, variables $x, y, z, A, B, ...$ Then there exists a class $C$ that consists of all the elements (i.e. sets) x which satisfy $P(x)$.
@@ -835,7 +850,7 @@ To extend natural numbers beyond finite numbers we need to make a distinction. C
 \end{remark}
 
 
-%\bibliographystyle{plain}
-%\bibliography{bibliography}
+\bibliographystyle{plain}
+\bibliography{bibliography}
 
 \end{document}
