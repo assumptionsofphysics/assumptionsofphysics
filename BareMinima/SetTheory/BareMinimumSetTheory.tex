@@ -196,14 +196,11 @@ We take sets and elements as primitive objects, with no formal definition. This 
 \end{defn}
 
 \begin{remark}
-	Ordered pairs and disjoint unions exemplify the effort in set theory to construct \emph{all objects} starting from just two primitives: set and set inclusion. The downside is that the constructions do not map exactly to our intuition. For example, we still think an ordered pair as a set, so we want to write $b \in (a, b)$, though, looking at the definition $b$ itself is not directly a member of $(a, b)$.
+	Ordered pairs and disjoint unions exemplify the effort in set theory to construct \emph{all objects} starting from just two primitives: set and set inclusion. The downside is that the constructions do not map exactly to our intuition. For example, we still think as an ordered pair as a set, so we want to write $b \in (a, b)$, though, looking at the definition $b$ itself is not directly a member of $(a, b)$.
 \end{remark}
 
 \subsection{Relations and functions}
 
-\begin{remark}
-	Relations provide a common foundation for functions (i.e. the relation is the set of pairs $(x, f(x))$ ), equivalences and order (i.e. the relation is the set of pairs $(a, b)$ such that $a=b$ or $a\leq b$ respectively). This exemplifies the effort in set theory to find general structures.
-\end{remark}
 
 \marginright{~\\
 	\begin{tikzpicture}[scale = 0.3] 
@@ -295,6 +292,10 @@ We take sets and elements as primitive objects, with no formal definition. This 
 	\end{tikzpicture} 
 	
 }
+\begin{remark}
+	Relations provide a common foundation for functions (i.e. the relation is the set of pairs $(x, f(x))$ ), equivalences and order (i.e. the relation is the set of pairs $(a, b)$ such that $a=b$ or $a\leq b$ respectively). This exemplifies the effort in set theory to find general structures.
+\end{remark}
+
 \begin{defn}[Binary relation]
 	Given a set $A$, \marginleft{Binary\\ relation: $aRb$} called \textbf{domain}, and a set $B$, called \textbf{codomain}, a \textbf{binary relation} is a set $R \subseteq A \times B$ of ordered pairs. We say $a$ is \textbf{$R$-related} to $b$, noted $aRb$ if $(a,b) \in R$. If $A=B$ (i.e. domain and codomain coincide) the relation is said to be \textbf{homogeneous}, \textbf{heterogeneous} if not.
 \end{defn}
@@ -481,6 +482,26 @@ We take sets and elements as primitive objects, with no formal definition. This 
 \end{defn}
 
 
+
+\marginright{~\\
+	\def\setA{ (0,0) ellipse (5 and 4) }
+	\begin{tikzpicture}[scale = 0.3]
+		\draw \setA;
+		\begin{scope}
+			\clip \setA;
+			\draw (-5, 4) .. controls (0, 2) and (0, -2) .. (-5, -4);
+			\draw (2, 4) .. controls (2, 2) and (0, 1) .. (-1.46, 1);
+			\draw (1, 1.9) .. controls (1.5, 1) and (2, -2.5) .. (0.5, -4);
+			\draw (1.49, -1)  .. controls (2, -0.3) and (4, 0.5) ..  (5, 0);
+		\end{scope}
+		\node at (-4, -4.5) {$A$};
+		\node at (-3.2, 0) {$P_1$};
+		\node at (-0.4, 2.6) {$P_2$};
+		\node at (-0.2, -1.2) {$P_3$};
+		\node at (3, -1.7) {$P_4$};
+		\node at (3, 1.5) {$P_5$};
+	\end{tikzpicture} 
+}
 \begin{defn}[Partitions]
 	A \textbf{partition} \marginleft{Partitions} of a set $A$ is a collection $P \subset \mathcal{P}(A)$ of disjoint subsets that cover all of $A$. That is:
 	\begin{enumerate}
@@ -493,8 +514,6 @@ We take sets and elements as primitive objects, with no formal definition. This 
 \begin{defn}[Equivalence classes and quotient set]
 	Let $A$ \marginleft{Eq. classes and quotient set: \\ $[a]_{\sim}, a_{/\sim}, A_{/\sim}$} be a set and $\sim$ an equivalence relation on $A$. Let $a \in A$. The \textbf{equivalence class of $a$ by $\sim$} is the set $[a]_{\sim} = a_{/\sim} = \{b \in A \, | \, b \sim a \}$ of all the elements of $A$ equivalent to $a$. The \textbf{quotient set of $A$ by $\sim$} $A_{/\sim} = \{ a_{/\sim} \, | \, a \in A \}$  is the set of all of the equivalence classes by $\sim$.
 \end{defn}
-
-TODO: diagram
 
 \begin{prop}[Quotient sets are partitions]
 	Every quotient set is a partition, and every partition is a quotient set. That is, let $A$ be a set and $\sim$ an equivalence class, then $A_{/\sim}$ is a partition. Conversely, let $P$ be a partition of $A$, then $\sim \; = \{ (a,b) \, | \, a, b \in X \text{ for some } X \in P \} $ is an equivalence relation and $A_{/\sim} = P$.
