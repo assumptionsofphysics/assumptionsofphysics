@@ -2,6 +2,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{natbib}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,arrows,arrows.meta,decorations.markings}
+
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{amsfonts}
 \usepackage{MnSymbol}
@@ -46,7 +50,7 @@
 
 \section{Introduction}
 
-As soon as Quantum Mechanics (QM) achieved a definite and coherent mathematical formulation, several physicists and philosophers claimed that its formal structure does not conform to the laws of classical propositional calculus, a belief that is widespread still to this day (cf.\ \cite{Giuntini:2002}, \cite{DallaChiara:2004} and \cite{deRonde:2016}). From the thirties, in fact, various modifications of Classical Logic (CL) were advanced in order to faithfully represent the physical content of quantum theory. For instance, in 1931 the Polish philosopher Zygmunt Zawirski proposed to apply \L ukasiewicz's three-valued logic to QM, starting from considerations about the wave-particle duality and Heisenberg's uncertainty principle. In virtue of the latter, moreover, the logical empiricists Moritz Schlick and Philipp Frank claimed that the conjunction of two or more statements may have no meaning in quantum theory, concluding that the classical conjunction is not always valid in the context of quantum physics, as recalled in \cite{Carnap:1966}. In their view, a typical example of invalid conjunction is one attributing a definite value for both position and momentum to a single quantum particle at a given time $t$. Furthermore, in 1933 Fritz Zwicky suggested that QM rejects the law of excluded-middle.\footnote{For historical details on quantum logic see \cite{Jammer:1974}.} However, it s generally recognized that 
+As soon as Quantum Mechanics (QM) achieved a definite and coherent mathematical formulation, several physicists and philosophers claimed that its formal structure does not conform to the laws of classical propositional calculus, a belief that is widespread still to this day (cf.\ \cite{Giuntini:2002}, \cite{DallaChiara:2004} and \cite{deRonde:2016}). From the thirties, in fact, various modifications of Classical Logic (CL) were advanced in order to faithfully represent the physical content of quantum theory. For instance, in 1931 the Polish philosopher Zygmunt Zawirski proposed to apply \L ukasiewicz's three-valued logic to QM, starting from considerations about the wave-particle duality and Heisenberg's uncertainty principle. In virtue of the latter, moreover, the logical empiricists Moritz Schlick and Philipp Frank claimed that the conjunction of two or more statements may have no meaning in quantum theory, concluding that the classical conjunction is not always valid in the context of quantum physics, as recalled in \cite{Carnap:1966}. In their view, a typical example of invalid conjunction is one attributing a definite value for both position and momentum to a single quantum particle at a given time $t$. Furthermore, in 1933 Fritz Zwicky suggested that QM rejects the law of excluded-middle.\footnote{For historical details on quantum logic see \cite{Jammer:1974}.} However, it is generally recognized that 
 the founding text on Quantum Logic (QL) is Birkhoff and von Neumann's essay ``\emph{The Logic of Quantum Mechanics}'' (\cite{vonNeumann:1936}), where the authors provided the standard account of the propositional calculus obeyed by quantum propositions.\footnote{It is worth noting that von Neumann in his treatise \emph{Mathematische Grundlagen der Quantenmechanik} published in 1932 anticipated that from the algebraic structure of quantum theory it would have been possible to formulate a new propositional calculus. These ideas would have been fully expressed of his successive collaboration with Garrett Birkhoff.}
 
 A few years after the publication of this paper, the research in quantum logic had a notable development in both the scientific and philosophical communities, opening new research programs searching for the correct formal structures to represent the physics of QM (cf.\ \cite{Reichenbach:1944}, \cite{Mackey:1957}, \cite{Finkelstein:1963}, \cite{Kochen:1965}, \cite{Jauch:1969}, \cite{Giuntini:2002}, \cite{DallaChiara:2004}), and intense metaphysical debates regarding the nature of logic itself and its empirical status (cf.\ notably \cite{Quine:1951}, \cite{Putnam:1968}, \cite{Dummett:1976}, \cite{Hallett:1982}, \cite{Weingartner:2004}, \cite{Bacciagaluppi:2009}). In addition, it is worth noting that research in quantum logic is still very prolific to the present day with many interesting applications in the fields of quantum information, computation and cryptography. Therefore, although QL is no longer viewed as a solution to the foundational problems affecting quantum theory\footnote{This conclusion is now accepted among experts; for details see e.g.\ by \cite{Bacciagaluppi:2009} and \cite{Giuntini:2002}. Referring to this, the latter authors stated explicitly that ``quantum logics are not to be regarded as a kind of ``clue'', capable of solving the main physical and epistemological difficulties of QT [quantum theory]. This was perhaps an illusion of some pioneering workers in quantum logic'' (\cite{Giuntini:2002}, p.\ 225).}, it is an important discipline of contemporary physics. In this paper we will neither take a stance in the dispute concerning the ontological status of logic and its laws, nor we will consider recent developments of QL given that they are not strictly relevant to the point we are going to make. Indeed, the present essay is focused on the logical structures common to both quantum and Classical Mechanics (CM), following the spirit of the former discussion.\footnote{In the present essay we will be concerned only with propositional calculus in the context of non-relativistic QM. First order and higher order logics will not be discussed here as well as the logic of relativistic quantum theories.} 
@@ -165,6 +169,103 @@ Let us then redefine the propositions as follows:
 	\item $r_o$: ``after the measurement, the electron $y$-spin is down''.
 \end{description}
 \noindent Given the setup of the example, after the measurement either $q_o$ or $r_o$ must be true, which means $q_o \vee r_o = \top$. This reflects the simple fact that after a measurement of spin along the $y$ axis the state must be one of the two, which is true only after the measurement. The key is that $q_i$ and $r_i$ are not the same statements as $q_o$ and $r_o$, therefore it is not necessarily true that $q_o \vee r_o = q_i \vee r_i$. This unwarranted generalization is what causes the problem.
+
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+	1 with {\arrow[semithick]{open triangle 60}}},
+double distance=1.4pt, shorten >= 5.5pt,
+preaction = {decorate},
+postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]
+
+\begin{center}
+\scalebox{0.9}{
+	\begin{tikzpicture}
+		\coordinate (o) at (-3,0);
+		\draw[-{Stealth[scale=1.8]}] ($ (o) + (0, -3) $) -- ($ (o) + (0, 3) $);
+		\node at ($ (o) + (.25, 2.5) $) {$y$};
+		\draw[-{Stealth[scale=1.5]}] ($ (o) + (-.985, -.3) $) -- ($ (o) + (.985, .3) $);
+		\node at ($ (o) + (.7, -.2) $) {$x$};
+		
+		\coordinate (a) at (0,0);
+		\draw[dashed] ($ (a) + (0, 0) $) ellipse (1 and 3);
+		\draw[-{Stealth[scale=1.8]}, dashed] ($ (a) + (0, 0) $) -- ($ (a) + (0, 3) $);
+		\node at ($ (a) + (-.2, 1.3) $) {$q_i$};
+		\draw[-{Stealth[scale=1.5]}, thick] ($ (a) + (0, 0) $) -- ($ (a) + (.985, .3) $);
+		\node at ($ (a) + (.6, -.1) $) {$p_i$};
+		\draw[-{Stealth[scale=1.8]}, dashed] ($ (a) + (0, 0) $) -- ($ (a) + (0, -3) $);
+		\node at ($ (a) + (-.2, -1.3) $) {$r_i$};
+		\coordinate (aT) at ($ (a) + (0, -3.5) $);
+		\node[align=center] at (aT) {\small Step 1 \\ Preparation};
+		
+		\coordinate (bb) at (1.5,0);
+		\draw[vecArrow] ($ (bb) + (-0.2, 0) $) to ($ (bb) + (0.2, 0) $);
+		\draw[innerWhite] ($ (bb) + (-0.2, 0) $) to ($ (bb) + (0.2, 0) $);
+		
+		\coordinate (bc) at (3, 0);
+		\draw ($ (bc) + (-1.2, -.6) $) rectangle ($ (bc) + (+1.2, .6) $);
+		\node at ($ (bc) $) {Measurement};
+		
+		\coordinate (bd) at (4.5,0);
+		\draw[vecArrow] ($ (bd) + (-0.2, 0) $) to ($ (bd) + (0.2, 0) $);
+		\draw[innerWhite] ($ (bd) + (-0.2, 0) $) to ($ (bd) + (0.2, 0) $);
+		
+		\coordinate (b) at (6,0);
+		\draw[dashed] ($ (b) + (0, 0) $) ellipse (1 and 3);
+		\draw[-{Stealth[scale=1.5]}, thick] ($ (b) + (0, 0) $) -- ($ (b) + (0, 3) $);
+		\node at ($ (b) + (-.2, 1.3) $) {$q_o$};
+		\draw[-{Stealth[scale=1.8]}, dashed] ($ (b) + (0, 0) $) -- ($ (b) + (.985, .3) $);
+		\node at ($ (b) + (.6, -.1) $) {$p_o$};
+		\draw[-{Stealth[scale=1.5]}, thick] ($ (b) + (0, 0) $) -- ($ (b) + (0, -3) $);
+		\node at ($ (b) + (-.2, -1.3) $) {$r_o$};
+		\coordinate (bT) at ($ (b) + (0, -3.5) $);
+		\node[align=center] at (bT) {\small Step 2 \\ Measurement};
+		
+		\coordinate (cb) at (7.5,0);
+		\draw[vecArrow] ($ (cb) + (-0.2, 1.5) $) to ($ (cb) + (0.2, 1.5) $);
+		\draw[innerWhite] ($ (cb) + (-0.2, 1.5) $) to ($ (cb) + (0.2, 1.5) $);
+		\draw[vecArrow] ($ (cb) + (-0.2, -1.5) $) to ($ (cb) + (0.2, -1.5) $);
+		\draw[innerWhite] ($ (cb) + (-0.2, -1.5) $) to ($ (cb) + (0.2, -1.5) $);
+		
+		\coordinate (cc) at (9, 0);
+		\draw[dashed] ($ (cc) + (-1.2, -.6) + (0, 1.5) $) rectangle ($ (cc) + (+1.2, .6) + (0, 1.5) $);
+		\node at ($ (cc) + (0, 1.5) $) {No rotation};
+		\draw ($ (cc) + (-1.2, -.6) + (0, -1.5) $) rectangle ($ (cc) + (+1.2, .6) + (0, -1.5) $);
+		\node at ($ (cc) + (0, -1.5) $) {90$^o$ rotation};
+		
+		\coordinate (cd) at (10.5,0);
+		\draw[vecArrow] ($ (cd) + (-0.2, 1.5) $) to ($ (cd) + (0.2, 1.5) $);
+		\draw[innerWhite] ($ (cd) + (-0.2, 1.5) $) to ($ (cd) + (0.2, 1.5) $);
+		\draw[vecArrow] ($ (cd) + (-0.2, -1.5) $) to ($ (cd) + (0.2, -1.5) $);
+		\draw[innerWhite] ($ (cd) + (-0.2, -1.5) $) to ($ (cd) + (0.2, -1.5) $);
+		
+		\coordinate (c) at (12,0);
+		\draw[dashed] ($ (c) + (0, 0) $) ellipse (1 and 3);
+		\draw[-{Stealth[scale=1.5]}, thick] ($ (c) + (0, 0) $) -- ($ (c) + (0, 3) $);
+		\node at ($ (c) + (-.2, 1.3) $) {$q_f$};
+		\draw[-{Stealth[scale=1.5]}, thick] ($ (c) + (0, 0) $) -- ($ (c) + (.985, .3) $);
+		\node at ($ (c) + (.6, -.1) $) {$p_f$};
+		\draw[-{Stealth[scale=1.8]}, dashed] ($ (c) + (0, 0) $) -- ($ (c) + (0, -3) $);
+		\node at ($ (c) + (-.2, -1.3) $) {$r_f$};
+		\coordinate (cT) at ($ (c) + (0, -3.5) $);
+		\node[align=center] at (cT) {\small Step 3 \\ Rotation};
+		
+		%	\draw \setA;
+		%	\begin{scope}
+		%		\clip \setA;
+		%		\draw (-5, 4) .. controls (0, 2) and (0, -2) .. (-5, -4);
+		%		\draw (2, 4) .. controls (2, 2) and (0, 1) .. (-1.46, 1);
+		%		\draw (1, 1.9) .. controls (1.5, 1) and (2, -2.5) .. (0.5, -4);
+		%		\draw (1.49, -1)  .. controls (2, -0.3) and (4, 0.5) ..  (5, 0);
+		%	\end{scope}
+		%	\node at (-4, -4.5) {$A$};
+		%	\node at (-3.2, 0) {$P_1$};
+		%	\node at (-0.4, 2.6) {$P_2$};
+		%	\node at (-0.2, -1.2) {$P_3$};
+		%	\node at (3, -1.7) {$P_4$};
+		%	\node at (3, 1.5) {$P_5$};
+	\end{tikzpicture} 
+}
+\end{center}
 
 To make evident why the generalization is problematic, let us add a third step. After the measurement of $S_y$, in the case we obtained $y$-spin down we will rotate the direction of spin by 90 degrees using the precession generated by a magnetic field, so that $x$-spin will be up. However, in the other case, when $y$-spin up is obtained, we leave the direction of spin unchanged. Consider now the statements:
 \begin{description}
