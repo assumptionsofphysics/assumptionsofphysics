@@ -1,49 +1,15 @@
-\documentclass[12pt, english, twoside]{article} %twoside necessary for fancyheader odd vs. even commands 
+%!TEX TS-program = xelatex     				
+%!TEX encoding = UTF-8 Unicode
 
-\usepackage[letterpaper]{geometry}
-%\geometry{verbose, a4paper, tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
-\geometry{verbose, a4paper, tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm} 
+\documentclass[12pt, twoside]{article}
+\usepackage[a4paper]{geometry}
+\geometry{top=4cm, bottom=4cm, left=2.5cm, right=2.5cm} 
+%\geometry{top=4cm, bottom=4cm, left=3cm, right=4cm} %close to actual philsci margins 
 
-\usepackage{amsmath, hyperref, enumerate, comment}
-\usepackage{amsfonts, esint, setspace}
-\usepackage{graphicx}
-\usepackage{mathrsfs} %for script font 
-
-\linespread{1.3}	
 
 \raggedbottom % prevents random spaces between paragraphs from appearing
 
-\usepackage[titletoc,title]{appendix}
-
-% headers
-\usepackage{fancyhdr} 
-\pagestyle{fancy}
-\fancyhead{}
-\fancyhead[OR,ER]{\large \textbf{\thepage}}
-%\fancyhead[C]{\textit{}}% odd page header and number to right top
-%\fancyhead[EC]{\textit{Your Name}}%Even page header and number at left top
-\fancyfoot[L,R,C]{}
-\renewcommand{\headrulewidth}{0pt}
-%\renewcommand{\footrulewidth}{0pt}
-\renewcommand*\footnoterule{} %removes footnote line
-
-
-% % redefines abstract to be capitalized, with no margins 
-\renewenvironment{abstract}
- {\small
-  \begin{center}
-\normalsize  \textnormal{ABSTRACT\\} \vspace{-0em}\vspace{0pt}
-  \end{center}
-  \list{}{%
-    \setlength{\leftmargin}{0in}%
-    \setlength{\rightmargin}{\leftmargin}%
-  }%
-  \item\relax}
- {\endlist}
-
-% section headings
-\usepackage{sectsty}
-\allsectionsfont{\large\raggedright\centering}
+\usepackage{footmisc} % all footnote commands are at end of preamble
 
 % Table of contents stuff and footnotes 
 \setcounter{tocdepth}{2}
@@ -59,36 +25,529 @@
 \makeatletter
 \renewcommand{\@cftmaketoctitle}{}
 
-% % footnote modification: must be between \makeatletter and \makeatother
+\usepackage{titlesec}
+\iffalse
+\titleformat{\section}[runin]% runin puts it in the same paragraph
+        {\normalfont\bfseries}% formatting commands to apply to the whole heading
+        {\thesection.}% the label and number
+        {0.5em}% space between label/number and section title
+        {}% formatting commands applied just to section title
+        [.]% punctuation or other commands following section title
+        
+        
+\titlespacing*{\section}{0pt}{5mm}{2.5mm}%spacing from left margin, spacing above header, spacing on right of header
+\fi
 
-\renewcommand{\@makefntext}[1]{%
-  \setlength{\parindent}{0pt}%
-  \begin{list}{}{\setlength{\labelwidth}{6mm}% indents footnote text 
-    \setlength{\leftmargin}{\labelwidth}%
-    \setlength{\labelsep}{5pt}% moves footnote mark to the left
-     \setlength{\itemsep}{0pt}%
-      \setlength{\parsep}{0pt}%
-      \setlength{\topsep}{-3pt}% removes separation between footnotes
-    \footnotesize}%
-  \item[\@textsuperscript{\@thefnmark}\hfil ]#1% @makefnmark
-  \end{list}%
+% headers
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\thepage} %page number placement
+\fancyhead[C]{\textsc{HAMILTONIAN PRIVILEGE}}% odd page header 
+%\fancyhead[EC]{\textsc{AUTHOR NAMES}}%Even page header 
+\fancyfoot[L,R,C]{}
+\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\renewcommand*\footnoterule{} % removes footnote line
+
+
+\fancypagestyle{plain} % for first page 
+{
+\fancyhead[LCR]{} %clears header 
+\fancyfoot[C]{\thepage}
+   \renewcommand{\headrulewidth}{0pt}
 }
-%      \setlength{\footnotesep}{0pt}%
 
-\makeatother
-\renewcommand{\cftdot}{} % removes dots from table of contents 
+\usepackage{amsmath, hyperref, enumerate, comment}
+\usepackage{amsfonts, esint, setspace}
+\usepackage{graphicx}
+\usepackage{mathrsfs} %for script font 
+
+%\doublespacing
+\linespread{1.5}	
 
 
 % % for fonts:
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{mathptmx}
-%\usepackage{mathpazo}
+
+% % Generates bib file for project: %place before biblatex commands and calls
+\usepackage{filecontents}
+\begin{filecontents}{references.bib}
+
+% Encoding: UTF-8
+
+@book{Arnold,
+	author = {Arnold, Vladimir I.},
+	title = {Mathematical Methods of Classical Mechanics},
+	year = {1989},
+	publisher = {Springer},
+	place = {New York},
+	edition = {2},
+	translator = {K. Vogtmann and A. Weinstein}
+}
+
+@book{Abraham,
+	author = {Abraham, Ralph and Marsden, Jerrold E.},
+	title = {Foundations of Mechanics},
+	year = {1978},
+	publisher = {Benjamin--Cummings Publishing Company},
+	place = {London},
+	edition = {2},
+}
+
+@Unpublished{Butterfield2004,
+  author  = {Butterfield, Jeremy N.},
+  Title   = {Between Laws and Models: {S}ome Philosophical Morals of {L}agrangian Mechanics},
+  Year    = {2004},
+  Address = {https://arxiv.org/abs/physics/0409030},
+}
+
+@InCollection{Butterfield2004a,
+  Title     = {On {H}amilton--{J}acobi Theory as a Classical Root of Quantum Theory},
+  Publisher = {Springer},
+  Year      = {2004},
+  author  = {Butterfield, Jeremy N.},
+  Editor    = {Elitzur, A. C. and Dolev, S. and Kolenda, N.},
+  Address   = {New York},
+  Booktitle = {Quo Vadis Quantum Mechanics? {P}ossible Developments in Quantum Theory in the 21st Century},
+}
+
+@Article{Butterfieldpoints,
+  author  = {Butterfield, Jeremy N.},
+  journal = {British Journal for Philosophy of Science},
+  title   = {Against Pointillisme about Mechanics},
+  year    = {2006},
+  pages   = {709--753},
+  volume  = {57},
+}
+
+@InCollection{Butterfield2006,
+  Pages     = {43--99},
+  Title     = {On Symmetry and Conserved Quantities in Classical Mechanics},
+  Publisher = {Springer},
+  Year      = {2006},
+  Author    = {Butterfield, Jeremy N.},
+  Editor    = {Demopoulos, William and Pitowsky, Itamar},
+  Address   = {Dordrecht},
+  Booktitle = {Physical Theory and its Interpretation: {E}ssays in Honor of {J}effrey {B}ub},
+}
+
+@book{Cline,
+	author = {Cline, Douglas},
+	title = {Variational Principles in Classical Mechanics},
+	year = {2021},
+	publisher = {LibreTexts},
+}
+
+@Book{Field,
+  Title     = {Science without Numbers: {A} Defense of Nominalism},
+  Address   = {Oxford},
+  Publisher = {Oxford University Press},
+  Year      = {2016 [1980]},
+edition = {2},
+  Author    = {Field, Hartry H.},
+}
+
+@Book{Field1980,
+  Title     = {Science without Numbers: {A} Defence of Nominalism},
+  Publisher = {Princeton University Press},
+  Year      = {1980},
+  Author    = {Field, Hartry H.},
+  Address   = {Princeton, N.J.},
+  Note      = {80007560 Hartry H. Field. Ill. ; 23 Cm. Includes Bibliographical References and Index.},
+  Keywords  = {Science Philosophy. Mathematics Philosophy. Nominalism.},
+  Pagetotal     = {xiii, 130 P.},
+}
+
+@Book{Healey,
+  Title     = {Gauging What's Real: The Conceptual Foundations of Contemporary Gauge Theories},
+  Publisher = {Oxford University Press},
+  Year      = {2007},
+  Author    = {Healey, Richard},
+  Address   = {Oxford},
+}
+
+@Book{Ruetsche,
+  Title     = {Interpreting Quantum Theories},
+  Address   = {Oxford},
+  Publisher = {Oxford University Press},
+  Year      = {2011},
+  Author    = {Ruetsche, Laura},
+}
+
+@Article{Smith,
+  Author    = {Smith, Sheldon R},
+  Title     = {Symmetries and the Explanation of Conservation Laws in the Light of the Inverse Problem in {L}agrangian Mechanics},
+  Journal   = {Studies in History and Philosophy of Modern Physics},
+  Year      = {2008},
+  Volume    = {39},
+  Number    = {2},
+  Pages     = {325--345},
+  Publisher = {Elsevier},
+}
+
+@ARTICLE {North,
+	author  = "Jill North",
+	title   = "The ``Structure'' of Physics: A Case Study",
+	journal = "The Journal of Philosophy",
+	year    = "2009",
+	volume  = "106",
+	number  = "2",
+	pages   = "57--88",
+	url     = "http://philsci-archive.pitt.edu/4961/"
+}
+
+@ARTICLE {Curiel,
+	author  = "Erik Curiel",
+	title   = "Classical Mechanics Is Lagrangian; It Is Not Hamiltonian",
+	journal = "The British Journal for the Philosophy of Science",
+	year    = "2014",
+	volume  = "65",
+	number  = "2",
+	pages   = "269-–321",
+	url     = "https://doi.org/10.1093/bjps/axs034"
+}
+
+@ARTICLE {Barrett1,
+	author  = "Thomas William Barrett",
+	title   = "On the Structure of Classical Mechanics",
+	journal = "The British Journal for the Philosophy of Science",
+	year    = "2014",
+	volume  = "66",
+	number  = "4",
+	pages   = "801-–828",
+	url     = "https://doi.org/10.1093/bjps/axu005"
+}
+
+@ARTICLE {Barrett2,
+	author  = "Thomas William Barrett",
+	title   = "Equivalent and Inequivalent Formulations of Classical Mechanics",
+	journal = "The British Journal for the Philosophy of Science",
+	year    = "2018",
+	url     = "https://doi.org/10.1093/bjps/axy017"
+}
+
+
+@ARTICLE {AllHamFreeParticle,
+	author  = "E. Galindo-Linares and E. Navarro-Morale and G. Silva-Ortigoza and R. Suárez-Xique and M. Marciano-Melchor and R. Silva-Ortigoza and E. Román-Hernández",
+	title   = "Any Hamiltonian System Is Locally Equivalent to a Free Particle",
+	journal = "World Journal of Mechanics",
+	year    = "2012",
+	volume  = "2",
+	number  = "5",
+	pages   = "246--252",
+	url     = "https://doi.org/10.4236/wjm.2012.25030"
+}
+
+@ARTICLE {AllSystemsAreHam,
+	author  = "C. A. Lucey and E. T. Newman",
+	title   = "On the construction of Hamiltonians",
+	journal = "Journal of Mathematical Physics",
+	year    = "1988",
+	volume  = "29",
+	number  = "11",
+	pages   = "2430--2433",
+	url     = "https://doi.org/10.1063/1.528129"
+}
+
+@article{Shannon,
+	added-at = {2018-06-03T07:16:08.000+0200},
+	author = {Shannon, Claude Elwood},
+	biburl = {https://www.bibsonomy.org/bibtex/2991e1d12fe529405c363bd2aad283d7b/achakraborty},
+	doi = {10.1002/j.1538-7305.1948.tb01338.x},
+	interhash = {754130207906fcec16a53d330eeff348},
+	intrahash = {991e1d12fe529405c363bd2aad283d7b},
+	journal = {The Bell System Technical Journal},
+	keywords = {ieee information-theory paper},
+	month = {7},
+	number = 3,
+	pages = {379--423},
+	publisher = {Nokia Bell Labs},
+	timestamp = {2018-06-03T07:17:55.000+0200},
+	title = {A Mathematical Theory of Communication},
+	url = {https://ieeexplore.ieee.org/document/6773024/},
+	volume = 27,
+	year = 1948
+}
+
+
+@article{Jaynes,
+	added-at = {2017-05-10T05:56:13.000+0200},
+	author = {Jaynes, Edwin T},
+	biburl = {https://www.bibsonomy.org/bibtex/2521dc36203688bc4c8b065e18dea3a7c/salotz},
+	interhash = {cbe997458351b8d62a904b58205078ea},
+	intrahash = {521dc36203688bc4c8b065e18dea3a7c},
+	journal = {Physical review},
+	keywords = {information-theory jaynes statistical-mechanics},
+	number = 4,
+	pages = 620,
+	publisher = {APS},
+	timestamp = {2017-05-10T05:56:13.000+0200},
+	title = {Information theory and statistical mechanics},
+	volume = 106,
+	year = 1957
+}
+
+@article{Holten,
+	title = {Covariant Hamiltonian dynamics},
+	author = {{van Holten}, J. W.},
+	journal = {Phys. Rev. D},
+	volume = {75},
+	issue = {2},
+	pages = {025027},
+	numpages = {9},
+	year = {2007},
+	month = {Jan},
+	publisher = {American Physical Society},
+	doi = {10.1103/PhysRevD.75.025027},
+	url = {https://link.aps.org/doi/10.1103/PhysRevD.75.025027}
+}
+
+@article{Struckmeier,
+	title = {Hamiltonian Dynamics on the Symplectic Extended Phase Space for Autonomous and Non-autonomous Systems},
+	author = {Struckmeier, J.},
+	journal = {Journal of Physics A: {M}athematical and General},
+	volume = {38},
+	number = {6},
+	pages = {1257--1278},
+	year = {2005},
+	doi = {10.1088/0305-4470/38/6/006},
+	url = {https://iopscience.iop.org/article/10.1088/0305-4470/38/6/006},
+}
+
+@article{Coffey,
+	author = {Coffey, Kevin},
+	year = {2014},
+	month = {11},
+	pages = {821-844},
+	title = {Theoretical Equivalence as Interpretative Equivalence},
+	volume = {65},
+	journal = {The British Journal for the Philosophy of Science},
+	doi = {10.1093/bjps/axt034}
+}
+
+@book{Maudlin,
+	author = {Tim Maudlin},
+	title = {New Foundations for Physical Geometry: The Theory of Linear 	Structures.},
+	year = {2014},
+	publisher = {Oxford University Press},
+	place = {New York}
+}
+
+@article{Jarzynski,
+	title = {Stochastic and Macroscopic Thermodynamics of Strongly 	Coupled Systems},
+	author = {Jarzynski, Christopher},
+	journal = {Phys. Rev. X},
+	volume = {7},
+	issue = {1},
+	pages = {011008},
+	numpages = {20},
+	year = {2017},
+	month = {Jan},
+	publisher = {American Physical Society},
+	doi = {10.1103/PhysRevX.7.011008},
+	url = {https://link.aps.org/doi/10.1103/PhysRevX.7.011008}
+}
+
+@article{Maes,
+	title={Time-reversal and entropy},
+	author={Maes, Christian and Neto{\v{c}}n{\`y}, Karel},
+	journal={Journal of statistical physics},
+	volume={110},
+	number={1-2},
+	pages={269--310},
+	year={2003},
+	publisher={Springer}
+}
+
+@article{Horowitz,
+	title={Thermodynamics of information},
+	author={Parrondo, Juan MR and Horowitz, Jordan M and 	Sagawa, Takahiro},
+	journal={Nature physics},
+	volume={11},
+	number={2},
+	pages={131},
+	year={2015},
+	publisher={Nature Publishing Group}
+}
+@Article{Teh,
+  author  = {Teh, Nicholas and Tsementzis, Dimitris},
+  journal = {Studies in History and Philosophy of Modern Physics},
+  title   = {Theoretical Equivalence in Classical Mechanics and its Relationship to Duality},
+  year    = {2017},
+  pages   = {44--54},
+  volume  = {59},
+}
+
+@Unpublished{Swanson,
+	author = {Swanson, Noel and Halvorson, Hans},
+	year = {2012},
+	month = {},
+	pages = {1-10},
+	title = {On North's `The Structure of Physics'},
+	volume = {},
+	journal = {},
+	doi = {},
+	address = {http://philsci-archive.pitt.edu/9314/}, 
+}
+
+@Article{Lewis1983,
+  Author    = {Lewis, David},
+  Title     = {New Work for a Theory of Universals},
+  Journal   = {Australasian Journal of Philosophy},
+  Year      = {1983},
+  Volume    = {61},
+  Number    = {4},
+  Pages     = {343--377},
+  Publisher = {Taylor \& Francis Group},
+}
+
+@Book{Earman,
+  author    = {Earman, John},
+  publisher = {Reidel},
+  title     = {A Primer on Determinism},
+  address   = {Dordrecht},
+  year      = {1986},
+}
+
+@Unpublished{Baez,
+  author = {Baez, John C.},
+  title  = {Struggles with the Continuum},
+  year   = {unpublished},
+  url    = {https://arxiv.org/abs/1609.01421},
+  address = {https://arxiv.org/abs/1609.01421}, 
+}
+
+@Article{Fletcher,
+  author    = {Fletcher, Samuel Craig},
+  journal   = {European Journal for Philosophy of Science},
+  title     = {What Counts as a Newtonian System? the View from Norton’s Dome},
+  year      = {2012},
+  month     = Oct,
+  number    = {3},
+  pages     = {275},
+  volume    = {2},
+  date      = {2012-10-01},
+  doi       = {10.1007/s13194-011-0040-8},
+  publisher = {Springer},
+  url       = {http://dx.doi.org/10.1007/s13194-011-0040-8},
+}
+
+@Article{Norton,
+  author  = {Norton, John},
+  journal = {Philosophy of Science},
+  title   = {The {D}ome: {A}n Unexpectedly Simple Failure of Determinism},
+  year    = {2008},
+  number  = {5},
+  pages   = {786--798},
+  volume  = {75},
+}
+
+@InCollection{Dorr_Hawthorne,
+  author    = {Dorr, Cian and Hawthorne, John},
+  booktitle = {Oxford Studies in Metaphysics},
+  publisher = {Oxford University Press},
+  title     = {Naturalness},
+  year      = {2014},
+  editor    = {Bennett, Karen and Zimmerman, Dean W.},
+  pages     = {3--77},
+  volume    = {8},
+}
+
+@InCollection{Wilson,
+  author    = {Wilson, Mark},
+  booktitle = {The Oxford Handbook of Philosophy of Physics},
+  publisher = {Oxford University Press},
+  title     = {What is `Classical Mechanics' Anyways?},
+  year      = {2013},
+  address   = {Oxford},
+  chapter   = {2},
+  editor    = {Batterman, Robert},
+  pages     = {43--106},
+}
+
+@InCollection{Wallace,
+  author    = {Wallace, David},
+  booktitle = {Symmetries in Physics: {P}hilosophical Reflections},
+  publisher = {Cambridge University Press},
+  title     = {Time-Dependent Symmetries: {T}he Link between Gauge Symmetries and Indeterminism},
+  year      = {2003},
+  address   = {Cambridge},
+  editor    = {Brading, Katherine and Castellani, Elena},
+  pages     = {163--173},
+}
+
+@book{Yablo,
+	author = {Yablo, Stephen},
+	title = {Aboutness},
+	year = {2014},
+	publisher = {Princeton University Press},
+	address = {Princeton},
+}
+
+@InCollection{Belot,
+  author    = {Belot, Gordon},
+  booktitle = {The Oxford Handbook of Philosophy of Physics},
+  publisher = {Oxford University Press},
+  title     = {Symmetry and Equivalence},
+  year      = {2013},
+  address   = {Oxford},
+  chapter   = {9},
+  editor    = {Batterman, Robert},
+  pages     = {318--339},
+}
+
+@Article{Chen2018,
+  author  = {Eddy Keming Chen},
+  title   = {The Intrinsic Structure of Quantum Mechanics},
+  year    = {unpublished},
+url = {https://arxiv.org/abs/1810.06551},
+}
+
+
+\end{filecontents}
+
+
+% % % Biblatex commands for Citations and References:
+\usepackage[backend=bibtex, authordate, url=false, doi=false, eprint=false]{biblatex-chicago}
+%\addbibresource{bibliography.bib}
+\addbibresource{references.bib} %call the bib file generated above 
+
+% clears un-needed fields from reference items
+\AtEveryBibitem{%
+  \clearfield{note}%
+  \clearfield{series}%
+  \clearfield{pagetotal}%
+   \clearfield{chapter}%
+  \clearfield{number}%for convenience/consistency
+}
+
+\DeclareFieldFormat{postnote}{\mkcomprange{#1}} % compresses page range in citations, so that unchanged digits are not repeated. See p. 259, section 4.6.4 of biblatex manual. 
+
+\DeclareFieldFormat{pages}{\mkcomprange{#1}} % compresses page range in bibliography, so that unchanged digits are not repeated. 
+
+\DefineBibliographyStrings{english}% for your language
+{ byeditor = {ed.}, } %changes `Edited by' to `ed.' See Stanley easier guide, p. 35
+
+%\renewcommand*{\bibfont}{\footnotesize} %changes fontsize of bibitems
+
+\newcommand\bs{\begin{singlespace}} 			
+\newcommand\es{\end{singlespace}} 		
+
+
+%Physics notation 
+\newcommand{\diff}{\mathop{}\!\mathrm{d}} %defines exterior derivative 
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\renewcommand{\vector}[1]{\ensuremath{\vec{#1}}} % redefines vector to vec
+\newcommand{\integral}{\int}
 
 % Hyperref set-up & metadata
 \hypersetup{
-	pdftitle={Your Paper Title},
-	pdfauthor={Your Name},
+	pdftitle={Hamiltonian Privilege},
+	pdfauthor={},
 	pdfsubject={},
 	pdfkeywords={},
 	pdfcreator={XeLaTeX},
@@ -100,94 +559,48 @@
 	unicode=true,		% non-Latin characters in Acrobat’s bookmarks
 	pdfnewwindow=true,	% links in new window
 	colorlinks=true,	% false: boxed links; true: colored links
-	linkcolor=black,	% color of internal links
+	linkcolor=blue,	% color of internal links
 	citecolor=black,	% color of links to bibliography
 	filecolor=black,	% color of file links
-	urlcolor=blue		% color of external links
+	urlcolor=black		% color of external links
 }
 
 
-%\usepackage[backend=biber, style=authoryear, url=false, doi=false, eprint=false]{biblatex}
+\newif\iffootpunct %defines \footpunctfalse  and \footpuncttrue commands
 
+% % Essential to modify footnote ONLY AFTER BIBLATEX COMMANDS, since otherwise ruins citation styles 
 
-
-
-% % % Biblatex commands for Citations and References:
-\usepackage[backend=biber, style=ext-authoryear-comp,  maxcitenames=2, dashed=false, url=false, doi=false, eprint=true, giveninits=true, innamebeforetitle=true, maxbibnames=6]{biblatex} 
-
-\addbibresource{bibliography.bib}
-
-%\addbibresource{templateReferences.bib} %%generated by reference items above
-%maxcitenames=2 replaces all instances of more than 2 authors in citations with `et al.', but lists all authors in references
-%labeltitleyear=true; sortcites=true
-%innamebeforetitle=true places editors before the book titles
-%style=authoryear-comp adds in some weird ``In:'' stuff in reference list that must be changed below. 
-
-%\DeclareFieldFormat{labeldate}{\mkbibbrackets{#1}} %puts brackets around years in citations
-
-\DeclareFieldFormat{postnote}{\mkpageprefix[pagination][\mkcomprange]{#1}} % compresses page range in citations, so that unchanged digits are not repeated. See p. 259, section 4.6.4 of biblatex manual.  %also adds pagination prefix p.
-
-% clears un-needed fields from reference items
-\AtEveryBibitem{%
- \clearfield{note}%
-  \clearfield{series}%
- \clearfield{number}%
- \clearfield{pagetotal}%
- \clearfield{chapter}%
-  }
-  %\clearfield{pages}%}
+% % footnote modification: must be between \makeatletter and \makeatother
+ \makeatletter
   
-  
-  \renewcommand{\newunitpunct}{\addcomma\space} %makes a comma the default separator between items; overridden in some cases by commands below
-
-\renewcommand{\intitlepunct}{\addspace\nopunct} %removes punctuation after ``in"
-
-\DeclareDelimFormat[bib,biblist]{nametitledelim}{\addcolon\space} %puts colon after year
-
-%\DeclareFieldFormat{biblabeldate}{\mkbibbrackets{#1}} %puts brackets around years in references
-
-\DeclareFieldFormat{editortype}{\mkbibparens{\textit{#1}}} %puts ed in parentheses
-\DeclareDelimFormat{editortypedelim}{\addspace}%prevents punctuaction clash after (ed)
-\DeclareDelimFormat[bib,biblist]{innametitledelim}{\addcomma\space} % puts comma after (ed)
-
-\DeclareFieldFormat{eprint}{\printtext{available at}\addspace \textless#1\textgreater} % Calls url from Eprint field. See biblatex manual, section 4.11.2 Electronic Publishing Information, page 310-11
-  
-\DeclareFieldFormat[article,periodical]{volume}{\textbf{#1}} %puts volume in bold; note that adding \bibstring{jourvol}~ before #1} prints ``vol.". from biblatex-ext manual 
-%\DeclareFieldFormat[article,periodical]{number}{#1}%\bibstring{number}~ before #1} prints ``vol."
-\renewcommand*{\jourvoldelim}{\addcomma\space} %combined with above command, puts comma after article title and before journal volume. 
-%\renewcommand*{\volnumdelim}{\addcomma\space}
-
-\DeclareFieldFormat[inbook, incollection, book]{volume}{\bibcpstring{volume}~#1} %capitalizes `Vol' after book titles. 
-
-\DeclareFieldFormat{pages}{\mkpageprefix[pagination][\mkcomprange]{#1}} % compresses page range in bibliography, so that unchanged digits are not repeated. 
-
-% % following command suppresses ``in" for articles and inproceedings only
-\renewbibmacro{in:}{%
-\ifboolexpr{%
-test {\ifentrytype{article}}%
-or
-test {\ifentrytype{inproceedings}}%
+ \def\blfootnote{\gdef\@thefnmark{} \@footnotetext} %footnote without number marker
+ 
+ \renewcommand{\@makefntext}[1]{%
+  \setlength{\parindent}{0pt}%
+  \begin{list}{}{\setlength{\labelwidth}{0mm}% indents footnote text, Space from number to border
+    \setlength{\leftmargin}{\labelwidth}%  
+    \setlength{\labelsep}{0pt}% Space from number to text, moves footnote mark to the left
+     \setlength{\itemsep}{0pt}%
+      \setlength{\parsep}{0pt}%
+      \setlength{\topsep}{0pt}% removes separation between footnotes
+      }%\doublespacing \normalsize% double spaces and changes font size of footnotes; place before }
+  \item[\@thefnmark \iffootpunct. \fi \hfil ]#1% @makefnmark, with period iff footpuncttrue
+  \end{list}%
 }
-{}%<-nothing
-{\printtext{\bibstring{in}\intitlepunct}}%<-normal ’in’ with punctuation
-}
+  
+
+%      \setlength{\footnotesep}{0.83125\baselineskip}% separation between footnotes 
+
+\makeatother
 
 
-\newcommand{\diff}{\mathop{}\!\mathrm{d}} %defines exterior derivative 
-\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
-\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
-\renewcommand{\vector}[1]{\ensuremath{\vec{#1}}} % redefines vector to vec
-\newcommand{\integral}{\int}
-
-\newcommand\bs{\begin{singlespace}} 			
-\newcommand\es{\end{singlespace}} 	
-
+%\renewcommand{\footnotelayout}{\normalsize}
 
 \begin{document}
 
 \title{\vspace{-3em} \LARGE Hamiltonian Privilege }			
 %\author{\Large \textsuperscript{*\textdagger}}
-\date{\vspace{-7.9ex} \today}
+\date{\vspace{-7.9ex} July 30, 2021}
 \maketitle
 %
 \vspace{-8mm}
@@ -203,6 +616,17 @@ test {\ifentrytype{inproceedings}}%
 \bs
 \tableofcontents 
 \es
+
+\footpunctfalse% turns off period after footnote marker for blindfootnote
+
+%\blfootnote{*To contact the author, please write to: }
+%\blfootnote{\textdagger For comments on earlier drafts, we thank }
+
+
+\footpuncttrue% turns back on the period after the footnotemarker
+
+
+\raggedright\setlength{\parindent}{1em}
 
 
 \section{Introduction}
@@ -526,7 +950,9 @@ Whereas we can easily interpret non-hyper-regular Hamiltonians, the same cannot 
 %\footnote{This challenge is particularly pressing for systems that are everywhere non-regular. In the case where a system is non-regular only at certain points, we can decompose the system into hyper-regular subsystems, each with its own Lagrangian (or Hamiltonian).}
 %\footnote{Barrett conjectures that outside the hyper-regular domain, Hamiltonian and Lagrangian formulations ``will be inequivalent according to any reasonable standard of equivalence. There is no natural way to translate a non-hyper-regular model of the one theory into a model of the other'' \parencites*[1179]{Barrett2}.}
 
-Of course, if one insists on defining a ``classical system'' as Curiel does, one has grounds for privileging Lagrangian mechanics. Nevertheless, our preferred notion of classical systems---focusing on systems that are infinitesimally reducible---has substantive advantages over Curiel's. The general geometrical understanding of the principle of stationary action illustrates one of these advantages (Section~\ref{action}). Additionally, our definition accommodates models of classical massless particles by maintaining the uniqueness of solutions, even outside the hyper-regular domain. Moving beyond classical mechanics, our framework has the advantage of providing an elegant relationship with both classical statistical mechanics and quantum mechanics. First, the interpretation of the symplectic form is exactly the one used by the fundamental postulate of statistical mechanics, which uses phase space volumes---i.e. the volume form generated by the symplectic form---to count states. Second, by changing the requirement of infinitesimal reducibility to a corresponding notion of \textit{irreducibility}, we recover quantum mechanical systems. Hence, our framework perspicuously distinguishes quantum from classical systems. We take these considerations to favor our preferred notion of a classical system.\footnote{We provide details of the quantum and statistical mechanical cases elsewhere. Moreover, we show that Hamiltonian mechanics provides the proper setting for the invariant density and a simple understanding of the gauge-dependency of conjugate momentum.}  
+Of course, if one insists on defining a ``classical system'' as Curiel does, one has grounds for privileging Lagrangian mechanics. Nevertheless, our preferred notion of classical systems---focusing on systems that are infinitesimally reducible---has substantive advantages over Curiel's. The general geometrical understanding of the principle of stationary action illustrates one of these advantages (Section~\ref{action}). Additionally, our definition accommodates models of classical massless particles by maintaining the uniqueness of solutions, even outside the hyper-regular domain. Moving beyond classical mechanics, our framework has the advantage of providing an elegant relationship with both classical statistical mechanics and quantum mechanics. First, the interpretation of the symplectic form is exactly the one used by the fundamental postulate of statistical mechanics, which uses phase space volumes---i.e. the volume form generated by the symplectic form---to count states. Second, by changing the requirement of infinitesimal reducibility to a corresponding notion of \textit{irreducibility}, we recover quantum mechanical systems. Hence, our framework perspicuously distinguishes quantum from classical systems. We take these considerations to favor our preferred notion of a classical system.\footnote{Space precludes a detailed discussion of the quantum and statistical mechanical cases, which we hope to discuss elsewhere. Additionally, one can show that Hamiltonian mechanics provides the proper setting for the invariant density and a simple understanding of the gauge-dependency of conjugate momentum.}  
+
+%\footnote{We provide details of the quantum and statistical mechanical cases elsewhere. Moreover, we show that Hamiltonian mechanics provides the proper setting for the invariant density and a simple understanding of the gauge-dependency of conjugate momentum.}  
 %Preceding sections have illustrated many of these advantages. Hamiltonian mechanics provides the proper setting for the invariant density (Section~\ref{dependence}), a simple understanding of gauge transformations (Section~\ref{gauge_momentum}), and a general geometrical understanding of the principle of stationary action (Section~\ref{action}).
 % % %, see \textcites{AoPPhy1}. [omit for review].
 
@@ -538,11 +964,22 @@ By focusing on three basic physical conditions, we have derived the mathematical
 
 We have used this additional constraint to argue that Hamiltonian mechanics is more general---and hence more fundamental---than Lagrangian mechanics. Our argument for privileging Hamiltonian mechanics avoids both the technical problems facing North's \parencites*[]{North} argument and her more substantive metaphysical commitments. Likewise, our construction provides a principled response to Curiel's \parencites*[]{Curiel} criticism that Hamiltonian mechanics requires an \textit{ad hoc} condition. Although both frameworks adequately treat hyper-regular systems, there are compelling reasons to interpret Hamiltonian mechanics as more fundamental than Lagrangian mechanics. Our formalism emphasizes the invariant phase space density and the role of the symplectic form in counting states for each degree of freedom. Finally, we have provided a geometrical interpretation of the action principle that makes the gauge-dependency of the Lagrangian manifest. Overall, our approach provides a better understanding of not just the relationship between Hamiltonian and Lagrangian mechanics, but of classical systems in general.
 
-
+\clearpage
 
 \bs %begins single spacing
 
-\printbibliography[title ={References}]
+\setlength\bibitemsep{2pt} %controls spacing between bib entries. default is itemsep 
+
+\defbibheading{myheading}[REFERENCES]{%
+\centering \normalfont\textsc{{#1}}%
+%\centering \footnotesize\textsc{{#1}}%
+%\addcontentsline{toc}{subsection}{#1}% if you want this in table of contents; would need to use a \section* command above as well 
+%\markboth{#1}{#1}
+}
+
+\printbibliography[heading=myheading]%see Stanley easier read, pages 63-64. 
+
+%\printbibliography[title ={\centering \normalfont \textsc{References}}]
 \es
 
 %
