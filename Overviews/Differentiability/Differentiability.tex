@@ -1,0 +1,78 @@
+\documentclass[10pt, onecolumn, longbibliography, nofootinbib]{revtex4-2}
+
+\usepackage{assumptionsofphysics}
+
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\frenchspacing
+
+% Usual (decimal) numbering
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+% Fix references
+\makeatletter
+\renewcommand{\p@subsection}{}
+\renewcommand{\p@subsubsection}{}
+\makeatother
+
+\begin{document}
+
+\title{Physical motivation for differentiability}
+%\author{Gabriele Carcassi}
+%\email{carcassi@umich.edu}
+%\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+%\author{Christine Aidala}
+%\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+\date{\today}
+
+\begin{abstract}
+	This paper presents ideas and progress towards a more direct physical justification for differentiability. The general idea that the differentiable structure on a manifold exists to allow us to express a distribution as a density over the coordinates.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\emph{This paper presents the goal and the current status of our research. It is intended to gather early feedback, including pointers to other relevant work. Feedback is welcome and encouraged.}
+
+As part of our larger project, Assumptions of Physics, we want to rederive the mathematical structures we use in physics from precise physical starting points. In previous works we have shown the following:
+\begin{description}
+	\item[Experimentally distinguishable cases] $\to$ topological space. Each open set corresponds to an experimentally testable hypothesis.
+	\item[Cases identifiable by continuous quantities] $\to$ manifold. Coordinates represent measurable quantities.
+\end{description}
+Before we establish what Riemannian and symplectic manifolds correspond to, we need to establish what differentiability corresponds to.
+
+The general idea is that differentiability allows us to express a distribution as a continuous function $\rho(x^i)$ of the coordinates. That is, among all the possible coordinates of the manifold we restrict ourselves to those that allow us to express $\rho$ in a nice way.
+
+Conceptually, we will want to start from statements that are directly testable. As we do not measure densities directly, but finite values in finite regions, the density distribution $\rho$ cannot be our starting point. Given a set $X$ of possible cases, our verifiable statements are of the form ``in region $U$ the value of the quantity is within the range $V$'', where $U$ is an open set of $X$ and $V$ is an open set of $\mathbb{R}$. We need to identify the exact conditions for which we will recover differentiability in the case that $X$ is a manifold.
+
+\section{Mathematical problem}
+
+\begin{defn}
+	Let $X$ be a manifold, $\textsf{T}_X$ its topology and $\Sigma_X$ its Borel algebra. A \textbf{distributed quantity} $\mu$ is a measure $\mu : \Sigma_X \to \mathbb{R}$ such that $\mu(U) = \mu(\interior(U))$. 
+\end{defn}
+
+\begin{defn}
+	Given a manifold $X$ and a distributed quantity $\mu$, we say a coordinate $q : U \to \mathbb{R}$ is \textbf{smooth with respect to $\mu$} if the Radon-Nikodym derivative is continuous.
+\end{defn}
+
+\begin{desid}
+	The set of all smooth coordinates with respect to a distributed quantity $\mu$ identifies a differentiable structure for $X$.
+\end{desid}
+
+%\section{Examples}
+
+%\section{Insightful failures}
+
+
+\bibliography{bibliography}
+
+\end{document}
