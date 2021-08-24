@@ -56,6 +56,47 @@ Conceptually, we will want to start from statements that are directly testable. 
 
 \section{Mathematical problem}
 
+\subsection{General definitions}
+
+\begin{defn}
+	Let $X$ be a manifold of dimension $n$. A \textbf{k-surface} is a subset $U \subseteq X$ that is a $k$-dimensional manifold (with boundary) with the subspace topology (i.e. regular/embedded submanifold). We note $S^k(X)$, or simply $S^k$, the set of all $k$-surfaces and $S(X) = \bigcup_{i=0}^{n} S^k$ the set of all possible $k$-surfaces of all dimensions.
+\end{defn}
+
+\begin{remark}
+	Note that $S^k = \emptyset$ if $k < 0$ or $k > n$.
+\end{remark}
+
+\begin{defn}
+	The \textbf{boundary operator} $\partial : S(X) \to S(X)$ is a map from a $k$-surface to its boundary (as a manifold).
+\end{defn}
+
+\begin{prop}
+	For every $\sigma^k \in S^k(X)$ with $k > 0$, we have $\partial \sigma^k \in S^{k-1}$. For every $\sigma^0 \in S^0$, $\partial \sigma^0 = \emptyset$. For every $\sigma \in S$, we have $\partial \partial \sigma = \emptyset$.
+\end{prop}
+
+\begin{defn}
+	A \textbf{k-functional} is a function $f_k : S^k \to \mathbb{R}$ with the following properties:
+	\begin{description}
+		\item[Linear] $f_k(\sigma_1 \cup \sigma_2) = f_k(\sigma_1) + f_k(\sigma_2)$ for every $\sigma_1, \sigma_2 \in S^k$ such that $\sigma_1 \cap \sigma_2 = \emptyset$
+		\item[No contribution from boundary] $f_k(\sigma) = f_k(\sigma \setminus \partial \sigma)$ for every $\sigma \in S^k$
+		\item[Commutes with the limit] $\lim\limits_{i \to \infty} f_k(\sigma_i^k) = f_k(\lim\limits_{i \to \infty}\sigma_i^k)$ (limit of a sequence of submain)
+	\end{description}
+\end{defn}
+
+\begin{remark}
+	Linearity means that the contribution from each surface is independent from the rest (reducibility). If boundaries gave contribution, the functional would not really be a function of the $k$-surface, since the boundary is of lower dimension.
+	
+	Note the operator $length : S^1 \to \mathbb{R}$ that returns the length of a line is not a $1$-functional as it does not commute with the limit (e.g. diagonal is the limit of a perpendicular zig-zag, but the length does not converge).
+\end{remark}
+
+\subsubsection{Continuity for functionals}
+
+The requirements of commutation with the limit is similar to a definition of continuity in terms of limits. Can we turn that into a topological notion of continuity? Suppose we had a topology on $S^k$, could we simply require the functional to be continuous? How that would constrain $f_k$?
+
+This forms a nice parallel between a map $f : X \to Y$ and the functional $f_k : S^k \to \mathbb{R}$. For both, the open sets are associated to the measurement precision. For $f_k$, the precision of the quantity is an open interval (finite precision) while the precision of the argument is a set of possible $k$ surfaces (i.e. we have an uncertainty on the shape/area).
+
+For example, let $U, V \in S^k$ be two $k$-surfaces without borders such that $U \subset V$. The set $R(U,V) = \{ W \in S^k \, | \, U \subseteq W \subseteq V\}$ is called the \textbf{surface range} between $U$ and $V$. That should be an open set in the topology of $S^k$.
+
 \subsection{Deep approaches}
 
 These approaches try to formulate differentiability in terms of physical significance. The status of differentiable coordinates is that they are needed to validly express the physics problem.
@@ -82,54 +123,39 @@ More physical would be to consider the space of all measures, which would corres
 
 General issue: more thought needs to be put into how densities are actually measured, and what would be the correct topology on the space.
 
+\subsubsection{title}
+
 \subsection{Shallow approaches}
 
 These approaches do not try to assign physical significance to differentiability. The status of differentiable coordinates is that they are mathematically convenient.
 
-\subsubsection{Smoothness as convenient to express approximations of linear functionals}
+\subsubsection{Convergence at scale}
+
+We need to understand what is the proper criteria for convergence that correctly reflect the physical approximations we are looking for. The general idea is that we want an approximation that works from a given level of scale upwards, leaving errors at lower scale. This is not how typically things work with standard types of convergence.
+
+Suppose we have a function $f(x)$. Consider now $\hat{f}(x) = f(x) + \epsilon$, where $\epsilon$ can be understood as a small constant error over the whole space. The difference in integral $\int_U \hat{f}(x) - \int_U f(x)dx = \epsilon \Delta x$ increases with the size of the region. In the case the values $x$ and $f(x)$ represent directly the value measured (e.g. $x$ is temperature and $f(x)$ is the length of a metal bar), $\hat{f}$ represents a good approximation. If what we measure directly, however, is the integral (e.g. $U$ is a region and $\int_U f(x)dx$ is the mass in that region), then $\hat{f}$ would give a poor approximation at large scale. For this second case, we need a different method of convergence.
+
+A first attempt could be the following.
 
 \begin{defn}
-	Let $X$ be a manifold of dimension $n$. A \textbf{k-surface} is a subset $U \subseteq X$ that is a $k$-dimensional manifold (with boundary) with the subspace topology. We note $S^k(X)$, or simply $S^k$, the set of all $k$-surfaces and $S(X) = \bigcup_{i=0}^{n} S^k$ the set of all possible $k$-surfaces of all dimensions.
+	Let $X$ be a differentiable manifold. Let $d : X \times X \to [0, +\infty)$ be a metric that induces the topology of $X$. Let $B^k(X, \delta)$ be the set of all $k$-dimensional balls with radius greater than $\delta$. Let $\omega$ be a $k$-form. A sequence of $k$-forms $\{\omega_i\}$ \textbf{converges at scale} to $\omega$ if given $\epsilon, \delta \in \mathbb{R}^+$ we can find $N$ such that $\| \int_U \omega_n - \int_U \omega \| < \epsilon$ for all $n \geq N$ and $U \in B^k(X, \delta)$.
 \end{defn}
-
-\begin{remark}
-	Note that $S^k = \emptyset$ if $k < 0$ or $k > n$.
-\end{remark}
 
 \begin{defn}
-	The \textbf{boundary operator} $\partial : S(X) \to S(X)$ is a map from a $k$-surface to its boundary (as a manifold).
+	Let $X$ be a differentiable manifold. Let $d : X \times X \to [0, +\infty)$ be a metric that induces the topology of $X$. Let $B^k(X, \delta)$ be the set of all $k$-dimensional balls with radius greater than $\delta$. Let $f_k$ be a $k$-functional. A sequence of $k$-forms $\{\omega_i\}$ \textbf{converges at scale} to $f_k$ if given $\epsilon, \delta \in \mathbb{R}^+$ we can find $N$ such that $\| \int_U \omega_n - f_k(U) \| < \epsilon$ for all $n \geq N$ and $U \in B^k(X, \delta)$.
 \end{defn}
 
-\begin{prop}
-	For every $\sigma^k \in S^k(X)$ with $k > 0$, we have $\partial \sigma^k \in S^{k-1}$. For every $\sigma^0 \in S^0$, $\partial \sigma^0 = \emptyset$. For every $\sigma \in S$, we have $\partial \partial \sigma = \emptyset$.
-\end{prop}
-
-\begin{defn}
-	A \textbf{k-functional} is a function $f_k : S^k \to \mathbb{R}$ with the following properties:
-	\begin{description}
-		\item[Linear] $f_k(\sigma_1 \cup \sigma_2) = f_k(\sigma_1) + f_k(\sigma_2)$ for every $\sigma_1, \sigma_2 \in S^k$ such that $\sigma_1 \cap \sigma_2 = \emptyset$
-		\item[No contribution from boundary] $f_k(\sigma) = f_k(\sigma \setminus \partial \sigma)$ for every $\sigma \in S^k$
-		\item[Commutes with the limit] $\lim\limits_{i \to \infty} f_k(\sigma_i^k) = f_k(\lim\limits_{i \to \infty}\sigma_i^k)$
-	\end{description}
-\end{defn}
-
-\begin{remark}
-	Linearity means that the contribution from each surface is independent from the rest (reducibility). If boundaries gave contribution, the functional would not really be a function of the $k$-surface, since the boundary is of lower dimension.
-	
-	Note the operator $length : S^1 \to \mathbb{R}$ that returns the length of a line is not a $1$-functional as it does not commute with the limit (e.g. diagonal is the limit of a perpendicular zig-zag, but the length does not converge).
-\end{remark}
+Then we would like to prove the following:
 
 \begin{desid}
-	Let $X$ be a differentiable manifold. For every $k$-functional $f_k$ there exists a suitable $k$-form $\omega_k$ whose integral $\int_U \omega_k$ in a region $U$ approximates $f_k(U)$ at a desired level of precision.
+	Let $X$ be a differentiable manifold. For every $k$-functional $f_k$ there exists a sequence of $k$-forms $\{\omega_i$\} that converges at scale to $f_k$.
 \end{desid}
 
-\begin{remark}
-	The simplest strategy may be to fix an interval for the value, and use standard criteria of convergence. However, this may be far too restrictive with respect to what we need physically.
-	
-	Given that we measure the quantity $f_k(\sigma^k)$ in a finite region $\sigma_k$ with finite precision, there are two things to fix: the confidence interval $\epsilon \in \mathbb{R}$ for the quantity itself and the smallest regions we can measure. As we impose a cutoff in the size of the regions, we do not care whether the approximation holds well at smaller scale (e.g. anything ``higher frequency'' can be ignored, and maybe it doesn't even matter whether higher frequencies diverge).
-	
-	We want to define those without reference to a metric/measure on $X$.
-\end{remark}
+\section{Graveyard}
+
+\subsection{Coarsening}
+
+This was an attempt to define how to coarsen integrand regions in a way that doesn't depend on a metric.
 
 \begin{defn}
 	A \textbf{coarsening} is a map $c : S^k \to S^k$ with the following properties:
@@ -153,7 +179,6 @@ These approaches do not try to assign physical significance to differentiability
 
 %\section{Examples}
 
-%\section{Insightful failures}
 
 
 \bibliography{bibliography}
