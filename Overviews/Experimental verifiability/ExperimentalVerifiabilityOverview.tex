@@ -1,11 +1,8 @@
-\documentclass[10pt,twocolumn, nofootinbib]{revtex4-1}
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
 %\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
 %\documentclass[10pt,twocolumn,letterpaper]{article}
 
-\input{include/basicstyle}
-\input{include/logic}
-\input{include/theorems}
-
+\usepackage{assumptionsofphysics}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \hypersetup{
@@ -22,8 +19,7 @@
 
 \begin{document}
 
-\title{Assumptions of Physics overview: \\
-	experimental verifiability and topology }
+\title{Experimental verifiability and topology }
 \author{Gabriele Carcassi, Christine A. Aidala}
 \affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
 
@@ -31,14 +27,14 @@
 
 
 \begin{abstract}
-We briefly show how the use of topological spaces and $\sigma$-algebras in physics can be rederived and understood as the fundamental requirement of experimental verifiability. We will see that a set of experimentally distinguishable objects will necessarily be endowed with a topology that is Kolmogorov (i.e. $T_0$) and second countable, which both puts constraints on well-formed scientific theories and allows us to give concrete physical meaning to the mathematical constructs. These insights can be taken as a first step in a general mathematical theory for experimental science. This work is an overview of some of the results of Assumptions of Physics, a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived  (\url{https://assumptionsofphysics.org}).
+We briefly show how the use of topological spaces and $\sigma$-algebras in physics can be rederived and understood as the fundamental requirement of experimental verifiability. We will see that a set of experimentally distinguishable objects will necessarily be endowed with a topology that is Kolmogorov (i.e. $T_0$) and second countable, which both puts constraints on well-formed scientific theories and allows us to give concrete physical meaning to the mathematical constructs. These insights can be taken as a first step in a general mathematical theory for experimental science.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-The overall structure (see \cite{AoPBook} for more details) can be summed up in the following diagram that can be used as a guide throughout this note.
+The overall structure (see \cite{aop-book} for more details) can be summed up in the following diagram that can be used as a guide throughout this note.
 
 \begin{figure}[h]
 	\includegraphics[width=\columnwidth]{Diagram.png}
