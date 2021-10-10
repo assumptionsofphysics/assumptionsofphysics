@@ -1,0 +1,71 @@
+%\documentclass[11pt, executivepaper]{article}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{natbib}
+%\usepackage{amsmath}
+%\usepackage{mathtools}
+%\usepackage{xcolor}
+%\usepackage{amsfonts}
+%\usepackage{graphicx}
+%\usepackage{enumitem}
+
+\documentclass[aps,twocolumn,showpacs,preprintnumbers]{revtex4}
+\usepackage{graphicx}  % Include figure files
+\usepackage{subfigure}
+\usepackage{multirow}
+\linespread{1.1}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{parskip}
+\usepackage[T1]{fontenc}
+\usepackage{dcolumn}
+\usepackage{bm}        
+\usepackage{amsfonts}  
+\usepackage{amsmath}   
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{colorlinks= true, allcolors=blue}
+\setcitestyle{aysep={}}
+\setlength{\parindent}{10pt}
+
+\begin{document}
+	
+	
+	\title{\textbf{On the Reality of the Quantum State Once Again (TODO)}}
+	
+	\author{Andrea Oldofredi, Gabriele Carcassi}
+	\affiliation {\it Universit\'e de Lausanne, Switzerland, University of Michigan, Ann Arbor}
+	
+	\date{September 4, 2021}
+	
+	\maketitle
+	
+	
+	In 2012 Pusey, Barrett and Rudolph published a formal result in \emph{Nature Physics}, widely known as the PBR theorem, showing that ``if the quantum state merely represents information about the real physical state of a system, then experimental predictions are obtained that contradict those of quantum theory'' (\cite{PBR:2012}, p.\ 475). Alternatively stated, PBR argued that in every model reproducing the statistics and predictions of Quantum Mechanics (QM) the quantum state $\psi$ must represent real physical properties of the system under consideration and not agents' knowledge---i.e.\ models must be $\psi-$ontic. Consequently, quantum theories cannot be $\psi-$epistemic. 
+	
+	Such a theorem has created controversies on its actual meaning: on the one hand, PBR claim that it rules out epistemic interpretations of quantum theory according to which quantum systems do have physical states, but $\psi$ merely represents information---as for instance in Rovelli's Relational Quantum Mechanics \cite{Rovelli:1996}. On the other hand, many scholars have recently shown that epistemic as well as statistical approaches to quantum theory are not refuted by the PBR argument (cf.\ \cite{Ben:2017}, \cite{Rizzi:2018}, \cite{Oldofredi:2021}, \cite{DeBrota:2019}).
+	
+	In this letter we are not going to rebut the theorem itself. We instead aim to carefully re-examine its premises, highlighting an implicit assumption which we believe forces us to re-evaluate the significance of the conclusion. (REVISED)
+	
+	The structure of their argument rests on a few explicit premises: (i) isolated quantum systems have real, objective, observer-independent states, (ii) systems prepared independently have independent physical states, and (iii) the latter are correctly described by QM. By stipulating that $\psi$ represents only agent's uncertainty about the actual state of the prepared systems, PBR obtain a contradiction with their initial assumptions concluding that quantum theories cannot be $\psi-$epistemic. 
+	
+	Looking at their proof, however, there is a fourth implicit hypothesis: (iv) during a measurement the real state of the system under consideration remains unaltered by the observation. This means that such physical state does not change during the measurement process. Indeed, the authors' argument requires that initially prepared states should be found after the observation. This fact is inherited from Harrigan and Spekkens' classification between $\psi-$ontic and $\psi-$epistemic models (cf.\ \cite{Harrigan:2010}), on top of which the PBR theorem is derived. 
+	
+	According to this categorization, which is framed within operational QM, ``the primitives of description are the properties of microscopic systems. A preparation procedure is assumed to prepare a system with certain properties and a measurement procedure is assumed to reveal something about those properties. A complete specification of the properties of a system is referred to as the ontic state of that system'' (\cite{Harrigan:2010}, p.\ 128). 
+	
+	Now, one may rephrase the theorem by saying that any model in which a measurement represents a mere update of information with no effect on the underlying physical state, must make predictions which contradict those of quantum theory. In fact, since in general the quantum state \emph{does} change during a measurement, in a model in which the quantum state represents the ontic state of the system, $\psi$ must change as well. Similarly a model in which the state represents information, but for which the physical state changes during a measurement is not ruled out either, because the initial information becomes obsolete and the measurement process will update it. Thus, we may restate the conclusion of the PBR theorem more precisely as follows: ``\emph{any} quantum model in which a measurement leaves the physical state unchanged must make predictions which contradict those of QM''. 
+	
+	Furthermore, it is useful to underline that Harrigan and Spekkens' statement quoted above---and consequently assumption (i) (TODO: is this i or iv ? )---is generally not correct in the context of standard QM for two reasons: (i) quantum measurements usually do not reveal pre-existing values of properties, and (ii) the ontic state of the system in non-measurement situations is strongly undetermined (i.e.\ the properties of a non-observed system have non-definite values). Hence, it seems that the PBR theorem rests on an ill-defined basis, given that in every empirically adequate quantum model, no matter if ontic or epistemic, measurements do alter the states of the quantum systems (epistemic interpretations in which there are no physical objects such as QBism avoid this issue by construction). 
+	
+	Moreover, we can reinterpret this result as a non-contextuality claim. We may rephrase this theorem by saying that models in which quantum measurements do not produce any change to the observed quantum systems contradict the predictions and statistics of QM. It follows that it can be considered another no-go theorem refuting the non-contextuality of quantum observables, along the lines of the Kochen-Specker and Gleason's theorems (cf.\ \cite{Kochen:1967}, \cite{Gleason:1957}).
+	
+	In conclusion, the PBR theorem does not rule out all models in which $\psi$ represents information, only those in which the physical state is assumed not to change during a measurement. This should be however hardly surprising given other well-established results in the field of quantum foundations. 
+	
+	%It is not clear to us whether the intent of the authors was to rule out specifically those models for which the state does not change during a measurement or not. It is not clear to us whether the distinction is clear to most physicists. We should point out that there are already measurable effects that show that the measurement does in fact produce physical results. Most of all, the Quantum Zeno effect (also known as "watched pot never boils") in which repeated frequent observation keeps collapsing the state of the system to the original state, inhibiting the natural evolution. This effect has been measured in different settings in accordance to theoretical predictions. Though we find the technique interesting, we don't see that the theorem adds much, in the sense that if the Quantum Zeno effect is not proof enough to make one conceed that measurements are processes that affect the physical state of the system, we do not see what will.
+	
+	%So, what is the point of all this discussion? The PBR theorem does not rule out all models in which the state is information, only the ones where the physical state is assumed to not change during a measurement. This should be hardly surprising giving other predicted and measured effects, like the Quantum Zeno effect. While information theory cares little about what information needs to be kept in a specific case and what causes the information to change. Characterizing, implicitly or explicitly, the correct set of variables to be used for a specific class of systems and processes is the actual physics problem.
+	
+	
+	\bibliographystyle{ieeetr}
+	\bibliography{PhDthesis}
+\end{document}
