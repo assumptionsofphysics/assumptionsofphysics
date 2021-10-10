@@ -28,14 +28,16 @@
 
 
 \begin{abstract}
-We briefly show how quantum mechanics can be rederived and better understood as a consequence of irreducibility. The Schroedinger equation (i.e. unitary evolution) is recovered as deterministic and reversible motion while the measurement process is recovered as a special case of a process with equilibria (i.e. idempotent process, projection).  This work is an overview of some of the results of Assumptions of Physics, a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived  (\url{https://assumptionsofphysics.org}).
+We briefly summarize our strategy to understand and rederive quantum mechanics as a consequence of irreducibility. The Schroedinger equation (i.e. unitary evolution) is recovered as deterministic and reversible motion while the measurement process is recovered as a special case of a process with equilibria (i.e. idempotent linear process, projection).
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-The overall argument (see \cite{AoPPhy1,AoPBook} for more details) can be summed up in the following diagram that can be used as a guide throughout this note.
+The ideas and result summarized here are part of our larger project Assumptions of Physics (see \cite{AoPPhy1,AoPBook} for more details). They represent the current best understanding and will be revised as the project matures.
+
+This note can be summed up in the following diagram that can be used as a guide throughout this note.
 
 \begin{figure}[h]
 	\includegraphics[width=\columnwidth]{Diagram.png}
@@ -49,7 +51,7 @@ The assumptions lie on the left column. Each assumption leads to one or two key 
 
 Under this assumption the state of the system is automatically an ensemble over the state of the parts as preparation of the whole leaves the parts unspecified. For the same reason, the entropy of these ensembles must be the same, or some ensembles would provide more or less information about the parts. The whole task, then, is to characterize these ensembles without making specific assumptions on the parts.
 
-Let $\mathcal{C}$ be the state space of the irreducible system. Let us call fragment a part of the irreducible system. The state of a fragment will be associated with a random variable uniformly distributed over the possible fragment states. As discussed in the context of classical mechanics(CITE), distributions over states must be invariant and symplectic manifolds are the only manifolds over which invariant distributions can be defined. As we cannot say anything about the state of the fragments, the dimensionality of this manifold must be irrelevant as long as it is even dimensional. For simplicity, we can choose a two-dimensional one. Therefore we are interested in the space of bi-dimensional uniform distributions formed by a pair of two random variables $A$ and $B$.
+Let $\mathcal{C}$ be the state space of the irreducible system. Let us call fragment a part of the irreducible system. The state of a fragment will be associated with a random variable uniformly distributed over the possible fragment states. As we show in the context of classical mechanics, distributions over states must be invariant and symplectic manifolds are the only manifolds over which invariant distributions can be defined. As we cannot say anything about the state of the fragments, the dimensionality of this manifold must be irrelevant as long as it is even dimensional. For simplicity, we can choose a two-dimensional one. Therefore we are interested in the space of bi-dimensional uniform distributions formed by a pair of two random variables $A$ and $B$.\footnote{We are looking into alternative strategies for this part, as we are not fully satisfied with it.}
 
 The values of the variables themselves are not relevant, as they are not physically accessible by assumption. However, the size of the system $\mu = \int \rho dA \wedge dB$ is relevant. Without loss of generality, we can rescale $A$ and $B$ such that the density $\rho$ is not only uniform but unitary: $\rho = 1$. This way the size of the system is directly proportional to the area covered by the random variables. In other words: the more fragments there are, the more each fragment can swap its state with another without changing the whole, the more uncertainty there is on the state of the fragment, the higher the variance of the random variables.
 
