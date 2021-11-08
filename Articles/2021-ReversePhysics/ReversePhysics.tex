@@ -27,7 +27,7 @@
 
 
 \begin{abstract}
-We introduce an approach to the foundations of physics that is more in line with the foundations of mathematics. The idea is to examine current theories and find a set of starting physical assumptions that are sufficient to rederive them, which is the physical equivalent of the reverse mathematics program. This allows us to identify physical starting points (as opposed to mathematical ones), compare their predictive power, and find those that can better serve as a foundation for our theories.
+We introduce an approach to the foundations of physics that is more in line with the foundations of mathematics. The idea is to examine current theories and find a set of starting physical assumptions that are sufficient to rederive them, which is the physical equivalent of the reverse mathematics program. This allows us to identify physical starting points (as opposed to mathematical ones), compare their deductive power, and find those that can better serve as a foundation for our theories.
 \end{abstract}
 
 \maketitle
@@ -42,14 +42,14 @@ We introduce an approach to the foundations of physics that is more in line with
 %	
 %\end{itemize}
 
-Within the foundations of mathematics, the reverse mathematics program aims to start from known theorems and determine what axioms are required to prove them. This helps understand the relative logical strength of the theorems and get a better sense of their relationships. We propose a similar program for physics. We start from known physical theories or elements of physical theories, and we try to find premises that enable us to rederive them. The goal is to find premises that are physically more intuitive, so that ideally the arguments can be carried out with or without the math, and develop concepts that are of physical significance across theories.
+Within the foundations of mathematics, the reverse mathematics program\cite{friedman1976systems,simpson2017reverse,stillwellreverse} aims to start from known theorems and determine what axioms are required to prove them. This helps understand the relative logical strength of the theorems and get a better sense of their relationships. We propose a similar program for physics. We start from known physical theories or elements of physical theories, and we try to find premises that enable us to rederive them. The goal is to find premises that are physically more intuitive, so that ideally the arguments can be carried out with or without the math, and develop concepts that are of physical significance across theories.
 
-While one does find efforts that analyze the premises of physical theories, for example in the context of foundations of quantum mechanics, statistical mechanics or the search for quantum gravity, their aim is typically different. Some are focused on a particular field (e.g. quantum theory) or try to demonstrate the centrality of one aspect (e.g. information) with regard to others. Some concentrate more on mathematical premises or structure, making the physical significance less than clear. Many aim to develop new theories, instead of first gaining further insight within current ones. We propose a more generalist approach that examines the relationships of physical ideas across subfields, which is best explained through examples. 
+While one does find efforts that analyze the premises of physical theories (see e.g. Refs.~\cite{chiribella2011informational, selby2021reconstructing, giles2016mathematical, boyling1972axiomatic, PhysRev.101.860, Haag1964848, axiomaticQFT1975, masanes2019measurement, carcassi2021four}), for example in the context of foundations of quantum mechanics, statistical mechanics or the search for quantum gravity, their aim is typically different. Some are focused on a particular field (e.g. quantum theory) or try to demonstrate the centrality of one aspect (e.g. information) with regard to others. Some concentrate more on mathematical premises or structure, making the physical significance less than clear. Many aim to develop new theories, instead of first gaining further insight within current ones. We propose a more generalist approach that examines the relationships of physical ideas across subfields, which is best explained through examples. 
 
 
-To give a sense of the breadth of the reverse physics approach, we show how it can be used to pursue three different objectives. First, we illustrate multiple instances of reformulation. We study Hamilton's equation for a single degree of freedom to find six alternative characterizations that will connect different ideas from different fields under the same theme of determinism and reversibility. Next, we illustrate dependence analysis. We show that the uncertainty principle is not a consequence of the full quantum theory, but simply of its zero entropy bound of pure states. If a similar bound is imposed in classical mechanics, similar uncertainty relationships are recovered. Lastly, we illustrate reconceptualization. We take the third law of thermodynamics and rework it so that the role of crystalline substances to define zero entropy is instead played by the ``empty system''.
+To give a sense of the breadth of the reverse physics approach, we show how it can be used to pursue three different objectives. First, we illustrate multiple instances of \emph{reformulation}. We study Hamilton's equations for a single degree of freedom to find six alternative characterizations that will connect different ideas from different fields under the same theme of determinism and reversibility. Next, we illustrate \emph{dependence analysis}. We show that the uncertainty principle is not a consequence of the full quantum theory, but simply of its zero entropy bound on pure states. If a similar bound is imposed in classical mechanics, similar uncertainty relationships are recovered. Lastly, we illustrate \emph{reconceptualization}. We take the third law of thermodynamics and rework it so that the role of crystalline substances to define zero entropy is instead played by the ``empty system''.
 
-We want to stress that this paper is not about the originality of each single result, but about how these are used to solve a more general and higher goal: to uncover the core physical concepts and assumptions in the known physical theories and understand their generative power and their interrelationships. 
+As we want the discussion to be focused on the physics, we will use the most widely known math among physicists and relegate mathematical derivations to the appendix. We also want to stress that this paper is not about the originality of each single result, but about how these are used to address a more general and higher goal: to uncover the core physical concepts and assumptions in the known physical theories and understand their generative power and their interrelationships. 
 
 
 
@@ -91,7 +91,7 @@ meaning that the flow through any closed region in phase space is zero. We also 
 \begin{align}
 	S^q = \frac{\partial H}{\partial p} \; \; \; \; \; \; S^p = - \frac{\partial H}{\partial q}
 \end{align}
-In other words, Hamiltonian evolution for one degree of freedom is exactly the evolution for which the flow over a closed region is zero.
+In other words, Hamiltonian evolution for one degree of freedom is exactly the evolution for which the flow over a closed region in phase space is zero.
 
 Let us now look at how an infinitesimal region of phase space evolves. Suppose $Q = q + \frac{dq}{dt} dt = q + S^q dt$ and $P = p + \frac{dp}{dt} dt = p + S^p dt$. The infinitesimal region of area $dq dp$ will become $dQ dP = |J| dq dp$ where:
 \begin{align}
@@ -136,7 +136,7 @@ to be equivalent to the others. We find:
 \end{align}
 Since the Jacobian determinant of a continuous transformation cannot be negative, condition \eqref{EntropyConservation} is indeed equivalent to \eqref{UnitaryJacobian} and therefore to all the others.
 
-It may seem odd that conservation of entropy for a deterministic system gives us energy conservation: we typically associate energy conservation with system isolation in thermodynamics. Where is the connection? For a deterministic and reversible system, future and past states depend only on the state of the present system. Therefore they do not depend on the state of other systems or of the environment. This means that deterministic and reversible systems are necessarily isolated. This time, running the argument in the opposite direction presents a problem. One needs to first decide whether a non-deterministic isolated system makes sense. If one assumes that the source of non-determinism, of stochastic uncertainty, is always interaction with other systems, other degrees of freedom, than every isolated system is deterministic. In this case, we can run the argument in reverse: every isolated system is deterministic and reversible. Without that extra assumption, this reverse direction is not guaranteed.
+It may seem odd that conservation of entropy for a deterministic system gives us energy conservation: we typically associate energy conservation with system isolation in thermodynamics. Where is the connection? For a deterministic and reversible system, future and past states depend only on the state of the present system. Therefore they do not depend on the state of other systems or of the environment. This means that deterministic and reversible systems are necessarily isolated. This time, running the argument in the opposite direction presents a problem. One needs to first decide whether a non-deterministic isolated system makes sense. If one assumes that the source of non-determinism, of stochastic uncertainty, is always interaction with other systems, other degrees of freedom, then every isolated system is deterministic. In this case, we can run the argument in reverse: every isolated system is deterministic and reversible. Without that extra assumption, this reverse direction is not guaranteed.
 
 Finally, let us go back to the idea that a bijection is not enough to characterize deterministic and reversible evolution. Preservation of a measure is a mathematical idea. Is there a more physical way to look at it? The issue is that scientific measurements over a continuum can only carry finite precision. When considering how the information goes back and forth in time, then, we also need to take into account how the finite precision is mapped. While it may be true that the evolution of a damped harmonic oscillator is a bijection, the points get denser and denser around the equilibrium. Once we are close to equilibrium it becomes impossible to tell when the oscillator was started: the damped harmonic oscillator is not reversible in any practical sense if precision is taken into consideration. Let us see if this argument can be run formally. We want a coordinate invariant quantity that characterizes uncertainty. The obvious choice is the determinant of the covariance matrix:
 \begin{align}\label{CovarianceMatrix}
@@ -155,9 +155,9 @@ for which the uncertainty remains constant in time. Is this yet another equivale
 \end{align}
 therefore \eqref{BijectionUncertainty} is indeed equivalent to \eqref{UnitaryJacobian} and to all others.
 
-We could go on to find other relationships and extend the ones we found to multiple degrees of freedom, but we believe this should be enough to highlight the power of the reverse physics approach. The first thing to note is how in a couple of pages we have found fundamental connections between classical Hamiltonian mechanics \eqref{HamiltonEquations1}, vector calculus \eqref{divergenceless}, differential geometry \eqref{UnitaryJacobian}, statistical mechanics \eqref{DeterminismReversibility}, thermodynamics \eqref{DeterminismThermodynamicReversibility}, information theory \eqref{EntropyConservation} and plain statistics \eqref{BijectionUncertainty}. This helps foster a sense of unity of these disparate disciplines and their perspectives, a sense that is sorely lacking both in research and education. We believe that a single unified view of this kind will bring more coherence and clarity to physics than, for example, a unified theory for the fundamental forces: nature is one, and does not care about how we have divided academic knowledge.
+We could go on to find other relationships and extend the ones we found to multiple degrees of freedom, but we believe this should be enough to highlight the power of the reverse physics approach. The first thing to note is how in a couple of pages we have found fundamental connections between classical Hamiltonian mechanics \eqref{HamiltonEquations1}, vector calculus \eqref{divergenceless}, differential geometry \eqref{UnitaryJacobian}, statistical mechanics \eqref{DeterminismReversibility}, thermodynamics \eqref{DeterminismThermodynamicReversibility}, information theory \eqref{EntropyConservation} and plain statistics \eqref{BijectionUncertainty}. This helps foster a sense of unity of these disparate disciplines and their perspectives, a sense that is sorely lacking both in research and education: nature is one, and does not care about how we have divided academic knowledge. We believe that a single unified view of this kind will bring more coherence and clarity to physics than, for example, a unified theory for the fundamental forces.
 
-Another advantage is that we were able to carry out many of the arguments conceptually. Mathematics is then used to better articulate the physical arguments. This should please those who believe that physics, not mathematics, should be more at the center of the discussion. 
+Another advantage is that we were able to carry out many of the arguments conceptually. Mathematics is then used to better articulate the physical arguments. This should please those who believe that physics, not mathematics, should be more at the center of the discussion.\cite{hossenfelder2018lost, woit2006not}
 
 The other interesting aspect is how much we were able to find in theories that are generally considered well understood. While it is common for some people to be aware of some of these results, we have found that most results are unknown to most people.
 
@@ -170,7 +170,7 @@ The other interesting aspect is how much we were able to find in theories that a
 %	\item Uncertainty relationship <-> bounded entropy = bounded information
 %\end{itemize}
 
-Let us now turn our attention to quantum mechanics, and see if our approach can shed new light on a theory that is not generally considered to be well understood. Since we talked about the role of uncertainty in classical mechanics, let us concentrate on the uncertainty principle which states that every state has to satisfy the relationship
+Let us now turn our attention to quantum mechanics, and see if our approach can shed new light on a theory that is not generally considered to be well understood. Since we talked about the role of uncertainty in classical mechanics, let us concentrate on the uncertainty principle, which states that every state has to satisfy the relationship
 \begin{align}\label{UncertaintyPrinciple}
 	\sigma_q \sigma_p \geq \frac{\hbar}{2}.
 \end{align}
@@ -179,7 +179,7 @@ We can start with an interesting observation. If we look back at \eqref{Covarian
 \begin{align}
 	\sigma_q^2 \sigma_p^2 = |\Sigma| + cov_{q,p}^2 \geq |\Sigma|.
 \end{align}
-Since by \eqref{BijectionUncertainty} $|\Sigma|$ is a constant of motion, we find that during Hamiltonian evolution the product of the uncertainty is bounded. The lowest uncertainty is reached when there are no correlations and the covariance is zero. Though it is a conceptually different relation, since $|\Sigma|$ is just a constant of motion, it gives us the following intuition: a coordinate invariant cap to the uncertainty will produce an inequality on the product of variances. Where can we find such a cap in quantum mechanics?
+Since by \eqref{BijectionUncertainty} $|\Sigma|$ is a constant of motion, we find that during Hamiltonian evolution the uncertainty is bounded. The lowest uncertainty is reached when there are no correlations and the covariance is zero. Though it is a conceptually different relation, since $|\Sigma|$ is just a constant of motion, it gives us the following intuition: a coordinate invariant cap to the uncertainty will produce an inequality on the product of variances. Where can we find such a cap in quantum mechanics?
 
 Let us turn our attention to entropy, represented by the von Neumann entropy $I[\rho] = - tr (\rho \log \rho)$. For every pure state $|\psi \rangle$ we have the following property:
 \begin{align}\label{ZeroQuantumEntropy}
@@ -189,7 +189,7 @@ Let us turn our attention to entropy, represented by the von Neumann entropy $I[
 \end{align}
 In other words, all pure states have zero entropy, the entropy is capped. Since entropy and uncertainty are related, is fixing the amount of entropy enough to recover the uncertainty principle?
 
-We can test that hypothesis by studying the space of classical distributions with a fixed value of entropy $I_0$. We find that they have to satisfy the relationship\footnote{The careful reader will note the units do not quite work. The issue here is the $\log \rho$ in the Shannon/Gibbs entropy, as $\rho$ is not a pure number. Introducing a dimensionful constant $\log \rho \hat{h}$ would fix the expression, which would then fix the uncertainty relationship as well. } (TODO)
+We can test that hypothesis by studying the space of classical distributions with a fixed value of entropy $I_0$. We find that they have to satisfy the relationship\footnote{The careful reader will note the units do not quite work. The issue here is the $\log \rho$ in the Shannon/Gibbs entropy, as $\rho$ is not a pure number. Introducing a dimensionful constant $\log \rho \hat{h}$ would fix the expression, which would then fix the uncertainty relationship as well. }
 \begin{align}\label{ClassicalUncertaintyPrinciple}
 	\sigma_q \sigma_p \geq \frac{e^{I_0}}{2 \pi e}.
 \end{align}
@@ -199,7 +199,7 @@ The following condition:
 \begin{align}\label{BoundedEntropy}
 	\text{The entropy of the system is fixed}
 \end{align}
-is therefore enough to recover an uncertainty relationship independently of the theory. This can be understood as fixing the amount of information carried by the state. The reverse argument does not quite work, so condition \eqref{BoundedEntropy} is a stronger condition than the existence of an uncertainty relationship.
+is therefore enough to recover an uncertainty relationship independently of the theory. This can be understood as fixing the amount of information carried by the state. The reverse argument does not work, so condition \eqref{BoundedEntropy} is a stronger condition than the existence of an uncertainty relationship.
 
 This example shows another advantage of reverse physics: it allows us to pinpoint what part of a theory is responsible for which effect. In this case, we have found that it is not quantum mechanics per se that leads to uncertainty relationships, just the entropy cap on pure states. If we implemented a similar cap in classical mechanics, we would obtain the same result. Therefore condition \eqref{ZeroQuantumEntropy} is a more fundamental and clear way to characterize the uncertainty in quantum mechanics, making it evident that all pure states carry the same information, they describe the system at the same level of precision.
 
@@ -213,8 +213,7 @@ This example shows another advantage of reverse physics: it allows us to pinpoin
 %	\item What would a system with negative entropy correspond to? To a description of a system that is more precise than saying the system is not there. But that is absurd! Therefore, it is a logical necessity that the entropy of a system is bound from below.	
 %\end{itemize}
 
-In the previous section we saw the lower entropy bound of zero entropy is built into quantum mechanics and not in classical mechanics. However, the bound is also built into thermodynamics through the third law\footnote{This formulation is given by Gilbert Newton Lewis and Merle Randall, Thermodynamics and the Free Energy of
-	Chemical Substances. McGraw-Hill, New York, 1923}
+In the previous section we saw the lower entropy bound of zero entropy is built into quantum mechanics and not in classical mechanics. However, the bound is also built into thermodynamics through the third law\footnote{This formulation is given by Ref. \cite{lewis1923thermodynamics}}
 \begin{align}\label{ThirdLaw}
 	\parbox{2.8in}{Every substance has a finite positive entropy, but
 		at the absolute zero of temperature the entropy may become zero, and does so
@@ -238,7 +237,7 @@ Now that we have a better concept for zero entropy, we need to understand why we
 \begin{align}\label{NewThirdLaw}
 	\parbox{2.8in}{No state can describe a system more accurately than stating the system is not there in the first place.}
 \end{align}
-Again, note that this condition is not phenomenological: it is a logical necessity. This condition is realized in quantum mechanics: pure states represent the most precise descriptions of the system and they have zero entropy much like the vacuum, another pure state. This condition is realized in thermodynamics through the third law. In fact, the third law could be rederived as follows. Assuming \eqref{NewThirdLaw} tells us that entropy is bounded at zero. Since the entropy is a convex function of energy, entropy will reach its minimum at zero temperature, which is the only temperature that can reach zero entropy. We then use the previous result that the entropy of a crystalline substance at zero temperature is the same of an empty system.
+Again, note that this condition is not phenomenological: it is a logical necessity. This condition is realized in quantum mechanics: pure states represent the most precise descriptions of the system and they have zero entropy much like the vacuum, another pure state. This condition is realized in thermodynamics through the third law. In fact, the third law could be rederived as follows. Assuming \eqref{NewThirdLaw} tells us that entropy is bounded at zero. Since the entropy in thermodynamics is a convex function of energy, entropy will reach its minimum at zero temperature, which is the only temperature that can reach zero entropy. We then use the previous result that the entropy of a crystalline substance at zero temperature is the same as for an empty system.
 
 This showcases the final advantage of reverse physics. We want to differentiate between ``assumptions'' (conditions that are not necessarily true) and ``principles'' (those that have to be taken to be true); we want to differentiate between conditions that are ``phenomenological'' (empirically derived or justified) from those that are ``conceptual'' (logical necessities or consequences of definitions).\footnote{Philosophers may call these ``constitutive'' conditions.} If we are able to elevate assumptions to principles, or replace phenomenological assumptions with conceptual ones, then the premises for our theories are sturdier and we have improved their foundations.
 
@@ -262,24 +261,24 @@ We have shown how the reverse physics approach, trying to find different premise
 
 We believe this type of work can be beneficial in several ways. At the very least, it can have a significant impact within physics education. Most importantly, it leads to common ideas and definitions that span different fields of physics, which may help develop common tools, much like set theory and category theory provide standard tools for all of mathematics. Lastly, as it helps us understand the realm of validity of the different theories and also the underlying mathematical tools, it may give insight into the development of new tools and new theories.
 
-More than the particular results presented in this paper, it is the type of approach that we want to promote. We hope others will present their own reverse physics results, even better than those presented here, and that this may lead to a renewed interest in the manner in which physicists in the past tried to formulate the foundations of our field: through physical principles, laws and assumptions.
+More than the particular results presented in this paper, it is the type of approach that we want to promote. We hope others will present their own reverse physics results, and that this may lead to a renewed interest in the manner in which physicists in the past tried to formulate the foundations of our field: through physical principles, laws and assumptions.
 
-\section{Proofs and calculations}
+\section*{Appendix: Proofs and calculations}
 
-We omitted all proofs from the main body of the text because, as we stated, the physics should be given full attention. However, we do have to show that our arguments are on solid ground, so we include here basic proofs for all our major claims. To keep the discussion light, we will use the standards of rigor typically employed in physics. Note that most of the derivations are trivial, some already included in many textbooks. However, given the interdisciplinary nature of our subject, we find it useful for the reader to collect them all here.
+We include here all proofs which we omitted from the main body since, as we stated, the physics should be given full attention. To keep the discussion light and accessible to the widest audience, we use the simplest mathematical techniques to get the result. Some readers may feel that some results are well known, or too simple to even be included. Due to the interdisciplinary nature of the subject, we believe it is useful to collect them all here.
 
 \begin{prop}
-	A dynamical system characterized by two variables $\{q, p\}$ follows Hamilton's equations if and only if the displacement field $S=\{\frac{dq}{dt}, \frac{dq}{dt} \}$ is divergenceless.
+	A dynamical system characterized by two variables $\{q, p\}$ follows Hamilton's equations if and only if the displacement field $S=\{\frac{dq}{dt}, \frac{dp}{dt} \}$ is divergenceless.
 \end{prop}
 
 \begin{proof}
-	Suppose the evolution is Hamiltonian. Then $S=\{\frac{\partial H}{\partial p}, - \frac{\partial H}{\partial q} \}$. The divergence is $div(S) = \frac{\partial S^q}{\partial q} + \frac{\partial S^p}{\partial p} = \frac{\partial \partial H}{\partial q\partial p} - \frac{\partial \partial H}{\partial p\partial q} = 0$.
+	Suppose the evolution is Hamiltonian. Then $S=\{\frac{\partial H}{\partial p}, - \frac{\partial H}{\partial q} \}$. The divergence is $div(S) = \frac{\partial S^q}{\partial q} + \frac{\partial S^p}{\partial p} = \frac{\partial^2 H}{\partial q\partial p} - \frac{\partial^2H}{\partial p\partial q} = 0$.
 	
-	Conversely, suppose $S$ is divergenceless. Then, it admits a stream function $H$ such that $\{\frac{dq}{dt}, \frac{dq}{dt} = \{\frac{\partial H}{\partial p}, - \frac{\partial H}{\partial q} \}$, which are Hamilton's equations
+	Conversely, suppose $S$ is divergenceless. Then, it admits a stream function $H$ such that $\{\frac{dq}{dt}, \frac{dp}{dt}\} = \{\frac{\partial H}{\partial p}, - \frac{\partial H}{\partial q} \}$, which are Hamilton's equations.
 \end{proof}
 
 \begin{prop}
-	The displacement field $S=\{\frac{dq}{dt}, \frac{dq}{dt} \}$ of a dynamical system characterized by two variables $\{q, p\}$ is divergenceless if and only if the Jacobian determinant of the infinitesimal time evolution is equal to one.
+	The displacement field $S=\{\frac{dq}{dt}, \frac{dp}{dt} \}$ of a dynamical system characterized by two variables $\{q, p\}$ is divergenceless if and only if the Jacobian determinant of the infinitesimal time evolution is equal to one.
 \end{prop}
 
 \begin{proof}
@@ -296,7 +295,7 @@ We omitted all proofs from the main body of the text because, as we stated, the 
 \end{proof}
 
 \begin{remark}
-	An unstated assumption here is that $H$ is twice differentiable. The Jacobian and the divergence, in fact, would not be well defined if $H$ were differentiable only. In that case, the acceleration $a = \frac{d}{dt}\frac{dq}{dt} = \frac{d}{dt} \frac{\partial H}{\partial p}$ would also be ill defined. With this in mind, if a Hamiltonian is not twice differentiable at a point it is better to consider the system not Hamiltonian at that point.
+	An unstated assumption here is that $H$ is twice differentiable. The Jacobian and the divergence, in fact, would not be well defined if $H$ were differentiable only once. In that case, the acceleration $a = \frac{d}{dt}\frac{dq}{dt} = \frac{d}{dt} \frac{\partial H}{\partial p}$ would also be ill defined. With this in mind, if a Hamiltonian is not twice differentiable at a point it is better to consider the system not Hamiltonian at that point.
 \end{remark}
 
 \begin{prop}
@@ -312,7 +311,7 @@ We omitted all proofs from the main body of the text because, as we stated, the 
 		&= - \int \rho(x^i) \log \rho(x^i) \, dx^n - \int \rho(x^i) \log |J| \, dx^n \\
 		&= I[\rho(x^i)] - \int \rho(x^i) \log |J| \, dx^n.
 	\end{align*}
-	The information entropy to be conserved for every $\rho$ exactly when $|J|$ is $\pm 1$ everywhere. Given that the transformation is continuous, the Jacobian determinant must be positive (i.e. a continuous transformation cannot be a reflection) and therefore the entropy is conserved if and only if the Jacobian is unitary.
+	The information entropy is conserved for every $\rho$ if and only if $|J|$ is 1 everywhere. Therefore the entropy is conserved if and only if the Jacobian is unitary.
 \end{proof}
 
 \begin{prop}
@@ -328,7 +327,7 @@ We omitted all proofs from the main body of the text because, as we stated, the 
 		&= |J^i_k cov(x^k , x^l ) J^j_l| \\
 		&= |J^i_k | | \Sigma^{kl} | | J^j_l| \\
 	\end{align*}
-	The uncertainty is conserved for all small distributions exactly when $|J|$ is $\pm 1$ everywhere. Given that the transformation is continuous, the Jacobian determinant must be positive (i.e. a continuous transformation cannot be a reflection) and therefore the entropy is conserved if and only if the Jacobian is unitary.
+	The uncertainty is conserved for all small distributions if and only if $|J|$ is $\pm 1$ everywhere. Given that the transformation is continuous, the Jacobian determinant must be positive (i.e. a continuous transformation cannot be a reflection) and therefore the entropy is conserved if and only if the Jacobian is unitary.
 \end{proof}
 
 \begin{prop}
@@ -336,7 +335,7 @@ We omitted all proofs from the main body of the text because, as we stated, the 
 \end{prop}
 
 \begin{proof}
-	Let $\rho$ be the density matrix of a pure state. We have $\rho = |\psi \rangle \langle psi | = |\psi \rangle \langle psi |\psi \rangle \langle psi | = \rho^2$. The von Neumann entropy is $I[\rho] = - tr (\rho \log \rho) = - tr (\rho \log \rho^2) = - 2 tr (\rho \log \rho) = 2 I[\rho]$. Therefore $I[\rho] = 0$.
+	Let $\rho$ be the density matrix of a pure state. We have $\rho = |\psi \rangle \langle \psi | = |\psi \rangle \langle \psi |\psi \rangle \langle \psi | = \rho^2$. The von Neumann entropy is $I[\rho] = - tr (\rho \log \rho) = - tr (\rho \log \rho^2) = - 2 tr (\rho \log \rho) = 2 I[\rho]$. Therefore $I[\rho] = 0$.
 \end{proof}
 
 \begin{prop}
@@ -346,10 +345,26 @@ We omitted all proofs from the main body of the text because, as we stated, the 
 \end{prop}
 
 \begin{proof}
-	
-	
+	We set up a minimization problem using Lagrange multipliers. We want to minimize the product of the variance $\sigma_q^2 \sigma_p^2 \equiv \int (q-\mu_q)^2 \rho_{\mathcal{c}} \, dqdp \int (p-\mu_p)^2 \rho_{\mathcal{c}} \, dqdp$ while keeping $\rho$ normalized and fixing the entropy to $I_0$. We have: 
+	\begin{align*}
+		L = &\int (q-\mu_q)^2 \rho_{\mathcal{c}} \, dqdp \int (p-\mu_p)^2 \rho_{\mathcal{c}} \, dqdp \\
+		&+ \lambda_1(\int \rho_{\mathcal{c}} dqdp - 1) \\ &+ \lambda_2(- \int \rho_{\mathcal{c}} \ln \rho_{\mathcal{c}} \, dqdp - I_0)\\
+		\delta L = &\int \delta \rho_{\mathcal{c}} [(q-\mu_q)^2 \sigma_p^2 + \sigma_q^2 (p-\mu_p)^2 + \\ &\lambda_1 - \lambda_2 \ln \rho_{\mathcal{c}} - \lambda_2 ] dqdp = 0 \\
+		\lambda_2 \ln \rho_{\mathcal{c}} = &\lambda_1 - \lambda_2 + (q-\mu_q)^2 \sigma_p^2 + \sigma_q^2 (p-\mu_p)^2 \\
+		\rho_{\mathcal{c}} = &e^{\frac{\lambda_1 - \lambda_2}{\lambda_2}}e^{\frac{(q-\mu_q)^2 \sigma_p^2}{\lambda_2}}e^{\frac{\sigma_q^2 (p-\mu_p)^2}{\lambda_2}}
+	\end{align*}
+	We solve the multipliers and have:
+	\begin{align*}
+		\rho_{\mathcal{c}} = &\frac{1}{ 2 \pi \sigma_q \sigma_p} e^{-\frac{(q-\mu_q)^2}{2\sigma_q^2}} e^{-\frac{(p-\mu_p)^2}{2\sigma_p^2}} \\
+		I_0 = &\ln (2\pi e\sigma_q\sigma_p) \\
+		\sigma_q \sigma_p &= \frac{e^{I_0}}{2 \pi e}
+	\end{align*}
+	This shows that the gaussian minimizes the spread at fixed entropy, therefore all other distributions must have a larger or equal spread. 
 \end{proof}
 
+\begin{remark}
+	Note that the inverse argument does not work: if we have a bound on the uncertainty, we cannot say anything about the entropy. All distributions with higher entropy will satisfy a higher bound, therefore the entropy is arbitrarily high. Moreover, we can find distributions with low entropy but with arbitrarily high spread. Therefore a bound on the uncertainty still allows any value for entropy.
+\end{remark}
 
 \bibliography{bibliography}
 
