@@ -1,0 +1,123 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+%\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+%\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\RequirePackage{amsthm}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{enumitem}
+\setlist{noitemsep}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\urlstyle{same}
+\frenchspacing
+
+\newcommand\partitle[1]{\textsc{#1}.}
+
+
+\begin{document}
+
+\title{On the reality of the quantum state once again}
+\author{Gabriele Carcassi, Andrea Oldofredi, Christine A. Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\begin{abstract}
+We introduce an approach to the foundations of physics that is more in line with the foundations of mathematics. The idea is to examine current theories and find a set of starting physical assumptions that are sufficient to rederive them, which is the physical equivalent of the reverse mathematics program. This allows us to identify physical starting points (as opposed to mathematical ones), compare their deductive power, and find those that can better serve as a foundation for our theories.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+%(mezza pagina)
+%- Status of field and impact of HS
+%- Claim that HS does not work for quantum epistemic cases, therefore invalidating all results
+
+\section{Summary of the model}
+%(una pagina)
+%- Ontic/supplemented/epistemic
+
+\section{Quantum epistemic states}
+Now that we have presented the model, we want to study the space of epistemic states. To make the discussion more concrete, we will assume we have a $\psi$-complete ontological model of a single qubit representing the direction of spin.
+
+Suppose we have two preparation devices, one that prepares z+ and another that prepares z-, and we toss a fair coin to choose which one to use. This results into an epistemic state with equal distribution on z+ and z-. Now suppose we have two additional preparation devices, this time for x+ and x-, and we again toss a fair coin. This time we have an epistemic state with equal distribution on x+ and x-. Note that the epistemic distributions do not overlap. Therefore, according to the HS categorization, these correspond to two ontologically distinct states, making the preparation axis an ontological property of the system, regardless of the orientation. However, in terms of density matrixes both these situations would not just overlap: they would be represented by the same maximally mixed state. Hence there seems to be a mismatch between the type of epistemic knowledge one can express in quantum mechanics through mixed states and the type of epistemic knowledge described in the HS model. This needs to be investigated further.
+
+Let us first characterize the extent of the discepancy. In HS, the space of epistemic states $E_{HS}$ is the set of probability distributions over pure states, which is an infinite dimensional space. This is a direct consequence of defining the epistemic states as a distribution $P(\lambda|P)$ that, for each preparation $P$, assigns a well defined probability to each ontological state $\lambda$.\footnote{TODO: HS seems to be very vague about probability and probability density.} In QM, mixed states $E_{Q}$ are in one-to-one correspondence with the interior of the Bloch sphere, a three dimensional manifold. Looking at the difference in dimension, the discrepancy is not minor.
+
+Note that the space of pure states $\Lambda$ is the same in both cases, one state for each direction of spin. Also note that all epistemic states in both spaces can be reached by mixture of pure states. The difference is that, in the quantum case, we have an ``aliasing'': different mixtures will give the same mixed states. Since each classical probability distribution corresponds to a unique mixing of pure states, we have a map $\iota : E_{HS} \mapsto E_{Q}$ that allows us to go from HS epistemic states to density matrixes. This map is surjective but not injective. Therefore $E_{Q}$ can be seen as a set of equivalence classes of $E_{HS}$. The key question, then, is the following: is the map $\iota$ sufficiently well behaved that we can understand the epistemic content of $E_{Q}$ based on the epistemic content of $E_{HS}$? Or is it so hopelessy broken that there is no connection between the two?
+
+Ideally, one would like to say is that $E_{HS}$ represents all possible epistemic states that include the knowledge about preparation, while $E_{Q}$ represents only those distinguishable through measurement. For example, one may want to say that the axis of preparation is, in principle, an ontologically distinct property, but this is not experimentally distinguishable. Therefore distinct epistemic states for each direction are projected by $\iota$ onto the same epistemic state of maximum uncertainty. This sounds very plausible and appealing, but it turns out this is not at all the case. To show this we will concentrate on a single aspect about the map: how information entropy transforms under the map. While there are other problems, we do not need to explore them: given the crucial role of entropy in information theory, its breakdown is sufficient to claim that the epistemic structures of $E_{HS}$ and $E_{Q}$ are different.
+
+Since every pure state in quantum mechanics has zero entropy, we will assume that this is the case for all pure states in $E_{HS}$. Let us consider three uniform distributions over a sphere with support given by:
+\begin{description}
+	\item[A] the poles, z+ and z-
+	\item[B] the equator, all states on the x/y planes
+	\item[C] the whole sphere, all points
+\end{description}
+Since we want the entropy for a single microstate to be zero, the entropy for A will be 1 (uniform distribution between two discrete cases). Since $\iota(A)$ will be the maximally mixed state, which also corresponds to entropy 1. So far so good: $\iota$ maps entropy 1 to entropy 1! However, note that A is a measure zero set of B, which is a measure zero set of C. The entropy of C is therefore infinite with respect to B which is infinite with respect to A. On the other hand, A, B and C will all correspond to the same maximally mixed state, therefore $\iota$ collapses together epistemic states at different level of infinity. Note that, in this case, $\iota$ picks the minimum entropy between the equivalent epistemic states. This is inconsistent with the idea that $E_{Q}$ represents states where knowledge is lost: that would pick the maximum possible entropy.
+
+Now consider another uniform distribution over the support:
+\begin{description}
+	\item[D] the north pole and a point on the equator, z+ and x+.
+\end{description}
+This is yet another uniform distribution between two discrete cases, therefore in $E_{HS}$ the entropy is 1. However, $\iota(D)$ is not the maximally mixed state and therefore the entropy is less than 1. This means that epistemic states that are isoentropic in $E_{HS}$ are not isoentropic $E_{Q}$. If we think as $E_{HS}$ and $E_{Q}$ as partially ordered by information entropy, then $\iota$ is not an order preserving map. Therefore the epistemic structures represented by $E_{HS}$ and $E_{Q}$ are not isomorphic.
+
+The seemingly innocuous assumption that $P(\lambda|P)$ is well defined for all preparations $P$ and for all states $\lambda$ imposes a classical probability space which follows the rules of classical information theory, and prevents the state space $\Lambda$ to support an epistemic structure compatible with quantum theory. This suggests an obvious follow up: what if we start by assuming that the set of pure states $\Lambda$ supports the correct epistemic structure, the one associated with density matrices, and use the same definitions of $\psi$-ontic and $\psi$-epistemic?
+
+The difficulty here is that support and overlaps are not a well defined concept for density matrices. Yet, there are two different properties that non-overlapping functions have in classical probability theory. Two distribution $\rho_1$ and $\rho_2$ are non-overlapping if and only if:
+\begin{enumerate}
+	\item their product $\rho_1 \rho_2 = 0$ is zero
+	\item the probability of being in the support of the second given the first is zero.
+\end{enumerate}
+In quantum mechanics, if we consider two pure states $\psi_1$ and $\psi_2$, they lead to the following conditions:
+\begin{enumerate}
+	\item $|\psi_1><\psi_1|\psi_2><\psi_2| = 0$
+	\item $<\psi_2|\psi_1><\psi_1|\psi_2> = 0$.
+\end{enumerate}
+Both of these are satisfied if and only if $<\psi_1|\psi_2>=0$: the states are non-overlapping if and only if they are orthogonal. This is, not suprisingly, exactly what happens in classical probability: two distributions are non-overlapping if and only if they are orthogonal with respect to the inner product $\int \rho_1 \rho_2 d\lambda$.\footnote{We could also define the overlap in terms of the entropy of the mixture and we would find the same result.}
+
+Therefore we have the following result: if we want a set of pure states that are able to support the epistemic structure of quantum mechanics, they must be ``overlapping'' and therefore they cannot be take to be ontic. The reader is no less entitled to conclude that quantum mechanics does not allow $\psi$-ontic interpretations from this result than he would be entitled to conclude that quantum mechanics does not allow $\psi$-epistemic interpretations from PBR. He would also be entitled to conclude that the categorization is flawed.
+
+
+%- Try to apply their model to a purely mixed state of spin 1/2
+%- Show that you can't have a single epistemic distribution
+%-> Failure of model
+
+\section{Discussion}
+
+Let us now step back a moment. While the math is clear enough, we still need to understand what is going on at a conceptual level. Why does assuming $p(\lambda|P)$ lead to an epistemic structure incompatible with the quantum one? To answer this question, let us review how probability spaces work in both classical and quantum mechanics.
+
+A ``classical'' probability space is made of three objects: a sample space $\Omega$ which represents all possible cases (e.g. all points in phase-space for a classical system); a $\sigma$-algebra $\Sigma_\Omega$ over $\Omega$ which represents all statements of interest (e.g. ``the position is between 2 and 3 meters''); a measure $\mu : \Sigma_\Omega \to \mathbb{R}$ that associates each statement with a probability. Note how we have a single probability distribution over the whole space.
+
+In quantum mechanics we start with a similar structure: a set of states $\mathcal{H}$ which represents all possible cases (i.e. the Hilbert space) and a $\sigma$-algebra $\Sigma_{\mathcal{H}}$ that represents all statements of interests. This is where the similarity ends. To specify a mixed state, a ``quantum distribution'', we use a density matrix $\rho : \mathcal{H} \to \mathcal{H}$. To get a probability distribution, we need to specify an observable $O$. The observable $O$ identifies an orthogonal basis and we take the sub-algebra $\Sigma_O \subset \Sigma_{\mathcal{H}}$ defined on those states. We can then associate $\Sigma_O$ with a measure $\mu_O : \Sigma_O \to \mathbb{R}$, which is therefore not on the whole space $\Sigma_{\mathcal{H}}$.
+
+This procedure is repeated for all observables. The probability measure of each sums to one over the respective sub-algebra, over the respective basis. There are infinitely many observables (e.g. each direction of spin) whose bases are disjoint sets. If we added all measures over the entire $\sigma$-algebra (e.g. all probabilities over all directions of spin) the sum would be infinite. In other words: we do not have a single probability distribution on a single $\sigma$-algebra. For each observable, we a probability distribution defined on a particular sub-algebra\footnote{This is exactly why some rules of classical probability are not allowed in quantum probability: we can only combine statements within the same sub-algebra and not across different sub-algebras.} and this is what gives rise to contextuality. Before getting a probability distribution we need to specify a context, a sub-algebra, a basis.
+
+We may be tempted to think that we have one context before and one after the measurement, but this does not quite work. Each context is needed, for example, to define the expectation value of the related observables. It is by measuring those quantities over an ensemble of identically prepared system (i.e. quantum tomography) that we can reconstruct the initial state. Therefore we need to be able to say that all distributions over all contexts are fixed by the preparation. The measurement process can only measure one without perturbing the other.
+
+Yet, at each time there is a special context. If we take the $z+$, the probability distribution along that direction will the sharpest while the probability distribution along a perpendicular direction will be uniform. Therefore there is a context in which the entropy is minimal, there is a context that gives us the most information about the system. This is the basis over which we calculate the entropy of a mixed state, this is the basis in which the density matrix diagonalizes.
+
+Note that the minimal entropy context changes over mixes. For an equal mix of $z+$ and $x+$, the minimal entropy distribution is neither over $Z$ or $X$. This is why the epistemic structure of contextual and non-contextual models is so different: classical mixtures affect the context.
+
+To sum up, assuming $p(\lambda|P)$ exists means assuming there is a single probability space, a single $\sigma$-algebra, a single set of propositions, to which all probabilities are assigned. This is exactly assuming non-contextuality. To allow for contextuality we should assume that for each observable $O$ we have a probability $p_O(\lambda_O|P)$ of having prepared one of the eigenstates, such that $\sum_{\lambda_O} p_O(\lambda_O|P) = 1$. However, the sum over all states $\sum_{\lambda} p_{O(\lambda)}(\lambda|P) = + \infty$ diverges and is not a probability measure. If it didn't diverge, then we could renormalize and put a probability measure over the whole space, making the model non-contextual. Mathematically, the probability space is not Kolmogorov: probability of countable sequences does not always converge.\footnote{In our larger project, we are trying to understand what are the correct axioms for such space with mixed success.}
+
+
+
+% (mezza pagina)
+%- Non-contestuality of HS
+%- PBR and other results
+
+\section{Conclusion}
+
+\bibliography{bibliography}
+
+
+\end{document}
