@@ -93,29 +93,28 @@ Therefore we have the following result: if we want a set of pure states that are
 
 \section{Discussion}
 
-Let us now step back a moment. While the math is clear enough, we still need to understand what is going on at a conceptual level. Why does assuming $p(\lambda|P)$ lead to an epistemic structure incompatible with the quantum one? To answer this question, let us review how probability spaces work in both classical and quantum mechanics.
-
-A ``classical'' probability space is made of three objects: a sample space $\Omega$ which represents all possible cases (e.g. all points in phase-space for a classical system); a $\sigma$-algebra $\Sigma_\Omega$ over $\Omega$ which represents all statements of interest (e.g. ``the position is between 2 and 3 meters''); a measure $\mu : \Sigma_\Omega \to \mathbb{R}$ that associates each statement with a probability. Note how we have a single probability distribution over the whole space.
-
-In quantum mechanics we start with a similar structure: a set of states $\mathcal{H}$ which represents all possible cases (i.e. the Hilbert space) and a $\sigma$-algebra $\Sigma_{\mathcal{H}}$ that represents all statements of interests. This is where the similarity ends. To specify a mixed state, a ``quantum distribution'', we use a density matrix $\rho : \mathcal{H} \to \mathcal{H}$. To get a probability distribution, we need to specify an observable $O$. The observable $O$ identifies an orthogonal basis and we take the sub-algebra $\Sigma_O \subset \Sigma_{\mathcal{H}}$ defined on those states. We can then associate $\Sigma_O$ with a measure $\mu_O : \Sigma_O \to \mathbb{R}$, which is therefore not on the whole space $\Sigma_{\mathcal{H}}$.
-
-This procedure is repeated for all observables. The probability measure of each sums to one over the respective sub-algebra, over the respective basis. There are infinitely many observables (e.g. each direction of spin) whose bases are disjoint sets. If we added all measures over the entire $\sigma$-algebra (e.g. all probabilities over all directions of spin) the sum would be infinite. In other words: we do not have a single probability distribution on a single $\sigma$-algebra. For each observable, we a probability distribution defined on a particular sub-algebra\footnote{This is exactly why some rules of classical probability are not allowed in quantum probability: we can only combine statements within the same sub-algebra and not across different sub-algebras.} and this is what gives rise to contextuality. Before getting a probability distribution we need to specify a context, a sub-algebra, a basis.
-
-We may be tempted to think that we have one context before and one after the measurement, but this does not quite work. Each context is needed, for example, to define the expectation value of the related observables. It is by measuring those quantities over an ensemble of identically prepared system (i.e. quantum tomography) that we can reconstruct the initial state. Therefore we need to be able to say that all distributions over all contexts are fixed by the preparation. The measurement process can only measure one without perturbing the other.
-
-Yet, at each time there is a special context. If we take the $z+$, the probability distribution along that direction will the sharpest while the probability distribution along a perpendicular direction will be uniform. Therefore there is a context in which the entropy is minimal, there is a context that gives us the most information about the system. This is the basis over which we calculate the entropy of a mixed state, this is the basis in which the density matrix diagonalizes.
-
-Note that the minimal entropy context changes over mixes. For an equal mix of $z+$ and $x+$, the minimal entropy distribution is neither over $Z$ or $X$. This is why the epistemic structure of contextual and non-contextual models is so different: classical mixtures affect the context.
-
-To sum up, assuming $p(\lambda|P)$ exists means assuming there is a single probability space, a single $\sigma$-algebra, a single set of propositions, to which all probabilities are assigned. This is exactly assuming non-contextuality. To allow for contextuality we should assume that for each observable $O$ we have a probability $p_O(\lambda_O|P)$ of having prepared one of the eigenstates, such that $\sum_{\lambda_O} p_O(\lambda_O|P) = 1$. However, the sum over all states $\sum_{\lambda} p_{O(\lambda)}(\lambda|P) = + \infty$ diverges and is not a probability measure. If it didn't diverge, then we could renormalize and put a probability measure over the whole space, making the model non-contextual. Mathematically, the probability space is not Kolmogorov: probability of countable sequences does not always converge.\footnote{In our larger project, we are trying to understand what are the correct axioms for such space with mixed success.}
-
-
 
 % (mezza pagina)
 %- Non-contestuality of HS
 %- PBR and other results
 
 \section{Conclusion}
+
+\section*{Supplementary material}
+
+
+A ``classical'' probability space is made of three objects: a sample space $\Omega$ which represents all possible cases; a $\sigma$-algebra $\Sigma_\Omega$ over $\Omega$ called event space, where each event is represented by a set of outcomes in the sample space; a measure $\mu : \Sigma_\Omega \to \mathbb{R}$ that associates each statement with a probability. Note how we have a single probability distribution over the whole space.
+
+To make this concrete, let us represent the space of all possible directions using the surface of a sphere. The set of all possible points on the surface is our sample space $\Omega$. This space is endowed with a topology and therefore a Borel algebra $\Sigma_\Omega$, which is the
+
+In quantum mechanics we start with a similar structure: a set of states $\mathcal{H}$ which represents all possible cases (i.e. the Hilbert space) and a $\sigma$-algebra $\Sigma_{\mathcal{H}}$ that represents all statements of interests. This is where the similarity ends. To specify a ``quantum distribution'' we use a density matrix $\rho : \mathcal{H} \to \mathcal{H}$. To get a probability distribution, we need to first specify an observable $O$. The observable $O$ identifies a basis $B_O \subset \mathcal{H}$ and we take the sub-algebra $\Sigma_O \subset \Sigma_{\mathcal{H}}$ defined on those states. We can then associate $\Sigma_O$ with a measure $\mu_O : \Sigma_O \to \mathbb{R}$, which is therefore not on the whole space $\Sigma_{\mathcal{H}}$. This different setup is what is responsible for the differences between classical and quantum probability. We highlight here some of the main ones.
+
+\textbf{Contextuality}. Before getting a probability distribution we need to specify an observable, a basis, a sub-algebra: we need to specify a context in which the probability distribution is specified. This is what we refer to as contextuality. For example
+
+\textbf{Forbidden across-context operations}. While we can perform all countable logical operations within the $\sigma$-algebra $\Sigma_{O}$ of each context, if we try to combine events across context, through a logical AND or logical OR, we will inevitably go outside both contexts. The event still exists in the overall $\sigma$-algebra $\Sigma_{\mathcal{H}}$, so we can talk about it from a strictly logical perspective. Yet, it may not exist in any context and cannot be directly given a probability.
+
+\textbf{Failure of countable additivity}. Another problem is that, in quantum mechanics, we have probability distributions that fail to be countably additive. An eigenstate of momentum, for example, is invariant under translation which necessary means the probability distribution over position must be uniform. Yet, a uniform distribution over an infinite range is not something expressible through Kolmogorov probability as it violates countable additivity. Each finite interval, in fact, must necessarily correspond to zero probability yet the full range must correspond to probability one.
+
 
 \bibliography{bibliography}
 
