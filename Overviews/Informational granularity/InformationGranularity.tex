@@ -768,6 +768,15 @@ Consider the subset $[0,\infty)\times[0,\infty)\subseteq\mathbb{R}^2$. Let $U_{i
 
 By either definition of $\lequ$, this would give us an increasing sequence $W_n' := \bigcup\limits_{i=0}^n$, all of whose terms are (strictly) bounded by $V$, but whose limit (strictly) exceeds $V$ (in $\lequ$ terms), and so this violates monotone continuity of $\lequ$. 
 
+\section{Spaces we need to be able to capture}
+
+\textbf{Discrete spaces.} Suppose we have a domain that counts how many objects are there (e.g. pieces of fruit in a bowl, particles in a box or a piece of material). The problem is, in principle, decidable; the theoretical domain is the power set of the natural number. The measure will be the counting measure. Therefore, we will have that all possibilities are equigranular. This is enough to recover the counting measure. Infinite sets may or may not be considered comparable. TOCHECK: We can add the comparability of mod classes.
+
+\textbf{Riemannian spaces}. Let $X$ me a Riemannian manifold of dimension $n$. Let $S^k$ be the set of closed submanifold of dimension $k$ (i.e. the submanifold that are closed sets). We set $\sigma_1 \sfiner \sigma_2$ for all $\sigma_1 \in S^i$, $\sigma_2 \in S^k$ such that $i < j$. If $i = j$, then we set $\sigma_1 \finer \sigma_2$ if the area/volume associated to $\sigma_1$ is less or equal to the one associated to $\sigma_2$. For manifold of dimension zero, we use the counting measure. TOCHECK: The fineness releationship so defined are enough to recover the geometric structure.
+
+\textbf{Synmplectic spaces}. Let $X$ me a symplectic manifold of dimension $sn$. Let $S^{2k}$ be the set of closed submanifold of dimension $2k$ (i.e. the submanifold that are closed sets). We set $\sigma_1 \sfiner \sigma_2$ for all $\sigma_1 \in S^{2i}$, $\sigma_2 \in S^{2k}$ such that $i < j$. If $i = j$, then we set $\sigma_1 \finer \sigma_2$ if the area/volume associated to $\sigma_1$ is less or equal to the one associated to $\sigma_2$. For manifold of dimension zero, we use the counting measure. TOCHECK: The fineness releationship so defined are enough to recover the geometric structure.
+
+
 \section{Insightful failures}
 
 In this section we give some counterexamples for ideas that may seem reasonable but in the end do not work.
@@ -824,6 +833,14 @@ To show that $C$ is saturated, take a statement $\hat{\stmt} \narrower \stmt$ su
 
 Now we show that, even though $C$ is saturated, it does not go through all levels of granularity. Let $x \in X'$ and consider $\stmt \AND \NOT x$. This is finer than $\stmt$ and is coarser than all other statements in $C$ since they are all compatible with finitely many possibilities. Therefore SCP does not hold. Therefore, if SCP holds, the domain cannot have infinitely many possibilities.
 \end{proof}
+
+\subsection{Open set comparability}
+
+\textbf{Takeaway: we can't assume all verifiable statements (open sets) are comparable.}
+
+There are two main reasons that assuming all verifiable statements are comparable does not work. The first is physical dimension. Consider the two statements \statement{the position of the ball is between 1 and 2 m} and \statement{the velocity of the ball is between 1 and 2 m/s}. These cannot be compared.
+
+The second reason is because of how infinity works. Consider that domain formed by all statements regarding counting the number of pieces of fruit in a bowl. This would be equivalent to the power set of the natural numbers, since the domain is decidable (i.e. all statements are clopen). Now suppose that we say all verifiable statements are comparable. This means the fineness is a total/linear preorder. TO CHECK: A known result in mathematical logic is a total order on the power set of infinitely many elements does not exist.
 
 \bibliography{bibliography}
 
