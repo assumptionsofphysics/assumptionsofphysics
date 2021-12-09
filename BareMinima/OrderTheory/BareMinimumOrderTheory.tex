@@ -1,0 +1,343 @@
+\documentclass{article}
+
+\usepackage[left=1.8in,right=1.8in,top=.6in,bottom=1in]{geometry}
+
+\usepackage{assumptionsofphysics}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\frenchspacing
+
+\newcommand{\marginleft}[1] {\reversemarginpar\marginpar{#1}}
+\newcommand{\marginright}[1] {\normalmarginpar\marginpar{#1}}
+
+\def\ordinals{\textbf{ORD}}
+\def\cardinals{\textbf{CRD}}
+
+\def\ordless{\prec}
+\def\ordleq{\preceq}
+\def\ordeq{\sim}
+\def\ordgeq{\succeq}
+
+\def\crdleq{\hookrightarrow}
+\def\crdeq{\leftrightarrow}
+\def\crdgeq{\hookleftarrow}
+
+
+\title{Bare minimum: order theory}
+
+\date{\vspace{-5ex}}
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+This note presents a condensed summary of order theory which can function as a crash course, refresher and/or reference. Bare minima are meant to give a rough overview, by no means complete, of the subject to the intellectually curious, particularly in the context of foundational questions in physics.
+\end{abstract}
+
+\section{Introduction}
+
+The mathematical structures studied by order theory appear in different contexts, making the topic relevant to those interested in foundational questions. Core structures in fields such mathematical logic, topology and measure theory, can be characterized and understood in purely order theoretic terms; characterizing number types (i.e. integers, rational and reals) as different order types makes a better link to physics; physical concepts (e.g. part-whole inclusion) are also naturally captured with order theory.
+
+Roughly speaking, orders are transitive relationships that are not symmetric. Order theory studies and catalogs these structures, together with order preserving transformations. For more details on order theory, see for example \cite{davey2002introduction, pinter2014book}.
+
+\emph{This work is part of Assumptions of Physics (\url{https://assumptionsofphysics.org}), a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived.}
+
+\section{TBD}
+
+* fixpoint theorems
+* Zorn's lemma
+
+* Galois connection
+
+? graded posets
+
+\section{Orders}
+
+\subsection{Basic definitions}
+
+Mathematically, the following is the most convenient and common way to define order relationships.
+
+\begin{defn}[Partial orders and poset]
+	A \textbf{partial order} \marginleft{Partial order, poset: $(X, \leq)$} $\leq$ is a binary relationship over a set $X$ that is:
+	\begin{description}
+		\item[Reflexive] $a \leq a$ for all $a \in X$
+		\item[Antisymmetric] if $a \leq b$ and $b \leq a$ then $a = b$ for all $a, b \in X$
+		\item[Transitive] if $a \leq b$ and $b \leq c$ then $a \leq c$ for all $a, b, c \in X$.
+	\end{description}
+	A \textbf{partially ordered set}, or \textbf{poset}, is a tuple $(X, \leq)$ consisting on a set and a partial order.
+\end{defn}
+
+\begin{remark}
+	To give a sense of the broad range of applicability: sets are ordered by set inclusion ($\{0, 1\} \subseteq \{0, 1, 2\}$); statements are ordered by implication/narrowness (\statement{Snoopy is a dog} $\narrower$ \statement{Snoopy is a mammal}); systems are ordered by is-a-part-of (`piston' $\subseteq$ `engine' $\subseteq$ `car').
+\end{remark}
+
+\begin{defn}[Linear order]
+	A \textbf{linear order}, \marginleft{Linear order,\\ chain} or \textbf{total order}, is a partial order where every pair is ordered. That is, given $a, b \in X$ either $a \leq b$ or $b \leq a$. A \textbf{chain} typically refers to a subset of a partial order that is linearly ordered.
+\end{defn}
+
+The more intuitive notion of `before' and `after' would not include the equal. The two notions can be shows to be equivalent.
+
+\begin{defn}[Strict order]
+	A \textbf{strict partial order} \marginleft{Strict order} $<$ is a binary relationship over a set $X$ that is:
+	\begin{description}
+		\item[Irreflexive] $a \nless a$ for all $a \in X$
+		\item[Asymmetric] if $a < b$ then $b \nless a$ for all $a, b \in X$
+		\item[Transitive] if $a < b$ and $b < c$ then $a < c$ for all $a, b, c \in X$.
+	\end{description}
+\end{defn}
+
+\begin{prop}
+	A strict partial order can be converted to a non-strict partial order (or vice-versa) by adding (or removing) the identity relationship. That is, given $<$ we can define $\leq$ such that $a \leq b$ if $a < b$ or $a = b$. On the other hand, given $\leq$ we can define $<$ such that $a < b$ if $a \leq b$ and $a \neq b$.
+\end{prop}
+
+A more loose idea of order is a preorder, for which two different elements can be in the same order position. For example, the relationship has-no-fewer-elements for set is a preorder.
+
+\begin{defn}[Preorder]
+	A \textbf{preorder} \marginleft{Preorder} $\lesssim$ is a binary relationship over a set $X$ that is:
+	\begin{description}
+		\item[Reflexive] $a \lesssim a$ for all $a \in X$
+		\item[Transitive] if $a \lesssim b$ and $b \lesssim c$ then $a \lesssim c$ for all $a, b, c \in X$.
+	\end{description}
+\end{defn}
+
+\begin{prop}
+	A preorder induces a partial order on the set of equivalence classes defined by the preorder. That is, define $\sim$ on $X$ such that $a \sim b$ if $a \lesssim b$ and $b \lesssim a$. This is an equivalence relationship. Now define $\lesssim$ on $X_{/\sim}$ such that $a_{/\sim} \lesssim b_{/\sim}$ if $a \lesssim b$. This is a preorder.
+\end{prop}
+
+\begin{defn}[Predecessors and successors]
+	A \textbf{predecessor} \marginleft{Predecessor, successor} (or \textbf{successor}) of an element $a \in X$ is an element that comes strictly before (or strictly after) $a$. That is, it is an element $b \in X$ such that $b < a$ (or $a < b$). A predecessor (or successor) is  \textbf{immediate} if there are no elements in between. That is, $b < a$ (or $a < b$) and there is no $c \in X$ such that $b < c < a$  (or $a < c < b$).
+\end{defn}
+
+\marginright{TODO: Hesse diagram}
+
+Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse diagrams}. Each element in the poset is represented by a vertex. A line connects upwards an element to its immediate successor, so that lowest elements are at the bottom.
+
+\begin{defn}[Dense order]
+	An order is \textbf{dense} \marginleft{Dense order} if for any two elements $a < b$ we can always find a third element $c \in X$ between the two $a < c < b$.
+\end{defn}
+
+\subsection{Morphisms}
+
+\begin{defn}
+	A \textbf{monotonic function} \marginleft{Monotonic function} (also called \textbf{monotone}, \textbf{increasing} or \textbf{order preserving}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that respects the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(a) \leq_Y f(b)$.
+\end{defn}
+
+\begin{defn}
+	An \textbf{order embedding} \marginleft{Order embedding} is a monotonic function that respects the order in both directions. That is, a map $f : X \to Y$ such that $a \leq_X b \iff f(a) \leq_Y f(b)$.
+\end{defn}
+
+\begin{defn}
+	An \textbf{order isomorphism} \marginleft{Order isomorphism} is an invertible embedding (i.e. bijective monotonic function whose inverse is monotonic). Two posets are \textbf{order isomorophic} if there exist an order isomoprhism between them.
+\end{defn}
+
+\begin{defn}
+	Let $X$ be a poset. \marginleft{Up-sets and \\ down-sets} An \textbf{up-set}, or \textbf{increasing set}, or \textbf{order filter}, is a subset $A \subseteq X$ that contains all the successors of its elements. That is, if $a \in A$ then for all $b \in X$ such that $a \leq b$ we have $b \in A$. Dually, a \textbf{down-set}, or \textbf{decreasing set}, or \textbf{order ideal}, is a subset $A \subseteq X$ that contains all the predecessors of its elements. That is, if $a \in A$ then for all $b \in X$ such that $b \leq a$ we have $b \in A$.
+\end{defn}
+
+\subsection{Bounds}
+
+\begin{defn}[Top and bottom]
+	The \textbf{top} \marginleft{Top and bottom: $\top, \bot$} element of an ordered set $X$, noted $\top$ or $1$, is the greatest element, if it exists. That is, $\top \in X$ such that $a \leq \top$ for all $a \in X$. Dually, the \textbf{bottom} element, noted $\bot$ or $0$, is the least element, if it exists. That is, $\bot \in X$ such that $\bot \leq a$ for all $a \in X$. An order that admits both a top and a bottom is said \textbf{bounded}. Conversely, an order that admits neither is said \textbf{unbounded}.
+\end{defn}
+
+\begin{defn}[Upper and lower bounds]
+	Let $P$ be an \marginleft{Upper/Lower bounds} ordered set and let $A \subseteq P$. An \textbf{upper bound} (or \textbf{lower bound}) is an element $p \in P$ such that $a \leq p$ (or $p \leq a$) for all $a \in A$.
+\end{defn}
+
+\begin{defn}[Supremum and infimum]
+	The \textbf{supremum}, \marginleft{Supremum and infimum} or \textbf{least upper bound} of $A$ is, if it exists, the least element within all upper bounds of $A$. Conversely, the \textbf{infimum},  or \textbf{greatest lower bound} of $A$ is, if it exists, the greatest element within all lower bounds of $A$.
+\end{defn}
+
+\begin{defn}[Join and meet]
+	The \textbf{join} \marginleft{Join and meet: $\vee, \wedge$} of two elements $a, b \in X$ or of a set $A$, noted $a \vee b$ and $\bigvee A$, is their supremum if it exists. The \textbf{meet} of two elements $a, b \in X$, noted $a \wedge b$, is their infimum, if it exists.
+\end{defn}
+
+
+\begin{defn}[Complement]
+	Let $X$ be \marginleft{Complement: $\neg$} a bounded ordered set. Two elements $a, b \in X$ are \textbf{complements} of each other if $a \vee b = \top$ and $a \wedge b = \bot$. If an element $a$ has a unique complement, it is noted as $\neg a$.
+\end{defn}
+
+\begin{defn}[Lattice - order theoretic]
+	A \textbf{lattice} \marginleft{Lattice} is a partially ordered sets in which every pair of elements has both a supremum/join and an infimum/meet.
+\end{defn}
+
+\begin{prop}[Connecting lemma]
+	If $X$ is a lattice then $a \leq b$, $a \vee b = b$ and $a \wedge b = a$ are equivalent.
+\end{prop}
+
+\begin{prop}
+	Every linearly ordered set is a lattice.
+\end{prop}
+
+\begin{defn}[Lattice properties]
+	We define\marginleft{Complete, distributive, complemented} the following additional properties on lattices:
+	\begin{description}
+		\item[Completeness.] A lattice is \textbf{complete} if all subsets have joins and meet, not just finite ones.
+		\item[Distributivity.] A lattice is \textbf{distributive} if it satisfies
+		\begin{align*}
+			a \vee (b \wedge c) = (a \vee b) \wedge (a \vee c) \\
+			a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c).
+		\end{align*}
+		A complete lattice is \textbf{infinitely distributive} if the same holds over infinite operations.
+		\item[Complemented.] A bounded lattice is \textbf{complemented} if every element has a unique complement.
+	\end{description}
+\end{defn}
+
+\begin{prop}
+	Every lattice \marginleft{Completion} admits a \textbf{completion}, the smallest complete lattice that contains it. The completion is unique up to an order isomorphism.
+\end{prop}
+
+\begin{remark}
+	The completion is constructed by finding pairs $(A, B)$ of subsets $A, B \subseteq X$ such that $A$ is the set of lower bounds for $B$ and $B$ is the set of lower bounds of $A$. For the rationals $\mathbb{Q}$, these pairs correspond to Dedekind cuts, and the completion of $\mathbb{Q}$ as a lattice is the lattice of the reals $\mathbb{R}$.
+\end{remark}
+
+\begin{prop}[Zorn's lemma]
+	Every non-empty partially ordered set for which every linearly ordered subset has an upper bound contains at least one maximal element.
+\end{prop}
+
+\begin{defn}[Maximal subsets]
+	A linearly \marginleft{Maximal subset} ordered subset is \textbf{maximal} if it is not a scrict subset of another linearly ordered subset.
+\end{defn}
+
+
+\begin{prop}[Kuratowski's Lemma]
+	Every linearly ordered subset is the subset of some maximal linearly ordered subset.
+\end{prop}
+
+\section{Algebras and orders}
+
+\begin{defn}[Lattice - algebraic]
+	An algebraic \marginleft{Lattice (algebraic)} structure $(X, \vee, \wedge)$ consisting of a set $X$ and two binary operations $\vee$ and $\wedge$ is an \textbf{(algebraic) lattice} if it satisfies the following properties:
+	\begin{description}
+		\item[Associativity.] $(a \vee b) \vee c = a \vee (b \vee c)$
+		and $(a \wedge b) \wedge c = a \wedge (b \wedge c)$
+		\item[Commutativity.] $a \vee b = b \vee a$
+		and $a \wedge b = b \wedge a$
+		\item[Idempotency.] $a \vee a = a$
+		and $a \wedge a = a$
+		\item[Absorption.] $a \vee (a \wedge b) = a$
+		and $a \wedge (a \vee b) = a$
+	\end{description}
+\end{defn}
+
+\begin{prop}
+	Every order lattice is an algebraic lattice and every algebraic lattice is an order lattice where $a \leq b$ if $a \vee b = b$.
+\end{prop}
+
+\begin{defn}[Boolean algebra]
+	An algebraic \marginleft{Boolean algebra} structure $(X, \vee, \wedge, \neg, \bot, \top)$ is a \textbf{Boolean algebra} if it satisfies the following properties:
+	\begin{description}
+		\item[Lattice.] $(X, \vee, \wedge)$ is a lattice
+		\item[Distributivity.] $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee b)$
+and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
+		\item[Identity.] $a \vee \bot = a$
+		and $a \wedge \top = a$
+		\item[Complementation.] $a \vee \neg a = \top$
+		and $a \wedge \neg a = \bot$
+	\end{description}
+\end{defn}
+
+\begin{prop}
+	Every complemented distributive lattice is a Boolean algebra and every Boolean algebra is a complemented distributive lattice.
+\end{prop}
+
+\begin{defn}
+	Let $X$ be \marginleft{Pseudo-complement} a bounded lattice. The \textbf{relative pseudo-complement} of $a$ with respect to $b$ is the greatest element $x$ such that $a \wedge x \leq b$. The \textbf{pseudo-complement} of $a$ is the relative pseudo-complement with respect to $\bot$.
+\end{defn}
+
+\begin{defn}
+	A \textbf{Heyting algebra} \marginleft{Heyting algebra} is a bounded lattice for which the relative pseudo-complement always exists.
+\end{defn}
+
+\begin{prop}
+	All Heyting algebras are distributive lattices. Every Boolean algebra is a Heyting algebra where the pseudo-complement coincide with the complement. If a Heyting algebra is complemented then it is a Boolean algebra.
+\end{prop}
+
+\begin{remark}
+	Boolean algebras are used to capture the two-valued (i.e. true, false) classical logic. Heyting algebras are used to capture the three-valued (i.e. true, false, undetermined) intuitionistic/constructivist logic. The order is the logical implication. The complement is the negation, which always exists in classical logic but not in intuitionistic (i.e. not true is not necessarily false).
+\end{remark}
+
+\section{Representation as sets}
+
+\begin{prop}[Stone's representation theorem]
+	Every distributive lattice is order isomorphic to a lattice of subsets ordered by inclusion.
+\end{prop}
+
+\begin{prop}[Boolean algebras]
+	Every Boolean algebra can be represented by a collection of sets ordered by inclusion with the following correspondence:
+	\begin{description}
+		\item[Join] represented by the union
+		\item[Meet] represented by the intersection
+		\item[Pseudo-complement] represented by the set complement.
+	\end{description}
+	Conversely, every collection of sets closed under union, intersection and complement forms a Boolean algebra.
+\end{prop}
+
+\begin{prop}
+	Every distributive lattice (or a Heyting algebra in particular) is a subalgebra a Boolean algebra since it is order isomorphic to a sublattice of a power set.
+\end{prop}
+
+\begin{prop}[Topology]
+	Every topology, as a collection of sets ordered by inclusion, is a complete Heyting algebra with the following correspondence:
+	\begin{description}
+		\item[Join] represented by arbitrary union
+		\item[Meet] represented by the interior of arbitrary intersection
+		\item[Pseudo-complement] represented by the set exterior.
+	\end{description}
+\end{prop}
+
+\begin{prop}[Lattice of subgroups]
+	Given a group, the set of its subgroups, as a collection of sets ordered by inclusion, is a lattice following correspondence:
+	\begin{description}
+		\item[Join] represented by the subgroup generated by the union
+		\item[Meet] represented by the intersection.
+	\end{description}
+\end{prop}
+
+\begin{prop}[Lattice of subspaces]
+	Given a vector space, the set of its subspaces, as a collection of sets ordered by inclusion, is a complemented lattice following correspondence:
+	\begin{description}
+		\item[Join] represented by the subspace spanned by the union
+		\item[Meet] represented by the intersection
+		\item[Complement] represented by the orthogonal subspace.
+	\end{description}
+\end{prop}
+
+\begin{remark}
+	Note how the order theoretic operations (i.e. join, meet, complement, ...), except for Boolean algebras, do not always map to the set theoretic operations (i.e. intersection, union, complement, ...). This creates confusion when one tries to attach intuition from one to the other.	
+	
+	In Heyting algebras the pseudo-complement is often called ``negation'' and noted as $\neg a$ because, in some formulas, plays the same formal role. However, it is not a negation in a strict sense since the join of an element with its psuedo-complement is not the top. Logically, the negation of ``proposition $a$ is proven to be true'' is ``proposition $a$ is not proven to be true'' while the pseudo-complement is ``proposition $a$ is proven to be false''.
+	
+	Similarly, quantum logic takes the lattice of subspaces as the lattice of propositions. The lattice fails to be distributive on the join operation, and this is taken to mean that the disjunction is not distributive. However, the join fails to map to the union. Logically, the disjunction of \statement{the spin of system was prepared in the z+ direction} and \statement{the spin of system was prepared in the z- direction} is \statement{the spin of system was prepared in either the z+ or z- direction} while the join in terms of subspaces is \statement{the spin of system was prepared in any direction}.
+	
+	Understanding these differences is critical to give the correct physical interpretation of the corresponding mathematical definitions and results.
+	
+\end{remark}
+
+\section{Numbers as order types}
+
+\begin{prop}
+	Every linearly ordered set $X$ in which each element has one predecessor and one successor is order isomorphic to the integers $\mathbb{Z}$.
+\end{prop}
+
+\begin{prop}
+	 Every unbounded countable dense linearly ordered set is order isomorphic to the rationals $\mathbb{Q}$.
+\end{prop}
+
+\begin{prop}
+	Every complete unbounded dense linearly ordered set which admits a countable dense subset is order isomorphic to the reals $\mathbb{R}$.
+\end{prop}
+
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
