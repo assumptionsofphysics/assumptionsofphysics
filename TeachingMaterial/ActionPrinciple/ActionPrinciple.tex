@@ -36,7 +36,7 @@ TBD
 
 The action principle is of paramount importance in physics, yet it is somewhat mysterious. It is, in essence, a geometrical relationship yet it is not clear where and why that relationship originates. The fact that the Lagrangian for a system is not unique, makes it even more difficult to understand what is the physical content it provides.
 
-In this paper we give a full characterization that is both geometrical and physical. We will see that the only physical assumption needed to recover both Hamiltonian mechanics and the action principle is that of deterministic and reversible evolution. We will also see how the action principle arises from core property of divergence-free fields and closed two-forms. The action principle is essentially a general mathematical property of vector calculus and differential geometry.
+In this paper we give a full characterization that is both geometrical and physical. We will see that the only physical assumption needed to recover both Hamiltonian mechanics and the action principle is that of deterministic and reversible evolution. We will also see how the action principle arises as a feature of divergence-free fields and closed two-forms. In a nutshell, we will see that the action principle arises as a general mathematical property of vector calculus and differential geometry, its physical significance is of less importance than the assumption of determinism and reversibility it requires.
 
 We will first address the case of a single degree of freedom using standard vector calculus. This provides already all the geometrical and physical insights in a language that is accessible to most physicist. Then we proceed to the case of multiple independent degrees of freedom using differential geometry. These new tools, though unfamiliar to many physicists and engineers, are unfortunately needed. Yet, we will give it a treatment and a notation that hopefully will make them more intuitive.
 
@@ -46,9 +46,9 @@ We are going to present the simple case of one degree of freedom using the stand
 
 The first thing we need to do is recast the equations of motion in a form that will make apparent both their geometrical interpretation and their physical meaning. The setting is phase space extended with the time variable. That is, the space charted by position $q$, momentum $p$ and time $t$. It is precisely because we have only three variable that make the standard tools of vector calculus appropriate.
 
-TODO: figure with a few trajectories in extended phase space
+FIGURE: a few trajectories in extended phase space
 
-Once we have recast the equation of motion on the extended phase space, we can see how the action principle comes from a straightforward application calculus stemming from a property of divergenceless fields.
+Once we have recast the equation of motion on the extended phase space, we can see how the action principle comes from a straightforward application of vector calculus in the case of divergence-free fields.
 
 \subsection{Hamiltonian reformulation}
 
@@ -63,18 +63,20 @@ How can we better understand the physics and geometry captured by these equation
 
 Let us step back, and forget we have a Hamiltonian system. Suppose we simply have a system described by a single degree of freedom and assume the following:
 \begin{align}\label{Detrev_assumptions}
-	\parbox{2.8in}{The system undergoes deterministic and reversible evolution.}
+	\parbox{2.8in}{the system undergoes deterministic and reversible evolution.}
 \end{align}
 
-Under this assumption, given a state at a moment in time, there is a well defined change in all variable which is described by the displacement vector field
+Under this assumption, given a state at a moment in time, there is a well-defined change in all variable which is described by the displacement vector field
 \begin{equation}
 	\vec{S} = \left\{ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right\}.
 \end{equation}
-If we consider a finite region in the extended phase space, given that motion is deterministic and reversible we expect the number of states flowing in and flowing out of the region to be the same. Equivalently, we expect the evolutions to neither converge or diverge. Mathematically, the displacement field must be divergence-free, that is
+If we consider a finite region in the extended phase space, given that the evolution is deterministic and reversible we expect the number of states flowing in and flowing out of the region to be the same. Equivalently, we expect the evolutions to neither converge or diverge. Mathematically, the displacement field must be divergence-free, that is
 \begin{equation}
 	\nabla \cdot \vec{S} = 0,
 \end{equation}
 to properly represent a deterministic and reversible evolution.
+
+FIGURE: region in extended phase space with trajectories flowing through
 
 Since $\vec{S}$ is divergence-free, we can find a vector potential
 \begin{equation}
@@ -82,11 +84,11 @@ Since $\vec{S}$ is divergence-free, we can find a vector potential
 \end{equation}
 such that
 \begin{equation}\label{displacement_has_potential}
-	\vec{S} = -curl(\vec{\theta}).
+	\vec{S} = - \nabla \times \vec{\theta}.
 \end{equation}
-The minus sign is introduced to match conventions of differential geometry. Mathematically, this is analogous to what is done for a magnetic field or for an incompressible fluid, except we are look at the flow of states in space, momentum and time.
+The minus sign is introduced to match conventions in differential geometry. Mathematically, this is analogous to what is done for a magnetic field or for an incompressible fluid.
 
-Given that $\vec{\theta}$ is a vector potential, we have the usual gauge arbitrariness since $curl(\vec{\theta} + grad(f)) = curl(\vec{\theta})$ and therefore the displacement field $\vec{S}$ remains unchanged. We therefore can choose so that we can set
+Given that $\vec{\theta}$ is a vector potential, we have the usual gauge arbitrariness since $\nabla \times(\vec{\theta} + \nabla f) = \nabla \times \vec{\theta}$ and therefore the displacement field $\vec{S}$ remains unchanged. By choosing $f$ appropriately, we can set
 \begin{equation}
 	\vec{\theta} = \{\theta_q, 0, \theta_t\}
 \end{equation}
@@ -112,7 +114,7 @@ If we now expand each component of \ref{displacement_has_potential} using \ref{p
 	S_q = \frac{dq}{dt}
 	&= - \left( \frac{\partial}{\partial p} \theta_t - \frac{\partial}{\partial t} \theta_p \right) \\
 	&= - \left( \frac{\partial}{\partial p} (-H) - \frac{\partial}{\partial t} 0 \right) \\
-	& = \frac{\partial H}{\partial q}
+	& = \frac{\partial H}{\partial p}
 \end{align*}
 \begin{align*}
 	S_p = \frac{dp}{dt}
@@ -154,12 +156,14 @@ In other words, the integral of the vector potential over an evolution coincides
 	L = \vec{\theta} \cdot \vec{S}.
 \end{equation}
 
-Now let us vary the path and consider the variation of the line integral $\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma}$. The original path $\gamma$ together with its variation $\gamma'$ form a closed line $\lambda$. We can then use Stoke's theorem to transform the line integral of $\vec{\theta}$ to a surface integral of its curl. That is:
+FIGURE: trajectory with variation forming a closed loop. Another small area with trajectories flowing through
+
+Now let us consider the variation of the line integral $\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma}$ caused by an infinitesimal change in the path. The original path $\gamma$ together with its variation $\gamma'$ form a contour $\partial \Sigma$ which encloses the surface $\Sigma$. We can therefore use Stoke's theorem to transform the line integral of $\vec{\theta}$ over $\partial \Sigma$ to a surface integral of the curl $\nabla \times \vec{\theta}$ over $\Sigma$. That is:
 \begin{align*}
 	\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} = 
 	&= \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} - \int_{\gamma'} \vec{\theta} \cdot d\vec{\gamma'} \\
-	&= \oint_{\lambda} \vec{\theta}  \cdot d\lambda \\
-	&= \iint_{\Sigma} curl(\vec{\theta}) \cdot d\vec{\Sigma} \\
+	&= \oint_{\partial \Sigma} \vec{\theta}  \cdot d\lambda \\
+	&= \iint_{\Sigma} \left( \nabla \times \vec{\theta} \right) \cdot d\vec{\Sigma} \\
 	&= - \iint_{\Sigma} \vec{S} \cdot d\vec{\Sigma}.
 \end{align*}
 Since $\gamma$ is an evolution for the system, it is always tangent to $\vec{S}$. This means that the surface $\Sigma$ enclosed by $\gamma$ and its infinitesimal variation is also parallel to $\vec{S}$ and therefore $\vec{S} \cdot d\vec{\Sigma} = 0$. Which means
@@ -168,13 +172,13 @@ Since $\gamma$ is an evolution for the system, it is always tangent to $\vec{S}$
 \end{equation}
 Which recover the action principle.
 
-The action principle, then, is a direct consequence of the divergence-free nature of the displacement field $\vec{S}$. Every evolution $\gamma$ is a field line of $\vec{S}$. Any infinitesimal surface $\Sigma$ enclosed by an evolution and its variation, then, will also be tangent to the displacement field $\vec{S}$ and therefore the surface integral of $\vec{S}$ over $\Sigma$ will be zero. Given that $\vec{S}$ is divergence-free, the integral over $\Sigma$ can be expressed as the line integral of the vector potential $\vec{\theta}$ over the contour of $\Sigma$.
+The action principle, then, is a direct consequence of the divergence-free nature of the displacement field $\vec{S}$. Every evolution $\gamma$ is a field line of $\vec{S}$. Any infinitesimal surface $\Sigma$ enclosed by an evolution and its variation, then, will also be tangent to the displacement field $\vec{S}$ and therefore the surface integral of $\vec{S}$ over $\Sigma$ will be zero. Given that $\vec{S}$ is divergence-free, the integral over $\Sigma$ can be expressed as the line integral of the vector potential $\vec{\theta}$ over the contour of $\Sigma$. Asking for a stationary action means asking for the flow of $\vec{S}$ to be zero across the surface given by the path and its variation, which happens only if the path is tangent to $\vec{S}$ and is therefore an evolution. In practice, it is a very roundabout way to ask that the path be tangent to the displacement vector.
 
 \subsection{Discussion}
 
-Before proceeding to the more general case, there are a few things of note.
+Before proceeding to the more general case, there are two important things to note.
 
-First of all, we should not that the real and only physical content of the discussion lies in condition \ref{Detrev_assumptions} that assumes deterministic and reversible motion. The displacement field $\vec{S}$ and its properties are the only mathematical entities that are directly physically meaningful. The vector potential $\vec{\theta}$ exists provided condition \ref{Detrev_assumptions} and its expression is not unique.
+First of all, the true (and only) physical content of the discussion lies in condition \ref{Detrev_assumptions} that assumes deterministic and reversible motion. The displacement field $\vec{S}$ and its properties are the only mathematical entities that are directly physically meaningful. The vector potential $\vec{\theta}$ is not uniquely defined by condition \ref{Detrev_assumptions}, though it is extremely useful as it allows us to map the space of all possible displacement fields of interested with a single ``scalar'' function.
 
 Since the Lagrangian is the scalar product between the displacement and its vector potential, it suffers all the problems of the vector potential: it is not unique and its value is not directly physically meaningful. The same is true for the action itself. While the Lagrangian and the action are clearly useful tools in physics, this result warrants caution in relying exclusively on them to understand the physical relevance and meaning of a theory.
 
