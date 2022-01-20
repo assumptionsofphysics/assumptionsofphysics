@@ -1,4 +1,4 @@
-\documentclass[twocolumn,prl,floatfix,superscriptaddress]{revtex4-2}
+\documentclass[twocolumn,prl,floatfix,superscriptaddress]{revtex4-1}
 \usepackage{graphicx, subfigure, amsfonts, amssymb, amsmath, array, gensymb, fontenc, color, lipsum}
 %\documentclass[aps,twocolumn,showpacs,preprintnumbers]{revtex4}
 %\usepackage{graphicx}  % Include figure files
@@ -42,9 +42,6 @@ The Pusey, Barrett and Rudolph (PBR) theorem concludes that quantum states canno
 \maketitle
 
 \section{Introduction}
-
-%---e.g.\ standard Quantum Mechanics (QM) is classified as $\psi$-ontic and $\psi-$complete, hidden variable theories such as Bohm causal approach \cite{Bohm:1952aa} and Nelson mechanics \cite{Nelson:1966aa} are both considered $\psi$-ontic and $\psi$-incomplete, whereas Relational QM \cite{Rovelli:1996} and Quantum Bayesianism \cite{Fuchs:2002} are $\psi-$epistemic. 
-%Since its publication HS paper has been subjected to several analyses and extensions as well as critical discussions showing some limitations of this approach (\cite{Leifer:2014, Leifer:2014b}, \cite{Leifer:2013}, \cite{Hermens:2021}, \cite{Wood:2015}, \cite{Ringbauer:2015}, \cite{Mazurek:2016}, \cite{Bartlett:2012}, \cite{Oldofredi:2020b}, \cite{Lewis:2012}, \cite{Ladyman:2021}). However, still today HS distinction is employed to argue what types of interpretations are possible. Referring to this, the PBR theorem \cite{PBR:2012}---a remarkable result derived on top of HS framework---rules out $\psi$-epistemic models. More precisely, PBR argued that in every model reproducing the statistics and predictions of QM the quantum state $\psi$ must represent real physical properties of the system under consideration---i.e.\ models must be $\psi-$ontic. Consequently, quantum theories cannot be $\psi-$epistemic. Given the importance of this claim and the resonance that such a theorem had (\cite{Renner:2012}, \cite{Hardy:2013}, \cite{Maroney:2014}, \cite{Patra:2013}, \cite{Mansfield:2016}, \cite{Schlosshauer:2012, Schlosshauer:2013, Schlosshauer:2014}, \cite{Ben:2017}, \cite{Rizzi:2018}, \cite{Oldofredi:2021}, \cite{DeBrota:2019}), it is worthwhile to look at HS framework again with more scrutiny in order to understand whether it is a technically sound starting point to draw conclusions on the nature of the quantum state.
  
 In 2012 Pusey, Barrett and Rudolph published a formal result in \emph{Nature Physics}, widely known as the PBR theorem, showing that ``if the quantum state merely represents information about the real physical state of a system, then experimental predictions are obtained that contradict those of quantum theory'' (\cite{PBR:2012}, p.\ 475). Alternatively stated, PBR argued that in every model reproducing the statistics and predictions of Quantum Mechanics (QM) the quantum state $\psi$ must represent real physical properties of the system under consideration and not agents' knowledge---i.e.\ models must be $\psi-$ontic. Consequently, quantum theories cannot be $\psi-$epistemic. 
 
@@ -89,8 +86,6 @@ for all pairs of states $\psi$ and $\phi$. If a model is not $\psi$-ontic, then 
 All other models are \textbf{$\psi$-incomplete}.
 
 To make this classification more concrete, let us give an example from classical mechanics. Consider the case where we prepare a particle according to a specific value of energy. The energy partitions phase space into mutually exclusive regions, and therefore we can understand the energy of the preparation as a property of the particle itself. According to HS, this would be an \emph{ontic property}. Consider now the case where we prepare a particle according to a specific temperature. When we take the particle from the oven, we are sampling from a Boltzmann distribution over different energies. However, unlike energy, temperature does not partition phase space because the same particle state could have been prepared by ovens at different temperature. Temperature is a property of the preparation and therefore an \emph{epistemic property}. 
-
-%While the original aim of this classification was to clarify Einstein's view of quantum theory, it has been used in the literature to classify different interpretations (e.g. hidden variable theories such as Bohm pilot-wave theory \cite{Bohm:1952aa} and Nelson mechanics \cite{Nelson:1966aa} are both considered $\psi$-ontic and $\psi$-incomplete) and also to argue what types of interpretations are possible. Most notably, the PBR theorem \cite{PBR:2012} rules out any $\psi$-epistemic model. More precisely, PBR argued that in every model reproducing the statistics and predictions of Quantum Mechanics (QM) the quantum state $\psi$ must represent real physical properties of the system under consideration and not agents' knowledge---i.e.\ models must be $\psi-$ontic. Consequently, quantum theories cannot be $\psi-$epistemic.(TODO beef up this paragraph with citations). It is therefore worthwhile to look at the ontological model itself with more scrutiny.
 
 \begin{figure}
 \includegraphics[scale=.7]{ontic}
@@ -160,14 +155,19 @@ One may think that we can get away by assuming that, at each time, there is a ``
 
 Consider two density matrices $\rho_1$ and $\rho_2$ with different eigenstates and their mixture $\rho = p_1 \rho_1 + p_2 \rho_2$. The context of the mixture will not be the same as the original contexts. It will, in fact, even depend on $p_1$, $p_2$. That is, when mixing preparations we are not simply combining two probability distributions over the same context, like in classical mechanics, but we are combining the contexts themselves to create a new one. Contextuality not only affects measurements, but, dually, preparations as well. And this affects how information entropy is calculated and the overall epistemic structure.
 
-To sum up, assuming $p(\lambda|P)$ exists means assuming there is a single probability space, a single $\sigma$-algebra, a single set of propositions to which all probabilities are assigned. This is exactly assuming non-contextuality. While this can be made to work for pure state-to-pure state transitions during measurements, mixing preparations leads to an epistemic structure that is fundamentally non-contextual, leading to inconsistencies with quantum information. To allow for contextuality we should assume that for each observable $O$ we have a probability $p_O(\lambda_O|P)$ of having prepared one of the eigenstates, such that $\sum_{\lambda_O} p_O(\lambda_O|P) = 1$. While we have a single state space $\Lambda$, we do not have a single probability space over the whole space. The entropy of the preparation would be the lowest entropy across all contexts.
-
+To sum up, assuming $p(\lambda|P)$ exists means assuming there is a single probability space, a single $\sigma$-algebra, a single set of propositions to which all probabilities are assigned. This is exactly assuming non-contextuality. While this can be made to work for pure state-to-pure state transitions during measurements, mixing preparations leads to an epistemic structure that is fundamentally non-contextual, leading to inconsistencies with quantum information. To allow for contextuality we should assume that for each observable $O$ we have a probability $p_O(\lambda_O|P)$ of having prepared one of the eigenstates, such that $\sum_{\lambda_O} p_O(\lambda_O|P) = 1$. Although we have a single state space $\Lambda$, we do not have a single probability space over the whole space. The entropy of the preparation would be the lowest entropy across all contexts.
 
 \section{Conclusion}
 
-While work in quantum foundations typically focuses on measurements and their effect on pure states, equal importance must be given to preparations and their effect on mixed states. The different behavior of entropy in classical and quantum mechanics has profound implications not just for information theory, but also for statistical mechanics and its measurable predictions. A full solution to the ``measurement problem'' will therefore have to address the dual ``preparation problem.''
+In this essay we showed not only that HS framework does not correctly describe the epistemic structure of QM, but also that it implicitly assumes non-contextuality. Hence, it cannot be employed to draw conclusions on the nature of quantum states. Consequently, any other result relying on HS categorization inherits the same issues affecting it. In particular, it follows that the PBR theorem is derived from a technically ill-defined basis; thus, it is demonstrated neither that quantum states must necessarily be HS-$\psi-$ontic, nor that epistemic interpretations are contradicted by quantum theory. Concluding, we believe that while work in quantum foundations typically focuses on measurements and their effect on pure states, equal importance must be given to preparations and their effect on mixed states. The different behavior of entropy in classical and quantum mechanics has profound implications not just for information theory, but also for statistical mechanics and its measurable predictions. 
 
-%Number of words for the conclusion: 159
+%A full solution to the ``measurement problem'' will therefore have to address the dual ``preparation problem.''
+
+%Number of words for the conclusion: 164
+
+\section{Acknowledgements}
+
+Andrea Oldofredi is grateful to the Funda\c{c}$\tilde{\mathrm{a}}$o para a Ci\^encia e a Tecnologia (FCT) for financial support (Grant no. 2020.02858).
 
 %\bibliographystyle{ieeetr}
 \bibliography{PhDthesis}

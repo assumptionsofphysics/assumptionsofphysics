@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20211220111421" modified="D:20211220115707"/>
+<info created="D:20211220111421" modified="D:20220111164316"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -267,15 +267,11 @@ h
 <text matrix="1 0 0 1 -4 -32" transformations="translations" pos="16 736" stroke="black" type="label" width="5.958" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">\iota</text>
 <text matrix="1 0 0 1 -8 -32" transformations="translations" pos="16 688" stroke="black" type="label" width="18.773" height="9.802" depth="4.09" valign="baseline" size="Large" style="math">E_Q</text>
 <text matrix="1 0 0 1 -12 -32" transformations="translations" pos="16 784" stroke="black" type="label" width="26.671" height="9.805" depth="2.15" valign="baseline" size="Large" style="math">E_{HS}</text>
-<path matrix="1 0 0 1 16 -32" stroke="black" dash="dashed">
-96 832 m
-96 656 l
-</path>
 <path matrix="1 0 0 1 8 0" stroke="black" arrow="normal/normal">
 64 728 m
 64 692 l
 </path>
-<text matrix="1 0 0 1 8 8" transformations="translations" pos="60 792" stroke="black" type="label" width="7.024" height="9.245" depth="0" valign="baseline" size="Large">0</text>
+<text matrix="1 0 0 1 12 8" transformations="translations" pos="60 792" stroke="black" type="label" width="7.024" height="9.245" depth="0" valign="baseline" size="Large">0</text>
 <text matrix="1 0 0 1 16 20" transformations="translations" pos="480 800" stroke="black" type="label" width="52.585" height="9.803" depth="2.79" valign="baseline" size="Large" style="math">Entropy</text>
 <path matrix="1 0 0 1 24 -92" stroke="black">
 20 0 0 20 128 752 e
@@ -284,27 +280,19 @@ h
 160 800 m
 160 624 l
 </path>
-<text matrix="1 0 0 1 16 8" transformations="translations" pos="116 792" stroke="black" type="label" width="31.996" height="9.245" depth="0" valign="baseline" size="Large">0.707</text>
+<text matrix="1 0 0 1 20 8" transformations="translations" pos="116 792" stroke="black" type="label" width="31.996" height="9.245" depth="0" valign="baseline" size="Large">0.601</text>
 <path matrix="1 0 0 1 24 -12" stroke="black">
 20 0 0 20 208 672 e
 </path>
 <path matrix="1 0 0 1 40 4" stroke="black">
 20.3961 0 0 20.3961 192 752 e
 </path>
-<path matrix="1 0 0 1 48 0" stroke="black" dash="dashed">
-224 800 m
-224 624 l
-</path>
-<text matrix="1 0 0 1 36 12" transformations="translations" pos="176 788" stroke="black" type="label" width="31.996" height="9.245" depth="0" valign="baseline" size="Large">0.811</text>
+<text matrix="1 0 0 1 40 12" transformations="translations" pos="176 788" stroke="black" type="label" width="31.996" height="9.245" depth="0" valign="baseline" size="Large">0.811</text>
 <path matrix="1 0 0 1 -44 4" stroke="black">
 20.3961 0 0 20.3961 352 752 e
 </path>
 <path matrix="1 0 0 1 -68 0" stroke="black">
 20.3961 0 0 20.3961 432 756 e
-</path>
-<path matrix="1 0 0 1 -32 0" stroke="black" dash="dashed">
-432 800 m
-432 624 l
 </path>
 <path matrix="1 0 0 1 -8 4" stroke="black">
 20.3961 0 0 20.3961 344 656 e
@@ -577,7 +565,7 @@ h
 <path matrix="0.603922 0 0 1 65.1137 68" stroke="black">
 20.3961 0 0 20.3961 144 592 e
 </path>
-<path stroke="black">
+<path stroke="black" dash="dashed">
 152 680 m
 172 656 l
 172 656 l
@@ -636,11 +624,9 @@ h
 145.816 647.872 l
 145.816 648.537 l
 </path>
-<use name="mark/disk(sx)" pos="168 660" size="normal" stroke="white"/>
 <path matrix="0.603922 0 0 1 67.8117 180" stroke="black">
 20.3961 0 0 20.3961 272 576 e
 </path>
-<use name="mark/disk(sx)" pos="168 660" size="normal" stroke="black"/>
 <path matrix="0.603922 0 0 1 38.8234 84" stroke="black">
 20.3961 0 0 20.3961 320 576 e
 </path>
@@ -650,11 +636,6 @@ h
 <path matrix="0.603922 0 0 1 -188.816 52" stroke="black">
 20.3961 0 0 20.3961 432 608 e
 </path>
-<path stroke="black" dash="dashed">
-232 680 m
-232 640 l
-</path>
-<use name="mark/disk(sx)" pos="232 672" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="232 776" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="232 736" size="normal" stroke="black"/>
 <text matrix="1 0 0 1 0 -4" transformations="translations" pos="240 732" stroke="black" type="label" width="16.895" height="6.733" depth="0.49" valign="baseline" size="small" style="math">25\%</text>
@@ -666,10 +647,6 @@ h
 <path stroke="black" dash="dashed">
 192 816 m
 192 792 l
-</path>
-<path stroke="black" dash="dashed">
-272 816 m
-272 800 l
 </path>
 <path stroke="black" dash="dashed">
 400 816 m
@@ -830,6 +807,119 @@ h
 65.5955 644.687 l
 65.5955 643.327 l
 64.2644 643.327 l
+</path>
+<path matrix="0.6 0 0 1 234.4 148" stroke="black">
+20 0 0 20 336 608 e
+</path>
+<path stroke="black" pen="0.8" cap="1" join="1">
+188.754 557 m
+188.754 557 l
+</path>
+<path stroke="white" pen="fat" cap="1" join="1">
+425.669 771.977 m
+427.52 771.977 l
+428.906 771.283 l
+430.034 771.283 l
+430.034 770.591 l
+431.162 770.591 l
+428.471 770.591 l
+</path>
+<path stroke="white" pen="2.4" cap="1" join="1">
+424.312 767.843 m
+428.305 767.843 l
+</path>
+<path stroke="white" pen="fat" cap="1" join="1">
+422.58 757.699 m
+427.036 757.699 l
+424.52 757.699 l
+</path>
+<path stroke="white" pen="2.4" cap="1" join="1">
+424.031 753.854 m
+425.159 753.854 l
+425.159 753.188 l
+425.825 753.188 l
+</path>
+<path stroke="white" pen="2.4" cap="1" join="1">
+423.94 746.798 m
+427.268 746.798 l
+</path>
+<path stroke="white" pen="2.4" cap="1" join="1">
+426.945 740.87 m
+430.736 740.87 l
+</path>
+<path matrix="0.6 0 0 1 232.8 132" stroke="black">
+20 0 0 20 432 624 e
+</path>
+<path stroke="lightblue" pen="2.4" cap="1" join="1">
+481.755 767.331 m
+486.554 767.331 l
+</path>
+<path stroke="lightblue" pen="2.4" cap="1" join="1">
+478.258 761.523 m
+484.074 761.523 l
+</path>
+<path stroke="lightblue" pen="fat" cap="1" join="1">
+477.195 753.776 m
+477.195 754.441 l
+477.86 755.107 l
+477.86 755.57 l
+478.526 755.57 l
+478.526 756.03 l
+483.185 756.03 l
+</path>
+<path stroke="lightblue" pen="2.4" cap="1" join="1">
+483.905 771.782 m
+485.236 771.782 l
+485.236 772.474 l
+487.233 772.474 l
+</path>
+<path stroke="lightblue" pen="2.4" cap="1" join="1">
+479.373 749.67 m
+483.884 749.67 l
+</path>
+<path stroke="lightblue" pen="fat" cap="1" join="1">
+482.47 745.396 m
+484.493 745.396 l
+484.493 746.088 l
+486.518 746.088 l
+486.518 744.091 l
+481.599 744.091 l
+</path>
+<path stroke="lightblue" pen="2.4" cap="1" join="1">
+483.479 739.581 m
+486.604 739.581 l
+</path>
+<path stroke="lightblue" pen="fat" cap="1" join="1">
+480.218 754.405 m
+483.343 754.405 l
+479.672 754.405 l
+480.338 755.07 l
+483.926 755.07 l
+482.566 755.07 l
+482.566 755.736 l
+477.213 755.736 l
+</path>
+<path stroke="black" dash="dashed">
+232 680 m
+232 640 l
+</path>
+<use name="mark/disk(sx)" pos="232 668" size="small" stroke="black"/>
+<path stroke="black" dash="dashed">
+112 816 m
+112 624 l
+</path>
+<use name="mark/disk(sx)" pos="164 668" size="small" stroke="black"/>
+<path stroke="black" arrow="normal/normal">
+232 728 m
+232 692 l
+</path>
+<path stroke="black" dash="dashed">
+272 816 m
+272 624 l
+</path>
+<path stroke="black" dash="dashed">
+400 816 m
+400 624 l
 </path>
 </page>
 </ipe>
