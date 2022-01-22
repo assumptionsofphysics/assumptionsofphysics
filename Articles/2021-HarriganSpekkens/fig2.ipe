@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20211220111421" modified="D:20220111164316"/>
+<info created="D:20211220111421" modified="D:20220122224122"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -265,7 +265,7 @@ h
 20 0 0 20 64 672 e
 </path>
 <text matrix="1 0 0 1 -4 -32" transformations="translations" pos="16 736" stroke="black" type="label" width="5.958" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">\iota</text>
-<text matrix="1 0 0 1 -8 -32" transformations="translations" pos="16 688" stroke="black" type="label" width="18.773" height="9.802" depth="4.09" valign="baseline" size="Large" style="math">E_Q</text>
+<text matrix="1 0 0 1 -8 -32" transformations="translations" pos="16 688" stroke="black" type="label" width="29.524" height="9.802" depth="4.09" valign="baseline" size="Large" style="math">E_{QM}</text>
 <text matrix="1 0 0 1 -12 -32" transformations="translations" pos="16 784" stroke="black" type="label" width="26.671" height="9.805" depth="2.15" valign="baseline" size="Large" style="math">E_{HS}</text>
 <path matrix="1 0 0 1 8 0" stroke="black" arrow="normal/normal">
 64 728 m

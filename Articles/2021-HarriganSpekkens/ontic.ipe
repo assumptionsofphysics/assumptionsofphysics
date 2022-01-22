@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20210619124104" modified="D:20220106183940"/>
+<info created="D:20210619124104" modified="D:20220122224716"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -275,7 +275,7 @@ h
 48 768 m
 272 768 l
 </path>
-<text transformations="translations" pos="108 784" stroke="black" type="label" width="12.416" height="6.808" depth="2.85" valign="baseline" style="math">P_{\psi}</text>
+<text matrix="1 0 0 1 -16 -4" transformations="translations" pos="108 784" stroke="black" type="label" width="33.757" height="7.472" depth="2.85" valign="baseline" style="math">p(\lambda|P_{\psi})</text>
 <text transformations="translations" pos="272 752" stroke="black" type="label" width="5.812" height="6.918" depth="0" valign="baseline" style="math">\lambda</text>
 <text transformations="translations" pos="272 672" stroke="black" type="label" width="5.812" height="6.918" depth="0" valign="baseline" style="math">\lambda</text>
 <path stroke="black" fill="lightcyan">
@@ -289,7 +289,7 @@ h
 48 688 m
 272 688 l
 </path>
-<text transformations="translations" pos="108 704" stroke="black" type="label" width="12.416" height="6.808" depth="2.85" valign="baseline" style="math">P_{\psi}</text>
+<text matrix="1 0 0 1 -16 -4" transformations="translations" pos="108 704" stroke="black" type="label" width="33.757" height="7.472" depth="2.85" valign="baseline" style="math">p(\lambda|P_{\psi})</text>
 <path stroke="black" fill="pink">
 176 768 m
 192 800
@@ -297,7 +297,7 @@ h
 224 800
 240 768 c
 </path>
-<text transformations="translations" pos="204 784" stroke="black" type="label" width="11.685" height="6.808" depth="2.85" valign="baseline" style="math">P_{\phi}</text>
+<text matrix="1 0 0 1 -12 -4" transformations="translations" pos="204 784" stroke="black" type="label" width="33.025" height="7.472" depth="2.85" valign="baseline" style="math">p(\lambda|P_{\phi})</text>
 <path stroke="black" fill="pink">
 144 688 m
 160 736
@@ -309,7 +309,7 @@ h
 144 704 m
 160 688 l
 </path>
-<text transformations="translations" pos="168 708" stroke="black" type="label" width="11.685" height="6.808" depth="2.85" valign="baseline" style="math">P_{\phi}</text>
+<text matrix="1 0 0 1 -8 -4" transformations="translations" pos="168 708" stroke="black" type="label" width="33.025" height="7.472" depth="2.85" valign="baseline" style="math">p(\lambda|P_{\phi})</text>
 <path stroke="black" fill="darkcyan">
 48 688 m
 272 688 l
