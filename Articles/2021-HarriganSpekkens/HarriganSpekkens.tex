@@ -27,7 +27,7 @@
 \author{Gabriele Carcassi}
 \affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
 \author{Andrea Oldofredi}
-\affiliation{Centre of Philosophy (CFUL), University of Lisbon, Portugal}
+\affiliation{Centre of Philosophy, University of Lisbon, Portugal}
 \author{Christine A. Aidala}
 \affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
 \vspace{2mm}
@@ -36,7 +36,7 @@
 
 
 \begin{abstract}
-The Pusey, Barrett and Rudolph (PBR) theorem concludes that quantum states cannot be taken to represent mere information about the system. This result is based on the ontological model framework proposed by Harrigan and Spekkens (HS). In this paper we show that the HS framework has a fundamental problem: the epistemic structure it implicitly assumes does not follow the one dictated by quantum mechanics. Namely, the map between the epistemic states of the model and quantum density matrices preserves neither the value nor ordering of the information entropy. Consequently the epistemic content of mixed states is not mapped in a meaningful way. The problem stems from the assumption that an epistemic state is characterized by a \emph{single} probability measure, which is essentially an assumption of non-contextuality. Given this fundamental issue, every result that uses the HS framework, including the PBR theorem, should be carefully reexamined.
+The Pusey, Barrett and Rudolph (PBR) theorem claims that quantum states cannot be taken to represent mere information about the system. This result is based on the ontological model framework proposed by Harrigan and Spekkens (HS). In this paper we show that the HS framework has a fundamental problem: the epistemic structure it implicitly assumes does not follow the one dictated by quantum mechanics. Namely, the map between the epistemic states of the model and quantum density matrices preserves neither the value nor ordering of the information entropy. Consequently the epistemic content of mixed states is not mapped in a meaningful way. The problem stems from the assumption that an epistemic state is characterized by a \emph{single} probability measure, which is essentially an assumption of non-contextuality. Given this fundamental issue, every result that uses the HS framework, including the PBR theorem, should be carefully reexamined.
 \end{abstract}
 
 \maketitle
@@ -53,8 +53,8 @@ HS proposed a rigorous classification in order to categorize the nature of the q
 
 In this paper we will show two things:
 \begin{enumerate}
-	\item the information entropy as calculated on HS epistemic states does not match the one provided by quantum mechanics, therefore the epistemic structures provided by QM and HS are incompatible;
-	\item in QM the density matrices associated with pure states overlap for non-orthogonal states (i.e. $\rho_\psi \rho_\phi \neq 0$), which rules out $\psi$-ontic models
+	\item the information entropy as calculated on HS epistemic states does not match the one provided by quantum mechanics, therefore the epistemic structures provided by QM and HS are not isomorphic;
+	\item if we rephrase the overlapping condition directly in terms of density matrices, we find that non-orthogonal pure states ``overlap'', which rules out $\psi$-ontic models.
 \end{enumerate}
 Combining these results with PBR, our conclusion is that the HS classification itself is fundamentally problematic. The main issue lies in assuming that the epistemic state identifies a \emph{single} probability distribution over the whole set of ontic states. We show that this, in essence, is an assumption of non-contextuality, which is also inherited by the PBR theorem, casting doubts on its validity.
 
@@ -73,7 +73,7 @@ It is also assumed that a mixture of pure states $\{ \psi_i \}$ with probabiliti
 \begin{equation}\label{epistemic_mixing}
 	\sum_i  w_i p(\lambda| P_{\psi_i}).
 \end{equation}
-As the epistemic states for mixed preparations are simply linear combinations of epistemic states for pure preparations, we can concentrate on the latter.
+As the epistemic states for mixed preparations are simply linear combinations of epistemic states for pure preparations, the HS model concentrates on the latter.
 
 To classify an ontological model, we look at the relationship between quantum and ontic states. There are two broad categories. In a \textbf{$\psi$-ontic} model the wave function is a physical property of the ontic state, in the sense that given an ontic state $\lambda$ there is only one pure state preparation $P_\psi$ that could have prepared $\lambda$. As we can see in figure \ref{overlap}, this happens if the probability distributions do not overlap, i.e.\ if we have
 \begin{equation}\label{ontic_condition}
@@ -96,7 +96,7 @@ To make this classification more concrete, let us give an example from classical
 
 Let us consider more closely the space of epistemic states given by $p(\lambda | P)$ and equation \ref{epistemic_mixing}. To make the discussion more concrete, we assume we have a $\psi$-complete model of a single qubit representing the direction of spin.
 
-Suppose we have a protocol that prepares either $z^+$ or $z^-$ with equal chance. This results in an epistemic state with equal distribution on $z^+$ and $z^-$. Similarly, suppose we have another protocol that prepares $x^+$ and $x^-$ with equal chance generating an epistemic state with equal distribution on $x^+$ and $x^-$. Note that such epistemic distributions do not overlap. Therefore, according to HS categorization, these correspond to two ontologically distinct states, making the preparation axis an ontological property of the system, regardless of the orientation. However, the respective density matrices would not just overlap: they would be the same maximally mixed state. Hence there seems to be a mismatch between the type of epistemic knowledge one can express in QM through mixed states and the type of epistemic knowledge described in the HS model. This needs to be investigated further.
+Suppose we have a protocol that prepares either $z^+$ or $z^-$ with equal chance. This results in an epistemic state with equal distribution on $z^+$ and $z^-$. Similarly, suppose we have another protocol that prepares $x^+$ and $x^-$ with equal chance generating an epistemic state with equal distribution on $x^+$ and $x^-$. Note that such epistemic distributions do not overlap. Therefore, according to HS categorization, these correspond to two ontologically distinct states, making the preparation axis an ontological property \emph{of the system}, regardless of the orientation. However, the respective density matrices would not just overlap: they would be the same maximally mixed state. Hence there seems to be a mismatch between the type of epistemic knowledge one can express in QM through mixed states and the type of epistemic knowledge described in the HS model. This needs to be investigated further.
 
 Let us first characterize the extent of the discrepancy. In HS, the space of epistemic states $E_{HS}$ is the set of probability distributions over pure states, which is an infinite dimensional space. This is a direct consequence of defining the epistemic states as a distribution $p(\lambda|P)$ that, for each preparation $P$, assigns a well defined probability to each ontological state $\lambda$ \footnote{We will follow the convention of not distinguishing between probability and probability density.}. In QM, mixed states $E_{QM}$ are in one-to-one correspondence with the interior of the Bloch sphere, a three dimensional manifold. Looking at the difference in dimension, the discrepancy is not minor.
 
@@ -133,7 +133,7 @@ That is, two pure states are non-overlapping if and only if $\langle\psi_1|\psi_
 
 However we look at it, we reach the following result:
 \begin{align}\label{conclusion}
-	\parbox{2.8in}{Non-orthogonal pure quantum states overlap and are therefore epistemic.}
+	\parbox{2.8in}{Non-orthogonal pure quantum states overlap and are therefore HS-epistemic.}
 \end{align}
 This should not be surprising: even in classical probability two distributions are non-overlapping if and only if they are orthogonal with respect to the inner product $\int \rho_1 \rho_2 d\lambda$.
 
@@ -167,7 +167,7 @@ We showed not only that the HS framework does not correctly describe the epistem
 
 \section{Acknowledgements}
 
-Andrea Oldofredi is grateful to the Funda\c{c}$\tilde{\mathrm{a}}$o para a Ci\^encia e a Tecnologia (FCT) for financial support (Grant no. 2020.02858).  This work is in connection to Assumptions of Physics, a larger project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived  (\url{https://assumptionsofphysics.org}).
+Andrea Oldofredi is grateful to the Funda\c{c}$\tilde{\mathrm{a}}$o para a Ci\^encia e a Tecnologia (FCT) for financial support (Grant no. 2020.02858.CEECIND).  This work is in connection to Assumptions of Physics, a larger project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived  (\url{https://assumptionsofphysics.org}).
 
 %\bibliographystyle{ieeetr}
 \bibliography{HarriganSpekkens}
