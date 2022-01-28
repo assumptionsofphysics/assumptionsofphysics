@@ -27,28 +27,30 @@
 
 
 \begin{abstract}
-TBD
+We give a geometrical interpretation for the action principle in Lagrangian classical particle mechanics that also has a direct physical meaning. The idea is that the variation of the action along a path is the flow of the displacement field through the area between the path and the variation. Since actual trajectories are parallel to the displacement field, the flow is zero along them, making the action stationary. We first give the interpretation for a single degree of freedom using simple differential calculus so that it is accessible to the widest possible audience. We then generalize to multiple degrees of freedom using symplectic geometry. This treatment makes the geometry of both Hamiltonian and Lagrangian mechanics more readily evident, and gives reasons to privilege the Hamiltonian picture over the Lagrangian one.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-The action principle is of paramount importance in physics, yet it is somewhat mysterious. It is, in essence, a geometrical relationship yet it is not clear where and why that relationship originates. The fact that the Lagrangian for a system is not unique, makes it even more difficult to understand what is the physical content it provides.
+While the principle of stationary action is regarded by many as one of the most important tools in physics, its physical meaning is not completely clear. First of all, the typical characterization of the Lagrangian as the difference between kinetic and potential energy fails even for simple systems, like a charged particle under a magnetic field. Moreover, the Lagrangian for a system is not uniquely defined, making the actual value of the action for a path not directly physically significant.  We are left to wonder: what exactly is the action and why is it stationary for actual trajectories?
 
-In this paper we give a full characterization that is both geometrical and physical. We will see that the only physical assumption needed to recover both Hamiltonian mechanics and the action principle is that of deterministic and reversible evolution. We will also see how the action principle arises as a feature of divergence-free fields and closed two-forms. In a nutshell, we will see that the action principle arises as a general mathematical property of vector calculus and differential geometry, its physical significance is of less importance than the assumption of determinism and reversibility it requires.
+As part of our larger project Assumptions of Physics, we developed an approach, called Reverse Physics, which examines current theories to find a set of starting physical assumptions that are sufficient to rederive them. This allowed us to recast Hamiltonian mechanics as the dynamics of deterministic and reversible evolution, which coincidentally gives us the proper setting to characterize both the physics and the geometry underlying the principle of stationary action. We will see that the principle arises as a feature of divergence-free fields and closed two-forms, as a general mathematical property of vector calculus and differential geometry.
 
-We will first address the case of a single degree of freedom using standard vector calculus. This provides already all the geometrical and physical insights in a language that is accessible to most physicist. Then we proceed to the case of multiple independent degrees of freedom using differential geometry. These new tools, though unfamiliar to many physicists and engineers, are unfortunately needed. Yet, we will give it a treatment and a notation that hopefully will make them more intuitive.
+We will first address the case of a single degree of freedom using standard vector calculus. This provides already all the geometrical and physical insights in a language that is accessible to all physicists and engineers. Then we proceed to the case of multiple independent degrees of freedom, which requires tools from differential geometry. To make the treatment of the latter case more accessible, we will use a notation that is similar to the one used by physicists in general relativity.
 
 \section{One degree of freedom}
 
-We are going to present the simple case of one degree of freedom using the standard tools provided by vector calculus. It is very fortunate that this can be done at all, since it allows the majority of people with a physics or engineering background to grasp all the major points.
+The first thing we need to do is recast the equations of motion in a form that will make apparent both their geometrical interpretation and their physical meaning. The setting is phase space extended with the time variable. That is, the space charted by position $q$, momentum $p$ and time $t$. It is precisely because we have exactly three variables that the standard tools of vector calculus can be used.
 
-The first thing we need to do is recast the equations of motion in a form that will make apparent both their geometrical interpretation and their physical meaning. The setting is phase space extended with the time variable. That is, the space charted by position $q$, momentum $p$ and time $t$. It is precisely because we have only three variable that make the standard tools of vector calculus appropriate.
+\begin{figure}
+	\includegraphics[width = 0.45\textwidth]{ExtendedPhaseSpace}
+	\caption{\footnotesize{Evolutions in the extended phase space and the divergence-free displacement field.}}\label{extended_phase_space}
+\end{figure}
 
-FIGURE: a few trajectories in extended phase space
 
-Once we have recast the equation of motion on the extended phase space, we can see how the action principle comes from a straightforward application of vector calculus in the case of divergence-free fields.
+Once we have recast the equations of motion on the extended phase space, we can see how the action principle comes from a straightforward application of vector calculus in the case of divergence-free fields.
 
 \subsection{Hamiltonian reformulation}
 
@@ -66,7 +68,7 @@ Let us step back, and forget we have a Hamiltonian system. Suppose we simply hav
 	\parbox{2.8in}{the system undergoes deterministic and reversible evolution.}
 \end{align}
 
-Under this assumption, given a state at a moment in time, there is a well-defined change in all variable which is described by the displacement vector field
+Under this assumption, given a state at a moment in time, there is a well-defined change in all variables which is described by the displacement vector field
 \begin{equation}
 	\vec{S} = \left\{ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right\}.
 \end{equation}
@@ -75,8 +77,6 @@ If we consider a finite region in the extended phase space, given that the evolu
 	\nabla \cdot \vec{S} = 0,
 \end{equation}
 to properly represent a deterministic and reversible evolution.
-
-FIGURE: region in extended phase space with trajectories flowing through
 
 Since $\vec{S}$ is divergence-free, we can find a vector potential
 \begin{equation}
@@ -88,7 +88,7 @@ such that
 \end{equation}
 The minus sign is introduced to match conventions in differential geometry. Mathematically, this is analogous to what is done for a magnetic field or for an incompressible fluid.
 
-Given that $\vec{\theta}$ is a vector potential, we have the usual gauge arbitrariness since $\nabla \times(\vec{\theta} + \nabla f) = \nabla \times \vec{\theta}$ and therefore the displacement field $\vec{S}$ remains unchanged. By choosing $f$ appropriately, we can set
+Given that $\vec{\theta}$ is a vector potential, we have the usual gauge arbitrariness since $\nabla \times(\vec{\theta} + \nabla f) = \nabla \times \vec{\theta}$ and therefore the displacement field $\vec{S}$ remains unchanged. By choosing $f(q,p,t)$ appropriately, we can set
 \begin{equation}
 	\vec{\theta} = \{\theta_q, 0, \theta_t\}
 \end{equation}
@@ -100,7 +100,7 @@ The displacement field has a further constraint, since $S_t = dt/ dt = 1$. Given
 	&= - \left(\frac{\partial}{\partial q}  0 - \frac{\partial}{\partial p}  \theta_q\right) \\
 	& = \frac{\partial \theta_q}{\partial p} = 1
 \end{align*}
-Integrating, we have $\theta_q = p + g(q,t)$ where $g(q,t)$ is an arbitrary function, which we can set to zero. Therefore we have:
+Integrating, we have $\theta_q = p + g(q,t)$ where $g(q,t)$ is an arbitrary function. This function can be set to zero without loss of generality as it can be removed with a gauge transformation where $f(q,t)$ does not depend on $p$, and therefore $\theta_p$ will remain unchanged. Therefore we have:
 \begin{equation}
 	\vec{\theta} = \{p, 0, \theta_t\}
 \end{equation}
@@ -109,7 +109,7 @@ Lastly, we rename the last component as $\theta_t = -H$ which leads to
 	\vec{\theta} = \{p, 0, -H\}.
 \end{equation}
 
-If we now expand each component of \ref{displacement_has_potential} using \ref{potential_final}, we have:\footnote{Note that $\frac{dp}{dt}$ is not the same as $\frac{\partial p}{\partial t}$. In the first case we are taking a total derivative along the evolution, and therefore the momentum can change. In the second case we are taking a partial derivative which is taken at constant $q$ and $p$ by definition, and therefore $\frac{\partial p}{\partial t}=0$.}
+If we now expand each component of \ref{displacement_has_potential} using \ref{potential_final}, we have:\footnote{Note that $\frac{dp}{dt}$ is not the same as $\frac{\partial p}{\partial t}$. In the first case we are taking a total derivative along the evolution, and therefore the momentum can change. In the second case we are taking a partial derivative at constant $q$ and $p$ by definition, and therefore $\frac{\partial p}{\partial t}=0$.}
 \begin{align*}
 	S_q = \frac{dq}{dt}
 	&= - \left( \frac{\partial}{\partial p} \theta_t - \frac{\partial}{\partial t} \theta_p \right) \\
@@ -132,53 +132,62 @@ We have recovered Hamilton's equations \ref{Hamilton_equations} as the equations
 
 \subsection{Action principle}
 
-Let us now review the principle of least action. We chart all states at all times by using $\{q, \frac{dq}{dt}, t\}$. We have a Langrangian $L(q, \frac{dq}{dt}, t)$ and, given a path $\gamma = \{q(t), \frac{dq}{dt}(t), t\}$ with $t_1 \leq t \leq t_2$, we define the action as $\mathcal{A}[\gamma] = \int_{t_1}^{t_2} L(q, \frac{dq}{dt}, t) dt$. An actual evolution of the system is such that the action is stationary:
+Let us now review the principle of stationary action. We chart all states at all times by using $\{q, \frac{dq}{dt}, t\}$. We have a Langrangian $L(q, \frac{dq}{dt}, t)$ and, given a path $\gamma = \{q(t), \frac{dq}{dt}(t), t\}$ with $t_1 \leq t \leq t_2$, we define the action as
+\begin{equation}
+	\mathcal{A}[\gamma] = \int_{t_1}^{t_2} L(q, \frac{dq}{dt}, t) dt.
+\end{equation}  An actual evolution of the system is such that the action is stationary:
 \begin{equation}
 	\frac{\delta \mathcal{A}}{\delta \gamma} = 0.
 \end{equation}
-The connection between the Lagrangian and Hamiltonian formulation is given by
+The connection between the Lagrangian and Hamiltonian formulation is given by the Legendre transformation
 \begin{equation}
 	L = p \frac{dq}{dt} - H.
 \end{equation}
 How can we connect this with the previous picture?
 
-Let us step back, forget about Lagrangians, and resume the discussion from before. Let $\gamma$ be an evolution (i.e. a solution of the equations of motion) with endpoints $A$ and $B$. Consider the line integral of the vector potential $\vec{\theta}$ along $\gamma$. We have:
+Let us step back, forget about Lagrangians, and resume the discussion from before. Let $\gamma$ be a path in the extended phase space, not necessarily a solution of the equations of motion, with endpoints $A$ and $B$. That is, the displacement $d\vec{\gamma}$ along the curve will not be, in general, equal to $\vec{S}dt$. Consider the line integral of the vector potential $\vec{\theta}$ along $\gamma$. We have:
 \begin{equation}
 \begin{aligned}
-	\int_A^B \vec{\theta} \cdot d\gamma &= \int^{t_1}_{t_0} \vec{\theta} \cdot \vec{S} dt \\
-	&= \int^{t_1}_{t_0} \left(\theta_q \frac{dq}{dt} + \theta_p \frac{dp}{dt} + \theta_t \frac{dt}{dt}\right) dt \\
-	&= \int^{t_1}_{t_0} \left(p \frac{dq}{dt} + 0 \frac{dp}{dt} - H \frac{dt}{dt}\right) dt \\
-	&= \int^{t_1}_{t_0} \left(p \frac{dq}{dt} - H\right) dt
+	\int_A^B \vec{\theta} \cdot d\vec{\gamma} &= \int^{t_2}_{t_1} \vec{\theta} \cdot \frac{d\vec{\gamma}}{dt} dt \\
+	&= \int^{t_2}_{t_1} \left(\theta_q \frac{dq}{dt} + \theta_p \frac{dp}{dt} + \theta_t \frac{dt}{dt}\right) dt \\
+	&= \int^{t_2}_{t_1} \left(p \frac{dq}{dt} + 0 \frac{dp}{dt} - H \frac{dt}{dt}\right) dt \\
+	&= \int^{t_2}_{t_1} \left(p \frac{dq}{dt} - H\right) dt
 \end{aligned}
 \end{equation}
-In other words, the integral of the vector potential over an evolution coincides with the action, and the Lagrangian is simply
+In other words, the line integral of the vector potential over an evolution coincides with the action, and the Lagrangian is simply
 \begin{equation}
-	L = \vec{\theta} \cdot \vec{S}.
+	L = \vec{\theta} \cdot \frac{d\vec{\gamma}}{dt}.
 \end{equation}
 
-FIGURE: trajectory with variation forming a closed loop. Another small area with trajectories flowing through
+\begin{figure}
+	\includegraphics[width = 0.45\textwidth]{ActionNonOptimized.png}
+	\includegraphics[width = 0.45\textwidth]{ActionOptimized.png}
+	\caption{\footnotesize{The variation of the action is the flow of the displacement field $\vec{S}$ through the surface $\Sigma$ that sits between the path $\gamma$ and its variation $\gamma'$. In the second picture we see that the flow is zero if the path is an actual evolution of the system, since the displacement field will be parallel to the path $\gamma$ and therefore the surface $\Sigma$.}}\label{action}
+\end{figure}
 
-Now let us consider the variation of the line integral $\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma}$ caused by an infinitesimal change in the path. The original path $\gamma$ together with its variation $\gamma'$ form a contour $\partial \Sigma$ which encloses the surface $\Sigma$. We can therefore use Stoke's theorem to transform the line integral of $\vec{\theta}$ over $\partial \Sigma$ to a surface integral of the curl $\nabla \times \vec{\theta}$ over $\Sigma$. That is:
+Now let us consider the variation of the line integral $\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma}$ caused by an infinitesimal change in the path. The original path $\gamma$ together with its variation $\gamma'$ form a contour $\partial \Sigma$ which encloses the surface $\Sigma$. We can therefore use Stokes' theorem to transform the line integral of $\vec{\theta}$ over $\partial \Sigma$ to a surface integral of the curl $\nabla \times \vec{\theta}$ over $\Sigma$. That is:
 \begin{align*}
-	\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} = 
+	\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} 
 	&= \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} - \int_{\gamma'} \vec{\theta} \cdot d\vec{\gamma'} \\
-	&= \oint_{\partial \Sigma} \vec{\theta}  \cdot d\lambda \\
+	&= \oint_{\partial \Sigma} \vec{\theta}  \cdot d\vec{\gamma} \\
 	&= \iint_{\Sigma} \left( \nabla \times \vec{\theta} \right) \cdot d\vec{\Sigma} \\
 	&= - \iint_{\Sigma} \vec{S} \cdot d\vec{\Sigma}.
 \end{align*}
-Since $\gamma$ is an evolution for the system, it is always tangent to $\vec{S}$. This means that the surface $\Sigma$ enclosed by $\gamma$ and its infinitesimal variation is also parallel to $\vec{S}$ and therefore $\vec{S} \cdot d\vec{\Sigma} = 0$. Which means
+Note that, precisely because $\vec{S}$ is divergence-free, it doesn't matter which particular surface $\Sigma$ we pick, as long as its contour $\partial \Sigma$ consists of $\gamma$ and $\gamma'$.
+
+The variation of the action, then, corresponds to the flow of $\vec{S}$ through $\Sigma$. It tells us how many actual evolutions go through the surface. Note that if $\gamma$ is an evolution of the system, it is always tangent to $\vec{S}$. This means that the surface $\Sigma$ enclosed by $\gamma$ and its infinitesimal variation is also tangent to $\vec{S}$ and therefore $\vec{S} \cdot d\vec{\Sigma} = 0$. Which means the actual evolutions are those paths $\gamma$ for which
 \begin{equation}
 	\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} = 0.
 \end{equation}
-Which recover the action principle.
+This recovers the principle of stationary action.
 
-The action principle, then, is a direct consequence of the divergence-free nature of the displacement field $\vec{S}$. Every evolution $\gamma$ is a field line of $\vec{S}$. Any infinitesimal surface $\Sigma$ enclosed by an evolution and its variation, then, will also be tangent to the displacement field $\vec{S}$ and therefore the surface integral of $\vec{S}$ over $\Sigma$ will be zero. Given that $\vec{S}$ is divergence-free, the integral over $\Sigma$ can be expressed as the line integral of the vector potential $\vec{\theta}$ over the contour of $\Sigma$. Asking for a stationary action means asking for the flow of $\vec{S}$ to be zero across the surface given by the path and its variation, which happens only if the path is tangent to $\vec{S}$ and is therefore an evolution. In practice, it is a very roundabout way to ask that the path be tangent to the displacement vector.
+The action principle, then, is a direct consequence of the divergence-free nature of the displacement field $\vec{S}$. Every evolution $\gamma$ is a field line of $\vec{S}$. Any infinitesimal surface $\Sigma$ enclosed by an evolution and its variation, then, will also be tangent to the displacement field $\vec{S}$ and therefore the surface integral of $\vec{S}$ through $\Sigma$ will be zero. Given that $\vec{S}$ is divergence-free, the integral through $\Sigma$ can be expressed as the line integral of the vector potential $\vec{\theta}$ over the contour of $\Sigma$. Asking for a stationary action means asking for the flow of $\vec{S}$ to be zero across the surface given by the path and its variation, which happens only if the path is tangent to $\vec{S}$ and is therefore an evolution. In practice, the principle of stationary action is a very roundabout way to ask that the path be always tangent to the displacement vector field.
 
 \subsection{Discussion}
 
 Before proceeding to the more general case, there are two important things to note.
 
-First of all, the true (and only) physical content of the discussion lies in condition \ref{Detrev_assumptions} that assumes deterministic and reversible motion. The displacement field $\vec{S}$ and its properties are the only mathematical entities that are directly physically meaningful. The vector potential $\vec{\theta}$ is not uniquely defined by condition \ref{Detrev_assumptions}, though it is extremely useful as it allows us to map the space of all possible displacement fields of interested with a single ``scalar'' function.
+First of all, the true (and only) physical content of the discussion lies in condition \ref{Detrev_assumptions} that assumes deterministic and reversible motion. The displacement field $\vec{S}$ and its properties are the only mathematical entities that are directly physically meaningful. The vector potential $\vec{\theta}$ is not uniquely defined by condition \ref{Detrev_assumptions}, though it is extremely useful as it allows us to map the space of all possible displacement fields of interest with a single ``scalar'' function $H$, the time component of the vector potential.
 
 Since the Lagrangian is the scalar product between the displacement and its vector potential, it suffers all the problems of the vector potential: it is not unique and its value is not directly physically meaningful. The same is true for the action itself. While the Lagrangian and the action are clearly useful tools in physics, this result warrants caution in relying exclusively on them to understand the physical relevance and meaning of a theory.
 
@@ -190,12 +199,12 @@ is the one for a free photon treated as a particle. This gives us
 \begin{equation}
 	\frac{dq}{dt}= c \frac{p}{|p|}
 \end{equation}
-which means the velocity allows us to recover the direction of the conjugate momentum, but not its norm (i.e. the trajectory of a photon is not enough to recover its full state). In these cases, the Lagrangian approach cannot be applied because $\vec{\theta} \cdot \vec{S}$ cannot be expressed as a function of position and velocity. Yet, if we express $L(q,p,t)$ in terms of conjugate momentum, the modified version of the variational principle still works.
+which means the velocity allows us to recover the direction of the conjugate momentum, but not its norm (i.e. the trajectory of a photon is not enough to recover its full state). In these cases, the Lagrangian approach cannot be applied because $\vec{\theta} \cdot \vec{S}$ cannot be expressed as a function of position and velocity. Yet, if we express $L(q,p,t)$ in terms of conjugate momentum instead of velocity, the modified version of the variational principle still works.
 
 Note that the failure can happen in the reverse direction too: there are Lagrangian systems for which we cannot express the Hamiltonian in terms of conjugate momentum. However, these are exactly the cases where the action principle fails to yield a single solution. Therefore we have the following points:
 \begin{enumerate}
-	\item the only Lagrangian systems in which the action principle yield a single solutions are the ones that admit a Hamiltonian formulation;
-	\item all Hamiltonian systems admit an action principle formulation, even though that do not admit a Lagrangian.
+	\item the only Lagrangian systems in which the action principle yields a single solution are the ones that admit a Hamiltonian formulation;
+	\item all Hamiltonian systems admit an action principle formulation, even if they do not admit a Lagrangian.
 \end{enumerate}
 
 In our view, this is enough evidence to conclude that the Hamiltonian setting in the extended phase space is the most natural to understand the action principle.
@@ -206,7 +215,7 @@ All our previous points will hold true in the generalization to multiple degrees
 
 To express this requirement, the tools provided by differential calculus are not enough. We need elements of differential geometry, particularly symplectic geometry and contact manifolds, which is problematic for two reasons. First, these are not widely used (or understood) among physicists, and are not accessible to physics students. Second, the treatment of the subject is typically too abstract and uses notation that we find, in some cases, misleading to a physicist. This is unfortunate because the underlying concepts are quite accessible and provide a more general and robust foundations for many areas of physics, not just classical particle mechanics.
 
-Given that we want to make the generalization understandable to a wide array of people with physical background, we are going to use enough of the standard terminology from differential geometry that our methods are recognizable to someone proficient in it, but we are going to use a notation that parallel Einstein's notation, so that it feels more familiar to a physicist.\footnote{The main differences are as follows. The vector basis will be noted as $e_a$ instead of $\frac{\partial}{\partial x_a}$. The covector basis will be noted as $e^a$ instead of $dx^a$. The exterior derivative will be noted as $\partial$ (e.g. $\partial \omega$) instead of $d$ (e.g. $d \omega$).}
+Given that we want to make the generalization understandable to a wide array of people with physical background, we are going to use enough of the standard terminology from differential geometry that our methods are recognizable to someone proficient in it, but we are going to use a notation that parallel Einstein's notation, so that it feels more familiar to a physicist.\footnote{The main differences are as follows. The vector basis will be noted as $e_a$ instead of $\frac{\partial}{\partial x^a}$. The covector basis will be noted as $e^a$ instead of $dx^a$. The exterior derivative will be noted as $\partial$ (e.g. $\partial \omega$) instead of $d$ (e.g. $d \omega$).}
 
 \subsection{Hamiltonian reformulation}
 
@@ -275,12 +284,12 @@ Let us convince ourselves of this result by constructing a proof that is similar
 First, we express \ref{canonical_conditions} in terms of the covector potential. We have:
 \begin{equation}\label{canonical_potential_conditions}
 \begin{aligned}
-	\omega(e^{q^i}, e^{p_j}) &= (-d\theta)_{q^i p_j} = -(\partial_{q^i}\theta_{p_j} - \partial_{p_j}\theta_{q^i}) = \delta^i_j \\
-	\omega_{q^i q^j} &= (-d\theta)_{q^i q^j} = -(\partial_{q^i}\theta_{q^j} - \partial_{q^j}\theta_{q^i}) = 0 \\
-	\omega(e^{p_i}, e^{p_j}) &= (-d\theta)_{p_i p_j} = -(\partial_{p_i}\theta_{p_j} - \partial_{p_j}\theta_{p_i}) = 0
+	\omega(e^{q^i}, e^{p_j}) &= (-\partial\theta)_{q^i p_j} = -(\partial_{q^i}\theta_{p_j} - \partial_{p_j}\theta_{q^i}) = \delta^i_j \\
+	\omega_{q^i q^j} &= (-\partial\theta)_{q^i q^j} = -(\partial_{q^i}\theta_{q^j} - \partial_{q^j}\theta_{q^i}) = 0 \\
+	\omega(e^{p_i}, e^{p_j}) &= (-\partial\theta)_{p_i p_j} = -(\partial_{p_i}\theta_{p_j} - \partial_{p_j}\theta_{p_i}) = 0
 \end{aligned}
 \end{equation}
-We can use our gauge freedom to set $\theta_{p_1} = 0$, much in the same way we did for the simpler case. We now have $\partial_{q^1} \theta_{p_1} = 0$ and, by the first condition, $\partial_{p_1} \theta_{q^1} = 1$. Integrating, we have $\theta_{q^1} = p_1 + g(q^i, p_2, p_3, ..., t)$ where $g$ is an arbitrary function which we can set to zero. Therefore we have:
+We can use our gauge freedom to set $\theta_{p_1} = 0$, much in the same way we did for the simpler case. We now have $\partial_{q^1} \theta_{p_1} = 0$ and, by the first condition, $\partial_{p_1} \theta_{q^1} = 1$. Integrating, we have $\theta_{q^1} = p_1 + g(q^i, p_2, p_3, ..., t)$ where $g$ is an arbitrary function which we can set to zero. Like in the single degree of freedom, we can do this because $g$ does not depend on $p_1$, so it can be eliminated with a gauge transformation that does not change $\theta_{p_1}$. Therefore we have:
 \begin{equation}
 	\theta = p_1 e^{q^1} + 0 e^{p_1} + \theta_{q^2} e^{q^2} + \theta_{p_2} e^{p_2} + ... + \theta_{t} e^{t}.
 \end{equation}
@@ -289,9 +298,9 @@ Note that the components for the first degree of freedom do not depend on the ot
 
 We can then use, again, our gauge freedom with a function that does not depend on the first two variables. And we can use to set $\theta_{p_2} = 0$. And, with the same reasoning, we will be able to set $\theta_{q^2} = p_2$. And then, again, find that the first two degrees of freedom do not depend on the others, etc. At the end, we will find \ref{mdof_potential_expression}.
 
-At this point, simply calculate $d\theta(S, \cdot ) $. The components of $d\theta$ are:
+At this point, we calculate $\partial\theta(S, \cdot ) $. The components of $\partial\theta$ are:
 \begin{equation*}
-	(d\theta)_{ab} = \begin{bmatrix}
+	(\partial\theta)_{ab} = \begin{bmatrix}
 		0 & \delta^j_i & - \partial_{q^i} H \\
 		-\delta^i_j & 0 & - \partial_{p_i} H \\
 		\partial_{q^j} H & \partial_{p_j} H & 0
@@ -299,11 +308,11 @@ At this point, simply calculate $d\theta(S, \cdot ) $. The components of $d\thet
 \end{equation*}
 We have
 \begin{align*}
-	d\theta(S, \cdot )  &= S^a (d\theta)_{ab} e^b = 0 \\
-	&= (S^{q^i}(d\theta)_{q^ib} + S^{p_i}(d\theta)_{p_ib} + S^{t}(d\theta)_{tb}) e^b \\
-	&= (S^{q^i}(d\theta)_{q^iq^j} + S^{p_i}(d\theta)_{p_iq^j} + S^{t}(d\theta)_{tq^j}) e^{q^j} + \\
-	& (S^{q^i}(d\theta)_{q^ip_j} +  S^{p_i}(d\theta)_{p_ip_j} + S^{t}(d\theta)_{tp_j}) e^{p_j} + \\
-	& (S^{q^i}(d\theta)_{q^it} + S^{p_i}(d\theta)_{p_it} + S^{t}(d\theta)_{tt}) e^t \\
+	\partial\theta(S, \cdot )  &= S^a (\partial\theta)_{ab} e^b = 0 \\
+	&= (S^{q^i}(\partial\theta)_{q^ib} + S^{p_i}(\partial\theta)_{p_ib} + S^{t}(\partial\theta)_{tb}) e^b \\
+	&= (S^{q^i}(\partial\theta)_{q^iq^j} + S^{p_i}(\partial\theta)_{p_iq^j} + S^{t}(\partial\theta)_{tq^j}) e^{q^j} + \\
+	& (S^{q^i}(\partial\theta)_{q^ip_j} +  S^{p_i}(\partial\theta)_{p_ip_j} + S^{t}(\partial\theta)_{tp_j}) e^{p_j} + \\
+	& (S^{q^i}(\partial\theta)_{q^it} + S^{p_i}(\partial\theta)_{p_it} + S^{t}(\partial\theta)_{tt}) e^t \\
 	&= (-S^{p_i}\delta^i_j + S^{t}\partial_{q^j} H ) e^{q^j} + \\
 	& (S^{q^i}\delta^j_i +  S^{t}\partial_{p_j} H) e^{p_j} + \\
 	& (-S^{q^i} \partial_{q^i} H - S^{p_i} \partial_{p_i} H) e^t \\
