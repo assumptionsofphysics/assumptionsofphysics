@@ -1,0 +1,9 @@
+Dear Editors,
+
+The submitted article proposes a new approach to the foundations of physics that tries to address concerns in the community about the overreliance on mathematical ideas without clear physical correspondents.  The general idea is to reverse engineer the current theories to find more physically meaningful conceptual starting points that cut across different branches of physics.  The work parallels the approach of reverse mathematics within the foundations of mathematics.  
+
+Unlike other approaches to the foundations of physics, our aim is to connect the foundations of multiple established theories (classical mechanics, quantum mechanics, thermodynamics, ...).  Therefore the insights provided will be of interest to a wide audience across the physical sciences and engineering.
+
+Sincerely,
+Christine Aidala
+
