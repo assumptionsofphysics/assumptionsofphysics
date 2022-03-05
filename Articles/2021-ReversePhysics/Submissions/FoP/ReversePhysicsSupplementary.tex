@@ -1,0 +1,138 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+%\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+%\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{assumptionsofphysics}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\urlstyle{same}
+\frenchspacing
+
+\newcommand\partitle[1]{\textsc{#1}.}
+
+
+\begin{document}
+
+\title{Reverse Physics: Supplementary Information}
+\author{Gabriele Carcassi, Christine A. Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\maketitle
+
+
+\section*{Proofs and calculations}
+
+We include here all proofs which we omitted from the main body since, as we stated, the physics should be given full attention. To keep the discussion light and accessible to the widest audience, we use the simplest mathematical techniques to get the result. Some readers may feel that some results are well known, or too simple to even be included. Due to the interdisciplinary nature of the subject, we believe it is useful to collect them all here.
+
+\begin{prop}
+	A dynamical system characterized by two variables $\{q, p\}$ follows Hamilton's equations if and only if the displacement field $S=\{\frac{dq}{dt}, \frac{dp}{dt} \}$ is divergenceless.
+\end{prop}
+
+\begin{proof}
+	Suppose the evolution is Hamiltonian. Then $S=\{\frac{\partial H}{\partial p}, - \frac{\partial H}{\partial q} \}$. The divergence is $div(S) = \frac{\partial S^q}{\partial q} + \frac{\partial S^p}{\partial p} = \frac{\partial^2 H}{\partial q\partial p} - \frac{\partial^2H}{\partial p\partial q} = 0$.
+	
+	Conversely, suppose $S$ is divergenceless. Then, it admits a stream function $H$ such that $\{\frac{dq}{dt}, \frac{dp}{dt}\} = \{\frac{\partial H}{\partial p}, - \frac{\partial H}{\partial q} \}$, which are Hamilton's equations.
+\end{proof}
+
+\begin{prop}
+	The displacement field $S=\{\frac{dq}{dt}, \frac{dp}{dt} \}$ of a dynamical system characterized by two variables $\{q, p\}$ is divergenceless if and only if the Jacobian determinant of the infinitesimal time evolution is equal to one.
+\end{prop}
+
+\begin{proof}
+	Let $Q = q + \frac{dq}{dt} dt = q + S^q dt$ and $P = p + \frac{dp}{dt} dt = p + S^p dt$. The Jacobian determinant is given by:
+	\begin{align*}
+		|J| &= \begin{vmatrix}
+			\frac{\partial Q}{\partial q} & \frac{\partial Q}{\partial p} \\
+			\frac{\partial P}{\partial q} & \frac{\partial P}{\partial  p} 
+		\end{vmatrix} = \frac{\partial Q}{\partial q} \frac{\partial P}{\partial  p} - \frac{\partial P}{\partial q} \frac{\partial Q}{\partial p} \\
+		&= \left(1 + \frac{\partial S^q}{\partial  q}dt\right)\left(1 + \frac{\partial S^p}{\partial  p}dt\right) - \left(\frac{\partial S^p}{\partial  q}dt\right)\left(\frac{\partial S^q}{\partial  p}dt\right) \\
+		&= 1 + \left(\frac{\partial S^q}{\partial  q} + \frac{\partial S^p}{\partial  p}\right)dt + O(dt^2)
+	\end{align*}
+	The Jacobian determinant will be 1 if and only if the first order term is zero. Since the first order term is the divergence of $S$, this proves the proposition.	
+\end{proof}
+
+\begin{remark}
+	An unstated assumption here is that $H$ is twice differentiable. The Jacobian and the divergence, in fact, would not be well defined if $H$ were differentiable only once. In that case, the acceleration $a = \frac{d}{dt}\frac{dq}{dt} = \frac{d}{dt} \frac{\partial H}{\partial p}$ would also be ill defined. With this in mind, if a Hamiltonian is not twice differentiable at a point it is better to consider the system not Hamiltonian at that point.
+\end{remark}
+
+\begin{prop}
+	The information entropy is conserved during a continuous transformation if and only if the Jacobian is unitary.
+\end{prop}
+
+\begin{proof}
+	Let $I[\rho(x^i)] = - \int \rho(x^i) \log \rho(x^i) \, dx^n$ be the Shannon entropy of the distribution $\rho(x^i)$. Let $y^j=y^j(x^i)$ be a differentiable transformation. Since $\rho(x^i)$ is a density, we have $\rho(y^j) = \rho(x^i) |J|$. The information entropy after the transformation will be
+	\begin{align*}
+		I[\rho(y^j)] &= - \int \rho(y^j) \log \rho(y^j) \, dy^n \\
+		&= - \int \rho(x^i) |J| \log \left( \rho(x^i) |J| \right) \, dy^n \\
+		&= - \int \rho(x^i) \log \left( \rho(x^i) |J| \right) \, dx^n \\
+		&= - \int \rho(x^i) \log \rho(x^i) \, dx^n - \int \rho(x^i) \log |J| \, dx^n \\
+		&= I[\rho(x^i)] - \int \rho(x^i) \log |J| \, dx^n.
+	\end{align*}
+	The information entropy is conserved for every $\rho$ if and only if $|J|$ is 1 everywhere. Therefore the entropy is conserved if and only if the Jacobian is unitary.
+\end{proof}
+
+\begin{prop}
+	A continuous transformation will conserve the uncertainty of a distribution with small support if and only if the Jacobian is unitary. The uncertainty is characterized by the determinant of the covariance matrix and small means the evolution can be considered approximately linear over the support of the distribution.
+\end{prop}
+
+\begin{proof}
+	As we assume the distribution to be small enough, we can linearize the transformation to $y^j = J^j_i x^i + B^j$ where $J$ is the Jacobian. Noting that the covariance is a linear operator that does not depend on the expectation of the variables, we have
+	\begin{align*}
+		|\Sigma^{ij}| &= |cov(y^i, y^j)| \\
+		&= |cov(J^i_k x^k + B^i, J^j_l x^l + B^j)| \\
+		&= |cov(J^i_k x^k , J^j_l x^l )| \\
+		&= |J^i_k cov(x^k , x^l ) J^j_l| \\
+		&= |J^i_k | | \Sigma^{kl} | | J^j_l| \\
+	\end{align*}
+	The uncertainty is conserved for all small distributions if and only if $|J|$ is $\pm 1$ everywhere. Given that the transformation is continuous, the Jacobian determinant must be positive (i.e. a continuous transformation cannot be a reflection) and therefore the entropy is conserved if and only if the Jacobian is unitary.
+\end{proof}
+
+\begin{prop}
+	The von Neumann entropy of a pure state is zero.
+\end{prop}
+
+\begin{proof}
+	Let $\rho$ be the density matrix of a pure state. We have $\rho = |\psi \rangle \langle \psi | = |\psi \rangle \langle \psi |\psi \rangle \langle \psi | = \rho^2$. The von Neumann entropy is $I[\rho] = - tr (\rho \log \rho) = - tr (\rho \log \rho^2) = - 2 tr (\rho \log \rho) = 2 I[\rho]$. Therefore $I[\rho] = 0$.
+\end{proof}
+
+\begin{prop}
+	Let $\rho(q,p)$ be a normalized density distribution over the 2-dimensional manifold charted by $(q,p)$. Furthermore, let $I_0$ be the value of the Shannon/Gibbs entropy $I[\rho]$. Then
+	$$ 	\sigma_q \sigma_p \geq \frac{e^{I_0}}{2 \pi e}.$$
+	Furthermore, the equal sign applies in the case where $\rho$ is the product of two gaussians.
+\end{prop}
+
+\begin{proof}
+	We set up a minimization problem using Lagrange multipliers. We want to minimize the product of the variance $\sigma_q^2 \sigma_p^2 \equiv \int (q-\mu_q)^2 \rho_{\mathcal{c}} \, dqdp \int (p-\mu_p)^2 \rho_{\mathcal{c}} \, dqdp$ while keeping $\rho$ normalized and fixing the entropy to $I_0$. We have: 
+	\begin{align*}
+		L = &\int (q-\mu_q)^2 \rho_{\mathcal{c}} \, dqdp \int (p-\mu_p)^2 \rho_{\mathcal{c}} \, dqdp \\
+		&+ \lambda_1(\int \rho_{\mathcal{c}} dqdp - 1) \\ &+ \lambda_2(- \int \rho_{\mathcal{c}} \ln \rho_{\mathcal{c}} \, dqdp - I_0)\\
+		\delta L = &\int \delta \rho_{\mathcal{c}} [(q-\mu_q)^2 \sigma_p^2 + \sigma_q^2 (p-\mu_p)^2 + \\ &\lambda_1 - \lambda_2 \ln \rho_{\mathcal{c}} - \lambda_2 ] dqdp = 0 \\
+		\lambda_2 \ln \rho_{\mathcal{c}} = &\lambda_1 - \lambda_2 + (q-\mu_q)^2 \sigma_p^2 + \sigma_q^2 (p-\mu_p)^2 \\
+		\rho_{\mathcal{c}} = &e^{\frac{\lambda_1 - \lambda_2}{\lambda_2}}e^{\frac{(q-\mu_q)^2 \sigma_p^2}{\lambda_2}}e^{\frac{\sigma_q^2 (p-\mu_p)^2}{\lambda_2}}
+	\end{align*}
+	We solve the multipliers and have:
+	\begin{align*}
+		\rho_{\mathcal{c}} = &\frac{1}{ 2 \pi \sigma_q \sigma_p} e^{-\frac{(q-\mu_q)^2}{2\sigma_q^2}} e^{-\frac{(p-\mu_p)^2}{2\sigma_p^2}} \\
+		I_0 = &\ln (2\pi e\sigma_q\sigma_p) \\
+		\sigma_q \sigma_p &= \frac{e^{I_0}}{2 \pi e}
+	\end{align*}
+	This shows that the gaussian minimizes the spread at fixed entropy, therefore all other distributions must have a larger or equal spread. 
+\end{proof}
+
+\begin{remark}
+	Note that the inverse argument does not work: if we have a bound on the uncertainty, we cannot say anything about the entropy. All distributions with higher entropy will satisfy a higher bound, therefore the entropy is arbitrarily high. Moreover, we can find distributions with low entropy but with arbitrarily high spread. Therefore a bound on the uncertainty still allows any value for entropy.
+\end{remark}
+
+\bibliography{bibliography}
+
+
+\end{document}
