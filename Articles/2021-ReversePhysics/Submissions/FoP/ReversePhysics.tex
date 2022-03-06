@@ -34,14 +34,6 @@ To answer foundational questions in physics, physicists turn more and more to ab
 
 \section{Introduction}
 
-%\begin{itemize}
-%	\item Brief descriptions of the aims of foundations of mathematics
-%	\item We want to follow a similar approach (not new interpretations of QM or new models for quantum gravity)
-%	\item Reverse mathematics start from theorems and finds the smallest set of axioms needed to rederive them. We want to take physical theories and find the smalles set of physical assumptions that are equivalent to the theories themselves.
-%	\item This paper is meant to showcase the approach and how it can lead to renewed physical insights into theories that may be thought as already fully understood and those that are not. The main point of the paper is not the results per se, but the novel of the approach proposed. We hope that other people will see the value and pursue similar lines of investigations.
-%	
-%\end{itemize}
-
 Within the foundations of mathematics, the reverse mathematics program\cite{friedman1976systems,simpson2017reverse,stillwellreverse} aims to start from known theorems and determine what axioms are required to prove them. This helps understand the relative logical strength of the theorems and get a better sense of their relationships. We propose a similar program for physics. We start from known physical theories or elements of physical theories, and we try to find premises that enable us to rederive them. The goal is to find premises that are physically more intuitive, so that ideally the arguments can be carried out with or without the math, and develop concepts that are of physical significance across theories.
 
 While one does find efforts that analyze the premises of physical theories (see e.g. Refs.~\cite{chiribella2011informational, selby2021reconstructing, giles2016mathematical, boyling1972axiomatic, PhysRev.101.860, Haag1964848, axiomaticQFT1975, masanes2019measurement, carcassi2021four}), for example in the context of foundations of quantum mechanics, statistical mechanics or the search for quantum gravity, their aim is typically different. Some are focused on a particular field (e.g. quantum theory) or try to demonstrate the centrality of one aspect (e.g. information) with regard to others. Some concentrate more on mathematical premises or structure, making the physical significance less than clear. Many aim to develop new theories, instead of first gaining further insight within current ones. We propose a more generalist approach that examines the relationships of physical ideas across subfields, which is best explained through examples. 
@@ -52,30 +44,8 @@ To give a sense of the breadth of the reverse physics approach, we show how it c
 As we want the discussion to be focused on the physics, we will use the most widely known math among physicists and relegate mathematical derivations to the Supplementary Information. We also want to stress that this paper is not about the originality of each single result, but about how these are used to address a more general and higher goal: to uncover the core physical concepts and assumptions in the known physical theories and understand their generative power and their interrelationships. 
 
 
-
-
-%Use "investigation trumps rigor"
-%Somewhere, note that "physics" entropy does not coincide with "information" entropy. Physics entropy is information about states as quantified by invariants.
-
 \section{Determinism, reversibility and Hamiltonian mechanics}
 
-%\begin{itemize}
-%	\item Start with the equations of HM
-%	\item Show Liouville's theorem and wonder what it means. Jacobian is 1. Show how Jacobian for 1 d.o.f. is really a Poisson bracket.
-%	\item Connect to statistical mechanics: volume is number of states. HM conserves the number of states. States are mapped one to one on a continuum. (discuss problems of counting on a continuum)
-%	\item Show that we can go backwards on a single degree of freedom
-%	\item Wonder what to do on multiple d.o.f. 
-%	\item Show symplectic form as the geometrical description. Generalize to d.o.f. by taking outer product. Show that areas remain orthogonal
-%	\item What does orthogonality mean? Independence of d.o.f. (volume product of areas)
-%	\item Show that preservation of the geometry (areas and perpendicularity) under time evolution gives us HM
-%	\item HM is det/rev motion of indepent d.o.f.
-%	\item We used count of states, log count of states is also conserved. What about information entropy? It is also conserved. 
-%	\item Show we can proceed the other way. Det/rev means information before and after is the same. Information needs to be conserved -> Jacobian = 1 -> HM.
-%	\item Note how bijection is not enough. There is an additional constraint. Why?
-%	\item Measurements on a continuum have uncertainty. Connect to statistics and use the covariance matrix to describe a gaussian peak. The determinant of the matrix with the Jacobian. If jacobian is 1, determinant is the same, same precision of the description. HM <-> to requiring a bijection at the same level of precision.
-%	\item Wonder why we are getting conservation of energy from det/rev, while we typically associate conservation of energy with system isolation (in the thermodynamic sense). Argue that if a system is deterministic and reversible, it means that the future/past state depends only on the system itself. The system does not depend on anything else -> it is isolated. There is a deep connection between isolation and det/rev
-%	
-%\end{itemize}
 
 Let us start our discussion with the equations of motion given by classical Hamiltonian mechanics:
 \begin{align}\label{HamiltonEquations1}
@@ -163,12 +133,6 @@ The other interesting aspect is how much we were able to find in theories that a
 
 \section{Uncertainty principle revisited}
 
-%\begin{itemize}
-%	\item We saw that classical mechanics is more than just points: it says something about uncertainty as well. Quantum mechanics has an uncertainty principle. Is there any connections?
-%	\item Since there was also a connection to entropy, turn to entropy in quantum mechanics. Entropy is bounded from below: all pure states have zero entropy. In classical mechanics, however, we can prepare distributions with arbitrarily small entropy. Can the fact that the entropy is bound from below in QM be the source of the uncertainty?
-%	\item Assume entropy is bounded from below in CM. Show you get uncertainty relationship in a single degree of freedom.
-%	\item Uncertainty relationship <-> bounded entropy = bounded information
-%\end{itemize}
 
 Let us now turn our attention to quantum mechanics, and see if our approach can shed new light on a theory that is not generally considered to be well understood. Since we talked about the role of uncertainty in classical mechanics, let us concentrate on the uncertainty principle, which states that every state has to satisfy the relationship
 \begin{align}\label{UncertaintyPrinciple}
@@ -206,12 +170,6 @@ This example shows another advantage of reverse physics: it allows us to pinpoin
 
 \section{A new understanding of the third law}
 
-%\begin{itemize}
-%	\item We saw that in quantum mechanics entropy is bounded from below. Why?
-%	\item Turn to thermodynamics. The third also says that thermodynamic entropy (not information entropy) is bounded from below. The zero thermodynamic entropy, however, is formulated in terms of a pure crystal at zero temperature. This does not seem to be a fundamental characterization. Can we do better?
-%	\item Note how entropy is an extensive quantity. Now consider the empty system. Since the composition of any system with the empty system must yield the same system, it also must yield the same entropy. -> Entropy of empty system must be zero. Better more fundamental characterization of zero entropy.
-%	\item What would a system with negative entropy correspond to? To a description of a system that is more precise than saying the system is not there. But that is absurd! Therefore, it is a logical necessity that the entropy of a system is bound from below.	
-%\end{itemize}
 
 In the previous section we saw the lower entropy bound of zero entropy is built into quantum mechanics and not in classical mechanics. However, the bound is also built into thermodynamics through the third law\footnote{This formulation is given by Ref. \cite{lewis1923thermodynamics}}
 \begin{align}\label{ThirdLaw}
@@ -241,19 +199,6 @@ Again, note that this condition is not phenomenological: it is a logical necessi
 
 This showcases the final advantage of reverse physics. We want to differentiate between ``assumptions'' (conditions that are not necessarily true) and ``principles'' (those that have to be taken to be true); we want to differentiate between conditions that are ``phenomenological'' (empirically derived or justified) from those that are ``conceptual'' (logical necessities or consequences of definitions).\footnote{Philosophers may call these ``constitutive'' conditions.} If we are able to elevate assumptions to principles, or replace phenomenological assumptions with conceptual ones, then the premises for our theories are sturdier and we have improved their foundations.
 
-%\section{A more unified physics}
-%
-%\begin{itemize}
-%	\item Put physics back at the center of the discussion (we are exploring physical concepts and their relationships, the math is there to carry out the arguments)
-%	\item Appeal to tradition (thinking about small set of physical assumptions was what foundations of classical mechanics, thermodynamics, ... was about)
-%	\item Conceptual unification vs theoretical unification
-%	\item Common standard tools (like set theory, category theory, ...)
-%	\item Connection between fields
-%	\item Reduce the number of fundamental concepts
-%	\item These more powerful tools may help theoretical unification
-%	\item realm of validity of the different theoretical theories
-%	\item realm of validity of the underlying mathematical tools
-%\end{itemize}
 
 \section{Conclusion}
 
@@ -262,6 +207,9 @@ We have shown how the reverse physics approach, trying to find different premise
 We believe this type of work can be beneficial in several ways. At the very least, it can have a significant impact within physics education. Most importantly, it leads to common ideas and definitions that span different fields of physics, which may help develop common tools, much like set theory and category theory provide standard tools for all of mathematics. Lastly, as it helps us understand the realm of validity of the different theories and also the underlying mathematical tools, it may give insight into the development of new tools and new theories.
 
 More than the particular results presented in this paper, it is the type of approach that we want to promote. We hope others will present their own reverse physics results, and that this may lead to a renewed interest in the manner in which physicists in the past tried to formulate the foundations of our field: through physical principles, laws and assumptions.
+
+\section*{Acknowledgments}
+We acknowledge funding from the MCubed program of the University of Michigan. This work is part of a larger project, Assumptions of Physics~\cite{aop-book}, which aims to identify a handful of physical principles from which the basic laws can be rigorously derived.
 
 
 \bibliography{bibliography}
