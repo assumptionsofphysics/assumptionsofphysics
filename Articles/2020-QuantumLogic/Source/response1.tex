@@ -1,149 +1,170 @@
-\documentclass[11pt]{article}
-
-\usepackage[margin=1.25in]{geometry}
-
-\usepackage{amsmath, amsthm, amssymb}
-\usepackage{amsfonts}
-\usepackage{MnSymbol}
-\usepackage{mathtools}
+\documentclass[11pt, executivepaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\usepackage{amsmath}
 \usepackage{xcolor}
+\usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{enumitem}
-
-\newcommand\change[1]{{\color{red!75!black} #1}}
-
-
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={158mm,237mm},
+ left=28mm,
+ top=28mm,
+ }
+\usepackage{hyperref}
+\hypersetup{colorlinks= true, allcolors=blue}
+\setcitestyle{aysep={}}
 \begin{document}
 
-TO THE EDITOR
 
-thank you very much for having provided us
-good quality referee reports for our paper. We appreciate that this is
-not an easy task.
+\title{\textbf{Replies to Reviewers' Comments}}
+
+\author{The Authors}
+
+\maketitle
 
 
+\noindent We would like to thank the Editors for the opportunity to revise the manuscript; moreover, we also warmly thank both reviewers for their positive and helpful comments which led to significant changes and improvements of our paper. We appreciate that, we know that this is not an easy task.
+\vspace{2mm}
 
-\section*{Referee 1}
+In order to make the revisions immediately visible, every change in the manuscript has been written in blue so that it is highlighted with respect to the text. 
+\vspace{2mm}
 
+Finally, we hope to have properly addressed the doubts and remarks of both referees with these answers and the related changes made in the manuscript.
+
+\section{Replies to Reviewer 1}
+ 
+\begin{enumerate}
+\item \textbf{Reviewer 1:} p. 2: The quotation from Holik seems quite reasonable. All that Holik claims is that the connectives he is using in the context of quantum theory are ``analogues'' to the classical truth-functional connectives, and immediately mentions that they cannot be taken to be the classical connectives. Unless Holik adds that the quantum ones are meant to replace or correct classical logic, the statement seems fine. It is certainly much better than the Stefanovich talk of ``replacement''.
+\vspace{2mm}
+
+\textbf{Authors:} We agree with Reviewer 1 that this quote is not very representative of the claim that QM requires a new logic, or that QL is still alive to the present day. In order to provide more relevant textual evidence, we decided to remove Holik's claim in favor of a passage taken from \cite{Holik:2019}. In this essay the authors argue (i) that quantum mechanics does require a logic that is non-classical in virtue of the mathematical formalism underlying the theory, and (ii) that it is possible to make a transition from QL to classical propositional calculus taking the classical limit of QM. We think that this essay represents very clearly the idea expressed in the introduction of our paper. 
+
+The new text is the following:
+
+\textcolor{blue}{Similarly, explaining the difference between the logic of classical mechanics and the logic obeyed by quantum propositions, \cite{Holik:2019} write that
 \begin{quote}
-The topic of this paper is the standing of "quantum logic" vis-á-vis "classical logic", and in particular whether quantum mechanics demands either a rejection of or adjustment to classical logic. The answer, in a nutshell, is "no". The burden of the paper is to explain exactly why the standard arguments to the opposite conclusion are incorrect, and incidentally how both distributive Boolean lattices of propositions can be defined in quantum mechanics and non-distributive, non-Boolean lattices of propositions can be defined in the theory of probability distributions over classical phase space. These observations serve to show how the non-distributivity is not connected either to quantum mechanics or to the use of complex (rather than real) numbers.
-
-The paper is clear and decisive. There are sufficiently many citations to justify publications, for even though the star of quantum logic has faded it has not entirely gone out. It is worthwhile to have all of this laid out in a single, compact presentation.
-
-I have only a couple of comments/ suggestions.
-
-p. 2: The quotation from Holik seems quite reasonable. All that Holik claims is that the connectives he is using in the context of quantum theory are "analogues" to the classical truth-functional connectives, and immediately mentions that they cannot be taken to be the classical connectives. Unless Holik adds that the quantum ones are meant to replace or correct classical logic, the statement seems fine. It is certainly much better than the Stefanovich talk of "replacement".
-
-p. 9: "More precisely, we are going to argue that (i) it is not necessarily the case that a quantum
-disjunction must be true when neither of its members is". But surely that is attacking a straw man. No one every claimed that a "quantum disjunction" (join) must be true when the propositions joined fail to be true! For example, when they are both false.
-
+[i]n classical and quantum mechanics, the physical properties of a system are endowed with a lattice structure. These structures are different in the classical
+and quantum case, and they determine the logical structure of the physical system (\cite{Holik:2019}, p.\ 363-364).
 \end{quote}
-
-TODO
-
+\noindent More precisely the authors say:
 \begin{quote}
-p. 1 1: "The solution is simple: while
-the value of an observable is not always defined, its expectation value always is. The idea is
-then to translate qi and ri into propositions about expectation values, which we already know
-how to handle, and apply the standard rules. Consider the following statements:
-
-q'i: "before the measurement, the expectation value for y-spin is ½ h.
-
-r'i: "before the measurement, the expectation value for y-spin is -½ h.
-
-Because the spin of the electron along any axis is bounded by ±1/2 h, the only way that q'I is
-true is if qi is true. Therefore q'I and r'i are respectively equivalent to qi and ri."
-
-I can't follow this claim. It is true that the only way that the expectation value can be, say, ½ h is if the system is in an eigenstate of y-spin with the value up, but one could certainly imagine a situation (according to a theory) in which the particle does indeed have y-spin up but the expectation value associated with the system is not +1/2 h. This could be true on a statistical understanding of the expectation value: even though this system has y-spin up, the expectation value is calculated with respect to an ensemble of systems, not all of which have y-spin up. So the inference certainly goes through in one direction, but whether it does in the other depends on how the expectation values are understood. But "equivalent" suggests equivalence in both directions. So I think more would have to be said here.
+The distributive inequalities are the main difference between classical and quantum logic. In the classical lattice, all properties satisfy the distributive equalities, but in the quantum lattice, only distributive inequalities hold, in general (\emph{ibid.}).
 \end{quote}
+}
 
-To remove ambiguity, we expanded the example to take the most general case, that of a density matrix, and show that fixing the expectation value to 1/2 h means the density matrix must correspond to the pure state of spin up. That way it is clear what we mean by expectation, and we cover all possible cases that are present in quantum mechanics (i.e. there is no mixed state that could give the same result). It reads:
+\item \textbf{Reviewer 1:} p. 9: ``More precisely, we are going to argue that (i) it is not necessarily the case that a quantum disjunction must be true when neither of its members is''. But surely that is attacking a straw man. No one every claimed that a ``quantum disjunction'' (join) must be true when the propositions joined fail to be true! For example, when they are both false.
+\vspace{2mm}
 
-\change{If $\rho_i$ is the (potentially) mixed state before the measurement, the expectation value for $y$-spin is given by $\text{Tr}(\rho_i S_y) = \frac{1}{2} \hbar \langle \psi_y^+ | \rho_i | \psi_y^+ \rangle - \frac{1}{2} \hbar \langle \psi_y^- | \rho_i | \psi_y^- \rangle$. Therefore $q'_i$ is true if and only if $\text{Tr}(\rho_i S_y) = \frac{1}{2} \hbar$. Because $\rho_i$ is positive definite, this can only happen if $\langle \psi_y^+ | \rho_i | \psi_y^+ \rangle = 1$ and $\langle \psi_y^- | \rho_i | \psi_y^- \rangle = 0$, which means $\rho_i = | \psi_y^+ \rangle \langle \psi_y^+ |$. This means that the expectation value for $y$-spin is $\frac{1}{2} \hbar$ if and only if the electron was prepared in a pure state of $y$-spin up. In other words, because the spin of the electron along any axis is bounded by $\pm \frac{1}{2} \hbar$, the only way that $q'_i$ is true is if $q_i$ is true. We have that $q'_i$ and $r'_i$ are respectively equivalent to $q_i$ and $r_i$.}
+\textbf{Authors:} We agree that our statement at page 9 may seem ambiguous, and we have changed it in the revised version of the essay. The original statement was referring to the quote of \cite{deRonde:2016} at page 6 of the first submission. In the revised version we write: ``\textcolor{blue}{More precisely, we are going to argue that (i) it is not necessarily the case that a quantum disjunction can be true when neither of its members is---i.e.\ when both disjuncts have undetermined truth values as in the case discussed above in which we considered a system in a linear combination of $y$-spin states}''. Furthermore, we added the following footnote: ``\textcolor{blue}{Clearly, a quantum disjunction is false when both disjuncts are false; however, the interesting case for our discussion is the one in which quantum propositions have undetermined truth values}''. In this manner, we hope to have eliminated the straw man.
 
-Note that the argument holds regardless of how one interprets $\rho$ (e.g. state of knowledge, fraction of repeated experiments, ...).
+\item \textbf{Reviewer 1:} p. 11: ``The solution is simple: while the value of an observable is not always defined, its expectation value always is. The idea is
+then to translate $q_i$ and $r_i$ into propositions about expectation values, which we already know how to handle, and apply the standard rules. Consider the following statements:
+\begin{itemize}
+\item $q'_i$: before the measurement, the expectation value for y-spin is $\frac{1}{2} \hbar$.
+
+\item $r'_i$: before the measurement, the expectation value for y-spin is $-\frac{1}{2} \hbar$.
+\end{itemize}
+Because the spin of the electron along any axis is bounded by $\pm\frac{1}{2} \hbar$, the only way that $q'_i$ is true is if $q_i$ is true. Therefore $q'_i$ and $r'_i$ are respectively equivalent to $q_i$ and $r_i$.''
+
+I can't follow this claim. It is true that the only way that the expectation value can be, say, $\frac{1}{2} \hbar$ is if the system is in an eigenstate of y-spin with the value up, but one could certainly imagine a situation (according to a theory) in which the particle does indeed have y-spin up but the expectation value associated with the system is not $+1/2 h$. This could be true on a statistical understanding of the expectation value: even though this system has y-spin up, the expectation value is calculated with respect to an ensemble of systems, not all of which have y-spin up. So the inference certainly goes through in one direction, but whether it does in the other depends on how the expectation values are understood. But ``equivalent'' suggests equivalence in both directions. So I think more would have to be said here.
+
+\vspace{2mm}
+
+\textbf{Authors:} To remove ambiguity, we expanded the example to take the most general case, that of a density matrix, and show that fixing the expectation value to $\frac{1}{2} \hbar$ entails that the density matrix must correspond to the pure state of spin up. In this manner it should be clearer what we mean by expectation, and we cover all possible cases that are present in quantum mechanics (i.e.\ there is no mixed state that could give the same result). We added the following paragraph:
+
+\textcolor{blue}{If $\rho_i$ is the (potentially) mixed state before the measurement, the expectation value for $y$-spin is given by $\text{Tr}(\rho_i S_y) = \frac{1}{2} \hbar \langle \psi_y^+ | \rho_i | \psi_y^+ \rangle - \frac{1}{2} \hbar \langle \psi_y^- | \rho_i | \psi_y^- \rangle$. Therefore $q'_i$ is true if and only if $\text{Tr}(\rho_i S_y) = \frac{1}{2} \hbar$. Because $\rho_i$ is positive definite, this can only happen if $\langle \psi_y^+ | \rho_i | \psi_y^+ \rangle = 1$ and $\langle \psi_y^- | \rho_i | \psi_y^- \rangle = 0$, which means $\rho_i = | \psi_y^+ \rangle \langle \psi_y^+ |$. This entails that the expectation value for $y$-spin is $\frac{1}{2} \hbar$ if and only if the electron was prepared in a pure state of $y$-spin up. In other words, because the spin of the electron along any axis is bounded by $\pm \frac{1}{2} \hbar$, the only way that $q'_i$ is true is if $q_i$ is true. We have that $q'_i$ and $r'_i$ are respectively equivalent to $q_i$ and $r_i$.}
+
+Note that the argument holds regardless of how one interprets $\rho$ (e.g.\ state of knowledge, fraction of repeated experiments, ...). 
+\vspace{2mm}
+
+Reviewer 1 then adds:
 
 \begin{quote}
 I can see why there is a desire to introduce claims about expectation values: that make the transition to the discussion of classical physics smoother. But I'm not sure that this is the best way to do it. The main point about being careful with the time indices is the key to resolving the non-distributivity issue, and that can be does without bringing in expectation values. So this passage might be made clearer.
 \end{quote}
-Actually, the smoother transition is a bonus. The main reason to introduce expectation values here is to settle the question of how to evaluate statements of over one observable when an incompatible observable is prepared. As the text reads ``The difficulty here is that before the measurement of $S_y$ only $x$-spin is defined, so how are we going to compute statements about the value of $y$-spin?'' We suspect that, given the length of the paragraph, the point is lost by the end, so we close the paragraph with:
 
-\change{The overall point is that the incompatibility of the observables does indeed introduce a problem because it is not clear how to evaluate propositions that mix different variables. The use of equivalent propositions over expectation values helps us solve the ambiguities.}
+Actually, the smoother transition is a bonus. The main reason to introduce expectation values here is to settle the question of how to evaluate statements about a certain observable when another operator incompatible with it is prepared. As the text reads ``The difficulty here is that before the measurement of $S_y$ only $x$-spin is defined, so how are we going to compute statements about the value of $y$-spin?'' We suspect that, given the length of the paragraph, the point is lost by the end, so we close the paragraph with a new proposition:
 
-So the idea is that it is useful to add these propositions anyway, so it already gives us a hint to compare to classical statistical propositions.
+\textcolor{blue}{The overall point is that the incompatibility of the observables does indeed introduce a problem because it is not clear how to evaluate propositions that mix different variables. The use of equivalent propositions over expectation values helps us solve the ambiguities.}
 
-\section*{Referee 2}
+Our idea is that it is useful to add these propositions anyway, since it already gives us a hint to compare quantum propositions to classical statistical propositions.
+\end{enumerate}
 
+We hope with these answers to have properly replied to the useful comments we received from reviewer 1. 
+
+\section{Replies to Reviewer 2}
+
+\begin{enumerate}
+\item \textbf{Reviewer 2:} The primary defect of the paper is that it greatly overstates the degree to which people are convinced that QM demands a revision of our logic. I would say that 90\% of philosophers of physics believe that it does \textbf{not} demand a revision of our logic, and that 90\% of physicists would say that they do not know what it means to say that QM demands a revision of logic. The citations that the authors use represent only a small minority of philosophers and physicists who were trying to sell this idea.
+
+The main problem here is not that the authors misdescribe the situation. The main problem is that their arguments are largely aimed at a straw person -- and hence it is not so likely that the paper would receive a broad readership.
+\vspace{2mm}
+
+\textbf{Authors:} Looking again at the written prose, the stated motivation of the paper (particularly the abstract) is indeed just an argument against Quantum Logic. In that sense, the referee is correct. On one hand, QL still attracts funding and interest and, as reviewer 1 puts it:
 \begin{quote}
-This is a very interesting article, and it puts back on the table an older issue that had been dormant for a while. As such, it is a helpful contribution. However, it does have several shortcomings that prevent me from endorsing for publication in its present form. 
+... for even though the star of quantum logic has faded it has not entirely gone out. It is worthwhile to have all of this laid out in a single, compact presentation.
 \end{quote}
+So we still think talking about QL is relevant (cf.\ also the reply to the first comment of reviewer 1). However, as reviewer 2 notes later, the article goes past QL and compares at a deeper level the logical structures of classical and quantum mechanics. This, we believe, is of general interest regardless of how one may feel about QL. Given the comments from both referees, we propose to keep the arguments against QL, but to make it clear that our discussion goes deeper.
 
+In turn, we revised the abstract as follows:
+
+\textcolor{blue}{At the onset of quantum mechanics, it was argued that the new theory would entail a rejection of classical logic. The main arguments to support this claim come from the non-commutativity of quantum observables, which allegedly would generate a non-distributive lattice of propositions, and from quantum superpositions, which would entail new rules for quantum disjunctions. While the quantum logic program is not as popular as it once was, a crucial question remains unsettled: what is the relationship between the logical structures of classical and quantum mechanics? In this essay we answer this question by showing that the original arguments promoting quantum logic contain serious flaws, and that quantum theory does satisfy the classical distributivity law once the full meaning of quantum propositions is properly taken into account. Moreover, we show that quantum mechanics can generate a distributive lattice of propositions, which, unlike the one of quantum logic, includes statements about expectation values which are of undoubtable physical interest. Lastly, we show that the lattice of statistical propositions in classical mechanics follows the same structure, yielding an analogue non-commutative sublattice of classical propositions. This fact entails that the purported difference between classical and quantum logic stems from a misconstructed parallel between the two theories.}
+
+In addition, we revised part of the introduction as follows:
+
+\textcolor{blue}{While the quantum logic programme is still being actively pursued by a sizable community, and despite the many interesting applications in the fields of quantum information, computation and cryptography that are being investigated to the present day, QL is no longer viewed as a solution to the foundational problems affecting quantum theory. Nevertheless, although it may be reasonable for a physicist to simply discard the approach over practical considerations, such as the lack of a desired result, on philosophical grounds this move would beg important questions, as for instance: what is the relationship between the logical structures of classical and quantum mechanics? How are they different and how are they similar? What should we think about the core insights that led to the development of QL? Were they substantially correct, or should they be rejected? We think that providing a correct answer to these issues will lead (i) to a deeper understanding of the structural relations existing between classical logic and quantum mechanics---which unfortunately are not yet precisely understood---and (ii) to a clarification of important confusions concerning the motivations behind QL.}
+
+\item \textbf{Reviewer 2:} In Section 3, the authors argue the logic of quantum propositions is distributive ... if one indexes the propositions so that they refer to times (either before or after measurement). This point is not novel. It was already pointed out (although vaguely) by Niels Bohr in reply to John von Neumann. It was again pointed out by Patrick Heelan in the 1970s, and by Stanley Gudder shortly thereafter. The point of all these suggestions is roughly that if one indexes propositions by their context, then a non-distributive logic can be represented as a contextual distributive logic.
+\vspace{2mm}
+
+\textbf{Authors:} In the revised manuscript we acknowledge that several authors argued that distributivity can be retained in QM. More precisely, we mention Bohr's ideas according to which classical logic should be maintained in the quantum realm in virtue of the complementarity principle. Furthermore, we explicitly mention Heelan's work on QL. However, our argument can be seen as a generalization of Heelan's claims and our approach is technically much simpler w.r.t.\ his. Hence, just for this, we believe that our argument can still be considered a positive contribution to the literature. In addition, while Heelan's paper heavily relies on Bohr's interpretation of QM---currently endorsed by a minority of experts in quantum foundations---our argument is independent of any interpretation of quantum theory. Finally, in this section we show that if one does not take into consideration the temporal order of measurements, the distributivity law is violated also in classical mechanics; to our knowledge this point has not yet been raised in the literature.
+
+In order to address this comment we added the following paragraphs to Section 3.2:
+
+\textcolor{blue}{Several authors have already argued in different ways that it is possible to retain distributivity in quantum mechanics. For instance, \cite{Park:1968} disputed the identification between Hermitian operators and quantum observables and provided a new interpretation of quantum measurement theory rejecting the notion of incompatible observables---and thereby incompatible measurements---which, as we have seen, constitutes the basis to show the failure of the distributivity law in the quantum realm. Remarkably, also Bohr argued that classical logic should be maintained in quantum theory as a consequence of the complementarity principle:
 \begin{quote}
-1. The primary defect of the paper is that it greatly overstates the degree to which people are convinced that QM demands a revision of our logic. I would say that 90\% of philosophers of physics believe that it does *not* demand a revision of our logic, and that 90\% of physicists would say that they do not know what it means to say that QM demands a revision of logic. The citations that the authors use represent only a small minority of philosophers and physicists who were trying to sell this idea. 
-
-The main problem here is not that the authors misdescribe the situation. The main problem is that their arguments are largely aimed at a straw person -- and hence it is not so likely that the paper would receive a broad readership. 
+The aim of the idea of complementarity was to allow of keeping the usual logical forms while procuring the extension necessary for including the new situation relative to the problem of observation in atomic physics (Bohr quoted in \cite{Faye:2021}, p.\ 115).
 \end{quote}
-
-Looking again at the written prose, the stated motivation of the paper (particularly the abstract) is indeed just an argument against Quantum Logic. In that sense, the referee is correct. On one hand, QL still attracts funding and interest and, as referee 1 puts it:
+Another interesting quote reported in \cite{Faye:2021} clearly shows that the Danish physicists strongly opposed the idea of replacing classical propositional calculus with QL: 
 \begin{quote}
-	... for even though the star of quantum logic has faded it has not entirely gone out. It is worthwhile to have all of this laid out in a single, compact presentation.
+The question has been raised whether recourse to multivalued logics is needed for a more appropriate representation of the situation. From the preceding argumentation it will appear, however, that all departures from common language and ordinary logic are entirely avoided by reserving the word `phenomenon' solely for reference to unambiguously communicable information, in the account of which the word `measurement' is used in its plain meaning of standardized comparison (Bohr quoted in \cite{Faye:2021}, p.\ 115).
 \end{quote}
-So we still think talking about QL is relevant, However, as the referee 2 notes later, the article goes past QL and compares at a deeper level the logical structures of classical and quantum mechanics. This, we believe, is of general interest regardless of how one may feel about QL. Given  comments from both referees, we propose to keep the arguments against QL, but to make it clear that our discussion goes deeper.
+Although Bohr did not provide formal arguments against the introduction of quantum logic, his views express the idea according to which macroscopic measurement results must be described with ordinary language, therefore, they must be subjected to the rules of classical logic---in his view the intrinsic novelties of quantum mechanics have to be found in the contextual and complementary nature of quantum phenomena on the one hand, and the entanglement between quantum systems and macroscopic devices which in measurement situations form an indissoluble unity on the other. Hence, given that quantum propositions concern only measurement results, Bohr concluded that they should be governed by the laws of classical propositional calculus.
+To this regard, \cite{Heelan:1970} provided a formalization of Bohr's arguments based on the complementarity principle and showed that the statements about a single quantum mechanical event, i.e.\ a measurement of a certain observable given a precise experimental context, do follow a classical propositional calculus.} 
 
-We revised the abstract as follows:
+\textcolor{blue}{More precisely, Heelan claims that QM introduces a distinction between events, corresponding to the actual performance of a certain measurement, and physical contexts, i.e.\ experimental settings determining the necessary and sufficient conditions for the realization of a particular measurement outcome. In his view, then, one has to introduce two different languages: an event-language useful to formally describe a particular observation of a ccertain quantum observable and a context-language, which is a meta-language necessary in order to properly speak about how a certain event can possibly occur.[footnote: Heelan exemplifies such a distinction as follows: ``If the event, for example, is a particle-location event, the event-language is position-language, and the physical context is a standardized instrumental set-up plus whatever other physical conditions are necessary and sufficient for the measurement of a given range of possible particle-position events'' (\cite{Heelan:1970}, p.\ 96).] If we consider only propositions involving and relating incompatible contexts, Heelan says, then we will generate a lattice of propositions which is not distributive, however, if we take into account single event-languages---each of which is coupled with a given context-language---the logic of such individual quantum events can be classical. This captures Bohr's idea according to which the principle of complementarity arises from the context-dependent character of quantum mechanical events.}
 
-\change{At the onset of quantum mechanics, it was speculated that the new theory would entail a rejection of classical logic. The main arguments to support this claim come from the non-commutativity of quantum observables, which allegedly would generate a non-distributive lattice of propositions, and from quantum superpositions, which would entail new rules for quantum disjunctions. While the quantum logic program is not as popular as it once was, the core question remains unsettled: what is the relationship between the logical structures of the two theories? In this essay we show that the original arguments promoting quantum logic contain serious flaws, and that quantum theory does satisfy the classical distributivity law once the full meaning of quantum propositions is properly taken into account. Moreover, we show that quantum mechanics can generate a distributive lattice of proposition, which, unlike the one of quantum logic, includes statements about expectation values which are of undoubtable physical interest. Lastly, we show that the lattice of statistical propositions in classical mechanics follows the same structure, yielding an analogue non-commutative sublattice of classical propositions. This shows that the purported difference between classical and quantum logic stems from a misconstructed parallel between the two theories.}
+\textcolor{blue}{Although we partially agree with Heelan's view in saying that propositions about individual quantum measurements can generate a distributive lattice, we want to generalize such a claim. In fact, we show---with simpler arguments and independently of Bohr's interpretation of quantum theory---that taking into account the temporal order of individual quantum measurements one can relate even statements about incompatible observations into a distributive lattice. In addition, we show that ignoring the temporal order of measurements may lead to violations of the distributivity law also in classical mechanics; thus, it is our aim to argue that once the correct interpretation of quantum propositions is taken into account the lattice generated by such statements is distributive.}
 
-We revised part of the introduction as follows:
+\item \textbf{Reviewer 2:} Section 4 is actually innovative, and could well be developed into a novel point. Especially interesting is the argument (pages 16-18) that all Borel subsets of Hilbert space represent physically interesting propositions about the system. But let me note a few qualifications. (a) The authors do not show that \textbf{every} Borel subset of $\mathcal{H}$ is of the form described in Proposition 2. That would be a very interesting result. (b) The authors do not cite others who have argued that all Borel subsets of $\mathcal{H}$ are physically relevant. See especially David Wallace's book on the quantum multiverse. (c) The authors do not consider any of the many objections that could be raised against their proposal. For example, one would not normally say that ``quantity A having expectation value r'' is a property of a system, but that it is a meta-property representing our ignorance of the actual value of A.
+\vspace{2mm}
 
-\change{While the approach is still being actively pursued by a sized community, and despite the many interesting applications in the fields of quantum information, computation and cryptography that are being investigated to the present day, QL is no longer viewed as a solution to the foundational problems affecting quantum theory.\footnote{This conclusion is now accepted among experts; for details see e.g.\ \cite{Bacciagaluppi:2009} and \cite{Giuntini:2002}. Referring to this, the latter authors stated explicitly that ``quantum logics are not to be regarded as a kind of ``clue'', capable of solving the main physical and epistemological difficulties of QT [quantum theory]. This was perhaps an illusion of some pioneering workers in quantum logic'' (\cite{Giuntini:2002}, p.\ 225).} Nevertheless, while it may be reasonable for a physicist to simply discard the approach over practical considerations, such as the lack of a desired result, on philosophical grounds it begs the question: what is the relationship between the logical structures of classical and quantum mechanics? How are they different and how are they similar? What should we think about the core insights that lead to the development of QL? Were they substantially correct, or should they be rejected? Given the fundamental role that logic plays in philosophy, we feel that these questions still must be answered regardless of how one may feel towards QL, or we are bound to make the same mistakes.}
+\textbf{Authors:} For (a), the situation is a bit more complicated. Let us mention a few problems. Not all Borel subsets of $\mathcal{H}$ are of the form described in Proposition 2. In fact, they are \emph{not} all physically relevant. The issue is that a state is not a vector in the Hilbert space, but a ray (i.e.\ a subspace of dimension 1). The absolute phase and absolute norm are not physically observable per se, though these can be differentiated with Borel sets. The proper physically meaningful state space would be the projective space, whose Borel sets are a subset of the Borel sets of the Hilbert space.
 
-TODO: Maybe review the conclusions as well?
+Additionally: not all rays can realistically be considered physical. Some states, for example, correspond to infinite expectations for position, momentum, energy. One can, however, show that the set of states with finite expectation values for all polynomials of position and momentum corresponds to the Schwartz space, which is dense in the Hilbert space. One can then show that a basis for the topology of the projective space of the Schwartz space can be constructed with sets of the form described in Proposition 2.
 
-
-\begin{quote}
-2. In Section 3, the authors argue the logic of quantum propositions is distributive ... if one indexes the propositions so that they refer to times (either before or after measurement). This point is not novel. It was already pointed out (although vaguely) by Niels Bohr in reply to John von Neumann. It was again pointed out by Patrick Heelan in the 1970s, and by Stanley Gudder shortly thereafter. The point of all these suggestions is roughly that if one indexes propositions by their context, then a non-distributive logic can be represented as a contextual distributive logic. 
-\end{quote}
-
-
-\begin{quote}
-3. Section 4 is actually innovative, and could well be developed into a novel point. Especially interesting is the argument (pages 16-18) that all Borel subsets of Hilbert space represent physically interesting propositions about the system. But let me note a few qualifications. (a) The authors do not show that *every* Borel subset of H is of the form described in Proposition 2. That would be a very interesting result. (b) The authors do not cite others who have argued that all Borel subsets of H are physically relevant. See especially David Wallace's book on the quantum multiverse. (c) The authors do not consider any of the many objections that could be raised against their proposal. For example, one would not normally say that "quantity A having expectation value r" is a property of a system, but that it is a meta-property representing our ignorance of the actual value of A.
-\end{quote}
-
-For (a), the situation is a bit more complicated. Let us mention a few problems.
-
-Not all Borel subsets of H are of the form described in Proposition 2. In fact, they are not all physically relevant. The issue is that a state is not a vector in the Hilbert space, but a ray (i.e. a subspace of dimension 1). The absolute phase and absolute norm are not physically observable per se, though these can be differentiated with Borel sets. The proper physically meaningful state space would be the projective space, whose Borel sets are a subset of the Borel sets of the Hilbert space.
-
-Additionally: not all rays can realistically be considered physical. Some states, for example, correspond to infinite expectation for position, momentum, energy. One can, however, show that the set of states with finite expectation values for all polynomial of position and momentum corresponds to the Schwartz space, which is dense in the Hilbert space. One can then show that a basis for the topology of the projective space of the Schwartz space can be constructed with sets of the form described in Proposition 2.
-
-More in general, to make a solid map between statements and experimental verification, the best way would be to use the results of Kelly or Carcassi/Aidala that link the open set of a topology with experimentally verifiable. This would also allow to go in further details. For example, for the space to be (at least in the limit) explorable experimentally the topology must be second countable and $T_0$. Outside of those restriction, one can show that the points of the space do not correspond to cases that can be experimentally distinguished.
+More in general, to make a solid map between statements and experimental verification, the best way would be to use the results of Kelly or Carcassi/Aidala that link the open set of a topology with experimentally verifiable propositions. This would also allow one to go in further details. For example, for the space to be (at least in the limit) explorable experimentally the topology must be second countable and $T_0$. Outside of those restrictions, one can show that the points of the space do not correspond to cases that can be experimentally distinguished.
 
 Note that all these issues apply in an analogous way for the lattice of classical statistical propositions we consider.
 
-The point here is that we would need the appropriate space to go through all of these details, which would probably double the size of the paper as we would have to introduce a lot of previous work that we cannot expect the reader to be familiar with. Our purpose therefore is limited to only show that the Borel sets contain a big class of experimentally interesting propositions that are not contained in the QL logic lattice.
+The point here is that we would need the appropriate space to go through all of these details, which would probably double the size of the paper as we would have to introduce a lot of previous work that we cannot expect the reader to be familiar with. Our purpose therefore is limited only to showing that the Borel sets contain a big class of experimentally interesting propositions that are not contained in the QL lattice. We added the following footnote to both clarify and give some more information about the issue:
 
-We added the following footnote to both clarify and give some more information about the issue:
+\textcolor{blue}{Note that we are not claiming that all Borel sets can be constructed in this way or that all Borel sets correspond to physically interesting propositions. First of all, it is not true: $\{ \psi \}$ and $\{ e^{\imath \theta} \psi\}$ are different Borel sets, yet they are not physically distinguishable since a difference in absolute phase is not physically relevant. This can be fixed by considering the Borel sets of the projective space. Second, to really examine the physicality of all Borel sets we need a ``general theory of experimental logic'', of the type provided by \cite{Kelly:1996} or \cite{Carcassi:2021}, which would go well beyond the present discussion. With appropriate caveats (e.g. the Hilbert space must be separable), one can say that the Borel sets correspond to propositions that can be associated to an experimental test (what \cite{Carcassi:2021} call ``theoretical statements'') which may or may not terminate in any or all cases. We leave this discussion for another work.}
 
-\change{Note that we are not claiming that all Borel sets can be constructed in this way or that all Borel sets correspond to physically interesting propositions. First of all, it is not true: $\{ \psi \}$ and $\{ e^{\imath \theta} \psi\}$ are different Borel sets, yet they are not physically distinguishable since a difference in absolute phase is not physically relevant. This can be fixed by considering the Borel sets of the projective space. Second, to really examine the physicality of all Borel sets we need a ``general theory of experimental logic'', of the type provided by [cite kevin kelly] or [cite carcassi aidala], which would go well beyond the present discussion. With appropriate caveats (e.g. the Hilbert space must be separable), one can say that the Borel sets corresponds to propositions that can be associated to an experimental test (what [carcassi aidala] call theoretical statements) which may or may not terminate in any or all cases. We leave this discussion for another work.}
+This footnote responds also to (b).
 
-For (b), TODO
+Finally, for (c) each interpretation of quantum mechanics will have a competing view on the meaning of the expectation values and on the meaning of the propositions. For example, for some (e.g.\ Qubism, Relational QM) all expectations will indeed provide only information about the state of knowledge of the agent because, in their view, that is all that quantum states provide. For others (e.g. Bohmian mechanics, Nelson mechanics) they will represent expectations over hidden variables.
 
-For (c), each interpretation of quantum mechanics will have a competing view on the meaning of the expectation values and on the meaning of the propositions. For example, for some (e.g. Qubism, TODO) all expectations will indeed provide only information about the state of knowledge of the agent because, in their view, that is all that quantum states provide. For other (e.g. Bohmian, TODO) they will represent expectation over hidden variables.
+Regardless of the interpretation of QM one may endorse, the framework of quantum mechanics provides a well-defined expectation value operation for either a pure state $\psi$ or a density matrix $\rho$. Therefore the statement ``quantity A has expectation value r'' will correspond to the mathematical expression $\langle \psi | A | \psi \rangle = r$ (or $\text{Tr}(\rho A) = r$). It is up to the particular interpretation to make it clear what those expectations mean. The logical structure (i.e.\ the Borel sets) will be the same regardless.
+\end{enumerate}
 
-Regardless of the interpretation, the framework of quantum mechanics provides a well-defined expectation value operation for either a  pure state $\psi$ and a density matrix $\rho$. Therefore the statement ``quantity A has expectation value r'' will correspond to the mathematical expression $\langle \psi | A | \psi \rangle = r$ (or $\text{Tr}(\rho) = r$). It is up to the particular interpretation to make it clear what those expectation mean. The logical structure (i.e. the Borel sets) will be the same regardless.
+\noindent With these answers we hope to have properly responded to the comments of reviewer 2, which have been very useful to improve the quality of the present essay.
 
-TODO: add a footnote somewhere?
-
-
---------------------
-
-
-In closing, we were very pleasantly surprised by the quality of both
-reports and we thank both Referees for the time they spent in
-evaluating our paper.
-
-Sincerely,
-
-The Authors
-
+\clearpage
+\bibliographystyle{apalike}
+\bibliography{bibliography}
 \end{document}
