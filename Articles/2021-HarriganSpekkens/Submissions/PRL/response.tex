@@ -35,71 +35,70 @@
 \def\iden{\openone}
 
 
-
 \begin{document}
 	
-	TODO: thank the editor
 	
-	We apologize in advance if we state fact obvious to the reader, but we found that the knowledge on the foundations of probability among our physics colleagues varies greatly, so we'd rather err on the side of caution.
+\title{\textbf{Replies to Professor Barrett Comments}}
+
+\author{The Authors}
+
+\maketitle
+
 	
-	The overall tone of the response from Barrett is negative. At times he seems to think that we are aiming to contradict the PBR theorem. But in the closing remark, Barret states:
-	\begin{quote}
-		We know from the PBR theorem that
-		any such model must either be $\psi$-ontic or violate preparation independence.
-		Possibly there is a result to be proven along the lines suggested above, that
-		classical entropies in such a model cannot match quantum entropies.
-	\end{quote}
-	This is literally what we are doing. In the introduction we say:
-	\begin{quote}
-		In this paper we are not going to rebut the theorem
-		itself.
+\textcolor{blue}{We would like to thank the Editor for the opportunity to respond to Professor Barrett engaging comments about our manuscript, these remarks not only allow us to explain in more detail our main result, but also to say a few words on its theoretical foundations. We hope to have properly addressed his doubts and objections with the following text; similarly, we hope that these answers will be sufficient in order to send the paper to the next step of the review process.}
+
+\textcolor{blue}{Before stating our replies to Barrett's comments, we apologize in advance if we will mention facts that may sound obvious to some reader; however, since the knowledge on the foundations of probability among our physics colleagues varies greatly, we would rather err on the side of caution.}
+\vspace{2mm}
+
+\textcolor{blue}{The overall tone of Barrett response is negative, at times he seems to think that we are aiming to contradict the PBR theorem. However, in the closing remark he writes that:}
+\begin{quote}
+We know from the PBR theorem that	 any such model must either be $\psi$-ontic or violate preparation independence. Possibly there is a result to be proven along the lines suggested above, that classical entropies in such a model cannot match quantum entropies.
+\end{quote}
+
+\noindent \textcolor{blue}{Interestingly, this is literally what we aim to show in our essay; in fact, in the introduction we say:}
+\begin{quote}		
+In this paper we are not going to rebut the theorem itself.
+			
+			...
 		
-		...
-		
-		Combining these results with PBR, our conclusion is that
-		the HS classification itself is fundamentally problematic.
-	\end{quote}
-	It clearly states that we are using the PBR theorem, not contradicting it. As Barrett says, the PBR theorem rules out a sub-category of ontological models: psi-epistemic models for which preparations are assumed independent. We are not refuting that. What we show is that another sub-category, the psi-ontic models, are to be ruled out as well, as they do not agree with quantum information theory. It is the combination of our result and the PBR result that makes us conclude that the HS categorization is essentially ``empty''.
+Combining these results with PBR, our conclusion is that the HS classification itself is fundamentally problematic.
+\end{quote}
+
+	\textcolor{blue}{This statement clearly affirms that in our argument we are using the PBR theorem, not contradicting it. As Barrett correctly says, the PBR result rules out a sub-category of ontological models: $\psi$-epistemic models for which preparations are assumed independent. We are \emph{not} refuting that claim. However, many scholars think that the PBR theorem proves that $\psi$-ontic states are the correct interpretation of quantum states, we point out that such a view is not correct by showing that the whole HS classification is problematic. Indeed, what we show is that another sub-category, the $\psi$-ontic models, are to be ruled out as well, since they do not agree with quantum information theory. It is the combination of our result and the PBR theorem that makes us conclude that the HS categorization is essentially ``empty''.}
+
+		\textcolor{blue}{The above mentioned closing remark suggests that our intent is aligned, therefore, it is not clear to us where the disagreement is.} The result that rule out $\psi$-ontic models is stated in the abstract:
+\begin{quote}
+In this paper we show that the HS framework has a fundamental problem: the epistemic structure it implicitly assumes does not follow the one dictated by quantum mechanics. Namely, \textbf{the map between the epistemic states of the model and quantum density matrices preserves neither the value nor ordering of the information entropy.}
+\end{quote}
+\noindent This point is neither acknowledged, refuted nor commented in Barrett's response, this fact left us very confused.
 	
-	The re-evaluation of PBR is not that PBR is wrong: is that many have thought it to mean that psi-ontic states are the answer. We point out that they are not: that the whole HS classification is problematic. The closing remark suggests that our intent is aligned, therefore it is not clear to us where the disagreement is. The result that rule out $\psi$-ontic models is stated in the abstract: ``In this paper we show that the HS framework has a fundamental problem: the epistemic structure it implicitly assumes does not follow the one dictated by quantum mechanics. Namely, \textbf{the map between the epistemic states of the model and quantum density matrices preserves neither the value nor ordering of the information entropy.}''. This point is neither acknowledged, refuted nor commented in Barrett's response.
+	Before going into the merit of some of the technical details, let us take a step back. In an ontological model the epistemic state is represented by the probability $p(\lambda | P)$ of obtaining an ontological state $\lambda$ given a preparation $P$. Classical mixture is treated like classical probability conditioning (i.e. $\sum_i  w_i p(\lambda| P_{\psi_i})$, cf.\ eq.~3 in our paper). This is a classical (Kolmogorov) probability density (given that the space $\Lambda$ must have cardinality of the continuum at least), meaning that the probability space has to satisfy the standard probability axioms (e.g.\ countable additivity). \textcolor{blue}{Hence, the crucial question is: can a classical (Kolmogorov, countably additive) probability space replicate all the results of a quantum probability space?}
 	
-	We are left very confused.
+	Since Bell, this question has been answered by finding specific cuts on the probability, to show that this or that model does not work. We are employing a different strategy. The foundations of both classical probability and classical information theory lie within (classical) measure theory. The results on one side are linked to the results on the other side: if we have a uniform distribution $\rho$ with support $U$, we have $S(\rho) = \log \mu(U)$. Since the function is invertible, violations in information theory are necessarily violation of probability theory and vice-versa. On the other hand, on physical grounds, violations of information theory by themselves are enough to break statistical mechanics and thermodynamics predictions, and therefore would correspond to physical violations.
 	
+	\textcolor{blue}{Taking into account quantum mechanics it is well-known that the foundations of quantum probability have not to be found in classical measures, rather in the inner product of Hilbert spaces, which also constitutes the foundations for quantum information theory and, like in the classical case, the two are linked.} Suppose we have two pure states $\rho_\psi$ and $\rho_\phi$, the entropy $S(\frac{1}{2} \rho_\psi + \frac{1}{2} \rho_\phi)$ is given by the Shannon entropy $S(\frac{1+p}{2}, \frac{1-p}{2})$ where $p=\<\psi | \phi \>\<\phi | \psi\>$. Again, this is an invertible function, so violations of probability are violation of information theory.
 	
-	Before going into the merit of some of the technical details, let us step back a bit. In an ontological model the epistemic state is represented by the probability $p(\lambda | P)$ of obtaining an ontological state $\lambda$ given a preparation $P$. Classical mixture is treated like classical probability conditioning (i.e. $\sum_i  w_i p(\lambda| P_{\psi_i})$ - eq.~3 in our paper). This is a classical (Kolmogorov) probability density (given that the space $\Lambda$ has to have at least cardinality of the continuum), meaning that the probability space has to satisfy the standard probability axioms (e.g. countable additivity). So the question is really: can a classical (Kolmogorov, countably additive) probability space replicate all the results of a quantum probability space?
-	
-	Since Bell, this question has been answered by finding specific cuts on the probability, to show that this or that model does not work. We are using a different strategy. The foundations of both classical probability and classical information theory lies within (classical) measure theory. The results on one side are linked to the results on the other side: if we have a uniform distribution $\rho$ with support $U$, we have $S(\rho) = \log \mu(U)$. Since the function is invertible, violations in information theory are necessarily violation of probability theory and vice-versa. On the other hand, on physics grounds, violations of information theory by themselves are enough to break statistical mechanics and thermodynamics predictions, and therefore would correspond to physical violations.
-	
-	On the quantum side, the foundations of quantum probability lies not in classical measures, rather in the inner product of Hilbert spaces. The inner product is also the foundations for quantum information theory and, like in the classical case, the two are linked. Suppose we have two pure states $\rho_\psi$ and $\rho_\phi$, the entropy $S(\frac{1}{2} \rho_\psi + \frac{1}{2} \rho_\phi)$ is given by the Shannon entropy $S(\frac{1+p}{2}, \frac{1-p}{2})$ where $p=\<\psi | \phi \>\<\phi | \psi\>$. Again, this is an invertible function, so violations of probability are violation of information theory.
-	
-	Therefore, we can rephrase the question above as: can classical information theory replicate all the results of quantum information theory? We already know that quantum information theory violates bounds given by classical information theory. For example, a quantum composite state can have information entropy lower than the individual systems, something that classical information theory cannot replicate. Classical information theory is understood to be a ``strict subset'' of quantum information theory, and therefore, intuitively, we already expect this not to work. Using this strategy has also a technical advantage in that the space of classical and quantum mixtures are easy to compare: they are both a linear space, where the linearity has the same physical meaning (i.e. statistical mixture). Classical and quantum probability spaces, on the other hand, are rather different as we lay out in the discussion section of the paper. The difference is so profound that Von Neumann and others thought (erroneously in our view) that the rules of logic had to be rewritten. So, going the information theory route bypasses all those problems.
+	Therefore, we can rephrase the question above as follows: can classical information theory replicate all the results of quantum information theory? We already know that the latter violates bounds given by the former. For example, a quantum composite state can have information entropy lower than the individual systems, something that classical information theory cannot replicate. Classical information theory is understood to be a ``strict subset'' of quantum information theory, and therefore, intuitively, we already expect this not to work. Using this strategy has also a technical advantage in that the space of classical and quantum mixtures are easy to compare: they are both a linear space, where the linearity has the same physical meaning (i.e. statistical mixture). Classical and quantum probability spaces, on the other hand, are rather different as we lay out in the discussion section of the paper. \textcolor{blue}{The difference is so profound that von Neumann and others thought (erroneously in our view) that the rules of classical propositional logic had to be modified. Thus, going the information theory route bypasses all those problems.}
+	\vspace{2mm}
 	
 	Now, given this premise, as we say in the paper:
 	\begin{quote}
 		... we will concentrate on a single aspect of the map: how information entropy transforms under $\iota$. While there are other problems, we do not need to explore them: given the crucial role of entropy in information theory, its breakdown is
-		sufficient to show that the epistemic structures of $E_HS$
-		and $E_QM$ are different
+		sufficient to show that the epistemic structures of $E_{HS}$
+		and $E_{QM}$ are different
 	\end{quote}
-	That is, since we have to show that classical information theory cannot replicate quantum information theory, we only need to find one particular feature that is irremediably broken. We settled on showing that mixing break the ordering of the information entropy since ordering is the most fundamental property of any quantitative system: the notion of high and low information gets lost. This is a deadly blow which, again, should not be surprising as we already know that quantum information theory allows us to do things that classical information theory doesn't (it wouldn't be such an interesting field of research otherwise). This is shown in Fig.~2, when one sees, for example, the third case and the second case switching places.
+	That is, since we have to show that classical information theory cannot replicate quantum information theory, we only need to find one particular feature that is irremediably broken. We settled on showing that mixing break the ordering of the information entropy since ordering is the most fundamental property of any quantitative system: the notion of high and low information gets lost. This is a deadly blow which, again, should not be surprising as we already know that quantum information theory allows us to do things that classical information theory does not (it would not be such an interesting field of research otherwise). This fact is shown in Fig.~2, when one sees, for example, the third case and the second case switching places.
 	
 	Now, whether this different way to frame our result helps or not, we leave it to the reviewers. If it does, we can, of course, significantly alter the paper. It will help, though, to address Barrett's comments.
 
-	Barrett focuses on two details. The first is that the map $\iota : E_HS \to E_QS$ from epistemic states in the HS model to quantum mixed states is not invertible. 
+	Barrett focuses on two details. The first is that the map $\iota : E_{HS} \to E_{QS}$ from epistemic states in the HS model to quantum mixed states is not invertible. 
 	\begin{quote}
-The paper points out that in this model, the different mixtures
-correspond to different distributions over $\lambda$, even though they yield the
-same quantum mixed state I/2.
+The paper points out that in this model, the different mixtures correspond to different distributions over $\lambda$, even though they yield the same quantum mixed state I/2.
 
-Although the paper does not do this, one can in fact ask: must *any* ontological
-model for a qubit (not just the $\psi$-complete model considered) have the feature
-that different mixtures corresponding to the same quantum mixed state correspond
-to different distributions over $\lambda$? In fact, the answer is known to be yes,
-and this property of quantum systems is known as `preparation contextuality’.
-This was shown in R.W.Spekkens, Phys. Rev. A 71, 052108 (2005), the first paper
-to introduce preparation contextuality, as well as in many other papers since.
+Although the paper does not do this, one can in fact ask: must *any* ontological model for a qubit (not just the $\psi$-complete model considered) have the feature that different mixtures corresponding to the same quantum mixed state correspond to different distributions over $\lambda$? In fact, the answer is known to be yes, and this property of quantum systems is known as `preparation contextuality’. This was shown in R.W.\ Spekkens, Phys. Rev. A 71, 052108 (2005), the first paper to introduce preparation contextuality, as well as in many other papers since.
 	\end{quote}
 
-	The fact that the map is not invertible is not a problem per-se. As we say in the paper, the question is:
+	The fact that the map is not invertible is not a problem per se. As we say in the paper, the question is:
 	\begin{quote}
 The key question, then, is the following: is the
 map $\iota$ sufficiently well behaved that we can understand
@@ -108,17 +107,18 @@ content of $E_{HS}$?
 	\end{quote}
 We contend that it is not, given that the ordering is broken as Fig.~2 shows, and this claim does not seem to us to be either acknowledged or challenged.
 
-As for `preparation contextuality', the question is: can we still use classical conditioning of the form $\sum_i  w_i p(\lambda| P_i)$? To our understanding, that is the case. Therefore we are still in a classical (Kolmogorov) space. The rules of how distributions and information entropy combine are the same. The argument stands.
+As for `preparation contextuality', the question is: can we still use classical conditioning of the form $\sum_i  w_i p(\lambda| P_i)$? To our understanding, that is the case. Therefore, we are still in a classical (Kolmogorov) space. The rules of how distributions and information entropy combine are the same. The argument stands.
 
-The second comment focuses on the infinite vs finite value for entropy. The only objection to the failure is:
+The second comment focuses on the infinite versus finite value for entropy. The only objection to the failure is:
 \begin{quote}
-Again, though, the conclusions here are only reached via consideration of the psi-complete model.
+Again, though, the conclusions here are only reached via consideration of the $\psi$-complete model.
 \end{quote}
-Let us address that objection. Suppose we have a $\psi$-incomplete model. An epistemic state will be a weighted sum $\sum_i  w_i p(\lambda| P_{\psi_i})$ of non overlapping functions $p(\lambda| P_{\psi_i})$. This means that the information entropy is given by $S(w_i) + \sum_i S(p(\lambda| P_{\psi_i}))$. Now, since the information entropy for each pure state must be zero to agree with quantum information, $S(p(\lambda| P_{\psi_i}))=0$ for all $i$, the entropy of the mixture reduces to the Shannon entropy, which reduces to the $\psi$-complete case. This cover all $\psi$-ontic cases.
+Let us address that objection. Suppose we have a $\psi$-incomplete model. An epistemic (\textcolor{blue}{ontic?}) state will be a weighted sum $\sum_i  w_i p(\lambda| P_{\psi_i})$ of non overlapping functions $p(\lambda| P_{\psi_i})$. This means that the information entropy is given by $S(w_i) + \sum_i S(p(\lambda| P_{\psi_i}))$. Now, since the information entropy for each pure state must be zero to agree with quantum information, $S(p(\lambda| P_{\psi_i}))=0$ for all $i$, the entropy of the mixture reduces to the Shannon entropy, which reduces to the $\psi$-complete case. This cover all $\psi$-ontic cases.
 
-For $\psi$-epistemic, we already know from PBR that those with preparation independence violate quantum probability, therefore (by the arguments before) will also violate quantum information. Now consider a quantum state for which you have independence at the quantum probability level. The quantum probability does factorize meaning that the quantum information over the composite is the sum of the information over the individual systems. In classical probability, the information of the joint distribution is the sum of the information over the marginals if and only if the joint distribution is the product of the marginals. Therefore quantum information forces you to work in the case of independence, which was ruled out on the grounds that it does not respect quantum probability.
+For $\psi$-epistemic, we already know from PBR that those with preparation independence violate quantum probability, therefore (by the arguments before) will also violate quantum information. Now consider a quantum state for which you have independence at the quantum probability level. The quantum probability does factorize, meaning that the quantum information over the composite is the sum of the information over the individual systems. In classical probability, the information of the joint distribution is the sum of the information over the marginals if and only if the joint distribution is the product of the marginals. Therefore, quantum information forces one to work in the case of independence % mi puoi chiarire meglio questa frase, non capisco bene il punto. 
+which was ruled out on the grounds that it does not respect quantum probability.
 
-Barrett then asks
+Barrett then asks:
 \begin{quote}
 A better question would be whether there even exists a
 (necessarily preparation-contextual) ontological model for a qubit, in which the
@@ -126,7 +126,7 @@ Shannon (or differential) entropy of the $\lambda$-distribution is always equal 
 the von Neumann entropy of a corresponding mixed state, at least up to an
 additive constant. 
 \end{quote}
-Well, this is literally what we are proving: the order is broken, what is greater on one side may or may not be greater on the other side. A real number is a type of order (one that is complete, dense, with no end-points and contains a countable dense subset), if ordering is broken, real numbers are broken.
+\textcolor{blue}{Remarkably, this is literally what we are proving}: the order is broken, what is greater on one side may or may not be greater on the other side. A real number is a type of order (one that is complete, dense, with no end-points and contains a countable dense subset), if ordering is broken, real numbers are broken.
 
 Barrett comments:
 \begin{quote}
@@ -135,24 +135,20 @@ classical ignorance about $\lambda$.
 \end{quote}
 Whether we can interpret the difference in entropy as a classical ignorance is debated in the paper:
 \begin{quote}
-Ideally, one would like to say that $E_HS$ represents
-all possible epistemic states that include the knowledge
-about preparation, while $E_QM$ represents only those distinguishable
-through measurement.
+Ideally, one would like to say that $E_{HS}$ represents all possible epistemic states that include the knowledge about preparation, while $E_{QM}$ represents only those distinguishable through measurement.
 \end{quote}
-And we argue that the breaking of the ordering is exactly why can't we do that. No comment is given on that argument.
+And we argue that the breaking of the ordering is exactly why we cannot do that. Nonetheless, no comment is given on that argument.
 
-No other further comments are given to the rest of the paper, where the full conclusion is taken, the root of the problem is found in the different nature of quantum probability spaces, a technical definition of quantum contextuality is given and it is shown how it cannot be expressed with a single classical (Kolmogorov) measure.
+\textcolor{blue}{Along the same lines---and quite surprisingly---no further comments are given to the rest of the paper}, where the full conclusion is taken, the root of the problem is found in the different nature of quantum probability spaces, a technical definition of quantum contextuality is given, and it is shown how it cannot be expressed with a single classical (Kolmogorov) measure.
 
-Barrett also mentions:
+\textcolor{blue}{Barrett also mentions a technical remark concerning Shannon entropy:}
 \begin{quote}
-(Technical remark: in a sense it is infinite, but it would be better to say
-undefined. A proper treatment of entropies for distributions over continuous
-variables requires differential entropies.)
+in a sense it is infinite, but it would be better to say undefined. A proper treatment of entropies for distributions over continuous variables requires differential entropies.
 \end{quote}
-This gives a chance to go more into the technical details. In a measure theoretic sense, the measure is literally infinite, not undefined. The image of a measure is the extended real line, which means $\mathbb{R} \cup \{-\infty, +\infty\}$. The question of whether one uses the Shannon entropy or the differential entropy is exactly whether one uses a counting measure or the standard measure on $\mathbb{R}^n$. Very often, mathematical details are not important for physics, but in this case this detail is crucial, and in fact it's the very mathematical detail which makes quantum mechanics/probability/information different.
 
-In classical measure theory, we need to choose a measure which, physically, defines how we ``count'' states in physics. We can either choose the counting measure, so that the measure of a set, it's size, is $\mu(U) = \#(U)$, where we basically just count the number of points. So, for each point $x$ we have $\mu(\{x\}) = 1$. Each point is associated with finite information, each point identifies one case. This measure is suitable for finite (or countable) cases (e.g. the number of faces on a die, the number of boxes a ball can be placed in). Naturally, any set with infinite points will have infinite measure (again, literally infinite) and therefore infinite entropy.
+This gives a chance to go more into the technical details of our work. In a measure theoretic sense, the measure is literally infinite, not undefined. The image of a measure is the extended real line, which means $\mathbb{R} \cup \{-\infty, +\infty\}$. The question of whether one uses the Shannon entropy or the differential entropy is exactly whether one uses a counting measure or the standard measure on $\mathbb{R}^n$. \textcolor{blue}{Very often, mathematical details are not important for physics, but in the present case this detail is crucial, and in fact it is the very mathematical detail which makes quantum mechanics, quantum probability and quantum information theory different with respect to their classical counterparts.}
+
+In classical measure theory, we need to choose a measure which defines how we ``count'' states in physics. We can either choose the counting measure, so that the measure of a set, it's size, is $\mu(U) = \#(U)$, where we basically just count the number of points. So, for each point $x$ we have $\mu(\{x\}) = 1$. Each point is associated with finite information, each point identifies one case. This measure is suitable for finite (or countable) cases (e.g. the number of faces on a die, the number of boxes a ball can be placed in). Naturally, any set with infinite points will have infinite measure (again, literally infinite) and therefore infinite entropy.
 
 In classical measure theory, on a real line, we can choose the Lebesgue measure. The measure is the size of the interval: $\mu([a, b]) = b-a$. In this case, finite intervals are associated with finite measure, but point will necessarily have zero measure. Finite intervals are associated with finite information, while points are associated with $-\infty$ information.
 
@@ -164,9 +160,10 @@ We ``hint'' at this technical imprecision in our footnote:
 \end{quote}
 We do believe this is bad, because it is hiding the actual problem. But such is the practice in our field, and so we adapt.
 
-Now, quantum measure theory breaks all of this because both points and open regions have an entropy that would correspond to finite measure. That is, each pure state has zero entropy, which would correspond to measure one. A uniform distribution over the whole Bloch sphere has entropy of 1 which would correspond to measure $2^1 = 2$. You see: a single point has only double the measure of a finite area, which has infinitely many points.
+Now, quantum measure theory breaks all of this because both points and open regions have an entropy that would correspond to finite measure. That is, each pure state has zero entropy, which would correspond to measure one. A uniform distribution over the whole Bloch sphere has entropy of 1 which would correspond to measure $2^1 = 2$. Hence, a single point has only double the measure of a finite area, which has infinitely many points.
 
-If we were to recover a measure corresponding to the sets over which we defined uniform distributions, the measure would not be additive. Quite literally: $1+1\neq 2$. Quantum mechanics breaks measure theory and it easy to see that it must. Consider the following requirements:
+If we were to recover a measure corresponding to the sets over which we defined uniform distributions, the measure would not be additive. %Quite literally: $1+1\neq 2$. 
+Quantum mechanics breaks measure theory, and it easy to see that it must. Consider the following requirements:
 \begin{enumerate}
 	\item each state (point) has measure one
 	\item each finite region has finite measure
@@ -180,12 +177,14 @@ But the problem then becomes,
 how do we describe nature in a way that does not fit the schema of ontological
 models?	
 \end{quote}
-We need to go back and redo the foundations of measure theory such as we can construct a generalized non-additive version, that allows both classical and quantum mechanics as a special case. This is, naturally, well outside the scope of the present article, which just wants to show that ontological models are not the way to do it.
+We need to go back and redo the foundations of measure theory such as we can construct a generalized non-additive version of it, that allows both classical and quantum mechanics as a special case. This is, naturally, well outside the scope of the present article, which just wants to show that ontological models are not the way to do it.
 
-We hope that the discussion addresses at least some of the technical questions. It is not clear to us exactly how to address them in the paper, as we feel the main criticism didn't touch the actual point of the paper (the breakdown of ordering between classical and quantum information entropy), and some of the questions raised are already addressed in the paper.
-
+We hope that our discussion addresses at least some of the most important technical questions raised by Barrett'c comments. It is not clear to us exactly how to address them in the paper, as we feel the main criticism contained in his report did not touch the actual point of the paper (the breakdown of ordering between classical and quantum information entropy), and some of his questions are already addressed in the paper.
+\vspace{5mm}
 
 Sincerely,
+\vspace{5mm}
+
 
 The Authors
 
