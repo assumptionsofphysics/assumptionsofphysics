@@ -6,13 +6,8 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{amsfonts}
-\usepackage{braket}
 \usepackage{enumitem}
 
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usepackage{calculator}
-\usepackage{standalone}
 
 
 
@@ -41,7 +36,7 @@ g_{\alpha\beta} e^\alpha \wedge e^\beta &= g_{\alpha\beta} e^\alpha \otimes e^\b
 \begin{aligned}
 \partial_\alpha \delta^\beta_\gamma &= 0 = \partial_\alpha ( g^{\beta \delta} g_{\delta \gamma} ) = \partial_\alpha g^{\beta \delta} g_{\delta \gamma} + g^{\beta \delta} \partial_\alpha g_{\delta \gamma} \\
 \partial_\alpha g^{\beta \gamma} &= - g^{\beta \delta} g^{\gamma \epsilon} \partial_\alpha g_{\delta \epsilon} \\
-\Gamma_{\alpha \beta \gamma} &= (\partial_\gamma g_{\alpha\beta} + \partial_\beta g_{\alpha\gamma} - \partial_\alpha g_{\beta\gamma}) \\
+\Gamma_{\alpha \beta \gamma} &= \frac{1}{2} (\partial_\gamma g_{\alpha\beta} + \partial_\beta g_{\alpha\gamma} - \partial_\alpha g_{\beta\gamma}) \\
 \Gamma^\alpha_{\beta\gamma} &= g^{\alpha \delta} \Gamma_{\delta\beta\gamma}
 \end{aligned}
 \end{equation}
@@ -233,6 +228,29 @@ D_s u^\alpha &= d_s u^\alpha + u^\beta d_sx^\gamma \Gamma^\alpha_{\beta\gamma} =
 &= \partial^\alpha A^\beta - \partial^\beta A^\alpha + G^{\alpha\beta\gamma} A_\gamma \\
 \end{aligned}
 \end{equation}
+
+\section{Is $G_{\alpha\beta\gamma}$ a tensor?}
+\begin{equation*}
+	\begin{aligned}
+		g_{\alpha'\beta'}&=\Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}g_{\alpha\beta} \\
+		\partial_{\alpha'}g_{\beta'\gamma'}&=\Lambda_{\alpha'}^{\alpha}\partial_{\alpha}\left(\Lambda_{\beta'}^{\beta}\Lambda_{\gamma'}^{\gamma}g_{\beta\gamma}\right) \\
+		&=\Lambda_{\alpha'}^{\alpha}\partial_{\alpha}\left(\Lambda_{\beta'}^{\beta}\right)\Lambda_{\gamma'}^{\gamma}g_{\beta\gamma} + \Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\partial_{\alpha}\left(\Lambda_{\gamma'}^{\gamma}\right)g_{\beta\gamma} + \Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\Lambda_{\gamma'}^{\gamma}\partial_{\alpha}g_{\beta\gamma}\\
+		G_{\alpha'\beta'\gamma'} &= \partial_{\alpha'}g_{\beta'\gamma'} - \partial_{\beta'}g_{\alpha'\gamma'}\\
+		&= \Lambda_{\alpha'}^{\alpha}\partial_{\alpha}\left(\Lambda_{\beta'}^{\beta}\right)\Lambda_{\gamma'}^{\gamma}g_{\beta\gamma} + \Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\partial_{\alpha}\left(\Lambda_{\gamma'}^{\gamma}\right)g_{\beta\gamma} + \Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\Lambda_{\gamma'}^{\gamma}\partial_{\alpha}g_{\beta\gamma}\\
+		&-\Lambda_{\beta'}^{\beta}\partial_{\beta}\left(\Lambda_{\alpha'}^{\alpha}\right)\Lambda_{\gamma'}^{\gamma}g_{\alpha\gamma} - \Lambda_{\beta'}^{\beta}\Lambda_{\alpha'}^{\alpha}\partial_{\beta}\left(\Lambda_{\gamma'}^{\gamma}\right)g_{\alpha\gamma} - \Lambda_{\beta'}^{\beta}\Lambda_{\alpha'}^{\alpha}\Lambda_{\gamma'}^{\gamma}\partial_{\beta}g_{\alpha\gamma}\\
+		&=\Lambda_{\alpha'}^{\alpha}\partial_{\alpha}\left(\Lambda_{\beta'}^{\beta}\right)\Lambda_{\gamma'}^{\gamma}g_{\beta\gamma} + \Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\partial_{\alpha}\left(\Lambda_{\gamma'}^{\gamma}\right)g_{\beta\gamma}\\
+		&-\Lambda_{\beta'}^{\beta}\partial_{\beta}\left(\Lambda_{\alpha'}^{\alpha}\right)\Lambda_{\gamma'}^{\gamma}g_{\alpha\gamma} - \Lambda_{\beta'}^{\beta}\Lambda_{\alpha'}^{\alpha}\partial_{\beta}\left(\Lambda_{\gamma'}^{\gamma}\right)g_{\alpha\gamma}\\
+		&+\Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\Lambda_{\gamma'} G_{\alpha\beta\gamma} \\
+		&=\Lambda_{\alpha'}^{\alpha}\partial_{\alpha}\left(\Lambda_{\beta'}^{\beta}\Lambda_{\gamma'}^{\gamma}\right)g_{\beta\gamma} -\Lambda_{\beta'}^{\beta}\partial_{\beta}\left(\Lambda_{\alpha'}^{\alpha}\Lambda_{\gamma'}^{\gamma}\right)g_{\alpha\gamma} \\
+		&+\Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\Lambda_{\gamma'} G_{\alpha\beta\gamma} \\
+		\omega_{a'b'} &= \partial_{a'}\xi^a \omega_{ab} \partial_{b'}\xi^b \\
+		\omega_{q^{\alpha'}q^{\beta'}} &= \partial_{\alpha'}q^\alpha \omega_{q^{\alpha}q^{\beta}} \partial_{\beta'}q^\beta \\
+		&=- m G_{\alpha'\beta'\gamma'} u^{\gamma'} - q F_{\alpha'\beta'} \\
+		&= \left(- m G_{\alpha\beta\gamma} u^{\gamma} - q F_{\alpha\beta} \right) \partial_{\alpha'}q^\alpha \partial_{\beta'}q^\beta \\
+		&= \left(- m G_{\alpha\beta\gamma} u^{\gamma} - q F_{\alpha\beta} \right) \partial_{\alpha'}q^\alpha \partial_{\beta'}q^\beta \\
+		&= - m G_{\alpha\beta\gamma} u^{\gamma} \partial_{\alpha'}q^\alpha \partial_{\beta'}q^\beta - q F_{\alpha'\beta'}  \\
+	\end{aligned}
+\end{equation*}
 
 
 
