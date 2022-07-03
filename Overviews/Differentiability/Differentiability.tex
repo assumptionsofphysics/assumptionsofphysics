@@ -179,7 +179,24 @@ This was an attempt to define how to coarsen integrand regions in a way that doe
 
 %\section{Examples}
 
+\section{Differentiability as reducibility}
 
+%Given a topological embedding of a closed segment and a sequence into the segment with dense image, let for every $n$ $\lambda_n$ be the polyline defined by the first $n$ elements in the sequence. We say that the polyline converges to the embedded if for every open neighbourhood of the image of the embedding there is an $N$ such that all polylines beyond $N$ are in the neighbourhood.
+
+
+%Let X be a manifold and \psi be a chart (a choice of coordinate {x^i}). Let \lambda be a curve and {P_i} be a dense subset \lambda. Let \lambda_k be the polyline consisting of line segments (straightness is defined by the coordinates {x^i}) identified by the first k points in {P_i}. We say that \lambda is smooth if, for any dense subset the sequence of the \lambda_k convergence to \lambda.
+
+\textbf{Conjecture:} a curve is differentiable if it can be seen as a limit of a polyline approximation that is independent on the details of the approximation.
+
+\textbf{Lines and slopes.} Let $U \subseteq \mathbb{R}^n$. Let $L$ be the set of all straight lines. Given two points $P, Q \in U$, we note $l(P,Q) \in L$ the line that passes through $P$ and $Q$. That is, $\{P, Q\} \subset l(P,Q)$. We note $l_1 \parallel l_2$ when two lines $l_1, l_2 \in L$ are parallel. Parallelism is an equivalence relationship. We call the quotient set $S = L_{/\parallel}$ the set of slopes. Given a point $P \in U$ and a slope $s \in S$, we note $l(P, s) \in L$ the line that passes through $P$ with the given slope. That is, $P \in l(P, s) \in s$. It can be shown that $Q \in l(P, s)$ if and only if $P \in l(Q, s)$. Note that the topology of $U$ endows a topology on both $L$ and $Q$ which is Hausdorff and second countable, and therefore $L$ and $Q$ possess a notion of limit. 
+
+\textbf{Oriented segments.} An oriented segment (or simply a segment) is a triplet $\langle P, s, Q \rangle$ with $P, Q \in U$ and $s \in S$ such that $P \in l(Q,s)$. If $P \neq Q$ the segment is said finite; if not, it is said infinitesimal. In can be shown that given two distinct points $P, Q$, there is only one oriented segment $\langle P, s, Q \rangle$. It can also be shown that $\langle P, s, P \rangle$ is a segment for all $s \in S$. We say a sequence of oriented segments $\{\langle P_i, s_i, Q_i \rangle\}_{i=1}^{\infty}$ converges if the limit $\lim\limits_{i \to \infty} \langle P_i, s_i, Q_i \rangle\ = \langle \lim\limits_{i \to \infty} P_i, \lim\limits_{i \to \infty} s_i, \lim\limits_{i \to \infty} Q_i \rangle$ exists.
+
+\textbf{Polylines and refinement.} Two segments $\langle P_1, s_1, Q_1 \rangle$ and $\langle P_2, s_2, Q_2 \rangle$ are consecutive if $Q_1 = P_2$..  A polyline is a finite sequence of finitely many consecutive segments. That is, a polyline is a sequence $\{\langle P_i, s_i, Q_i \rangle\}_{i=1}^{n}$ such that $Q_i = P_{i+1}$. A point $P$ belongs to a polyline if there is some $1 \leq i \leq n$ such that $P=P_i$ or $P=Q_i$. A polyline $\{\langle P^a_i, s^a_i, Q^a_i \rangle\}_{i=1}^{n}$ is said to refine another polyline $\{\langle P^b_j, s^b_j, Q^b_j \rangle\}_{j=1}^{m}$ if $n > m$ and all the points that belong to the second belongs to the first as well without changing their order. That is, for all $1 \leq j \leq m$ we can find $1 \leq i \leq n$ such that $P^a_i = P^b_j$ and also find $1 \leq k \leq n$ such that $Q^a_k = Q^b_j$. Additionally, we say an oriented segment $\langle P^a_i, s^a_i, Q^a_i \rangle$ refines a segment $\langle P^b_j, s^b_j, Q^b_j \rangle$ if we can find $k$ and $l$ such that $k \leq i \leq l$, $P^b_j = P^a_k$ and $Q^b_j = Q^a_l$.
+
+\textbf{Polyline approximating sequence (PAS).} A polyline approximating sequence (PAS) is a sequence of polylines such that each one refines the previous. We say a point $P \in U$ belongs to the PAS if it is one of the boundary points of a segment in a polyline of the sequence. Given a PAS, a segment approximating sequence (SAS) is a sequence of segments such that the $i$-th segment is a segment of the $i$-th polyline, and each segment in the sequence refines the previous segment in the sequence. We say a PAS converges if all the SAS converge.
+
+\textbf{Polyline approximation and differentiability.} Let $\lambda \subset U$ be a curve (i.e. a topologically embedded interval). A polyline approximation for $\lambda$ is a PAS such that the set of points that belong to the PAS is a dense set of $\lambda$. It can be shown that if a SAS of a polyline approximation converges, it does so to an infinitesimal segment which we call limit segment. Moreover, it can be shown that there will be a limit segment for each point of $\lambda$. We say that a curve is differentiable is the limit segment for each point exists and it the same for all polyline approximations.
 
 \bibliography{bibliography}
 
