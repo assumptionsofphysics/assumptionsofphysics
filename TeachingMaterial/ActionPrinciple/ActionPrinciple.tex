@@ -27,7 +27,7 @@
 
 
 \begin{abstract}
-We give a geometrical interpretation for the action principle in Lagrangian classical particle mechanics that also has a direct physical meaning. The idea is that the variation of the action along a path is the flow of the displacement field through the area between the path and the variation. Since actual trajectories are parallel to the displacement field, the flow is zero along them, making the action stationary. We first give the interpretation for a single degree of freedom using simple differential calculus so that it is accessible to the widest possible audience. We then generalize to multiple degrees of freedom using symplectic geometry. This treatment makes the geometry of both Hamiltonian and Lagrangian mechanics more readily evident, and gives reasons to privilege the Hamiltonian picture over the Lagrangian one.
+We give a geometrical interpretation for the action principle in Lagrangian classical particle mechanics that also has a direct physical meaning. In a nutshell, the variation of the action between a path and its variation effectively ``counts'' the possible evolutions that ``go through'' the area enclosed. If a possible evolution is taken, all neighbouring evolutions will be parallel, making them tangent to the area enclosed by the evolution and its variation, making the action stationary. We first give the interpretation for a single degree of freedom using simple differential calculus so that it is accessible to the widest possible audience. We then generalize to multiple degrees of freedom using symplectic geometry. This treatment makes the geometry of both Hamiltonian and Lagrangian mechanics more readily evident, and gives reasons to privilege the Hamiltonian picture over the Lagrangian one.
 \end{abstract}
 
 \maketitle
@@ -36,7 +36,7 @@ We give a geometrical interpretation for the action principle in Lagrangian clas
 
 While the principle of stationary action is regarded by many as one of the most important tools in physics, its physical meaning is not completely clear. First of all, the typical characterization of the Lagrangian as the difference between kinetic and potential energy fails even for simple systems, like a charged particle under a magnetic field. Moreover, the Lagrangian for a system is not uniquely defined, making the actual value of the action for a path not directly physically significant.  We are left to wonder: what exactly is the action and why is it stationary for actual trajectories?
 
-As part of our larger project Assumptions of Physics, we developed an approach, called Reverse Physics, which examines current theories to find a set of starting physical assumptions that are sufficient to rederive them. This allowed us to recast Hamiltonian mechanics as the dynamics of deterministic and reversible evolution, which coincidentally gives us the proper setting to characterize both the physics and the geometry underlying the principle of stationary action. We will see that the principle arises as a feature of divergence-free fields and closed two-forms, as a general mathematical property of vector calculus and differential geometry.
+As part of our larger project Assumptions of Physics, we developed an approach, called Reverse Physics, which examines current theories to find a set of starting physical assumptions that are sufficient to rederive them. This allowed us to recast Hamiltonian mechanics as the dynamics of deterministic and reversible evolution, which coincidentally gives us the proper setting to characterize both the physics and the geometry underlying the principle of stationary action. We will see that the principle arises as a feature of divergence-free fields and closed two-forms, as a general mathematical property of vector calculus and differential geometry\cite{souriau1997structure}.
 
 We will first address the case of a single degree of freedom using standard vector calculus. This provides already all the geometrical and physical insights in a language that is accessible to all physicists and engineers. Then we proceed to the case of multiple independent degrees of freedom, which requires tools from differential geometry. To make the treatment of the latter case more accessible, we will use a notation that is similar to the one used by physicists in general relativity.
 
@@ -48,7 +48,6 @@ The first thing we need to do is recast the equations of motion in a form that w
 	\includegraphics[width = 0.45\textwidth]{ExtendedPhaseSpace}
 	\caption{\footnotesize{Evolutions in the extended phase space and the divergence-free displacement field.}}\label{extended_phase_space}
 \end{figure}
-
 
 Once we have recast the equations of motion on the extended phase space, we can see how the action principle comes from a straightforward application of vector calculus in the case of divergence-free fields.
 
