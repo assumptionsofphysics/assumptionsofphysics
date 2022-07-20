@@ -582,7 +582,7 @@ which means that $\omega$ is also closed. This result can be also argued on phys
 
 Putting it all together, assuming \ref{assum_detrev} and \ref{assum_indep} gives us the existence of the displacement vector field $\vec{S}$ and the closed counting two-form $\omega$ such that $\vec{S}$ identifies the only vector field that kills $\omega$.
 
-The converse is also true: if we start with the mathematical requirement we recover the physical assumptions. If the displacement vector field $\vec{S}$ is the only vector field that kills the two-form $\omega$, then $\Omega = \omega^N$ is non-zero and is closed form. The system is deterministic and reversible because the displacement is well defined and it is paired of a flow that conserves the count of states. The degrees of freedom are independent because $\Omega = \omega^N$, but it can be seen in a more direct way.
+The converse is also true: if we start with the mathematical requirements, we can recover the physical assumptions. If the displacement vector field $\vec{S}$ is the only vector field that kills the two-form $\omega$, then $\Omega = \omega^N$ is a non-zero closed form. The displacement is well defined and it is paired of a flow that conserves the count of states, therefore the system is deterministic and reversible. The degrees of freedom are independent because $\Omega = \omega^N$, and we can recover a suitable set of independent state variables.
 
 If each pair of state variables $q^i$, $p_i$ forms an independent degree of freedom, the only surfaces spanned by matching position and momentum will define actual configurations, while all other combinations will not define any. Therefore:
 \begin{equation}\label{canonical_conditions}
@@ -594,67 +594,9 @@ If each pair of state variables $q^i$, $p_i$ forms an independent degree of free
 \end{equation}
 If we start with a closed form $\omega$ that has a single degenerate direction, by Darboux theorem we can find coordinates for the non-degenerate part $\omega$ that satisfy the above conditions.
 
-Our system will be now composed of $N$ independent degrees of freedom. This means that we can chart all states at all times using $2N + 1$ variables $\xi^a = \{ q^i, p_i, t\}$. We will use $\xi^a$ when we want to span all variables; $q^i$ and $p_i$ when we want to span the position or the momentum of all degrees of freedom.
+Note that we have broken down exactly how each assumptions contributes to the mathematical setting. If \ref{assum_indep} fails, then $\Omega$ cannot be understood as $\omega^N$, which means we have much fewer condition on the motion: we only know that the total flow is conserved, but we cannot break it down along each d.o.f.. On the other hand, if \ref{assum_detrev} we may not have a single displacement field $\vec{S}$ and/or the form that counts states would not be closed. This type of exact mapping between assumptions and their mathematical expression is one of the key goals of Reverse Physics in particular and our overall project Assumptions of Physics more in general.
 
-As before, we will have a displacement field
-\begin{equation}
-	\vec{S} = \frac{d\xi^a}{dt} e_{a} = \frac{dq^i}{dt} e_{q^i} + \frac{dp_i}{dt} e_{p_i} + \frac{dt}{dt} e_t.
-\end{equation}
-However, unlike in the single degree of freedom case, $\vec{S}$ is not the object used fully characterize the geometry of the space.
-
-The main idea is that we want to be able to quantify the number of states identified by each degree of freedom. As degrees of freedom are bi-dimensional, this means quantifying the areas of two-dimensional surfaces. Therefore we introduce the rank-2 tensor (more precisely a two-form)
-\begin{equation}
-	\omega = \omega_{ab} \, e^a \otimes e^b,
-\end{equation}
-which we call the state counting tensor. The idea is that a pair of vectors $\vec{v}$ and $\vec{w}$ will identify a parallelogram in phase space and 
-\begin{equation}
-	\omega(\vec{v}, \vec{w}) = \omega_{ab} v^a w^b
-\end{equation}
-quantifies the number of states over its surface.
-
-The tensor $\omega$ will need to satisfy additional conditions to be physically meaningful. First of all, it will need to be anti-symmetric. The parallelogram identified by $\vec{v}$ and $\vec{w}$ in that order will be the same as the one identified by $\vec{w}$ and $\vec{v}$ therefore the area is the same. However, the switch changes handedness, and therefore will introduce a minus sign. Therefore we have:
-\begin{equation}
-	\omega(\vec{v}, \vec{w}) = - \omega(\vec{w}, \vec{v}).
-\end{equation}
-Since the rank-2 tensor is anti-symmetric, it can be understood as a two-form in differential geometry. Only the components below the diagonal are independent, which means $\sum_1^{2N}i =N(2N+1)$ independent components.
-
-The form $\omega$ will also be closed, meaning
-\begin{equation}\label{mdof_closed_form}
-	\oiint \omega = 0
-\end{equation}
-over all closed surfaces. In fact, consider a parallelepiped. Given that the degrees of freedom are independent, and we have deterministic and reversible motion, two opposite sides will contain the same number of states. Given that the two opposite sides will have opposite orientation, their total contribution will be zero. This logic can be extended to all three-dimensional differential volumes, as they can be decomposed into infinitesimal parallelepiped.
-
-Since $\omega$ is closed, in every contractible region it can be expressed as the exterior derivative of a covector $\theta$. We have
-\begin{equation}
-\begin{aligned}
-	\theta &= \theta_a e^a = \theta_{q^i} e^{q^i} + \theta_{p_i} e^{p_i} + \theta_t e^t \\
-	\omega &= - \partial \theta = - \left( \partial_a \theta_b - \partial_b \theta_a \right) e^a \otimes e^b
-\end{aligned}
-\end{equation}
-The minus sign is the convention in symplectic geometry.
-
-In the generalization we need to distinguish between vectors, like $\vec{S}$, covectors, like $\theta$, and two-forms, like $\omega$. The single degree of freedom used only three variables, therefore to each parallelogram in $\{q, p, t\}$ there is only one perpendicular direction, which allows us to blur the line between the objects in the following way:
-\begin{itemize}
-	\item for each covector $\theta$ we can find a vector $\vec{\theta}$ such that $\theta(\vec{S})=\vec{\theta} \cdot \vec{S}$;
-	\item for each two-form $\omega$ we can find a vector $\vec{\omega}$ such that $\omega(\vec{v}, \vec{w}) = \vec{\omega} \cdot \vec{v} \times \vec{w}$.
-\end{itemize}
-This is what allows us to think only in terms of vectors. This cannot be done in the general case. In particular, the generalization of the curl is no longer an operation between vectors, but an operation that takes a one-form and returns a two-form.
-
-Now we need to further characterize $\omega$. Each pair of variables $q^i$, $p_i$ forms an independent degree of freedom. This means that only surfaces spanned by matching position and momentum will define actual states, while all other combinations will not define any state. Therefore:
-\begin{equation}\label{canonical_conditions}
-\begin{aligned}
-	\omega(e^{q^i}, e^{p_j}) = \omega_{q^i p_j} &= \delta^i_j = - \omega_{p_j q^i} \\
-	\omega(e^{q^i}, e^{q^j}) = \omega_{q^i q^j} &= 0 \\
-	\omega(e^{p_i}, e^{p_j}) = \omega_{p_i p_j} &= 0
-\end{aligned}
-\end{equation}
-Of the $N(2N+1)$ independent components given the anti-symmetry requirement, the first condition sets $N^2$ of these while the last two set $N(N-1)/2$ independent components each. This totals $N(2N-1) = \sum_1^{2N-1}i$ independent components.
-
-Assuming determinism and reversibility, time evolution contributes no new states, it just moves them in time. That is, no states appear or disappear from any degree of freedom. The displacement field doesn't define any state, no matter which other vector it is paired with. Mathematically, we say that the displacement kills the form
-\begin{align}\label{mdof_displacement_kills}
-	\omega(\vec{S}, \cdot) = 0.
-\end{align}
-This sets another $2N$ components (since $\omega(\vec{S}, \vec{S}) = 0$ is already set by anti-symmetry). All independent components are now set.
+For (ii)
 
 Those familiar with symplectic and contact geometry will recognize that conditions \ref{canonical_conditions} mean that $q^i$ and $p_i$ are canonical coordinates and, by Darboux's theorem, we will be able to write the covector potential as
 \begin{equation}\label{mdof_potential_expression}
