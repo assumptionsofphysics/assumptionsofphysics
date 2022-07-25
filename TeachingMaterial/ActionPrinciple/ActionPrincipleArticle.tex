@@ -202,18 +202,18 @@ Similarly to the single d.o.f., without loss of generalize we can set
 \end{equation}
 and calculate the components of the counting form
 \begin{equation}\label{mdof_form_components}
-	\omega_{ab} = (\partial\theta)_{ab} = \begin{bmatrix}
-		0 & \delta^j_i & - \partial_{q^i} H \\
-		-\delta^i_j & 0 & - \partial_{p_i} H \\
-		\partial_{q^j} H & \partial_{p_j} H & 0
+	\omega_{ab} = (-\partial\theta)_{ab} = \begin{bmatrix}
+		0 & \delta^j_i & \partial_{q^i} H \\
+		-\delta^i_j & 0 & \partial_{p_i} H \\
+		-\partial_{q^j} H & -\partial_{p_j} H & 0
 	\end{bmatrix}.
 \end{equation}
 
 By combining \ref{mdof_displacement}, \ref{mdof_displacement_kills} and \ref{mdof_form_components} one finds
 \begin{equation}\label{mdof_Ham_eq}
 \begin{aligned}
-	S^{p_j} &= \partial_{q^j} H \\
-	S^{q^j} &= - \partial_{p_j} H
+	S^{q^j} &= \partial_{p_j} H \\
+	S^{p_j} &= - \partial_{q^j} H
 \end{aligned}
 \end{equation}
 which recovers Hamilton's equations.
@@ -252,7 +252,7 @@ In this section we will present the arguments in full, including some important 
 
 \subsection*{One degree of freedom}
 
-For the case of one degree of freedom we are going to use vector calculus. We can because the problem can be studied with three variables (position, momentum and time), which is the only setting where vector calculus truly works. In this sense, nature really gave us a hand as three dimensional spaces are much more intuitive for us, therefore we can develop the ideas in a familiar context before generalizing.
+For the case of one degree of freedom we are going to use vector calculus. This is possible since the problem can be studied with three variables (position, momentum and time), which is the only setting where vector calculus truly works. In this sense, nature gave us a hand as three dimensional spaces are much more intuitive for us, therefore we can develop the ideas in a familiar context before generalizing.
 
 We break down the problem into sequential steps, which serves as a summary for the whole argument. We will have to:
 \begin{enumerate}[label=(\roman*)]
@@ -282,7 +282,7 @@ without loss of generality.
 
 We now use the constraint \ref{sdof_time_constraint} on the time component. We have
 \begin{align*}
-	S_t = \frac{dt}{dt} &= - \left(\frac{\partial}{\partial q}  \theta_p - \frac{\partial}{\partial p}  \theta_q\right) \\
+	S^t = \frac{dt}{dt} &= - \left(\frac{\partial}{\partial q}  \theta_p - \frac{\partial}{\partial p}  \theta_q\right) \\
 	&= - \left(\frac{\partial}{\partial q}  0 - \frac{\partial}{\partial p}  \theta_q\right) \\
 	& = \frac{\partial \theta_q}{\partial p} = 1
 \end{align*}
@@ -298,19 +298,19 @@ and recovers \ref{sdof_potential_expression}.
 
 For (iii), we expand each component of \ref{sdof_displacement_potential} using \ref{sdof_potential_expression}. Again note the double role of time: $\frac{dp}{dt}$ is not the same as $\frac{\partial p}{\partial t}$.\footnote{We could be more precise and use $\tau$ for the evolution parameter, leaving $t$ just for the coordinate. The treatment would automatically acquire a relativistic flavor and would enlighten us to other interesting results, though it would distract from the main purpose of this paper, the action principle. } In the first case we are taking a total derivative along the evolution, and therefore the momentum can change. In the second case we are taking a partial derivative at constant $q$ and $p$ by definition, and therefore $\frac{\partial p}{\partial t}=0$. We have
 \begin{align*}
-	S_q = \frac{dq}{dt}
+	S^q = \frac{dq}{dt}
 	&= - \left( \frac{\partial}{\partial p} \theta_t - \frac{\partial}{\partial t} \theta_p \right) \\
 	&= - \left( \frac{\partial}{\partial p} (-H) - \frac{\partial}{\partial t} 0 \right) \\
 	& = \frac{\partial H}{\partial p}
 \end{align*}
 \begin{align*}
-	S_p = \frac{dp}{dt}
+	S^p = \frac{dp}{dt}
 	&= - \left( \frac{\partial}{\partial t} \theta_q - \frac{\partial}{\partial q} \theta_t \right) \\
 	&= - \left( \frac{\partial}{\partial t} p - \frac{\partial}{\partial q} (-H) \right) \\
 	& = - \frac{\partial H}{\partial q}
 \end{align*}
 \begin{align*}
-	S_t = \frac{dt}{dt}
+	S^t = \frac{dt}{dt}
 	&= - \left( \frac{\partial}{\partial q} \theta_p - \frac{\partial}{\partial p} \theta_q \right) \\
 	&= - \left( \frac{\partial}{\partial q} 0 - \frac{\partial}{\partial p} p \right) \\
 	& = 1
@@ -570,21 +570,21 @@ We now turn to assumption \ref{assum_indep}. This requires the count of states t
 	\Omega = \omega^N.
 \end{equation}
 
-Given that $\Omega$ is closed, we have
+Using assumptions \ref{assum_detrev} and \ref{assum_indep} again we can see how $\omega$ must be closed
 \begin{equation}
-	\begin{aligned}
-		\partial \Omega &= \partial \omega \wedge \omega^{N-1} = 0 \\
-		\partial \omega &= 0
-	\end{aligned}
+	\partial \omega = 0.
 \end{equation}
-which means that $\omega$ is also closed. This result can be also argued on physical grounds. If we imagine to translate a surface along an independent variable, the number of configurations identified by the surface cannot change. Therefore, if we imagine a parallelopiped, opposite sides must identify the same number of configurations. The integral will take the sides with an opposite orientation, and therefore there will be zero net contribution.
-
+If we imagine translating a surface along an independent variable, the number of configurations identified by the surface cannot change. This uses \ref{assum_indep}. If we imagine translating in time, again the number of configurations cannot change because of \ref{assum_detrev}. Therefore, if we imagine a parallelopiped, opposite sides must identify the same number of configurations. The integral will take the sides with an opposite orientation, and therefore there will be zero net contribution. It is interesting to note that this condition requires both assumptions.
 
 Putting it all together, assuming \ref{assum_detrev} and \ref{assum_indep} gives us the existence of the displacement vector field $\vec{S}$ and the closed counting two-form $\omega$ such that $\vec{S}$ identifies the only vector field that kills $\omega$.
 
-The converse is also true: if we start with the mathematical requirements, we can recover the physical assumptions. If the displacement vector field $\vec{S}$ is the only vector field that kills the two-form $\omega$, then $\Omega = \omega^N$ is a non-zero closed form. The displacement is well defined and it is paired of a flow that conserves the count of states, therefore the system is deterministic and reversible. The degrees of freedom are independent because $\Omega = \omega^N$, and we can recover a suitable set of independent state variables.
+The converse is also true: if we start with the mathematical requirements, we can recover the physical assumptions. If we are given a two-form $\omega$ on a $2N+1$ dimensional space, we can define the $2N$ form $\Omega = \omega^N$. This form will be non-zero because $\vec{S}$ is the only vector field that kills the two-form $\omega$. It will also be closed since
+\begin{equation}
+	\partial \Omega = \partial \omega \wedge \omega^{N-1} = 0.
+\end{equation}
+So the flow of the well defined displacement field $\vec{S}$, as measured by $\Omega$, is zero through closed surfaces. This implies \ref{assum_detrev}.
 
-If each pair of state variables $q^i$, $p_i$ forms an independent degree of freedom, the only surfaces spanned by matching position and momentum will define actual configurations, while all other combinations will not define any. Therefore:
+To obtain \ref{assum_indep}, if each pair of state variables $q^i$, $p_i$ forms an independent degree of freedom, only the surfaces spanned by matching position and momentum will define actual configurations, while all other combinations will not define any. Therefore:
 \begin{equation}\label{canonical_conditions}
 	\begin{aligned}
 		\omega(e^{q^i}, e^{p_j}) = \omega_{q^i p_j} &= \delta^i_j = - \omega_{p_j q^i} \\
@@ -592,19 +592,18 @@ If each pair of state variables $q^i$, $p_i$ forms an independent degree of free
 		\omega(e^{p_i}, e^{p_j}) = \omega_{p_i p_j} &= 0
 	\end{aligned}
 \end{equation}
-If we start with a closed form $\omega$ that has a single degenerate direction, by Darboux theorem we can find coordinates for the non-degenerate part $\omega$ that satisfy the above conditions.
+If we start with a closed form $\omega$ that has a single degenerate direction, by Darboux theorem we can find coordinates for the non-degenerate part $\omega$ that satisfy the above conditions. This recovers \ref{assum_indep}.
 
 Note that we have broken down exactly how each assumptions contributes to the mathematical setting. If \ref{assum_indep} fails, then $\Omega$ cannot be understood as $\omega^N$, which means we have much fewer condition on the motion: we only know that the total flow is conserved, but we cannot break it down along each d.o.f.. On the other hand, if \ref{assum_detrev} we may not have a single displacement field $\vec{S}$ and/or the form that counts states would not be closed. This type of exact mapping between assumptions and their mathematical expression is one of the key goals of Reverse Physics in particular and our overall project Assumptions of Physics more in general.
 
-For (ii)
-
-Those familiar with symplectic and contact geometry will recognize that conditions \ref{canonical_conditions} mean that $q^i$ and $p_i$ are canonical coordinates and, by Darboux's theorem, we will be able to write the covector potential as
-\begin{equation}\label{mdof_potential_expression}
+For (ii), we note that since the form is closed, we can find a covector potential $\theta$ such that $\omega=\partial \theta$. Those familiar with symplectic and contact geometry will know that using Darboux's theorem, we can find a set of coordinates such that we can express $\theta$ as
+\begin{equation}
+	\tag*{(\ref{mdof_potential_expression})}
 	\theta = p_i e^{q^i} - H e^t.
 \end{equation}
-Let us convince ourselves of this result by constructing a proof that is similar to what we have done for the single degree of freedom.
+Just stating this is, of course, not very insightful. To gain more insight, we provide the sketch of a proof that, as we have done for the single degree of freedom, uses gauge transformations to fix the form of the potential. 
 
-First, we express \ref{canonical_conditions} in terms of the covector potential. We have:
+As a starting point, we take conditions \ref{canonical_conditions} that state mathematically that $q^i$ and $p_i$ form independent degrees of freedom. We re-express those conditions in terms of the potential $\theta$
 \begin{equation}\label{canonical_potential_conditions}
 \begin{aligned}
 	\omega(e^{q^i}, e^{p_j}) &= (-\partial\theta)_{q^i p_j} = -(\partial_{q^i}\theta_{p_j} - \partial_{p_j}\theta_{q^i}) = \delta^i_j \\
@@ -621,99 +620,124 @@ Note that the components for the first degree of freedom do not depend on the ot
 
 We can then use, again, our gauge freedom with a function that does not depend on the first two variables to set $\theta_{p_2} = 0$. And, with the same reasoning, we will be able to set $\theta_{q^2} = p_2$. And then, again, find that the first two degrees of freedom do not depend on the others, etc. At the end, we will find \ref{mdof_potential_expression}.
 
-At this point, we calculate $\partial\theta(S, \cdot ) $. The components of $\partial\theta$ are:
-\begin{equation*}
-	(\partial\theta)_{ab} = \begin{bmatrix}
-		0 & \delta^j_i & - \partial_{q^i} H \\
-		-\delta^i_j & 0 & - \partial_{p_i} H \\
-		\partial_{q^j} H & \partial_{p_j} H & 0
-	\end{bmatrix}
-\end{equation*}
-We have
-\begin{align*}
-	\partial\theta(S, \cdot )  &= S^a (\partial\theta)_{ab} e^b = 0 \\
-	&= (S^{q^i}(\partial\theta)_{q^ib} + S^{p_i}(\partial\theta)_{p_ib} + S^{t}(\partial\theta)_{tb}) e^b \\
-	&= (S^{q^i}(\partial\theta)_{q^iq^j} + S^{p_i}(\partial\theta)_{p_iq^j} + S^{t}(\partial\theta)_{tq^j}) e^{q^j} + \\
-	& (S^{q^i}(\partial\theta)_{q^ip_j} +  S^{p_i}(\partial\theta)_{p_ip_j} + S^{t}(\partial\theta)_{tp_j}) e^{p_j} + \\
-	& (S^{q^i}(\partial\theta)_{q^it} + S^{p_i}(\partial\theta)_{p_it} + S^{t}(\partial\theta)_{tt}) e^t \\
-	&= (-S^{p_i}\delta^i_j + S^{t}\partial_{q^j} H ) e^{q^j} + \\
-	& (S^{q^i}\delta^j_i +  S^{t}\partial_{p_j} H) e^{p_j} + \\
-	& (-S^{q^i} \partial_{q^i} H - S^{p_i} \partial_{p_i} H) e^t \\
-\end{align*}
+The insight is that the independence of the degree of freedom leads to the independent expression of the components of the covector potential. We stress again that this is a choice, and that the specific expression of the components is not physically constrained.
 
-All components must be zero, therefore we have the following three equations:
-\begin{align*}
-	S^{p_j} &= S^{t} \partial_{q^j} H \\
-	S^{q^j} &= - S^{t}\partial_{p_j} H \\
-	-S^{q^i} \partial_{q^i} H - S^{p_i} \partial_{p_i} H &= S^{t}\partial_{p_i} H \partial_{q^i} H - S^{t} \partial_{q^i} H \partial_{p_i} H = 0
-\end{align*}
-Note that the last expression is not a new equation: it is identical to zero given the previous two equations. Since $S^t = 1$, we have:
-\begin{align*}
-	S^{p_j} &= \partial_{q^j} H \\
-	S^{q^j} &= - \partial_{p_j} H
-\end{align*}
-which recovers Hamilton's equations for multiple degrees of freedom.
+The components of $\partial\theta$ are
+\begin{equation}
+	\begin{aligned}
+		(\partial\theta)_{q^i p_j} &= \partial_{q^i}\theta_{p_j} - \partial_{p_j}\theta_{q^i} = \partial_{q^i} 0 - \partial_{p_j} p_i= - \delta^i_j \\
+		(\partial\theta)_{q^i q^j} &= \partial_{q^i}\theta_{q^j} - \partial_{q^j}\theta_{q^i} = \partial_{q^i}p_j - \partial_{q^j}p_i = 0 \\
+		(\partial\theta)_{p_i p_j} &= \partial_{p_i}\theta_{p_j} - \partial_{p_j}\theta_{p_i} = \partial_{p_i} 0 - \partial_{p_j} 0 = 0 \\
+		(\partial\theta)_{q^i t} &= \partial_{q^i}\theta_{t} - \partial_{t}\theta_{q^i} = \partial_{q^i} (-H) - \partial_{t} p_i= - \partial_{q^i} H \\
+		(\partial\theta)_{p_i t} &= \partial_{p_i}\theta_{t} - \partial_{t}\theta_{p_i} = \partial_{p_i} (-H) - \partial_{t} 0= - \partial_{p_i} H \\
+	\end{aligned}
+\end{equation}
+Therefore we recover
+\begin{equation}
+	\tag*{(\ref{mdof_form_components})}
+	\omega_{ab}=(-\partial\theta)_{ab} = \begin{bmatrix}
+		0 & \delta^j_i & \partial_{q^i} H \\
+		-\delta^i_j & 0 & \partial_{p_i} H \\
+		- \partial_{q^j} H & - \partial_{p_j} H & 0
+	\end{bmatrix}.
+\end{equation}
 
-Once again, we have found that the whole physical content is included in condition \ref{Detrev_assumptions}. The geometry in the extended phase space is fully specified by the state counting form $\omega$. This does not define lengths and angles, like the metric tensor does for a more standard geometric setting. It defines areas of two-dimensional surfaces in terms of states, and angles between two-dimensional surfaces in terms of the degree of independence between degrees of freedom. What the equations say is simply that states move in time at the same rate (i.e. $\frac{dt}{dt} = 1$) with a deterministic and reversible flow (i.e. no states are created or destroyed on any independent degree of freedom).
-
-\subsection{Action principle}
-Having reformulated Hamiltonian mechanics in the extended phase space using the language of differential geometry, the geometrical interpretation of the action principle is essentially the same.
-
-The Lagrangian is equal to the potential covector applied to the displacement along a generic path. That is
+For (iii) we calculate $\omega(S, \cdot ) $. We have
 \begin{equation}
 \begin{aligned}
-L &= \theta\left(\frac{d\vec{\gamma}}{dt}\right) = \theta_a \frac{d\xi^a}{dt} \\
-&= p_i \frac{dq^i}{dt} + 0 \frac{dp_i}{dt} - H \frac{dt}{dt} \\
-&= p_i \frac{dq^i}{dt} - H.
+	\omega(S, \cdot )  &= S^a \omega_{ab} e^b = 0 \\
+	&= (S^{q^i}\omega_{q^ib} + S^{p_i}\omega_{p_ib} + S^{t}\omega_{tb}) e^b \\
+	&= (S^{q^i}\omega_{q^iq^j} + S^{p_i}\omega_{p_iq^j} + S^{t}\omega_{tq^j}) e^{q^j} + \\
+	& (S^{q^i}\omega_{q^ip_j} +  S^{p_i}\omega_{p_ip_j} + S^{t}\omega_{tp_j}) e^{p_j} + \\
+	& (S^{q^i}\omega_{q^it} + S^{p_i}\omega_{p_it} + S^{t}\omega_{tt}) e^t \\
+	&= (-S^{p_i}\delta^i_j - S^{t}\partial_{q^j} H ) e^{q^j} + \\
+	& (S^{q^i}\delta^j_i -  S^{t}\partial_{p_j} H) e^{p_j} + \\
+	& (S^{q^i} \partial_{q^i} H + S^{p_i} \partial_{p_i} H) e^t \\
 \end{aligned}
 \end{equation}
 
-As before, we will consider the variation of the line integral $\delta \int_{\gamma} \theta(d\vec{\gamma})$, which can be expressed as
+All components must be zero, therefore we have the following three equations:
+\begin{equation}
+\begin{aligned}
+	S^{p_j} &= - S^{t} \partial_{q^j} H \\
+	S^{q^j} &= S^{t}\partial_{p_j} H \\
+	S^{q^i} \partial_{q^i} H + S^{p_i} \partial_{p_i} H &= S^{t}\partial_{p_i} H \partial_{q^i} H \\
+	& - S^{t} \partial_{q^i} H \partial_{p_i} H = 0
+\end{aligned}
+\end{equation}
+Note that the last expression is not a new equation: it is identical to zero given the previous two equations. Since $S^t = 1$, we have
+\begin{equation}
+	\tag*{(\ref{mdof_Ham_eq})}
+\begin{aligned}
+	S^{q^j} &= \partial_{p_j} H \\
+	S^{p_j} &= - \partial_{q^j} H 
+\end{aligned}
+\end{equation}
+which recovers Hamilton's equations for multiple degrees of freedom.
+
+The argument can be run in the other direction. If we have a system that obeys \ref{mdof_Ham_eq}, we can define the two-form $\omega$ using \ref{mdof_form_components}. We can verify that $\omega$ is closed, it is killed by $\vec{S}$ and recover all the starting points. Therefore we find again complete equivalence with Hamiltonian mechanics and assumptions \ref{assum_detrev} and \ref{assum_indep}.
+
+For those familiar with general relativity, recall that the metric tensor $g_{\alpha\beta}$ defines the geometry by defining lengths and angles. Here we something similar in the sense that the two-form $\omega_{ab}$ is a rank two tensor that defines the geometry of the space. The difference is that $\omega_{ab}$ does not define lengths and angles, but only areas of two-dimensional surfaces, which corresponds to the number of configuration on each independent degree of freedom. Mathematically, this difference is between the symmetry of $g_{\alpha\beta} = g_{\beta\alpha}$ and the anti-symmetry of $\omega_{ab} = -\omega_{ba}$. In this context, what the equations of motion say is that states move in time at the same rate (i.e. $\frac{dt}{dt} = 1$) with a deterministic and reversible flow (i.e. no states are created or destroyed on any independent degree of freedom). Nothing else.
+
+Comparing \ref{mdof_form_components} and \ref{mdof_Ham_eq} we see that the time components $\omega_{at}$ are actually the components of $\vec{S}$. In fact, the only non-trivial components of $\omega$ are components of $\vec{S}$. These two objects, then, are not simply related: they express the same information.
+
+For a single degree of freedom, recalling that $S^t = 1$, we can describe $\omega$ with the following nine components
+\begin{equation}\label{mdof_reduceto_sdof}
+	\omega_{ab}=(-\partial\theta)_{ab} = \begin{bmatrix}
+		0 & S^t & -S^p \\
+		-S^t & 0 & S^q \\
+		S^p & - S^q & 0
+	\end{bmatrix}.
+\end{equation}
+In three dimensions, using the Levi-Civita symbol $\epsilon^{abc}$ we can write
+\begin{equation}
+	S^a = \epsilon^{abc} \omega_{bc}
+\end{equation}
+which tells us that $\vec{S}$ is the pseudo-vector corresponding to the direction perpendicular to $\omega$. This is the same relationship that we would have, for example, for the magnetic field psuedo-vector and the spatial components of the electromagnetic field in relativity. If we express $\omega$ in terms of $\theta$, we have
+\begin{equation}
+	S^a = - \epsilon^{abc} \partial_b \theta_c
+\end{equation}
+which recovers \ref{sdof_displacement_potential}: the displacement field is minus the curl of $\omega$. Thus we can see exactly how the general case reduces to the single d.o.f. case.
+
+For (iv), we simply need to apply Stokes' theorem. The situation is identical to the one degree of freedom, except that the flow now is not given by the surface integral of $\vec{S}$, but of the form $\omega$. The path $\gamma$ and its variation $\gamma'$ will form a closed line where $\gamma'$ is taken with the opposite orientation. Because $\omega$ is closed, its surface integral depends only on its contour. Moreover, by Stoke's theorem, the flow through the surface will be equal to the integral of the potential over the contour. Putting it all together we recover \ref{mdof_action}
+\begin{equation}
+\begin{aligned}
+	- \int_{\Sigma} \omega(d\Sigma) &=
+	\int_{\Sigma} \partial \theta (d\Sigma) \\
+	&= \oint_{\partial \Sigma} \theta(d\partial\Sigma) \\
+	&= \int_{\gamma} \theta(d\gamma) - \int_{\gamma'} \theta (d\gamma') \\
+	&= \delta \int_{\gamma} \theta (d\gamma).
+\end{aligned}
+\end{equation}
+
+For (v), if the path $\gamma$ is a solution to the equation of motion, it is tangent at every point to $\vec{S}$. Therefore we can write $d\gamma= \vec{S} dt$. Each infinitesimal surface element $d\Sigma$ between the line and the variation will have $d\gamma$ as one side. Let us casll $d\lambda$ the other side, which is the displacement that takes the path to the variation. We have:
+\begin{equation}
+\begin{aligned}
+	-\int_\Sigma \omega(d\Sigma) &= -\int_\Sigma \omega(d\gamma, d\lambda) \\
+	&= -\int_\Sigma \omega(\vec{S}, d\lambda) dt = 0.
+\end{aligned}
+\end{equation}
+The converse is also true: suppose the flow through $\gamma$ and $\gamma'$ is zero no matter the choice of gamma, this means that at every point $\omega(d\gamma, \cdot) dt = 0$, which means $d\gamma$ kills $\omega$. But since $\vec{S}$ is the only direction that kills $\omega$ at every point, $d\gamma$ must be everywhere tangent to $\vec{S}$ and therefore $\gamma$ is a solution of the equations of motion.
+
+For (vi), the argument is exactly the same as in the single d.o.f.. As the evolution is differentiable, the velocity $\dot{q}^i = \frac{dq^i}{dt}$ is well defined. Under \ref{assum_kineq} there exists an invertible map $p_i=p_i(q^j, \dot{q}^j, t)$ that allows us to reconstruct the momentum at a given time by knowing position and velocity. We can therefore express the principle of stationary action only in terms of position and velocity. We have
 \begin{equation}
 	\begin{aligned}
-		\int_A^B \theta(d\vec{\gamma}) &= \int^{t_1}_{t_0} \theta\left(\frac{d\vec{\gamma}}{dt}\right) dt \\
-		&= \int^{t_1}_{t_0} \left(p_i \frac{dq^i}{dt} - H \right) dt
+		\delta \int_\gamma \theta (d\gamma) &= \delta \int^{t_2}_{t_1} \theta \left(\frac{d\gamma}{dt} dt\right) \\
+		&= \delta \int^{t_2}_{t_1} \left(\theta_{q^i} \frac{dq^i}{dt} + \theta_{p_i} \frac{dp^i}{dt} + \theta_t \frac{dt}{dt}\right) dt \\
+		&= \delta\int^{t_2}_{t_1} \left(p_i \frac{dq^i}{dt} + 0 \frac{dp_i}{dt} - H \frac{dt}{dt}\right) dt \\
+		&= \delta \int^{t_2}_{t_1} \left(p_i \frac{dq^i}{dt} - H\right) dt \\
+		&= \delta \int^{t_2}_{t_1} L(q^i, \dot{q}^i, t) \, dt.
 	\end{aligned}
 \end{equation}
-The original path $\gamma$ together with its variation $\gamma'$ form a contour $\partial \Sigma$. We can then use Stokes' theorem to transform the line integral of $\theta$ to a surface integral of its exterior derivative. That is:
-\begin{align*}
-	\delta \int_{\gamma} \theta(d\vec{\gamma}) = 
-	&= \int_{\gamma} \theta(d\vec{\gamma}) - \int_{\gamma'} \theta(d\vec{\gamma}') \\
-	&= \oint_{\partial \Sigma} \theta(d\vec{\gamma}) \\
-	&= \iint_{\Sigma} \partial \theta (d\Sigma) \\
-	&= - \iint_{\Sigma} \omega(d\Sigma).
-\end{align*}
-At each point, one side of $d\Sigma$ will be $d\vec{\gamma}$, therefore $\omega(d\Sigma) = \omega(d\vec{\gamma}, d\vec{\lambda})$ where $d\vec{\lambda}$ is the direction of the variation. If $\gamma$ is an actual evolution, $d\vec{\gamma} = \vec{S} dt$ and, by \ref{mdof_displacement_kills}, we have
-\begin{equation}
-	\begin{aligned}
-	\delta \int_{\gamma} \theta (d\vec{\gamma}) &= - \iint_{\Sigma} \omega(d\Sigma) \\
-	&= - \iint_{\Sigma} \omega(d\vec{\gamma}, d\vec{\lambda}) \\
-	&= - \iint_{\Sigma} \omega(\vec{S}, d\vec{\lambda}) dt \\
-	&= - \iint_{\Sigma} 0 = 0
-	\end{aligned}
-\end{equation}
+This recovers the principle of stationary action in standard form.
 
-The action principle, then, is a direct consequence of the geometry set by \ref{mdof_closed_form} and \ref{mdof_displacement_kills}, which is the generalization of the divergence-free nature of the displacement field $\vec{S}$. Every evolution $\gamma$ is a field line of $\vec{S}$. Any infinitesimal surface $d\Sigma$ enclosed by an evolution and its variation, then, will also be tangent to the displacement field $\vec{S}$ and therefore will contribute no states, $\omega(d\Sigma)$ will be zero. Given that $\omega$ is closed, the integral over $\Sigma$ can be expressed as the line integral of the covector potential $\theta$ over the contour of $\Sigma$.
-
-\subsection{Discussion}
-
-Apart from the technicalities needed to properly frame the problem, multiple degrees of freedom do not add much conceptually. All geometrical and physical content within the theory is about counting states and keeping track of how they move in time, which is done by the two-form $\omega$. As before, the assumption of deterministic and reversible evolution does all the work.
-
-The additional key assumption is that the degrees of freedom must be independent. If the degrees of freedom were not independent, then the number of states within a four-dimensional parallelepiped would not be given by the product of the count of states on the sides. We would need additional structure. If the degrees of freedom started independent but didn't remain so, the displacement field $\vec{S}$ would only preserve the count of states of volumes, not over each degree of freedom, and therefore $\omega(\vec{S}, \cdot) \neq 0$.
+Again, the argument can proceed in the opposite direction. If we have a system for which the principle of stationary action yields a unique solution, we can write $p_i = \frac{\partial L}{\partial \dot{q}^i} = p_i(q^j, \dot{q}^j, t)$. This means that we can reconstruct the momentum from the kinematics, and therefore \ref{assum_kineq} is satisfied. Moreover, we can define a Hamiltonian $H = p_i \dot{q}^i - L$ such that the paths that satisfy the equations of motion \ref{mdof_Ham_eq} are exactly those that satisfy the principle of stationary action. Therefore the system satisfies \ref{assum_detrev} and \ref{assum_indep} as well.
 
 The comments on the lack of strict physicality for the values of the Lagrangian and the action remain unchanged. They both depend on a choice of gauge. The comment on the centrality of the extended phase space to understand the action principle is only reinforced. Additionally, note that by changing $t$ to $ct$ expression \ref{mdof_potential_expression} becomes
 \begin{equation}\label{mdof_potential_relativistic}
 	\theta = p_i e^{q^i} - \frac{H}{c} e^{ct}.
 \end{equation}
 which bears striking resemblance to the relativistic four-momentum. While it goes outside the scope of this article, the idea is that, in this setting, we already have some pre-relativistic features, even though we have not introduced a metric tensor.
-
-\section{Conclusion}
-
-We have given a geometrical interpretation of the principle of stationary action that is also fully physically motivated by the assumption of deterministic and reversible evolution. The key insight is that a path $\gamma$ and a variation form a closed curve which encloses a surface $\Sigma$. If the path is an actual evolution for the system, all states flow along the surface $\Sigma$, not through it. Using Stokes' theorem, the zero flow condition through the surface $\Sigma$ is transformed to a zero integral condition on its boundary (i.e. on the path $\gamma$ and its variation) leading to the principle of least action.
-
-We have seen that both the Lagrangian and the action depend on the potential, which means they are gauge dependent. This makes the numerical values of those objects not strictly physical. We have seen that the interpretation given also works for those Hamiltonian systems that do not have a corresponding Lagrangian, meaning that the most general expression for the action principle lies on the extended-phase-space Hamiltonian formulation of classical mechanics. We have seen that elements from symplectic and contact geometry are needed for the generalization to multiple degrees of freedom and that they can be formulated in a language that is less abstract and closer to physics conventions.
-
-All considered, we believe this way of looking at classical mechanics provides a more complete characterization and better insights than the usual treatments.
 
 
 \end{document}
