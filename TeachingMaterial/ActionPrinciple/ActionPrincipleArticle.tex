@@ -70,7 +70,7 @@ that tells how states move in time.\footnote{Where possible, we will be writing 
 	S^t=\frac{dt}{dt}=1.
 \end{equation}
 
-If assumption \ref{assum_detrev} is valid, we expect the flow of states through a closed surface to be zero: as many states flow in and out of the region. Alternatively, if we assign a probability, or probability density, to each trajectory, the assumptions requires that probability to not change, so integrating the probability over a closed surface must yield zero. However we see it, assumption \ref{assum_detrev} means the field is divergence-free,\footnote{Given that this is a three dimensional space, we can use the standard tools of vector calculus.} that is
+If assumption \ref{assum_detrev} is valid, we expect the flow of states through a closed surface to be zero: as many states flow in and out of the region. Alternatively, if we assign a probability, or probability density, to each trajectory, the assumptions requires that probability not to change, so integrating the probability over a closed surface must yield zero. However we see it, assumption \ref{assum_detrev} means the field is divergence-free,\footnote{Given that this is a three dimensional space, we can use the standard tools of vector calculus.} that is
 \begin{equation}\label{sdof_div_free}
 	\nabla \cdot \vec{S} = \partial_a S^a = 0.
 \end{equation}
@@ -84,7 +84,7 @@ Since the displacement field is divergence-free, it admits a vector potential. W
 	&= - \epsilon^{abc} \partial_b \theta_c \, e_a. \\
 \end{aligned}
 \end{equation}
-The minus sign is introduced to match conventions in differential geometry. Mathematically, this is analogous to what is done for a magnetic field or for an incompressible fluid.
+The minus sign is introduced to match conventions. Mathematically, this is analogous to what is done for a magnetic field or for an incompressible fluid.
 
 Because the displacement field must satisfy \ref{sdof_time_constraint}, without loss of generality we can set
 \begin{equation}\label{sdof_potential_expression}
@@ -97,7 +97,7 @@ By applying definition \ref{sdof_displacement} and expanding \ref{sdof_displacem
 \begin{equation}\label{sdof_Ham_eq}
 	\left\{ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right\} = - \nabla \times \vec{\theta} = \left\{ \frac{\partial H}{\partial p},-\frac{\partial H}{\partial q}, 1 \right\},
 \end{equation}
-which yields Hamilton's equations. Note that the arguments works in reverse: any Hamiltonian system with one degree of freedom yields a divergence-free displacement field.
+which yields Hamilton's equations. Note that the arguments works in reverse: any Hamiltonian system with one degree of freedom yields a divergence-free displacement field, and therefore satisfies \ref{assum_detrev}.
 
 \begin{figure}
 	a \includegraphics[width = 0.45\textwidth]{ActionNonOptimized.png} \\
@@ -105,7 +105,7 @@ which yields Hamilton's equations. Note that the arguments works in reverse: any
 	\caption{\footnotesize{The variation of the action is the flow of the displacement field $\vec{S}$ through the surface $\Sigma$ that sits between the path $\gamma$ and its variation $\gamma'$. In the second picture we see that the flow is zero if the path is an actual evolution of the system, since the displacement field will be parallel to the path $\gamma$ and therefore the surface $\Sigma$.}}\label{fig_action}
 \end{figure}
 
-Now that we are recast Hamiltonian mechanics using vector calculus, let us start constructing the principle of stationary action. As illustrated in Fig. \ref{fig_action}a, take a path $\gamma$ with endpoints $A$ and $B$, not necessarily a solution of the equations of motion. Then take a variation $\gamma'$ of that path and identify a surface $\Sigma$ between them. We can ask: what is the flow of the displacement field $\vec{S}$ through $\Sigma$? Because $\vec{S}$ is divergence-free, the flow through $\Sigma$ will depend only on the contour, therefore the question is well posed. We find
+We now turn to constructing the principle of stationary action. As illustrated in Fig. \ref{fig_action}a, take a path $\gamma$ with endpoints $A$ and $B$, not necessarily a solution of the equations of motion. Then take a variation $\gamma'$ of that path and identify a surface $\Sigma$ between them. We can ask: what is the flow of the displacement field $\vec{S}$ through $\Sigma$? Because $\vec{S}$ is divergence-free, the flow through $\Sigma$ will depend only on the contour, therefore the question is well posed. Using Stokes' theorem, we find
 \begin{equation}\label{sdof_action}
 \begin{aligned}
 	- \iint_{\Sigma} \vec{S} \cdot d\vec{\Sigma} &= \iint_{\Sigma} \left( \nabla \times \vec{\theta} \right) \cdot d\vec{\Sigma} \\
@@ -114,32 +114,34 @@ Now that we are recast Hamiltonian mechanics using vector calculus, let us start
 \end{aligned}
 \end{equation}
 
-Now suppose $\gamma$ is a solution of the equation of motion, as in Fig. \ref{fig_action}b. Then $\gamma$ is a field line and the flow is tangent to $\Sigma$ no matter what $\gamma'$ we picked. The converse is true: if we look for those paths for which the flow through $\Sigma$ is zero no matter what $\gamma'$, we find a solution to the equation of motion. The solutions, then, are those paths and only those paths for which
+Now suppose $\gamma$ is a solution of the equation of motion, as in Fig. \ref{fig_action}b. Then $\gamma$ is a field line and the flow is tangent to $\Sigma$ no matter what $\gamma'$ we picked. The converse is true: if we look for those paths for which the flow through $\Sigma$ is zero no matter what $\gamma'$, $\gamma$ must be everywhere tangent to $\vec{S}$ so we find a solution to the equation of motion. The solutions, then, are those paths and only those paths for which
 \begin{equation}\label{sdof_stationary_action}
-	\begin{aligned}
-		0 &=\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} \\
-		&= \delta \int^{t_2}_{t_1} \vec{\theta} \cdot \frac{d\vec{\gamma}}{dt} dt \\  
-		&= \delta \int^{t_2}_{t_1} p \frac{dq}{dt} - H dt .		
-	\end{aligned}
+	0 =\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} = - \iint_{\Sigma} \vec{S} \cdot d\vec{\Sigma} 
 \end{equation}
+We say this is the principle of stationary action in Hamiltonian form.
 
-Lastly we need to be able to express conjugate momentum in terms of the velocity. This can be done if we assume that 
+The last step is to express the principle exclusively in terms of kinematic variables: position, time and velocity. This can be done if we assume that 
 \begin{align}\label{assum_kineq}
 	\tag*{(KE)}
 	\parbox{2.8in}{the kinematic of the system is enough to reconstruct its dynamics.}
 \end{align}
 This means that by looking at just the trajectory in space $q(t)$, we are able to reconstruct the state at each moment in time. Therefore we must be able to write $p=p(q,\dot{q})$, and therefore we can also write
 \begin{equation}\label{sdof_Lagrangian}
-	L(q, \dot{q}) = p(q, \dot{q}) \frac{dq}{dt} - H(q, p(q, \dot{q})).
+	\begin{aligned}
+		\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} 
+		&= \delta \int^{t_2}_{t_1} \vec{\theta} \cdot \frac{d\vec{\gamma}}{dt} dt \\  
+		&= \delta \int^{t_2}_{t_1} \left(p \frac{dq}{dt} - H \right) dt \\
+		&= \delta \int^{t_2}_{t_1}L(q, \dot{q}, t) dt = 0.
+	\end{aligned}
 \end{equation}
 
-We find that a system for which \ref{assum_detrev} and \ref{assum_kineq} are valid can be characterized in terms of the action principle with a suitable Lagrangian. The converse is also true: if the action principle allows for a unique solution, then a Hamiltonian can be written and therefore the system satisfies both \ref{assum_detrev} and \ref{assum_kineq}.
+We find that a system for which \ref{assum_detrev} and \ref{assum_kineq} are valid can be characterized in terms of the action principle with a suitable Lagrangian. The converse is also true: if the action principle allows for a unique solution, then conjugate momentum and Hamiltonian are well defined and the system satisfies both \ref{assum_detrev} and \ref{assum_kineq}.
 
 We have thus demistified the action principle, and turned it into a geometrical property: requiring the principle of stationary action is equivalent to requiring that the solutions are the field lines of a divergence-free field. We also have a clear physical meaning: the principle of stationary action is equivalent to assuming determinism/reversibility \ref{assum_detrev} and kinematic equivalence \ref{assum_kineq}. However, we do feel that the principle expresses these requirements in a very roundabout way.
 
 \section{Multiple degrees of freedom}
 
-To generalize to multiple degree of freedom we have to abandon the tools provided by vector calculus and embrace the ones provided by differential geometry. For $N$ independent degrees of freedom, we will have the $2N+1$ variables
+To generalize to multiple degree of freedom we have to abandon the tools provided by vector calculus and embrace the ones provided by differential geometry. For $N$ independent degrees of freedom, we will have the $2N+1$ manifold charted by the variables
 \begin{equation}\label{mdof_variables}
 	\xi^a = \{ q^i, p_i, t\}.
 \end{equation}
@@ -151,7 +153,7 @@ The displacement vector field will be
 \end{equation}
 which also satisfies \ref{sdof_time_constraint}.
 
-The flow of $\vec{S}$ will still be divergence-free, but this property only tells us that the total number of states is conserved. We also assumed that
+The flow of $\vec{S}$ will still be divergence-free, but this property only tells us that the total number of states is conserved. We also need to assume that
 \begin{align}\label{assum_indep}
 	\tag*{(IND)}
 	\parbox{2.8in}{the degrees of freedom are independent.}
@@ -185,15 +187,15 @@ Since $\omega$ is closed, in every contractible region it can be expressed as th
 		\omega &= - \partial \theta = - \left( \partial_a \theta_b - \partial_b \theta_a \right) e^a \otimes e^b
 	\end{aligned}
 \end{equation}
-The minus sign is the convention in symplectic geometry.
+The minus sign is required to match conventions.
 
-The above is the generalization of \ref{sdof_displacement_potential} and it is important to note the differences. The exterior derivative takes the place of the curl and it is $\omega$, not $\vec{S}$, that can be expressed in terms of the potential $\theta$. Yet, there is an important geometrical relationship we still need to take into account: the direction of the displacement does not contribute new states. Physically, this is a consequence of \ref{assum_detrev}: states cannot be created or disappear over time. There we have
+The above is the generalization of \ref{sdof_displacement_potential} and it is important to note the differences. The exterior derivative takes the place of the curl and it is $\omega$, not $\vec{S}$, that can be expressed in terms of the potential $\theta$. Yet, there is an important geometrical relationship we still need to take into account: the direction of the displacement does not contribute new states. Physically, this is a consequence of \ref{assum_detrev}: states cannot be created or disappear over time. We have
 \begin{align}\label{mdof_displacement_kills}
 	\omega(\vec{S}, \cdot) = 0.
 \end{align}
 Mathematically we say that the displacement vector kills the form, it makes it zero no matter what vector we put on the other side.
 
-Similarly to the single d.o.f., without loss of generalize we can set
+Similarly to the single d.o.f., without loss of generality we can set
 \begin{equation}\label{mdof_potential_expression}
 \begin{aligned}
 	\theta &= \{p_i, 0, -H\} \\
@@ -220,26 +222,28 @@ which recovers Hamilton's equations.
 
 The setup to recover the action principle is the same, except that we need to substitute vector calculus with differential geometry. First we find that the flow through $\Sigma$ is the variation of the action using Stokes' theorem
 \begin{equation}\label{mdof_action}
-	\begin{aligned}
-		- \iint_{\Sigma} \omega(d\Sigma) &= \delta \int_{\gamma} \theta(d\gamma) \\
-		&= \delta \int^{t_2}_{t_1} p_i \frac{dq_i}{dt} - H dt .
-	\end{aligned}
+	- \iint_{\Sigma} \omega(d\Sigma) = \delta \int_{\gamma} \theta(d\gamma) 
 \end{equation}
-If $\gamma$ is a solution of the equations of motions, then $\frac{d\gamma}{dt} = \vec{S}$. By \ref{mdof_displacement_kills}, $\vec{S}$ is the only vector field that kill the form $\omega$ therefore
+If $\gamma$ is a solution of the equations of motions, then $\frac{d\gamma}{dt} = \vec{S}$. By \ref{mdof_displacement_kills}, $\vec{S}$ is the only vector field that kill the form $\omega$ therefore the solutions are such that
 \begin{equation}\label{mdof_stationary_action}
+		0 = \delta \int_{\gamma} \theta(d\gamma) = - \iint_{\Sigma} \omega(\vec{S}, d\lambda) dt. 
+\end{equation}
+
+Adding assumption \ref{assum_kineq}, we can express the variational principle in the usual form
+\begin{equation}\label{mdof_Lagrangian}
 	\begin{aligned}
-		- \iint_{\Sigma} \omega(d\Sigma) &= \iint_{\Sigma} \omega(\vec{S}, d\lambda) dt = 0
+		\delta \int_{\gamma} \theta(d\gamma) &= \delta \int^{t_2}_{t_1} p_i \frac{dq_i}{dt} - H dt \\
+		 &= \delta \int^{t_2}_{t_1}L(q^i, \dot{q}^i, t) dt = 0.
 	\end{aligned}
 \end{equation}
-only for the solutions. This recovers the action principle for multiple degrees of freedoms.
 
 \section{Discussion and conclusions}
 
 We have found that the principle of stationary action is equivalent to assumptions \ref{assum_detrev}, \ref{assum_indep} and \ref{assum_kineq} and that the variation of the action can be understood as the flow of evolutions through the surface delimited by the path and its variation. This allows us to fully understand both the physical and geometrical significance of the principle in a much more precise way.
 
-Note that the true physical content is in the displacement field $\vec{S}$ and the counting form $\omega$ whose properties descend from the assumption. Both the Lagrangian and the potential $\theta$ are not uniquely defined and are subject to a convenient, though still arbitrary, choice of gauge. The Lagrangian and the action, then, do not directly encode physical property of the system. Saying that ``nature chooses the path that minimizes the action'', therefore, is not really that insightful because such a quantity is not even uniquely defined. On the other hand, the three equivalent assumptions give us a much more clear picture.
+Note that the true physical content is in the displacement field $\vec{S}$ and the counting form $\omega$ whose properties descend from the assumption. Both the Lagrangian and the potential $\theta$ are not uniquely defined and are subject to a convenient, though still arbitrary, choice of gauge. The Lagrangian and the action, then, do not directly encode physical property of the system. Saying that ``nature chooses the path that minimizes the action'', therefore, is not really that insightful because such a quantity is not uniquely defined. On the other hand, the three equivalent assumptions give us a much more clear picture.
 
-Another interesting element is that a version of the principle of stationary actions holds even if \ref{assum_kineq} does not apply. In this case the ``Lagrangian'' $L(q,\dot{q},p)$ depends on conjugate momentum as well. Also note that the cases where the Lagrangian does not admit a Hamiltonian are exactly the cases where the action principle fails to yield a unique solution. In this sense, the action principle is better understood as a feature of Hamiltonian mechanics, instead of Lagrangian mechanics.
+Another interesting element is that a version of the principle of stationary actions holds even if \ref{assum_kineq} does not apply. In this case the ``Lagrangian'' $L(q,\dot{q},p,t)$ depends on conjugate momentum as well. Also note that the cases where the Lagrangian does not admit a Hamiltonian are exactly the cases where the action principle fails to yield a unique solution. In this sense, the action principle is better understood as a feature of Hamiltonian mechanics, instead of Lagrangian mechanics.
 
 As a final comment, note that privileging the Hamiltonian picture is more in line with quantum mechanics; the idea of $\omega$ as a tool to count states is in line with statistical mechanics; the expression \ref{mdof_potential_expression} is remarkably similar to that of the relativistic four-momentum. This is one of the key insights we get from our Reverse Physics approach: there is a unity among the different physical theories that begs to be brought to light. We are convinced that a version of this geometrical understanding must exist in the quantum world.
 
