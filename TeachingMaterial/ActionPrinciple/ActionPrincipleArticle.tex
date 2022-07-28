@@ -252,107 +252,164 @@ As a final comment, note that privileging the Hamiltonian picture is more in lin
 
 \section*{Appendix}
 
-In this section we will present the arguments in full, including some important mathematical details. Given that this article is still aimed at a physics audience, rather than on mathematical rigor, will be on a precise map between physical concepts and their mathematical representation. We divide the appendix into three section: the first will address the single d.o.f. case, the second will give a geometric interpretation of the tools of differential geometry that is suitable for physicists, and lastly we address the multiple d.o.f. case.
+In this section we will review the arguments in more detail. Given that this article is still aimed at a physics audience, the focus will be conceptual rigor, rather than mathematical rigor. What is important is to establish a precise map between physical concepts and their mathematical representation, so that it is clear what physical requirement is captured by each mathematical definition.
+
+We divide the appendix into three section: the first will address the single d.o.f. case, the second will give a geometric interpretation of the tools of differential geometry that is suitable for physicists, and lastly we address the multiple d.o.f. case.
 
 \subsection*{One degree of freedom}
 
-For the case of one degree of freedom we are going to use vector calculus. This is possible since the problem can be studied with three variables (position, momentum and time), which is the only setting where vector calculus truly works. In this sense, nature gave us a hand as three dimensional spaces are much more intuitive for us, therefore we can develop the ideas in a familiar context before generalizing.
+For the case of one degree of freedom we are going to use vector calculus. This is possible since the problem can be studied with three variables (position, momentum and time)
+\begin{equation}
+\tag*{(\ref{sdof_variables})}
+	\xi^a = \{ q, p, t\}
+\end{equation}
+which is the only setting where vector calculus truly works. In this sense, nature gave us a hand as three dimensional spaces are much more intuitive for us, and we can therefore develop the ideas in a familiar context before generalizing.
 
 We break down the problem into sequential steps, which serves as a summary for the whole argument. We will have to:
 \begin{enumerate}[label=(\roman*)]
-	\item show that assuming determinism and reversibility \ref{assum_detrev} is equivalent to assuming that the displacement field $\vec{S}$ defined in \ref{sdof_displacement} exists and is divergence-free as in \ref{sdof_div_free}
+	\item show that assuming determinism and reversibility \ref{assum_detrev} is equivalent to assuming the existence of the displacement field $\vec{S}$ defined in \ref{sdof_displacement} and its being divergence-free as in \ref{sdof_div_free}
 	\item show that the vector potential $\vec{\theta}$ for $\vec{S}$ defined in \ref{sdof_displacement_potential} can be expressed, without loss of generality, as \ref{sdof_potential_expression}
 	\item show that \ref{sdof_div_free} and \ref{sdof_potential_expression} recover Hamilton's equations as in \ref{sdof_Ham_eq}
 	\item show that the flow of $\vec{S}$ through a surface $\Sigma$ delimited by a path $\gamma$ and its variation $\gamma'$ is the variation of the integral of the vector potential, as claimed in \ref{sdof_action}
-	\item show that the action is stationary for and only for the solutions of the equations of motion
-	\item show that the action can be expressed as functions of position, velocity and time if and only if \ref{assum_kineq} applies.
+	\item show that the integral of the vector potential is stationary for and only for the solutions of the equations of motion
+	\item show that the integral of the vector potential reduces to the action if and only if \ref{assum_kineq} applies.
 \end{enumerate}
 
 For (i), determinism and reversibility means that giving the state at some point in time means constraining the state at all times, that the system can evolve in only one way. In math terms, if $X$ is the manifold of all possible states at times, given $P = \{q_0, p_0, t_0\}$ there will be only one possible evolution $\gamma : \mathbb{R} \to X$ such that $\gamma(t_0) = P$.
 
-If $X$ were in a space, the previous mathematical condition would be sufficient, but on a manifold it is not. Consider a damped harmonic oscillator: it satisfies the previous condition, yet the system will concentrate at the equilibrium. What needs to happen is that densities also need to be mapped. That is, if a certain fraction of the system is in a given initial state, the same fraction of the system must be in the corresponding final state. Equivalently, if the system has a given probability of starting in a given initial state, it must have the same probability of ending in the corresponding final state. In mathematical terms, if $\rho : X \to \mathbb{R}$ is a statistical distribution (or a probability density) defined on our extended space time and $\gamma$ is a possible evolution, we must have $\rho(\gamma(t_0)) = \rho(\gamma(t_1))$.
+If $X$ were a discrete space, the previous mathematical condition would be sufficient, but on a manifold it is not. Consider a damped harmonic oscillator: it satisfies the previous condition, yet the system will concentrate at the equilibrium. What needs to happen is that densities also need to be mapped exactly. That is, if a certain fraction of the system is in a given initial state, the same fraction of the system must be in the corresponding final state. Equivalently, if the system has a given probability of starting in a given initial state, it must have the same probability of ending in the corresponding final state. In mathematical terms, if $\rho : X \to \mathbb{R}$ is a statistical distribution (or a probability density) defined on our extended space time and $\gamma$ is a possible evolution, we must have $\rho(\gamma(t_0)) = \rho(\gamma(t_1))$.
 
-This requirement tells us two things. First, is that $X$ must be a differentiable manifold. To define densities over a set of variables and map them back and forward in time Jacobians must be defined, which means the derivative across state variables must be defined as well, in particular with respect with time, which plays the double role of a coordinate of $X$ and the evolution parameter. This means that the evolutions must be differentiable curves and therefore $\vec{S}$ must be defined which leads to \ref{sdof_displacement}. The double role of time gives us \ref{sdof_time_constraint}.
+This requirement tells us two things. First, is that $X$ must be a differentiable manifold. To define densities over a set of variables and map them back and forward in time Jacobians must be defined, which means the derivative across state variables must be defined as well, in particular with respect with time, which plays the double role of a coordinate of $X$ and the evolution parameter. This means that the evolutions must be differentiable curves and therefore $\vec{S}$ must be defined which leads to
+\begin{equation}
+\tag*{(\ref{sdof_displacement})}
+	\begin{aligned}
+		\vec{S} &= \left\{ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right\} \\
+		&= S^a e_a = \frac{d\xi^a}{dt} e_a .
+	\end{aligned}
+\end{equation}
+The double role of time gives us
+\begin{equation}
+\tag*{(\ref{sdof_time_constraint})}
+ 	S^t=\frac{dt}{dt}=1.
+ \end{equation}
 
-Secondly, since the densities must be constant over evolutions, the flow of these densities through a closed surface in $X$ must be zero: each evolution will enter and exit the region delimited by the surface, giving no net contribution. Mathematically this requires the displacement to be divergence-free, which leads to \ref{sdof_div_free}.
+Secondly, since the densities must be constant over evolutions, the flow of these densities through a closed surface in $X$ must be zero: each evolution will enter and exit the region delimited by the surface, giving no net contribution. Mathematically this requires the displacement to be divergence-free, which leads to
+\begin{equation}
+\tag*{(\ref{sdof_div_free})}
+	\nabla \cdot \vec{S} = \partial_a S^a = 0.
+\end{equation}
 
-For (ii), since $\vec{S}$ is divergence-free, we can find a vector potential as shown in \ref{sdof_displacement_potential}. Note that the vector potential is not uniquely identified, since $\nabla \times(\vec{\theta} + \nabla f) = \nabla \times \vec{\theta}$ and therefore the displacement field $\vec{S}$ remains unchanged. This is what is commonly referred to as gauge freedom in physics, and it is analogous to what happens for a magnetic field or for an incompressible fluid.
+For (ii), since $\vec{S}$ is divergence-free, we can find a vector potential
+\begin{equation}
+\tag*{(\ref{sdof_displacement_potential})}
+	\begin{aligned}
+		\vec{\theta} &= \{\theta_q, \theta_p, \theta_t\} \\
+		&= \theta_a e^a \\
+		\vec{S} &= - \nabla \times \vec{\theta} \\
+		&= - \epsilon^{abc} \partial_b \theta_c \, e_a. \\
+	\end{aligned}
+\end{equation}
+Note that the vector potential is not uniquely identified, since $\nabla \times(\vec{\theta} + \nabla f) = \nabla \times \vec{\theta}$ and therefore the displacement field $\vec{S}$ remains unchanged. This is what is commonly referred to as gauge freedom in physics, and it is analogous to what happens for a magnetic field or for an incompressible fluid.
 
 We use this gauge freedom to set the momentum component to zero. In fact, we can always choose $f(q,p,t)$ such that $\partial_p f = -\theta_p$ and redefine $\vec{\theta}$ to be $\vec{\theta} + \nabla f$. Therefore we can set
-\begin{equation*}
+\begin{equation}
 	\vec{\theta} = \{\theta_q, 0, \theta_t\}
-\end{equation*}
+\end{equation}
 without loss of generality.
 
 We now use the constraint \ref{sdof_time_constraint} on the time component. We have
-\begin{align*}
+\begin{align}
 	S^t = \frac{dt}{dt} &= - \left(\frac{\partial}{\partial q}  \theta_p - \frac{\partial}{\partial p}  \theta_q\right) \\
 	&= - \left(\frac{\partial}{\partial q}  0 - \frac{\partial}{\partial p}  \theta_q\right) \\
 	& = \frac{\partial \theta_q}{\partial p} = 1
-\end{align*}
+\end{align}
 Integrating, we have $\theta_q = p + g(q,t)$ where $g(q,t)$ is an arbitrary function. This function can be set to zero without loss of generality as it can be removed with a gauge transformation where $f(q,t)$ does not depend on $p$, and therefore $\theta_p$ will remain unchanged. Therefore we have:
-\begin{equation*}
+\begin{equation}
 	\vec{\theta} = \{p, 0, \theta_t\}
-\end{equation*}
+\end{equation}
 Lastly, we rename the last component as $\theta_t = -H$ which leads to 
-\begin{equation*}
-	\vec{\theta} = \{p, 0, -H\}
-\end{equation*}
-and recovers \ref{sdof_potential_expression}.
+\begin{equation}
+\tag*{(\ref{sdof_potential_expression})}
+	\begin{aligned}
+		\vec{\theta} &= \{p, 0, -H\} \\
+		&= p e^q - H e^t.
+	\end{aligned}
+\end{equation}
 
 For (iii), we expand each component of \ref{sdof_displacement_potential} using \ref{sdof_potential_expression}. Again note the double role of time: $\frac{dp}{dt}$ is not the same as $\frac{\partial p}{\partial t}$.\footnote{We could be more precise and use $\tau$ for the evolution parameter, leaving $t$ just for the coordinate. The treatment would automatically acquire a relativistic flavor and would enlighten us to other interesting results, though it would distract from the main purpose of this paper, the action principle. } In the first case we are taking a total derivative along the evolution, and therefore the momentum can change. In the second case we are taking a partial derivative at constant $q$ and $p$ by definition, and therefore $\frac{\partial p}{\partial t}=0$. We have
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 	S^q = \frac{dq}{dt}
 	&= - \left( \frac{\partial}{\partial p} \theta_t - \frac{\partial}{\partial t} \theta_p \right) \\
 	&= - \left( \frac{\partial}{\partial p} (-H) - \frac{\partial}{\partial t} 0 \right) \\
 	& = \frac{\partial H}{\partial p}
-\end{align*}
-\begin{align*}
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
 	S^p = \frac{dp}{dt}
 	&= - \left( \frac{\partial}{\partial t} \theta_q - \frac{\partial}{\partial q} \theta_t \right) \\
 	&= - \left( \frac{\partial}{\partial t} p - \frac{\partial}{\partial q} (-H) \right) \\
 	& = - \frac{\partial H}{\partial q}
-\end{align*}
-\begin{align*}
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
 	S^t = \frac{dt}{dt}
 	&= - \left( \frac{\partial}{\partial q} \theta_p - \frac{\partial}{\partial p} \theta_q \right) \\
 	&= - \left( \frac{\partial}{\partial q} 0 - \frac{\partial}{\partial p} p \right) \\
 	& = 1
-\end{align*}
-We have recovered Hamilton's equations \ref{sdof_Ham_eq} as the equations for a deterministic and reversible system. The only thing that the equations say is that states move in time at the same rate (i.e. $\frac{dt}{dt} = 1$) with an incompressible flow (i.e. no states are created or destroyed). That is the whole physical and geometrical content of those equations.
+\end{aligned}
+\end{equation}
+We have recovered Hamilton's equations
+\begin{equation}
+\tag*{(\ref{sdof_Ham_eq})}
+\begin{aligned}
+	\frac{dq}{dt} &= \frac{\partial H}{\partial p} \\
+	\frac{dp}{dt} &=-\frac{\partial H}{\partial q}
+\end{aligned}
+\end{equation}
+as the equations for a deterministic and reversible system. The only thing that the equations say is that states move in time at the same rate (i.e. $\frac{dt}{dt} = 1$) with an incompressible flow (i.e. no states are created or destroyed). That is the whole physical and geometrical content of those equations.
 
 Note that if we started from Hamilton's equation, the system would be deterministic and reversible: position and momentum at a fixed time would indeed allow us to pick a single differentiable evolution and, by Liouville's theorem, densities would be constant along such evolution. Therefore we have an equivalence between assumption $\ref{assum_detrev}$ and Hamilton's equations $\ref{sdof_Ham_eq}$ in the single degree of freedom case.
 
-Now that we have developed a clear geometrical and physical understanding of Hamilton's equations, we can concentrate on the action principle. For (iv) we can apply Stokes' theorem. We take a path $\gamma$ and a variation $\gamma'$. Since they share the endpoint, taken together they form a closed line where $\gamma'$ is taken with the opposite orientation. Because $\vec{S}$ is divergence-free, the flow of $\vec{S}$ through a surface depends only on its contour. Moreover, by Stoke's theorem, the flow through the surface will be equal to the integral of the potential over the contour. Putting it all together we have:
-\begin{align*}
+Now that we have developed a clear geometrical and physical understanding of Hamilton's equations, we can concentrate on the action principle. For (iv) we can apply Stokes' theorem. We take a path $\gamma$ and a variation $\gamma'$. Since they share the endpoints, taken together they form a closed line where $\gamma'$ is taken with the opposite orientation. Because $\vec{S}$ is divergence-free, the flow of $\vec{S}$ through a surface depends only on its contour. Moreover, by Stoke's theorem, the flow through the surface will be equal to the integral of the potential over the contour. Putting it all together we have
+\begin{equation}
+\tag*{(\ref{sdof_action})}
+\begin{aligned}
 	- \iint_{\Sigma} \vec{S} \cdot d\vec{\Sigma} &=
 	\iint_{\Sigma} \left( \nabla \times \vec{\theta} \right) \cdot d\vec{\Sigma} \\
 	&= \oint_{\partial \Sigma} \vec{\theta}  \cdot d\vec{\gamma} \\
-	&= \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} - \int_{\gamma'} \vec{\theta} \cdot d\vec{\gamma'} \\
+	&= \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} - \int_{\gamma'} \vec{\theta} \cdot d\vec{\gamma}' \\
 	&= \delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma}.
-\end{align*}
-This recovers \ref{sdof_action}.
+\end{aligned}
+\end{equation}
 
-For (v), note that in the neighborhood of $\gamma$ the infinitesimal surface element $d\vec{Sigma}$ has one side along $\gamma$ itself. Therefore we can write $d\vec{Sigma} = d\vec{\gamma} \times d\vec{\lambda}$, where $d\vec{\lambda}$ is the infinitesimal displacement that connects $\gamma$ with $\gamma'$. The integrand then becomes the triple product
-\begin{equation*}
+For (v), note that in the neighborhood of $\gamma$ the infinitesimal surface element $d\vec{\Sigma}$ has one side along $\gamma$ itself. Therefore we can write $d\vec{\Sigma} = d\vec{\gamma} \times d\vec{\lambda}$, where $d\vec{\lambda}$ is the infinitesimal displacement that connects $\gamma$ with $\gamma'$. The integrand then becomes the triple product
+\begin{equation}
 	\vec{S} \cdot d\vec{\gamma} \times d\vec{\lambda}.
-\end{equation*}
+\end{equation}
 We can understand it geometrically as the volume element given by the displacement $\vec{S}$, the infinitesimal line element $d\vec{\gamma}$ and the infinitesimal variation $d\vec{\lambda}$ that moves $\gamma$ to $\gamma'$.
 
-If $\gamma$ is an actual solution of the equation of motion, $\gamma$ is a field line of $\vec{S}$: $\gamma$ is tangent to $\vec{S}$ at all points. We can write $d\vec{\gamma} = \vec{S} dt$. The triple product, in this case, is zero regardless of what $d\vec{\lambda}$ is. We can reason the other way: we look for a line $\gamma$ such that the triple product is zero regardless of what $d\vec{\lambda}$ is. The only way for that to happen is if $\gamma$ is tangent to $\vec{S}$ at each point, which means $\gamma$ is a solution of the equation of motion. This means that the paths that make the line integral of the vector potential stationary are those and only those that solve the equations of motions. This recovers the principle of the stationary action in Hamiltonian form.
+If $\gamma$ is an actual solution of the equation of motion, $\gamma$ is a field line of $\vec{S}$: $\gamma$ is tangent to $\vec{S}$ at all points. We can write $d\vec{\gamma} = \vec{S} dt$. The triple product, in this case, is zero regardless of what $d\vec{\lambda}$ is. We can reason the other way: we look for a line $\gamma$ such that the triple product is zero regardless of what $d\vec{\lambda}$ is. The only way for that to happen is if $\gamma$ is tangent to $\vec{S}$ at each point, which means $\gamma$ is a solution of the equation of motion. This means that the paths that make the line integral of the vector potential stationary are those and only those that solve the equations of motions. This recovers the principle of the stationary action in Hamiltonian form
+\begin{equation}
+\tag*{(\ref{sdof_stationary_action})}
+	0 =\delta \int_{\gamma} \vec{\theta} \cdot d\vec{\gamma} = - \iint_{\Sigma} \vec{S} \cdot d\vec{\Sigma} 
+\end{equation}
 
 We want to stress that this variational principle applies to any divergence-free field. For example, for a magnetic field we could write:
-\begin{equation*}
+\begin{equation}
 	\iint_{\Sigma} \vec{B} \cdot d\vec{\Sigma} = \delta \int_{\gamma} \vec{A} \cdot d\vec{\gamma}.
-\end{equation*}
+\end{equation}
 We would find that the field lines of $\vec{B}$ are the lines and only the lines for which the integral of the vector potential is stationary. Similarly, we would find that the streamlines of an incompressible fluids are the lines and only the lines for which the integral of the vector potential of the flow is stationary. While these properties may be of limited practical use, the geometrical insight is the same.
 
 For (vi), if the assumption \ref{assum_kineq} of kinematic equivalence  holds, we can from a trajectory in space $q(t)$ reconstruct the state at any time. That is, if we are given $q(t)$ we can reconstruct the full evolution $\gamma(t)$ in the extended phase space.
 
 We saw before that the evolution must be differentiable, which means $q(t)$ must also be differentiable. Therefore the velocity $\dot{q} = \frac{dq}{dt}$ is defined at every instant. Using assumption \ref{assum_detrev}, we know that each evolution is fully identified by position and momentum at a given time. Therefore the space of all possible evolutions is two-dimensional. Given that for each evolution $\gamma(t)$ there is one and only one spatial trajectory $q(t)$, the space of all spatial trajectories must also be two-dimensional and therefore fully identified by position and velocity at a given instant. Therefore there must be a map $p(q, \dot{q}, t)$ that allows us to reconstruct the momentum at a given time by knowing position and velocity at that time.
 
-We can use this map to express the principle of stationary action only in terms of position and velocity we have
+We can use this map to express the Hamiltonian form of principle of stationary action only in terms of position and velocity we have
 \begin{equation}
+\tag*{(\ref{sdof_Lagrangian})}
 	\begin{aligned}
 		\delta \int_\gamma \vec{\theta} \cdot d\vec{\gamma} &= \delta \int^{t_2}_{t_1} \vec{\theta} \cdot \frac{d\vec{\gamma}}{dt} dt \\
 		&= \delta \int^{t_2}_{t_1} \left(\theta_q \frac{dq}{dt} + \theta_p \frac{dp}{dt} + \theta_t \frac{dt}{dt}\right) dt \\
@@ -361,7 +418,7 @@ We can use this map to express the principle of stationary action only in terms 
 		&= \delta \int^{t_2}_{t_1} L(q, \dot{q}, t) \, dt
 	\end{aligned}
 \end{equation}
-We recognize the principle of stationary action in Lagrangian form.
+We recognize the principle of stationary action in standard form.
 
 Note that the argument can proceed in the opposite way. If we have a system for which the principle of stationary action yields a unique solution, then we can write $p=\frac{\partial L}{\partial \dot{q}} = p(q, \dot{q}, t)$ which means we are able to reconstruct the momentum, and therefore the state, at each time. The system satisfies \ref{assum_kineq}. Moreover, we can find a unique Hamiltonian such that the solution of the equations of motion are exactly those paths that satisfy the principle of stationary actions. Therefore the system satisfies \ref{assum_detrev} as well.
 
@@ -374,7 +431,7 @@ Before proceed to the generalizations, a few observations are in order.
 
 \subsection*{Introduction to differential topology}
 
-The generalization to multiple d.o.f will require the use of differential topology. These tools are not typically taught in a standard physics curriculum. If they are, the treatment is the dense and abstract one coming from mathematical tradition, which we have found to be arcane even to some mathematicians: at a topology conference, a math graduate student confessed he sticked with topology because differential geometry was too abstract for him, comment that was taken with sympathy by others.
+The generalization to multiple d.o.f will require the use of differential topology. These tools are not typically taught in a standard physics curriculum. If they are, their presentation is dense and abstract even to some mathematicians: at a topology conference, a math graduate student confessed he sticked with topology because differential geometry was too abstract for him, comment that was taken with sympathy by others.
 
 Apart from the abstract definitions, the notation gets in the way of the physics. For example, writing $\frac{\partial}{\partial x^i}$ for the vector basis makes sense if one is studying the space of linear operators defined by derivations. When studying the space of velocities, however, writing $\vec{v} = v^i\frac{\partial}{\partial x^i}$ decreases understanding. Therefore we will use a notation and nomenclature that is closer to what physicists already use (e.g. Einstein notation) and need to picture. For example, we will use $e_i$ for vector basis and $e^i$ for covector (dual) basis. To those that believe we should just use the ``correct'' mathematical nomenclature, we retort that there is no such thing. Notations and names are chosen within a certain context to make the points of the discourse more clear.
 
@@ -385,7 +442,7 @@ What we will give here, then, is not a fully rigorous introduction to the subjec
 
 %In our opinion, , and In order to fully understand the geometrical and physical meaning of the general case, it helps to have a crisp intuition for the tools of differential topology. We will therefore go through the basic motivation of differential topology from a physicist perspective, so that we can see what differential forms and exterior derivatives are capturing at a a physical level.
 
-To boil it done, the objective is to characterize those quantities that are associated with a region of space and can be understood as sums of independent contributions. The mass $m$ within a region $V$ can be understood as the sum of the contributions of a mass density $\rho$ within each infinitesimal volume $dV$:
+The core objective of using differential topology in physics is to characterize those quantities that are associated with a region of space and can be understood as sums of independent contributions. The mass $m$ within a region $V$ can be understood as the sum of the contributions of a mass density $\rho$ within each infinitesimal volume $dV$:
 \begin{equation*}
 	m(V) = \iiint_V \rho dV.
 \end{equation*}
@@ -410,13 +467,13 @@ Suppose we wrote
 \end{equation*}
 Here we don't have vectors, but functions of infinitesimal regions, which we call differential forms. The force, in this notation, is a one-form (or covector) as it takes one dimensional infinitesimal regions (i.e. vectors); the magnetic field is a two-form; the density is a three-form. We can also say that a scalar field, like the temperature, is a zero-form.
 
-An infinitesimal region can also be understood as a parallelopiped, which is fully identified by its sides. Therefore a differential form can be understood as acting on a set of vectors that matches the dimensionality of the form. A one-form will take one vector, a two-form two vectors and so on. All forms must be anti-symmetric because switching the order of the sides does not change the parallelopiped, just its orientation.
+An infinitesimal region can also be understood as a parallelopiped, which is fully identified by its sides. Therefore a differential form can be understood as acting on a set of vectors, the sides of the parallelopiped, that matches the dimensionality of the form. A one-form will take one vector, a two-form two vectors and so on. All forms must be anti-symmetric because switching the order of the sides does not change the parallelopiped, just its orientation.
 
 This picture is much easier to generalize to any dimensionality. If we note $S^k$ the space of all the $k$ dimensional subregions, a $k$-functional $F : S^k \to \mathbb{R}$ is a linear functional that takes a $k$-surface and returns a number. This can be expressed as
 \begin{equation*}
 	F(\sigma) = \int_\sigma \omega(d\sigma)
 \end{equation*}
-the integral of a $k$-form $\omega : V^k \to \mathbb{R}$ that takes an infinitesimal $k$-surfaces (or equivalently a set of $k$ vectors) and returns a number.
+the integral of a $k$-form $\omega : V^k \to \mathbb{R}$ that takes an infinitesimal $k$-surface (or equivalently a set of $k$ vectors) and returns a number.
 
 This allows us to identify properties and theorems that apply to all functionals and forms regardless of their dimensionality. For example, if $\sigma_1$ and $\sigma_2$ are two disjoint regions, $F(\sigma_1 \cup \sigma_2) = F(\sigma_1) + F(\sigma_2)$, which also tells us $F(\emptyset) = 0$ for any functional. Additionally, $k$-forms are linear maps and can be written in terms of the tensor product of the co-basis $e^a$. We have:
 \begin{equation*}
@@ -470,9 +527,9 @@ and the divergence theorem
 \begin{equation*}
 	\int_\gamma (\nabla \varphi) \cdot \vec{d\gamma} = \left[ \varphi \right]_A^B .
 \end{equation*}
-In all three cases we have a region where we define the integral of some differential operator applied to a field. This is equated to the integral over the boundary of the field itself. But again, the vector calculus notation prevents us to generalize as the differential operator is somewhat different in the three cases.
+In all three cases we have a region where we define the integral of some differential operator applied to a field. This is equated to the integral over the boundary of the field itself. But again, the vector calculus notation prevents us to generalize as the differential operator is somewhat different in each of the three cases.
 
-To understand conceptually that a generalization must exist, suppose we have a $k$-functional $F$ and its corresponding $k$-form $\omega$. By definition $F$ acts on $k$-surfaces. Now suppose we have a $k+1$-dimensional surface $\Sigma$. This is not a valid argument for $F$. However, its boundary $\partial \Sigma$ will be a $k$-dimensional surface, which is a valid argument for $F$. Therefore from any $F$ we can create a $k+1$-functional, which we can call exterior functional of $F$, noted $\partial F$, such that $\partial F(\Sigma) = F(\partial \Sigma)$. If we look at all three cases above, that is exactly what is happening: the gradient, the curl and the divergence lead to a functional one dimension higher than the original.
+To understand conceptually that a generalization must exist, suppose we have a $k$-functional $F$ and its corresponding $k$-form $\omega$. By definition $F$ acts on $k$-surfaces. Now suppose we have a $k+1$-dimensional surface $\Sigma$. This is not a valid argument for $F$. However, its boundary $\partial \Sigma$ will be a $k$-dimensional surface, which is a valid argument for $F$. Therefore from any $F$ we can create a $k+1$-functional, which we can call exterior functional of $F$, noted $\partial F$, such that $\partial F(\Sigma) = F(\partial \Sigma)$. If we look at all three cases above, that is exactly what is happening: the gradient, the curl and the divergence lead to a functional one dimension higher by applying the original operation on the boundary.
 
 Now, since every functional has a corresponding form, $\partial F$ must have a corresponding $k+1$-form which must be fully identified by $\omega$. We note it as $\partial \omega$ and write
 \begin{equation*}
@@ -482,7 +539,7 @@ This is the generalized Stokes' theorem and $\partial \omega$ is the exterior de
 
 With a few steps, one can see that the divergence, curl and gradient correspond to the exterior derivative in three dimensions for zero-form, one-form and two-form respectively, and that the three theorems of vector calculus are particular instances of this generalized one.
 
-The identities
+Moving on, the identities
 \begin{equation*}
 	\begin{aligned}
 		\nabla \cdot \nabla \times \vec \vec{f} &= 0 \\
@@ -493,7 +550,7 @@ both correspond to the single identity
 \begin{equation*}
 	\partial \partial \omega = 0,
 \end{equation*}
-which states that the exterior derivative applied twice is also zero. This identity can be understood in terms of the functionals. We have and $\partial \partial F(\Sigma) = F(\partial \partial \Sigma)$ and the boundary of a boundary $\partial \partial \Sigma = \emptyset$ is always the empty set. So, no matter what $F$ or $\Sigma$ are, we are evaluating a functional on an empty set, which is zero.
+which states that the exterior derivative applied twice is also zero. This identity can be understood in terms of the functionals. We have  $\partial \partial F(\Sigma) = F(\partial \partial \Sigma)$ and the boundary of a boundary $\partial \partial \Sigma = \emptyset$ is always the empty set. So, no matter what $F$ or $\Sigma$ are, we are evaluating a functional on an empty set, which is zero.
 
 In the same way that a divergence-free field can be written as the curl of a vector potential, or a curl-free field can be written as the gradient of a scalar potential, a form whose exterior derivative $\partial \omega = 0$ is zero (a closed form), can be written as the exterior derivative $\omega = \partial \theta$ of a lower dimensional form, at least is some neighborhood. In terms of functionals, this corresponds to the case where $F(\sigma)=0$ for all contractible surfaces, those surfaces that can be morphed to a point with a continuous transformation. If $F(\sigma)=0$ over all surfaces, instead, then the correspond is exact. 
 
@@ -538,15 +595,22 @@ Obviously a full treatment of all these concepts goes beyond the scope of this a
 
 The case of multiple degrees of freedom proceeds in the same way as the single degree of freedom. We will have to:
 \begin{enumerate}[label=(\roman*)]
-	\item show that assuming determinism and reversibility \ref{assum_detrev} and independence of degrees of freedom \ref{assum_indep} is equivalent to assuming the existence of the displacement field $\vec{S}$ defined by \ref{mdof_displacement} and the closed counting form $\omega$ defined by \ref{mdof_form} such that $\omega$ is killed only by the displacement field $\vec{S}$ as in \ref{mdof_displacement_kills} or by its rescaling $\varphi \vec{S}$.
+	\item show that assuming determinism and reversibility \ref{assum_detrev} and independence of degrees of freedom \ref{assum_indep} is equivalent to assuming the existence of the displacement field $\vec{S}$ defined by \ref{mdof_displacement} and the closed counting form $\omega$ defined by \ref{mdof_form} such that $\omega$ is killed only by the displacement field $\vec{S}$ as in \ref{mdof_displacement_kills} or by a field everywhere tangent to $\vec{S}$.
 	\item show that the potential $\theta$ for $\omega$ defined in \ref{mdof_form_potential} can be expressed, without loss of generality, as \ref{mdof_potential_expression} and that $\omega$ can be expressed as $\ref{mdof_form_components}$
 	\item show that \ref{mdof_form_potential}, \ref{mdof_displacement_kills} and \ref{mdof_potential_expression} recover Hamilton's equations as in \ref{mdof_Ham_eq}
 	\item show that the integral of $\omega$ through a surface $\Sigma$ delimited by a path $\gamma$ and its variation $\gamma'$ is the variation of the integral of the vector potential, as claimed in \ref{mdof_action}
-	\item show that the action is stationary for and only for the solutions of the equations of motion
-	\item show that the action can be expressed as functions of position, velocity and time if and only if \ref{assum_kineq} applies.
+	\item show that the integral of the vector potential is stationary for and only for the solutions of the equations of motion
+	\item show that the integral of the vector potential reduces to the action if and only if \ref{assum_kineq} applies.
 \end{enumerate}
 
-For (i), \ref{assum_detrev}  will lead to the existence of a displacement field $\vec{S}$ that tells us how state move in the extended phase space. As we saw in the previous case, this is not sufficient to impose the full condition: we need to be able to quantify the number of states as they flow in time. To this end, we need a functional $\mathcal{F}$ that takes an hyper-surfaces $\Sigma$ in the extended phase space and returns the count of states. We have 
+For (i), the arguments presented for the single d.o.f. still apply: \ref{assum_detrev} leads to the existence of a displacement field $\vec{S}$
+\begin{equation}
+\tag*{(\ref{mdof_displacement})}
+	\begin{aligned}
+		\vec{S} &= S^a e_a = \frac{d\xi^a}{dt} e_a =\frac{dq^i}{dt} e_{q^i} + \frac{dp_i}{dt} e_{p_i} + \frac{dt}{dt} e_t
+	\end{aligned}
+\end{equation}
+that tells us how states move in the extended phase space. We also need to reformulate state/density conservation in time, which we cannot do simply with a surface integral of $\vec{S}$. To this end, we need a functional $\mathcal{F}$ that takes an hyper-surfaces $\Sigma$ in the extended phase space and returns the count of states. We have 
 \begin{equation}
 	\mathcal{F}(\Sigma) = \int_\Sigma \Omega(d\Sigma)
 \end{equation}
@@ -582,7 +646,7 @@ If we imagine translating a surface along an independent variable, the number of
 
 Putting it all together, assuming \ref{assum_detrev} and \ref{assum_indep} gives us the existence of the displacement vector field $\vec{S}$ and the closed counting two-form $\omega$ such that $\vec{S}$ identifies the only vector field that kills $\omega$.
 
-The converse is also true: if we start with the mathematical requirements, we can recover the physical assumptions. If we are given a two-form $\omega$ on a $2N+1$ dimensional space, we can define the $2N$ form $\Omega = \omega^N$. This form will be non-zero because $\vec{S}$ is the only vector field that kills the two-form $\omega$. It will also be closed since
+The converse is also true: if we start with the mathematical requirements, we can recover the physical assumptions. If we are given a two-form $\omega$ on a $2N+1$ dimensional space, we can define the $2N$ form $\Omega = \omega^N$. This form will be non-zero because $\vec{S}$ is the only vector field that kills the two-form $\omega$. It will also be closed since $\partial \omega = 0$ and
 \begin{equation}
 	\partial \Omega = \partial \omega \wedge \omega^{N-1} = 0.
 \end{equation}
@@ -598,9 +662,9 @@ To obtain \ref{assum_indep}, if each pair of state variables $q^i$, $p_i$ forms 
 \end{equation}
 If we start with a closed form $\omega$ that has a single degenerate direction, by Darboux theorem we can find coordinates for the non-degenerate part $\omega$ that satisfy the above conditions. This recovers \ref{assum_indep}.
 
-Note that we have broken down exactly how each assumptions contributes to the mathematical setting. If \ref{assum_indep} fails, then $\Omega$ cannot be understood as $\omega^N$, which means we have much fewer condition on the motion: we only know that the total flow is conserved, but we cannot break it down along each d.o.f.. On the other hand, if \ref{assum_detrev} we may not have a single displacement field $\vec{S}$ and/or the form that counts states would not be closed. This type of exact mapping between assumptions and their mathematical expression is one of the key goals of Reverse Physics in particular and our overall project Assumptions of Physics more in general.
+Note that we have broken down exactly how each assumptions contributes to the mathematical setting. If \ref{assum_indep} fails, then $\Omega$ cannot be understood as $\omega^N$, which means we have much fewer condition on the motion: we only know that the total flow is conserved, but we cannot break it down along each d.o.f.. On the other hand, if \ref{assum_detrev} fails we may not have a single displacement field $\vec{S}$ and/or the form that counts states would not be closed. This type of exact mapping between assumptions and their mathematical expression is one of the key goals of Reverse Physics in particular and our overall project Assumptions of Physics more in general.
 
-For (ii), we note that since the form is closed, we can find a covector potential $\theta$ such that $\omega=\partial \theta$. Those familiar with symplectic and contact geometry will know that using Darboux's theorem, we can find a set of coordinates such that we can express $\theta$ as
+For (ii), we note that since the form is closed, we can find, at least in a contractible region, a covector potential $\theta$ such that $\omega=\partial \theta$. Those familiar with symplectic and contact geometry will know that using Darboux's theorem, we can find a set of coordinates such that we can express $\theta$ as
 \begin{equation}
 	\tag*{(\ref{mdof_potential_expression})}
 	\theta = p_i e^{q^i} - H e^t.
