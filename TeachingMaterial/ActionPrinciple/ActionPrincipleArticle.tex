@@ -47,9 +47,9 @@ The mathematics needed to run the argument is not new\cite{souriau1997structure}
 	\caption{\footnotesize{Evolutions in the extended phase space and the divergence-free displacement field.}}\label{extended_phase_space}
 \end{figure}
 
-As we want to characterize the evolution of states over time, the appropriate setting is phase space extended with the time variable. That is, the space charted by position $q$, momentum $p$ and time $t$ as can be seen in Fig. \ref{extended_phase_space}. In the same way that we write $x^i = \{ x, y, z \}$ for the three dimension of space, we write
+As we want to characterize the evolution of states over time, the appropriate setting is phase space extended with the time variable. That is, the space charted by position $q$, momentum $p$ and time $t$ as can be seen in Fig. \ref{extended_phase_space}. In the same way that we write $x^i = [ x, y, z ]$ for the three dimension of space, we write
 \begin{equation}\label{sdof_variables}
-	\xi^a = \{ q, p, t\}
+	\xi^a = [ q, p, t]
 \end{equation}
 for the three dimensions of the extended phase space.
 
@@ -61,7 +61,7 @@ Under the assumption that
 we can define a displacement vector field
 \begin{equation}\label{sdof_displacement}
 \begin{aligned}
-	\vec{S} &= \left\{ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right\} \\
+	\vec{S} &= \left[ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right] \\
 	&= S^a e_a = \frac{d\xi^a}{dt} e_a .
 \end{aligned}
 \end{equation}
@@ -78,7 +78,7 @@ If assumption \ref{assum_detrev} is valid, we expect the flow of states through 
 Since the displacement field is divergence-free, it admits a vector potential. We have
 \begin{equation}\label{sdof_displacement_potential}
 \begin{aligned}
-	\vec{\theta} &= \{\theta_q, \theta_p, \theta_t\} \\
+	\vec{\theta} &= [\theta_q, \theta_p, \theta_t] \\
 	&= \theta_a e^a \\
 	\vec{S} &= - \nabla \times \vec{\theta} \\
 	&= - \epsilon^{abc} \partial_b \theta_c \, e_a. \\
@@ -89,13 +89,13 @@ The minus sign is introduced to match conventions. Mathematically, this is analo
 Because the displacement field must satisfy \ref{sdof_time_constraint}, without loss of generality we can set
 \begin{equation}\label{sdof_potential_expression}
 \begin{aligned}
-	\vec{\theta} &= \{p, 0, -H\} \\
+	\vec{\theta} &= [p, 0, -H] \\
 	&= p e^q - H e^t.
 \end{aligned}
 \end{equation}
 By applying definition \ref{sdof_displacement} and expanding \ref{sdof_displacement_potential} with \ref{sdof_potential_expression}, we have
 \begin{equation}\label{sdof_Ham_eq}
-	\left\{ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right\} = - \nabla \times \vec{\theta} = \left\{ \frac{\partial H}{\partial p},-\frac{\partial H}{\partial q}, 1 \right\},
+	\left[ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right] = - \nabla \times \vec{\theta} = \left[ \frac{\partial H}{\partial p},-\frac{\partial H}{\partial q}, 1 \right],
 \end{equation}
 which yields Hamilton's equations. Note that the arguments works in reverse: any Hamiltonian system with one degree of freedom yields a divergence-free displacement field, and therefore satisfies \ref{assum_detrev}.
 
@@ -143,7 +143,7 @@ We have thus demistified the action principle, and turned it into a geometrical 
 
 To generalize to multiple degree of freedom we have to abandon the tools provided by vector calculus and embrace the ones provided by differential geometry. For $N$ independent degrees of freedom, we will have the $2N+1$ manifold charted by the variables
 \begin{equation}\label{mdof_variables}
-	\xi^a = \{ q^i, p_i, t\}.
+	\xi^a = [ q^i, p_i, t].
 \end{equation}
 The displacement vector field will be
 \begin{equation}\label{mdof_displacement}
@@ -198,7 +198,7 @@ Mathematically we say that the displacement vector kills the form, it makes it z
 Similarly to the single d.o.f., without loss of generality we can set
 \begin{equation}\label{mdof_potential_expression}
 \begin{aligned}
-	\theta &= \{p_i, 0, -H\} \\
+	\theta &= [p_i, 0, -H] \\
 	&= p_i e^{q^i} - H e^t.
 \end{aligned}
 \end{equation}
@@ -261,7 +261,7 @@ We divide the appendix into three section: the first will address the single d.o
 For the case of one degree of freedom we are going to use vector calculus. This is possible since the problem can be studied with three variables (position, momentum and time)
 \begin{equation}
 \tag*{(\ref{sdof_variables})}
-	\xi^a = \{ q, p, t\}
+	\xi^a = [ q, p, t]
 \end{equation}
 which is the only setting where vector calculus truly works. In this sense, nature gave us a hand as three dimensional spaces are much more intuitive for us, and we can therefore develop the ideas in a familiar context before generalizing.
 
@@ -283,7 +283,7 @@ This requirement tells us two things. First, is that $X$ must be a differentiabl
 \begin{equation}
 \tag*{(\ref{sdof_displacement})}
 	\begin{aligned}
-		\vec{S} &= \left\{ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right\} \\
+		\vec{S} &= \left[ \frac{dq}{dt},\frac{dp}{dt},\frac{dt}{dt} \right] \\
 		&= S^a e_a = \frac{d\xi^a}{dt} e_a .
 	\end{aligned}
 \end{equation}
@@ -303,7 +303,7 @@ For (ii), since $\vec{S}$ is divergence-free, we can find a vector potential
 \begin{equation}
 \tag*{(\ref{sdof_displacement_potential})}
 	\begin{aligned}
-		\vec{\theta} &= \{\theta_q, \theta_p, \theta_t\} \\
+		\vec{\theta} &= [\theta_q, \theta_p, \theta_t] \\
 		&= \theta_a e^a \\
 		\vec{S} &= - \nabla \times \vec{\theta} \\
 		&= - \epsilon^{abc} \partial_b \theta_c \, e_a. \\
@@ -313,7 +313,7 @@ Note that the vector potential is not uniquely identified, since $\nabla \times(
 
 We use this gauge freedom to set the momentum component to zero. In fact, we can always choose $f(q,p,t)$ such that $\partial_p f = -\theta_p$ and redefine $\vec{\theta}$ to be $\vec{\theta} + \nabla f$. Therefore we can set
 \begin{equation}
-	\vec{\theta} = \{\theta_q, 0, \theta_t\}
+	\vec{\theta} = [\theta_q, 0, \theta_t]
 \end{equation}
 without loss of generality.
 
@@ -325,13 +325,13 @@ We now use the constraint \ref{sdof_time_constraint} on the time component. We h
 \end{align}
 Integrating, we have $\theta_q = p + g(q,t)$ where $g(q,t)$ is an arbitrary function. This function can be set to zero without loss of generality as it can be removed with a gauge transformation where $f(q,t)$ does not depend on $p$, and therefore $\theta_p$ will remain unchanged. Therefore we have:
 \begin{equation}
-	\vec{\theta} = \{p, 0, \theta_t\}
+	\vec{\theta} = [p, 0, \theta_t]
 \end{equation}
 Lastly, we rename the last component as $\theta_t = -H$ which leads to 
 \begin{equation}
 \tag*{(\ref{sdof_potential_expression})}
 	\begin{aligned}
-		\vec{\theta} &= \{p, 0, -H\} \\
+		\vec{\theta} &= [p, 0, -H] \\
 		&= p e^q - H e^t.
 	\end{aligned}
 \end{equation}
