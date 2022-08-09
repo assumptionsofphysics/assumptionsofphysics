@@ -34,11 +34,11 @@ We give a geometrical interpretation for the principle of stationary action in c
 
 \section{Introduction}
 
-While the principle of stationary action is regarded by many as one of the most important tools in physics, its physical meaning is not completely clear. First of all, the typical characterization of the Lagrangian as the difference between kinetic and potential energy fails even for simple systems, like a charged particle under a magnetic field. Moreover, the Lagrangian for a system is not uniquely defined, making the actual value of the action for a path not directly physically significant.  We are left to wonder: what exactly is the action and why is it stationary for actual trajectories?
+While the principle of stationary action is regarded by many as one of the most important tools in physics,\cite{hamilton1834general, heaviside1903, feynman1942principle, brenier1989least, rojo2018principle} its physical meaning is not completely clear. First of all, the typical characterization of the Lagrangian as the difference between kinetic and potential energy fails even for simple systems, like a charged particle under a magnetic field. Moreover, the Lagrangian for a system is not uniquely defined, making the actual value of the action for a path not directly physically significant.  We are left to wonder: what exactly is the action and why is it stationary for actual trajectories?
 
-As part of our larger project Assumptions of Physics, we developed an approach, called Reverse Physics (TODO cite paper), which examines current theories to find a set of starting physical assumptions that are sufficient to rederive them. We have found that Lagrangian mechanics is equivalent to three assumptions: determinism/reversibility, independence of degrees of freedom and kinematics/dynamics equivalence (TODO cite long paper). This physically motivated understanding of the classical theory can be used to characterize both the physics and the geometry underlying the principle of stationary action. What we find is that this arises as a general mathematical feature of divergence-free fields (and closed two-forms), which are the appropriate tools to describe a flow that conserves the number of states. The assumption of equivalence between kinematics and dynamics (i.e. we can reconstruct the dynamical state simply by looking at the trajectory) is what allows us to express the principle in the usual form. The argument can proceed in the reverse direction: assuming the principle of stationary action recovers a dynamical system that exhibits those three physical assumptions.
+As part of our larger project Assumptions of Physics, we developed an approach, called Reverse Physics \cite{aop-phys-ReversePhysics}, which examines current theories to find a set of starting physical assumptions that are sufficient to rederive them. We have found that Lagrangian mechanics is equivalent to three assumptions: determinism/reversibility, independence of degrees of freedom and kinematics/dynamics equivalence \cite{aop-phys-blueprint}. This physically motivated understanding of the classical theory can be used to characterize both the physics and the geometry underlying the principle of stationary action. What we find is that this arises as a general mathematical feature of divergence-free fields (and closed two-forms), which are the appropriate tools to describe a flow that conserves the number of states. The assumption of equivalence between kinematics and dynamics (i.e. we can reconstruct the dynamical state simply by looking at the trajectory) is what allows us to express the principle in the usual form. The argument can proceed in the reverse direction: assuming the principle of stationary action recovers a dynamical system that exhibits those three physical assumptions.
 
-The mathematics needed to run the argument is not new\cite{souriau1997structure}. The two aspects that have been sorely lacking, and that we provide, are (1) a clear geometrical interpretation of the action principle and (2) a tight connection between the math and the physics it represents. To make the result accessible to the widest audience, we first cover the case of a single degree of freedom using standard vector calculus. We then proceed to the case of multiple independent degrees of freedom using tools from differential geometry. The main article will presents all the key point needed to follow the argument and its physical and geometrical meaning, leaving the mathematical details and calculations to the appendix.
+The mathematics needed to run the argument is well established\cite{souriau1970structure, abraham1978foundations,arnold1989mathematical, marsden1999introduction}. The two aspects that have been sorely lacking, and that we provide, are (1) a clear geometrical interpretation of the action principle and (2) a tight connection between the math and the physics it represents. To make the result accessible to the widest audience, we first cover the case of a single degree of freedom using standard vector calculus. We then proceed to the case of multiple independent degrees of freedom using tools from differential geometry. The main article will presents all the key point needed to follow the argument and its physical and geometrical meaning, leaving the mathematical details and calculations to the appendix.
 
 \section{One degree of freedom}
 
@@ -47,7 +47,7 @@ The mathematics needed to run the argument is not new\cite{souriau1997structure}
 	\caption{\footnotesize{Evolutions in the extended phase space and the divergence-free displacement field.}}\label{extended_phase_space}
 \end{figure}
 
-As we want to characterize the evolution of states over time, the appropriate setting is phase space extended with the time variable.(TODO find citations) That is, the space charted by position $q$, momentum $p$ and time $t$ as can be seen in Fig. \ref{extended_phase_space}. In the same way that we write $x^i = [ x, y, z ]$ for the three dimensions of space, we write
+As we want to characterize the evolution of states over time, the appropriate setting is phase space extended with the time variable\cite{lanczos1949variational,synge1960encyclopedia}. That is, the space charted by position $q$, momentum $p$ and time $t$ as can be seen in Fig. \ref{extended_phase_space}. In the same way that we write $x^i = [ x, y, z ]$ for the three dimensions of space, we write
 \begin{equation}\label{sdof_variables}
 	\xi^a = [ q, p, t]
 \end{equation}
@@ -160,7 +160,7 @@ This means that, at each moment in time, the total number of states (i.e. the vo
 \begin{equation}\label{mdof_form}
 	\omega = \omega_{ab} \, e^a \otimes e^b,
 \end{equation}
-which we call the state counting form.\footnote{Note that this approach is consistent with statistical mechanics. (TODO: add references)}
+which we call the state counting form.\footnote{Note that this approach is consistent with statistical mechanics\cite{peliti2011statistical}.}
 
 The counting form must be of rank two as independent degrees of freedom are bi-dimensional (i.e. quantity plus conjugate). Given two vectors $\vec{v}$ and $\vec{w}$, these identify a parallelogram in phase space and 
 \begin{equation}\label{mdof_form_applied}
@@ -241,7 +241,7 @@ We have found that the principle of stationary action is equivalent to assumptio
 
 Note that the true physical content is in the displacement field $\vec{S}$ and the counting form $\omega$ whose properties descend from the assumptions. The action, the Lagrangian and the potential $\theta$ are not uniquely defined and are subject to a convenient, though still arbitrary, choice of gauge. The Lagrangian and the action, then, do not directly encode physical properties of the system. Saying that ``nature chooses the path that minimizes the action'', therefore, does not provide clear insight. On the other hand, the three assumptions give us a clear physical picture.
 
-Another interesting element is that a version of the principle of stationary actions holds even if \ref{assum_kineq} does not apply. In this case the ``Lagrangian'' $L(q,\dot{q},p,t)$ depends on conjugate momentum as well. Also note that the cases where the Lagrangian does not admit a Hamiltonian are exactly the cases where the action principle fails to yield a unique solution. In this sense, the action principle is better understood as a feature of Hamiltonian mechanics, instead of Lagrangian mechanics.(TODO: check Arnold's book for reference)
+Another interesting element is that a version of the principle of stationary actions holds even if \ref{assum_kineq} does not apply. In this case the ``Lagrangian'' $L(q,\dot{q},p,t)$ depends on conjugate momentum as well. Also note that the cases where the Lagrangian does not admit a Hamiltonian are exactly the cases where the action principle fails to yield a unique solution. In this sense, the action principle is better understood as a feature of Hamiltonian mechanics, instead of Lagrangian mechanics\cite{souriau1970structure, arnold1989mathematical}.
 
 As a final comment, note that privileging the Hamiltonian picture is more in line with quantum mechanics; the idea of $\omega$ as a tool to count states is in line with statistical mechanics; expression \ref{mdof_potential_expression} is remarkably similar to that of the relativistic four-momentum. This is one of the key insights we get from our Reverse Physics approach: there is a unity among the different physical theories that begs to be brought to light. We are convinced that a version of this geometrical understanding must exist in the quantum world.
 
@@ -590,7 +590,12 @@ Obviously a full treatment of all these concepts goes beyond the scope of this a
 
 \subsection*{Multiple degrees of freedom}
 
-(TODO: Describe the space) The case of multiple degrees of freedom proceeds in the same way as the single degree of freedom. We will have to:
+The case of multiple degrees of freedom proceeds in the same way as the single degree of freedom. The main difference is that we will work with a system described by $N$ degrees of freedom, which is therefore described by the $2N+1$ variables
+\begin{equation}
+\tag*{(\ref{mdof_variables})}
+	\xi^a = [ q^i, p_i, t].
+\end{equation}
+We will have to:
 \begin{enumerate}[label=(\roman*)]
 	\item show that assuming determinism and reversibility \ref{assum_detrev} and independence of degrees of freedom \ref{assum_indep} is equivalent to assuming the existence of the displacement field $\vec{S}$ defined by \ref{mdof_displacement} and the closed counting form $\omega$ defined by \ref{mdof_form} such that $\omega$ is killed only by the displacement field $\vec{S}$ as in \ref{mdof_displacement_kills} or by a field everywhere tangent to $\vec{S}$.
 	\item show that the potential $\theta$ for $\omega$ defined in \ref{mdof_form_potential} can be expressed, without loss of generality, as \ref{mdof_potential_expression} and that $\omega$ can be expressed as $\ref{mdof_form_components}$
