@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+
+
+\def\>{\rangle}
+\def\<{\langle}
+
+
+\begin{document}
+
+\title{Notes on QM in generalized coordinates}
+\author{Gabriele Carcassi}
+
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\section{Change of coordinates in manifolds}
+
+\begin{equation}
+	\begin{aligned}
+		\hat{x}^i &= \hat{x}^i(x^j) \\
+		d\hat{x}^i &= \partial_j \hat{x}^i dx^j \\
+		d\hat{x}^n &= | \partial_j \hat{x}^i | dx^n = |J| dx^n \\
+		|J| \hat{\rho}(\hat{x}^i) &= | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i)  = \rho(x^j) \\
+		\int \rho(x^j) dx^n &= \int | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i) dx^n = \int \hat{\rho}(\hat{x}^i) d\hat{x}^n
+	\end{aligned}
+\end{equation}
+
+Mathematically, $\rho$ can be understood as the (only) component of a volume form. In that case, $\rho$ changes sign under change of orientation. Alternatively, $\rho$ can be understood as the (only) component of a density.\footnote{Effectively, the density is like a volume form that keeps track of orientation.} In this case, $\rho$ does not change sign under change of orientation and the transformation rule should use the absolute value of the Jacobian determinant.
+
+\section{Change of coordinates for wave-function}
+\begin{equation}
+	\begin{aligned}
+		\rho(x^j) &= \psi^\dagger(x^j) \psi(x^j)\\
+		||J|| \hat{\rho}(\hat{x}^i) &= || \partial_j \hat{x}^i || \hat{\psi}^\dagger(\hat{x}^i) \hat{\psi}(\hat{x}^i) = \psi^\dagger(x^j) \psi(x^j) = \rho(x^j) \\
+		\sqrt{|| \partial_j \hat{x}^i ||} \hat{\psi}(\hat{x}^i) &= \psi(x^j) \\
+		\hat{\psi}(\hat{x}^i) &= \sqrt{|| \partial_i x^j ||} \psi(x^j) \\
+	\end{aligned}
+\end{equation}
+Note that $\rho$ can't be negative. Mathematically,  $\rho$ should be the component of a density. Therefore $||J||$ represents the absolute value of the Jacobian determinant.
+
+\section{Change of coordinates in symplectic manifolds}
+\begin{equation}
+	\begin{aligned}
+		\hat{p}_i &= \partial_i x^j p_j \\
+		d \hat{p}_i &= \partial_i x^j d p_j \\
+		d\hat{p}^n &= | \partial_i x^i | dp^n = |J^{-1}| dx^n \\
+	\end{aligned}
+\end{equation}
+
+\section{Properties of Fourier transform}
+
+Definition of Fourier transform
+\begin{equation}
+	\begin{aligned}
+		\phi(p_j) &= F(\psi(x^i)) = \frac{1}{\sqrt{2 \pi \hbar}} \int e^{\frac{p_j x^j}{\imath \hbar}} \psi(x^j) dx^n \\
+	\end{aligned}
+\end{equation}
+
+Definition of convolution
+\begin{equation}
+	\begin{aligned}
+		(g * h)(t) &= \int_{0}^{t} g(\tau) h(t-\tau) d\tau\\
+	\end{aligned}
+\end{equation}
+
+Convolution theorems
+\begin{equation}
+	\begin{aligned}
+		F((g * h)(t)) &= F(g(t)) F(h(t))\\
+		F((g h)(t)) &= F(g(t)) * F(h(t))\\
+	\end{aligned}
+\end{equation}
+TODO: find explicit confirmation for complex functions
+
+\section{Change of Fourier transform}
+\begin{equation}
+	\begin{aligned}
+		F(\hat{\psi}(\hat{x}^i)) &= F\left(\sqrt{|| \partial_i x^j ||} \psi(x^j)\right) = F\left(\sqrt{|| \partial_i x^j ||}\right) * F \left( \psi(x^j)\right)  \\
+	\end{aligned}
+\end{equation}
+TODO: think of cross-checks
+
+\end{document}
