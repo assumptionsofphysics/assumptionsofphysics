@@ -26,20 +26,28 @@
 \end{abstract}
 
 \section{Change of coordinates in manifolds}
-
+Transformation rules for differentials on a generic manifold. Only differentiable structure is required.
 \begin{equation}
 	\begin{aligned}
 		\hat{x}^i &= \hat{x}^i(x^j) \\
 		d\hat{x}^i &= \partial_j \hat{x}^i dx^j \\
 		d\hat{x}^n &= | \partial_j \hat{x}^i | dx^n = |J| dx^n \\
+	\end{aligned}
+\end{equation}
+
+Transformation rules for a density $\rho(x^i)$. The requirement is that the integral is invariant.
+\begin{equation}
+	\begin{aligned}
+		\int \rho(x^j) dx^n &= \int | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i) dx^n = \int \hat{\rho}(\hat{x}^i) d\hat{x}^n \\
 		|J| \hat{\rho}(\hat{x}^i) &= | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i)  = \rho(x^j) \\
-		\int \rho(x^j) dx^n &= \int | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i) dx^n = \int \hat{\rho}(\hat{x}^i) d\hat{x}^n
 	\end{aligned}
 \end{equation}
 
 Mathematically, $\rho$ can be understood as the (only) component of a volume form. In that case, $\rho$ changes sign under change of orientation. Alternatively, $\rho$ can be understood as the (only) component of a density.\footnote{Effectively, the density is like a volume form that keeps track of orientation.} In this case, $\rho$ does not change sign under change of orientation and the transformation rule should use the absolute value of the Jacobian determinant.
 
 \section{Change of coordinates for wave-function}
+
+Deducing transformation rules for wave-function based on the fact that the modulues of a wave-function is a density over the manifold.
 \begin{equation}
 	\begin{aligned}
 		\rho(x^j) &= \psi^\dagger(x^j) \psi(x^j)\\
@@ -50,12 +58,22 @@ Mathematically, $\rho$ can be understood as the (only) component of a volume for
 \end{equation}
 Note that $\rho$ can't be negative. Mathematically,  $\rho$ should be the component of a density. Therefore $||J||$ represents the absolute value of the Jacobian determinant.
 
-\section{Change of coordinates in symplectic manifolds}
+\section{Change of coordinates for momentum}
+
+These are the change of coordinates for momentum. They are derived by making an arbitrary change on the position coordinates and inducing a coordinate change on momentum such that the symplectic form $\omega = dx^i \wedge dp_i$ is invariant. Therefore this depends on the symplectic structure. This makes conjugate momentum vary as a covector.
+
 \begin{equation}
 	\begin{aligned}
 		\hat{p}_i &= \partial_i x^j p_j \\
 		d \hat{p}_i &= \partial_i x^j d p_j \\
 		d\hat{p}^n &= | \partial_i x^i | dp^n = |J^{-1}| dx^n \\
+	\end{aligned}
+\end{equation}
+
+Since in quantum mechanics we do not have a symplectic structure, we can find the same transformation rule based on the fact that $P_i = -\imath \hbar \partial_i$
+\begin{equation}
+	\begin{aligned}
+		\hat{P}_i &= -\imath \hbar \partial_i = -\imath \hbar \partial_i x^j \partial_j = \partial_i x^j P_j \\
 	\end{aligned}
 \end{equation}
 
@@ -90,6 +108,8 @@ TODO: find explicit confirmation for complex functions
 		F(\hat{\psi}(\hat{x}^i)) &= F\left(\sqrt{|| \partial_i x^j ||} \psi(x^j)\right) = F\left(\sqrt{|| \partial_i x^j ||}\right) * F \left( \psi(x^j)\right)  \\
 	\end{aligned}
 \end{equation}
-TODO: think of cross-checks
+This expression depends only on the definition and properties of the Fourier transform and the transformation rules of densities of manifolds.
+
+TODO: Need a cross check with the transformation rule of momentum
 
 \end{document}
