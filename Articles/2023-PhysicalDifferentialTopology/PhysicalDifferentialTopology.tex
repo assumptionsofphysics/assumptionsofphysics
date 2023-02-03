@@ -1,0 +1,59 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+%\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+%\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\urlstyle{same}
+\frenchspacing
+
+
+\begin{document}
+
+\title{A physical foundation of Differential Topology}
+\author{Gabriele Carcassi, Christine A. Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\begin{abstract}
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\section{Current problems}
+
+The purpose of this work is to address a mismatch between the mathematical definitions of differential topology and the physical objects they need to represent. Both notationally and conceptually, these two worlds have drifted apart enough that the mathematical intuition that one needs to develop does not have a tight correspondence to the physical intuition. While one can make the translation, this is often too costly, leaves pieces behind and it severely lowers the availability and effectiveness of the tools. The goal is to find rigorous mathematical definition that are more natural for physics, make the physical assumptions explicit and generalize better. Here we list a series of specific problems we aim to address.
+
+In differential topology, one defines local objects (i.e. vectors and forms) and then defines finite quantities associated to regions through integration. For example, one defines volume forms and then defines its integral over a region. Physics proceeds the opposite way. Experimentally, we do not measure directly a mass density, but rather we measure mass and volume of a finite region and take the ratio. We then imagine to take smaller and smaller regions, and the mass density is ratio in the limit. We want definitions that mirror this process so that we can understand more clearly what physical requirements and idealizations are embedded in the definitions. We find that it is a lot easier to build physical intuition on the finite objects than on the local ones.
+
+Differentiabilty of a manifold is defined by requiring that the coordinate transformation among all charts are differentiable. All other notions, such as vectors as directional derivations or differentials as linear map, are therefore built on top. Therefore, we conceptually have two layer of definitions, one for ``analytical'' differentiability and one for ``topological'' differentiability. We would like to have a single unified notion that work directly at both levels. The hope is that the same definition can be generalized to the infinite dimensional case, so that we have a smoother transition to field theories.
+
+While units and physical dimensions play a crucial role in physics, these ignored by the mathematics with important consequences. In differential geometry, vectors are defined as directional derivatives. But to define a derivative, we need to have a quantity to derive by. That quantity will have a unit. Therefore vectors are necessarily need a unit definition which is not part of the differentiable manifold, which is absolutely undesirable. For example, suppose $M$ is a two dimensional manifold, and suppose we use polar coordinates $[r, \theta]$. In differential topology, the directional derivative $\partial_r$  and $\partial_\theta$ represent a basis of the tangent space. But $r$ and $\theta$ have different physical dimensions. If $r$ is expressed in meters and $\theta$ is expressed in radians, $\partial_r$ has units of inverse meters and $\partial_\theta$ has units of inverse radians. The sum $\partial_r + \partial_\theta$ is ill-defined. The goal is to have core definitions that work naturally with units, and explicit rules that clarify units for all components of all objects.
+
+\section{Differentials as sequences}
+
+\section{Differentiability as reducibility}
+
+\section{Tensors as maps between differentials}
+
+\section{Reducible functionals and forms}
+
+\bibliography{bibliography}
+
+
+\end{document}
