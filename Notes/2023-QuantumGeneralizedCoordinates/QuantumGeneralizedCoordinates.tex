@@ -31,14 +31,14 @@ Transformation rules for differentials on a generic manifold. Only differentiabl
 	\begin{aligned}
 		\hat{x}^i &= \hat{x}^i(x^j) \\
 		d\hat{x}^i &= \partial_j \hat{x}^i dx^j \\
-		d\hat{x}^n &= | \partial_j \hat{x}^i | dx^n = |J| dx^n \\
+		d\hat{x}^1 \cdots d\hat{x}^n &= | \partial_j \hat{x}^i | dx^1 \cdots dx^n = |J| dx^1 \cdots dx^n \\
 	\end{aligned}
 \end{equation}
 
 Transformation rules for a density $\rho(x^i)$. The requirement is that the integral is invariant.
 \begin{equation}
 	\begin{aligned}
-		\int \rho(x^j) dx^n &= \int | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i) dx^n = \int \hat{\rho}(\hat{x}^i) d\hat{x}^n \\
+		\int \rho(x^j) dx^1 \cdots dx^n &= \int | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i) dx^1 \cdots dx^n = \int \hat{\rho}(\hat{x}^i) d\hat{x}^1 \cdots d\hat{x}^n \\
 		|J| \hat{\rho}(\hat{x}^i) &= | \partial_j \hat{x}^i | \hat{\rho}(\hat{x}^i)  = \rho(x^j) \\
 	\end{aligned}
 \end{equation}
@@ -58,6 +58,17 @@ Deducing transformation rules for wave-function based on the fact that the modul
 \end{equation}
 Note that $\rho$ can't be negative. Mathematically,  $\rho$ should be the component of a density. Therefore $||J||$ represents the absolute value of the Jacobian determinant.
 
+We can rediscover the transformation rules by expanding the state in a different basis.
+\begin{equation}
+	\begin{aligned}
+		\< \psi | \psi \> &= \< \psi | \int dx | x \> \< x | \psi\>  = \< \psi | \int d\hat{x} | \hat{x} \> \< \hat{x} | \psi\> \\
+		&= \< \psi | \int ||J|| dx | \hat{x} \> \hat{\psi}(\hat{x}) \\
+		&= \< \psi | \int dx \psi(x) \sqrt{||J||} | \hat{x} \>  \\
+		| x \> &= \sqrt{||J||} | \hat{x} \>
+	\end{aligned}
+\end{equation}
+Note that $|\psi\> = |\hat{\psi}\>$ because the state is coordinate independent, in the sense that it doesn't change depending in which coordinates is expressed. The delta functions $| x \>$ associated with position, however, do not work in the same way. As these are elements of a continuous spectra, and therefore are associated with densities, we have $| x \>$ $| x \> \neq | \hat{x} \>$ as they depend on the coordinate explicitly (i.e. the normalization constant changes). This would not happen, for example, if the spectra is discrete, like for the eigenstate of a harmonic oscillator.
+
 \section{Change of coordinates for momentum}
 
 These are the change of coordinates for momentum. They are derived by making an arbitrary change on the position coordinates and inducing a coordinate change on momentum such that the symplectic form $\omega = dx^i \wedge dp_i$ is invariant. That is:
@@ -74,7 +85,7 @@ Therefore this depends on the symplectic structure. This makes conjugate momentu
 	\begin{aligned}
 		\hat{p}_i &= \partial_i x^j p_j \\
 		d \hat{p}_i &= \partial_i x^j d p_j \\
-		d\hat{p}^n &= | \partial_i x^i | dp^n = |J^{-1}| dx^n \\
+		d\hat{p}^n &= | \partial_i x^j | dp^n = |J^{-1}| dx^1 \cdots dx^n \\
 	\end{aligned}
 \end{equation}
 
@@ -90,7 +101,7 @@ Since in quantum mechanics we do not have a symplectic structure, we can find th
 Definition of Fourier transform
 \begin{equation}
 	\begin{aligned}
-		\phi(p_j) &= F(\psi(x^i)) = \frac{1}{\sqrt{2 \pi \hbar}} \int e^{\frac{p_j x^j}{\imath \hbar}} \psi(x^j) dx^n \\
+		\phi(p_j) &= F(\psi(x^i)) = \frac{1}{\sqrt{2 \pi \hbar}} \int e^{\frac{p_j x^j}{\imath \hbar}} \psi(x^j) dx^1 \cdots dx^n \\
 	\end{aligned}
 \end{equation}
 
@@ -125,5 +136,82 @@ TODO: Need a cross check with the transformation rule of momentum. For example, 
 	\end{aligned}
 \end{equation}
 Another idea, show that applying the momentum operator in the new coordinates is equal to applying the the one in the old coordinates and then rescaling by the square root of the Jacobian.
+
+\section{Examples}
+
+\subsection{2D Cartesian and 2D polar}
+
+In Cartesian coordinates, the eigenstates of momentum correspond to oscillations at a fixed frequency along the corresponding axis.
+\begin{equation}
+	\begin{aligned}
+		P_x &= - \imath \hbar \partial_x \\
+		\phi(x,y) &= e^{\imath k_x x} \\
+		P_x e^{\imath k_x x} &= - \imath \hbar \partial_x e^{\imath k_x x} = - \imath \hbar \imath k_x e^{\imath k_x x} = \hbar k_x e^{\imath k_x x} \\ 
+		P_y &= - \imath \hbar \partial_y \\
+		\phi(x,y) &= e^{\imath k_y y} \\
+		P_y e^{\imath k_y y} &= - \imath \hbar \partial_y e^{\imath k_y y} = - \imath \hbar \imath k_y e^{\imath k_y y} = \hbar k_y e^{\imath k_y y} \\ 
+	\end{aligned}
+\end{equation}
+
+The Fourier transform, then, corresponds to
+\begin{equation}
+	\begin{aligned}
+		\phi(p_x, p_y) &= \frac{1}{\sqrt{2 \pi \hbar}} \int \frac{1}{\sqrt{2 \pi \hbar}} \int e^{\frac{p_x x}{\imath \hbar}} e^{\frac{p_y y}{\imath \hbar}} \psi(x, y) dxdy \\
+	\end{aligned}
+\end{equation}
+where the factors in the transform pick up the oscillations at the appropriate frequency.
+
+
+In polar coordinates, the eigenstates of momentum in $r$ and $\phi$ are different. For $r$, the oscillation will be along the radial axis (intuitively, like the ripples created by an object falling on water) while for $\phi$ the oscillation will depend on the angle. Eigenstates of momentum for $\phi$ will have to be periodic, and therefore the spectra will be discrete.
+\begin{equation}
+	\begin{aligned}
+		P_r &= - \imath \hbar \partial_r \\
+		\phi(r,\phi) &= e^{\imath k_r r} \\
+		P_r e^{\imath k_r r} &= - \imath \hbar \partial_r e^{\imath k_r r} = - \imath \hbar \imath k_r e^{\imath k_r r} = \hbar k_r e^{\imath k_r r} \\ 
+		P_\phi &= - \imath \hbar \partial_\phi \\
+		\phi(r,\phi) &= e^{\imath \frac{ n \phi}{2 \pi}} \\
+		P_\phi e^{\imath \frac{ n \phi}{2 \pi}} &= - \imath \hbar \partial_\phi e^{\imath \frac{ n \phi}{2 \pi}} = - \imath \hbar \imath \frac{ n }{2 \pi} e^{\imath \frac{ n \phi}{2 \pi}} = \frac{ \hbar n }{2 \pi} e^{\imath \frac{ n \phi}{2 \pi}r} \\ 
+	\end{aligned}
+\end{equation}
+The Fourier transform in polar coordinates is
+\begin{equation}
+	\begin{aligned}
+		\phi(p_r, p_\phi) &= \frac{1}{\sqrt{2 \pi \hbar}} \int \frac{1}{\sqrt{2 \pi \hbar}} \int e^{\frac{p_r r}{\imath \hbar}} e^{\frac{p_\phi \phi}{\imath \hbar}} \psi(r, \phi) dr d\phi \\
+	\end{aligned}
+\end{equation}
+so that the factors in the transform correctlypick the oscillations on the variables.
+
+Let's double check what happens with coordinate changes.
+\begin{equation}
+	\begin{aligned}
+		x &= r \cos \phi \\
+		y &= r \sin \phi \\
+		\partial_r x &= \cos \phi \\
+		\partial_\phi x &= - r \sin \phi \\
+		\partial_r y &= \sin \phi \\
+		\partial_\phi y &= r \cos \phi \\
+	\end{aligned}
+\end{equation}
+
+Express both momentum and eigenstate in other coordinates and see that it works.
+\begin{equation}
+	\begin{aligned}
+		P_r &= \partial_r x P_x + \partial_r y P_y = \cos \phi P_x + \sin \phi P_y = \frac{x}{\sqrt{x^2 + y^2}} P_x + \frac{y}{\sqrt{x^2 + y^2}} P_y  \\
+		e^{\imath k_r r} &= e^{\imath k_r \sqrt{x^2 + y^2}}\\
+		\partial_x e^{\imath k_r r} &= \partial_x e^{\imath k_r \sqrt{x^2 + y^2}} = e^{\imath k_r \sqrt{x^2 + y^2}} \imath k_r \partial_x \sqrt{x^2 + y^2} = \imath k_r \frac{x}{\sqrt{x^2 + y^2}} e^{\imath k_r \sqrt{x^2 + y^2}} \\
+		\partial_y e^{\imath k_r r} &= \partial_y e^{\imath k_r \sqrt{x^2 + y^2}} = e^{\imath k_r \sqrt{x^2 + y^2}} \imath k_r \partial_y \sqrt{x^2 + y^2} = \imath k_r \frac{y}{\sqrt{x^2 + y^2}} e^{\imath k_r \sqrt{x^2 + y^2}} \\
+		P_r e^{\imath k_r \sqrt{x^2 + y^2}} &= (-\imath \hbar ) \frac{x^2}{x^2 + y^2} \imath k_r e^{\imath k_r \sqrt{x^2 + y^2}} +(-\imath \hbar ) \frac{y^2}{x^2 + y^2} \imath k_r e^{\imath k_r \sqrt{x^2 + y^2}} \\
+		&= \hbar k_r \frac{x^2 + y^2}{x^2 + y^2} e^{\imath k_r \sqrt{x^2 + y^2}} = \hbar k_r e^{\imath k_r \sqrt{x^2 + y^2}} \\
+	\end{aligned}
+\end{equation}
+Note: we haven't transformed the wave function like a density.
+
+
+Conjecture: does the transform generalize like so:
+\begin{equation}
+	\begin{aligned}
+		\phi(p_{\hat{x}}, p_{\hat{y}}) &= \frac{1}{\sqrt{2 \pi \hbar}} \int \frac{1}{\sqrt{2 \pi \hbar}} \int e^{\frac{p_{\hat{x}} \hat{x}}{\imath \hbar}} e^{\frac{p_{\hat{y}} \hat{y}}{\imath \hbar}} \psi(\hat{x}, \hat{y}) d\hat{x}d\hat{y} \\
+	\end{aligned}
+\end{equation}
 
 \end{document}
