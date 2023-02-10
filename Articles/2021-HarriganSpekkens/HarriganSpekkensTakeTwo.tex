@@ -1,30 +1,31 @@
-\documentclass[twocolumn,prl,floatfix,superscriptaddress]{revtex4-2}
-\usepackage{graphicx, subfigure, amsfonts, amssymb, amsmath, array, gensymb, fontenc, color, lipsum}
-%\documentclass[aps,twocolumn,showpacs,preprintnumbers]{revtex4}
-%\usepackage{graphicx}  % Include figure files
-%\usepackage{subfigure}
-%\usepackage{multirow}
-%\linespread{1.0}
-%\usepackage{fancyhdr}
-%\usepackage{longtable}
-%\usepackage{parskip}
-%\usepackage[T1]{fontenc}
-%\usepackage{dcolumn}
-%\usepackage{bm}        
-%\usepackage{amsfonts}  
-%\usepackage{amsmath}   
-%\usepackage{amssymb}
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-1}
+%\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+%\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{tikz}
-\hypersetup{colorlinks= true, allcolors=blue}
-%\setcitestyle{aysep={}}
-%\setlength{\parindent}{11pt}
+
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\urlstyle{same}
 \frenchspacing
 
 \newcommand\partitle[1]{\textsc{#1}.}
+
+
 \begin{document}
 
-\title{On the reality of the quantum state once again}
+\title{On the reality of the quantum state once again: A no-go theorem for $\psi$-ontic models}
 \author{Gabriele Carcassi}
 \affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
 \author{Andrea Oldofredi}
@@ -37,27 +38,24 @@
 
 
 \begin{abstract}
-The Pusey, Barrett and Rudolph (PBR) theorem claims that quantum states cannot be taken to represent mere information about the system. This result is based on the ontological model framework proposed by Harrigan and Spekkens (HS). In this paper we show that the HS framework has a fundamental problem: the epistemic structure it implicitly assumes does not follow the one dictated by quantum mechanics. Namely, the map between the epistemic states of the model and quantum density matrices preserves neither the value nor ordering of the information entropy. Consequently the epistemic content of mixed states is not mapped in a meaningful way. The problem stems from the assumption that an epistemic state is characterized by a \emph{single} probability measure, which is essentially an assumption of non-contextuality. Given this fundamental issue, every result that uses the HS framework, including the PBR theorem, should be carefully reexamined.
+In 2010 Harrigan and Spekkens (HS) proposed a rigorous classification in order to categorize the nature of the quantum state, i.e.\ to establish whether in a certain model $\psi$ corresponds to a real property of a quantum object, in which case the model is called $\psi$-ontic, or to some observer information, making it $\psi$-epistemic. Building on the HS framework Pusey, Barrett and Rudolph (PBR) proved a theorem claiming that $\psi$-epistemic models contradict quantum mechanics, and thus quantum states cannot be taken to represent mere information about quantum systems. In this essay we propose a simple no-go theorem that explains why also $\psi$-ontic models cannot be expected to reproduce quantum mechanics. We will see that, using information theoretic considerations, the lack of overlap of epistemic states requires all states to be orthogonal, which openly contradicts quantum theory. Combining our result with the PBR argument, our conclusion is that both $\psi$-epistemic and $\psi$-ontic models contradict quantum mechanics. 
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
  
-In 2012 Pusey, Barrett and Rudolph published a formal result in \emph{Nature Physics}, widely known as the PBR theorem, showing that ``if the quantum state merely represents information about the real physical state of a system, then experimental predictions are obtained that contradict those of quantum theory'' (\cite{PBR:2012}, p.\ 475). Alternatively stated, PBR argued that in every model reproducing the statistics and predictions of Quantum Mechanics (QM) the quantum state $\psi$ must represent real physical properties of the system under consideration and not agents' knowledge---i.e.\ models must be $\psi$-ontic. Consequently, quantum theories cannot be $\psi$-epistemic. 
+In 2010 Harrigan and Spekkens (HS) proposed a rigorous classification in order to categorize the nature of the quantum state, i.e.\ to establish whether in a certain model $\psi$ corresponds to a real property of a quantum object, in which case the model is called $\psi$-ontic, or to some observer information, making it $\psi$-epistemic \cite{Harrigan:2010}. While their original aim was to clarify Einstein's view of Quantum Mechanics (QM), the HS framework has been widely employed in the literature not only to categorize different formulations of QM, but also to argue what types of interpretations are admissible (\cite{Leifer:2013, Leifer:2017, Branciard:2014, Hermens:2021, Wood:2015, Ringbauer:2015, Mazurek:2016, Bartlett:2012}; cf.\ \cite{Oldofredi:2020b, Ladyman:2021} for critical discussions). 
 
-Such a theorem had a remarkable resonance (\cite{Leifer:2014, Leifer:2014b, Renner:2012, Colbeck:2017, Hardy:2013, Maroney:2014, Patra:2013, Mansfield:2016, Schlosshauer:2012, Schlosshauer:2013, Schlosshauer:2014, Aaronson:2013}), and questions about its actual meaning are still discussed today: on the one hand, it rules out interpretations of QM where $\psi$ merely represents information. On the other, scholars recently showed that non-trivial epistemic as well as statistical approaches to QM are not refuted by the PBR argument (\cite{Ben:2017, Rizzi:2018, Oldofredi:2021, DeBrota:2019}).
-	
-In this paper we are not going to rebut the theorem itself. We instead aim to carefully reexamine one of its premises, i.e.\ Harrigan and Spekkens' (HS) classification between $\psi$-ontic and $\psi$-epistemic ontological models  \cite{Harrigan:2010} on top of which the PBR result is derived. We believe that a careful examination of this assumption forces us to reevaluate the significance of the PBR conclusion. 
-		
-HS proposed a rigorous classification in order to categorize the nature of the quantum state, i.e.\ to establish whether in a certain model $\psi$ corresponds to a real property of a quantum object, in which case the model is called $\psi$-ontic, or to some observer information, making it $\psi$-epistemic. While the original aim of this classification was to clarify Einstein's view of quantum theory, the HS framework has been widely employed in the literature not only to categorize different interpretations, but also to argue what types of interpretations are admissible (\cite{Leifer:2013, Leifer:2017, Branciard:2014, Hermens:2021, Wood:2015, Ringbauer:2015, Mazurek:2016, Bartlett:2012}; cf.\ \cite{Oldofredi:2020b, Lewis:2012, Ladyman:2021} for critical discussions). Given the influence that the HS framework and the PBR theorem have in quantum foundations, it is worthwhile to look again at the former with more scrutiny in order to understand whether it is a sound basis from which to draw conclusions on the nature of the quantum state.
+Referring to this, one of the most influential works based on HS classification is due to Pusey, Barrett and Rudolph who published a formal result in \emph{Nature Physics}---widely known as the PBR theorem---showing that ``if the quantum state merely represents information about the real physical state of a system, then experimental predictions are obtained that contradict those of quantum theory'' (\cite{PBR:2012}, p.\ 475). Alternatively stated, PBR argued that in every model reproducing the statistics and predictions of QM the quantum state $\psi$ must represent real physical properties of the system under consideration and not agents' knowledge---i.e.\ models must be $\psi$-ontic. Consequently, quantum theories cannot be $\psi$-epistemic. 
 
-In this paper we will show two things:
-\begin{enumerate}
-	\item the information entropy as calculated on HS epistemic states does not match the one provided by quantum mechanics, therefore the epistemic structures provided by QM and HS are not isomorphic;
-	\item if we rephrase the overlapping condition directly in terms of density matrices, we find that non-orthogonal pure states ``overlap'', which rules out $\psi$-ontic models.
-\end{enumerate}
-Combining these results with PBR, our conclusion is that the HS classification itself is fundamentally problematic. The main issue lies in assuming that the epistemic state identifies a \emph{single} probability distribution over the whole set of ontic states. We show that this, in essence, is an assumption of non-contextuality, which is also inherited by the PBR theorem, casting doubts on its validity.
+Such a theorem had a remarkable resonance (\cite{Leifer:2014, Leifer:2014b, Lewis:2012, Renner:2012, Colbeck:2017, Hardy:2013, Maroney:2014, Patra:2013, Mansfield:2016, Schlosshauer:2012, Schlosshauer:2013, Schlosshauer:2014, Aaronson:2013}), and questions about its actual meaning are still discussed today: on the one hand, it rules out interpretations of QM where $\psi$ merely represents information. On the other, scholars recently showed that non-trivial epistemic as well as statistical approaches to QM are not refuted by the PBR argument (\cite{Ben:2017, Rizzi:2018, Oldofredi:2021, DeBrota:2019}).
+
+In this paper we are not going to rebut the theorem itself. We instead aim to carefully re-examine one of its premises, i.e.\ HS classification between $\psi$-ontic and $\psi$-epistemic ontological models on top of which the PBR result is derived. We believe that a careful analysis of this assumption forces us to re-evaluate the significance of this classification as well as the meaning of the PBR conclusion. In other words, we re-examine the definitions and features of such models in order to understand whether they constitute a sound basis from which to draw conclusions on the nature of $\psi$, given the influence that the HS framework has in quantum foundations. As the reader will see, our analysis suggests that they are not.
+
+While the PBR theorem is a no-go result for $\psi$-epistemic models, in this essay we provide a no-go theorem for $\psi$-ontic models: using information theoretic considerations we show that $\psi$-ontic models cannot reproduce all the predictions, results and implications of QM since the lack of overlap of epistemic states---a necessary condition for a model to be $\psi$-ontic---requires that all states must be orthogonal, which openly contradicts quantum theory. Therefore, we conclude, $\psi$-ontic models should not be employed in order to classify quantum theories. 
+
+Combining our result with the PBR argument, we conclude that the HS classification itself is fundamentally empty, i.e.\ both $\psi$-epistemic and $\psi$-ontic models do contradict quantum mechanics. Consequently, HS framework should be employed neither to classify interpretations of the quantum formalism, nor to draw conclusion about the nature of $\psi$. 
 
 \section{Summary of the Harrigan \& Spekkens Model}
 
@@ -76,7 +74,7 @@ It is also assumed that a mixture of pure states $\{ \psi_i \}$ with probabiliti
 \end{equation}
 As the epistemic states for mixed preparations are simply linear combinations of epistemic states for pure preparations, the HS model concentrates on the latter.
 
-To classify an ontological model, we look at the relationship between quantum and ontic states. There are two broad categories. In a \textbf{$\psi$-ontic} model the wave function is a physical property of the ontic state, in the sense that given an ontic state $\lambda$ there is only one pure state preparation $P_\psi$ that could have prepared $\lambda$. As we can see in figure \ref{overlap}, this happens if the probability distributions do not overlap, i.e.\ if we have
+To classify an ontological model, we look at the relationship between quantum and ontic states. There are two broad categories. In a \textbf{$\psi$-ontic} model the wave function is a physical property of the ontic state, in the sense that given an ontic state $\lambda$ there is only one pure state preparation $P_\psi$ that could have prepared $\lambda$. As we can see in figure \ref{overlap} (a), this happens if the probability distributions do not overlap, i.e.\ if we have
 \begin{equation}\label{ontic_condition}
 	p(\lambda | P_{\psi})p(\lambda|P_{\phi})=0
 \end{equation}
@@ -93,12 +91,11 @@ To make this classification more concrete, let us give an example from classical
 \caption{\footnotesize{Harrigan and Spekkens' distinction between $\psi$-ontic (a) and $\psi$-epistemic (b) ontological models.}}\label{overlap}
 \end{figure}
 
-
 \section{Entropy and the ontological model}
 
-To reproduce quantum theory, an ontological model has to reproduce not simply the probability of transitions during measurements but also all the results of quantum statistical mechanics and quantum information theory. Therefore it has to reproduce the correct values for entropy of mixed states. The natural way is by using standard information theoretic tools over the space of epistemic states which, as we will see, rules out $\psi$-ontic models. The degree of overlap between distributions, in fact, is not a choice, but is fixed by the value of entropy.
+To reproduce quantum theory, an ontological model has to reproduce not simply the probability of transitions during measurements but also all the results of quantum statistical mechanics and quantum information theory. Therefore, among other things, it has to obtain the correct values for entropy of mixed states. \textcolor{blue}{The natural way is by using standard information theoretic tools over the space of epistemic states which, as we will see, rules out $\psi$-ontic models. The degree of overlap between distributions, in fact, is not a choice, but is fixed by the value of entropy.} %@Gabriele: expand these points, i.e. explain more clearly the inference that you have in mind.
 
-Let us first review a crucial property of the information entropy, both in the classical setting (i.e.\ the Shannon/Gibbs entropy) and in the quantum setting (i.e.\ the von Neumann entropy).\footnote{We show the explicit calculations in the appendix.}
+Let us first review a crucial property of the information entropy, both in the classical setting (i.e.\ the Shannon/Gibbs entropy) and in the quantum setting (i.e.\ the von Neumann entropy).\footnote{We show the explicit calculations in the appendix.} %@ Gabriele: why is it important to introduce both classical and quantum property of information entropy? Questi sono tutti commenti anti-referee. Esplicita meglio a cosa servono queste cose. 
 
 \textbf{Classical information entropy of mixed non-overlapping distributions}. Let $\rho_1$ and $\rho_2$ be two classical distributions over a space $\Lambda$ with measure $\lambda$. The entropy for each distribution is given by the usual formula\footnote{The logarithm is assumed to be in base 2.}, for example
 \begin{equation}\label{shannon_entropy}
@@ -115,9 +112,10 @@ Note how the non-overlapping assumption fixes the entropy of the mixed state.
 	H(\rho) = H\left(\frac{1+\sqrt{p}}{2}, \frac{1-\sqrt{p}}{2}\right).
 \end{equation}
 
-\emph{\textbf{Theorem: Since non-overlapping distributions can only represent orthogonal states, $\psi$-ontic models cannot be consistent with quantum theory.}}
+\textbf{Theorem: Since non-overlapping distributions can only represent orthogonal states, $\psi$-ontic models cannot be consistent with quantum theory.}
 
-\emph{Proof}: Suppose we have a $\psi$-ontic model defined according to \cite{Harrigan:2010}. The epistemic states $p(\lambda|P_\psi)$ and $p(\lambda|P_\phi)$ consist of non-overlapping distributions over a space $\Lambda$, therefore eq. \ref{entropy_nonoverlap} applies. Given that $\psi$ and $\phi$ are pure states, and the entropy for pure states is zero, we must have
+\emph{Proof}: Suppose we have a $\psi$-ontic model defined according to \cite{Harrigan:2010}. The epistemic states $p(\lambda|P_\psi)$ and $p(\lambda|P_\phi)$ consist of non-overlapping distributions over a space $\Lambda$,  \textcolor{blue}{therefore eq. \ref{entropy_nonoverlap} applies}. %@Gabriele: mi rendo conto che  stupido ma  un commento anti-referee. Tu dici che l'eq. 7 che riguarda distribuzioni classiche si applica al nostro caso che riguarda stati quantistici. Esplicita a prova di referee perchŽ si applica l'eq. 7 e non 8
+Given that $\psi$ and $\phi$ are pure states, and the entropy for pure states is zero, we must have
 \begin{equation}\label{entropy_pure}
 	H(p(\lambda|P_\psi)) = H(p(\lambda|P_\phi)) = 0,
 \end{equation}
@@ -137,27 +135,33 @@ no matter what $\psi$ and $\phi$ are.
 
 Hence, the non-overlapping assumption built into the $\psi$-ontic model necessarily implies that all pure states are orthogonal. Since this is not true in quantum mechanics, any $\psi$-ontic model will fail to reproduce the results of quantum information, quantum statistical mechanics and, therefore, quantum theory in general. $\square$
 
-We should also note that one has problems for $\psi$-epistemic models. While PBR leaves the possibility of $\psi$-epistemic models that use correlations, the correlations is also fixed by the entropy. It is a well-known result  [CITE: libri di informazione] in both classical and quantum information theory that the entropy of a joint distribution of the marginal if and only if the subsystems are independent. Therefore an epistemic state that represents independent quantum states must also be the joint distribution of statistically independent epistemic states of the individual systems. This, combined with PBR, tells us that no models can reproduce quantum statistical mechanics and quantum information theory.
+We should also note that one has problems for $\psi$-epistemic models. While PBR leaves the possibility of $\psi$-epistemic models that use correlations, the correlations is also fixed by the entropy. %Commenti anti-reviewer: what do you mean here exactly when you speak about correlations? Do you know the existence of one of these models?
+It is a well-known result in both classical and quantum information theory that \textcolor{red}{the entropy of a joint distribution of the marginal if and only if the subsystems are independent} (\cite{Ash:2010}, \cite{Nielsen:2010}). %@Gabriele: a verb seems to be missing in the red sentence.
+Therefore an epistemic state that represents independent quantum states must also be the joint distribution of statistically independent epistemic states of the individual systems. This, combined with PBR, tells us that no models can reproduce quantum statistical mechanics and quantum information theory.
 
-The conclusion is the following:
+Thus, one concludes the following:
 \begin{quote}
 	\textbf{no ontological model can reproduce quantum statistical mechanics and quantum information with standard information theoretic tools}.
 \end{quote}
 That is, even if one had an ontological model that mapped the result of single outcome correctly, it would still give the wrong answer when trying to calculate ensembles and their entropy.
 
-In principle, we do not exclude that someone may find a different construction to reproduce the correct entropies. There are, however, at least two objective difficulties that cannot be circumvented. First of all, information entropy is strictly concave, meaning that $H(p \rho_1 + (1-p) \rho_2) \geq p H(\rho_1) + (1-p) H(\rho_2)$ with the equality valid only if $\rho_1$ and $\rho_2$ are the same exact state. Therefore entropy fixed equality. Because the mapping between epistemic states and density matrices is not injective,\footnote{Quantum mixture do not have a single decomposition in pure states. For example, the maximally mixed state of a qubit can be achieved with either an equal mixture of spin up and down or an equal mixture of spin left and right.} epistemic states must form equivalence classes and the strict concavity must be lost. That is, one can make mixtures of different ensemble without increasing entropy.
+In principle, we do not exclude that someone may find a different construction to reproduce the correct entropies. There are, however, at least two objective difficulties that cannot be circumvented. First of all, information entropy is strictly concave, meaning that $H(p \rho_1 + (1-p) \rho_2) \geq p H(\rho_1) + (1-p) H(\rho_2)$ with the equality valid only if $\rho_1$ and $\rho_2$ are the same exact state. \textcolor{blue}{Therefore entropy fixed equality}. %spiega meglio
+Because the mapping between epistemic states and density matrices is not injective,\footnote{Quantum mixture do not have a single decomposition in pure states. For example, the maximally mixed state of a qubit can be achieved with either an equal mixture of spin up and down or an equal mixture of spin left and right.} epistemic states must form equivalence classes and the strict concavity must be lost. That is, one can make mixtures of different ensemble without increasing entropy.
 
-Secondly, as equation \ref{entropy_mixed} shows, the compute of the entropy requires the inner product. Therefore, whatever other structure one puts on top of epistemic states, essentially redefines the inner product. In other words, the idea that the inner product just represent transition probabilities, which, in our view, is the key idea the ontological model uses to explain ``what really happens'' does not work.
+Secondly, as equation \ref{entropy_mixed} shows, the compute of the entropy requires the inner product. Therefore, whatever other structure one puts on top of epistemic states, essentially redefines the inner product. In other words, the idea that the inner product just represents transition probabilities, which, in our view, is the key idea the ontological model uses to explain ``what really happens'' does not work.
 
-Furthermore, we stress that it is not our place to solve these problems: we are not the proponent of this model. Our only aim is to raise enough doubt that the ontological model, as it currently stand, is highly problematic.
+It is worth stressing, however, that it is not our task to solve these problems since we are neither the proponents of this model, nor supporters of it. Our only aim is to underline that the HS framework, as it currently stand, is highly problematic to draw any conclusion about the interpretation of quantum theory and the nature of $\psi$.
 
 \section{Conclusion}
 
-We showed not only that the HS framework does not correctly describe the epistemic structure of QM, but also that it implicitly assumes non-contextuality. Hence, it cannot be employed to draw conclusions on the nature of quantum states. Consequently, any other result relying on the HS categorization inherits the same issues. In particular, it follows that the PBR theorem is derived from a technically ill-defined basis; thus, it is demonstrated neither that quantum states must necessarily be HS-$\psi$-ontic, nor that epistemic interpretations are contradicted by quantum theory. Concluding, we believe that while work in quantum foundations typically focuses on measurements and their effect on pure states, equal importance must be given to preparations and their effect on mixed states. The different behavior of entropy in classical and quantum mechanics has profound implications not just for information theory, but also for statistical mechanics and its measurable predictions. 
+In this paper we proved that $\psi$-ontic models are not compatible with quantum information theory, and therefore with quantum mechanics itself.
 
-%A full solution to the ``measurement problem'' will therefore have to address the dual ``preparation problem.''
+One may think that the issue could be circumvented by substituting the Shannon entropy formula. %with what? 
+That is, the problem would not be with the non-overlapping assumption made by HS but rather with how the entropy is calculated. However, the link between probability theory, information theory and measure theory is so tight that it makes this objection untenable. If we take a set of states $U$ with a measure $\mu(U)$ that quantifies the states in the set, the probability of each state for a uniform distribution is given by $\rho = 1 / \mu(U)$ and the entropy by $\log \mu(U)$. The measure used to count states, the probabilities assigned to states and the entropy assigned to distributions are not independent mathematical structures: failure of one entails the failure of all. We will look deeper into this issue in a later work.
 
-%Number of words for the conclusion: 164
+Finally, combining our result with the PBR theorem it follows that both $\psi$-ontic and $\psi$-epistemic models cannot reproduce QM, contradicting the results and the predictions of quantum theory. This fact shows in turn that HS categorization of ontological models is fundamentally empty. Thus, such a framework should be employed neither to classify quantum interpretations, nor to draw conclusions on the nature of the quantum state.
+
+Referring to this, being the HS definitions inadequate to reproduce QM, it follows that any result derived from them rests on a technically ill-defined basis, as for instance the PBR theorem itself. If this is true, then, it is not demonstrated (i) that quantum states must necessarily be HS-$\psi$-ontic, and (ii) that HS-$\psi$-epistemic interpretations are contradicted by quantum theory. Concluding, we believe that the PBR theorem does not make claims on the reality of the quantum state, but it rather shows that HS definition of $\psi$-epistemic model contradicts QM. If interpreted in this manner, the PBR result is the first part of a more general argument showing the inadequacy of the HS framework to categorize quantum theories. Argument that we have completed with the proposed no-go theorem against $\psi$-ontic models.
 
 \section{Acknowledgements}
 
@@ -174,7 +178,7 @@ Andrea Oldofredi is grateful to the Funda\c{c}$\tilde{\mathrm{a}}$o para a Ci\^e
 	H(\rho) = 1 + \frac{1}{2} H(\rho_1) + \frac{1}{2} H(\rho_2). \tag{\ref{entropy_nonoverlap}}
 \end{equation}
 
-Let $U_1, U_2 \subset \Lambda$ be the respective supports of the distributions. Since the distributions are non-overlapping, we have $U_1 \cap U_2 = \emptyset$. We have
+Let $U_1, U_2 \subset \Lambda$ be the respective supports of the distributions, which are non-overlapping i.e.\ $U_1 \cap U_2 = \emptyset$. We then have
 \begin{align*}
 	H(\rho) &= - \int_\Lambda \rho \log \rho d\lambda \\
 	&= -\int_{U_1} \rho \log \rho d\lambda -\int_{U_2} \rho \log \rho d\lambda \\
@@ -210,7 +214,7 @@ Let $U_1, U_2 \subset \Lambda$ be the respective supports of the distributions. 
 	\end{tikzpicture}
 \end{center}
 
-Note that $\psi$ and $\phi$ will identify a two-dimensional subspace which can be thought, without loss of generality, as a qubit and therefore can be represented by a Bloch sphere. The picture represents the intersection of the Bloch sphere with the plane identified by $\psi$ and $\phi$. As $\rho$ is an equal mixture of the two states, it will be represent by the midpoint between the two. Taking the line that goes through $\rho$ and the center of the sphere, we can see that $\rho$ can also be seen as the mixture of the states $+$ and $-$ which, since they represent equal and opposite directions, form a basis. To diagonalize $\rho$, then, means to express it in terms of $+$ and $-$.
+Note that $\psi$ and $\phi$ will identify a two-dimensional subspace which can be thought, without loss of generality, as a qubit and therefore can be represented by a Bloch sphere. The picture represents the intersection of the Bloch sphere with the plane identified by $\psi$ and $\phi$. As $\rho$ is an equal mixture of the two states, it will be represented by the midpoint between the two. Taking the line that goes through $\rho$ and the center of the sphere, we can see that $\rho$ can also be seen as the mixture of the states $+$ and $-$ which, since they represent equal and opposite directions, form a basis. To diagonalize $\rho$, then, means to express it in terms of $+$ and $-$.
 
 If $\theta_{\psi\phi}$ is the angle between $\psi$ and $\phi$, we have
 \begin{equation}
@@ -249,7 +253,7 @@ We can now calculate the mixture
 	&=\frac{1+|\langle\psi|\phi\rangle|}{2}\left|+\right>\left<+\right| +\frac{1-|\langle\psi|\phi\rangle|}{2}\left|-\right>\left<-\right|. \\
 \end{align*}
 
-As $\rho$ is in a diagonal form, the entropy is given by eq.~\ref{entropy}.
+As $\rho$ is in a diagonal form, the entropy is given by \ref{entropy}.
 
 
 \end{document}
