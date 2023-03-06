@@ -1,0 +1,137 @@
+%!TEX TS-program = xelatex     				
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{article}
+\usepackage[letterpaper]{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+%\geometry{verbose,tmargin=3.9cm,bmargin=3.9cm,lmargin=2.9cm,rmargin=2.4cm}
+\usepackage{graphicx, listings, setspace, hyperref, verbatim}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{tikz, tabu, gensymb, adjustbox, subcaption, float}
+\usetikzlibrary{shapes, shadows, arrows}
+\usepackage{textcomp}
+\usepackage{mathptmx}
+%\doublespacing
+\singlespacing
+%\usepackage{parskip} % places a space between paragraphs
+
+\usepackage{lipsum}
+
+\usepackage{xltxtra}
+\setmainfont[Mapping=tex-text]{Linux Libertine O}
+%[Numbers={OldStyle}]
+
+
+
+
+\usepackage[backend=biber,  style=chicago-authordate, url=false, doi=false, eprint=false]{biblatex}
+%\usepackage[backend=biber,  style=authoryear-icomp, url=false, doi=false, eprint=false]{biblatex}
+\addbibresource{C:/Users/Josh/Dropbox/0_sources/Master_sources.bib}
+%\addbibresource{Master_sources.bib}
+
+\AtEveryBibitem{%
+  \clearfield{note}%
+  \clearfield{series}%
+  \clearfield{pages}%
+}
+
+\newcommand\bs{\begin{singlespace}} 			
+\newcommand\es{\end{singlespace}} 		
+\newcommand\bq{\begin{quote}\begin{singlespace}\small}	
+\newcommand\eq{\end{singlespace}\end{quote}}
+\newcommand\be{\begin{equation}} 			
+\newcommand\ee{\end{equation}} 		
+\newcommand\BM{\mathbf} 		
+
+\tikzset{
+level/.style = {ultra thick, blue},
+connect/.style = {dashed, red},
+label/.style = {text width=3cm, align=center}
+}
+
+\newcommand{\must}{\mathrel{\mathop\Box}\mathrel{\mkern-2.5mu}\rightarrow}
+\newcommand{\might}{\mathrel{\mathop\Diamond}\mathrel{\mkern-2.8mu}\rightarrow}
+
+\newcommand{\forceindent}{\leavevmode{\parindent=1em\indent}}%indent in parskip
+
+%Physics notation 
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\dd}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} % for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+\right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+\left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+#2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\redmel}[3]{\left< #1 \vphantom{#2#3} \right \|
+#2 \left \| #3 \vphantom{#1#2} \right>} % for reduced matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+
+% Hyperref set-up & metadata
+\hypersetup{
+	pdftitle={},
+	pdfauthor={anonymous},
+	pdfsubject={},
+	pdfkeywords={},
+	pdfcreator={XeLaTeX},
+	pdfproducer={XeLaTeX},
+	pdftoolbar=false,	% show Acrobat’s toolbar?
+	pdfmenubar=true,	% show Acrobat’s menu?
+	pdffitwindow=false,	% window fit to page when opened
+	pdfstartview={FitH},	% fits the width of the page to the window
+	unicode=true,		% non-Latin characters in Acrobat’s bookmarks
+	pdfnewwindow=true,	% links in new window
+	colorlinks=true,	% false: boxed links; true: colored links
+	linkcolor=black,	% color of internal links
+	citecolor=black,	% color of links to bibliography
+	filecolor=black,	% color of file links
+	urlcolor=black		% color of external links
+}
+
+\definecolor{cof}{RGB}{219,144,71}
+\definecolor{pur}{RGB}{186,146,162}
+\definecolor{greeo}{RGB}{91,173,69}
+\definecolor{greet}{RGB}{52,111,72}
+
+\colorlet{green}{greeo} %redefines color `green' to color `greeo' (or any other color)
+
+
+\tikzstyle{block} = [draw, rectangle, text width= 15em, text centered, minimum height = 10mm, node distance= 5em]
+\tikzstyle{line} = [draw,-latex']
+\tikzstyle{result} = [draw, diamond, text width =5em, text centered, node distance= 6em]
+\tikzstyle{smallblock} = [draw, rectangle, text width= 9em, text centered, minimum height = 10mm, node distance= 5em]
+\tikzstyle{smallresult} = [draw, diamond, minimum height =5em, minimum width =5em, text centered, node distance= 6em]
+\tikzstyle{title} = [text width= 17em, text centered, minimum height = 10mm, node distance= 5em]
+\tikzstyle{vertex} = [draw=none,shape=circle,fill, inner sep=2pt]
+\tikzstyle{cloud} = [draw, ellipse, minimum height=1.5em, minimum width=35mm]
+\tikzstyle{circ} = [draw , circle, inner sep=1.5pt]
+
+\begin{document}
+
+\bs
+\title{\vspace{-3em} \large Response to Referee Comments for ``Hamiltonian Privilege'' \vspace{-3em}}			
+		
+\date{\today}	
+\maketitle
+\es
+
+\input{draft_response.txt}
+
+
+%\printbibliography
+
+
+\end{document}
