@@ -1,0 +1,124 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+%\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+%\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\urlstyle{same}
+\frenchspacing
+
+
+\begin{document}
+
+\title{Modeling time from operational requirements}
+\author{Gabriele Carcassi, Christine A. Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\begin{abstract}
+In a previous work, We present a theoretical framework in which the adage ``time is what the clock measures'' can be made mathematically precise. The core idea is not to focus on the processes that one uses to implement a clock, but rather on the requirements that such an object must have. We model a clock as a set of references that can be used to tell whether an event is before or after each reference. We then find the necessary and sufficient conditions for a set of references to identify the points of a real line, thus finding what are the physical assumptions we are implicitly taking when modeling time as a continuous quantity. We will find these conditions to be highly idealized and, that once those idealizations are no longer tenable, the linear structure of time breaks done. Under those circumstances the standard notion of manifold, real number or integer need to be abandoned in favor of a yet to be discovered topological structure.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The mathematical structure of time (i.e. real numbers with the standard topology) can be understood as coming from an idealized operational model of clocks
+
+As time resolution increases, this model fails in such a way that standard mathematical tools (e.g. manifolds, real numbers, rational numbers or integers) must be abandoned.
+
+A better understanding of how time and space break down at Plank scale, then, means modeling the conceptual issues stemming from less idealized operational definitions.
+
+
+\section{Clocks, time and synchronization}
+
+The first thing we should be aware is that there are always multiple ways to define a concept, and whether a particular definition is appropriate depends on context. For example, a table made of gold and diamonds may be considered furniture for the purpose of interior decorating, though it may not for insurance or tax purposes. Moreover, if one defines a table as ``a piece of furniture consisting of a smooth flat slab fixed on legs''\footnote{Merriam-Webster definition - https://www.merriam-webster.com/dictionary/table}, there is an implicit understanding of what is meant by ``legs''. Therefore a definition of a concept cannot be given unless we specify its purpose and what are the primitive elements allowed. The question ``what is time?'' is unlikely to have a single answer, not because of the nature of ``time'', but because of the nature of definitions.
+
+For example, in mathematics the main goal of a definition is formal rigor, and the primitive elements are typically those built on top of propositional calculus and set theory. A definition of time may sound like ``a variable that can be used as a parameter for the evolution''. That is, it is the symbol $t$ we use to indicate the argument of the evolution $x^i(t)$, which is a function that takes a real value and returns a point on a manifold. On the other hand, if one is interested in metaphysics, he will gravitate more towards something like ``a nonspatial continuum in which events occur''. If the interest is epistemology, other features will be preferred.
+
+For experimental physics, the goal is to be able to perform experiments, therefore the most important feature is that it gives us a procedure that anyone can follow and gives consistent results. In that context ``time is what a clock measures''. That is, we must have an instrument that measures time, and we must be able to read its output to record the moment an event occurs. In this context, a formal or an ontological definition does not help, and therefore they are not useful, much in the same way being able to perform open heart surgery would not help in the cockpit of a commercial airplane.
+
+While the above definition gives an operational way to define time (i.e. go read the clock), we are left with the question ``what is a clock?'' The obvious answer, ``a clock is what measures time'', fails because it doesn't tell us how to procure a clock. Historically, there have been many objects that have been used as a clock: the motion of the sun as measured by a sundial, the beating of one's heart felt by the pulse, the level of the water of a bucket with a hole, the swings of a pendulum, and so on. For all these devices we can produce a set of instructions such that anybody can construct their own clock, or buy it from someone else.
+
+What we have done, however, is simply give examples of clocks. We haven't answered the question ``what is a clock?" Suppose we had a new device in front of us, how could we tell whether it can be used as a clock? Operationally, if it produces a signal that can be related with the other clocks that would be enough. For example, if it made a chirping noise every so often, and we noticed that it chirped twenty-three times every four swings of a pendulum, or every time the level of the water in our bucket went down thirteen millimeters, then we could use it as a clock. That is, a clock is any device that can be synchronized with other clocks. By synchronization here we mean the ability to relate the measurements of the two clocks, which is another operational feature.
+
+Now, the mathematician may object that these procedures are not ``rigorous'' enough. The metaphysician may object that we made no progress in saying what time ``is''. The epistemologist may object that we shouldn't extrapolate the future behavior of clocks solely based on their past behavior. All of that may be true, but we are able to create clocks and measure time, which is what we needed to achieve for experimental science. The remaining question is: ``are the above considerations enough for theoretical physics?'' That is, should theoretical physics only concern itself with operational definitions, or is there is something more?
+
+To answer this question, instead of exposing a point of view or providing arguments, we use mathematical modeling. We identify the operational requirements and assumptions needed to model clocks and turn them into precise mathematical definitions. If we are able to rigorously recover how time is represented in physics, that is, as a real valued quantity with the standard topology, together with a physically meaningful characterization of each mathematical concept, then we know that all that theoretical physics is describing are the relationships given by the (perhaps idealized) operational definitions.
+
+If we are able to do this, then we should be extremely cautious in using physics to infer anything beyond the operational settings. On the other hand, it would tell us that to improve our understanding of time we should not study the current theoretical frameworks, but rather the idealizations that we are, maybe unknowingly, assuming when devising and using our measurement devices.
+
+\section{The logic of experimental verifiability}
+
+We have clarified that the purpose of our definitions is to capture operational procedures, so now we need to understand how to capture them in a formal setting. The general idea is that we need to capture the logic of experimentally verifiable statements, which means capturing the rules used to combine not only logical statements, but experimental tests as well.\footnote{TODO: reference book and Kevin Kelly}
+
+Our most basic notion is that of a \textbf{verifiable statement}. That is, a statement that is universally true or false for which we have available an experimental test that always terminates successfully in a finite time if and only if the statement is true. For example, ``water is transparent\footnote{At visible wavelengths}'' is a verifiable statement as we can find some and confirm that we can see through it. By statement we mean the assertion made by the sentence, not the sentence itself. Therefore ``l'acqua \`e trasparente'' is the same statement as before, as it is just expressed in another language.
+
+Not all statements are verifiable. Some, like ``chocolate is good'', are not universal; others, like ``23 is a prime number'', ``it is morally justifiable to kill a person to save ten others'' or ``God is eternal'', deal with concepts that cannot be defined operationally; others, like ``the mass of the electron is exactly 0.511 $MeV/c^2$'', are not experimentally verifiable as they would require infinite precision. However, ``the mass of the electron is not exactly 0.511 $MeV/c^2$'' is verifiable, as finite precision measurements can exclude values.
+
+Note that the specific meaning of each statement and its logical relationship with respect to the others cannot be given in isolation. For example, ``the mass of the electron is within (0.510, 0.511) $MeV/c^2$'' is a testable hypothesis if we are trying to measure the mass. However, if we are performing particle identification in a collider experiment, the statement is assumed to be true. Even a physical system, like an electron, may have different operational definitions (e.g. an element of the cathode ray, a $\beta$ particle from radioactive decay) that in some experimental setups need to be shown to be equivalent, while in others are simply assumed to be equivalent based on the other experiment. Therefore verifiable statements must live in a \textbf{logical context} that fully determines these relationships and that is, in general, disconnected from other contexts.
+
+It should be intuitive to anyone familiar with the practice of experimental science that a complete and formal specification of a verifiable statement, together with its test and experimental setup is neither required nor desirable. In the end, the level of detail required is just so that an expert of the field is able to replicate the setup, which allows one to forego a lot of details that would make the specification unnecessarily cumbersome. Moreover, the flexibility to make modifications is essential to customize the design to different settings (i.e. different parts available, different laboratory conditions, etc...). Therefore trying to specify operational procedures themselves in a formal language is unnecessary and impracticable. We are also skeptical that one would be able to come up with a language that would work for all past and future measurement setups.\footnote{One can also argue that defining a language that defines all and only the operational procedures that are possible is equivalent to providing the laws of physics, which makes the problem circular: to define the laws of physics we need an operational language that needs the laws of physics to be defined.} Therefore we avoid this entirely and consider verifiable statements to be primitives. In the same way that mathematical axioms do not specify what sets are, just their properties in terms of set memberships and allowed operations, our formal system will just assume that these statements exist and that they have some basic properties.
+
+Formally, we have a set, called logical context, which contains elements that are called statements. All logical properties between statements are defined in terms of the possible assignments, which assign truth values to all statements in a way that is consistent with their meaning. For example, in all possible assignments ``animal A is a cat'' and ``animal A is a dog'' are never both true. Logical operations are defined as maps within the context. For example, the conjunction is a map that takes two or more statements and returns another statement that is true only for those possible assignments in which all initial statements are true. One finds, as expected, that the logical context is a complete Boolean algebra. What is important to us is that the algebra itself does not depend on what is factually true or not, just what can be potentially true based on the assumptions and operational requirements defined by the context.
+
+Within each context, there is a subset of statements that are verifiable which obey some additional rules. For example, the finite conjunction and countable disjunction of verifiable statements is also a verifiable statement. These rules are justified by the ability to construct tests from other tests. For example, to test a finite conjunction we can run all the tests and, if the statement is true, all tests will finish successfully in finite time. For a countable conjunction, we only need one test to successfully terminate, which we can find within a countable number of tests. These considerations make the set of verifiable statements a Heyting algebra, and the interplay of the Heyting algebra of verifiable statements with the Boolean algebra of all statements gives us a rich mathematical structure.
+
+Even given an indefinite amount of time, we can test up to countably many verifiable statements. Therefore we define an \textbf{experimental domain} as a set of verifiable statements that can be generated by countably many statements through finite conjuction and countable disjunction. Conceptually, an experimental domain corresponds to all the information that can be acquired experimentally on a subject. We then define the \textbf{theoretical domain} as the closure of an experimental domain by negation and countable disjuction. This corresponds to all statements that can be assigned an experimental test, with no guarantee of termination. One can show that the theoretical domain is an atomic lattice, and we call \textbf{possibilities} the atoms. These are the narrowest, most specific, statements and correspond to the cases that can be experimentally distinguished given the verifiable statements of the experimental domain.
+
+This construction maps perfectly to topologies and $\sigma$-algebras in the following way:
+\begin{itemize}
+	\item possibilities (experimentally distinguishable cases) $\to$ set of points
+	\item experimental domain (verifiable statements) $\to$ topology (open sets)
+	\item theoretical domain (statements with a test) $\to$ $\sigma$-algebra (Borel sets).
+\end{itemize}
+
+Over a real line, then, the possibilities correspond to the points, to all possible values. The standard topology corresponds to assuming that all open intervals correspond to physically verifiable statements. That is, every measurement has, at best, finite precision. Singletons, sets with only one element, are not open sets but are closed set. Physically, we cannot verify a value with infinite precision, but we can falsify it. This establishes a direct link between topological structures and experimental verification.
+
+We are now in a position to formulate our original question precisely both conceptually and mathematically. Each clock will, ultimately, provide a set of verifiable statements (e.g. ``the event happened before clock A ticked 35 times''). All these statements, taken together, will form an experimental domain. What are the necessary and sufficient conditions on all the verifiable statements constructed from all the clocks such that time can be modeled by a real line with the standard topology?
+
+\section{References and ordering}
+
+We model clocks as a set of references, and each reference allows us to verify whether an event happened before or after the reference. A reference, is formalized as a triplet of statements, before/on/after, with before and after guaranteed to be verifiable. In general, both a reference and an event will have a finite duration in time and they may overlap in different ways. [TODO add pictures]. This means that before/on/after are not, in general mutually exclusive. However, we do have some constraints: an event must happen, therefore at least one of the three statements must be true; if the event happens before and after, then it must also happen on the reference.
+
+The main technical result in [reference book] shows the necessary and sufficient conditions for which the possibilities of the domain are ordered, and the topology corresponds to the order topology. The difficult part is not finding the conditions for continuous time but for ordered time. There are three conditions.
+
+\textbf{Strict references.} This tells us that, for each reference, the before/on/after statements must be mutually incompatible: exactly one of then must be true. Conceptually this would mean, for example, that the event we are identifying has an extent in time that is much smaller than the extent of the reference, and therefore the overlaps between event and reference can be neglected.
+
+\textbf{Aligned references.} Formally, this imposes that the before and after statements of a set of references are aligned by implication (e.g. if the event is before reference A then it is not after reference B; if it is before reference C then it is before reference D). Physically, to be able to guarantee precise before/after relationships between references we must have control of the jitter. If there is jitter, then the ordering between references across clocks may not be reliable enough to assume aligned references. That is, the references of two different clocks may shift in opposite directions which may affect their ordering.
+
+\textbf{Refinable references.} This means that we can refine the range by finding references that resolve overlaps or intervals between references. For example, if an event can be after reference A and before reference B, then we must be able to put a reference in between. Conversely, if different references overlap, we must be able to find a reference within that overlap.
+
+When and only when all these conditions are met, then we can assume that the property identified by the references is an ordered property, a quantity. The values, then, correspond to references that are precisely only on the corresponding value. The difference between a continuous quantity, modeled with a real value, and a discrete quantity, modeled with an integer, is whether between two references there is always a third. Therefore the references become infinitely small, with zero extent.
+
+Again we stress that the conditions are simply in terms of logical relationships between verifiable statements, between operational procedures: if this clock tells me that the event happened before the 30 minutes mark, then this other clock must tell me that the event happened before the 35 minutes mark. The open sets, the verifiable statements, correspond to finite precision intervals, and the mathematical structure maps fully to formalized operational requirements. There is nothing else.
+
+The same derivation works for all other quantities, including spatial quantities. Therefore using real valued quantities and manifold in physics is implicitly assuming that, operationally, the properties we are measuring can be distinguished with strict, aligned and refinable references. The theoretical underpinning of this particular choice of mathematical representation are fully captured by operational requirements. In light of this, we should be extremely skeptical of deriving any other consequence from this choice.
+
+\section{Ordering failure}
+
+Assumptions of the order theorem are untenable. Inevitable failure of ordering. Time is cannot be modeled by a continuous or a discrete quantity.
+
+The need for a new mathematical structure. Ordered at large scale but not at short scale. Possible failure of the division of topology/geometry.
+
+The possibility of space-time contextuality.
+
+\section{Conclusion}
+
+
+\bibliography{bibliography}
+
+
+\end{document}
