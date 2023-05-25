@@ -1,14 +1,12 @@
 %!TEX TS-program = xelatex     				
 %!TEX encoding = UTF-8 Unicode
 
+%% To compile bibliography, run Bibtex, which will generate a file `references.bib' which is called in the References section. 
+%The file calls one diagram, labeled `Diagram.png' 
+
 \documentclass[12pt, twoside]{article}
 \usepackage[a4paper]{geometry}
 \geometry{top=4cm, bottom=4cm, left=2.5cm, right=2.5cm} 
-%\geometry{top=4cm, bottom=4cm, left=3cm, right=4cm} %close to actual philsci margins 
-
-%\usepackage{endnotes}
-%\let\footnote=\endnote %Erkenntnis requires end-notes, but recent papers don't seem to follow this in the pdf!
- % %To call the endnotes, use command \theendnotes before calling reference page 
 
 \raggedbottom % prevents random spaces between paragraphs from appearing
 
@@ -33,26 +31,26 @@
 \titleformat*{\section}{\large\bfseries}
 \titleformat*{\subsection}{\normalsize\bfseries}
 \titleformat*{\subsubsection}{\normalsize\bfseries}
-        
+
+
 \iffalse
-\titleformat{\section}[runin]% runin puts it in the same paragraph
-        {\normalsize\bfseries}% formatting commands to apply to the whole heading
-        {\thesection.}% the label and number
+\titleformat{\subsubsection}[runin]% for acknowledgements 
+{\normalsize\bfseries}%
+ {\thesection.}% the label and number
         {0.5em}% space between label/number and section title
         {}% formatting commands applied just to section title
         [.]% punctuation or other commands following section title
         
+\fi 
         
-\titlespacing*{\section}{0pt}{2.5mm}{2.5mm}%spacing from left margin, spacing above header, spacing on right of header
-\fi
-
 % headers
 \usepackage{fancyhdr} 
 \pagestyle{fancy}
 \fancyhead{}
 \fancyhead[R]{\thepage} %page number placement
-\fancyhead[C]{\textsc{Hamiltonian Privilege}}
-%\fancyhead[EC]{\textsc{AUTHOR NAMES}}%Even page header 
+%\fancyhead[C]{\textsc{Hamiltonian Privilege}}
+\fancyhead[OL]{\small{Hamiltonian Privilege}}
+\fancyhead[ER]{\small{Hunt, Carcassi, and Aidala}}%Even page header 
 \fancyfoot[L,R,C]{}
 \renewcommand{\headrulewidth}{0pt}
 %\renewcommand{\footrulewidth}{0pt}
@@ -128,7 +126,7 @@
 
 @Article{Butterfieldpoints,
   author  = {Butterfield, Jeremy N.},
-  journal = {British Journal for Philosophy of Science},
+  journal = {The British Journal for the Philosophy of Science},
   title   = {Against Pointillisme about Mechanics},
   year    = {2006},
   pages   = {709--753},
@@ -544,7 +542,6 @@ Url = {https://doi.org/10.1111/phpr.12681},
 	title     = {Assumptions of Physics},
 	publisher = {Michigan Publishing},
 	year      = 2021,
-	isbn      = {978-1-60785-706-7},
 	doi       = {10.3998/mpub.12204707},
 	url       = {https://doi.org/10.3998/mpub.12204707}
 }
@@ -594,7 +591,7 @@ Pages     = {810--823},
 
 % % % Biblatex commands for Citations and References:
 \usepackage[backend=bibtex, authordate, url=false, doi=false, eprint=false]{biblatex-chicago}
-%\addbibresource{bibliography.bib}
+
 \addbibresource{references.bib} %call the bib file generated above 
 
 % clears un-needed fields from reference items
@@ -604,6 +601,7 @@ Pages     = {810--823},
   \clearfield{pagetotal}%
    \clearfield{chapter}%
   \clearfield{number}%for convenience/consistency
+  \clearfield{isbn}%
 }
 
 \DeclareFieldFormat{postnote}{\mkcomprange{#1}} % compresses page range in citations, so that unchanged digits are not repeated. See p. 259, section 4.6.4 of biblatex manual. 
@@ -629,7 +627,7 @@ Pages     = {810--823},
 % Hyperref set-up & metadata
 \hypersetup{
 	pdftitle={Hamiltonian Privilege},
-	pdfauthor={},
+	pdfauthor={Hunt, Carcassi, and Aidala},
 	pdfsubject={},
 	pdfkeywords={},
 	pdfcreator={XeLaTeX},
@@ -656,20 +654,16 @@ Pages     = {810--823},
 
 \title{\vspace{-4em} \LARGE Hamiltonian Privilege}			
 %\author{\Large \textsuperscript{*\textdagger}}
-\date{\vspace{-7.9ex} \today}
+\date{\vspace{-7.9ex} Josh Hunt, Gabriele Carcassi, and Christine Aidala \\ \today}
 \maketitle
 %
 \vspace{-8mm}
 
-%\noindent\rule{\textwidth}{1.25pt}
 \bs
 \begin{flushleft}{\large \textbf{Abstract}}\end{flushleft}
 
 \noindent {\normalsize We argue that Hamiltonian mechanics is more fundamental than Lagrangian mechanics. Our argument provides a non-metaphysical strategy for privileging one formulation of a theory over another: \textit{ceteris paribus}, a more general formulation is more fundamental. We illustrate this criterion through a novel interpretation of classical mechanics, based on three physical conditions. Two of these conditions suffice for recovering Hamiltonian mechanics. A third condition is necessary for Lagrangian mechanics. Hence, Lagrangian systems are a proper subset of Hamiltonian systems. Finally, we provide a geometric interpretation of the principle of stationary action and rebut arguments for privileging Lagrangian mechanics. }
 \es
-%\noindent\rule{\textwidth}{1.25pt}
-
-%\vspace{2mm}
 
 \bs
 \tableofcontents 
@@ -686,25 +680,14 @@ In the context of comparing Hamiltonian and Lagrangian mechanics, three interpre
 
 Here, we will argue that there are indeed physical grounds for privileging Hamiltonian mechanics over Lagrangian mechanics, their categorical equivalence notwithstanding.\footnote{Barrett shows that in the hyper-regular domain, Lagrangian and Hamiltonian mechanics are categorically equivalent provided that we define categories of models over the tangent and cotangent bundle formulations, respectively \parencites*[1181-82]{Barrett2}. However, he also shows that if we consider a more general formulation of Hamiltonian mechanics on a symplectic manifold (which does not require a cotangent bundle), then the two formulations are \textit{not} categorically equivalent \parencites*[1182-83]{Barrett2}. Our construction of Hamiltonian mechanics in Section~\ref{derivation} matches this more general symplectic manifold formulation and illuminates why it is more general.} Whereas North's argument relies on a problematic criterion for comparing structure based on the size of symmetry groups \parencites[]{Swanson}, our argument avoids this pitfall. We show that a classical system needs to satisfy strictly fewer physical conditions in order to be Hamiltonian. To be Lagrangian, systems must satisfy an additional physical condition, making Lagrangian mechanics a proper subset of Hamiltonian mechanics. Hamiltonian mechanics thereby captures a wider range of systems than Lagrangian mechanics. Unlike Lagrangian mechanics, Hamiltonian mechanics provides a unique solution to the equations of motion even outside the hyper-regular domain. Hence, Lagrangian mechanics is restricted to the hyper-regular regime. The construction at the heart of our argument provides a novel interpretation of classical mechanical systems in terms of their invariant phase space density. 
 
-Section~\ref{privileging} previews our argument for privileging Hamiltonian mechanics. We introduce three physical conditions that define classical systems while distinguishing Hamiltonian from Lagrangian mechanics. Section~\ref{fundamentality} explains how our position differs from North's. Specifically, our argument does not require metaphysical commitments to fundamental structure or perfectly natural properties. Section~\ref{derivation} describes in detail the derivation of Hamiltonian mechanics for systems that satisfy two physical conditions: infinitesimal reducibility and deterministic/reversible evolution. Our derivation shows that even non-hyper-regular Hamiltonian systems are physically interpretable. We then show that Lagrangian systems must satisfy an additional physical condition, which we call motion equivalence. This completes our primary argument for privileging Hamiltonian mechanics. Section~\ref{Lagrangian} considers the status of Lagrangian mechanics within our framework. We provide a geometric interpretation of the action principle that applies even outside the hyper-regular domain. We end by rebutting objections that arise from Curiel's \parencites*[]{Curiel} privileging of Lagrangian mechanics.\footnote{This paper forms part of the ongoing \textit{Assumptions of Physics} project \parencites[]{aop-book}. This project aims to both (i) isolate the physical assumptions required for different frameworks in mathematical physics and (ii) consider their philosophical implications.} 
-
+Section~\ref{privileging} previews our argument for privileging Hamiltonian mechanics. We introduce three physical conditions that define classical systems while distinguishing Hamiltonian from Lagrangian mechanics. Section~\ref{fundamentality} explains how our position differs from North's. Specifically, our argument does not require metaphysical commitments to fundamental structure or perfectly natural properties. Section~\ref{derivation} describes in detail the derivation of Hamiltonian mechanics for systems that satisfy two physical conditions: infinitesimal reducibility and deterministic/reversible evolution. Our derivation shows that even non-hyper-regular Hamiltonian systems are physically interpretable. We then show that Lagrangian systems must satisfy an additional physical condition, which we call motion equivalence. This completes our primary argument for privileging Hamiltonian mechanics. Section~\ref{Lagrangian} considers the status of Lagrangian mechanics within our framework. We provide a geometric interpretation of the action principle that applies even outside the hyper-regular domain. We end by rebutting objections that arise from Curiel's \parencites*[]{Curiel} privileging of Lagrangian mechanics.
 
 \section{Privileging Hamiltonian mechanics}
 \label{privileging}
 
-In claiming that Hamiltonian mechanics is more fundamental than Lagrangian mechanics, we must provide a criterion for assessing whether one framework is more fundamental than another. Of various notions of relative fundamentality, we focus on an entirely non-mysterious one. Given two formalisms that capture a class of systems, if one is logically more general, then it is more fundamental.\footnote{Hunt \parencites*[Ch. 5]{Huntthesis} provides an expressivist conception of fundamentality, based on an attitude of \textit{being for privileging}. In terms of this conception, adopting our specific criterion here expresses an attitude of being for privileging frameworks that are logically more general. Hunt \parencites*[816]{HuntPSA} provides a separate reason for privileging Hamiltonian mechanics: in systems with an ignorable coordinate, Hamiltonian mechanics makes manifest conservation of momentum.} This aspect of fundamentality is familiar from mathematics. A more fundamental framework encompasses a less fundamental one as a special case. It is in this sense that the generalized Stokes' theorem is more fundamental than special cases such as the fundamental theorem of calculus and Green's theorem.\footnote{One might worry that our criterion is subject to elementary counterexamples. For instance, can't we make any theory more general by adjoining arbitrary disjunctions? Importantly, we require that the theory remains wholly \textit{about} classical mechanics. Hamiltonian mechanics is more general than Lagrangian mechanics while still being about classical systems, where ``aboutness'' can be understood using Yablo's framework \parencites*[]{Yablo}. Having an account of \textit{aboutness} or \textit{subject matter} is a general philosophical problem that any account of fundamentality must address. It is not a special problem facing our criterion.}  This aspect of fundamentality is distinct from aspects associated with differences in energy scale, such as how the Standard Model of particle physics is more fundamental than classical mechanics. We do not mean that Hamiltonian mechanics is more fundamental than Lagrangian mechanics in this sense. As Gilton notes, ``many philosophers of science have moved away from thinking of fundamentality in science in terms of the very small toward thinking of it in terms of comprehensiveness, or breadth of applicability'' \parencites*[637]{Gilton2021}.
-% % Removed: Similarly, an axiomatization that includes more axioms is less fundamental than one which drops these axioms while maintaining the same expressive power.
-%Worry: what if  both axiom systems cover the same class of systems? then seemingly no difference in generality? 
-%we must provide a criterion for one framework being more or less fundamental than another
-%\footnote{In Section~\ref{density}, we embrace a related non-metaphysical notion of fundamentality that pertains to physical entities rather than theoretical frameworks.} 
+In claiming that Hamiltonian mechanics is more fundamental than Lagrangian mechanics, we must provide a criterion for assessing whether one framework is more fundamental than another. Of various notions of relative fundamentality, we focus on an entirely non-mysterious one. Given two formalisms that capture a class of systems, if one is logically more general, then it is more fundamental.\footnote{Hunt \parencites*[Ch. 6]{Huntthesis} provides an expressivist conception of fundamentality, based on an attitude of \textit{being for privileging}. In terms of this conception, adopting our specific criterion here expresses an attitude of being for privileging frameworks that are logically more general. Hunt \parencites*[816]{HuntPSA} considers a separate reason for privileging Hamiltonian mechanics: in systems with an ignorable coordinate, Hamiltonian mechanics makes manifest conservation of momentum.} This aspect of fundamentality is familiar from mathematics. A more fundamental framework encompasses a less fundamental one as a special case. It is in this sense that the generalized Stokes' theorem is more fundamental than special cases such as the fundamental theorem of calculus and Green's theorem.\footnote{One might worry that our criterion is subject to elementary counterexamples. For instance, can't we make any theory more general by adjoining arbitrary disjunctions? Importantly, we require that the theory remains wholly \textit{about} classical mechanics. Hamiltonian mechanics is more general than Lagrangian mechanics while still being about classical systems, where ``aboutness'' can be understood using Yablo's framework \parencites*[]{Yablo}. Having an account of \textit{aboutness} or \textit{subject matter} is a general philosophical problem that any account of fundamentality must address. It is not a special problem facing our criterion.}  This aspect of fundamentality is distinct from aspects associated with differences in energy scale, such as how the Standard Model of particle physics is more fundamental than classical mechanics. We do not mean that Hamiltonian mechanics is more fundamental than Lagrangian mechanics in this sense. As Gilton notes, ``many philosophers of science have moved away from thinking of fundamentality in science in terms of the very small toward thinking of it in terms of comprehensiveness, or breadth of applicability'' \parencites*[637]{Gilton2021}.
 
-To apply our criterion for relative fundamentality, we must show that Lagrangian mechanics is less general than Hamiltonian mechanics. We do this in Section~\ref{derivation} by recovering the mathematical formalisms of both Hamiltonian and Lagrangian mechanics from three physical conditions. Our derivation illuminates the relationship between Hamiltonian and Lagrangian mechanics. As North \parencites*[]{North} argues, there is a sense in which Hamiltonian mechanics is more general than Lagrangian mechanics. Barrett \parencites*[]{Barrett2} makes this sense more precise by showing that the symplectic manifold formulation of Hamiltonian mechanics is categorically inequivalent to Lagrangian mechanics formulated on a tangent bundle. Still, one might wonder why it is that Hamiltonian mechanics can be formulated in a more general framework than Lagrangian mechanics. Additionally, one might wonder whether Lagrangian mechanics could be meaningfully formulated in an analogously general manner. Our derivation helps answer these questions: the physical principles that undergird the symplectic manifold formulation of Hamiltonian mechanics are simply more general than the principles required for Lagrangian mechanics.\footnote{We thank a referee for suggesting this helpful way of framing the significance of our derivation.} In this section, we describe how our argument works in principle. Section~\ref{fundamentality} demonstrates some philosophical advantages of our criterion for relative fundamentality.
-%We will, however in Section 5 give a criterion for an entity to be physically fundamental
-%These bolster our claim that this is an appropriate sense of fundamentality for philosophers to focus on. 
-
-% From Healey 2007, (weak) separability says that ``any physical process occupying space-time region R supervenes upon an assignment of qualitative intrinsic physical properties at space-time points in R (and/or in arbitrarily small neighborhoods of those points)'' [46]
-% Non-separability: ``some physical process occupying a region R of space-time is not supervenient upon an assignment of qualitative intrinsic physical properties at space-time points in R'' [124]
-% Strong non-separability: ``some physical process occupying a region R of space-time is not supervenient upon an assignment of qualitative intrinsic physical properties at points of R and/or in arbitrarily small neighborhoods of those points'' [124].
+To apply our criterion for relative fundamentality, we must show that Lagrangian mechanics is less general than Hamiltonian mechanics. We do this in Section~\ref{derivation} by recovering the mathematical formalisms of both Hamiltonian and Lagrangian mechanics from three physical conditions. Our derivation illuminates the relationship between Hamiltonian and Lagrangian mechanics. As North \parencites*[]{North} argues, there is a sense in which Hamiltonian mechanics is more general than Lagrangian mechanics. Barrett \parencites*[]{Barrett2} makes this sense more precise by showing that the symplectic manifold formulation of Hamiltonian mechanics is categorically inequivalent to Lagrangian mechanics formulated on a tangent bundle. Still, one might wonder why it is that Hamiltonian mechanics can be formulated in a more general framework than Lagrangian mechanics. Additionally, one might wonder whether Lagrangian mechanics could be meaningfully formulated in an analogously general manner. Our derivation helps answer these questions: the physical principles that undergird the symplectic manifold formulation of Hamiltonian mechanics are simply more general than the principles required for Lagrangian mechanics.\footnote{We thank a reviewer for suggesting this helpful way of framing the significance of our derivation.} In this section, we describe how our argument works in principle. Section~\ref{fundamentality} demonstrates some philosophical advantages of our criterion for relative fundamentality.
 
 Shorn of many details, our argument goes as follows. First, we show that the formalism of Hamiltonian mechanics applies to systems that are both i) infinitesimally reducible and ii) follow a deterministic and reversible evolution. A system is \textit{infinitesimally reducible} provided that specifying the state of the whole system is equivalent to specifying the states of its parts (and vice versa). Colloquially, we can say that the whole state equals the sum of its parts, where we take these infinitesimal parts to be classical particles. Infinitesimal reducibility distinguishes classical from quantum systems, where the latter are irreducible (i.e. we cannot specify the whole state by specifying the states of its subsystems).\footnote{The conditions of infinitesimal (ir)reducibility are similar to various notions of (non-)separability in the literature on physical holism \parencites[46, 124]{Healey}. We adopt our preferred terminology to avoid controversies surrounding how best to characterize separability.} We show in Section~\ref{infinitesimal} that if one chooses to model continuous quantities using a manifold, then this manifold must be symplectic. To recover Hamiltonian mechanics, it then suffices to identify when trajectories on phase space obey Hamiltonian evolution (i.e. evolve according to a symplectomorphism). Section~\ref{deterministic} shows that this requires the system to follow a \textit{deterministic and reversible evolution}, i.e. the present state of the system uniquely determines both its future and past states. We thereby characterize Hamiltonian mechanics as the mathematical framework for infinitesimally reducible systems with deterministic and reversible evolution. Importantly, our derivation encompasses Hamiltonian mechanics in the non-hyper-regular regime as well.
 
@@ -713,15 +696,12 @@ Next, we note that some classical systems satisfy a third, further condition, wh
 To show that motion equivalence is a further condition, it suffices to show that some Hamiltonian systems violate it. This follows from the fact that knowing a system's position and velocity does not always suffice for knowing its momentum. Hence, we cannot always determine the evolution of a system in phase space from its trajectory in physical space. For instance, if we consider a photon as a classical particle, then we cannot determine its momentum from its trajectory through space. Since photons travel at constant speed, we can recover the direction of momentum---but not the magnitude---from the trajectory. Two photons with different momenta can follow the same trajectory in physical space. Hence, knowledge of the physical trajectory of a photon is insufficient for knowledge of its phase space evolution. In general, different Lagrangians---differing even by more than a constant---can correspond to the same particle trajectories while not agreeing on the total energy, even up to a constant.\footnote{\textcites[1185--1186]{Barrett2} discusses this in the context of the failure of equivalence between the vector field formulations of Lagrangian and Hamiltonian mechanics. In contrast, the trajectories in phase space (encoded by the Hamiltonian vector field) uniquely define the Hamiltonian up to a constant.} Hence, the set of classical systems that satisfy motion equivalence is a proper subset of the classical systems that satisfy the conditions for Hamiltonian mechanics. For at least this reason, Hamiltonian mechanics is more fundamental than Lagrangian mechanics.
 
 Of course, different definitions of ``Hamiltonian'' and ``Lagrangian'' systems can result in different interpretive relationships. On our account, Hamiltonian systems are infinitesimally reducible and follow deterministic and reversible evolution.\footnote{Although not sufficient for a definition, Newtonian systems also satisfy the motion equivalence condition. Since Lagrangian systems satisfy all three conditions (infinitesimal reducibility, deterministic/reversible evolution, and motion equivalence), they lie in the intersection of Newtonian and Hamiltonian systems.} We thereby set aside well-known cases of non-deterministic classical systems.\footnote{For non-deterministic classical systems, see \textcites*[3-4]{Baez}{Earman}{Norton}.} Additionally, we set aside dissipative systems, i.e. those that fail to conserve energy. Possessing a deterministic and reversible evolution is equivalent to being non-dissipative. Our derivation of Lagrangian mechanics in Section~\ref{motion} takes place within the context of conservative systems, so we do not consider systems that satisfy inhomogenous Euler--Lagrange equations. Although both the Lagrangian and Hamiltonian formulations apply to dissipative systems, we exclude these.\footnote{For details, see \textcites[\S 10.4]{Cline}. Curiel \parencites*[311]{Curiel} acknowledges that the Hamiltonian framework can be extended to treat dissipative systems. For a Lagrangian approach to dissipative systems, see \textcites[]{Smith}.} This restricts our claim about the fundamentality of Hamiltonian mechanics to the non-dissipative regime. Finally, our treatment is not restricted to $n$-particle mechanics but applies as well to rigid-body and continuum mechanics. This supports our claim that the property of infinitesimal reducibility fruitfully characterizes classical systems. Before presenting the details of our argument in Section~\ref{derivation}, we describe how we avoid problems that arise in North's privileging of Hamiltonian mechanics. 
-%, although Curiel seems to view it as a virtue of the Lagrangian formulation that it handles dissipative systems with fewer modifications.
 
 
 \section{Fundamentality, \textit{sans} metaphysics}
 \label{fundamentality}
 
 As indicated at the start of Section~\ref{privileging}, we are interested in a non-metaphysical aspect of fundamentality. At least some differences in fundamentality are differences in generality: other things equal, a theoretical framework is more fundamental if it requires fewer conditions to hold. This aspect of fundamentality leads to a correspondingly non-metaphysical notion of structure. Hamiltonian mechanics employs less structure than Lagrangian mechanics because the former requires fewer physical conditions. Compared with North's \parencites*[]{North} account of comparative structure, our criterion has two advantages. First, it avoids metaphysical disputes surrounding perfectly natural or joint-carving properties, which scientific anti-realists, pragmatists, and even some scientific realists view with suspicion. Secondly, it avoids a technical objection that Swanson and Halvorson \parencites*[]{Swanson} levy against North's more precise mathematical criterion for comparing structure. 
-% Could cite Woodward, or Cohen/Callender for skepticism about perfectly natural properties. Includes naturalistically-minded philosophers
-%provided a theoretical framework captures the relevant behavior, it is more fundamental if it requires fewer conditions to hold. 
 
 Despite our different commitments, our approach has methodological parallels to North's. We agree with North that it is fruitful to identify both invariants and ``the mathematical structure needed to formulate the theory in an invariant, frame-independent way'' \parencites*[65]{North}. Additionally, we agree that it is worthwhile to identify what particular mathematical structure is required by a formulation \parencites[78]{North}. Indeed, we undertake precisely this sort of investigation in Section~\ref{derivation}.\footnote{Curiel also aims to identify the necessary and sufficient mathematical structures for formulating classical mechanics. He sets out to establish the ``geometrical structure necessary (and manifestly sufficient) for the formulation of the Euler--Lagrange equation'' relevant for all kinematically-possible solutions \parencites*[292]{Curiel}. See Section~\ref{Curiel} for discussion.} However, North advocates a metaphysical account of structure, about which we remain agnostic. According to North, ``structure comprises the objective, fundamental, intrinsic features, the ones that remain the same regardless of arbitrary or conventional choices and description'' \parencites*[66]{North}. These notions of fundamentality and intrinsicality correspond to differences in joint-carving, where more fundamental or intrinsic features are more joint-carving (or in Lewis's \parencites*[]{Lewis1983} terminology, more natural). 
 
@@ -734,8 +714,6 @@ North also introduces a technical notion of comparative structure, based on the 
 However, Swanson and Halvorson \parencites*[]{Swanson} develop a series of problems for North's argument. Most compellingly, they argue that we cannot in general assume that point transformations and canonical transformations are the proper symmetry groups for Lagrangian and Hamiltonian mechanics, respectively. As they note, Galilean boosts are often symmetry transformations of Lagrangian systems (in the sense of preserving the equations of motion), but they are not point transformations. Additionally, the two-body problem admits canonical transformations that map physically distinct solutions to each other (specifically, solutions whose orbits possess the same energy but different eccentricity).\footnote{For more details on the classical two-body problem, see \textcites[]{Belot}.} Hence, we cannot straightforwardly compare the structure of Lagrangian and Hamiltonian mechanics in terms of the symmetry groups of their statespaces. 
 
 Advantageously, our criterion for comparing Hamiltonian and Lagrangian mechanics avoids these problems. Hamiltonian mechanics has less structure than Lagrangian mechanics simply in the sense of logical strength: a system must satisfy strictly fewer physical conditions in order to be Hamiltonian. Whereas to be Lagrangian, the system must also satisfy the motion equivalence condition. Motion equivalence places an additional constraint on the Hamiltonian, a constraint that need not be satisfied in general. 
-%Section~\ref{density} provides a further argument for viewing Hamiltonian mechanics as more fundamental. We argue that (i) invariant phase space densities are physically fundamental and (ii) Hamiltonian mechanics provides the proper setting for representing these densities.
-%is this the actual phase space density vs. density for all possible trajectories? 
 
 \section{Deriving Hamiltonian and Lagrangian mechanics}
 \label{derivation}
@@ -745,7 +723,6 @@ Our derivation has three main steps. Section~\ref{infinitesimal} shows that if o
 These three physical conditions place constraints on both physical systems and, in turn, the mathematical objects that can be used to represent them. Each condition leads to additional constraints, introduced gradually within each section.  Some of these constraints are regulative in nature: they provide requirements for the math and therefore cannot be derived from mathematics alone. Our goal is to show how these constraints follow logically from the physical conditions, how they are encoded in the math, and how they recover well-known structures.
 
 Figure~\ref{diagram} summarizes the results of this derivation. The left column lists the three central physical conditions. Each condition entails physically significant properties, described in the middle column. Each physical property corresponds to a formal/mathematical structure depicted in the right column, including phase space, Hamiltonian mechanics, and Lagrangian mechanics. In this way, our framework develops a correspondence between physical conditions and their associated mathematical formalisms. We thereby elucidate the physical significance of these formalisms.
-%details of this figure will become clear as we go along. 
 
 \begin{figure}[h]
 	\centering
@@ -754,14 +731,10 @@ Figure~\ref{diagram} summarizes the results of this derivation. The left column 
 \label{diagram}
 \end{figure}
 
-%Like many arguments in physics, our derivation falls short of some norms on mathematical rigor. 
-%optional to do: give a gloss on notion of regulative assumption (Kant and Peirce) 
-
 \subsection{Infinitesimal reducibility}
 \label{infinitesimal}
 
 First, we will show that a classical phase space arises if a system satisfies the following physical condition:
-%\newpage % % %%remember to take out! 
 
 \begin{quotation}
 \bs \noindent
@@ -772,34 +745,20 @@ First, we will show that a classical phase space arises if a system satisfies th
 
 \noindent
 This assumption characterizes classical systems as those whose infinitesimal parts completely specify the state of the system. We define a \textit{classical particle} as one of these infinitesimal parts, namely the limit of recursive subdivision.\footnote{This definition of a classical particle differs from viewing point-particles as extensionless \parencites[]{Butterfieldpoints} or zero-dimensional \parencites[]{Wilson}.} Ultimately, this condition entails that we can describe the state of the whole system as a statistical distribution over the state space of its parts. If we model the state space of the parts using a manifold, the distribution must be characterized by a density that depends on the state and not on the coordinates. From this condition, we show that the manifold must be symplectic. Readers satisfied with this overview can proceed to Section~\ref{deterministic}.
-% % Could add: readers who are satisfied with this overview can proceed to the next subsection
-% % % For further discussion, see \textcites{shpmp}. [omit this for review].
 
 Let $\mathcal{C}$ be the state space for the whole system, so that any $c \in \mathcal{C}$ represents a particular state of the whole system. Given infinitesimal reducibility, a classical system consists of a collection of classical particles. Let $\mathcal{S}$ be the state space for the particles, so that each point $s \in \mathcal{S}$ describes a possible state of a classical particle. Then for each system state $c \in \mathcal{C}$, there exists a unique distribution $\rho_c : \mathcal{S} \to \mathbb{R} $ that describes the state of $c$'s parts. That is, the state of the whole system is a distribution over its infinitesimal parts. This distribution describes the proportion of classical particles in any particular state from $\mathcal{S}$.\footnote{For further details, see \textcites[]{AoPPhy1} and \textcites{shpmp}.}
-%ref 1: worth clarifying relationship between particle statespace S and system state space C. Is there an S_i for each i-th particle? And explain why we are not focusing on the statespace of the many particle system, e.g. a cartesian product of state spaces for each particle 
-
-%If $\mathcal{S}$ is a discrete space with $U \subseteq \mathcal{S}$, we define $\mu(U) = \sum\limits_{s \in U} \rho_c(s)$ so that $\mu(\mathcal{S})$ gives us the size of the system and $\mu(U)/\mu(\mathcal{S})$ gives us the fraction of the particles that can be found in the region $U$.\footnote{The discrete case is far less interesting because discrete quantities cannot change continuously over time, meaning that they must be constant. We discuss this elsewhere.}
-% % % For details see \textcites[]{AoPPhy1}. [omit this for review]}
-% % XXX could try to find justification/derivation for the state space being a manifold in the Kevin Kelly book, or could cite the math paper with Greenfield; proposition 6.2. Try to include a better gloss/motivation for this claim (basic idea: if time is continuous, trajectories in state space must be continuous, local structure must be compatible). Curiel paper might also have a brief justification/motivation, if I recall
-
 
 When the system is characterized by continuous quantities, $\mathcal{S}$ can be taken to be a manifold.\footnote{Note that the use of manifolds constitutes a choice of how to represent the physics. One could make another choice, for example, by representing the state variables not as local coordinates but as an algebra of operators that act on the state. In this case, we conjecture that a similar argument would demonstrate an analogue of a symplectic structure for this alternative mathematical representation.} For $U \subseteq \mathcal{S}$, we define $\mu(U) := \int_U \rho_c(s) d\mathcal{S}$ to measure the number of particles in region $U$. \textit{State variables} $\xi^a$ are any set of quantities that fully identify states, so that $\xi$: $\mathcal{S} \to \mathbb{R}^n$ is an invertible function between each state and the numeric values of the variables.\footnote{In the language of manifolds, these $\xi^a$ are called ``coordinates'' and $\xi$ is a coordinate map. To avoid confusion, we will call the coordinates of the state space $\mathcal{S}$ ``state variables.'' As usual with coordinate charts, $\xi$ is properly defined on some $U \subseteq \mathcal{S}$, and $\xi^{-1}$ is defined on $\xi(U) \subseteq \mathbb{R}^n$. We will neglect these subtleties in what follows.} The map $\xi$ represents a state $s \in \mathcal{S}$ by a set of state variables $\xi^a \in \mathbb{R}^n$, such that $\xi (s) = \xi^a$. To represent the distribution $\rho_c$ in terms of state variables, we define a density $\rho_{c, \xi}$: $\mathbb{R}^n \to \mathbb{R}$ by $\rho_{c, \xi} \equiv (\rho_c \circ \xi^{-1})$. This density plays a crucial role throughout our argument. It allows us to compare and track the amount of matter in different possible states.
-%The use of manifolds is, technically, a choice of how the physics is represented
 
 Since $\rho_c$: $\mathcal{S} \to \mathbb{R}$ is a function of the particle state $s$, we assume that its value is independent of the choice of state variables $\xi^a$ (i.e. the choice of state variable map $\xi$). If this assumption did not hold, then we could not model the system in the first place using state variables, and this would preclude many standard representational tools. Hence, the density $\rho_{c, \xi}$ must transform as a scalar under state variable changes.\footnote{For two state variable maps $\xi$ and $\hat{\xi}$, we have $\rho_c(s) = (\rho_c \circ \xi^{-1} \circ \xi)(s) = (\rho_c \circ \hat{\xi}^{-1} \circ \hat{\xi})(s)$, which entails that $\rho_c(s) = \rho_{c, \xi} (\xi^a) = \rho_{c, \hat{\xi}} (\hat{\xi}^b)$. Here, $\xi(s) \equiv \xi^a$ and $\hat{\xi}(s) \equiv \hat{\xi}^b$.} Likewise, we assume that the integral $\int_U \rho_c(s) d\mathcal{S} $ is independent of the choice of state variables, so that $\int_{\xi(U)} \rho_{c, \xi} (\xi^a) d \xi^a = \int_{\hat{\xi}(U)} \rho_{c, \hat{\xi}} (\hat{\xi}^b) d \hat{\xi}^b$.\footnote{Here, we assume that $\xi$ and $\hat{\xi}$ map the background measure on $\mathcal{S}$ to the standard Lebesgue measure on $\mathbb{R}^n$. In order to match integrands below, we also assume that $\xi$ and $\hat{\xi}$ agree on their orientation. These are regulative assumptions so that we can model the system using coordinates on $\mathbb{R}^n$. They amount to assuming that the particle state space $\mathcal{S}$ has a volume form.} Applying the change of variables formula, we know that $\int_{\hat{\xi}(U)} \rho_{c, \hat{\xi}} (\hat{\xi}^b) d \hat{\xi}^b= \int_{\xi(U)} \rho_{c, \hat{\xi}} (\hat{\xi}^b) \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right|  d \xi^a$.\footnote{The change of variables transformation from $\xi^a$ to $\hat{\xi}^b$ is given by $\phi \equiv \hat{\xi} \circ \xi^{-1}$: $\mathbb{R}^n \to \mathbb{R}^n $. For convenience, we denote $\rho_{c, \hat{\xi}} (\phi(\xi^a))$ by $\rho_{c, \hat{\xi}} (\hat{\xi}^b)$. Likewise, in the numerator of the Jacobian, we denote $\partial \phi$ by $\partial \hat{\xi}^b$, where $\hat{\xi}^b$ is here understood as a function of $\xi^a$.} Here, $ \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right|$ is the determinant of the Jacobian for this change of state variables. Matching integrands from the preceding two equations, we have $\rho_{c, \xi} (\xi^a) = \rho_{c, \hat{\xi}} (\hat{\xi}^b) \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right|$. From the scalar transformation property, $\rho_{c, \xi} (\xi^a) = \rho_{c, \hat{\xi}} (\hat{\xi}^b)$. Hence, we see that $\rho_{c, \hat{\xi}} (\hat{\xi}^b) =  \rho_{c, \hat{\xi}} (\hat{\xi}^b) \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right|$, entailing that the Jacobian determinant must equal one. By dimensional homogeneity, it must also be dimensionless. 
 
 We will now show that in order for the density $\rho_{c, \xi}$ to have these transformation properties, the particle phase space $\mathcal{S}$ must be at least a symplectic manifold. In other words, given that i) we assume we can model a classical system by a density over its infinitesimal states and ii) these transformation properties are required for the density to play this role, it follows that the phase space must have a symplectic manifold structure. Our next assumption involves the relationship between state variables and measurement units. 
-%Since these transformation properties are required to use a density to model a classical mechanical system, it follows that having the structure of a symplectic manifold is likewise required.  
-%From the preceding two equations, we see that $\int_{\xi(U)} \rho_{c, \xi} (\xi^a) d \xi^a = \int_{\xi(U)} \rho_{c, \hat{\xi}} (\hat{\xi}^b) \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right|  d \xi^a$.
-% $d \xi^a$ and $d \hat{\xi}^b$ are the
 
 \subsubsection{The particle state space is even-dimensional}
 
 We assume that a proper subset of the state variables suffices to define a unit system for all of the state variables. Again, this assumption is regulative in the sense that without it, we could not quantify properties of the system using measured values. Using this assumption, we will show that the state space $\mathcal{S}$ must be even-dimensional and hence a candidate for having symplectic structure. 
 
 We define a \textit{unit variable} $q \in \xi^a$ as a particular state variable that defines a unit. For instance, $q$ might be position, defined in units of meters. Two unit variables are \textit{independent} if one unit variable can be changed without changing the other. For example, one can measure vertical position in meters while measuring horizontal position in miles.  The \textit{unit variables} $q^i$ are a privileged subset of the state variables that define the unit system. These $q^i$ determine the units not only for themselves, but for all other state variables. A \textit{change of units} is therefore a map $\hat{q}^j = \hat{q}^j(q^i)$ that defines new unit variables in terms of old unit variables. Since the unit variables define the units for all state variables, this change must induce a unique change of state variables $\hat{\xi}^b = \hat{\xi}^b(\xi^a)$ for all variables.
-%to do: cite susan sterrett work on units as a `logical constraint'; , i.e. they fix the units for all state variables. 
-%ref 2: mention that any transformation on the unit variables `is required to extend to a unique transformation of all the coordinates' 
 
 Consider first the simplest case: suppose that a single unit variable $q $ suffices to define the unit system for the particle state space. Then, the state variables are a set $\xi^a = \{ q, k^\alpha \}$, where \textit{prima facie} the index $\alpha$ could be any non-negative integer. We will show that, in fact, there must be exactly one $k^\alpha$ variable, conjugate to the single $q$ variable. 
 
@@ -820,7 +779,6 @@ Next, we show that in fact there must be exactly one $k$ variable, conjugate to 
 
 \noindent
 The determinant of a triangular block matrix equals the product of determinants of the block matrices along the diagonal: $ \left|\frac{\partial \hat{\xi}^b}{\partial \xi^a} \right| =  \left|\frac{\partial \hat{q}}{\partial q}\right| \left|\frac{\partial \hat{k}^\beta}{\partial k^\alpha}\right|$. For the Jacobian determinant to equal one, we must therefore have  $\left|\frac{\partial \hat{k}^\beta}{\partial k^\alpha} \right| =   \left|\frac{\partial \hat{q}}{\partial q}\right|^{-1}$. Since $\hat q$ is a function only of $q$, $\frac{\partial \hat{q}}{\partial q}$ is a total derivative, so we obtain the inverse by swapping the numerator and denominator. Hence, we see that $\left|\frac{\partial \hat{k}^\beta}{\partial k^\alpha} \right| = \left|\frac{\partial q}{\partial \hat q} \right|$. 
-%  $\left|\frac{\partial \hat{q}}{\partial q}\right|^{-1} = \left|\frac{\partial q}{\partial \hat q} \right|$. 
 
 This equation provides only a single constraint, placed on the determinant of the transformation from $k^\alpha$ to $\hat{k}^\beta$. Hence, if there were three or more $\xi^a$ variables, this constraint would be insufficient to recover the transformation of the $k^\alpha$ uniquely. In this case, $\hat q$  would not fully define the units for all other state variables, contrary to assumption. Consequently, there must be exactly two state variables: $q$ and a single $k$. So in the case of a single $q$ variable, defining an invariant density $\rho_{c, \xi}$ requires a two-dimensional manifold.
 
@@ -832,22 +790,13 @@ We now show that $\mathcal{S}$ must have a well-defined two-form $\omega$. Recal
 
 Since each volume of phase space contains some possible states, the volume form cannot be degenerate. If the volume form were degenerate, then there would be a ``volume'' in state space that did not contain states. But then this region of state space could not be a volume. Since the volume form $\omega^n$ is non-degenerate, the two-form $\omega$ must also be non-degenerate. Otherwise, there would be infinitesimal surfaces in phase space assigned zero area, i.e. there would be states of phase space that $\omega$ does not count. But, $\omega$ must count all possible states in order for the density $\rho_{c, \xi} $ to be well-defined.
 
-
-%on needing a two-form to measure areas, could possibly cite Strang 1993, ch. 5 or Mac Lane & Birkhoff (1999, Theorem IX.2.2). 
-%note: an infinitesimal area counts the number of possible states in a region of phase space, as given by the two state variables that compose the degree of freedom
-
 Next, we show that $\omega$ must be closed, using the fact that the degrees of freedom are independent. If we translate a surface along an independent degree of freedom, this does not change the area of the surface, meaning that the number of states on that surface is invariant. We can therefore construct a parallelepiped $P$, whose opposite sides have equal areas. Integrating $\omega$ over the closed surface $\partial P$ of this parallelepiped, opposite sides provide equal and opposite contributions. Hence, the integral over this closed surface must equal zero: $\int_{\partial P} \omega =0$. By Stokes' theorem, the integral of $d \omega$ over this volume $P$ must equal zero as well: $\int_P d \omega = \int_{\partial P} \omega =0$. Since, we can approximate any volume $V$ by such parallelepipeds, $\int_V d \omega = 0$ for arbitrary $V$. Hence, the integrand $d \omega$ must vanish, entailing that $\omega$ is closed. So $\mathcal{S}$ must come equipped with a two-form $\omega$ that is closed and not degenerate, and therefore $\mathcal{S}$ is a symplectic manifold.
 
 Moreover, we choose the same units for $\omega$ as the units we choose to count states over an independent degree of freedom. This matches common practice in statistical mechanics. When normalized, the density $\rho_{c, \xi}$ is given in terms of the inverse of the units for $\omega$. Following standard conventions in quantum mechanics and statistical mechanics, the $k_i$ are given in terms of inverse units of the respective $q^i$, such that $dq^i \wedge dk_i$ is a pure number. We then use $\hbar$ to define the units for state counting and therefore set $\omega = \hbar dq^i \wedge dk_i = dq^i \wedge dp_i$ where $p_i = \hbar k_i$.
 
-%Moreover, the units we choose for $\omega$ are the units we choose to count states over an independent degree of freedom. This agrees with the practice in statistical mechanics. 
-
 We can thereby understand canonical coordinates as a set of state variables that express the density in the correct units. A canonical transformation is one that preserves the unit and the numerical value of the density. A change of unit is a special type of canonical transformation: one where we have an arbitrary change in the unit variables and an induced (covariant) change in the conjugate variables.
  
- 
 In sum, under the infinitesimal reducibility assumption, a state $c$ of the system is represented by a coordinate-invariant density over the state space $\mathcal{S}$ of its infinitesimal parts. We have shown that the state space of the particles must be a symplectic manifold. Additionally, any symplectic manifold structure supports the definition of coordinate-invariant densities: any scalar function can be integrated using the symplectic form in a coordinate-invariant way. Therefore symplectic structure is exactly the structure needed to define an invariant density. 
-
-%Section~\ref{density} describes further interpretive consequences of this connection between invariant densities and symplectic structure.
 
 
 \subsection{Deterministic and reversible evolution}
@@ -864,18 +813,10 @@ Next, we focus on those classical systems that are deterministic and reversible.
 \noindent In our case, this applies to both the state of the whole system and the state of its parts. Under this assumption, we show that the symplectic structure must be preserved over time, which gives us Hamiltonian evolution.
 
 First, we will show that deterministic and reversible evolution entails that the density $\rho_{c, \xi}$ is constant in time. We consider a particle state $s_0$ at time $t_0$. Given deterministic and reversible evolution, there exists a unique evolution $\lambda: \mathbb{R} \to \mathcal{S}$ such that $\lambda(t_0) = s_0$. Hence, the initial state $s_0$ at time $t_0$ uniquely identifies the state of this particle at all times. Let $\rho(s, t)$ be the density associated to a state $s$ at a time $t$.\footnote{For convenience, we sometimes drop the composite state $c$ and coordinate-choice $\xi$ indices from the invariant density $\rho_{c, \xi} (\xi^a)$. We reserve the word ``distribution'' for the coordinate-free distribution $\rho_c (s)$. } Then  $\rho(\lambda(t_0), t_0)$ represents the part of the composite system in particle state $s$ at that time. Likewise, for $t_1 > t_0$,  $\rho(\lambda(t_1), t_1)$ represents the part of the system associated to the evolved state at this future time. Given deterministic and reversible evolution, all particles that start in a given initial state must end up in the same final state, and vice-versa. Hence, $\rho(\lambda(t_0), t_0) = \rho(\lambda(t_1), t_1)$ for all $t_0,\, t_1$. In other words, the density remains the same throughout the evolution.
-%Let $\lambda: \mathbb{R} \to \mathcal{S}$ be the evolution over time of the state of a particle. 
-
 
 Second, we show that the two-form $\omega$ is invariant under this evolution, and hence that the system follows Hamiltonian evolution. Consider a surface $\Sigma_0 \subset \mathcal{S}$ of particle states at some time $t_0$. If two-dimensional, this surface defines an independent degree of freedom. The integral $\int_{\Sigma_0} \rho_c (s, t_0) \omega(d\Sigma_0)$ represents the fraction of the system in states defined on $\Sigma_0$. Since each particle state evolves by $\lambda$, $\Sigma_0$ evolves to a surface $\Sigma_1$ at time $t_1$. This leads to a corresponding $\int_{\Sigma_1} \rho_c (s, t_1) \omega(d\Sigma_1)$, representing the fraction of the system on this evolved surface. Since the evolution is deterministic and reversible, all and only the particle states that began on surface  $\Sigma_0$ evolve to $\Sigma_1$. Consequently, the fraction of the system on these two surfaces at these two times must be the same: $\int_{\Sigma_0} \rho_c (s, t_0) \omega(d\Sigma_0) = \int_{\Sigma_1} \rho_c (s, t_1) \omega(d\Sigma_1)$. Since the density is constant, we know that $\rho_c (s, t_0) = \rho_c (s, t_1)$. Hence, the two-form $\omega$ must remain the same. That is, the areas in phase space must be mapped to areas of equal size, and independent degrees of freedom must be mapped to independent degrees of freedom (otherwise, volumes would not be mapped to equal volumes, violating determinism). The evolution is therefore a symplectomorphism and hence corresponds to a Hamiltonian evolution. 
-%Now consider the integral $\int_{\Sigma} \rho_c \omega(d\Sigma)$. Mapping the region $\Sigma$ to a new region, the fraction of the system found in both the old and new regions must be the same. Since both the integral and $\rho_c$ must remain constant during the evolution, the two-form $\omega$ must also remain the same. 
 
 Intuitively, our argument is the inverse of Liouville's theorem: instead of positing Hamiltonian evolution and finding conservation of areas and volumes, deterministic and reversible evolution imposes the conservation of areas and volumes (i.e. sets of states are mapped to sets of states of equal size). This leads to Hamiltonian evolution. In summary, we have shown that any system that satisfies the conditions of both infinitesimal reducibility and deterministic/reversible evolution is a classical Hamiltonian system. Note in particular that our derivation is not restricted to only hyper-regular Hamiltonians. As we will see, this is a key difference between Hamiltonian and Lagrangian mechanics.
-
-%Since, the only requirement that we have imposed on the Hamiltonian is that the equations yield a unique solution, our derivation applies to Hamiltonians that are not hyper-regular. }
-
-% since we have not imposed hyper-regularity,   }
-% [(ref 1): expand on how our argument relates to standard proofs of Liouville's theorem. Is it fair to say that we are privileging Hamiltonian mechanics because it forms the basis for a proof of Liouville's theorem?]
 
 
 \subsection{Motion equivalence}
@@ -903,7 +844,6 @@ v^i &= d_t x^i = v^i(q^j, p_k)
 \end{equation}
 
 In this case---which we call \textit{weak equivalence}---$v^i(q^j, p_k)$ is invertible at every $q^j$. Therefore, for fixed $q$, the Jacobian matrix  $\frac{\partial v^i}{\partial p_k}$ must be invertible. Let $H$ denote the Hamiltonian. By Hamilton's equations, $v^i = d_t q^i = \frac{\partial H}{\partial p_i}$, so the Hessian $\frac{\partial^2 H}{\partial p_k \partial p_i} = \frac{\partial}{\partial p_k} (\frac{\partial H}{\partial p_i})$ equals the Jacobian $\frac{\partial v^i}{\partial p_k}$. Since the Jacobian is invertible, the Hessian must be non-zero everywhere, and therefore it must have the same sign everywhere---which we take to be positive. This, by definition, means that the Hamiltonian is hyper-regular if and only if weak equivalence is satisfied. Weak equivalence allows us to express particle states in terms of either position/momentum or position/velocity variables. These are exactly the cases where a Lagrangian can be constructed, and where the Lagrangian leads to a unique solution (via the stationary action principle). Hence, weak equivalence suffices for the existence of a hyper-regular Lagrangian. As discussed in Section~\ref{Curiel}, Lagrangian mechanics only yields a unique evolution in the hyper-regular domain.\footnote{Weak equivalence corresponds to a general treatment of Lagrangian mechanics that does not presuppose Riemannian geometry. As we discuss in Section~\ref{Curiel}, Equation~\ref{weak_equivalence} corresponds to the kinematical constraints central to Curiel's \parencites*[]{Curiel} argument for privileging Lagrangian mechanics.}
-%; otherwise, the positions and velocities do not determine how the system evolves 
 
 Whereas weak equivalence involves motion equivalence at the level of particle states, \textit{full equivalence} extends this to the entire distribution, i.e. the composite state of the system. Full equivalence holds when we can express the distribution---represented by the density---in terms of position and velocity variables. Formally, this requires that $\rho(q^i, p_j) = |J| \rho(x^i, v^j) = \left|\frac{\partial v^i}{\partial p_j}\right| \rho(x^i, v^j)$ since
 \begin{equation}
@@ -921,7 +861,6 @@ Whereas weak equivalence involves motion equivalence at the level of particle st
 \end{aligned}
 \end{equation}
 Note that while the value given by $\rho(q^i, p_j)$ is invariant under unit changes, the value given by $\rho(x^i, v^j)$ depends on the choice of units through $\left|\frac{\partial v^i}{\partial p_j}\right|$. If $x^i$ truly sets the unit system by itself, then $\left|\frac{\partial v^i}{\partial p_j}\right|$ must be a function of position only, since the position variables define the units. Similar considerations hold for marginal distributions (i.e. distributions on a subset of the unit variables), entailing that all components of $\frac{\partial v^i}{\partial p_j}$ must be a function of position only. We set:
-%\footnote{In Section~\ref{dependence}, we will see that $g^{ij}$ corresponds to the Riemannian metric, since $\partial v^i/\partial p_j$ is a function only of position.}
 \begin{equation}
 \begin{aligned}
 \frac{\partial v^i}{\partial p_j} = \frac{1}{m} g^{ij} \\
@@ -948,21 +887,15 @@ H = \frac{1}{2m} (p_i - A_i) g^{ij}(p_j - A_j) + V
 where V is another arbitrary function. We recognize this as the Hamiltonian for massive particles under potential forces, relevant for classical electrodynamics and Newtonian gravitation. For example, $A$ can play the role of the magnetic vector potential, with $V$ playing the role of the electric potential. Whereas Curiel \parencites*[]{Curiel} argues that this Hamiltonian requires the imposition of \textit{ad hoc} conditions, we take ourselves to have given an eminently natural construction of it. We return to this point in Section~\ref{Curiel}, using it to defuse Curiel's argument for the primacy of Lagrangian mechanics.
 
 This completes our primary argument for privileging Hamiltonian mechanics over Lagrangian mechanics. We have seen that Lagrangian systems are a proper subset of Hamiltonian systems, specifically those Hamiltonian systems that also satisfy the motion equivalence condition. In the next section, we provide a geometric interpretation of the principle of stationary action within Hamiltonian mechanics. Our construction makes manifest the gauge-dependency of the Lagrangian, providing a further reason to privilege the Hamiltonian. Finally, we respond to Curiel's arguments against the fundamentality of Hamiltonian mechanics.
-% In the remainder of this essay, we provide further reasons for privileging Hamiltonian mechanics. The next section describes how Hamiltonian mechanics provides the natural setting for the invariant density, which characterizes how a classical object's parts are distributed. The invariant phase space density is more fundamental than the state variables, since conjugate momentum is a gauge-dependent quantity. 
-
 
 
 \section{Interpreting Lagrangian mechanics}
 \label{Lagrangian}
 
 By viewing classical systems through their invariant phase space density, we gain new insights into Lagrangian mechanics. Section~\ref{action} uses the invariant phase space density to give a geometric interpretation the action principle. We show that this principle holds even when the action is not defined as a function of position and velocity, since it can always be expressed as a function of position and conjugate momentum. Our construction makes the gauge-dependence of the Lagrangian manifest. Section~\ref{Curiel} considers Curiel's \parencites*[]{Curiel} argument for privileging Lagrangian mechanics, which he alleges encodes the necessary and sufficient structure for capturing the physically significant kinematical constraints of classical systems. This raises a number of objections to our own position, which we rebut. In short, we  argue that we have given a natural construction of Hamiltonian mechanics.
-%In short, we argue that we have given an eminently natural construction of Lagrangian mechanics, viewed as a special case of Hamiltonian mechanics. Moreover, our argument shows that Lagrangian mechanics is in some sense less natural than Hamiltonian mechanics because the former is contingent on having a bijection between velocity and conjugate momentum. 
-
 
 \subsection{A geometric interpretation of the action principle}
 \label{action}
-
-% Somewhere below, emphasize that you have a unique trajectory only if the action is a minimum or maximum (if it is just stationary but not a minimum or maximum, then you do not have a unique trajectory)
 
 Hamilton's principle of stationary action serves as a foundational principle for Lagrangian mechanics. According to this principle, infinitesimal variations of the action $ \mathscr{A}$ along the system's trajectory $\gamma $ equal zero: $\delta  \mathscr{A}[\gamma] = 0 $. Although central to Lagrangian mechanics, we can actually derive the stationary action principle using Hamiltonian mechanics. Our derivation simply assumes that the system's trajectory follows a deterministic and reversible evolution. We present the derivation for the one-dimensional case---where it is most easily visualized---but it can be generalized using differential geometry.\footnote{For a related argument, see \textcites[236--37, 243--45]{Arnold}.}
 
@@ -984,8 +917,6 @@ As a corollary, this construction shows that the Lagrangian $L =\vector{\theta} 
 \subsection{Curiel's privileging of Lagrangian mechanics}
 \label{Curiel}
 
-% Helpful summary of Curiel's position: ``Hamiltonian mechanics does not respect the kinematical constraints intrinsic to abstract classical systems'' while ``Lagrangian mechanics always respect[s] the kinematical constraints of abstract classical systems'' \parencites*[304]{Curiel}.
-
 Curiel argues that Lagrangian mechanics represents classical mechanical systems in a \textit{natural} manner whereas Hamiltonian mechanics involves an essentially artificial construction \parencites*[270]{Curiel}.\footnote{Curiel characterizes ``natural'' in terms of natural coordinate systems, defined using the almost-tangent structure of the tangent bundle \parencites*[290-291]{Curiel}. He also uses the almost-tangent structure to give a general characterization of what he takes to be the fundamental kinematical constraints.} According to Curiel, all physically-meaningful classical systems satisfy a certain set of kinematic constraints. In the simplest case, these constraints characterize velocity as the first temporal derivative of position: $v^i = d_t x^i = v^i(q^j, p_k)$ (Equation~\ref{weak_equivalence}).\footnote{Curiel treats this constraint as ``kinematical'' in the sense that it must hold independently of the interactions between a system and its environment. He interprets it as a substantive physical condition, rather than an analytic truth \parencites*[282]{Curiel}.} Curiel argues that Lagrangian mechanics encodes the necessary and sufficient conditions for a system to satisfy these kinematic constraints, both within and outside the hyper-regular domain \parencites*[307--308, 311]{Curiel}. In contrast, Hamiltonian mechanics does not automatically encode these constraints. Since Curiel views these constraints as an essential feature of physically-meaningful classical systems, he argues that Lagrangian mechanics picks out the proper class of classical systems. 
 
 Imposing these kinematic constraints within the Hamiltonian formalism requires focusing on a proper subset of all possible Hamiltonians. Within this subset, conjugate momentum is a linear function of velocity: $p_i = \lambda^j_i \dot{q}_j $ \parencites*[304]{Curiel}. This relationship between momentum and velocity entails that the Hamiltonian takes the following quadratic form---where the functions $U$ and $\alpha^{m n}$ are arbitrary functions of the generalized position coordinates $q_i$:
@@ -995,19 +926,12 @@ H =\alpha^{m n} p_m p_n + U (q_j)
 Curiel contends that this form is the ``necessary and sufficient condition [a Hamiltonian must have] for it to model an abstract classical system'' \parencites*[305]{Curiel}. Since many possible Hamiltonians do not take this form,\footnote{As an example, Curiel considers the Hamiltonian $H = \frac{1}{2} p_i p^i + \sum_j p_j$  \parencites*[305]{Curiel}.} Curiel believes we must artificially restrict Hamiltonian mechanics to those systems that satisfy Equation~\ref{6.2}.
 
 To rebut Curiel's argument, it suffices to provide a natural interpretation of (\ref{6.2}). We have in fact already provided one in Section~\ref{motion}. There, we saw how both the linear relationship between momentum and velocity and the quadratic form (\ref{6.2}) follow from imposing the motion equivalence condition. In Equation~\ref{linear_relationship}, we recovered the linear relationship between conjugate momentum and velocity, up to the addition of an arbitrary function. Just as Curiel does, we then used this relationship to derive a quadratic form for the Hamiltonian (Equation~\ref{massive_Hamiltonian}). Imposing motion equivalence thereby allows us to interpret this quadratic form as the Hamiltonian for massive particles under potential forces. It is not an \textit{ad hoc} condition imposed on Hamiltonian systems. Instead, it arises in all contexts where motion equivalence holds, i.e. where knowledge of the trajectory of the system in physical space is necessary and sufficient for knowledge of its evolution in state space. Thus, we take ourselves to have responded to Curiel's main criticism of Hamiltonian mechanics, namely that it must impose \textit{ad hoc} the condition (\ref{6.2}). 
-% Note that our equation 2 (\ref{weak_equivalence}) is a special case (or less mathematically sophisticated formulation) of Curiel's kinematic conditions, i.e. his equation 4.3 in terms of the almost-tangent structure. Our equation 2b matches Curiel's equations 3.1a and 3.2b, in the case of free and non-free Newtonian particles, respectively.
 
 Furthermore, Curiel's definition of ``classical systems'' leads to interpretive challenges that our framework avoids. His prohibition against Hamiltonians that violate (\ref{6.2}) excludes Hamiltonians for non-hyper-regular systems. However, we believe that there are physically-meaningful non-regular Hamiltonian systems. These include classical models of a massless particle moving at constant speed, such as a classical photon. In general, Hamiltonian systems outside the hyper-regular domain correspond to cases where we cannot express the density in terms of position and velocity. These are cases where the weak equivalence condition (\ref{weak_equivalence}) fails. Nevertheless, we can still define a distribution over the phase space points and consider its evolution. We thereby view the broader scope of Hamiltonian mechanics as an advantage, rather than a disadvantage. Moreover, our interpretation remains compatible with the claim that many---perhaps even most---non-regular Hamiltonian systems are physically uninteresting.
 
 Whereas we can easily interpret non-hyper-regular Hamiltonians, non-hyper-regular Lagrangians pose interpretative challenges. For example, consider the case where the Lagrangian equals zero. For this ``system,'' all paths have the same action, so all paths are possible. Given an initial probability distribution over states, the Lagrangian fails to specify how this distribution will evolve in time. In contrast, a Hamiltonian still defines a unique solution---a unique evolution in phase space---even when outside the hyper-regular domain, i.e. when the Hessian is zero. For instance, a zero Hamiltonian describes a static system (by Hamilton's equations, the derivatives of the position and momenta are zero). Indeed, Curiel acknowledges that only hyper-regular Lagrangians have unique solutions whereas Hamiltonian systems have unique solutions even outside the hyper-regular domain \parencites*[291, 308]{Curiel}. Although Curiel argues this favors Lagrangian mechanics, it generates challenges for understanding non-hyper-regular Lagrangians.
-%\footnote{This challenge is particularly pressing for systems that are everywhere non-regular. In the case where a system is non-regular only at certain points, we can decompose the system into hyper-regular subsystems, each with its own Lagrangian (or Hamiltonian).}
-%\footnote{Barrett conjectures that outside the hyper-regular domain, Hamiltonian and Lagrangian formulations ``will be inequivalent according to any reasonable standard of equivalence. There is no natural way to translate a non-hyper-regular model of the one theory into a model of the other'' \parencites*[1179]{Barrett2}.}
 
-Of course, if one insists on defining a ``classical system'' as Curiel does, one has grounds for privileging Lagrangian mechanics. Nevertheless, our preferred notion of classical systems---focusing on systems that are infinitesimally reducible---has substantive advantages over Curiel's. The general geometrical understanding of the principle of stationary action illustrates one of these advantages (Section~\ref{action}). Additionally, our definition accommodates models of classical massless particles by maintaining the uniqueness of solutions, even outside the hyper-regular domain. Moving beyond classical mechanics, our framework has the advantage of providing an elegant relationship with both classical statistical mechanics and quantum mechanics. First, the interpretation of the symplectic form is exactly the one used by the fundamental postulate of statistical mechanics, which uses phase space volumes---i.e. the volume form generated by the symplectic form---to count states. Second, by changing the requirement of infinitesimal reducibility to a corresponding notion of \textit{irreducibility}, we recover quantum mechanical systems. Hence, our framework perspicuously distinguishes quantum from classical systems. We take these considerations to favor our preferred notion of a classical system.\footnote{Space precludes a detailed discussion of the quantum and statistical mechanical cases, which we hope to discuss elsewhere. Additionally, one can show that Hamiltonian mechanics provides the proper setting for the invariant density and a simple understanding of the gauge-dependency of conjugate momentum.}  
-
-%\footnote{We provide details of the quantum and statistical mechanical cases elsewhere. Moreover, we show that Hamiltonian mechanics provides the proper setting for the invariant density and a simple understanding of the gauge-dependency of conjugate momentum.}  
-%Preceding sections have illustrated many of these advantages. Hamiltonian mechanics provides the proper setting for the invariant density (Section~\ref{dependence}), a simple understanding of gauge transformations (Section~\ref{gauge_momentum}), and a general geometrical understanding of the principle of stationary action (Section~\ref{action}).
-% % %, see \textcites{AoPPhy1}. [omit for review].
+Of course, if one insists on defining a ``classical system'' as Curiel does, one has grounds for privileging Lagrangian mechanics. Nevertheless, our preferred notion of classical systems---focusing on systems that are infinitesimally reducible---has substantive advantages over Curiel's. The general geometrical understanding of the principle of stationary action illustrates one of these advantages (Section~\ref{action}). Additionally, our definition accommodates models of classical massless particles by maintaining the uniqueness of solutions, even outside the hyper-regular domain. Moving beyond classical mechanics, our framework has the advantage of providing an elegant relationship with both classical statistical mechanics and quantum mechanics. First, the interpretation of the symplectic form is exactly the one used by the fundamental postulate of statistical mechanics, which uses phase space volumes---i.e. the volume form generated by the symplectic form---to count states. Second, by changing the requirement of infinitesimal reducibility to a corresponding notion of \textit{irreducibility}, we recover quantum mechanical systems. Hence, our framework perspicuously distinguishes quantum from classical systems. We take these considerations to favor our preferred notion of a classical system.\footnote{For more details on the quantum and statistical mechanical cases, see \textcites[]{AoPPhy1} and \textcites{shpmp}. Additionally, one can show that Hamiltonian mechanics provides both the proper setting for the invariant density and a simple understanding of the gauge-dependency of conjugate momentum.}  
 
 
 \section{Conclusion}
@@ -1017,11 +941,12 @@ By focusing on three basic physical conditions, we have derived the mathematical
 
 We have used this additional constraint to argue that Hamiltonian mechanics is more general---and hence more fundamental---than Lagrangian mechanics. Our argument for privileging Hamiltonian mechanics avoids both the technical problems facing North's \parencites*[]{North} argument and her more substantive metaphysical commitments. Likewise, our construction provides a principled response to Curiel's \parencites*[]{Curiel} criticism that Hamiltonian mechanics requires an \textit{ad hoc} condition. Although both frameworks adequately treat hyper-regular systems, there are compelling reasons to interpret Hamiltonian mechanics as more fundamental than Lagrangian mechanics. Our formalism emphasizes the invariant phase space density and the role of the symplectic form in counting states for each degree of freedom. Finally, we have provided a geometrical interpretation of the action principle that makes the gauge-dependency of the Lagrangian manifest. Overall, our approach provides a better understanding of not just the relationship between Hamiltonian and Lagrangian mechanics, but of classical systems in general.
 
-%\newpage
 
-%\theendnotes
+\subsubsection*{Acknowledgements}
 
-%\clearpage
+This paper forms part of the ongoing \textit{Assumptions of Physics} project \parencites[]{aop-book}. This project aims to both (i) isolate the physical assumptions required for different frameworks in mathematical physics and (ii) consider their philosophical implications. The authors would like to thank Gordon Belot for comments, along with two reviewers for this journal and four reviewers at two other journals, all of whom provided extremely helpful and constructive comments. 
+
+
 
 \bigskip
 
@@ -1030,15 +955,16 @@ We have used this additional constraint to argue that Hamiltonian mechanics is m
 \setlength\bibitemsep{2pt} %controls spacing between bib entries. default is itemsep 
 
 \defbibheading{myheading}[References]{%
-\centering \large \textbf{{#1}}%
+\flushleft \large \textbf{{#1}}
+%\centering \large \textbf{{#1}}%
 %\centering \footnotesize\textsc{{#1}}%
 %\addcontentsline{toc}{subsection}{#1}% if you want this in table of contents; would need to use a \section* command above as well 
 %\markboth{#1}{#1}
 }
 
-\printbibliography[heading=myheading]%see Stanley easier read, pages 63-64. 
+\printbibliography[heading=myheading] 
 
-%\printbibliography[title ={\centering \normalfont \textsc{References}}]
+
 \es
 
 %
