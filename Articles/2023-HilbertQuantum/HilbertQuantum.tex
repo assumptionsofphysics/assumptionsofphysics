@@ -1,0 +1,178 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+%\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+%\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=blue,
+	linkcolor=blue
+}
+\urlstyle{same}
+\frenchspacing
+
+\def\>{\rangle}
+\def\<{\langle}
+\DeclareMathOperator{\erf}{erf}
+
+\begin{document}
+
+\title{The unphysicality of Hilbert spaces}
+\author{TBD}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\begin{abstract}
+TBD
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\section{On the physicality of Hilbert spaces}
+
+First of all, let us clarify what exactly is the standard we should use to judge the physicality of a formal system. We say a mathematical definition is \textbf{physical} if it is grounded in some physical property or operation that is physically necessary. That is, we must be able to identify exactly what physical concept the mathematical definition is capturing, and show that the formal properties are indeed required by said physical concept. On the other hand, a mathematical definition is \textbf{unphysical} if it can be shown to require physical properties or operations that cannot be implemented physically.
+
+For example, TODO example
+
+To understand whether complex Hilbert spaces are suitable to represent physical entities, it is useful to break down the definition into three parts. Since a Hilbert space is a complete inner product space, we will look at the vector space structure, the inner product and the completeness separately. 
+
+\subsection{Vector space}
+
+A vector space is a set where the elements can be summed and multiplied by a constant. In quantum mechanics, the set represents pure states and the linear combination represent superposition of states. One may already accept this as physical, as superpositions can be created in a lab when, for example, a particle goes through a beam splitter. However, there are two difficulties.
+
+First of all, it is not clear whether superpositions are actual physical entities or whether they are just mathematical constructs. This is an area where different interpretations may differ, and we do not want our physical justification to depend on our interpretation. We want to decide whether the mathematical representation is physical regardless of the interpretation. Second, the actual states are not represented by vectors, but by rays. The superposition, then, is in terms of objects that are not themselves strictly physical. For these two reasons, we want to find another way an equivalent characterization of the linearity of the space that is fully physical.
+
+Let us consider the space of density operators, which can be used to characterize both pure and mixed state. These objects are invariant under change of phase and are in one-to-one correspondence with the rays of the space, not with the vectors. The density operators have a linear structure that represent statistical mixtures. This is a necessary structure because preparing statistical mixtures is something we can always do physically, and therefore something a physically meaningful mathematical definition must provide. However, the linear structure of density operators is not the same as the linear structure of the Hilbert space.
+
+When we write
+$$c_1|\psi_1\> + c_2 |\psi_2\>$$
+and 
+$$p_1|\psi_1\>\<\psi_1| + p_2|\psi_2\>\<\psi_2|$$
+the meaning of the $+$ symbols is different. The first operations is a complex linear combination of two pure states that returns another pure state, while the second is a real linear combination of two pure states that returns a mixed state. However, the two are so intertwined that one can be recovered by the other.
+
+As we show in the appendix, a pure state $\psi$ is a superposition of two other pure states $\phi_1$ and $\phi_2$ if and only if there exists another pure states $\bar{\psi}$ such that we can mix $\psi$ and $\bar{\psi}$ to obtain a mixed state that can also be obtained by mixing $\phi_1$ and $\phi_2$. Geometrically, consider a Bloch sphere. If $\psi$ is a superposition of $\phi_1$ and $\phi_2$ then all three states are on the surface of the same sphere. The chord connecting $\phi_1$ and $\phi_2$ represents the space of all possible mixtures of $\phi_1$ and $\phi_2$. Now, take a point $\rho$ on that chord, and consider the line that passes through $\rho$ and $\psi$. The same line will traverse the sphere at another point, which we call $\bar{\psi}$. Since $\rho$ is on the chord that connects $\psi$ and  $\bar{\psi}$, it is a mixture of the two. Therefore the vector space structure can be recovered by knowing how pure state mix.
+
+Note that the fact that the same statistical mixture can be decomposes in multiple ways is a characteristic feature of quantum mechanics, that is not present in classical mechanics. Using the same characterization, then, we consistently conclude that in classical mechanics there are no superpositions precisely because, given a pure state $\psi$, we can never find a corresponding state $\bar{\psi}$.
+
+The argument, then, goes like this. On physical grounds, we must be able to construct mixture. On physical grounds, we must be able to tell whether the same mixture can be prepared in different ways. The vector space structure captures exactly which pairs of pure states produce indistinguishable mixtures. The vector space structure exactly captures that structure and therefore it is fully physically justified. \textbf{The vector space structure is physical.}
+
+\subsection{Inner product}
+
+The inner product defines a geometrical structure on top of the vector space. Namely, it gives an idea of size of each vector and of angle between vectors. In quantum mechanics, the square of the inner product
+\begin{equation}
+	p(\psi_1, \psi_2) = |\<\psi_1| \psi_2\>|^2.
+\end{equation}
+represent the probability of measuring one state having prepared another. One may already accept this as physical, as these probabilities define all observable features of quantum mechanics. There is, again, a difficulty.
+
+Understanding the inner product as giving the probability of measurements also brings in one of the most controversial aspects of the theory: measurements. This is, again, a problem since we want our reasoning to be independent of interpretation. Another issue is that, technically, the inner product is linked to decomposition in linear combinations, to superposition, which are done at equal time. The probability above, instead, is a probability of transition.
+
+Given that we have characterized superposition in terms of mixtures, we should see whether the inner product characterizes something fundamental about them, and indeed it does. Given two pure states, the entropy of the mixture is a strictly monotonic, and therefore invertible, function of the square of the inner product. The greatest entropy is given by mixing orthogonal states, which gradually decreases as the angle in the inner product space decreases. We can then understand the geometrical structure of the pure quantum states as an entropic structure, much like it happens for classical mechanics.\footnote{In classical mechanics, the Liouville measure returns the count of states within a region, which is used in the fundamental postulate of statistical mechanics. The symplectic form gives us the Liouville measure for each independent degree of freedom.}
+
+The argument, then, goes like this. On physical grounds, for each statistical mixture, the thermodynamic entropy must be defined. Therefore it must be defined for equal mixtures of two pure states as well. The inner product exactly captures how that quantity combines and therefore it is fully physically justified. \textbf{The inner product structure is physical.}
+
+\subsection{Completeness}
+
+Completeness of a Hilbert space tells us that the space includes the limit of every Cauchy sequence. This property is more difficult to characterize physically. We can look at an equivalent characterization:\footnote{Roman 2008, p. 330 Theorem 13.8
+	
+	Roman, Stephen (2008), Advanced Linear Algebra, Graduate Texts in Mathematics (Third ed.), Springer, ISBN 978-0-387-72828-5} the space is complete if, given a series of vectors
+$$ \sum _{k=0}^{\infty }u_{k}$$
+such that
+$$ \sum _{k=0}^{\infty }\|u_{k}\|<\infty \,$$
+the series converges in the space. This is now in terms of linear combinations, and therefore it is essentially telling us that we can perform a linear superposition if the sum of the norm of the coefficient converge. We are basically extending superposition to infinite sums. Is this a physical requirement of just mathematical convenience?
+
+As we saw before, superposition experimentally means splitting the state along multiple paths. The above mathematical expression means splitting the original state into infinitely many progressively small component, and be able to place them where we please. It also assumes, for example, that we can place them over an infinite spatial range. Since the limit must be in the space, we are literally saying that we can prepare states that are spread over infinite regions. This does not sound physical.
+
+Again, given the difficulties of understanding superposition, let us reframe the result in terms of statistical quantities. Suppose that we are able to prepare pure states with arbitrary finite expectation value for position. Then completeness means we are also able to prepare pure states that falls off at infinity as $\frac{1}{x^2}$. The expectation value of $x$ would the integral of a function that falls off as $\frac{1}{x}$ which diverges. Clearly, this does not make physical sense. When we posit that a quantity, like position, has an infinite range of possible values, we simply mean that observed value can be arbitrarily large, not that we can literally spread values over an infinite range. 
+
+The argument, then, goes like this. On physical grounds, given a quantity that can take arbitrarily large values, like position, for each possible value there must exist some state whose expectation matches that value. On mathematical grounds, we require completeness, which forces us to posit states with infinite expectation value. But this, on physical grounds, is not teneable. Therefore \textbf{completeness in unphysical.}
+
+\subsection{Impact of unphysicality}
+
+We are forced to conclude that Hilbert spaces have unphysical requirements when applied to quantum mechanics. We clearly see that the issue is the closure of operation over infinite sequences, which is not surprising.\footnote{Large branches of mathematics were developed to handle infinities, both large and small. Weyl stated ``Mathematics is the science of the infinite, its goal the symbolic comprehension of the infinite with human, that is finite, means.'' Hermann Weyl, "The Open World: Three Lectures on the Metaphysical Implications of Science," (1932) as quoted in Mind and Nature: Selected Writings on Philosophy, Mathematics, and Physics (2009) ed. Peter Pesic.} Now we have to understand how big of a problem it is.
+
+On physical grounds, the state space of quantum system is the projective space of a complex inner product space. If the space is finite dimensional, the space is automatically complete.\footnote{This is exactly why, mathematically, completeness is nice as it makes infinite dimensional space behave like finite dimensional ones.} If not, we can always complete it by enlarging the space. In general, then, it is true that a quantum state is a ray of a Hilbert space, but the converse is not true: not all rays of the same Hilbert space will be valid quantum states.
+
+This may not seem like a problem: we simply have a bigger set of object of what we strictly need. Unfortunately, in mathematics working on a bigger space is not always a good thing. For example, take the problem of defining volumes in three dimensional euclidean space $\mathbb{R}^3$. Formally, we want to find a measure $\mu(U)$ that returns the size of the region $U$. Naively, we may want to define it on the set of all possible subsets. In this case, Banach–Tarski paradox tells us that we can take a unit ball, cut it into five pieces, and reassemble those pieces into two balls of the same size. Clearly, this is a problem. However, if we restrict ourselves with a measure on the Borel sets instead of all sets, we get a consistent definition. Therefore, in mathematics, bigger is not always better.\footnote{In another work, we show that the Borel sets are exactly those sets that can be associated with experimental procedures. In many cases, we have found that physical requirements naturally map to well behaved spaces.}
+
+The above example is just a cautionary tale and it doesn't tell us what happens in this specific case. Therefore, let us give an example of the things that can go wrong. Unitary transformation play an important role in the theory of Hilbert spaces for at least two reasons. The first is that two Hilbert spaces that differ by a unitary transformation are mathematically equivalent. A change of representation, like a change of basis, is a unitary transformation. The second reason is that time evolution for an isolated system is represented by a unitary transformation. Let us see, then, the interplay between unitary transformations and our previous findings.
+
+In a Hilbert space, we can always find a unitary transformation that maps one vector to any other. Therefore, there will be unitary transformations that map states with finite expectation values to infinite ones. This means that whether something has a finite expectation value or not will depend on the choice of representation. As a concrete example, consider the following two wave functions
+\begin{align}
+	\psi(x) &= \sqrt{\frac{e^{-x^2}}{\sqrt{\pi}}} \\
+	\phi(x) &= \frac{1}{\sqrt{\pi(x^2 + 1)}}.
+\end{align}
+Both states are symmetric, and therefore will have zero expectation value for $x$. The first distribution is a Gaussian, and therefore all moments of the distribution, the expectation for $x^n$, are finite. The second goes to infinity like $\frac{1}{x^2}$, so the expectation will diverge for all. We can now find a change of variable $y(x)$ that transforms one distribution into the other. We need to set
+\begin{equation}
+	\begin{aligned}
+	\int_{0}^{x} \psi^\dagger(x) \psi(x) dx &= \int_{0}^{y(x)} \phi^\dagger(x) \phi(x) dx \\
+	\int_{0}^{x} \frac{e^{-x^2}}{\sqrt{\pi}} dx &= \int_{0}^{y(x)} \frac{1}{\pi(y^2 + 1)} dx \\
+	\frac{\erf(x)}{2} &= \frac{\tan^{-1}(y)}{\pi} \\
+	y &= \tan \left(\frac{\pi}{2}\erf(x)\right). \\
+	\end{aligned}
+\end{equation}
+Therefore, thorough a variable change, we can change a state that has finite expectation value for all moments greater than the first into a state that has infinite expectation value for the same moments. Variable changes, in terms of the Hilbert space, are unitary transformation. Therefore the theory of Hilbert spaces, as applied to quantum mechanics, would tell us that the two representations are equivalent.
+
+Experimentally, these are not equivalent. Identifying a state through expectation value is a common technique, called quantum tomography. If a unitary transformation can change finite expectations to infinite ones, we are effectively changing what can be distinguished through a tomography. Not only we cannot measure infinite values, but different finite values would get lumped into the same infinite value. In the above example, if we increase the variance, all even moments would change, yet, after the transformation, they would all be infinite. Therefore the idea that such unitary transformation links to physically equivalent representations is, on physics ground, untenable.
+
+Moreover, we can create the following family of transformations
+\begin{equation}
+	y = \cos(\omega t) x + \sin(\omega t) \tan \left(\frac{\pi}{2}\erf(x)\right).
+\end{equation}
+This is clearly continuous in $t$ and, for $t=0$, we have the identity transformation and therefore, mathematically, there is no reason why this wouldn't be a valid time evolution. The effect is simply a stretching back and forth the wavefunctions, such that the state keeps oscillating between the above two functions. On physics grounds, however, we are going from finite to infinite expectations in finite time. This, again, is physically untenable.
+
+We hope that this gives an idea of the type of issues embedded in the mathematical definitions. When performing actual calculations, we do not see these issues because the physics that we are describing makes us work in a corner of the structure where things are reasonable. But when one tries to prove theorems or general results on quantum theory, one currently is forced to consider the entire Hilbert space. It is not inconceivable to expect that results that would be reasonable physically fail to valid when enlarging the space of possible states to those that have infinite expectation values and the space of physical transformations to those that map finite to infinite expectations. We therefore wonder whether some of the issues we have in quantum field theory (e.g. the inability to find a valid measure for path integrals, inequivalent representation of interacting theories (?), infinities) are simply a consequence of the use, at a fundamental level, of unphysical objects.
+
+\section{On the physicality of Schwartz spaces}
+
+Suppose the reader agrees with our finding, the subsequent question is: what is the alternative? If we are only interested in observable with finitely many possible outcomes, we can use finite dimensional spaces. But as soon we have discrete quantities with arbitrarily large values, such as the number of particles, or quantities that are continuous, like position and momentum, we need infinite dimensional spaces. If we allow infinite dimensional spaces, we need some way of controlling what infinite linear combinations are allowed or not allowed. Cauchy completeness is one such way, but if that is not physical, what should we use?
+
+We saw that the main problem is having expectation values that diverge, therefore the naive idea would be to require that the expectation value for all possible variables converge. This would require the expectation for $e^x$, $e^{e^x}$, $e^{e^{e^x}}$ and so on to be finite as well, which seems rather extreme. But what is a reasonable point to stop? If the idea is that we need to be able to reconstruct the state from expectation values, we should note that bounded distributions can be recovered from all the moments of the distribution, from the expectation of $x^n$ for every finite $n$. It seems reasonable, then, to require the expectation of all polynomial of position and momentum to be finite.
+
+In quantum mechanics, this means requiring all expectations of $X^nP^m = -\imath \hbar x^n\partial_x ^m$ to be finite. This restricts our space to those functions that are infinitely smooth (i.e. all derivative exist) and decrease very rapidly as $x$ goes to infinity: the Schwartz functions. Requiring finite expectation for all polynomials of position and momentum, then, does not give us the usual $L^2$ Hilbert space, it gives us the Schwartz space. Is this a better candidate?
+
+First of all, the Schwartz space is a subspace of the $L^2$ Hilbert space taken as an inner product space. That is, all Schwartz functions are elements of the Hilbert space, they are closed under linear combinations and have the same inner product. It is not, however, complete, which is what we want. Moreover, it is a dense subspace, meaning that any element of the Hilbert space can always be approximated by a Schwartz function with an arbitrary level of precision. Or, equivalently, that once a map is defined over the Schwartz space, the map is uniquely extended over the Hilbert space. This is a good hint that we have thrown away only unphysical elements.
+
+If we restrict ourselves to the Schwartz space, then, the only unitary transformations we are interested in are those that map Schwartz function to Schwartz functions. The change of coordinate we defined in the previous section, then, is ruled out. Limits in terms of Cauchy sequences are not guaranteed, but limits in terms of expectation values are guaranteed: if we have a sequence of states such that the limit of the expectation converge, then we are guaranteed that the limit is also a Schwartz function.
+
+The Schwartz space has also a very important property: it is the only space that is closed under the Fourier transform. That is, the Fourier transform of a Schwartz function is a Schwartz function, and it is the only set of functions with this property. This is not, in retrospect, a nice property that would be convenient for physicists. The theory of tempered distribution, which allows us to define the Dirac $\delta$-function, is mathematically based, at its core, over the Schwartz space. Therefore, this space already plays a fundamental role in the definitions of the tools we already use.
+
+On the downside, many of the tools we use indeed assume a Hilbert space and many theorems would not hold without Cauchy completeness. There are two responses to this issue. First of all, there is no reason to prohibit that calculation are performed on the larger, unphysical space. When solving an integral, we do sometimes extend the domain for real to complex values, which are unphysical, because complex analysis has nicer mathematical features. The result so found, however, is still the valid result on the real domain. Similarly, we can pose the problem on the Schwartz space, extend to the Hilbert space for calculation, and then bring the result back to the Schwart space. However, there is a second way to look at this issue. Given that the focus has been squarely on Hilbert spaces, we do not know which mathematical results will hold, or even whether other results may be found. This is not something that the authors of this paper can answer and neither the mathematicians that were asked. This requires a serious research effort on the mathematical underpinning of multiple areas, which brings us to our closing point.
+
+This effort is never going to happen if the physics community, as whole, do not generate enough interest on the subject. There may be a better series of mathematical tools and results that stem from a more precise specification of our physical requirements in terms of mathematical definitions. It is unlikely that the mathematical world will give us these tools unprompted. It is the job of us physicists to understand exactly what are ramifications of the definitions in terms of what physical objects would be left out or what unphysical objects would be brought in.
+
+\section{Conclusion}
+
+
+\bibliography{bibliography}
+
+\section*{Appendix: math}
+
+Let $\mathcal{H}$ be a complex vector space. Let $\psi, \phi_1, \phi_2 \in \mathcal{H}$ be pure states. Then $\psi$ is a superposition of $\phi_1$ and $\phi_2$, that is $\psi = c_1 \phi_1 + c_2 \phi_2$, if and only if there is another state $\bar{\psi}$ such that an equal mixture of $\psi$ and $\bar{\psi}$ is also a mixture of $\phi_1$ and $\phi_2$. That is
+\begin{equation}
+	\frac{1}{2}|\psi\>\<\psi| + \frac{1}{2}|\bar{\psi}\>\<\bar{\psi}| = p_1|\phi_1\>\<\phi_1| + p_2|\phi_2\>\<\phi_2|
+\end{equation}
+
+Let $\mathcal{H}$ be a complex Hilbert space. Let $I : \mathcal{H} \times \mathcal{H} \to \mathbb{R}$ be the von Neumann entropy of the equal mixture of two pure states. That is
+\begin{equation}
+	I(\psi_1, \psi_2) = S\left(\frac{1}{2}|\psi_1\>\<\psi_1| + \frac{1}{2}|\psi_2\>\<\psi_2|\right).
+\end{equation}
+Let $p :  \mathcal{H} \times \mathcal{H} \to \mathbb{R}$ be the square of the inner product. That is
+\begin{equation}
+	p(\psi_1, \psi_2) = |\<\psi_1| \psi_2\>|^2.
+\end{equation}
+Then $p$ and $I$ can be reconstructed from other. That is, there exists an invertible function $f$ such that
+\begin{equation}
+	I(\psi_1, \psi_2) = f(p(\psi_1, \psi_2)).
+\end{equation}
+
+\end{document}
