@@ -2,21 +2,23 @@
 %\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
 %\documentclass[10pt,twocolumn,letterpaper]{article}
 
-\usepackage{amsmath}
-\usepackage{mathrsfs}
-\usepackage{amsfonts}
+\usepackage{assumptionsofphysics}
 
-\usepackage{graphicx}
-\usepackage{hyperref}
-\hypersetup{
-	colorlinks=true,
-	citecolor=blue,
-	urlcolor=blue,
-	linkcolor=blue
-}
-\urlstyle{same}
-\frenchspacing
-
+%\usepackage{amsmath}
+%\usepackage{mathrsfs}
+%\usepackage{amsfonts}
+%
+%\usepackage{graphicx}
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	citecolor=blue,
+%	urlcolor=blue,
+%	linkcolor=blue
+%}
+%\urlstyle{same}
+%\frenchspacing
+%
 \def\>{\rangle}
 \def\<{\langle}
 \DeclareMathOperator{\erf}{erf}
@@ -44,27 +46,28 @@ In this letter, we focus on an assumption that poses an array of interesting que
 
 \section{On the physicality of Hilbert spaces}
 
-First of all, let us clarify what exactly is the standard we should use to judge the physicality of a formal system. We say a mathematical definition is \textbf{physical} if it is grounded in some physical property or operation that is physically necessary. That is, we must be able to identify exactly what physical concept the mathematical definition is capturing, and show that the formal properties are indeed required by said physical concept. On the other hand, a mathematical definition is \textbf{unphysical} if it can be shown to require physical properties or operations that cannot be implemented physically.
+Let us first clarify the standard we believe should be usde to judge the physicality of a formal definition. Suppose we have a physical system under study in a given condition. We say a mathematical definition is \textbf{physical} if it is the proper mathematical characterization of the physical system. That is, if it can be shown that the mathematical definition is needed to capture and only capture a particular aspect of the physical system. On the other hand, a mathematical definition is \textbf{unphysical} if it can be shown to require physical properties or operations that cannot be implemented physically.
 
-For example, TODO example
+For example, suppose we have a set of physically distinguishable objects, meaning that we can tell any two apart through an experimental test. Experimentally, the best we can do is collect finite information in finite time. If we are given an arbitrarily long time, we can collect an arbitrary amount of finite information. An element of the set, then, must be identified by at most a countably infinite sequence of ones and zeros, so that, at some point, we would be able to tell the difference between the two sequences and therefore the objects. The set of countable sequences of zeros and one can be understood as the binary expansion of real numbers between zero and one, which has cardinality of the continuum. Therefore, any definition that would require a set of physical objects to have cardinality greater than the continuum, then, is \textbf{unphysical}.\footnote{For example, non separable Hilbert spaces have cardinality greater than the continuum.}
 
-To understand whether complex Hilbert spaces are suitable to represent physical entities, it is useful to break down the definition into three parts. Since a Hilbert space is a complete inner product space, we will look at the vector space structure, the inner product and the completeness separately. 
+Naturally, this does not mean that all sets with cardinality of the continuum or lower are physical. In general, testing physicality is harder as we need to check that all the mathematical features map to physical feature and no physical feature is left behind. Clearly, postulating that ``the state space of a quantum states has cardinality no grater than that of the continuum'' is certainly \textbf{physical}. We now need to check the rest.
 
-\subsection{Vector space}
+\subsection{Inner vector space}
 
-A vector space is a set where the elements can be summed and multiplied by a constant. In quantum mechanics, the set represents pure states and the linear combination represent superposition of states. One may already accept this as physical, as superpositions can be created in a lab when, for example, a particle goes through a beam splitter. However, there are two difficulties.
+Recall that a Hilbert space is a complete inner product space. That is, it is a vector product, with an inner product, closed under Cauchy sequences. Let us look at the first two structure briefly, as they are straight forward. We will leave more detail in the appendix.
 
-First of all, it is not clear whether superpositions are actual physical entities or whether they are just mathematical constructs. This is an area where different interpretations may differ, and we do not want our physical justification to depend on our interpretation. We want to decide whether the mathematical representation is physical regardless of the interpretation. Second, the actual states are not represented by vectors, but by rays. The superposition, then, is in terms of objects that are not themselves strictly physical. For these two reasons, we want to find another way an equivalent characterization of the linearity of the space that is fully physical.
+Roughly speaking, a vector space is a set whose elements can be combined linearly: can be multiplied by constants and summed. If one regards superpositions as physical requirements of quantum theory, one may think that this structure is physical. However, the ability to interpret linear combination as superpositions requires the ability to keep track of normalization. If we can only know whether two vectors are in the same ray, without knowing which ones are normalized, we are not able to recover the idea of a probability amplitude, as those are the coeffcients of a linear combination between normalized states. Therefore the vector space structure, by itself, is not physical.
 
-Let us consider the space of density operators, which can be used to characterize both pure and mixed state. These objects are invariant under change of phase and are in one-to-one correspondence with the rays of the space, not with the vectors. The density operators have a linear structure that represent statistical mixtures. This is a necessary structure because preparing statistical mixtures is something we can always do physically, and therefore something a physically meaningful mathematical definition must provide. However, the linear structure of density operators is not the same as the linear structure of the Hilbert space.
+If we add the inner product, we can define the norm of vectors and therefore we can indeed express superpositions. The inner product structure also defines probabilities of transitions. If one is comfortable in considering superpositions and the Born rule to be physical requirements of quantum mechanics, then the inner product structure is \textbf{physical}. However, some may not consider superpositions as actual physical, but more as mathematical constructs; others may object that the Born rule, in its standard interpretation, defines probability of transitions while a state space should be defined at equal time; others can argue that the states are defined by the rays, and therefore the requirements should only be in terms of those objects. For those, we have an alternative, more necessary justification, which we include in the appendix, and can be summarized as follows.
 
-When we write
-$$c_1|\psi_1\> + c_2 |\psi_2\>$$
-and 
-$$p_1|\psi_1\>\<\psi_1| + p_2|\psi_2\>\<\psi_2|$$
-the meaning of the $+$ symbols is different. The first operations is a complex linear combination of two pure states that returns another pure state, while the second is a real linear combination of two pure states that returns a mixed state. However, the two are so intertwined that one can be recovered by the other.
+Given that, experimentally, no preparation or measurement is perfect, a physical theory must define the space of statistical ensembles. Mathematically, these form a convex set, that physically represents a set that allows statistical mixtures. The geometry of the space of statistical ensembles is uniquely defined by the inner product and vector space structures, which means properties of the inner product space can be reexpressed as properties of the space of mixtues.\footnote{There is a rich literature on Generalized Probability Theory in which people reconstruct Quantum Theory by imposing requirements on convex spaces.} For example, we can characterize superposition in the following way: a pure state $\psi$ is a superposition of two other pure states $\phi_1$ and $\phi_2$ if and only if there exists another pure states $\bar{\psi}$ such that we can mix $\psi$ and $\bar{\psi}$ to obtain a mixed state that can also be obtained by mixing $\phi_1$ and $\phi_2$. That is, the ability to create superposition is conceptually equivalent to the ability to prepare the same mixture in different ways. The inner product can be shown to be equivalent to determining the entropy of all equal mixtures of state pairs.
 
-As we show in the appendix, a pure state $\psi$ is a superposition of two other pure states $\phi_1$ and $\phi_2$ if and only if there exists another pure states $\bar{\psi}$ such that we can mix $\psi$ and $\bar{\psi}$ to obtain a mixed state that can also be obtained by mixing $\phi_1$ and $\phi_2$. Geometrically, consider a Bloch sphere. If $\psi$ is a superposition of $\phi_1$ and $\phi_2$ then all three states are on the surface of the same sphere. The chord connecting $\phi_1$ and $\phi_2$ represents the space of all possible mixtures of $\phi_1$ and $\phi_2$. Now, take a point $\rho$ on that chord, and consider the line that passes through $\rho$ and $\psi$. The same line will traverse the sphere at another point, which we call $\bar{\psi}$. Since $\rho$ is on the chord that connects $\psi$ and  $\bar{\psi}$, it is a mixture of the two. Therefore the vector space structure can be recovered by knowing how pure state mix.
+If we require, then, that the theory reproduces the properties of quantum mixtures, how they can be decomposed in terms of pure states and what their entropy is, the inner product space is recovered. As we said, a physical theory must tell us how to properly characterized statistical mixture, therefore the requirement is necessitated by the physics. \textbf{The inner product space structure is physical}.
+
+----
+
+
+ Geometrically, consider a Bloch sphere. If $\psi$ is a superposition of $\phi_1$ and $\phi_2$ then all three states are on the surface of the same sphere. The chord connecting $\phi_1$ and $\phi_2$ represents the space of all possible mixtures of $\phi_1$ and $\phi_2$. Now, take a point $\rho$ on that chord, and consider the line that passes through $\rho$ and $\psi$. The same line will traverse the sphere at another point, which we call $\bar{\psi}$. Since $\rho$ is on the chord that connects $\psi$ and  $\bar{\psi}$, it is a mixture of the two. Therefore the vector space structure can be recovered by knowing how pure state mix.
 
 Note that the fact that the same statistical mixture can be decomposes in multiple ways is a characteristic feature of quantum mechanics, that is not present in classical mechanics. Using the same characterization, then, we consistently conclude that in classical mechanics there are no superpositions precisely because, given a pure state $\psi$, we can never find a corresponding state $\bar{\psi}$.
 
@@ -156,16 +159,137 @@ This effort is never going to happen if the physics community, as whole, do not 
 
 \section{Conclusion}
 
+% TODO: hint that the unitary transformations on Schwartz space are a subset of the ones on the Hilbert, and therefore they have unique inverse; operators we are interested in are uniquely extended to the Hilbert space.
+
 
 \bibliography{bibliography}
 
-\section*{Appendix: math}
+\newcommand{\pj}[1] {\underbar{$#1$}}
 
-Let $\mathcal{H}$ be a complex vector space. Let $\psi, \phi_1, \phi_2 \in \mathcal{H}$ be pure states. Then $\psi$ is a superposition of $\phi_1$ and $\phi_2$, that is $\psi = c_1 \phi_1 + c_2 \phi_2$, if and only if there is another state $\bar{\psi}$ such that an equal mixture of $\psi$ and $\bar{\psi}$ is also a mixture of $\phi_1$ and $\phi_2$. That is
+\section*{Appendix}
+
+We give the full mathematical detail in support of the argument laid out in the main paper
+
+
+
+
+A vector space is a set where the elements can be summed and multiplied by a constant. In quantum mechanics, the set represents pure states and the linear combination represent superposition of states. One may already accept this as physical, as superpositions can be created in a lab when, for example, a particle goes through a beam splitter. However, there are two difficulties.
+
+First of all, it is not clear whether superpositions are actual physical entities or whether they are just mathematical constructs. This is an area where different interpretations may differ, and we do not want our physical justification to depend on our interpretation. We want to decide whether the mathematical representation is physical regardless of the interpretation. Second, the actual states are not represented by vectors, but by rays. The superposition, then, is in terms of objects that are not themselves strictly physical. For these two reasons, we want to find another way an equivalent characterization of the linearity of the space that is fully physical.
+
+Let us consider the space of density operators, which can be used to characterize both pure and mixed state. These objects are invariant under change of phase and are in one-to-one correspondence with the rays of the space, not with the vectors. The density operators have a linear structure that represent statistical mixtures. This is a necessary structure because preparing statistical mixtures is something we can always do physically, and therefore something a physically meaningful mathematical definition must provide. However, the linear structure of density operators is not the same as the linear structure of the Hilbert space.
+
+When we write
+$$c_1|\psi_1\> + c_2 |\psi_2\>$$
+and 
+$$p_1|\psi_1\>\<\psi_1| + p_2|\psi_2\>\<\psi_2|$$
+the meaning of the $+$ symbols is different. The first operations is a complex linear combination of two pure states that returns another pure state, while the second is a real linear combination of two pure states that returns a mixed state. However, the two are so intertwined that one can be recovered by the other.
+
+As we show in the appendix, a pure state $\psi$ is a superposition of two other pure states $\phi_1$ and $\phi_2$ if and only if there exists another pure states $\bar{\psi}$ such that we can mix $\psi$ and $\bar{\psi}$ to obtain a mixed state that can also be obtained by mixing $\phi_1$ and $\phi_2$. Geometrically, consider a Bloch sphere. If $\psi$ is a superposition of $\phi_1$ and $\phi_2$ then all three states are on the surface of the same sphere. The chord connecting $\phi_1$ and $\phi_2$ represents the space of all possible mixtures of $\phi_1$ and $\phi_2$. Now, take a point $\rho$ on that chord, and consider the line that passes through $\rho$ and $\psi$. The same line will traverse the sphere at another point, which we call $\bar{\psi}$. Since $\rho$ is on the chord that connects $\psi$ and  $\bar{\psi}$, it is a mixture of the two. Therefore the vector space structure can be recovered by knowing how pure state mix.
+
+Note that the fact that the same statistical mixture can be decomposes in multiple ways is a characteristic feature of quantum mechanics, that is not present in classical mechanics. Using the same characterization, then, we consistently conclude that in classical mechanics there are no superpositions precisely because, given a pure state $\psi$, we can never find a corresponding state $\bar{\psi}$.
+
+The argument, then, goes like this. On physical grounds, we must be able to construct mixture. On physical grounds, we must be able to tell whether the same mixture can be prepared in different ways. The vector space structure captures exactly which pairs of pure states produce indistinguishable mixtures. The vector space structure exactly captures that structure and therefore it is fully physically justified. \textbf{The vector space structure is physical.}
+
+\subsection{Inner product}
+
+The inner product defines a geometrical structure on top of the vector space. Namely, it gives an idea of size of each vector and of angle between vectors. In quantum mechanics, the square of the inner product
 \begin{equation}
-	\frac{1}{2}|\psi\>\<\psi| + \frac{1}{2}|\bar{\psi}\>\<\bar{\psi}| = p_1|\phi_1\>\<\phi_1| + p_2|\phi_2\>\<\phi_2|
+	p(\psi_1, \psi_2) = |\<\psi_1| \psi_2\>|^2.
 \end{equation}
+represent the probability of measuring one state having prepared another. One may already accept this as physical, as these probabilities define all observable features of quantum mechanics. There is, again, a difficulty.
 
+Understanding the inner product as giving the probability of measurements also brings in one of the most controversial aspects of the theory: measurements. This is, again, a problem since we want our reasoning to be independent of interpretation. Another issue is that, technically, the inner product is linked to decomposition in linear combinations, to superposition, which are done at equal time. The probability above, instead, is a probability of transition.
+
+Given that we have characterized superposition in terms of mixtures, we should see whether the inner product characterizes something fundamental about them, and indeed it does. Given two pure states, the entropy of the mixture is a strictly monotonic, and therefore invertible, function of the square of the inner product. The greatest entropy is given by mixing orthogonal states, which gradually decreases as the angle in the inner product space decreases. We can then understand the geometrical structure of the pure quantum states as an entropic structure, much like it happens for classical mechanics.\footnote{In classical mechanics, the Liouville measure returns the count of states within a region, which is used in the fundamental postulate of statistical mechanics. The symplectic form gives us the Liouville measure for each independent degree of freedom.}
+
+The argument, then, goes like this. On physical grounds, for each statistical mixture, the thermodynamic entropy must be defined. Therefore it must be defined for equal mixtures of two pure states as well. The inner product exactly captures how that quantity combines and therefore it is fully physically justified. \textbf{The inner product structure is physical.}
+
+
+\subsection{Physicality of inner product space structure}
+
+First we want to show that the vector space structure is not, by itself, physical. Since quantum states are represented by rays of a Hilbert space, and since rays can be defined simply on top of the vector space structure alone, one may think that the vector space structure, by itself, is physical. The issue is that, without a norm, one cannot make physical sense of the coefficients one uses for linear combinations, therefore superpositions becomes ill-defined.
+
+The following proposition tells us that a vector representing a state can be written as a linear combination of vectors of other two states with arbitrary coefficients.
+\begin{prop}\label{vector_insufficient}[The vector space structure is not enough to uniquely identify superpositions.] Let $\mathcal{H}$ be a complex vector space and let $\textbf{P}(\mathcal{H})$ be its projective space. Let $\psi, \phi_1, \phi_2 \in \mathcal{H}$ such that $\psi = c_1 \phi_1 + c_2 \phi_2$ for some $c_1, c_2 \in \mathbb{C}$. Let $\pj{\psi}, \pj{\phi_1}, \pj{\phi_2} \in \textbf{P}(\mathcal{H})$ be the corresponding rays in the projective space. Then for any $\hat{c}_1, \hat{c}_2 \in \mathbb{C}$ we can find $\hat{\phi}_1 \in \pj{\phi_1}$ and $\hat{\phi}_2 \in \pj{\phi_2}$ such that
+$$\psi = \hat{c}_1 \hat{\phi}_1 + \hat{c}_2 \hat{\phi}_2.$$
+\end{prop}
+
+\begin{proof}
+Let $\hat{\phi}_1 = \frac{c_1}{\hat{c}_1} \phi_1$. Since they differ only by a constant, they are elements of the same ray. That is, $\hat{\phi}_1 \in \pj{\phi_1}$. Similarly, we let $\hat{\phi}_2 = \frac{c_2}{\hat{c}_2} \phi_2$ and we have $\hat{\phi}_2 \in \pj{\phi_2}$. We have
+\begin{equation}
+\begin{aligned}
+	\hat{c}_1 \hat{\phi}_1 + \hat{c}_2 \hat{\phi}_2 &= \frac{c_1}{\hat{c}_1} \phi_1 + \frac{c_2}{\hat{c}_2} \phi_2 \\
+	&= c_1 \phi_1 + c_2 \phi_2 \\ 
+	&= \psi.
+	\end{aligned}
+\end{equation}
+This concludes the proof
+\end{proof}
+
+Given that the same state is identified by infinitely many vectors, we have infinitely many linear combinations with all possible coefficients. Without knowing the norm of the vectors, it is impossible to identify which coefficients represent actual probability amplitudes: the square of norm of the coefficient will represent probability only in that case. The vector space structure by itself is therefore insufficient to provide a clear connection to physics.
+
+To argue that the inner product space structure, as a whole, is physical, one could argue that the structure characterizes superpositions, since it provides a norm, and the Born rule. These are features required by quantum mechanics, and therefore necessary and physical motivated. Many physicists will already find this argument convincing enough, however we believe it has a few problems.
+
+First of all, it is not clear whether superpositions are actual physical entities or whether they are just mathematical constructs. This is an area where different interpretations may differ,\footnote{TODO: add citations} and whether a mathematical representation is physical should not be interpretation dependent. Second, the Born rule, in its standard characterization, brings in one of the most controversial aspects of the theory: measurements. This is also suffers from an interpretation problem. Lastly, the inner product is linked to both the Born rule, which is a probability of transition, and linear decomposition into superposition, which is done at equal time. The goal, then, is a characterization of our physical requirement that is more necessary, more cohesive and interpretation independent.
+
+We will do this by characterizes the space of statistical mixtures, which are represented mathematically by the space of density operators. To have a physical sense of how this works, let us rephrase the above two requirements in terms of properties of mixtures. We show that a state is a linear superposition of 
+
+The first is that it is not clear exactly what superpositions are. Some may argue that superpositions are just a mathematically convenient representation of the state, and express the potentiality of transition during measurement, not an actuality of the state itself. The second is 
+
+\begin{prop}\label{prop_densitySpan}
+	Let $\mathcal{H}$ be a complex inner product space. Let $\{\psi_i\}, \{\phi_j\} \in \mathcal{H}$ be two finite sets of normalized vectors. Suppose there exists a density operator that can be expressed as a strict convex combination of either set, that is we can find two sequences $\{a_i\}, \{b_j\} \in \mathbb{R}^+$ such that
+	\begin{enumerate}
+		\item $\sum_i a_i = 1$
+		\item $\sum_j b_j = 1$
+		\item $\sum_i a_i |\psi_i\>\<\psi_i| = \sum_j b_j |\phi_j\>\<\phi_j|$,
+	\end{enumerate}
+	then the span of the two sets is the same.
+\end{prop}
+
+\begin{proof}
+	Consider $\rho = \sum_i a_i |\psi_i\>\<\psi_i|$. For a unitary vector $\varphi \in \mathcal{H}$ we have
+	$$p(\varphi|\rho)=tr(\rho |\varphi\>\<\varphi|) =  \sum_i a_i |\<\psi_i|\varphi\>|^2$$
+	Since all $a_i$ are positive, $p(\varphi|\rho) = 0$ if and only if $\varphi$ is orthogonal to all $\psi_i$.
+	
+	Now suppose $\rho = \sum_i a_i |\psi_i\>\<\psi_i| = \sum_j b_j |\phi_j\>\<\phi_j|$. Then a vector $\varphi$ is orthogonal to all $\psi_i$ if and only if it is also orthogonal to all $\phi_i$, which means $span(\{\psi_i\}) = span(\{\phi_j\})$) as they have the same orthogonal complement.
+\end{proof}
+
+\begin{prop}\label{prop_decomposition}
+	Let $\mathcal{H}$ be a complex inner product space. Let $\psi \in \mathcal{H}$ be a normalized state and $\rho : \mathcal{H} \to \mathcal{H}$ a density operator of finite rank such that $\<\psi|\rho|\psi\>\neq 0$. Then we can express $\rho$ as a mixture of $\psi$. That is, there exists a finite set of normalized states $\{\psi_i\} \in \mathcal{H}$ such that $\psi_1 = \psi$ and $\rho = \sum_i p_i |\psi_i\>\<\psi_i|$.
+\end{prop}
+
+\begin{proof}
+	The set of all possible density operators is a convex set, which can be understood as a subset of a vector space $V$. Let $\rho$ be a density operator such that $\<\psi|\rho|\psi\>\neq 0$. If $\rho = |\psi\>\<\psi|$, we are done. If not, the two elements will identify a line, which must intersect the boundary of the convex set in two places. One must be $\psi$, since $\psi$ is a pure state and therefore an extreme point. Let $\rho_1$ be the other point. If it is an extreme point, we are done as $\rho$ is an affine combination of $\psi$ and $\rho_1$. If not, the boundary of the convex set in a neighborhood of $rho_1$ is not strictly convex, and therefore is a subspace $V_1$ of the vector space $V$. Note that $V_1$ does not include $\psi$ and it does not span the direction identified by $\rho_1$ and $\psi$. Furthermore, we can't have $\rho_1 = \rho$ as $\<\psi|\rho|\psi\>\neq 0$. Therefore we have that $\rho$ is an affine combination of $\psi$ and $\rho_1$, which must be a density operator of finite rank lower than $\rho$. We can express $\rho_1$ as a convex combination of finitely many extreme points $\psi_2, \psi_3, ..., \psi_n$, each of them corresponding to a pure state. We have that $\rho$ is an affine combination of pure states that include $\psi$.
+\end{proof}
+
+\begin{prop}[Superposition is multiple decomposition of mixed states.]
+Let $\mathcal{H}$ be a complex vector space. Let $\psi \in \mathcal{H}$ be a normalized vector and $\{\phi_j\} \in \mathcal{H}$ a finte sets of normalized vectors that does not contain $\phi$. Then $\psi$ is a superposition of $\{\phi_j\}$ if and only if there exists a density operator $\rho$ that can be expressed both as a strict convex combination of $\{\phi_i\}$ and of another set of normalized vectors that contain $\psi$. That is, we can find a countable set of normalized vectors $\{\psi_i\} \in \mathcal{H}$ and two sequences $\{a_i\}, \{b_j\} \in \mathbb{R}^+$ such that
+\begin{enumerate}
+	\item $\psi_1 = \psi$
+	\item $\sum_i a_i = 1$
+	\item $\sum_j b_j = 1$
+	\item $\sum_i a_i |\psi_i\>\<\psi_i| = \sum_j b_j |\phi_j\>\<\phi_j|$,
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	Suppose $\psi$ is a normalized state that can be written as $\psi = \sum_{i=1}^n c_i \phi_i$ where $\{\phi_i\} \in \mathcal{H}$ a finte sets of normalized vectors that do not contain $\psi$. Since $\{\phi_j\}$ are not necessarily orthogonal, it is not necessarily true that $|\<\psi|\phi_i\>| = |c_i|^2 \neq 0$. However, since $\psi$ is normalized, there must be at least two vectors in $\{\phi_i\}$ such that $|\<\psi|\phi_i\>| \neq 0$. We can then find $\{p_i\} \in \mathbb{R}+$ for which $\sum_i p_i =1$, such that $\rho = \sum_i p_i |\phi_j\>\<\phi_j|$ and $\<\psi|\rho|\psi\> \neq 0$. By Proposition \ref{prop_decomposition}, $\rho$ can be expressed as a convex combination of a set of normalized states that include $\psi$.
+	
+	Conversely, suppose we have a density operator $\rho$ that can be expressed both as a strict convex combination of $\{\phi_i\}$ and of another set of normalized vectors that contain $\psi$. By Proposition \ref{prop_densitySpan} the span of $\{\phi_i\}$ will include $\psi$ and therefore $\psi$ is a superposition of $\{\phi_i\}$.
+\end{proof}
+
+We can now show that the inner product space structure is physical in the sense that it is exactly the structure that is needed to model quantum mixed states and their entropy. One key difference between classical and quantum mechanics is that there is no single decomposition of quantum mixed states in terms of pure states. We can show that relationships of superposition are equivalent to relationships of multiple decomposition.
+
+\begin{proof}
+	Let's first address the trivial case in which $\phi_1 = \phi_2$. Suppose that $\psi = c_1 \phi_1 + c_2 \phi_2$, then $\psi = \phi_1$. We set $\bar{\psi} = \psi$ and find $p_1|\psi\>\<\psi| + p_2|\bar{\psi}\>\<\bar{\psi}| = \frac{1}{2}|\phi_1\>\<\phi_1| + \frac{1}{2}|\phi_2\>\<\phi_2|$ for any $p_1, p_2 \in \mathbb{R}$ such that $p_1+p_2=1$. Conversely, suppose $p_1|\psi\>\<\psi| + p_2|\bar{\psi}\>\<\bar{\psi}| = \frac{1}{2}|\phi_1\>\<\phi_1| + \frac{1}{2}|\phi_2\>\<\phi_2|$ for some $p_1, p_2 \in \mathbb{R}$ such that $p_1+p_2=1$. Then $p_1|\psi\>\<\psi| + p_2|\bar{\psi}\>\<\bar{\psi}| = |\phi_1\>\<\phi_1|$ which can be true only if $\psi=\bar{\psi}=\phi_1$.
+	
+	Now let's address the case in which $\phi_1 \neq \phi_2$. Suppose that $\psi = c_1 \phi_1 + c_2 \phi_2$. Then $\psi$ is part of the subspace defined by $\phi_1$ and $\phi_2$, which means all the states can be represented as points on the surface of a Bloch sphere. The mixed state $\rho=\frac{1}{2}|\phi_1\>\<\phi_1| + \frac{1}{2}|\phi_2\>\<\phi_2|$ is the midpoint of the chord connecting $\phi_1$ and $\phi_2$. Now, take the line that connects $\rho$ with $\psi$. This line will traverse the sphere in another point $\hat{\psi}$. As $\rho$ sits on the chord between $\psi$ and $\bar{\psi}$, it is a mixture of the two states for some $p_1$ and $p_2$. Conversely, suppose $\rho = p_1|\psi\>\<\psi| + p_2|\bar{\psi}\>\<\bar{\psi}| = \frac{1}{2}|\phi_1\>\<\phi_1| + \frac{1}{2}|\phi_2\>\<\phi_2|$. This means that the subspace spanned by $\psi$ and $\bar{\psi}$ is the same as the one spanned by $\phi_1$ and $\phi_2$, which means that $\psi = c_1 \phi_1 + c_2 \phi_2$ for some $c_1, c_2 \in \mathbb{C}$ such that $|p_1|^2+|p_2|^2=1$.
+\end{proof}
+
+The norm of the inner product can be shown to be equivalent to the entropy of uniform distributions over state pairs. This gives us a geometric understanding of the inner product at equal time, instead of a probability of transition.
+
+\begin{prop}[Inner product is an entropic structure]
 Let $\mathcal{H}$ be a complex Hilbert space. Let $I : \mathcal{H} \times \mathcal{H} \to \mathbb{R}$ be the von Neumann entropy of the equal mixture of two pure states. That is
 \begin{equation}
 	I(\psi_1, \psi_2) = S\left(\frac{1}{2}|\psi_1\>\<\psi_1| + \frac{1}{2}|\psi_2\>\<\psi_2|\right).
@@ -178,5 +302,10 @@ Then $p$ and $I$ can be reconstructed from other. That is, there exists an inver
 \begin{equation}
 	I(\psi_1, \psi_2) = f(p(\psi_1, \psi_2)).
 \end{equation}
+\end{prop}
+
+\begin{proof}
+	Copy proof from other paper.
+\end{proof}
 
 \end{document}
