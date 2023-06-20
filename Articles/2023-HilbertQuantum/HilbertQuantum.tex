@@ -204,7 +204,7 @@ Let $\hat{\phi}_1 = \frac{c_1}{\hat{c}_1} \phi_1$. Since they differ only by a c
 This concludes the proof.
 \end{proof}
 
-The intuition that a state has a single linear decomposition in terms of other vectors requires, first of all, that the vectors are normalized. To identify the coefficient as probability amplitudes, that is that $\sum_i |c_i|^2 = 1$, further requires the decomposition to be done on orthogonal vectors. That is, linear combinations require the inner product to be understood physically as superpositions. The vector space structure by itself is therefore insufficient to provide a clear connection to physics.
+The intuition that a state has a single linear decomposition in terms of other vectors requires, first of all, that the vectors are normalized. To identify the coefficient as probability amplitudes, that is that $\sum_i |c_i|^2 = 1$, further requires the decomposition to be done on orthogonal vectors.\footnote{TODO: mention Gram-Schmidt orthonormalization} That is, linear combinations require the inner product to be understood physically as superpositions. The vector space structure by itself is therefore insufficient to provide a clear connection to physics.
 
 We could now use the above reasoning to argue that the inner product space structure, as a whole, is physical, because it indeed characterizes both superpositions and the Born rule. These are features required by quantum mechanics, and therefore necessary and physically motivated. Many will find this argument convincing enough, however there a couple of objective problems.
 
@@ -241,7 +241,7 @@ The idea is to link superposition to another feature of quantum mechanics: the n
 \end{proof}
 
 \begin{prop}\label{prop_superpositionIsDecomposition}[Superposition is multiple decomposition of mixed states.]
-Let $\mathcal{H}$ be a complex vector space. Let $\psi \in \mathcal{H}$ be a normalized vector and $\{\phi_j\} \in \mathcal{H}$ a finte sets of normalized vectors that does not contain $\phi$. Then $\psi$ is a superposition of $\{\phi_j\}$ if and only if there exists a density operator $\rho$ that can be expressed both as a strict convex combination of $\{\phi_i\}$ and of another set of normalized vectors that contain $\psi$. That is, we can find a countable set of normalized vectors $\{\psi_i\} \in \mathcal{H}$ and two sequences $\{a_i\}, \{b_j\} \in \mathbb{R}^+$ such that
+Let $\mathcal{H}$ be a complex vector space. Let $\psi \in \mathcal{H}$ be a normalized vector and $\{\phi_j\} \in \mathcal{H}$ a finte sets of normalized vectors that does not contain $\psi$. Then $\psi$ is a superposition of $\{\phi_j\}$ if and only if there exists a density operator $\rho$ that can be expressed both as a strict convex combination of $\{\phi_i\}$ and of another set of normalized vectors that contain $\psi$. That is, we can find a countable set of normalized vectors $\{\psi_i\} \in \mathcal{H}$ and two sequences $\{a_i\}, \{b_j\} \in \mathbb{R}^+$ such that
 \begin{enumerate}
 	\item $\psi_1 = \psi$
 	\item $\sum_i a_i = 1$
