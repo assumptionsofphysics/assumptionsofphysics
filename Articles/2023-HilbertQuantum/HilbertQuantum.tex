@@ -66,7 +66,7 @@ The argument can be summed up as follows. On physical grounds, for any physical 
 
 \subsection{Completeness}
 
-We now turn to the last property of Hilbert spaces: completeness. Mathematically, this means that the space includes the limit of every Cauchy sequence; physically, this property is more difficult to characterize. We can look at an equivalent characterization:\footnote{Roman 2008, p. 330 Theorem 13.8
+We now turn to the last property of Hilbert spaces: completeness. Mathematically, this means that the space includes the limit of every Cauchy sequence; physically, this property is more difficult to characterize. We can look at an equivalent characterization:\cite{roman_2008}\footnote{Roman 2008, p. 330 Theorem 13.8
 	
 	Roman, Stephen (2008), Advanced Linear Algebra, Graduate Texts in Mathematics (Third ed.), Springer, ISBN 978-0-387-72828-5} the space is complete if, given a series of vectors
 $$ \sum _{k=0}^{\infty }u_{k}$$
@@ -240,17 +240,84 @@ Then $p$ and $I$ can be reconstructed from other. That is, there exists an inver
 
 Having shown the connection between superposition and non-unique decomposition of mixed state, and between the Born rule and the entropy of mixtures, we can now use these to justify the physicality of the complex inner product space structure for quantum states.
 \begin{prop}
-	The description of quantum states as rays of a complex inner product space is physically justified.
+	Complex inner product spaces are physical when used to represent the state space of quantum systems.
 \end{prop}
 \begin{justification}
-	Since physical preparations and measurements are most of the type not perfect, a physical theory must define statistical ensembles. Part of that definition includes keeping track statistical ensembles under statistical mixtures, that is which particular mixture is obtained by mixing particular states in particular proportions. A particular feature of quantum mixed states is that, unlike classical states, they do not in general provide a unique decomposition in terms of pure states. This non-unique decomposition, as shown by proposition \ref{prop_superpositionIsDecomposition}, is equivalent to the ability to create superpositions of pure state. The inner product structure is therefore the exact structure needed to characterize quantum ensembles and their properties, which is required by the physics.
+	Since physical preparations and measurements are most of the time not perfect, a physical theory must define statistical ensembles. Part of that definition includes keeping track of statistical ensembles under statistical mixtures, that is which particular mixture is obtained by mixing particular states in particular proportions. A particular feature of quantum mixed states is that, unlike classical states, they do not in general provide a unique decomposition in terms of pure states. This non-unique decomposition, as shown by proposition \ref{prop_superpositionIsDecomposition}, is equivalent to the ability to create superpositions of pure state. The inner product structure is therefore the exact structure needed to characterize quantum ensembles and their properties, which is required by the physics.
 	
 	Additionally, a physical theory must be able to define the entropy of each ensemble, as required by thermodynamics. In quantum mechanics, the thermodynamic entropy is recovered by the von Neumann entropy, which Proposition \ref{prop_innerProductIsEntropy} show it is exactly captured by the inner product. This again shows that the inner product structure is required to capture a necessary physical requirement.
 \end{justification}
 
-\section{TODO}
+\section{The unphysicality of completeness}
 
-of a We saw that the main problem is having expectation values that diverge,
+To show that the completeness requirement on complex inner product spaces that represent quantum states is unphysical, we need to show that this definition forces the state space to include elements that cannot have physical correspondents.
+
+The Hellinger–Toeplitz theorem states that a self-adjoint operator $O$ defined on the whole Hilbert space $\mathcal{H}$ is necessarily bound. Therefore, an unbound operator $X$ cannot be defined on the whole space, meaning that the operator must diverge or be ill-defined on a subset of $\mathcal{H}$. To see that the problem is the completeness requirement of the Hilbert space, we prove the following:
+\begin{prop}
+	Let $\mathcal{H}$ be a Hilbert space and $X : D(X) \to Y$ a unbounded operator where $D(X)$ is the domain of $X$ and $Y$ is another Hilbert space. Then $D(X)$ is an inner product space that is not complete.
+\end{prop}
+\begin{proof}
+	The domain $D(X)$ of the operator is a subspace of $\mathcal{H}$. In fact, if $||X(v_1)||_Y$ and $||X(v_2)||_Y$ are finite, so will $||X(a_1 v_1+a_2v_2)||_Y$. Therefore $D(X)$ is an inner product space. It cannot be complete by the converse of the Hellinger–Toeplitz theorem.
+\end{proof}
+
+To understand the physical significance, consider the position operator $X : D(X) \to \mathcal{H}$. If we take a normalized vector $\psi \in \mathcal{H}$, the norm $||X\psi|| = \<X\psi|X\psi\> = E[X^2|\psi]$ is equal to the expectation of the position squared. The operator is unbounded because the position can be arbitrarily large. We can therefore construct a Cauchy sequence $\{\psi_i\}$ such that $\lim\limits_{i \to \infty}||X\psi|| = +\infty$, that is take a sequence of vectors for which the expectation of position is larger and larger. Because of completeness, the limit of the Cauchy sequence will be in the Hilbert space. However, because the expectation diverges, the limit cannot be in the domain of $X$. Cauchy completeness forces us to include ``states'' for which the position is ill-defined.
+
+The matter would still be manageable if we had a way to keep these degenerate cases isolated, but this is not the case. In general, a unitary operator can move vectors in and out of the domain.
+\begin{prop}
+	Let $\mathcal{H}$ be a Hilbert space, $X : D(X) \to Y$ a unbounded operator and $U : \mathcal{H} \to \mathcal{H}$ a unitary operator. Then, in general, $U(D(X)) \notin D(X)$.
+\end{prop}
+\begin{proof}
+	Let $\psi, \phi \in \mathcal{H}$ be two normalized vectors. Then we can construct a unitary operator $U$ such that $\phi = U(\psi)$. For example, we can take the operator that performs a rotation in the subspace identified by $\psi$ and $\phi$ and leaves the orthogonal subspace unchanged. We can now take $\psi$ to be in $D(X)$ while $\phi$ to not be in $D(X)$. Therefore, in general, a unitary operator can move vectors in and out the domain of an unbounded operator.
+\end{proof}
+
+To understand the physical significance, note that unitary operators are isomorphisms between Hilbert spaces. That is, mathematically, two Hilbert spaces are considered indistinguishable if there exists a unitary transformation between them. As we saw, unitary operations can change the domain in which unbound operators are well defined: they can map states for which position is well defined onto states for which it is not. While the mathematical structure remains unchanged, the physical significance hasn't.
+
+More concretely, a change of variable $X$ to $Y$ would be a unitary operator as is just a change of representation. However, we can construct changes of variables such that the domain of $X$ is not exactly mapped to the domain of $Y$. Let $y=y(x)$ be our change of variable such that $y(0) = 0$. If $\psi(x)$ is a wavefunction expressed over $x$, and $\phi(y)$ represents the same state as a wavefunction over $y$, we have the following relationship:
+\begin{equation}
+		\int_{0}^{y(x)} \phi^\dagger(y) \phi(y) dy = \int_{0}^{x} \psi^\dagger(x) \psi(x) dx
+\end{equation}
+To find a coordinate transformation that take finite expectations to infinite expectation, we set the initial and final wavefunctions as follow:
+\begin{align}
+	\psi(x) &= \sqrt{\frac{e^{-x^2}}{\sqrt{\pi}}} \\
+	\phi(y) &= \frac{1}{\sqrt{\pi(y^2 + 1)}}.
+\end{align}
+The first distribution is a Gaussian, and therefore all moments of the distribution, the expectation for $x^n$, are finite. The second goes to infinity like $\frac{1}{x^2}$, so the expectation will diverge for all moments above the first. We find
+\begin{equation}
+	\begin{aligned}
+		\int_{0}^{y(x)} \frac{1}{\pi(y^2 + 1)} dy &= \int_{0}^{x} \frac{e^{-x^2}}{\sqrt{\pi}} dx \\
+		\frac{\tan^{-1}(y(x))}{\pi} &= \frac{\erf(x)}{2} \\
+		y(x) &= \tan \left(\frac{\pi}{2}\erf(x)\right). \\
+	\end{aligned}
+\end{equation}
+The graph of the above function increase so fast that, when plotted, it looks like it has a vertical asymptote. Nonetheless, it is an invertible function over the whole domain, and will induce a unitary transformation on the Hilbert space.\footnote{Note that we could implement a similar coordinate transformations in classical mechanics, which would also change finite moments of a distribution into infinite ones. It may be that, like differentiable manifolds are constrained to only differentiable coordinate transformation, we need ``statistical manifolds'' that are constrained to coordinate transformations that preserve the finiteness of moments of distributions. This is a topic that requires further analysis.}
+
+Unitary operators are also used in quantum theory to represent time evolution. Typically, we have a family of unitary operators $\{U_t\}_{t \in \mathbb{R}}$ that is strongly continuous (i.e. $\lim_{t \to t_0} U_t = U_{t_0}$) and respect composition in time (i.e. $U_t U_s = U_t+s$). We can turn the above transformation into an evolution by setting
+\begin{equation}
+	y(x, t) = \cos(\omega t) x + \sin(\omega t) \tan \left(\frac{\pi}{2}\erf(x)\right).
+\end{equation}
+The idea is that the evolution will simply stretch and shrink the wavefunction intermittently, potentially oscillating expectation values from finite to infinite and viceversa in finite time. Clearly, this is not a meaningful time evolution, yet it will correspond to a strongly continuous one-parameter unitary group and, by Stone's theorem, will even admit a Hamiltonian.
+
+The mathematician that points out that this all known, and there is nothing new, is missing the point. The physicists that notes that, yes, those elements are clearly unphysical, but I don't use them, so I do not care, is also missing the point. The point is that, physically, we will want to make general statements such as ``for all observer X is valid'' or ``under all evolution Y is valid''. Given that Hilbert spaces mix physically clearly meaningful object with clearly unphysical ones, we have no way to make those statements precisely.
+
+We can conclude the discussion with the following
+\begin{prop}
+	Infinite dimensional complex Hilbert spaces are unphysical when used to represent the state space of quantum systems due to completeness.
+\end{prop}
+\begin{justification}
+	If a quantum system is modeled by a finite dimensional space, and since every finite dimensional space is complete, finite dimensional complex Hilbert spaces are physical.
+	
+	Some physical system that are described by unbounded discrete quantities (e.g. number of particles) or by continuous quantities (e.g. position) which require infinite dimensional spaces. Infinite dimensional complex inner product spaces, then, are needed to represent quantum system.
+
+	An unbounded operator cannot be defined on all the elements of a Hilbert space by the converse of the Hellinger-Toeplitz theorem. This means that if represents states as rays on a Hilbert space and observables as operators, the unbounded observable will not be well defined, not even as a statistical quantity, on all states. In particular, whether the statistical properties of an observable are well defined, whether it is possible to experimentally identify a state through tomography, would be observer dependent. Moreover, whether the expectation of an observer is finite or not would be something that can change in finite time.
+	
+	On physical ground, we must have that an observable has well defined statistical properties over all states, that this property is covariant and that is preserved by time evolution. Hilbert spaces do not satisfy this requirement and are therefore unphysical.
+\end{justification}
+
+\section{The possible physicality of Schwartz spaces}
+
+Recall that an inner product space $V$ is complete if every Cauchy sequence in $V$ converges in $V$. This definition is difficult to characterize physically, therefore we use an equivalent condition: an inner product space $V$ is complete is complete if and only if all absolutely convergent series converge in $V$ (see theorem 13.8 in \cite{roman_2008}). This reframes the requirement in terms of convergence of linear combinations, and therefore superpositions.
+
+We now show that if we have an unbounded operator, like position, completeness requires the existence of pure states for which 
 
 If we are only interested in observable with finitely many possible outcomes, we can use finite dimensional spaces. But as soon we have discrete quantities with arbitrarily large values, such as the number of particles, or quantities that are continuous, like position and momentum, we need infinite dimensional spaces. If we allow infinite dimensional spaces, we need some way of controlling what infinite linear combinations are allowed or not allowed. Cauchy completeness is one such way, but if that is not physical, what should we use?
 
@@ -270,5 +337,8 @@ This effort is never going to happen if the physics community, as whole, do not 
 
 % TODO: hint that the unitary transformations on Schwartz space are a subset of the ones on the Hilbert, and therefore they have unique inverse; operators we are interested in are uniquely extended to the Hilbert space.
 
+\section{A final remark on the mathematical foundations of physical theories}
+
+When mathematicians and philosophers noticed that mathematical theories at the time allowed to express inconsistencies (e.g. Russell's paradox, Berry paradox, ...), effort was put into strengthening the foundations of mathematics so that such paradoxes were either resolved or couldn't be expressed. With regard to the mathematical foundations of physical theories, we have a similar problem: we can write statements that, though mathematically consistent, are physically inconsistent. Looking for these problems and addressing them is ultimately what will lead to a solid foundation, which, we believe, is the prerequisite to solve other outstanding issues in fundamental physics.
 
 \end{document}
