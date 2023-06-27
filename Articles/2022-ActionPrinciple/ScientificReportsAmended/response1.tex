@@ -1,0 +1,165 @@
+\documentclass[11pt, executivepaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={158mm,237mm},
+ left=28mm,
+ top=28mm,
+ }
+\usepackage{hyperref}
+\hypersetup{colorlinks= true, allcolors=blue}
+\setcitestyle{aysep={}}
+\begin{document}
+
+
+\title{\textbf{Replies to Reviewers' Comments}}
+
+\author{The Authors}
+
+\maketitle
+
+
+\noindent We would like to thank the reviewers for their time and comments.
+
+\section{Replies to Reviewer 1}
+
+\begin{quote}
+ In this paper the authors are studying the Principle of Least Action (PLA) from a geometrical point of view and trying to provide a physical meaning for the principle. The paper relies on analytical mechanics definition and differential geometry tools.
+
+The authors introduced the current effort as part of a main project. The main project is named Reverse Physics, at which a set of starting physical assumptions that are sufficient to rederive current theories are derived. They considered Lagrangian mechanics (i.e., PLA) as a candidate for this study. They claim that they found that the PLA is equivalent to three assumptions: 1) determinism/reversibility, 2) independence of degrees of freedom and 3) kinematics/dynamics equivalence for any divergence-free fields. The authors claims that the mathematics for understanding the PLA is well established in literature, however, a clear geometric interpretation of the PLA along with a tight connection between the math and physics are lacking, hence, providing these two lacking points constructs the premises of this paper. 
+
+They considered a dynamical system with one degree of freedom (DOF), to simplify the analysis and the presentation of the idea. Then they switched to systems with higher DOF, at which the differential geometry tools are needed to proceed further. The study relies on the generalized phase-space constructed from the generalized co-ordinates and momenta (p,q,t). Following the three assumptions, the evolution of any dynamical system in the phase-space could be considered as a divergence free flow problem (i.e., incompressible fluid problem).
+\end{quote}
+We are glad that the referee understood the premise of the paper.
+
+ 
+
+\begin{quote}
+ The paper is interesting to the community and provides an intriguing geometrical representation of an analytical principle.  However, there are several concerns (listed below) that need to be addressed before publication.
+ 
+ The authors claim to provide “a clear geometric interpretation of the action principle”. However, this geometric interpretation is inherently present in the analytical mechanics field. For example, when they mentioned in pp.3 “Now suppose $\gamma$ is a solution of the … paths for which”, they described a geodesic (i.e., shortest distance over curved manifolds) between two points on the manifold of phase-space, which is an already established fact.
+\end{quote}
+It is not clear to us to what geometric interpretation the reviewer is referring. Geodesics as shortest distance can only be defined on spaces where distance is defined, which are Riemannian manifolds in the context of differential geometry. The spaces we are considering are either symplectic (e.g. phase space) or contact manifolds (e.g. phase space extended by time). There is no notion of distance on these spaces, therefore no geodesic can be defined. We looked in the literature for possible analogs of geodesics; we found none for contact manifolds and we found pseudoholonomic curves for symplectic manifolds, though these do not appear to have relevance.
+
+ 
+\begin{quote}
+ The authors claim to provide “a tight connection between the math and the physics the action principle represents”. But there is a counter argument for this statement. The PLA, Newtonian mechanics, Gauss principle ... etc., all of these are principles or could be thought of as axioms. They do not have a physical meaning by themselves; however, we (researchers) use them to understand the physics of nature. The authors introduced three assumptions (DR, KE \& IND) and claimed that these assumptions explained the PLA physically. However, in reality, these assumptions forced the phase-space to be a divergence free flow filed, hence, helped in formulating and understanding the geometrical representation of the PLA. Yet, after the study, the main logic or philosophy behind the PLA remains to be the minimization of the action integral (i.e., minimization of a certain measure/gauge quantity). See the below table for more details.
+ 
+ Newtonian mechanics \\
+ $\mathit{F}=m\mathit{a}$ \\
+ The axioms are Newton’s three laws.
+ 
+ Lagrangian mechanics \\
+ $\delta\int_{t_1}^{t_2}L\left(q,\dot{q},t\right)dt=0$ \\
+ The axiom for the PLA is dated back to Maupertuis principle. Where nature minimizes a magical quantity (gauge).
+ 
+ Gauss Principle ~ Principle of Least Curvature \\ 
+ $Z=\sum_{j=1}^{n}m_j\cdot\left|\ddot{r_j}-\frac{F_j}{m_j}\right|^2$ \\
+ The axiom is that mechanical systems must evolve with time such the constraint force (i.e., accelerations) are minimum. 
+ 
+ All these principles do not have physics, we use them to study physics. Nevertheless, this does not mean, one can be presented geometrically the other cannot. 
+\end{quote}
+It is not clear to us why one would say that Newton’s three laws do not have physical meaning by themselves. They are all in terms of operationally defined, measurable and physically intuitive objects. The second law is particularly physically meaningful as it stands in contrast to Aristotelian thinking that posited that a constant force would give constant velocity. In this regard, this is exactly why the principle of stationary action is lacking physical motivation, as it is expressed in terms of a quantity (the action) that is not operationally defined, measurable or physically intuitive. The reviewer is correct in stating that, after our study, the main logic behind the principle is the same. But we have clarified exactly that the action is \textbf{not} a physical quantity, as it is gauge dependent, and why the variation of the action \textbf{is} a physical quantity, and how it relates to the flow (i.e. surface integral) of the displacement field, which is a physically motivated object.
+
+
+\begin{quote}
+ Some of the standard notation and terminology of differential geometry are not present in the paper. For example, the discussion in the supplementary document from line 115 to 124 could be referred to as the volume preserving diffeomorphism of flow maps that are presented in Kambe, Tsutomu Jixin. Geometrical Theory Of Dynamical Systems And Fluid Flows (Revised Edition). Vol. 23. World Scientific Publishing Company, 2009. Also, for standard notation of differential geometry, please see Kreyszig, Erwin. Differential geometry. Courier Corporation, 2013. 
+\end{quote}
+As we stated in the supplementary information of the original version, the use of standard notation is avoided on purpose because, in our experience, it does map well to physical intuition. We added an additional comment to that effect in the main body of the paper on line 26, as we realized this was not made sufficiently clear. In response to the other reviewer, we have also clarified in the paper the connection between the mathematical objects $\vec{S}$, $\omega$ and $\theta$ in our paper and in the standard mathematical literature, which further highlights the mismatch between standard mathematical definitions and the physically motivated ones. For example, $\theta$ would correspond to the canonical one form in the context of symplectic geometry and the contact form in the context of contact manifolds. Both of these objects are uniquely defined mathematically. However, given that the physical object we represent with $\theta$ is a vector potential, it is not uniquely defined as it depends on the arbitrary gauge choice. Therefore the ``mathematical'' $\theta$s represent the vector potential with a specific gauge choice.
+
+ 
+\begin{quote}
+ My understanding that the geometrical representation provided is only for systems that are divergence free. (i.e., they emerge from a potential). Simultaneously they will be conservative systems.  One of the conclusions is that “Also note that the cases where the Lagrangian does not admit ……instead of Lagrangian mechanics”. This statement is not clear to the reviewer, because the authors relied on the Lagrangian- Hamiltonian relationship (i.e., Legendre transformation) in equation 10. How does equation 10 hold, and at the same time the Lagrangian would not admit a corresponding Hamiltonian? 
+\end{quote}
+We have greatly improved and clarified that paragraph. See lines 127-133.
+
+ 
+\begin{quote}
+ General comments and questions
+ Is the study limited to divergence free vector fields only? 
+\end{quote}
+Yes. The study is limited to all cases where the principle of stationary action holds (i.e. yields unique solutions) which, by virtue of the Liouville theorem, corresponds to divergence free displacement vector fields.
+ 
+\begin{quote}
+ The standard notation of differential geometry is not quite present in the paper.
+\end{quote}
+This is intentional. See response above.
+
+\begin{quote}
+ Will the supplementary document be published along with the paper, or it is just for the review process? 
+\end{quote}
+Yes.
+
+\begin{quote}
+ Why call the Principle of Least Action the Action Principle? 
+\end{quote}
+We use the term in the title to not make it exceedingly long. It is not an uncommon abbreviation. For example, the book ``The action principle and partial differential equations'' by D. Christodoulou.  We generally use ``principle of stationary action'' throughout the paper.
+
+\begin{quote}
+ It is not clear how the left hand-side of the second line of equation 8 is translated to be the first variation of the integral defining the action principle. 
+\end{quote}
+We added the extra step that takes the contour integral and breaks it up into the two paths.
+
+\begin{quote}
+ Reference number two does not consider the PLA to be “one of the most important tools in physics”, actually, it is stating the quite opposite !
+\end{quote}
+Correct. It was meant more as evidence of ``its physical meaning is not completely clear'', but we agree that the location of the citation was misleading. We have moved all citations to the end of the sentence.
+
+
+\begin{quote}
+ Editorial comments
+ 
+ Line 28, “will presents …” should be “present …”, “key point …” should be “key points …”
+
+ In pp. 11 line 140 in the supplementary document, “Putting …” should be “Summing or Grouping …”.
+\end{quote}
+We thank the reviewer for taking the time to point out the typos, which have been fixed. We also have reworded the sentence.
+ 
+
+\section{Replies to Reviewer 2}
+
+\begin{quote}
+The action principle which gives rise to the equations of motion is often obscure, framed only in mathematical terms, with little to no geometric interpretation other than the cryptic “nature chooses the path that minimizes the action” — which feels like it reveals something deep about the world, and all those “other possible paths”, but it is still mysterious. 
+
+So it is refreshing to see in this paper a concise and direct derivation of the action principle that arises from basic physical assumptions. As far as I know, this is indeed a new interpretation: I haven’t seen any other geometric construction like this regarding the action principle. I am very intrigued at the equivalence between the physical principles and the assumptions, stated in plain language, which I read in the supplement is one of the key goals of the authors’ research programme. 
+\end{quote}
+
+We thank the referee for the positive remarks.
+
+\begin{quote}
+	Now, I am curious, and would like the authors to clarify what mathematical objects are new.  The displacement field S was new to me. Is the potential $\theta$, also new?  And the counting form, lower case $\omega$, is this the symplectic 2-form familiar from Hamiltonian geometry?  If so, please state. And if not, perhaps a different symbol would be better.
+\end{quote}
+We added remarks when the symbols are introduced in the main text, at lines 41, 52 and 98. We also added more explanation in the supplementary material at lines 186, 204 and 380. The displacement field S is typically referred to as "the vector field" in dynamical system theory. $\theta$ roughly corresponds to the canonical one form/contact form and $\omega$ to the symplectic form, though there are caveats: we are working in an odd dimensional space so technically $\omega$ is not symplectic and $\theta$ for us is a vector potential, therefore the canonical one form/contact form correspond to a specific gauge choice of the vector potential. These are exactly the type of mismatches between the physics and the mathematics that we had to overcome before being able to connect everything. We believe the full mathematical account of these differences would clutter the exposition, so we hope the sketches we provide are sufficient.
+
+\begin{quote}
+There are some minor typos, but otherwise the language is fine and readable. In fact, the authors are gifted writers, and I appreciate that the paper is under 75 lines!
+\end{quote}
+We have addressed a handful of typos we found. We thank the referee for the kind words.
+
+\begin{quote}
+I have some additional comments, but not to be construed as a critique of the manuscript. As all good papers do, this one has inspired some further questions. 
+
+from line 70, “In this sense, the action principle is better understood as a feature of Hamiltonian mechanics, instead of Lagrangian mechanics.” This is remarkable for those with a classical physics education, who have read Goldstein, etc. In most books, it is Lagrangian mechanics that’s based on the action principle, and then we shoehorn a Hamiltonian into the action principle, and it never seems natural. However, the action principle in Hamiltonian form does underly the theory of canonical transformations. The authors did not deal with canonical transformations here, but is there some interesting path there to explore? What one loses is the physical interpretation of the coordinates and momenta, and I understand the authors want to maintain that connection.
+\end{quote}
+In the larger project we do analyze the physical motivation of the structure of phase space itself, so that we have a set of assumptions that motivate the symplectic structure, and therefore the theory of canonical transformations. What we have found is that symplectic spaces are exactly those manifolds that allow us to write densities, count of states and entropy in a frame invariant way. Canonical coordinates are essentially choices of state variables that allow those elements to be expressed in the correct units. This is why, for example, in statistical mechanics the maximization of entropy must be performed over position and momentum and not, for example, position and velocity. We have chosen not to modify the paper as we feel it would add significant length for an adequate discussion.
+
+Some of these ideas have been explored in our papers "Hamiltonian mechanics is conservation of information entropy" and "Hamiltonian privilege". We haven't cited them as we didn't want to have too many self-citations. We are also working on a new edition of our "Assumptions of Physics" book, which we have now cited in the acknowledgments, that will contain the full account for classical systems.
+
+\begin{quote}
+In any case, I'll be paying attention to the Reverse Physics programme.
+\end{quote}
+We thank the reviewer for the interest in our project!
+
+ 
+\clearpage
+\bibliographystyle{apalike}
+\bibliography{bibliography}
+\end{document}
