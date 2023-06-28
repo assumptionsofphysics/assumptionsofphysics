@@ -50,7 +50,7 @@ While the principle of stationary action is regarded by many as one of the most 
 
 As part of our larger project Assumptions of Physics, we developed an approach, called Reverse Physics \cite{aop-phys-ReversePhysics}, which examines current theories to find a set of starting physical assumptions that are sufficient to rederive them. We have found that Lagrangian mechanics is equivalent to three assumptions: determinism/reversibility, independence of degrees of freedom and kinematics/dynamics equivalence \cite{aop-phys-blueprint}. This physically motivated understanding of the classical theory can be used to characterize both the physics and the geometry underlying the principle of stationary action. What we find is that this arises as a general mathematical feature of divergence-free fields (and closed two-forms), which are the appropriate tools to describe a flow that conserves the number of states. The assumption of equivalence between kinematics and dynamics (i.e. we can reconstruct the dynamical state simply by looking at the trajectory) is what allows us to express the principle in the usual form. The argument can proceed in the reverse direction: assuming the principle of stationary action recovers a dynamical system that exhibits those three physical assumptions.
 
-The mathematics needed to run the argument is well established\cite{souriau1970structure, abraham1978foundations,arnold1989mathematical, marsden1999introduction}. The two aspects that have been sorely lacking, and that we provide, are (1) a clear geometric interpretation of the action principle and (2) a tight connection between the math and the physics it represents. [This has been the hardest problem to solve, as the modern mathematical concepts and notation have departed from physical intuition. We will therefore use, instead of the standard notation of differential geometry, an extended version of the one physicists use in general relativity.] To make the result accessible to the widest audience, we first cover the case of a single degree of freedom using standard vector calculus. We then proceed to the case of multiple independent degrees of freedom using tools from differential geometry. The main article will presents all the key points needed to follow the argument and its physical and geometric meaning, leaving the mathematical details and calculations to the Supplementary Information.
+The mathematics needed to run the argument is well established\cite{souriau1970structure, abraham1978foundations,arnold1989mathematical, marsden1999introduction}. The two aspects that have been sorely lacking, and that we provide, are (1) a clear geometric interpretation of the action principle and (2) a tight connection between the math and the physics it represents. [This has been the hardest problem to solve, as the modern mathematical concepts and notation have departed from physical intuition. We will therefore use, instead of the standard notation of differential geometry, an extended version of the one physicists use in general relativity.] To make the result accessible to the widest audience, we first cover the case of a single degree of freedom using standard vector calculus. We then proceed to the case of multiple independent degrees of freedom using tools from differential geometry. The main article will present all the key points needed to follow the argument and its physical and geometric meaning, leaving the mathematical details and calculations to the Supplementary Information.
 
 \section*{One degree of freedom}
 
@@ -82,7 +82,7 @@ that describes how states move in time. [Where possible, we will be writing the 
 	S^t=\frac{dt}{dt}=1.
 \end{equation}
 
-If assumption \ref{assum_detrev} is valid, we expect the flow of states through a closed surface to be zero: as many states flow in as flow out of the region. Alternatively, if we assign a probability, or probability density, to each trajectory, the assumptions requires that probability not to change, so integrating the probability over a closed surface must yield zero. However we see it, assumption \ref{assum_detrev} means the field is divergence-free.  [Given that this is a three dimensional space, we can use the standard tools of vector calculus.] That is, 
+If assumption \ref{assum_detrev} is valid, we expect the flow of states through a closed surface to be zero: as many states flow in as flow out of the region. Alternatively, if we assign a probability, or probability density, to each trajectory, the assumption requires that probability not to change, so integrating the probability over a closed surface must yield zero. However we see it, assumption \ref{assum_detrev} means the field is divergence-free.  [Given that this is a three-dimensional space, we can use the standard tools of vector calculus.] That is, 
 \begin{equation}\label{sdof_div_free}
 	\nabla \cdot \vec{S} = \partial_a S^a = 0.
 \end{equation}
@@ -146,9 +146,9 @@ This means that by looking at just the trajectory in space $q(t)$, we are able t
 	\end{aligned}
 \end{equation}
 
-We find that a system for which \ref{assum_detrev} and \ref{assum_kineq} are valid can be characterized in terms of the action principle with a suitable Lagrangian. The converse is also true: if the action principle allows for a unique solution, then the conjugate momentum and the Hamiltonian are well defined and the system satisfies both \ref{assum_detrev} and \ref{assum_kineq}.
+We find that a system for which \ref{assum_detrev} and \ref{assum_kineq} are valid can be characterized in terms of the principle of stationary action with a suitable Lagrangian. The converse is also true: if the principle of stationary action allows for a unique solution, then the conjugate momentum and the Hamiltonian are well defined and the system satisfies both \ref{assum_detrev} and \ref{assum_kineq}.
 
-We have thus demystified the action principle, and turned it into a geometric property: requiring the principle of stationary action is equivalent to requiring that the solutions are the field lines of a divergence-free field in phase space. We also have a clear physical meaning: the principle of stationary action is equivalent to assuming determinism/reversibility \ref{assum_detrev} and kinematic equivalence \ref{assum_kineq}. However, we do feel that the principle expresses these requirements in a very roundabout way.
+We have thus demystified the principle of stationary action, and turned it into a geometric property: requiring the principle of stationary action is equivalent to requiring that the solutions are the field lines of a divergence-free field in phase space. We also have a clear physical meaning: the principle of stationary action is equivalent to assuming determinism/reversibility \ref{assum_detrev} and kinematic equivalence \ref{assum_kineq}. However, we do feel that the principle expresses these requirements in a very roundabout way.
 
 \section*{Multiple degrees of freedom}
 
@@ -231,7 +231,7 @@ By combining \ref{mdof_displacement}, \ref{mdof_displacement_kills} and \ref{mdo
 \end{equation}
 which recovers Hamilton's equations.
 
-The setup to recover the action principle is the same, except that we need to substitute vector calculus with differential geometry. First we find that the flow through $\Sigma$ is the variation of the action using Stokes' theorem
+The setup to recover the principle of stationary action is the same, except that we need to substitute vector calculus with differential geometry. First we find that the flow through $\Sigma$ is the variation of the action using Stokes' theorem
 \begin{equation}\label{mdof_action}
 	- \iint_{\Sigma} \omega(d\Sigma) = \delta \int_{\gamma} \theta(d\gamma) 
 \end{equation}
@@ -264,8 +264,7 @@ All data generated or analysed during this study are included in this published 
 
 \vspace{-1mm}
 \section*{Acknowledgments}
-This paper forms part of the ongoing \textit{Assumptions of Physics} project \cite{aop-book}, which aims to identify a handful of physical principles from which
-the basic laws can be rigorously derived. The authors would like to thank Alejandro Uribe-Ahumada and Daniel Burns for helpful discussions. 
+This paper forms part of the ongoing \textit{Assumptions of Physics} project \cite{aop-book}, which aims to identify a handful of physical principles from which the basic laws can be rigorously derived. The authors would like to thank Alejandro Uribe and Daniel Burns for helpful discussions. 
 
 \bibliography{bibliography}
 
