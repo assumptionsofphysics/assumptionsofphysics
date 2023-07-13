@@ -1,0 +1,63 @@
+\documentclass[aps,pra,10pt,floatfix,nofootinbib]{revtex4-2}
+
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{assump1}{Classical assumption}
+\newtheorem*{assump2}{Determinism and Reversibility assumption}
+
+\begin{document}
+
+\section{Quantum states are stable equilibria}
+TL;DR - Quantum projection processes (i.e. measurements) are stable for small perturbations.
+
+In a previous post we showed how eigenstates, and ultimately all quantum states, can be understood as equilibria of projection processes. That is, the eigenstates are exactly those states that the projection leaves unchanged. The natural follow-up question is: what type of equilibria are they? Are they stable?
+
+Intuitively, one may think that small perturbations will lead to a small probability of changing value. However, this is not the case. Small perturbations will return to the original value with 100\% probability. Let's see how this works.
+
+\section{Probability change under small perturbations}
+
+Let's take a state $\psi$, which we suppose normalized $<\psi|\psi>=1$. We now perform a small variation that leads to another normalized state. Therefore our variation is such that we have:
+\begin{align*}
+	\delta <\psi|\psi> &= 0 \\
+	&= <\delta \psi|\psi> + <\psi|\delta \psi> \\
+	<\psi|\delta \psi> &= - <\delta \psi|\psi> = - <\psi|\delta \psi>* \\
+	&= \imath \epsilon
+\end{align*}
+where $\epsilon$ is a real number. Geometrically, we are doing a small rotation and that is why we get an imaginary number for $<\psi|\delta \psi>$.
+
+We want to calculate how the probability changes under small variations, so let us do this first in the general case. We want to see how the probability $P(\phi|\psi)$ of finding $\phi$ given that we preapared $\psi$ changes for small variations of $\psi$ We have:
+\begin{align*}
+	\delta P(\phi|\psi) &= \delta <\psi|\phi><\phi|\psi> \\
+	&= <\delta \psi|\phi><\phi|\psi> + <\psi|\phi><\phi|\delta \psi>
+\end{align*}
+
+In our specific case, we want to make a small variation of $\psi$ and find $\psi$ again. Therefore we substitute $\phi$ with $\psi$ and have:
+\begin{align*}
+	&= <\delta \psi|\psi><\psi|\psi> + <\psi|\psi><\psi|\delta \psi> \\
+	&= - \imath \epsilon \cdot 1 + 1 \cdot \imath \epsilon = 0
+\end{align*}
+The probability of the small variation to go back to the original state is 1.
+
+Geometrically, what happens is that, since we are making a rotation, the direction of change is perpendicular to the initial vector. The projection, therefore, to a first approximation does not change and the probability remains the same.
+
+\section{Conclusion}
+
+The fact that eigenstates of projections are stable equilibria highlights, again, how these processes are dissipative and non-Hamiltonian in nature. Classical Hamiltonian mechanics does not have stable equilibria or attractors, as the phase space area would necessarily have to shrink in those regions and this is prohibited by Liouville theorem.
+
+It also reinforces the idea how quantum states are equilibria, like in thermodynamics.
+
+
+\end{document}
