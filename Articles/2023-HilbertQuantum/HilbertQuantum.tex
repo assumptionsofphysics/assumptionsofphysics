@@ -91,7 +91,7 @@ It should not be surprising that closure over infinite sequences is problematic,
 
 If an inner product space is finite-dimensional, it is automatically complete.\footnote{This is exactly why completeness is mathematically desirable: it makes infinite-dimensional spaces behave like finite-dimensional ones.} If the space is not complete, we can always complete it by enlarging it. The prevalent attitude among physicists is that this does not pose a problem: we have a bigger set of objects than we strictly need, and we simply discard what we do not need. Unfortunately, having a bigger space can introduce new problems.
 
-For example, suppose we want to define volumes in three-dimensional Euclidean space $\mathbb{R}^3$. Formally, we want to find a measure $\mu(U)$ that returns the volume of a region $U$. Naively, we could take a region to be any subset of $\mathbb{R}^3$. However, this leads to the Banach–Tarski paradox,\cite{tao2021introduction} which states that we can take a unit ball, cut it into five pieces, and reassemble those pieces into two balls each of the same volume as the original. Clearly, this does not make physical sense. However, we get a consistent definition if we restrict regions to be Borel sets, instead of arbitrary subsets. Therefore, bigger is not always better in mathematics:\footnote{In another work\cite{AoPBook} we show that the Borel sets are exactly those sets that can be associated with experimental procedures. We have often found that physical requirements naturally map to well-behaved spaces.} we need to look more closely at what the math dragged in.
+For example, suppose we want to define volumes in three-dimensional Euclidean space $\mathbb{R}^3$. Formally, we want to find a measure $\mu(U)$ that returns the volume of a region $U$. Naively, we could take a region to be any subset of $\mathbb{R}^3$. However, this leads to the Banach–Tarski paradox,\cite{tao2021introduction} which states that we can take a unit ball, cut it into five pieces, and reassemble those pieces into two balls each of the same volume as the original. Clearly, this does not make physical sense. However, we get a consistent definition if we restrict regions to be Borel sets, instead of arbitrary subsets. Therefore, bigger is not always better in mathematics:\footnote{In another work\cite{aop-book} we show that the Borel sets are exactly those sets that can be associated with experimental procedures. We have often found that physical requirements naturally map to well-behaved spaces.} we need to look more closely at what the math dragged in.
 
 Unitary transformations play an important role in the theory of Hilbert spaces for at least two reasons. The first is that two Hilbert spaces that differ by a unitary transformation are mathematically equivalent. For example, changes of basis and changes of variables are unitary transformations. The second reason is that time evolution for an isolated system is represented by a unitary transformation. The issue is that unitary transformations in a Hilbert space can map states with finite expectation values to those with infinite ones, leading to obvious problems.
 
@@ -145,8 +145,6 @@ These properties make the Schwartz space a much more reasonable candidate to cap
 We have made the case that Hilbert spaces in quantum mechanics are \textbf{unphysical} as they necessarily bring in states with infinite expectation values, variable changes that turn finite expectations into infinite ones, and time evolution operators that do the same in finite time. This flawed characterization of infinity is the likely cause of outstanding technical problems in the foundations of quantum mechanics and quantum field theory, and makes it impossible to have a fully meaningful understanding of the theory.
 
 The more general problem is that the physics community has become complacent in simply accepting mathematical definitions without properly understanding their limit of applicability to physical theories. We believe that meaningful progress on the foundations of physics cannot happen without understanding the implicit assumptions embedded in the most basic mathematical tools.
-
-%TODO reference formatting for 29
 
 \bibliography{bibliography}
 
@@ -233,15 +231,15 @@ As for the inner product, we show that the Born rule can be understood as charac
 \begin{prop}[Inner product is an entropic structure]\label{prop_innerProductIsEntropy}
 Let $\mathcal{H}$ be a complex inner product space. Let $I : \mathcal{H} \times \mathcal{H} \to \mathbb{R}$ be the von Neumann entropy of the equal mixture of two pure states. That is
 \begin{equation}
-I(\psi_1, \psi_2) = S\left(\frac{1}{2}|\psi_1\>\<\psi_1| + \frac{1}{2}|\psi_2\>\<\psi_2|\right).
+I(\psi, \phi) = S\left(\frac{1}{2}|\psi\>\<\psi| + \frac{1}{2}|\phi\>\<\phi|\right).
 \end{equation}
 Let $p : \mathcal{H} \times \mathcal{H} \to \mathbb{R}$ be the square of the inner product. That is
 \begin{equation}
-p(\psi_1, \psi_2) = |\<\psi_1| \psi_2\>|^2.
+p(\psi, \phi) = |\<\psi| \phi\>|^2.
 \end{equation}
 Then $p$ and $I$ can be reconstructed from each other. That is, there exists an invertible function $f$ such that
 \begin{equation}
-I(\psi_1, \psi_2) = f(p(\psi_1, \psi_2)).
+I(\psi, \phi) = f(p(\psi, \phi)).
 \end{equation}
 \end{prop}
 
@@ -310,13 +308,16 @@ As $\rho$ is in a diagonal form, the entropy is given by
 \begin{equation}\label{entropy}
 	H(\rho) = H\left(\frac{1+|\langle\psi|\phi\rangle|}{2}, \frac{1-|\langle\psi|\phi\rangle|}{2}\right).
 \end{equation}
-If we define $p(\psi, \phi) = |\langle\psi|\phi\rangle|$ and $I(\psi, \phi) = H( \frac{1}{2}|\psi\>\<\psi| + \frac{1}{2}|\phi\>\<\phi|)$ we have %TODO: Define f. It looks like a von Neumann entropy, but we haven't used the notation f(p) before.
+If we define $p(\psi, \phi) = |\langle\psi|\phi\rangle|$ and $I(\psi, \phi) = H( \frac{1}{2}|\psi\>\<\psi| + \frac{1}{2}|\phi\>\<\phi|)$ we have
+\begin{align}\label{entropy}
+	I(\psi, \phi) &= f(p(\psi, \phi))
+\end{align}
+where
 \begin{align}\label{entropy}
 	f(p) & = - \frac{1+p}{2} \log \frac{1+p}{2} 
-	- \frac{1-p}{2} \log \frac{1-p}{2} \\
-	I(\psi, \phi) &= f(p(\psi, \phi)).
+	- \frac{1-p}{2} \log \frac{1-p}{2}.
 \end{align}
-Note that $f$ restricted to the domain $[0,1]$, the domain on which probability is defined, is invertible.
+Note that $f$ restricted to the domain $[0,1]$, the domain on which probability is defined, is invertible. We have thus proved the proposition.
 \end{proof}
 
 Having shown the connection between superposition and non-unique decompositions of mixed states, and between the Born rule and the entropy of mixtures, we can now use these to justify the physicality of the complex inner product space structure for quantum states.
@@ -404,8 +405,7 @@ We have found that:
 \end{enumerate}
 In other words, we need a stricter way to characterize convergence within the state space so that we can manage the infinite dimensionality. Conceptually, we need to treat the infinities coming from unbounded quantities as potential infinities, not actual infinities: we never actually have infinitely many particles or a system positioned at infinity; we have an infinite range of possible values.
 
-A naive idea would be to require that the expectation value for all possible variables converges. Unfortunately, this doesn't work. Suppose we have a distribution $\rho(x)$ over position $x$. We would require the expectation of any function to be finite, which would include $e^x$, $e^{e^x}$, $e^{e^{e^x}}$, and so on. The only way this can work is if the function has compact support. Physically, this seems too restrictive as it excludes functions like normal distributions. At a closer investigation, the Paley-Wiener theorem\cite{fourierCompact}\footnote{%TODO: Delete this footnote?
-Maybe Prop. 3.115 in \cite{moretti_spectral_2017}?} tells us that the Fourier transform of a function with compact support is an entire function, and an entire function does not have compact support.\cite{markushevich2014entire} Therefore, we cannot have compact support in both position and momentum.\footnote{This is not true in classical mechanics, as position and momentum are different variables, not linked by the Fourier transform. Therefore the space of functions with compact support on phase space gives us finite expectation value for all functions of positions and momentum.}
+A naive idea would be to require that the expectation value for all possible variables converges. Unfortunately, this doesn't work. Suppose we have a distribution $\rho(x)$ over position $x$. We would require the expectation of any function to be finite, which would include $e^x$, $e^{e^x}$, $e^{e^{e^x}}$, and so on. The only way this can work is if the function has compact support. Physically, this seems too restrictive as it excludes functions like normal distributions. At a closer investigation, the Paley-Wiener theorem\cite{fourierCompact} tells us that the Fourier transform of a function with compact support is an entire function, and an entire function does not have compact support.\cite{markushevich2014entire} Therefore, we cannot have compact support in both position and momentum.\footnote{This is not true in classical mechanics, as position and momentum are different variables, not linked by the Fourier transform. Therefore the space of functions with compact support on phase space gives us finite expectation value for all functions of positions and momentum.}
 
 The only way out, then, is to require only a certain class of observables to have finite expectation. Physically, it would make sense to require exactly those observables needed to fully reconstruct the state through quantum tomography. A good set in that respect seems to be the set of polynomials of conjugate quantities, like position and momentum. In quantum mechanics, this means requiring all expectations of $X^nP^m = -\imath \hbar x^n\partial_x ^m$ to be finite. This restricts our space to those functions that are infinitely smooth (i.e. all derivatives exist) and decrease very rapidly as $x$ goes to infinity: the Schwartz functions. Requiring finite expectation for all polynomials of position and momentum, then, does not give us the usual $L^2$ Hilbert space; it gives us the Schwartz space.
 
