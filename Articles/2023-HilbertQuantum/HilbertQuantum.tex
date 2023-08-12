@@ -67,7 +67,7 @@ Roughly speaking, a vector space is a set whose elements can be combined linearl
 
 If we add the inner product, we can define norm and orthogonality, and therefore we can indeed express superpositions. Additionally, the inner product structure defines the Born rule, the transition probability during measurement. While some may consider these physical requirements of quantum mechanics, their status is subject to interpretation.\cite{albert_quantum_1994, wallace_everett_2013, howard_complementarity_2021, ghirardi_unified_1986} Some consider superpositions as mathematical constructs; the Born rule brings in the notion of measurements. We therefore reframe those requirements in terms of properties of ensembles. Here we provide a summary, and leave the details to the appendix.
 
-Since we can physically prepare statistical ensembles, a physical theory must be able to characterize them. Mathematically, these form a convex set, where the convex combinations are the statistical mixtures.\footnote{There is a rich literature on generalized probabilistic theories (GPTs) in which people reconstruct quantum theory by imposing requirements on convex spaces.\cite{gpt_overview_2021}} In quantum mechanics, the geometry of the space of statistical ensembles is exactly defined by the complex inner product and vector space structures, which means properties of the inner product space can be reexpressed as properties of the space of mixtures. For example, we can characterize a superposition in the following way: a pure state $\psi$ is expressible as a superposition of other pure states $\{\phi_i\}$ if and only if there is a mixed state $\rho$ that can be equivalently expressed as a mixture of $\{\phi_i\}$ or as a mixture of $\psi$ and other pure states. That is, the ability to create a superposition is conceptually equivalent to the ability to prepare the same mixture in different ways, another feature particular to quantum mechanics. Additionally, the norm of the inner product, together with relative phases, can be shown to be equivalent to determining the entropy of all equal mixtures of pairs of states. These requirements are necessary in the sense that both classical and quantum mechanics need to keep track of how ensembles combine under mixing and what entropy each ensemble has. As such, this approach avoids the issues of interpretation.
+Since we can physically prepare statistical ensembles, a physical theory must be able to characterize them. Mathematically, these form a convex set, where the convex combinations are the statistical mixtures.\footnote{There is a rich literature on generalized probabilistic theories (GPTs) in which people reconstruct quantum theory by imposing requirements on convex spaces.\cite{gpt_overview_2021}} In quantum mechanics, the geometry of the space of statistical ensembles is exactly defined by the complex inner product and vector space structures, which means properties of the inner product space can be reexpressed as properties of the space of mixtures. For example, we can characterize a superposition in the following way: a pure state $\psi$ is expressible as a superposition of other pure states $\{\phi_i\}$ if and only if there is a mixed state $\rho$ that can be equivalently expressed as a mixture of $\{\phi_i\}$ or as a mixture of $\psi$ and other pure states. That is, the ability to create a superposition is conceptually equivalent to the ability to prepare the same mixture in different ways, another feature particular to quantum mechanics. Additionally, the norm of the inner product (i.e. the probabilities from the Born rule), together with relative phases, can be shown to be equivalent to determining the entropy of all equal mixtures of pairs of states. These requirements are necessary in the sense that both classical and quantum mechanics need to keep track of how ensembles combine under mixing and what entropy each ensemble has. As such, this approach avoids the issues of interpretation.
 
 The argument can be summed up as follows. On physical grounds, for any physical theory, we must be able to prepare statistical mixtures and characterize their entropy. The complex inner product space structure is exactly required to model the correct relationships of quantum mixtures, therefore the mathematical definition is necessitated by physical requirements. \textbf{The inner product space structure is physical}.
 
@@ -127,7 +127,7 @@ While we do need infinite-dimensional spaces to handle unbound quantities, such 
 
 A reasonable alternative would be to require the expectation of all polynomials of position and momentum to be finite. In quantum mechanics, this means requiring all expectations of $\frac{1}{2}(X^nP^m - P^mX^n)$ to be finite. This restricts our space to those functions that are infinitely smooth (i.e. all derivatives exist) and decrease very rapidly as $x$ goes to infinity: these are the Schwartz functions.
 
-The Schwartz space has several other interesting properties,\cite{moretti_spectral_2017, reed_methods_1980} explored in more detail in the appendix. For example:
+The Schwartz space has several other interesting properties,\cite{moretti_spectral_2017, reed_methods_1980, hall_quantum_2013} explored in more detail in the appendix. For example:
 
 \begin{itemize}
 \item its elements are fully identified by the expectations - two Schwartz functions are the same if and only if all expectations are the same; quantum tomography on all polynomials fully reconstructs the state
@@ -137,8 +137,9 @@ The Schwartz space has several other interesting properties,\cite{moretti_spectr
 \item its closure over all Cauchy sequences recovers the Hilbert space - the only thing missing are the Cauchy sequences for which the limit of at least one expectation is not well defined
 \item it is the only space closed under Fourier transform - the Fourier transform of a Schwartz function is a Schwartz function
 \item it plays a fundamental role in the theory of distributions - objects like the $\delta$-function are mathematically defined on top of the Schwartz space
+\item the Hermite polynomials, the solutions of the harmonic oscillator, are Schwartz functions
 \end{itemize}
-These properties make the Schwartz space a much more reasonable candidate to capture the physics. The convergence of expectation values of actual observables replaces convergence over vectors in an abstract space.\footnote{Compare this statement with the ``weak convergence'' of von Neumann algebras.} To again be clear, we are not proposing this as a solution. We are merely pointing out that alternatives do exist and should be fully explored.\footnote{Note that $C^*$-algebras model observables and therefore do not solve the problem of modeling at hand.}
+These properties make the Schwartz space a much more reasonable candidate to capture the physics. The convergence of expectation values of actual observables replaces convergence over vectors in an abstract space.\footnote{Compare this statement with the ``weak convergence'' of von Neumann algebras.} To again be clear, we are not proposing this as a solution. We are merely pointing out that alternatives do exist and should be fully explored.\footnote{Note that $C^*$-algebras model observables and therefore do not solve the problem at hand of modeling states.}
 
 \section{Conclusion}
 
@@ -226,7 +227,7 @@ Suppose $\psi$ is a normalized vector that can be written as $\psi = \sum_{i} c_
 Conversely, suppose we have a density operator $\rho$ that can be expressed as a strictly convex combination of $\{\phi_i\}$ and another set of normalized vectors containing $\psi$. By Proposition \ref{prop_densitySpan} the span of $\{\phi_i\}$ will include $\psi$ and therefore $\psi$ is a linear combination of $\{\phi_i\}$.
 \end{proof}
 
-As for the inner product, we show that the Born rule can be understood as characterizing the entropy of equal mixtures over state pairs. Note that the Born rule does not depend on the absolute phase, but it does depend on relative phases. If one expands a vector using superposition, in fact, the relative phase will introduce interference terms. Therefore recovering the Born rule means recovering the inner product up to total phases.
+As for the inner product, we show that the Born rule can be understood as characterizing the entropy of equal mixtures over state pairs. Note that the Born rule does not depend on the absolute phase, but it does depend on relative phases. If one expands a vector using superposition, in fact, the relative phase will introduce interference terms. Therefore recovering the Born rule means recovering the inner product up to arbitrary absolute phases, which do not contain any physical content.
 
 Associating the Born rule with entropy gives us a geometric understanding of the inner product at equal time instead of as a probability of transition, which brings it more in line with the use during superposition. It should also be noted that the von Neumann entropy of a mixture can be understood as the minimum Shannon entropy over all possible measurement contexts,\cite{nielsen_chuang_2010} which again shows the connection between the geometry of the convex space of statistical ensembles and the inner product.
 
@@ -361,23 +362,29 @@ More concretely, a change of variable $x$ to $y$ induces a unitary operator as i
 	\begin{aligned}
 		\rho(x) dx &= \rho(y) dy \\
 		\rho(y) &= \rho(x) \frac{dx}{dy} \\
-		\psi^\dagger(y) \psi(y) &= \psi^\dagger(x) \psi(x) \frac{dx}{dy} \\
-		\psi(y) &= \psi(x) \sqrt{\frac{dx}{dy}}.
+		\psi^\dagger(y) \psi(y) &= \psi^\dagger(x) \psi(x) \frac{dx}{dy}.
 	\end{aligned}
 \end{equation}
-This is a unitary transformation.
+Therefore we can set 
+\begin{equation}
+	\begin{aligned}
+		\psi(y) &= \psi(x(y)) \sqrt{\frac{dx}{dy}}.
+	\end{aligned}
+\end{equation}
+If the change of variable does not change orientation, the above transformation is unitary.\footnote{If the orientation changes, the transformation is anti-unitary.}
 
 \begin{prop}
-	Let $\mathcal{H} = L^2{\mathbb{R}}$ be the space of square integrable functions. Let $f : \mathbb{R} \to \mathbb{R}$ be an orientation-preserving diffeomorphism. Then the map $U : \mathcal{H} \to \mathcal{H}$ such that 
-	$\phi(y) = U(\psi(x)) \mapsto \psi(x(y)) \sqrt{\left|\frac{df}{dx}\right|^{-1}}$ is a unitary transformation.
+	Let $\mathcal{H} = L^2(\mathbb{R})$ be the space of square integrable functions. Let $f : \mathbb{R} \to \mathbb{R}$ be an orientation-preserving diffeomorphism. Then the map $U : \mathcal{H} \to \mathcal{H}$ such that 
+	$\phi(y) = U(\psi(x)) \mapsto \psi(f^{-1}(y)) \sqrt{\left(\frac{df}{dx}\right)^{-1}}$ is a unitary transformation.
 \end{prop}
 \begin{proof}
-	We have:
+	Note that $f$ models a change of variables, therefore, in physics notation, $y = y(x) = f(x)$ and $x = x(y) = f^{-1}(y)$. Also note that both variables are real, therefore the Jacobian $\frac{df}{dx}$, which exists and  is nonzero because $f$ is a diffeomorphism, is real valued. Therefore $\left(\frac{df}{dx}\right)^\dagger = \frac{df}{dx}$. We have:
 	\begin{equation}
 		\begin{aligned}
 			\int \phi^\dagger(y) \phi(y) dy &= \int U(\psi(x))^\dagger U(\psi(x)) dy \\
-			 = \int \psi^\dagger(x(y)) &\sqrt{\left|\frac{df}{dx}\right|^{-1}}\psi(x(y)) \sqrt{\left|\frac{df}{dx}\right|^{-1}} dy \\
-			 &= \int \psi^\dagger(x(y)) \psi(x(y)) \left|\frac{df}{dx}\right|^{-1} dy \\
+			 = \int \psi^\dagger(f^{-1}(y)) &\sqrt{\left(\frac{df}{dx}\right)^{-1}}\psi(f^{-1}(y)) \sqrt{\left(\frac{df}{dx}\right)^{-1}} dy \\
+			 &= \int \psi^\dagger(f^{-1}(y)) \psi(f^{-1}(y)) \left(\frac{df}{dx}\right)^{-1} dy \\
+			 &= \int \psi^\dagger(x(y)) \psi(x(y)) \frac{dx}{dy} dy \\
 			 &= \int \psi^\dagger(x) \psi(x) dx.
 		\end{aligned}
 	\end{equation}
