@@ -56,6 +56,11 @@ The goal is to develop a generalized mathematical framework of statistical ensem
 	\end{equation}
 \end{remark}
 
+\begin{defn}
+	Let $X$ be a convex space. Let $y = \sum_i p_i x_i$ where $y, \{x_i\} \in X$ and $\lambda_i \in [0,1]$ such that $\sum \lambda_i = 1$. We say that $y$ is a \textbf{mixture} of $\{x_i\}$ and each $x_i$ is a \textbf{component} of $y$.
+\end{defn}
+
+
 \begin{prop}
 	A convex space embeds into a real vector space with $c_\lambda(x,y) = \lambda x + \bar{\lambda}y$ if and only if
 	$$ c_\lambda(x,y) = c_\lambda(x,z) \; \forall \lambda \in (0,1) \implies y = z. $$
@@ -143,69 +148,102 @@ TODO: understand the difference between Hilbert space and Schwartz space in term
 \begin{remark}
 	Note that the bounds for entropy can also be written as
 	$$ 0 \leq S(p_1\rho_1 + p_2 \rho_2) - (p_1 S(\rho_1) + p_2 S(\rho_2)) \leq I(p_1, p_2).$$
-	The term in the middle compares the entropy of the mixture as the average entropy of the components. It essentially tells us that the entropy can only increase during the mixture, and it can only increase up to the entropy 
+	The term in the middle compares the entropy of the mixture as the average entropy of the components. It essentially tells us that the entropy can only increase during the mixture, and it can only increase up to the entropy.
+	
+	TODO: This makes the above conditions necessary; it is not clear whether they are sufficient.
+	
+	Note that if an ensemble can be decomposed in multiple ways, the decomposition such that the entropy of the weights is minimal provides the least upper bound.
 \end{remark}
 
-\subsection{Examples}
+\begin{defn}
+	Two mixtures $x, y \in X$ are \textbf{disjoint} if $S(p_1\rho_1 + p_2 \rho_2) - (p_1 S(\rho_1) + p_2 S(\rho_2)) = I(p_1, p_2)$.
+\end{defn}
 
-TODO: Common structure for all examples. Define what the space is, how mixing is done, and how entropy is calculated. Show that all properties are satisfied. (if we can't yet prove that $d$ is a distance function in general, at least we should prove it on each space). Show the geometrical significance of the upper bound of entropy.
+\begin{remark}
+	Two classical distributions are disjoint if and only if their support is disjoint. Two quantum states are disjoint if and only if they are the mixture of states that belong to disjoint subspaces.
+	
+	Physically, two disjoint ensembles are distinct in the sense that they will never produce overlapping results.
+\end{remark}
+
+\begin{prop}
+	The thermodynamic entropy is an entropy over an ensemble space.
+\end{prop}
+\begin{justification}
+	TODO This can be easily done in terms of information theory and statistical mechanics. An argument based on thermodynamics would be better.
+\end{justification}
+
+\subsection{Physical examples}
+
+We review the physical examples in terms of the entropy.
 
 \subsubsection{Classical case - discrete}
 
-The discrete classical case corresponds to a finite dimensional symplex. The pure states $\mathcal{G} = \{g_i\}_{i=1}^{n} \subset \mathcal{E}$ are finitely many and each ensemble $e = \sum p_i g_i$ is uniquely identified by a decomposition of pure states. The entropy of each pure state is assumed to be zero.
+The entropy is given by $-\sum p_i \log p_i$ for both finite and countable cases. Therefore the entropy for each pure state is assumed to be zero. The entropy of the maximally mixed state is $\log n$ where $n$ is the number of pure states. The entropy increase as we go from pure states to the maximally mixed state. The level sets (i.e. the fibers) of the entropy form a series of concentric "shells".
 
-The space for a single bit, for example, will be the line connecting the  pure states corresponding to $0$ and $1$.
+TODO: Check that the entropy is finite for all convex combinations. Check that it diverges as we go to a limit point that is not in the ensemble space.
+
+TODO: Is it important that all pure states have zero entropy?
 
 \subsubsection{Classical case - continuous}
 
-In the continuous case, the space of ensembles is the space of integrable functions over phase space (i.e. a symplectic manifold) that integrate to one. That is, if $X$ is a symplectic manifold, then $\mathcal{E} = L^1(X, \mu)$ where $\mu=\int \omega^n$ is the Liouville measure. The pure states are the space of delta distributions $\mathcal{G} = \{\delta_x\}_{x \in X}$. Note that the pure states are limit points of $\mathcal{E}$ but they are not part of it: first they are not functions and second they would have entropy minus infinity. Still, we can express an integrable function as the integral over delta distributions $\rho(x) = \int_X \rho(y) \delta_x(y) d\mu$.
+The entropy is given by $- \int \rho \log \rho d\mu$ where $\mu$ is the Liouville measure and $\rho$ is the probability density over canonical coordinates. If a different measure is used, or if the coordinates are not canonical, the formula gives the wrong result.
 
-For recovering this case, we will need to understand whether integrals can be defined simply as limits of sums, and whether the invariance of the measure from parametrization of the pure states can be recovered (thus recovering the notion of phase space more cleanly). A key element will be the assumption of infinitesimal reducibility, which will posit that an ensemble can always be expressed as the mixture of other ensembles.
+The entropy can be used to check whether two ensembles are overlapping and define the size of the support. That is: take $\rho \in X$; construct the set $\text{dis}(\rho)$ of all the ensembles that are disjoint from $\rho$; now construct the set $\text{con}(\rho)$ of all ensembles that are disjoint from all elements of $\text{dis}(\rho)$. These will be the set of ensembles that share the supports. Find the supremum of $\text{dis}(\rho)$ in terms of the entropy. If it doesn't exists, the support is infinite. If it does, the support is finite and the measure is $2^{\sup S(\text{con}(\rho))}$.
 
-The entropy can be used to check whether two ensembles are overlapping and define the size of the support. That is: take $\rho \in \mathcal{E}$; construct the set $\text{dis}(\rho)$ of all the ensembles that are disjoint from $\rho$; now construct the set $\text{con}(\rho)$ of all ensembles that are disjoint from all elements of $\text{dis}(\rho)$. These will be the set of ensembles that share the supports. Find the supremum of $\text{dis}(\rho)$ in terms of the entropy. If it doesn't exists, the support is infinite. If it does, the support is finite and the measure is $2^{\sup S(\text{con}(\rho))}$.
+TODO: Study the shell of zero entropy states. For example, it should not be path connected: all uniform distributions with support of the same finite size (in terms of Liouville measure) will have the same entropy. The region, however, need not be contiguous. Since we cannot continuously transform a single region into two disjoint regions, there will be different distributions at zero entropy that cannot be transformed continuously.
 
-\subsubsection{Quantum case - finite dimensional}
+\subsubsection{Quantum case}
 
-For a qubit, the Bloch sphere is the space of ensembles $\mathcal{E}$. That is, let $\mathcal{H}$ be a two dimensional Hilbert space. The interior of the block sphere correspond to mixtures (i.e. the space of positive semi-definite Hermitian operators with trace one $M(\mathcal{H})$) while the surface corresponds to the pure states $\mathcal{G}$ (i.e. $\{ |\psi\> \<\psi| \}_{\psi \in \mathcal{H}}$). In this case, there is no single decomposition. The general finite dimensional case works similarly.
+In quantum mechanics, the entropy is the von Neumann entropy for both finite and infinite dimension. The entropy for the maximally mixed state is $\log n$ where $n$ is the dimensionality of the Hilbert space.
 
-Note that the set of pure states is still a continuum, though the entropy of the space is bounded by $\log n$. Therefore we can still define integrals over pure states, though the entropy of those mixtures is still finite. A full understanding of this means understanding exactly how quantum mixes the discrete and the continuous case.
-
-\subsubsection{Quantum case - infinite dimensional}
-
-The infinite dimensional (i.e. $L^2$) should work the same, except that there is no upper bound on the entropy, and therefore there is no maximally mixed state.
-
-
-
+TODO: How exactly do the bounds of entropy interact with multiple decomposition?
 
 \subsection{Convex subspaces}
 
+We need to develop a theory of subspaces that map to vector subspaces in the case that the convex space is also a projective space.
 
 \begin{defn}
-	Let $X$ be a convex space and $Y \subseteq X$. We say $x \in X$ is a \textbf{mixture} of $Y$ if $x = \sum \lambda_i y_i$ for some $\{y_i\} \in Y$ and $\lambda_i \in [0,1]$ such that $\sum \lambda_i = 1$. The \textbf{mix} of $Y$, noted $\mix(Y)$, is the set of all the mixtures of $Y$.
-	
-	We say $x \in X$ is a \textbf{component} of $y \in Y$ if $\lambda x + \sum \lambda_i x_i = y$ for some $\lambda \in [0,1]$, $\{x_i\} \in X$ and $\lambda_i \in [0,1]$ such that $\sum \lambda_i = \bar{\lambda}$. The \textbf{components} of $Y$, noted $\component(Y)$, is the set of all the components of all the elements of $Y$.
+	Let $X$ be a convex space and $Y \subseteq X$. The \textbf{mix} of $Y$, noted $\mix(Y)$, is the set of all the mixtures of $Y$. The \textbf{components} of $Y$, noted $\component(Y)$, is the set of all the components of all the elements of $Y$.
 \end{defn}
 
 \begin{defn}
 	Let $X$ be a convex space and $Y \subseteq X$. Then $Y$ is a \textbf{convex subspace} of $X$ if it contains all its mixtures and components. That is, $Y = \mix(Y) = \component(Y)$.
 \end{defn}
 
-\begin{defn}
-	Let $X$ be a convex space and $Y \subseteq X$. The \textbf{cospan} of $Y$, noted $\cospan(Y)$ is the smallest convex subspace that contains $Y$.
-\end{defn}
+\begin{remark}
+	Note that the cospan of two elements is not simply the segment that connects them. That is just the mix of the two elements. Now we need to consider all the elements that, when mixed, can give those elements. If we extend the segment, the cospan will at least include those.
+	
+	The cospan can even be bigger. Consider a ball, which is a convex space, and suppose we want to construct the cospan of a single point $A$. The mix of a single point is simply that point, so we have to look at the components. If it is on the surface, it is an extreme point, and therefore the only component is itself. Therefore every surface point by itself is a subspace. If the point is not on the surface, then take a point on the surface $B$. Now connect $A$ and $B$ with a line. This will intersect the sphere on another point $C$. Therefore $A$ is a convex combination of $B$ and $C$, and therefore the whole segment $BC$ is part of the cospan of $A$. But the same argument works with any point on the surface, therefore the cospan of any interior point of the ball is the whole ball. 
+	
+	TODO: The embedding of the convex space into a vector space may be related to features the cospan
+
+	TODO: The definition mimics definitions on other algebraic structure so that it can work in the infinite case. Does it?
+\end{remark}
 
 \begin{defn}
 	Let $X$ be a convex space and $Y \subseteq X$. The \textbf{cospan} of $Y$, noted $\cospan(Y)$ is the smallest convex subspace that contains $Y$.
 \end{defn}
 
-\begin{thrm}
-	(Conjecture) Let $X$ be a convex space such that, given $x_1, x_2, y_1, y_2 \in X$, $\cospan(\{x_1, x_2\}) = \cospan(\{y_1, y_2\})$. Then
-	\begin{itemize}
-		\item if $\cospan(x_1, x_2)$ is a segment (i.e. $B^1$), then $X$ is a symplex
-		\item if $\cospan(x_1, x_2)$ is a disk (i.e. $B^2$), then $X$ is a real projective space
-		\item if $\cospan(x_1, x_2)$ is a ball (i.e $B^3$), then $X$ is a complex projective space
-		\item if $\cospan(x_1, x_2)$ is a 5-ball (i.e. $B^5$), then $X$ is a quaternionic projective space
-	\end{itemize}
-\end{thrm}
+
+\subsection{Physical examples}
+
+We review the physical examples in terms of subspaces.
+
+\subsubsection{Classical case - discrete}
+
+For a symplex, all subspaces will be symplexes with fewer extereme points. In fact, these will be the sides of simplexes with more points. In particular, if we take two extreme points, the cospan is the segment connecting the two.
+
+TODO We should find a characterization of the classical discrete case in terms of subspaces. Requiring the cospan of two extreme points to be a line is necessary but not sufficient. Is the converse true? For example, take a square. There are four extreme points. The cospan of two consecutive vertices is a segment. However, the cospan of two non consecutive vertices is the whole square. This would seem to exclude all possible flat polygons.
+
+\subsubsection{Classical case - continuous}
+
+The continuous case is trickier because the extreme points are not in the convex space. However, the cospan should give the set of elements that have the support in the union of the original elements. Note that this is related to the constuction in the previous section.
+
+\subsubsection{Quantum case}
+
+In quantum mechanics, the cospan coincides with the projective space of the subspaces of the complex vector space.
+
+TODO: Is there a relationship between entropy and cospan? 
+
 
 \end{document}
