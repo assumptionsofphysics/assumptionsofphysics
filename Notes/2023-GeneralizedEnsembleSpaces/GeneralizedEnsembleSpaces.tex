@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.25in]{geometry}
+\usepackage{assumptionsofphysics}
+\usepackage{hyperref}
+
+\def\>{\rangle}
+\def\<{\langle}
+
+\DeclareMathOperator{\mix}{mix}
+\DeclareMathOperator{\component}{comp}
+\DeclareMathOperator{\cospan}{cospan}
+
+\begin{document}
+
+\title{Generalized Ensemble Spaces}
+
+\maketitle
+
+\begin{abstract}
+The goal is to develop a generalized mathematical framework of statistical ensemble that can accommodate both the classical and quantum case, as well theories that are yet to be developed. The idea is that statistical mixtures impose a convex structure on the set of ensembles which define its geometry. This structure is tightly connected to physical entropy. All definitions must be justified on physical ground. 
+\end{abstract}
+
+\section{Convex spaces and ensembles}
+
+\begin{remark}
+	Basic definitions are taken from \url{https://ncatlab.org/nlab/show/convex+space} and \url{https://arxiv.org/abs/0903.5522}
+\end{remark}
+
+\begin{defn}
+	For a real number $\lambda \in [0,1]$, $\bar{\lambda} = 1-\lambda$.
+\end{defn}
+
+\begin{defn}
+	A \textbf{convex space} is a set $X$ equipped with a family of operations $c_\lambda : X \times X \to X$ where $\lambda \in [0,1]$ such that:
+	\begin{itemize}
+		\item $c_0(x,y)=x$
+		\item $c_\lambda(x,x)=x$ for all $\lambda \in [0,1]$
+		\item $c_\lambda(x,y)=c_{\bar{\lambda}}(y,x)$ for all $\lambda \in [0,1]$
+		\item $c_\lambda(c_\mu(x,y), z)=c_{\lambda\mu}(x, c_{\frac{\lambda\bar{\mu}}{\overline{\lambda\mu}}}(y,z))$ for all $\lambda,\mu \in (0,1).$
+	\end{itemize}
+\end{defn}
+
+\begin{remark}
+	The above definition is such that, given a finite set of elements $\{x_i\}$ and a finite set of weights $\{p_i\} \in [0,1]$ such that $\sum p_i = 1$, we can define
+	$$\sum p_i x_i = c_{\lambda_1}(x_1, c_{\lambda_2}(x_2, c_{\lambda_3}(x_3, \dots))$$
+	and find that the sum is commutative. Such sum is called \textbf{convex combination}. The definition avoids having to define a map for each arity. However, the physical justification is more easily given in terms of the sum.
+	
+	TODO: Work out the relationship between $p_i$ and $\lambda_i$. It seems to proceed like:
+	\begin{equation}
+		\begin{aligned}
+			\lambda_1 &= \overline{p_1} \\
+			\lambda_2 &= \overline{\left(\frac{p_2}{\overline{p_1}}\right)} \\
+			\lambda_2 &= \overline{\left(\frac{p_3}{\overline{p_1+p_2}}\right)}
+		\end{aligned}
+	\end{equation}
+\end{remark}
+
+\begin{prop}
+	A convex space embeds into a real vector space with $c_\lambda(x,y) = \lambda x + \bar{\lambda}y$ if and only if
+	$$ c_\lambda(x,y) = c_\lambda(x,z) \; \forall \lambda \in (0,1) \implies y = z. $$
+\end{prop}
+\begin{proof}
+	See Theorem 4 in \url{https://arxiv.org/abs/1105.1270}.
+\end{proof}
+
+\begin{defn}
+	Given a physical system, its \textbf{ensemble space} is the set of all the ensembles that characterize its state. 
+\end{defn}
+
+\begin{prop}
+	Given a physical system, its \textbf{ensemble space} is a convex set. 
+\end{prop}
+\begin{justification}
+	Given finite number of ensembles and a set of weights $\{p_i\} \in [0,1]$ such that $\sum p_i = 1$, we can in principle prepare a new ensemble that mixes the previous in the given proportions. The mixture $1x+0y$ will always give $x$, no matter the $y$. The mixture of any $x$ with itself will always return itself, no matter the weight. Mixing is commutative, so a permutation of the components corresponds to a permutation of the weights.
+\end{justification}
+
+\begin{remark}
+	TODO: It is not yet clear an ensemble space must embed into a real vector space. Find a justification that proves or disproves.
+\end{remark}
+
+\begin{defn}
+	Given a convex space $X$, an extreme point is an element $x \in X$ that cannot be written as convex combination of other elements of $X$.
+\end{defn}
+
+\begin{defn}
+	Physically, the extreme points correspond to the \textbf{pure states}. The existence of extreme points is a major difference between convex spaces and vector spaces. In vector spaces, any element can be chose as basis for linear combination. In convex spaces, this is not the case.
+\end{defn}
+
+\subsection{Physical examples}
+
+These are the examples that we need to keep in mind, which will need to be fully characterized in terms of convex spaces and their properties.
+
+\subsubsection{Classical case - discrete}
+
+The discrete classical case corresponds to a symplex (\url{https://en.wikipedia.org/wiki/Simplex}). In the finite case, the pure states $\mathcal{G} = \{g_i\}_{i=1}^{n} \subset \mathcal{E}$ are finitely many and each ensemble $e = \sum p_i g_i$ is uniquely identified by a decomposition of pure states. Effectively, each ensemble is a probability distribution over the pure states. Mathematically, each point of the space is a convex combination of the vertices. The symplex has a center point, which corresponds to the maximally mixed state, a uniform distribution over all pure states.
+
+The countably infinite case is a bit different because not all infinite sequences $\{p_i\} \in [0,1]$ converge, and therefore cannot be normalized. As we cannot create a uniform distribution over infinitely many cases, there is no center point. Effectively, there is ``hole'' in the middle. More precisely, the space is not closed in the sense it does not contain all the limit points.
+
+TODO: understand whether the maximally mixed state is the only limit point missing.
+
+The uncountably infinite case is not physically relevant (i.e. no second countable discrete topology, cases are not experimentally decidable).
+
+\subsubsection{Classical case - continuous}
+
+In the continuous case, the space of ensembles is the space of integrable functions over a symplectic manifold (e.g.  over phase space) that integrate to one. That is, if $X$ is a symplectic manifold, then $\mathcal{E} = L^1(X, \mu)$ where $\mu=\int \omega^n$ is the Liouville measure. The pure states are the space of delta distributions $\mathcal{G} = \{\delta_x\}_{x \in X}$, but they are not in  $\mathcal{E}$: they are limit points. If we imagine a uniform distribution over a region of the symplectic manifold, we now have two limits that are not part of the ensemble space: the limit with infinite support, and the limit of zero support. In some sense, a distribution can be understood as a convex integral of the zero support limits: $\rho(x) = \int_X \rho(y) \delta_x(y) d\mu$. Even in this case, each ensemble can be understood as a probability distribution (density in this case) over all pure states.
+
+TODO: The existence of a Liouville measure is connected to the ability to define probability densities that depend on the point, and not on the coordinate. The convex space defined finite sum. There should be an argument that shows how the existence of the Liouville measure is connected to the existence of probability density and extreme points.
+
+TODO: The existence of the symplectic form is connected to the independence of degrees of freedom. In this context, there should be a notion of product of convex spaces, and the symplectic form should be connected to that. Find that connection.
+
+
+\subsubsection{Quantum case - finite dimensional}
+
+For a qubit, the Bloch ball is the space of ensembles $\mathcal{E}$. That is, let $\mathcal{H}$ be a two dimensional Hilbert space. The interior of the block sphere correspond to mixtures (i.e. the space of positive semi-definite Hermitian operators with trace one $M(\mathcal{H})$) while the surface corresponds to the pure states $\mathcal{G}$ (i.e. $\{ |\psi\> \<\psi| \}_{\psi \in \mathcal{H}}$). In this case, there is no single decomposition. The general finite dimensional case works similarly.
+
+A crucial difference is that each mixed state has multiple decompositions in terms of pure states. Defining the multiple decomposition effectively defines the state space. These multiple decompositions makes the ensemble space behave in a way that is a hybrid of the classical discrete and continuous. Pure states are properly a part of the state, as in the discrete case, and we can describe each mixture in terms of finitely many states. However, the pure state are a continuum, therefore we can also define probability densities over the space, convex integrals. For example, for a single qubit, the maximally mixed state (the center of the sphere) can be equally described as the equal mixture of two opposite states (e.g. spin up and spin down, or spin left and spin right). However, it can also be described as the equal mixture of the whole sphere.
+
+TODO: Note that complex projective are symplectic. Again, there should be an argument that the ability to define convex integrals in a coordinate invariant way requires the space to be symplectic. This would radically constrain the possible convex spaces.
+
+\subsubsection{Quantum case - infinite dimensional}
+
+The infinite dimensional can be both understood as the countably infinite dimensional version of the discrete case, or as the space of complex square integrable functions. As in the  (i.e. $L^2$) should work the same, except that there is no upper bound on the entropy, and therefore there is no maximally mixed state.
+
+As before, the maximally mixed state is not the convex space.
+
+TODO: understand the difference between Hilbert space and Schwartz space in terms of both extreme points and convex combinations/integrals.
+
+\section{Entropy}
+
+\begin{defn}
+	Given a set of weights $\{p_i\} \in [0,1]$ such that $\sum p_i = 1$, the \textbf{entropy of the weights} is defined as $I(\{p_i\}) = - \sum p_i \log p_1 $.
+\end{defn}
+
+\begin{defn}
+	Given a convex set $X$, we call \textbf{entropy} a function $S : X \to \mathbb{R}$ such that
+	\begin{itemize}
+		\item the entropy is strictly concave: $S(p_1\rho_1 + p_2 \rho_2) \geq p_1 S(\rho_1) + p_2 S(\rho_2)$ with the equality holding if and only if $\rho_1 = \rho_2$
+		\item the entropy of a mixture is bounded by the entropy of the weights: $S(p_1\rho_1 + p_2 \rho_2) \leq I(p_1, p_2) + p_1 S(\rho_1) + p_2 S(\rho_2)$
+	\end{itemize}
+\end{defn}
+
+\begin{remark}
+	Note that the bounds for entropy can also be written as
+	$$ 0 \leq S(p_1\rho_1 + p_2 \rho_2) - (p_1 S(\rho_1) + p_2 S(\rho_2)) \leq I(p_1, p_2).$$
+	The term in the middle compares the entropy of the mixture as the average entropy of the components. It essentially tells us that the entropy can only increase during the mixture, and it can only increase up to the entropy 
+\end{remark}
+
+\subsection{Examples}
+
+TODO: Common structure for all examples. Define what the space is, how mixing is done, and how entropy is calculated. Show that all properties are satisfied. (if we can't yet prove that $d$ is a distance function in general, at least we should prove it on each space). Show the geometrical significance of the upper bound of entropy.
+
+\subsubsection{Classical case - discrete}
+
+The discrete classical case corresponds to a finite dimensional symplex. The pure states $\mathcal{G} = \{g_i\}_{i=1}^{n} \subset \mathcal{E}$ are finitely many and each ensemble $e = \sum p_i g_i$ is uniquely identified by a decomposition of pure states. The entropy of each pure state is assumed to be zero.
+
+The space for a single bit, for example, will be the line connecting the  pure states corresponding to $0$ and $1$.
+
+\subsubsection{Classical case - continuous}
+
+In the continuous case, the space of ensembles is the space of integrable functions over phase space (i.e. a symplectic manifold) that integrate to one. That is, if $X$ is a symplectic manifold, then $\mathcal{E} = L^1(X, \mu)$ where $\mu=\int \omega^n$ is the Liouville measure. The pure states are the space of delta distributions $\mathcal{G} = \{\delta_x\}_{x \in X}$. Note that the pure states are limit points of $\mathcal{E}$ but they are not part of it: first they are not functions and second they would have entropy minus infinity. Still, we can express an integrable function as the integral over delta distributions $\rho(x) = \int_X \rho(y) \delta_x(y) d\mu$.
+
+For recovering this case, we will need to understand whether integrals can be defined simply as limits of sums, and whether the invariance of the measure from parametrization of the pure states can be recovered (thus recovering the notion of phase space more cleanly). A key element will be the assumption of infinitesimal reducibility, which will posit that an ensemble can always be expressed as the mixture of other ensembles.
+
+The entropy can be used to check whether two ensembles are overlapping and define the size of the support. That is: take $\rho \in \mathcal{E}$; construct the set $\text{dis}(\rho)$ of all the ensembles that are disjoint from $\rho$; now construct the set $\text{con}(\rho)$ of all ensembles that are disjoint from all elements of $\text{dis}(\rho)$. These will be the set of ensembles that share the supports. Find the supremum of $\text{dis}(\rho)$ in terms of the entropy. If it doesn't exists, the support is infinite. If it does, the support is finite and the measure is $2^{\sup S(\text{con}(\rho))}$.
+
+\subsubsection{Quantum case - finite dimensional}
+
+For a qubit, the Bloch sphere is the space of ensembles $\mathcal{E}$. That is, let $\mathcal{H}$ be a two dimensional Hilbert space. The interior of the block sphere correspond to mixtures (i.e. the space of positive semi-definite Hermitian operators with trace one $M(\mathcal{H})$) while the surface corresponds to the pure states $\mathcal{G}$ (i.e. $\{ |\psi\> \<\psi| \}_{\psi \in \mathcal{H}}$). In this case, there is no single decomposition. The general finite dimensional case works similarly.
+
+Note that the set of pure states is still a continuum, though the entropy of the space is bounded by $\log n$. Therefore we can still define integrals over pure states, though the entropy of those mixtures is still finite. A full understanding of this means understanding exactly how quantum mixes the discrete and the continuous case.
+
+\subsubsection{Quantum case - infinite dimensional}
+
+The infinite dimensional (i.e. $L^2$) should work the same, except that there is no upper bound on the entropy, and therefore there is no maximally mixed state.
+
+
+
+
+\subsection{Convex subspaces}
+
+
+\begin{defn}
+	Let $X$ be a convex space and $Y \subseteq X$. We say $x \in X$ is a \textbf{mixture} of $Y$ if $x = \sum \lambda_i y_i$ for some $\{y_i\} \in Y$ and $\lambda_i \in [0,1]$ such that $\sum \lambda_i = 1$. The \textbf{mix} of $Y$, noted $\mix(Y)$, is the set of all the mixtures of $Y$.
+	
+	We say $x \in X$ is a \textbf{component} of $y \in Y$ if $\lambda x + \sum \lambda_i x_i = y$ for some $\lambda \in [0,1]$, $\{x_i\} \in X$ and $\lambda_i \in [0,1]$ such that $\sum \lambda_i = \bar{\lambda}$. The \textbf{components} of $Y$, noted $\component(Y)$, is the set of all the components of all the elements of $Y$.
+\end{defn}
+
+\begin{defn}
+	Let $X$ be a convex space and $Y \subseteq X$. Then $Y$ is a \textbf{convex subspace} of $X$ if it contains all its mixtures and components. That is, $Y = \mix(Y) = \component(Y)$.
+\end{defn}
+
+\begin{defn}
+	Let $X$ be a convex space and $Y \subseteq X$. The \textbf{cospan} of $Y$, noted $\cospan(Y)$ is the smallest convex subspace that contains $Y$.
+\end{defn}
+
+\begin{defn}
+	Let $X$ be a convex space and $Y \subseteq X$. The \textbf{cospan} of $Y$, noted $\cospan(Y)$ is the smallest convex subspace that contains $Y$.
+\end{defn}
+
+\begin{thrm}
+	(Conjecture) Let $X$ be a convex space such that, given $x_1, x_2, y_1, y_2 \in X$, $\cospan(\{x_1, x_2\}) = \cospan(\{y_1, y_2\})$. Then
+	\begin{itemize}
+		\item if $\cospan(x_1, x_2)$ is a segment (i.e. $B^1$), then $X$ is a symplex
+		\item if $\cospan(x_1, x_2)$ is a disk (i.e. $B^2$), then $X$ is a real projective space
+		\item if $\cospan(x_1, x_2)$ is a ball (i.e $B^3$), then $X$ is a complex projective space
+		\item if $\cospan(x_1, x_2)$ is a 5-ball (i.e. $B^5$), then $X$ is a quaternionic projective space
+	\end{itemize}
+\end{thrm}
+
+\end{document}
