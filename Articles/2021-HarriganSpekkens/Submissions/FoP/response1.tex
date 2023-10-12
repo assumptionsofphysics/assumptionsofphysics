@@ -1,0 +1,150 @@
+\documentclass[11pt, executivepaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={158mm,237mm},
+ left=28mm,
+ top=28mm,
+ }
+\usepackage{hyperref}
+\hypersetup{colorlinks= true, allcolors=blue}
+\setcitestyle{aysep={}}
+\begin{document}
+
+
+\title{\textbf{Replies to Reviewers' Comments}}
+
+\author{The Authors}
+
+\maketitle
+
+
+\noindent We would like to thank the Editors for the opportunity to revise the manuscript; moreover, we also warmly thank both reviewers for their positive and helpful comments which led to significant changes and improvements of our paper. We appreciate that, we know that this is not an easy task.
+\vspace{2mm}
+
+In order to make the revisions immediately visible, every change in the manuscript has been written in blue so that it is highlighted with respect to the text. 
+\vspace{2mm}
+
+Finally, we hope to have properly addressed the doubts and remarks of both referees with these answers and the related changes made in the manuscript.
+
+\section{Replies to Reviewer 1}
+
+Reviewer 1
+In the paper, the authors challenge the classification of hidden variable theories given by Harrigan and Spekkens by providing an information-theoretic argument proving that non-overlapping distributions can only represent orthogonal states. The paper is adequately written, and the essence of the argument is somewhat clear to me. However, there are some intricacies that must be addressed, which I list below.
+
+\begin{enumerate}
+	\item \textbf{Reviewer 1:} - What is the physical meaning of the entropy of the epistemic state, and why is it assumed to coincide with the entropy of quantum states? Is there an assumption I have missed (if so, my apologies)  regarding this matter? I'd appreciate if you could clarify this in your reply. Since entropy is not a measurable quantity, I'm afraid I don't see a reason for these two definitions to necessarily coincide.
+	\vspace{2mm}
+	
+	\textbf{Authors:} The von Neumann entropy is linked to thermodynamic entropy and to information entropy. That is, the quantity does indeed lead to quantifiable predictions in both quantum statistical mechanics and quantum information theory. Therefore reproducing the value of the entropy is necessary to reproduce the results of quantum statistical mechanics and quantum information theory. This is mentioned a few times within the paper, though we noticed it wasn't mentioned in the introduction. We added the following sentence:
+	
+	\textcolor{blue}{We start by noting that the von Neumann entropy plays a crucial role in the predictions of both quantum statistical mechanics and quantum information theory.}
+	
+	What is interesting is that the entropy is not an observable in the standard sense: it is not a Hermitian operator and there are no eigenstates of entropy. We use the fact that the entropy of an equal mixture of a pair of pure states is uniquely defined by the probability of transition. One can go the other way: the probability of transition between two states is uniquely defined by the entropy of an equal mixture of two. So the entropy has interesting features: it leads to quantifiable predictions, it is not an observable in the standard sense and it fully captures the Born rule. That is why we focus on this quantity. 
+	
+	Now, as to why we want the Shannon entropy on the epistemic state and the von Neumann entropy to coincide, we leave that to the answer of the first point of reviewer 2, as the two points are related.
+
+\item \textbf{Reviewer 1:} - Related to the previous point, it would be pedagogical to include an example of psi-complete theory, for example, the Beltrametti-Bugajski model (or any other), to both illustrate the notion of psi-completeness, and also show how the entropic argument plays out there.
+\vspace{2mm}
+
+\textbf{Authors:} While we understand the pedagogical value of the request, we are afraid that by putting a specific example, the attention of the reader will focus on the example, and not on the general point. To avoid the issue, we have added the following sentence that refers to the original examples in the HS paper.
+
+\textcolor{blue}{ For specific examples of ontological models, see \cite{Harrigan:2010}, sections 2.4.1--3. }
+
+\item \textbf{Reviewer 1:} - What does your result say about psi-supplemented models?
+\vspace{2mm}
+
+\textbf{Authors:} We thank the referee for pointing out that we haven't explicitly addressed the $\psi$-supplemented case. As it is a subcase of the $\psi$-ontic one, it is automatically taken care of. We added a footnote to the theorem itself.
+
+\textcolor{blue}{ Note that the theorem applies to all $\psi$-ontic models, including the $\psi$-supplemented ones.}
+
+
+\item \textbf{Reviewer 1:} - Some of the recent criticisms (see, for example, Hance, Rarity and Ladyman) point out that the condition of non-overlapping can be interpreted as a sufficient, but not necessary for an ontic description. How would this amendment affect the results derived in the paper?
+\vspace{2mm}
+
+\textbf{Authors:} TODO 
+
+\item \textbf{Reviewer 1:} - I would also recommend to revise the Section 3 of the paper: first, outline the argument and its assumptions, and then formulate a theorem.
+\vspace{2mm}
+
+\textbf{Authors:} We revised Section 3 based on this point, the first point of reviewer 1, and the first point of reviewer 2. See the answer to the first point of reviewer 2.
+
+\item \textbf{Reviewer 1:}  - Also, it seems to me that (9) follows from (5) rather than from the purity = zero entropy argument.
+\vspace{2mm}
+
+\textbf{Authors:} This opens up another set of problems due to the imprecision of the presentation in the original paper (and in a lot of related physics literature), where probability and probability densities are used interchangeably, though they are rather different both mathematically and physically. In general, the Shannon entropy of a uniform distribution is the logarithm of the measure on the space (this would be the $d\lambda$ used in the integral). If the space is discrete, that measure is the counting measure, and therefore we would have the logarithm of one for a distribution over a single state, which corresponds to zero entropy. However, if the space is continuous the measure is the Lebesgue measure, the Liouville measure in particular in the case of classical phase space. A single point in this case has measure zero, meaning that the entropy is minus infinity.
+
+We specifically do not want to go down that rabbit hole, so we just adapt to the imprecise notation as best we can, while still constructing the argument in a way that we know avoids all those hidden traps. That is why we argue that pure states have zero entropy on the ground that this is what the von Neumann entropy requires.
+
+
+\end{enumerate}
+ 
+
+We hope with these answers to have properly replied to the useful comments we received from reviewer 1. 
+
+\section{Replies to Reviewer 2}
+
+Reviewer 2
+The authors present a critical analysis of the HS categorization of ontological models. When considering quantum information measures (such as the von Neumann entropy), they find a discrepancy between the entropy as computed with the ontological model and that which is directly computed with quantum theory. The conclusion is that no ontological model can reproduce quantum theory in its full strength (for example, reproducing quantum information theory). The authors go on to reconsider the PBR theorem under the light of their previous analysis.
+
+I essentially agree with what the authors say. Also, the technical results are correct. I would just simply say: quantum theory is a strongly non-Kolmogorovian probability calculus. Therefore, all attempts to embed it into a classical probability model will give place to problems. The core of the philosophical problem is to continue the pursuit of hidden-variables. They just don’t fit naturally. The PBR theorem is nothing but an expression of this inadequacy. But, of course, there is too much confusion out there. Taking into account that confusion, the results presented become quite relevant, Sincé they help to understand better what is wrong. For these reasons, I am willing to recommend this manuscript for publication.
+
+But I have come across comments regarding the author’s arguments. I don’t think that the manuscript is ready to recommend acceptance. I think that, if the authors take care of the observations listed below, the manuscript results will become stronger.
+
+\begin{enumerate}
+	\item \textbf{Reviewer 2:} - (1)    Main problem: the functions H appearing in (7) and (8) are not the same. One of them -let us call it $H_S$, “Shannon’s Entropy”- has as domain the set of classical probability densities. The second one, let us call it $H_vn$, ha sas domain the set of density operators representing quantum states. A defender of the HS formalism might say: “Why should these functions have the same outputs?”. Imposing that they should have the same output is a very natural condition that any reasonable physicists would follow. A quantum state will give place to a classical probability in the Lambda space. Thus, even if the domains are different, the outputs should be the same. But of course, this leads to problems, as the authors clearly explain. My proposal is to mention that they are not the same function, to use different names for these functions, and to remark that it is natural for a physicist to demand that they should yield the same result.  
+	\vspace{2mm}
+	
+	\textbf{Authors:} Both this comment and the previous comments from the other referee tells us that the motivation and setting for the theorem can be greatly improved. We have added an introductory paragraph where the distinction between the functions and the overall motivation to require their accordance is better highlighted. We hope that this would address potential objections as reviewer 2 notes.
+	
+	\textcolor{blue}{Let us denote $M(\Lambda)$ the space of all probability distributions (i.e. all probability measures) over the space of ontic states $\Lambda$. Let us denote $\mathcal{H}$ the Hilbert space of the corresponding quantum system and $M(\mathcal{H})$ the space of all mixed states (i.e. the space of positive semi-definite trace-one Hermitian operators). An ontological model, then, must give us an appropriate $\rho(\lambda) \in M(\Lambda)$ for every $\rho \in M(\mathcal{H})$ such that all predictions are satisfied. This includes those given by statistical mechanics and information theory, which depend on the von Neumann entropy $H_\mathcal{H} : M(\mathcal{H}) \to \mathbb{R}$. Given that $M(\Lambda)$ is the space of probability measures over $\Lambda$, it is natural to use the Shannon/Gibbs entropy function $H_\Lambda : M(\Lambda) \to \mathbb{R}$, as this is what is typically done in statistical mechanics.\footnote{Note that, while many functions called ``entropy'' exist, the Shannon entropy is the only indicator of variability that is continuous, monotonic and linear in probability.\cite{aop-phys-variability} It is also the one that provides the correct link to the thermodynamic entropy.} Since we want to be able to replicate the predictions of statistical mechanics and information theory, a very reasonable request is that these two entropies, calculated on the different representations, agree.
+	}
+	
+	We also made other small modification and adjustments to the notation in the rest of the sections.
+	
+\item \textbf{Reviewer 2:} -   (2)    On page 4, there is a take-home message. Why not use the more traditional take-home message, which is: “Quantum theory is not a classical probability calculus”. There is no novelty in the take-home message. By the way, some citations to previous works could be included. It comes to my mind the discussion between Tim Maudlin and R. Werner in JPA, regarding the correct interpretation of Bell’s theorem. Werner clearly says that the quantum state space is not a simplex (while the classical probability space is a simplex).
+\vspace{2mm}
+
+\textbf{Authors:} The issue is that just saying “Quantum theory is not a classical probability calculus” does not seem to home in on the problem, as people seem to still be confused. Admittedly, we do use a fair amount of classical probability concepts in quantum mechanics as well, and a lot of calculations are done in similar fashion. So we are trying to home in more precisely on what is and what is not allowed, though clearly what we wrote does not reflect that.
+
+As we see it, the issue is that we do use standard classical probability when describing preparations (i.e. the settings of the preparation device), and the machinery of quantum mechanics does spit out a classical probability for measurements. So, we believe that we can understand those as classical. Quantum states sit in between, and it's those that cannot support classical probability calculus.
+
+Based on the suggestion, we rewrote the take-home-message paragraph as follows, including the citation to Werner's work.
+
+	
+\item \textbf{Reviewer 2:} - (3)    In page 5, in the conclusions, the authors mention that “quantum mixtures are non-classical”. But again, this is very well known. I think that the distinction between proper vs improper mixtures should be mentioned here. There is a nice discussion between Kirkpatrick and D’Espagnat on the arxives about this.
+\vspace{2mm}
+
+\textbf{Authors:} We do agree that the fact that the space of classical and quantum mixtures are different is very well known. We added a footnote to provide some references, including to the discussion on the distinguishability of proper and improper mixtures.
+
+\textcolor{blue} {The convex space formed by the mixtures is radically different\cite{bengtsson_życzkowski_2017}. There is also debate as whether proper and improper mixtures are distinguishable in the context of quantum mechanics\cite{Kirkpatrick:2001,DEspagnat:2001}.
+}
+
+\item \textbf{Reviewer 2:} - (4)    I really think that a discussion about the interpretations of quantum theory should be included here. I’ve been involved in discussions with Bohmians and Everettians regarding the PBR theorem. They are happy with it, because they need to claim that the wave function is somehow real. When I say that the hypothesis of the PBR theorem uses classical probability (and they shouldn’t), they just say that classical probability governing the Lambdas is a very natural requirement. I think that this manuscript could be helpful for young people to understand why it is so artificial to try to inject ontological models in the quantum domain.
+\vspace{2mm}
+
+\textbf{Authors:} TODO.
+
+\item \textbf{Reviewer 2:} - (5)    Last but no least. There is usually a very rough reasoning when the dichotomy psi-ontic vs psi-epistemic is posed. The discussion is much more subtle. There is a very nice article by Hans Halvorson posing the discussion in a more sophisticated way (To Be a Realist about Quantum Theory).
+\vspace{2mm}
+
+\textbf{Authors:} TODO.
+
+\end{enumerate}
+
+
+
+\noindent With these answers we hope to have properly responded to the comments of reviewer 2, which have been very useful to improve the quality of the present essay.
+
+\clearpage
+\bibliographystyle{apalike}
+\bibliography{../bibliography}
+\end{document}
