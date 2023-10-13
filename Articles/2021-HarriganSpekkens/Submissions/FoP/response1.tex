@@ -27,18 +27,15 @@
 \maketitle
 
 
-\noindent We would like to thank the Editors for the opportunity to revise the manuscript; moreover, we also warmly thank both reviewers for their positive and helpful comments which led to significant changes and improvements of our paper. We appreciate that, we know that this is not an easy task.
+\noindent We are grateful to the Editors and both reviewers for the constructive review process on a subject that seems to attract a lot of animosity. In particular, we would like to thank the reviewers for their the positive and helpful comments, which led to meaningful changes and improvements of our paper.
 \vspace{2mm}
 
-In order to make the revisions immediately visible, every change in the manuscript has been written in blue so that it is highlighted with respect to the text. 
+In order to make the revisions immediately visible, every change in the manuscript has been written in blue so that it is highlighted with respect to the text.
 \vspace{2mm}
 
-Finally, we hope to have properly addressed the doubts and remarks of both referees with these answers and the related changes made in the manuscript.
+We hope to have addressed the remarks of both referees with these answers and the related changes made in the manuscript.
 
 \section{Replies to Reviewer 1}
-
-Reviewer 1
-In the paper, the authors challenge the classification of hidden variable theories given by Harrigan and Spekkens by providing an information-theoretic argument proving that non-overlapping distributions can only represent orthogonal states. The paper is adequately written, and the essence of the argument is somewhat clear to me. However, there are some intricacies that must be addressed, which I list below.
 
 \begin{enumerate}
 	\item \textbf{Reviewer 1:} - What is the physical meaning of the entropy of the epistemic state, and why is it assumed to coincide with the entropy of quantum states? Is there an assumption I have missed (if so, my apologies)  regarding this matter? I'd appreciate if you could clarify this in your reply. Since entropy is not a measurable quantity, I'm afraid I don't see a reason for these two definitions to necessarily coincide.
@@ -92,14 +89,13 @@ We hope with these answers to have properly replied to the useful comments we re
 
 \section{Replies to Reviewer 2}
 
-Reviewer 2
-The authors present a critical analysis of the HS categorization of ontological models. When considering quantum information measures (such as the von Neumann entropy), they find a discrepancy between the entropy as computed with the ontological model and that which is directly computed with quantum theory. The conclusion is that no ontological model can reproduce quantum theory in its full strength (for example, reproducing quantum information theory). The authors go on to reconsider the PBR theorem under the light of their previous analysis.
-
-I essentially agree with what the authors say. Also, the technical results are correct. I would just simply say: quantum theory is a strongly non-Kolmogorovian probability calculus. Therefore, all attempts to embed it into a classical probability model will give place to problems. The core of the philosophical problem is to continue the pursuit of hidden-variables. They just don’t fit naturally. The PBR theorem is nothing but an expression of this inadequacy. But, of course, there is too much confusion out there. Taking into account that confusion, the results presented become quite relevant, Sincé they help to understand better what is wrong. For these reasons, I am willing to recommend this manuscript for publication.
-
-But I have come across comments regarding the author’s arguments. I don’t think that the manuscript is ready to recommend acceptance. I think that, if the authors take care of the observations listed below, the manuscript results will become stronger.
-
 \begin{enumerate}
+	\item \textbf{Reviewer 2:} Also, the technical results are correct. I would just simply say: quantum theory is a strongly non-Kolmogorovian probability calculus. Therefore, all attempts to embed it into a classical probability model will give place to problems. The core of the philosophical problem is to continue the pursuit of hidden-variables. They just don’t fit naturally. The PBR theorem is nothing but an expression of this inadequacy. But, of course, there is too much confusion out there. Taking into account that confusion, the results presented become quite relevant, Sincé they help to understand better what is wrong. For these reasons, I am willing to recommend this manuscript for publication.
+	\vspace{2mm}
+	
+	\textbf{Authors:} We concur with the assessment. We essentially constructed an alternative argument to outline the failure from a different direction. We do agree that, in the end, it is exactly the same failure of classical probability calculus, and we do mention it. The reason that we don't simply say that is that those that already disregard that reasoning would simply disregard our result, because it would argue a point they are already disregarding.
+	
+	
 	\item \textbf{Reviewer 2:} - (1)    Main problem: the functions H appearing in (7) and (8) are not the same. One of them -let us call it $H_S$, “Shannon’s Entropy”- has as domain the set of classical probability densities. The second one, let us call it $H_vn$, ha sas domain the set of density operators representing quantum states. A defender of the HS formalism might say: “Why should these functions have the same outputs?”. Imposing that they should have the same output is a very natural condition that any reasonable physicists would follow. A quantum state will give place to a classical probability in the Lambda space. Thus, even if the domains are different, the outputs should be the same. But of course, this leads to problems, as the authors clearly explain. My proposal is to mention that they are not the same function, to use different names for these functions, and to remark that it is natural for a physicist to demand that they should yield the same result.  
 	\vspace{2mm}
 	
@@ -119,13 +115,20 @@ As we see it, the issue is that we do use standard classical probability when de
 
 Based on the suggestion, we rewrote the take-home-message paragraph as follows, including the citation to Werner's work.
 
+\textcolor{blue} {
+	Now, the fact that quantum theory does not follow the rules of classical-Kolmogorov probability is nothing new[33]. However, this does not seem to be enough to clear confusion on the subject because, admittedly, we do use classical probability in the context of quantum mechanics. For example, we can imagine preparing the direction of spin based on a classical distribution. Furthermore, the output of a measurement is described by classical probability. The temptation, then, is to simply assume that all we need to do is just put the right transition probability between the two spaces, and we are done. This is exactly what cannot be done and what doesn't work. That is
+	\begin{quote}
+		\textbf{In the context of quantum mechanics, standard probability measures are allowed over preparations and measurement outcomes, but not over states.}
+	\end{quote}
+	In our approach, we exploited the fact that the entropy calculation uses the geometry of the inner product without invoking a probability of transition. That is, two pure states are orthogonal not because one cannot measure the first having prepared the second, but because their equal mixture raises the entropy by one bit. Therefore quantum mechanics is not simply defining a probability of transition between preparations and measurements: it is doing something more. While it is not in the scope of this article to articulate precisely what this ``more'' is, which will be the focus of future work, we hope that this additional insight may provide more precise guidance as to where classical probability calculus is appropriate and not in the context of quantum mechanics.	
+}
 	
 \item \textbf{Reviewer 2:} - (3)    In page 5, in the conclusions, the authors mention that “quantum mixtures are non-classical”. But again, this is very well known. I think that the distinction between proper vs improper mixtures should be mentioned here. There is a nice discussion between Kirkpatrick and D’Espagnat on the arxives about this.
 \vspace{2mm}
 
 \textbf{Authors:} We do agree that the fact that the space of classical and quantum mixtures are different is very well known. We added a footnote to provide some references, including to the discussion on the distinguishability of proper and improper mixtures.
 
-\textcolor{blue} {The convex space formed by the mixtures is radically different\cite{bengtsson_życzkowski_2017}. There is also debate as whether proper and improper mixtures are distinguishable in the context of quantum mechanics\cite{Kirkpatrick:2001,DEspagnat:2001}.
+\textcolor{blue} {The convex space formed by the mixtures is radically different[34]. There is also debate as whether proper and improper mixtures are distinguishable in the context of quantum mechanics[35-36].
 }
 
 \item \textbf{Reviewer 2:} - (4)    I really think that a discussion about the interpretations of quantum theory should be included here. I’ve been involved in discussions with Bohmians and Everettians regarding the PBR theorem. They are happy with it, because they need to claim that the wave function is somehow real. When I say that the hypothesis of the PBR theorem uses classical probability (and they shouldn’t), they just say that classical probability governing the Lambdas is a very natural requirement. I think that this manuscript could be helpful for young people to understand why it is so artificial to try to inject ontological models in the quantum domain.
