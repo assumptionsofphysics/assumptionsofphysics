@@ -1,0 +1,281 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+%\documentclass[aps,pra,10pt,twocolumn,floatfix,nofootinbib]{revtex4-1}
+%\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{assumptionsofphysics}
+\usepackage{tikz}
+\usepackage{breakurl}
+
+%\usepackage{amsmath}
+%\usepackage{mathrsfs}
+%\usepackage{amsfonts}
+%
+%\usepackage{graphicx}
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	citecolor=blue,
+%	urlcolor=blue,
+%	linkcolor=blue
+%}
+%\urlstyle{same}
+%\frenchspacing
+%
+\def\>{\rangle}
+\def\<{\langle}
+\DeclareMathOperator{\erf}{erf}
+
+\begin{document}
+
+\title{How quantum mechanics requires non-additive measures}
+\author{Gabriele Carcassi}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+\author{Christine A. Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\begin{abstract}
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Classical probability and classical measure theory does not work.
+
+Alternatives: negative probability, contextual probability, "quantum measure theory", focus on convex space of mixtures.
+
+Interpretation problems (what is a negative probability), and it does not really answer the questions: why does quantization require different contexts? What exactly is quantization? Is there only a way to do it?
+
+Measure theory is also used to quantify the number of states. Statistical mechanics. How are quantum states quantified?
+
+Classical mechanics, agreement between thermodynamic entropy, Gibbs/Shannon entropy and logarithm of the count of states. Two versions. Want something similar in quantum mechanics. Find that is non-additive.
+
+We find that requiring a quantized measure of states leads to non-additivity as well. This opens up a new line of research.
+
+Index:
+
+- Measure theory and quantifying states
+(Quantum mechanics does not have a measure of states)
+
+\section{Measure theory and quantifying states}
+
+Much of the focus in quantum foundations lies in the fact that quantum mechanics does not follow the rules of classical Kolmogorov probability. Given that measure theory is typically used to formalize classical probability, numerous efforts start to find an appropriate generalization of measure theory that...The investigation of the use measure theory has been predominantly tied to the Given that this are typically expressed as 
+
+However, measure theory is not used only to characterize probability. More in general, measures are used to determine the size of sets. Even in probability theory, a probability measure assigns probability to sets, and to associate probability to points one needs two measures: the probability measure $p : \Sigma_X \to \mathbb{R}$ and another measure quantifying the extent of the set, which we call \textbf{quantifying measure} $\mu : \Sigma_X \to \mathbb{R}$. Given a set $U$, the ratio $\frac{p(U)}{\mu(U)}$ given us the average probability per unit size. As we shrink $U$ to a single point $x$, we will find the probability associated to that point. Since we are interested in physical theories, the measure $\mu(U)$ quantifying the number of states within the region $U$.
+
+In the discrete case, the quantifying measure is simply the counting measure: the cardinality of the set. Therefore for a single point we simply have $\frac{p(\{x\})}{\mu(\{x\})} = \frac{p(\{x\})}{1} = p(x)$, which corresponds to the probability associated to the state $x$. The counting measure is fully determined by two properties: countable additivity, a defining property of measures, and that each states counts as one.
+
+In the continuous case, things are a bit different. If $X$ is a manifold, a set of local coordinates induce a Lebesgue measure, which can be used to quantify the number of possible value combinations. Note that a single state has measure zero, unlike the discrete case. The Lebesgue measure is defined by two properties: countable additivity and that the size of parallelepipeds corresponds to the volume expressed by the product of the difference of coordinates. Naturally, this is a problem in physics given that the quantification of the number of states should be the same for all observers.
+
+What most miss, is that the structure of classical phase space (i.e. symplectic structure) is exactly the structure that allows to define a quantifying measure for states that is invariant under change of observers.(TODO cite book, two phil papers) Given a change of space-time variables $q^\alpha$, conjugate momentum change covariantly, which means volumes of phase space are invariant. The role of quantifying measure in classical mechanics, then, is assigned to the Louisville measure, which we can understand as a Lebesgue measure on position and conjugate momentum (i.e. canonical coordinates). The amount of probability for each state is given by the Radon-Nikodym derivative $\frac{dp}{d\mu}$, which gives us the probability density.
+
+Note that, in both cases, the quantifying measure is potentially unbounded, as the state space can have potentially infinitely many states, as it is the case for one spatial degree of freedom. Therefore the quantifying measures are implicitly different from probability measures, and they require specific attention.
+
+While quantum mechanics does not obey classical probability, we do use of classical probability measure and quantifying measures in some cases. Measurement outcomes are described in terms of classical probability. If we have a discrete observable, like the energy level of a harmonic oscillator, we would use the counting measure; if we have a continuous observable, like position, we would use the Lebesgue measure associated to the variable. Preparations are also in terms of classical probability, and we also use both types of quantifying measures. For example, the maximally mixed state for a qubit can be written as $\frac{1}{2} | 0 \> \< 0 | + \frac{1}{2} | 1 \> \< 1 | $ or as a uniform mixture over all possible states $\int_\mathcal{H} \frac{1}{4\pi} | \psi \> \< \psi | d\Omega$.
+
+Note how, in both cases, the quantifying measure is selected by the type of preparation or measurement, even though the state space is the same. But this means that these quantifying measure cannot be possibly quantifying the number of states as they would give contradicting results. This makes the problem rather crisp: the space of preparations and measurement outcomes are both classical, yet they cannot be connected by classical means. That is, we cannot simply put a classical probability of transition between the two because we are possibly connecting rather different quantifying measures.
+
+To sum up, the typical foundational question is: how do we generalize probability measures for quantum mechanics? We are asking something different: how do we generalize measures that quantify the number of states in quantum mechanics?
+
+\section{Measure theory and quantifying states}
+
+While the standard structure of quantum mechanics does not have an answer to our previous question, statistical mechanics and quantum information theory have an implicit one. Statistical mechanics tells us that the thermodynamic entropy of a system, which is a physically meaningful quantity that has numerous empirical consequences, corresponds to the Shannon entropy for a classical discrete system, the Gibbs entropy\footnote{By Gibbs entropy we mean the differential Shannon entropy $-\int_X \rho \log \rho d\mu$ calculated over phase space using position and momentum (i.e. canonical coordinates).} for a classical continuous system, and the von Neumann entropy for a quantum system.
+
+There is another expression for entropy, often referred to as the fundamental postulate of statistical mechanics, which is the logarithm of the count of microstates: $\log \mu(U)$.\footnote{Note that the Boltzmann constant is left out, as we will be always measured in bits or nats. Physically, the Boltzmann constant is needed to define temperature in Kelvin. tatistical mechanics can be equivalently formulated in terms of beta $\beta = \frac{1}{k_B T}$.TODO: cite the unit definition paper} In classical mechanics, the measure is indeed the quantifying measure discussed above: the counting measure for the discrete case and the Louisville volume in the continuous case. The two expressions for entropy are linked as the Shannon/Gibbs entropy over a uniform distribution matches the logarithm of the measure of the support. That is, if $\rho_U$ is a uniform distribution over $U$, then $S(\rho_U) = \log \mu(U)$.
+
+In quantum mechanics, as we said before, we do not have a measure to quantify states. There is, however, a somewhat related expression: the maximum entropy attainable by a quantum system described by a Hilbert space $\mathcal{H}$ is the dimensionality $\dim_{\mathbb{C}}(\mathcal{H})$ of the space.
+
+A similar connections can be established in information theory. The Shannon/Gibbs/von Neumann entropy quantifies the minimum number of bits required on average to send a message from a given source.\footnote{For a more general characterization of entropy that works in statistical mechanics, information theory and other contexts, and a more precise discussion of the continuous case, see TODO: cite our paper.} This, again, is a quantity that leads to empirical consequences. If we have $n$ bits at our disposal, we have $2^n$ possible combination, possible messages, that can be encoded. Therefore the logarithm of the number of possible messages corresponds to the entropy. Each different message can be encoded into a different state, therefore $\log \mu(U)$ tells us the number of bits that can be encoded using the states in that region. This will exactly correspond to the number of bits required by a source characterized by a uniform probability distribution over that number of symbols.
+
+While the above discussion does not cover all technical details, the only point we want to make is that the link $S(\rho_U) = \log \mu(U)$ is fully justified by both statistical mechanics and information theory. It is not a capricious request, but rather a necessary requirement stemming not from just one, but from two disciplines that have empirical consequences. Therefore if quantum mechanics does not directly provide us with a measure to quantify states, we can use what it does provide, the von Neumann entropy, to define and calculate said measure.
+
+The simplest case is when $U = \{ \psi \}$ is a single state. In this case, we have $S(|\psi\>\<\psi|) = 0$ and therefore $\mu({\psi}) = 2^{0} = 1$. Note that this is the same as the classical discrete case.
+
+The next case is when $U = \{ \psi, \phi \}$ is the set of two states. A uniform distribution over two states will correspond to the mixed state
+\begin{equation}
+	\rho = \frac{1}{2} |\psi\>\<\psi| + \frac{1}{2} |\phi\>\<\phi|.
+\end{equation}
+The entropy of said state will depend on the probability $p=|\<\psi | \phi \>|^2$ in the following way
+\begin{equation}
+	S(\rho) = - \frac{1+\sqrt{p}}{2} \log \frac{1+\sqrt{p}}{2} 
+	- \frac{1-\sqrt{p}}{2} \log \frac{1-\sqrt{p}}{2}.
+\end{equation}
+If the states are orthogonal, then $p=0$, and $S(\rho) = 1$ therefore $\mu(U) = 2^1 = 2$. In this case we do have that $\mu(\{ \psi, \phi \}) = \mu(\{\psi\}) + \mu(\{\phi\})$, and therefore $\mu$ is additive. We can also see that if $U$ is an orthonormal basis, the von Neumann entropy $S(U) = \log |U|$ is the logarithm of the cardinality of $U$. Therefore the quantifying measure $\mu(U) = |U|$ becomes the counting measure. But this is a special case that corresponds to the highest entropy reachable with a mixture. In all other cases the entropy will be lower, and therefore, in general, $\mu(\{ \psi, \phi \}) \leq \mu(\{\psi\}) + \mu(\{\phi\})$. In other words, the measure $\mu$ is not additive.\footnote{Technically, measures are defined to be additive, therefore $\mu$ is not a measure, but a set function. However, this term is less widespread, so we will keep using ``measure'' as it is customary in the mathematical literature (TODO: cite a couple of books on non-additive measure theory).}
+
+To sum up, the physically motivated way to quantify the number of states in quantum mechanics is not additive. When counting states in quantum mechanics, $1+1 \leq 2$.
+
+\section{Non-additivity and contextuality}
+
+While unusual claims are common in quantum mechanics, we want to have a clear, physically tenable, reason as to why the quantifying measure for quantum states must be non-additive. In the context of a spin 1/2 system, for example, why is it that $|z^+\>$ and $|z^-\>$ count as two states while $|z^+\>$ and $|x^+\>$ count as less than two?
+
+Since we saw that the quantifying measure is indeed additive for a set of orthogonal states, this should make us think about contextuality: the impossibility to assign outcomes to all potential measurement of a quantum system. We have, in fact, derived that it is impossible to define an additive quantifying measure on all potential states, but we can do so on the outcomes of one measurement. The ability/inability to define additive measures is exactly the difference between classical/non-classical probability. We are definitely onto something.
+
+While contextuality is often presented as a somewhat abstract, almost metaphysical, property of quantum mechanics, we have a rather more down-to-earth view. The selection of the measurement means a difference in physical process of either the preparation or measurement device. Choosing which direction of spin to prepare or measure means, at some point, orienting some polarizer or magnetic field. Something is changed in the physical world, not just on the system, but around the system, on its environment. If Amanda claims that a particle is in the $|z^+\>$ state, then Boris is able to infer something about the preparation/measuring device.\footnote{This is not at all particular to quantum mechanics. We can study the motion of a cannonball here on earth, but not on the surface of the sun, as the cannonball would be immediately vaporized. The mere claim that a system exists implies that the boundary conditions necessary for that system to exist are satisfies. In this sense, all physics is contextual.} Therefore we can understand the context simply as those conditions on the environment that are necessary on the system to be found in that particular state. A set of orthogonal states, then, has the property that they can be found in the same external conditions.
+
+Given that we have, in general, a correlation between system and environment, it is natural to understand why the contextuality leads to a non-additive measure. Two states, in fact, should be counted as two only if they lead to a change in the system. That is, \textbf{states should be quantified all-else-being-equal}. While two states from different contexts are indeed two distinct states, stating we transitioned from one to the other does not give us information only about the system: it tells us something about the environment as well. The degree of incompatibility of observables, then, ultimately measure the degree of change when realizing the context physically.
+
+So we have a clear, physically motivated reason as to why contextuality is linked to a non-additive measure. States should be quantified at-all-else-being-equal, meaning that possible correlations with the environment have to be removed.
+
+\section{Non-additivity and quantization}
+
+While we have clarified what it means for the quantifying measure to be non-additive, and how this is tied to non-contextuality, we haven't shown why it should be linked to quantization. In fact, what exactly is quantization?
+
+Before trying to answer that question, let's make a direct comparison between the quantifying measures for the three cases: the counting measure $\mu_d$ for the classical discrete case, the Louisville measure $\mu_c$ for the classical continuous case and the newly defined quantum measure $\mu_d$ for the quantum case. This requires a space where all three can be defined, which fortunately exists: the surface of a sphere. First, we want to compare the behavior on a single point. The counting measure returns one, and so does the quantum measure. The Louisville measure, however, returns zero. Second, we want to compare the behavior on a finite region, an open set. The Louisville measure returns the solid angle, which is always going to be finite as it must be less than or equal to $4\pi$. The von Neuman entropy of a mixed state over a two state system is at most one, and therefore the measure must be less than or equal to $2$. However, given that an open set on a sphere has infinitely many point, the counting measure over a finite region will be infinite. Lastly, we want to compare the additivity. Both classical measures are additive, while the quantum measure is not.
+
+Let us list the three properties we have mentioned:
+\begin{enumerate}
+	\item single states count as one
+	\item finite continuous regions correspond to finite information (and therefore finite state quantification)
+	\item state quantification is additive on disjoint regions.
+\end{enumerate}
+These seem very reasonable properties to assume for a quantifying measure of states. \textbf{Unfortunately, these three conditions are incompatible}. If each state counts as one, and the measure is additive, then a finite continuous region must be infinite as it contains infinite points. \textbf{Of the three conditions, we can only pick two}. This is, in fact, what each measure does. The counting measure rejects the second property. The Louisville (and Lebesgue) measure discards the first. The quantum measure sacrifices the third.
+
+So, in the light of this, what is quantization? If we have a system characterized by continuous quantities, such as position, the state space will necessarily be a continuous space and finite regions will have to correspond to finite information as those correspond to the finite precision measurements we can make.\footnote{For a treatment of how finite time experimental verification is captured by topological concepts, and what necessary and sufficient operational assumptions are required for the use of real valued quantities, see TODO libro} If the regions are large enough, the Louisville (or Lebesgue) measure will work. But as we shrink a region we will encounter, given the additivity, regions that contain less than one state, which does not make sense. Low value of the quantifying measure correspond to low values of entropy and measure one corresponds do zero entropy. Regions with measure less than one correspond to negative thermodynamic entropy, which also does not make sense. In fact, classical statistical mechanics does fail in those regimes: the classical equations of state for an ideal gas to predict negative entropy, which is fixed by the Fermi and Bose statistics.
+
+Quantization, then, is fixing the counting measure so that it is bounded from below by one (and the entropy by zero): each state counts as one. However, this comes at a price: non-additivity. This non-addivity is ultimately why classical probability has to fail as well, given that additivity is one of the axioms. It is also the same reason as why quantization implies contextuality: the non-addivity means that some states cannot be prepared at-all-else-being equal.
+%(https://en.wikipedia.org/wiki/Sackur%E2%80%93Tetrode_equation)
+
+In our view, this provides good conceptual reasons to understand the failure of classical mechanics, the need for the departure from classical ideas and the need for quantum theory. We believe this is already sufficient reason to start a research program to explore these ideas fully. However, since most physicists are not interested in this type of ``clean-up work'', let's see this is, in our mind, critical for the development of future physical theories.
+
+\section{Implication for space-time quantization}
+
+As we showed before, this line of reasoning gives us a good conceptual understanding of what quantization is: the quantifying measure for states must have a unitary lower bound. If we were to quantize space-time, what is it that we are quantizing?
+
+The most fundamental theories that are available to us are field theories. In a field theory, the state is described by the value of the fields at each point. At each point, the value of the field is independent from the others: the degrees of freedom form a continuum.\footnote{If we restrict ourselves to continuous fields, then we only need to specify the value of the fields on a countable dense subset (i.e. rational values of the coordinates). Though these kind of details do not change the discussion: a Lebesgue measure on the rationals have the same characteristics of the one extended to the reals.} We can therefore pose the question: how do we quantify the degrees of freedom?
+
+We have again the same problem as before: measures on the continuum are not invariant under generic coordinate transformations. We do have a sense, however, that if we double the spatial volume, we double the number of degrees of freedom, and spatial volume is an invariant. Therefore we can use a measure of volume constructed from the metric tensor. This would be the equivalent of the Louisville measure we got from phase space, and we end up with an equivalent problem.
+
+Since the measure is finite for finite regions and is additive, as we shrink the region, we will find regions with less than one degree of freedom. This does not make sense. If we want to quantize space, then, we need to put a unitary lower bound to the measure. But now our measure cannot be additive: what does it mean that two degrees of freedom count less than two?
+
+Before answering that question, let's add time. We said that if we double the spatial volume, we double the number of degrees of freedom. Suppose we have a space-time region and we double the time, are we doubling the number of degrees of freedom? Well, we certainly doubling the support of the function we have to specify for the field configuration, but we wouldn't consider that doubling the degrees of freedom. Intuitively, we just think of those as being the same degrees of freedom that are getting different values. This is because we expect the future and past values to be linked by some dynamical equations, so the future values would be linked, in some way, to the past values. That is, the past and future value of the same field at some point are not independent.
+
+So, what does it mean that two degrees of freedom count less than two? It could simply mean that they are not independent. That is, the values of the field at two distant points can be chosen arbitrarily, but as the points get sufficiently close, this would not be the case. This would make sense.
+
+Note that the lack of independence of the field values in close-by regions may mean that high frequencies of the fields are damped: the values have to become closer. The quantized quantifying measure of the degrees of freedom would effectively provide a cutoff. This may address some of the open problem in quantum field theories.
+
+In our view, the arguments laid here highlight an undeniable problem and seem to offer a natural step to take in line with the change from classical to quantum theory. While the development of a quantum theory of gravity is not our primary interest, the mathematical tools needed to address the above problem are of the same nature as the one we propose to develop a non-additive measure theory to quantify quantum states.
+
+\section{Open questions and future work}
+
+
+
+Is this the only quantized measure? What are the necessary conditions? Can we define a corresponding non-additive probability measure in the same way, so that a non-additive density can be defined? What type of theory of integration should lead to? How can this be extended to the number of d.o.f.?
+
+- Conclusion
+
+
+
+\section{Overview}
+
+We will first present an overview, which serves both as a summary and as a guide for rest of the paper. Each subsection will be expanded into a full section with the full technical details.
+
+\subsection{Measure theory in physics}
+
+The first task is to understand the link between physics and measure theory. We start with a set $X$, which formally represents a set of physically distinguishable cases. In our case, $X$ will either be a set of states (e.g. a symplectic manifold for classical mechanics; the set rays of a Hilbert space of quantum mechanics), or the set of possible values for either a preparation procedure or a measurement outcome (e.g. the numeric value of position and momentum for a classical system; the value of the azimuthal and polar angles for spin $1/2$ system; $\pm 1/2 \hbar$ for a spin $1/2$ measurement along a particular direction).
+
+A measure is a map $\mu : \Sigma_X \to [0,+\infty]$ that given a subset $U \subseteq X$ returns a non-negative, possibly infinite, value $\mu(U)$. The family $\Sigma_X$ of subsets of $X$ on which the measure is defined is closed under complement, countable union and intersection, which is the correct closure for experimental procedures. A defining feature of measures is that they are additive, meaning that
+\begin{equation}\label{additive_measure}
+	\begin{aligned}
+		&\mu(U_1 \cup U_2) = \mu(U_1) + \mu(U_2) \\
+		&\forall U_1, U_2 \in \Sigma_X \text{ such that } U_1 \cap U_2 = 0.
+	\end{aligned}
+\end{equation}
+
+In our case, a measure will keep track of one of two things: either it quantifies the number of physically distinguishable cases are there in the subset $U$, in which case we will denote it as $\mu(U)$ and call it \textbf{quantifying measure}, or it quantifies the probability that the statement $x \in U$ is true, in which case we will denote it as $p(U)$ and call it \textbf{probability measure}. For example, if $U$ is a subset of phase space $S$, $\mu(U)$ will quantify the number of states in the set $U$. If $U$ is a subset of the possible preparation for position and velocity $\mathbb{R}^2$, $p(U)$ will correspond to the probability that the initial system configuration is in $V$.
+
+%There are two crucial aspects in the use of measures, one typically ignored by mathematicians and the other typically not understood by physicists. The first is that of units: while all probability measures always have units of probability, those of quantifying measures depends on the space itself. For example, the space of possible values of position and velocity along a particular direction is mathematically the same, the real line $\mathbb{R}$, and the measure $\mu$ in both cases will correspond to the Lebesgue measure. However, the values are incommensurable , but the units will be different. Neglecting the difference  essentially none. This a major contribution to the second problem, which is that too many physicists consider the continuum the same as the discrete, but ``with more points''. The two cases, in fact, are qualitatively different, but the focus of measure theory on sets, instead of points, allows to treat these two different cases within the same framework. We will see that understanding the difference and similarities between them is crucial as quantum mechanics is essentially a third case that bridges between the two.
+
+Given two measures, $\mu$ and $\nu$, we can define the ratio between the two $\frac{\nu(U)}{\mu(U)}$. If the space is not discrete (e.g. a manifold), we can also define the derivative $\frac{d\nu}{d\mu}$. For these to be well defined, $\nu(U)$ must be zero whenever $\mu(U)$ is zero. Therefore, taking the derivative $\frac{dp}{d\mu}$ between a probability measure and a quantifying measure is always well defined, as it would not make sense to assign a non-zero probability on a set that has zero possible cases. If we have a map that links two spaces, we can take the derivative between two quantifying measures. For example, given a map $(x, v) \to X$ that given a value of position and velocity identifies a classical state within the suitable symplectic manifold, we can define $\frac{d\mu}{d\nu}$ that tells us how many states are there per unit of position time velocity.
+
+Given a probability measure $p$ and a quantifying measure $\mu$, we can define the entropy $S_{\mu}(p)$. If the space is discrete and $\mu$ is the counting measure (i.e. it returns the cardinality of the set $\mu(U) = |U|$), then we simply have the Shannon entropy
+\begin{equation}\label{discrete_entropy}
+	S_{\mu}(p) = - \sum p_i \log p_i.
+\end{equation}
+If the space is $\mathbb{R}^n$ and $\mu$ is the Lebesgue measure, we have the Shannon differential entropy
+\begin{equation}
+	S_{\mu}(p) = - \int \rho \log \rho d\mu
+\end{equation}
+where $\rho = \frac{dp}{d\mu}$. If the probability distribution is uniform over a region $U \subset X$, then the entropy is equal to
+\begin{equation}
+	S_{\mu}(p) = \log \mu(U)
+\end{equation}
+in both the discrete and continuous case.
+
+There are a couple of crucial things. First, the mathematics does not keep track of physical units, missing critical physical elements. Second, this difference changes the discrete from the continuous case rather radically. Third, these difference become rather important when trying to analyze how measure theory is used in quantum mechanics. Let us see how it works in each case.
+
+\subsection{Discrete classical case}
+
+In the discrete classical case, the state space $X$ has at most countably many elements, it has a discrete topology and $\Sigma_X$ contains all possible subsets. The quantifying measure associated to the space $X$ is the counting measure and any probability measure can be written as
+\begin{equation}
+	p(U) = \sum p(\{x_i\}) = \sum p_i,
+\end{equation}
+the sum of the probability assigned to each element. The entropy is given by eq. \ref{discrete_entropy}.
+
+If have a set of labels $L$ to identify the states, it will also be (topologically) discrete and associated to the counting measure. If $x(l)$ is the map between label and states, then $\mu_L(U) = \mu_X(x(U))$. In other words, quantifying the states or quantifying the labels is exactly the same thing. By the same token, defining the probability measure on the states or on the label will be the same: $p_L(U) = \sum p_L({l_i}) = \sum p_X(x(l_i))$.
+
+In the discrete case, then, counting possible preparations, states or measurement outcomes is the same. Assigning probabilities on preparations, states or measurement outcomes is the same. Computing entropy on preparations, states or measurement outcomes is the same.
+
+\subsection{Continuous classical case}
+ 
+In the continuous classical case, the state space $X$ is classical phase space (i.e. a symplectic manifold), and $\Sigma_X$ is formed by the Borel sets. States are counted through the Liouville measure
+\begin{equation}
+	\mu(U) = \int_U \omega^n 
+\end{equation}
+where $\omega$ is the symplectic form and $n$ is the number of degrees of freedom. Note that volume will become zero for a single point, therefore, for continuity, there will be regions that have ``less than one state''. Note the Liouville measure is invariant under coordinate transformations: the symplectic structure is exactly the structure required to provide a count of states $\mu(U)$ that is observer independent. This is not a coincidence.
+
+If we have a set of variables $\xi^a$, the measure $\mu_{\xi^a}(U)$ will be the volume given in the product of all units of $\xi^a$. This means that, in general, $\mu_{\xi^a}(U)$ depends on the choice of variables and $\mu_{\xi^a}(U) \neq \mu(x(U))$. The two measures will coincide if the chosen variables are position and conjugate momentum (i.e. canonical coordinates), but will not, for example, if position and velocity are used. This is a key difference from the discrete case: the quantifying measure on preparations, states and measurement outcomes is not the same. Moreover, only the quantification of states is required to be observer invariant.
+
+If we have a map between preparations, states and outcomes that is bijective, the probability measure will transfer like in the discrete case. Therefore $p_{\xi^a}(U) = p_X(x(U))$ for any region $U$ charted by any set of variables $\xi^a$. However, the probability densities $\frac{dp}{d\mu}$ in each space will be different because the respective quantifying measures are different. Intuitively, the density will be expressed in units of probability over units of preparations/states/outcomes. Again, the density over states is the only one required to be observer invariant.
+
+Given that the differential entropy is calculated in terms of the probability density, this will also in general depend on the quantifying measures and their units. The differential entropy on states will be the only one that is guaranteed to be observer invariant, and it is the one that will correspond to the physical entropy. The entropies on the preparations and measurement outcomes, instead, must be understood as characterizing information about specific variables.
+
+\subsection{Quantum case}
+
+The situation in quantum mechanics is more complicated. The state space $X$ is the projective space of a Hilbert space $P[\mathcal{H}]$. In the simplest case, a two dimensional system, it will correspond to the Bloch sphere. However, the space of the possible outcomes of a measurement is rather more restricted: an orthonormal bases for a projection-valued measurement. In the case of a two dimensional system, that means two discrete states.
+
+The space of measurements, then, is not the same as the space of states. If the measured quantity is discrete (e.g. spin along a direction), the quantifying measure would be the counting measure. If the measured quantity is continuous (e.g. position), the quantifying measure is the Lebesgue measure. The way that we quantify states, then, is necessarily different from the way we quantify measurement outcomes.
+
+The space state $X$ can be shown to be a symplectic manifolds, therefore it allows a Liouville measure, like on the continuous case. For the Bloch sphere, this would simply be the solid angle corresponding to a region. Given that we should have, at least in line of principle, a way to prepare any possible quantum state, we are going to have a bijective map between possible preparation procedures and quantum states. 
+
+
+At this point, it would seem we have two components. One is the that the space of both preparation and measurement is $P[\mathcal{H}]$
+
+Something similar happens to the probability measure. Suppose, in fact, that we prepare a two dimensional system with a uniform distribution over the entire Bloch sphere. We would have $p(\psi) = 0$ for any $\psi$ given that we have a uniform distribution over the continuum. However, when 
+
+\section{Measure theory in physics}
+
+First, we briefly review the mathematical definition of a measure, so that we can understand how the formal definition maps to physical concepts. Given a set $X$ and a $\sigma$-algebra $\Sigma_X$, a measure is map $\mu : \Sigma_X \to [0,+\infty]$.
+
+Definition of measure theory and use in physics.
+
+Definition of Shannon entropy.
+
+\section{Discrete classical case}
+
+Classical discrete, entropy, count of states.
+
+\section{Continuous classical case}
+
+Classical continuum and Shannon/Gibbs entropy, count of states in statistical mechanics. Discrete vs continuum. Properties of entropy for discrete continuum. Symplectic structure measures that are invariant under coordinate transformation.
+
+\section{Quantum case}
+
+Quantum entropy, Shannon/von Neumann entropy. Hybrid behavior of entropy. Measure of probability and of possible preparations are the same. Lack of count of states.
+
+\section{Quantized measure}
+
+Recover count of states from uniform distribution. Not additive. Couple of examples. Choose 2. Quantization means having a measure on the continuum for which each state counts one.
+
+Need for quantized measure on space time.
+
+\section{Conclusion}
+
+\bibliography{bibliography}
+
+\newcommand{\pj}[1] {\underbar{$#1$}}
+
+
+\end{document}
