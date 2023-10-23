@@ -470,13 +470,13 @@ We take sets and elements as primitive objects, with no formal definition. This 
 		\item[Symmetric.] If $a$ is related to $b$, then $b$ is related to $a$. That is, if $aRb$ then $bRa$.
 		\item[Antisymmetric.] If $a$ is related to $b$ and $b$ is related to $a$, then $a$ and $b$ are the same element. That is, if $aRb$ and $bRa$ then $a=b$.
 		\item[Transitive.] If $a$ is related to $b$ and $b$ is related to $c$, then $a$ is related to $c$. That is, if $aRb$ and $bRc$ then $aRc$.
-		\item[Total.] Given two distinct elements, one is related to the other.That is, given $a \neq b$, either $aRb$ or $bRa$. (This has no relation to left/right-total)
+		\item[Connected.] Given two distinct elements, one is related to the other. That is, given $a \neq b$, either $aRb$ or $bRa$.
 	\end{description}
 	
 \end{defn}
 
 \begin{defn}[Orders and equivalence]
-	A \textbf{partial order} \marginleft{Order, equivalence: $\leq$, $<$, $\equiv$} (noted for example $\leq$, $\lesssim$, $\preceq$)  is a homogeneous binary relationship that is reflexive, antisymmetric and transitive. A \textbf{linear order} or \textbf{total order} is an order that is total. An order is \textbf{strict} (noted for example $<$, $\prec$) if it is irreflexive instead of reflexive.
+	A \textbf{partial order} \marginleft{Order, equivalence: $\leq$, $<$, $\equiv$} (noted for example $\leq$, $\lesssim$, $\preceq$)  is a homogeneous binary relationship that is reflexive, antisymmetric and transitive. A \textbf{linear order} or \textbf{total order} is an order that is connected. An order is \textbf{strict} (noted for example $<$, $\prec$) if it is irreflexive instead of reflexive. A \textbf{strict linear order} or \textbf{strict total order} is an order that is strict and connected.
 	
 	An \textbf{equivalence relation} (noted for example $\equiv$, $\sim$) is a homogeneous binary relationship that is reflexive, symmetric and transitive.
 \end{defn}
