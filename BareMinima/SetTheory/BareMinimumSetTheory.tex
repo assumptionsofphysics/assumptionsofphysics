@@ -413,49 +413,6 @@ We take sets and elements as primitive objects, with no formal definition. This 
 \end{remark}
 
 
-\subsection{Indexed families and sequences}
-
-\begin{defn}[Families]
-	An \textbf{indexed family}, \marginleft{Families, sequences: $\{x_i\}_{i \in I}$, $\{x_i\}_{i=1}^{\infty}$} or simply a \textbf{family}, $\{x_i\}_{i \in I}$ is a collection of elements identified by an \textbf{index set} $I$. More formally, an indexed family is a tuple $( X, I, x )$ where $X$ and $I$ are sets and $x: I \to X$ is a function such that $i \mapsto x_i$. A \textbf{sequence} is a family for which the index set is a contiguous interval of natural numbers. A \textbf{finite sequence} of $n$ elements is noted $\{x_i\}_{i=1}^{n}$ while an \textbf{infinite sequence} is noted $\{x_i\}_{i=1}^{\infty}$.
-\end{defn}
-
-\begin{defn}[Operations on families of sets]
-	Let $\{A_i\}_{i \in I}$ \marginleft{$\bigcap\limits_{i \in I} A_i $, $\bigcup\limits_{i \in I} A_i$} be a family of sets, the operations of intersection $\bigcap\limits_{i \in I} A_i $ and union $\bigcup\limits_{i \in I} A_i$ can be extended to span all members.
-\end{defn}
-
-\begin{defn}[Set-theoretic limit]
-	Let $\{A_i\}_{i=1}^{\infty}$ \marginleft{Set limit: \\ $\lim\limits_{i \to \infty} A_i = A$} be a sequence of sets. We define the \textbf{limit infimum} as $\liminf\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1}\bigcap\limits_{j \geq i} A_j$ and the \textbf{limit supremum} as $\limsup\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1}\bigcup\limits_{j \geq i} A_j$. If the two are equal to the same set then we say the sequence \textbf{converges}, the \textbf{set-theoretic limit} $\lim\limits_{i \to \infty} A_i = A$ exists and it is equal to that set.
-\end{defn}
-
-\marginright{~\\
-	\def\setA{ (-1,0) circle (2) }
-	\def\setB{ (1,0) circle (2) }
-	\begin{tikzpicture}[scale = 0.3]
-		\draw (0,0) ellipse (5 and 4); 
-		\draw (0.5,-0.7) ellipse (3.5 and 2.7);
-		\draw (1.05,-1.3) ellipse (2.2 and 1.6);
-		\draw (1.25,-1.45) ellipse (1.6 and 1.05);
-		\draw (1.3,-1.6) ellipse (1.05 and 0.55);
-		\node at (0,-5) {$A_i \supset A_{i+1}$};
-		\node at (-2.6, 2.1) {$A_1$};
-		\node at (-1.05,0.55) {$A_2$};
-		\node at (1.3,-1.6) {$...$};
-	\end{tikzpicture} 
-}
-\begin{defn}[Monotone sequence]
-	A \textbf{monotone sequence} \marginleft{Monotone sequence: \\ $A_1 \subseteq A_2 \subseteq ...$\\ $A_1 \supseteq A_2 \supseteq ...$} is a sequence of sets $\{A_i\}_{i=1}^{\infty}$ where each set is a subset (or superset) of the preceding. More specifically, we distinguish four cases:
-	\begin{description}
-		\item[Increasing] when $A_i \subseteq A_{i+1}$ for all $i \geq 1$
-		\item[Decreasing] when $A_i \supseteq A_{i+1}$ for all $i \geq 1$
-		\item[Strictly increasing] when $A_i \subset A_{i+1}$ for all $i \geq 1$
-		\item[Strictly decreasing] when $A_i \supset A_{i+1}$ for all $i \geq 1$
-	\end{description}
-\end{defn}
-
-\begin{prop}[Monotone convergence]
-	All monotone \marginleft{Monotone convergence} sequences converge. For increasing sequences the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1} A_i$, while for decreasing sequences  the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1} A_i$.
-\end{prop}
-
 \subsection{Homogeneous relations, equivalences and orders}
 
 \begin{remark}
@@ -535,6 +492,49 @@ We take sets and elements as primitive objects, with no formal definition. This 
 \begin{remark}
 	All the above concepts are of general use in all areas of mathematics. Note that they are all constructed on two primitives: the notion of sets and of set inclusion.
 \end{remark}
+
+\subsection{Indexed families and sequences}
+
+\begin{defn}[Families]
+	An \textbf{indexed family}, \marginleft{Families, sequences: $\{x_i\}_{i \in I}$, $\{x_i\}_{i=1}^{\infty}$} or simply a \textbf{family}, $\{x_i\}_{i \in I}$ is a collection of elements identified by an \textbf{index set} $I$. More formally, an indexed family is a tuple $( X, I, x )$ where $X$ and $I$ are sets and $x: I \to X$ is a function such that $i \mapsto x_i$. A \textbf{sequence} is a family for which the index set is a contiguous interval of natural numbers. A \textbf{finite sequence} of $n$ elements is noted $\{x_i\}_{i=1}^{n}$ while an \textbf{infinite sequence} is noted $\{x_i\}_{i=1}^{\infty}$.
+\end{defn}
+
+\begin{defn}[Operations on families of sets]
+	Let $\{A_i\}_{i \in I}$ \marginleft{$\bigcap\limits_{i \in I} A_i $, $\bigcup\limits_{i \in I} A_i$} be a family of sets, the operations of intersection $\bigcap\limits_{i \in I} A_i $ and union $\bigcup\limits_{i \in I} A_i$ can be extended to span all members.
+\end{defn}
+
+\begin{defn}[Set-theoretic limit]
+	Let $\{A_i\}_{i=1}^{\infty}$ \marginleft{Set limit: \\ $\lim\limits_{i \to \infty} A_i = A$} be a sequence of sets. We define the \textbf{limit infimum} as $\liminf\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1}\bigcap\limits_{j \geq i} A_j$ and the \textbf{limit supremum} as $\limsup\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1}\bigcup\limits_{j \geq i} A_j$. If the two are equal to the same set then we say the sequence \textbf{converges}, the \textbf{set-theoretic limit} $\lim\limits_{i \to \infty} A_i = A$ exists and it is equal to that set.
+\end{defn}
+
+\marginright{~\\
+	\def\setA{ (-1,0) circle (2) }
+	\def\setB{ (1,0) circle (2) }
+	\begin{tikzpicture}[scale = 0.3]
+		\draw (0,0) ellipse (5 and 4); 
+		\draw (0.5,-0.7) ellipse (3.5 and 2.7);
+		\draw (1.05,-1.3) ellipse (2.2 and 1.6);
+		\draw (1.25,-1.45) ellipse (1.6 and 1.05);
+		\draw (1.3,-1.6) ellipse (1.05 and 0.55);
+		\node at (0,-5) {$A_i \supset A_{i+1}$};
+		\node at (-2.6, 2.1) {$A_1$};
+		\node at (-1.05,0.55) {$A_2$};
+		\node at (1.3,-1.6) {$...$};
+	\end{tikzpicture} 
+}
+\begin{defn}[Monotone sequence]
+	A \textbf{monotone sequence} \marginleft{Monotone sequence: \\ $A_1 \subseteq A_2 \subseteq ...$\\ $A_1 \supseteq A_2 \supseteq ...$} is a sequence of sets $\{A_i\}_{i=1}^{\infty}$ where each set is a subset (or superset) of the preceding. More specifically, we distinguish four cases:
+	\begin{description}
+		\item[Increasing] when $A_i \subseteq A_{i+1}$ for all $i \geq 1$
+		\item[Decreasing] when $A_i \supseteq A_{i+1}$ for all $i \geq 1$
+		\item[Strictly increasing] when $A_i \subset A_{i+1}$ for all $i \geq 1$
+		\item[Strictly decreasing] when $A_i \supset A_{i+1}$ for all $i \geq 1$
+	\end{description}
+\end{defn}
+
+\begin{prop}[Monotone convergence]
+	All monotone \marginleft{Monotone convergence} sequences converge. For increasing sequences the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcup\limits_{i \geq 1} A_i$, while for decreasing sequences  the limit is given by $\lim\limits_{i \to \infty} A_i = \bigcap\limits_{i \geq 1} A_i$.
+\end{prop}
 
 \section{Axiomatic set theory}
 
