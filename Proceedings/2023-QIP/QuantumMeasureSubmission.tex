@@ -1,0 +1,397 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[entropy,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+
+%--------------------
+% Class Options:
+%--------------------
+%----------
+% journal
+%----------
+% Choose between the following MDPI journals:
+% acoustics, actuators, addictions, admsci, adolescents, aerobiology, aerospace, agriculture, agriengineering, agrochemicals, agronomy, ai, air, algorithms, allergies, alloys, analytica, analytics, anatomia, animals, antibiotics, antibodies, antioxidants, applbiosci, appliedchem, appliedmath, applmech, applmicrobiol, applnano, applsci, aquacj, architecture, arm, arthropoda, arts, asc, asi, astronomy, atmosphere, atoms, audiolres, automation, axioms, bacteria, batteries, bdcc, behavsci, beverages, biochem, bioengineering, biologics, biology, biomass, biomechanics, biomed, biomedicines, biomedinformatics, biomimetics, biomolecules, biophysica, biosensors, biotech, birds, bloods, blsf, brainsci, breath, buildings, businesses, cancers, carbon, cardiogenetics, catalysts, cells, ceramics, challenges, chemengineering, chemistry, chemosensors, chemproc, children, chips, cimb, civileng, cleantechnol, climate, clinpract, clockssleep, cmd, coasts, coatings, colloids, colorants, commodities, compounds, computation, computers, condensedmatter, conservation, constrmater, cosmetics, covid, crops, cryptography, crystals, csmf, ctn, curroncol, cyber, dairy, data, ddc, dentistry, dermato, dermatopathology, designs, devices, diabetology, diagnostics, dietetics, digital, disabilities, diseases, diversity, dna, drones, dynamics, earth, ebj, ecologies, econometrics, economies, education, ejihpe, electricity, electrochem, electronicmat, electronics, encyclopedia, endocrines, energies, eng, engproc, entomology, entropy, environments, environsciproc, epidemiologia, epigenomes, est, fermentation, fibers, fintech, fire, fishes, fluids, foods, forecasting, forensicsci, forests, foundations, fractalfract, fuels, future, futureinternet, futurepharmacol, futurephys, futuretransp, galaxies, games, gases, gastroent, gastrointestdisord, gels, genealogy, genes, geographies, geohazards, geomatics, geosciences, geotechnics, geriatrics, grasses, gucdd, hazardousmatters, healthcare, hearts, hemato, hematolrep, heritage, higheredu, highthroughput, histories, horticulturae, hospitals, humanities, humans, hydrobiology, hydrogen, hydrology, hygiene, idr, ijerph, ijfs, ijgi, ijms, ijns, ijpb, ijtm, ijtpp, ime, immuno, informatics, information, infrastructures, inorganics, insects, instruments, inventions, iot, j, jal, jcdd, jcm, jcp, jcs, jcto, jdb, jeta, jfb, jfmk, jimaging, jintelligence, jlpea, jmmp, jmp, jmse, jne, jnt, jof, joitmc, jor, journalmedia, jox, jpm, jrfm, jsan, jtaer, jvd, jzbg, kidneydial, kinasesphosphatases, knowledge, land, languages, laws, life, liquids, literature, livers, logics, logistics, lubricants, lymphatics, machines, macromol, magnetism, magnetochemistry, make, marinedrugs, materials, materproc, mathematics, mca, measurements, medicina, medicines, medsci, membranes, merits, metabolites, metals, meteorology, methane, metrology, micro, microarrays, microbiolres, micromachines, microorganisms, microplastics, minerals, mining, modelling, molbank, molecules, mps, msf, mti, muscles, nanoenergyadv, nanomanufacturing,\gdef\@continuouspages{yes}} nanomaterials, ncrna, ndt, network, neuroglia, neurolint, neurosci, nitrogen, notspecified, %%nri, nursrep, nutraceuticals, nutrients, obesities, oceans, ohbm, onco, %oncopathology, optics, oral, organics, organoids, osteology, oxygen, parasites, parasitologia, particles, pathogens, pathophysiology, pediatrrep, pharmaceuticals, pharmaceutics, pharmacoepidemiology,\gdef\@ISSN{2813-0618}\gdef\@continuous pharmacy, philosophies, photochem, photonics, phycology, physchem, physics, physiologia, plants, plasma, platforms, pollutants, polymers, polysaccharides, poultry, powders, preprints, proceedings, processes, prosthesis, proteomes, psf, psych, psychiatryint, psychoactives, publications, quantumrep, quaternary, qubs, radiation, reactions, receptors, recycling, regeneration, religions, remotesensing, reports, reprodmed, resources, rheumato, risks, robotics, ruminants, safety, sci, scipharm, sclerosis, seeds, sensors, separations, sexes, signals, sinusitis, skins, smartcities, sna, societies, socsci, software, soilsystems, solar, solids, spectroscj, sports, standards, stats, std, stresses, surfaces, surgeries, suschem, sustainability, symmetry, synbio, systems, targets, taxonomy, technologies, telecom, test, textiles, thalassrep, thermo, tomography, tourismhosp, toxics, toxins, transplantology, transportation, traumacare, traumas, tropicalmed, universe, urbansci, uro, vaccines, vehicles, venereology, vetsci, vibration, virtualworlds, viruses, vision, waste, water, wem, wevj, wind, women, world, youth, zoonoticdis 
+% For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal. Changing "submit" to "accept" before posting will remove line numbers.
+
+%---------
+% article
+%---------
+% The default type of manuscript is "article", but can be replaced by: 
+% abstract, addendum, article, book, bookreview, briefreport, casereport, comment, commentary, communication, conferenceproceedings, correction, conferencereport, entry, expressionofconcern, extendedabstract, datadescriptor, editorial, essay, erratum, hypothesis, interestingimage, obituary, opinion, projectreport, reply, retraction, review, perspective, protocol, shortnote, studyprotocol, systematicreview, supfile, technicalnote, viewpoint, guidelines, registeredreport, tutorial
+% supfile = supplementary materials
+
+%----------
+% submit
+%----------
+% The class option "submit" will be changed to "accept" by the Editorial Office when the paper is accepted. This will only make changes to the frontpage (e.g., the logo of the journal will get visible), the headings, and the copyright information. Also, line numbering will be removed. Journal info and pagination for accepted papers will also be assigned by the Editorial Office.
+
+%------------------
+% moreauthors
+%------------------
+% If there is only one author the class option oneauthor should be used. Otherwise use the class option moreauthors.
+
+%---------
+% pdftex
+%---------
+% The option pdftex is for use with pdfLaTeX. Remove "pdftex" for (1) compiling with LaTeX & dvi2pdf (if eps figures are used) or for (2) compiling with XeLaTeX.
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2023}
+\copyrightyear{2023}
+%\externaleditor{Academic Editor: Firstname Lastname}
+\datereceived{ } 
+\daterevised{ } % Comment out if no revised date
+\dateaccepted{ } 
+\datepublished{ } 
+%\datecorrected{} % For corrected papers: "Corrected: XXX" date in the original paper.
+%\dateretracted{} % For corrected papers: "Retracted: XXX" date in the original paper.
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+%\pdfoutput=1 % Uncommented for upload to arXiv.org
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, float, amsmath, amssymb, lineno, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, colortbl, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, array, tabularx, pbox, ragged2e, tocloft, marginnote, marginfix, enotez, amsthm, natbib, hyperref, cleveref, scrextend, url, geometry, newfloat, caption, draftwatermark, seqsplit
+% cleveref: load \crefname definitions after \begin{document}
+\usepackage{assumptionsofphysics}
+\usepackage{tikz}
+\usepackage{breakurl}
+\def\>{\rangle}
+\def\<{\langle}
+\DeclareMathOperator{\erf}{erf}
+
+%=================================================================
+% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{How quantum mechanics requires non-additive measures}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{Title}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-1071-6251} % Add \orcidA{} behind the author's name
+\newcommand{\orcidauthorB}{0000-0001-9540-4988} % Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Carcassi Gabriele $^{1,*}$\orcidA{} and Christine A. Aidala $^{1}$\orcidB{}}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Carcassi Gabriele and Christine A. Aidala}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{Carcassi, C.; Aidala, C. A.}
+% If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address[1]{%
+$^{1}$ \quad Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+% Contact information of the corresponding author
+\corres{Correspondence: carcassi@umich.edu}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation 3.} 
+%\secondnote{These authors contributed equally to this work.}
+% The commands \thirdnote{} till \eighthnote{} are available for further notes
+
+%\simplesumm{} % Simple summary
+
+%\conference{} % An extended version of a conference paper
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{Measure theory is used in physics, not just to capture classical probability, but also to quantify the number of states. In previous works, we found that state quantification plays a foundational role in classical mechanics, and therefore, we set ourselves to construct the quantum equivalent of the Liouville measure. Unlike the classical counterpart, this quantized measure is non-additive and has a unitary lower bound (i.e. no set of states can have less than one state). Conversely, requiring that state quantification is finite for finite continuous regions and that each state counts as one already implies non-additivity, which in turn implies the failure of classical theory. In this article we show these preliminary results and outline a new line of inquiry that may provide a different insight into the foundations of quantum theory. Additionally, this new approach may prove to be useful to those interested in a quantized theory of space-time, as we believe this requires a quantized measure for the quantification of the independent degrees of freedom.}
+
+% Keywords
+\keyword{Quantum mechanics; measure theory; non-additive measures; information theory; statistical mechanics} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Diversity
+%\LSID{\url{http://}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Applied Sciences
+%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Data
+%\dataset{DOI number or link to the deposited data set if the data set is published separately. If the data set shall be published as a supplement to this paper, this field will be filled by the journal editors. In this case, please submit the data set as a supplement.}
+%\datasetlicense{License under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Toxins
+%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Encyclopedia
+%\encyclopediadef{For entry manuscripts only: please provide a brief overview of the entry title instead of an abstract.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Advances in Respiratory Medicine
+%\addhighlights{yes}
+%\renewcommand{\addhighlights}{%
+
+%\noindent This is an obligatory section in “Advances in Respiratory Medicine”, whose goal is to increase the discoverability and readability of the article via search engines and other scholars. Highlights should not be a copy of the abstract, but a simple text allowing the reader to quickly and simplified find out what the article is about and what can be cited from it. Each of these parts should be devoted up to 2~bullet points.\vspace{3pt}\\
+%\textbf{What are the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}\vspace{3pt}
+%\textbf{What is the implication of the main finding?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+It is well-established that standard measure theoretic tools cannot be used to characterize quantum probability as quantum theory is a non-classical (i.e. non-Kolmogorov) probability theory. To obviate this problem, various alternatives and extensions to measure theory and probability theory have been developed with different goals.\cite{groenewold1946principles, moyal1949quantum, gleason1957measures, sorkin1994quantum, hamhalter2003quantum, gudder2009quantum, svozil2022extending, monchietti2023measure} Our interest in measure theory, however, is not in its use to capture classical probability. Measures play another crucial use in physical theories: ``counting'', or better ``quantifying'', states. It is this use that will be the focus of this work.
+
+As part of our overall project Assumptions of Physics,\cite{aop-book} we have developed an approach, called reverse physics,\cite{aop-phys-ReversePhysics} which, starting from the laws, aims to find a minimal set of physical assumptions needed to rederive them. We found that the ability to quantify states is a crucial component of classical theory, so much so that it is enough to recover the structure of phase space and the laws of evolution.\cite{aop-phil-Hamiltonianinformation,aop-phil-HamiltonianPrivilege} The former (i.e. the symplectic structure) is the only structure that allows one to quantify states and configurations over independent degrees of freedom in a way that is frame independent. If one imposes deterministic and reversible evolution, state quantification must be preserved, leading to Hamiltonian evolution (i.e. a symplectomorphism). All elements of classical mechanics, including canonical variables, the Lagrangian and the action principle, \cite{aop-phys-ActionPrincipleInterpretation} can be rederived and understood in terms of quantifying the flow of states. Given the formal similarity between classical and quantum mechanics, we believe a similar approach is possible for the latter. This raises the question: what is the quantum analogue of the Liouville measure, the measure that quantifies states in the classical theory?
+
+Statistical mechanics and information theory mandate a link between entropy and state quantification, as the Shannon/Gibbs entropy over uniform distributions corresponds to the logarithm of the count of states. In the quantum case, we can start with the von Neumann entropy and define a measure that has the same connection. What we find is that this measure is non-additive and that its features can help us better understand what quantization is, why it requires both contextuality and the failure of classical probability, and why the latter can be recovered separately within each context. Therefore we believe studying this object is useful not only for the above stated goals of reverse physics, but more in general to get a better understanding of the foundations of quantum mechanics.
+
+The aim of this article is to propose and articulate the goals of this new line of research. It provides the overall picture in which future works will add further mathematical detail and physical insights. In section II we will show how measure theory is used to quantify elements in a set and how this is needed to assign probability and probability densities to each element. In section III we will see how statistical mechanics and information theory mandate a link between entropy and state quantification, which we will use to define the quantum analogue of the Liouville measure. We will find that this measure is not additive.\footnote{Technically, measures are defined to be additive, therefore what we find is not a measure, but a set function. However, this term is not widespread, so we use the oxymoron ``non-additive measure'' as it is customary in the mathematical literature. \cite{denneberg1994non,nonadditive2014}} In section IV we will see that this non-additivity is linked to non-contextuality. In section V we will see that quantization means putting a unitary lower bound on the quantification of states, while keeping a finite value over finite regions. We will see that this very directly requires non-additivity and therefore non-contextuality. In section VI we will argue that quantization of space-time means using a quantized measure on the quantification of degrees of freedom. Lastly, in section VII we will outline a series of goals for a research program that aims to fully characterize the quantized measure.
+
+\section{Measure theory and quantifying states}
+
+As we said in the introduction, measure theory is not only used to characterize Kolmogorovian probability. More generally, measures are used to define the size of sets. Even in probability theory, since probability measures assign probability to sets of points, in order to associate probability to individual points one needs two measures: the \textbf{probability measure} $p : \Sigma_X \to \mathbb{R}$ and another measure quantifying the extent of the set, which we call \textbf{quantifying measure} $\mu : \Sigma_X \to \mathbb{R}$.\footnote{Measures assign values to elements of a $\sigma$-algebra, which can be thought of as a set of experimental procedures. \cite{aop-book}} Since we are interested in physical theories, the measure $\mu$ quantifies the number of states. Given a set $U$, the ratio $\frac{p(U)}{\mu(U)}$ gives us the average probability per unit of states. As we shrink $U$ to a single point $x$, we will find the probability associated to that point, and how this is done depends on the nature of $\mu$. 
+
+In the discrete case, the quantifying measure is simply the counting measure: the cardinality of the set. Therefore for a single point we simply have $\frac{p(\{x\})}{\mu(\{x\})} = \frac{p(\{x\})}{1} = p(x)$, which corresponds to the probability associated to the state $x$. The counting measure is fully determined by two properties: countable additivity, a defining property of measures, and that each state counts as one.
+
+In the continuous case, things are a bit different.\footnote{Note that ``discrete' and ``continuous'' have different meanings depending on context. At a set theoretic level, ``continuum'' is associated with the cardinality of a set. In topology, discrete and continuous spaces are characterized by  properties of open sets, not cardinality: a manifold can be given a discrete topology. In the context of quantifying measures in physics, discrete means that we can count elements with natural numbers, while continuous means we use real valued quantities with units, such as meters for distances, to define the size of regions.} If $X$ is a manifold, a set of local coordinates induce a Lebesgue measure, which can be used to quantify the number of possible value combinations. Note that a single state has measure zero, unlike the discrete case. The Lebesgue measure is defined by two properties: countable additivity and that the size of parallelepipeds corresponds to the volume expressed by the product of the differences of coordinates (i.e. $\mu(U) = \Delta x^1 \Delta x^2 \cdots \Delta x^n$). Naturally, this is a problem in physics given that the quantification of the number of states should be the same in all frames.
+
+However, the structure of classical phase space (i.e. symplectic structure) is exactly the structure that allows one to define a quantifying measure for states that is invariant under change of frame.\cite{aop-book,aop-phil-Hamiltonianinformation,aop-phil-HamiltonianPrivilege} The role of the quantifying measure in classical mechanics, then, is assigned to the Liouville measure, which we can understand as a Lebesgue measure on position and conjugate momentum (i.e. canonical coordinates).\footnote{The volume of an infinitesimal parallelepiped is given by $dq^1 dq^2 \cdots dp_1 dp_2 \cdots$. Since $dq^i$ is contravariant and $dp_i$ is covariant under change of frame, the volume remains the same.} As we shrink the size of the set, $\frac{p(U)}{\mu(U)}$ becomes the Radon-Nikodym derivative $\frac{dp}{d\mu}$, which gives us the probability density, not the probability itself.
+
+%Note that, in both cases, the quantifying measure is potentially unbounded, as the state space can have potentially infinitely many states, as it is the case for one spatial degree of freedom. Therefore the quantifying measures are implicitly different from probability measures, and they require specific attention.
+
+Quantum mechanics, instead, does not provide a clear state quantifying measure. When we characterize preparations and measurement outcomes, we may use the discrete or continuous quantifying measures in different cases for the same system. For example, consider a particle. If we are interested in a discrete observable, like the energy level of a harmonic oscillator, we would use the counting measure; if we are interested in a continuous observable, like position, we would use the Lebesgue measure associated to the variable. As for preparations, the same maximally mixed state for a qubit can be written as a discrete mixture $\frac{1}{2} | 0 \> \< 0 | + \frac{1}{2} | 1 \> \< 1 | $ or as a continuous uniform mixture over all possible states $\int \frac{1}{4\pi} | \psi \> \< \psi | d\Omega$.
+
+To be precise, the quantifying measures we considered are really on preparations and measurements, not the states themselves. It was the discrete or continuous character of the space of preparations that selected the appropriate space with the appropriate measure. But even if we have different preparation and measurement spaces, the state space of the system should always be the same, with a single way to count states. This, in other words, highlights the problem of quantum probabilities: while the spaces of preparations and measurement outcomes are both classical, they cannot be connected by classical means. That is, we cannot simply put a classical probability of transition between the two because we would be connecting qualitatively different quantifying measures.
+
+To sum up, the typical foundational question is: how do we generalize probability measures for quantum mechanics? We are asking something different: given that state-quantifying measures play an equally fundamental role, how do we quantify the number of states in quantum mechanics?
+
+\section{Measure theory and quantifying states}
+
+While the standard structure of quantum mechanics does not give us an answer to our question, statistical mechanics and quantum information theory have an implicit answer. Statistical mechanics tells us that the thermodynamic entropy of a system, which is a physically meaningful quantity that has numerous empirical consequences, corresponds to the Shannon entropy for a classical discrete system, the Gibbs entropy\footnote{By Gibbs entropy we mean the differential Shannon entropy $-\int \rho \log \rho d\mu$ calculated over phase space using position and momentum (i.e. canonical coordinates).} for a classical continuous system, and the von Neumann entropy for a quantum system.
+
+There is another expression for entropy, often referred to as the fundamental postulate of statistical mechanics, \cite{Peliti2011} which is the logarithm of the count of microstates: $\log \mu(U)$.\footnote{Note that the Boltzmann constant is left out, as entropy will always be expressed in bits or nats. Physically, the Boltzmann constant is needed to define temperature in Kelvin. Statistical mechanics can be equivalently formulated in terms of $\beta = \frac{1}{k_B T}$.\cite{chyla2011evolution}} In classical statistical mechanics, the measure is indeed the quantifying measure discussed above: the counting measure for the discrete case and the Liouville volume in the continuous case. The two expressions for entropy are linked as the Shannon/Gibbs entropy over a uniform distribution matches the logarithm of the measure of the support. That is, if $\rho_U$ is a uniform distribution over $U$, then $S(\rho_U) = \log \mu(U)$. In quantum mechanics, as we said before, we do not have a measure to quantify states. There is, however, a somewhat related expression: the maximum entropy attainable by a quantum system corresponding to a Hilbert space $\mathcal{H}$ is the logarithm of the dimensionality $\dim_{\mathbb{C}}(\mathcal{H})$ of the space. Therefore, $ S(\rho_U) \leq \log (\dim_{\mathbb{C}}(\text{span}(U)))$.
+
+A similar connection can be established in information theory. The Shannon/Gibbs/von Neumann entropy quantifies the minimum number of bits required on average to send a message from a given source.\footnote{For a more general characterization of entropy that works in statistical mechanics, information theory and other contexts, and a more precise discussion of the continuous case, see \cite{aop-phys-variability}.} This, again, is a quantity that leads to empirical consequences. If we have $n$ bits at our disposal, we have $2^n$ possible combinations, possible messages, that can be encoded. Therefore the logarithm of the number of potential messages corresponds to the number of bits that can encode those messages. Physically, we can associate a different state to each message to be encoded. Therefore $\log \mu(U)$ corresponds to the number of bits. This will exactly correspond to the number of bits required by a source characterized by a uniform probability distribution over that number of symbols.
+
+While the above discussion does not cover all technical details, the only point we want to make is that the link $S(\rho_U) = \log \mu(U)$ is fully justified by both statistical mechanics and information theory. It is not a capricious request, but rather a necessary requirement stemming not from just one, but from two disciplines that have empirical consequences. Therefore if quantum mechanics does not directly provide us with a measure to quantify states, we can use what it does provide, the von Neumann entropy, to define and calculate said measure.
+
+We can start by calculating the simplest case, which is when $U = \{ \psi \}$ is a single state. In this case, we have $S(|\psi\>\<\psi|) = 0$ and therefore $\mu(\{\psi\}) = 2^{0} = 1$. The measure returns one for each state as in the classical discrete case.
+
+The next case is when $U = \{ \psi, \phi \}$ is the set of two states. A uniform distribution over two states will correspond to the mixed state
+\begin{equation}
+	\rho = \frac{1}{2} |\psi\>\<\psi| + \frac{1}{2} |\phi\>\<\phi|.
+\end{equation}
+The entropy of said state will depend on the probability $p=|\<\psi | \phi \>|^2$ in the following way
+\begin{equation}
+	S(\rho) = - \frac{1+\sqrt{p}}{2} \log \frac{1+\sqrt{p}}{2} 
+	- \frac{1-\sqrt{p}}{2} \log \frac{1-\sqrt{p}}{2}.
+\end{equation}
+If the states are orthogonal, then $p=0$, and $S(\rho) = 1$ therefore $\mu(U) = 2^1 = 2$. In this case we have that $2 = \mu(\{ \psi, \phi \}) = \mu(\{\psi\}) + \mu(\{\phi\}) = 1 + 1$, and therefore $\mu$ is additive. Moreover, if $U$ is an orthonormal basis, the von Neumann entropy $S(U) = \log(\dim_{\mathbb{C}}(\text{span}(U))) = \log |U|$ is the logarithm of the cardinality of $U$. Therefore the quantifying measure $\mu(U) = |U|$ is equal to the counting measure. But this is a special case that corresponds to the highest entropy reachable with a mixture. In all other cases the entropy will be lower, and therefore, in general, $\mu(\{ \psi, \phi \}) \leq \mu(\{\psi\}) + \mu(\{\phi\})$. In other words, the measure $\mu$ is not additive.
+
+To sum up, the physically motivated way to quantify the number of states in quantum mechanics is, in general, not additive. When counting states in quantum mechanics, $1+1 \leq 2$.
+
+\section{Non-additivity and contextuality}
+
+While unusual claims are common in quantum mechanics, we want to have a clear, physically tenable, reason as to why the quantifying measure for quantum states must be non-additive. In the context of a spin 1/2 system, for example, why is it that $\{ |z^+\>, |z^-\>\}$ count as two states while $\{ |z^+\>, |x^+\> \}$ count as less than two?
+
+Since we saw that the quantifying measure is indeed additive for a set of orthogonal states, this should make us think about contextuality: the impossibility to assign outcomes to all potential measurements of a quantum system. We have, in fact, derived that it is impossible to define an additive quantifying measure on all potential states, but we can do so on the outcomes of one measurement. The ability/inability to define additive measures is exactly the difference between classical/non-classical probability.
+
+While contextuality is often presented as a somewhat abstract, almost metaphysical, property of quantum mechanics, we have a rather more down-to-earth view. The choice of the measurement means a difference in physical process of either the preparation or measurement device. Choosing which direction of spin to prepare or measure means, at some point, orienting some polarizer, magnetic field or making an equivalent change to a physical device. Something is changed in the physical world, not just in the system, but around the system, in its environment. If Amanda claims that a particle is in the $|z^+\>$ state, then Boris is able to infer something about Amanda's preparation/measuring device.\footnote{This is not at all particular to quantum mechanics. We can study the motion of a cannonball here on earth, but not on the surface of the sun, as the cannonball would be immediately vaporized. The mere claim that a system exists implies that the boundary conditions necessary for that system to exist are satisfied. In this sense, all physics is contextual.} Therefore we can understand the context simply as those conditions on the environment that are necessary for the system to be found in that particular state. A set of orthogonal states, then, has the property that they can be found in the same external conditions.
+
+Given that we have, in general, a correlation between system and environment, it is natural to understand how contextuality leads to a non-additive measure. Two states, in fact, should be counted as two only if they lead to a change in the system alone. That is, \textbf{states should be quantified all-else-being-equal}. While two states from different contexts are indeed two distinct states, stating we transitioned from one to the other does not give us information only about the system: it tells us something about the environment as well. The degree of incompatibility of observables, then, ultimately measures the degree of change when realizing the context physically.
+
+So we have a clear, physically motivated reason as to why contextuality is linked to a non-additive measure. States should be quantified at-all-else-being-equal, meaning that possible correlations with the environment have to be removed.
+
+\section{Non-additivity and quantization}
+
+While we have clarified what it means for the quantifying measure to be non-additive, and how this is tied to non-contextuality, we haven't shown why it should be linked to quantization. In fact, what exactly is quantization?
+
+Before trying to answer that question, let's make a direct comparison between the quantifying measures for the three cases: the counting measure $\mu_d$ for the classical discrete case, the Liouville measure $\mu_c$ for the classical continuous case and the newly defined quantized measure $\mu_q$ for the quantum case. This requires a space where all three can be defined, which fortunately exists: the surface of a sphere. First, we want to compare the behavior on a single point. The counting measure returns one, and so does the quantum measure. The Liouville measure, however, returns zero. Second, we want to compare the behavior on a finite region, an open set. The Liouville measure returns the solid angle, which is always going to be finite as it must be less than or equal to $4\pi$. The von Neumann entropy of a mixed state over a two-state system is between zero and one, and therefore the measure must be between one and two. However, given that an open set on a sphere has infinitely many points, the counting measure over a finite region will be infinite. Lastly, we want to compare the additivity. Both classical measures are additive, while the quantum measure is not.
+
+Let us list the three properties we have mentioned:
+\begin{enumerate}
+	\item single states count as one
+	\item finite continuous regions correspond to finite state quantification
+	\item state quantification is additive on disjoint regions.
+\end{enumerate}
+These seem very reasonable properties to assume for a quantifying measure of states. \textbf{However, these three conditions are incompatible}. If each state counts as one, and the measure is additive, then a finite continuous region must be infinite as it contains infinite points. \textbf{Of the three conditions, we can only pick two}. This is, in fact, what each measure does. The counting measure rejects the second property. The Liouville (and Lebesgue) measure discards the first. The quantum measure sacrifices the third.
+
+So, in light of this, what is quantization? If we have a system characterized by continuous quantities, such as position, the state space will necessarily be a continuous space and finite regions will have to correspond to finite information as those correspond to the finite precision measurements we can make.\footnote{For a treatment of how finite-time experimental verification is captured by topological concepts, and what necessary and sufficient operational assumptions are required for the use of real valued quantities, see \cite{kelly1996,aop-book}.} If the regions are large enough, the Liouville (or Lebesgue) measure will work. But as we shrink a region we will encounter, given the additivity, regions that contain less than one state, which does not make sense. Note that measure less than one corresponds to negative thermodynamic entropy, which does not make sense either.
+
+Quantization, then, is fixing the quantifying measure so that it is bounded from below by one (and the entropy by zero): each state counts as one. However, this comes at a price: non-additivity. This non-additivity is ultimately why classical probability has to fail as well, given that additivity is one of its axioms. It is also the same reason as why quantization implies contextuality: the non-additivity means that some states cannot be prepared at-all-else-being-equal.
+
+In our view, this provides a good conceptual basis to understand the failure of classical mechanics, the need for the departure from classical ideas and the need for quantum theory. We believe this, by itself, is already sufficient reason to start a research program to explore these ideas fully. However, since most physicists do not seem to be interested in this type of ``clean-up work'', we can easily argue that a full characterization of the quantized measure is critical for the development of future physical theories.
+
+\section{Implication for space-time quantization}
+
+We have seen that quantization can be understood as putting a unitary lower bound on the state quantification: no set of states can have fewer than one state. If we were to quantize space-time, what is it that we are quantizing?
+
+The most fundamental theories that are available to us are field theories. In a field theory, the state is described by the value of the fields at each point in space. At each point, the value of the field is independent from the others: the degrees of freedom form a continuum.\footnote{If we restrict ourselves to continuous fields, then we only need to specify the value of the fields on a countable dense subset (i.e. rational values of the coordinates). However, these details do not change the discussion: a Lebesgue measure on the rationals has the same characteristics as the one extended to the reals.} We can therefore pose the question: how do we quantify the degrees of freedom?
+
+If we have a region of space and we double the volume, we can imagine we are also doubling the number of degrees of freedom. Therefore, we can construct a volume measure from the metric tensor, which would give us an invariant volume that quantifies degrees of freedom, much in the same way that the Liouville measure quantified states.
+
+Since the measure is finite for finite regions and is additive, as we shrink the region, we will find regions with less than one degree of freedom. This does not make sense. As before, we need to put a unitary lower bound on the measure and our measure cannot be additive. We need a quantized measure. Quantizing space-time, then, means putting a quantized measure on the number of degrees of freedom.
+
+What does it mean that two degrees of freedom count less than two? Before answering that question, let's consider time. We said that if we double the spatial volume, we double the number of degrees of freedom. Suppose we have a space-time region and we double the time, are we doubling the number of degrees of freedom? Well, we are certainly doubling the support of the function we have to specify for the field configuration, but we wouldn't consider that doubling the degrees of freedom. Intuitively, we just think of those as being the same degrees of freedom that are getting different values in time. This is because we expect the future and past values to be linked by some dynamical equations, so the future values would be linked, in some way, to the past values. That is, the past and future value of the same field at some point are not independent. This may give us an insight into the physical meaning of the non-additivity of quantification of the number of degrees of freedom.
+
+The same field at two spatial points may count less than two degrees of freedom simply because their values are not independent. The values of the field at two distant points can be chosen arbitrarily, therefore the measure would be additive at long range. But as the points get sufficiently close, this would not be the case, so at short scale we need a quantized measure to quantify independent degrees of freedom. Note that the lack of independence of the field values in close-by regions may mean that high frequencies of the fields are damped: the values have to become closer. A quantized measure of the degrees of freedom would effectively provide a cutoff. Therefore we have a story that is very well motivated and provides a possible solution for high energy divergences in quantum field theories.
+
+While the development of a quantum theory of gravity is not our primary interest, the mathematical tools required to characterize the non-additive quantized measure seem to be of similar nature as the ones that may be used to quantize space-time.
+
+\section{Open questions and future work}
+
+Having outlined the scope and motivation for this new approach, we now outline the main questions we think need to be addressed by this new research program.
+
+Both the counting measure and the Lebesgue/Liouville measures are unique in some sense. For the counting measure, once we define the value for a single point, typically one, the whole measure is determined. Similarly, once we have defined a real variable, the Lebesgue measure is determined. The Liouville measure requires a bit more structure, but once the canonical coordinates are chosen, the measure is determined as well. Therefore the first question is whether these quantized measures are also unique in some sense.
+
+While we have found some literature on non-additive measures and set functions \cite{hamhalter2003quantum, nonadditive2014}, together with modified theories of integration, these seem to concentrate on monotonic measures: measures that increase as the set increases. Unfortunately, the quantized measure does not have this feature. Consider the set $\{ |z^+\>, |z^-\> \}$. An equal mixture will return the maximally mixed state which, as we said, would correspond to a measure equal to 2. Now consider the set $\{ |z^+\>, |z^-\>, |x^+\> \}$. An equal mixture of them will not correspond to the maximally mixed state, and therefore the measure will be less than two. The set is bigger, but the measure is smaller. Therefore there may be new mathematical ground to be explored.
+
+We may want to understand the necessary conditions for a quantifying measure. Some may be derived from the strict concavity of entropy, given the connection between the two. Furthermore, note that the pairwise relationships between the measure over two points, the entropy of the equal mixture of two states and the probability of transition between two states are all invertible. This means that the relationship between two states defines the geometry of the whole state space. Therefore there must be further consistency requirements that can be identified.
+
+Another issue that needs to be understood is how the quantized measure behaves in composite systems and across multiple degrees of freedom. In the classical case, the measure is defined on the product of the corresponding $\sigma$-algebras. Ideally, we would like to show that this simple procedure cannot support a quantized measure, and the $\sigma$-algebra of the tensor product must be taken.\footnote{Technically it would be the $\sigma$-algebra projective space coming from the tensor product of the Hilbert spaces associated with the individual systems.}
+
+The first spaces we should study are the symplectic ones as these are the ones that allow for frame independent densities. If we want to extend to a quantization of space-time, however, Riemannian spaces need to be studied as well. However, we have found a connection between the two: if the symplectic form is expressed in position and velocity, instead of canonical coordinates, its position-velocity component corresponds to the metric tensor. The metric tensor can then be understood as defining volumes in position-velocity instead in position-momentum. This may allow us to transfer the quantized measure onto the tangent bundle and then, hopefully, to the space itself.
+
+Finally, we want to stress that, contrary to what happens in other programs, the physical motivations for the mathematical generalization are tightly driven by the physics. We are not introducing concepts that, like negative probability, have no clear direct physical meaning. The goal is the quantification of states.
+
+\section{Conclusion}
+
+We have seen that, in physics, measure theory is not only used to characterize classical probability but also to quantify states in state spaces. Ideally, such a measure would have the following three conditions:
+\begin{enumerate}
+	\item single states count as one
+	\item finite continuous regions correspond to finite state quantification
+	\item state quantification is additive on disjoint regions.
+\end{enumerate}
+However, these conditions are not compatible, and only two of the three can be chosen. The classical discrete case discards the second; the classical continuous case discards the first; the quantum case discards the third. Quantization, then, can be understood as putting a unitary lower bound on the measure that quantifies states.
+
+The lack of additivity on the whole space makes it impossible to use classical probability on the state space as a whole. Physically, the issue is that states must be counted at-all-else-being-equal, a feature broken by contextuality. But if the states do belong to the same context (e.g. they are the output of the same measurement), additivity is recovered. This tells us very directly why quantization requires contextuality, and why classical probability works within the same context. The fact that single states and finite continuous regions both have finite measure also tells us why quantum mechanics mixes features of the classical discrete and continuous cases.
+
+We believe that further study and characterization of the non-additive quantized measure will not only bring more clarity to the interplay among the above concepts, but it may be necessary for the development of future physical theories. Given that, in a field theory, the number of independent degrees of freedom is taken to be proportional to the spatial volume, quantization of space-time can be understood as the quantization of the measure that quantifies the independent degrees of freedom. The development of physically motivated mathematical tools may help in that regard.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{6pt} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% optional
+%\supplementary{The following supporting information can be downloaded at:  \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title.}
+
+% Only for journal Methods and Protocols:
+% If you wish to submit a video article, please do so with any other supplementary material.
+% \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title. A supporting video article is available at doi: link.}
+
+% Only for journal Hardware:
+% If you wish to submit a video article, please do so with any other supplementary material.
+% \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title.\vspace{6pt}\\
+%\begin{tabularx}{\textwidth}{lll}
+%\toprule
+%\textbf{Name} & \textbf{Type} & \textbf{Description} \\
+%\midrule
+%S1 & Python script (.py) & Script of python source code used in XX \\
+%S2 & Text (.txt) & Script of modelling code used to make Figure X \\
+%S3 & Text (.txt) & Raw data from experiment X \\
+%S4 & Video (.mp4) & Video demonstrating the hardware in use \\
+%... & ... & ... \\
+%\bottomrule
+%\end{tabularx}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\authorcontributions{Both authors contributed to all stages of the work. All authors have
+	read and agreed to the published version of the manuscript.}
+
+\funding{This article was made possible through the support of grant \#62847 from the John Templeton Foundation.}
+
+\institutionalreview{Not applicable.}
+
+\informedconsent{Not applicable.}
+
+\dataavailability{This study generated no data.} 
+
+% Only for journal Nursing Reports
+%\publicinvolvement{Please describe how the public (patients, consumers, carers) were involved in the research. Consider reporting against the GRIPP2 (Guidance for Reporting Involvement of Patients and the Public) checklist. If the public were not involved in any aspect of the research add: ``No public involvement in any aspect of this research''.}
+
+% Only for journal Nursing Reports
+%\guidelinesstandards{Please add a statement indicating which reporting guideline was used when drafting the report. For example, ``This manuscript was drafted against the XXX (the full name of reporting guidelines and citation) for XXX (type of research) research''. A complete list of reporting guidelines can be accessed via the equator network: \url{https://www.equator-network.org/}.}
+
+\acknowledgments{This paper is part of the ongoing \textit{Assumptions of Physics} project \cite{aop-book}, which aims to identify a handful of physical principles from which the basic laws can be rigorously derived.}
+
+\conflictsofinterest{The authors declare no conflict of interest.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{adjustwidth}{-\extralength}{0cm}
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\reftitle{References}
+
+% Please provide either the correct journal abbreviation (e.g. according to the “List of Title Word Abbreviations” http://www.issn.org/services/online-services/access-to-the-ltwa/) or the full name of the journal.
+% Citations and References in Supplementary files are permitted provided that they also appear in the reference list here. 
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+\bibliography{bibliography}
+
+
+% If authors have biography, please use the format below
+%\section*{Short Biography of Authors}
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author1.pdf}}}
+%{\textbf{Firstname Lastname} Biography of first author}
+%
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author2.jpg}}}
+%{\textbf{Firstname Lastname} Biography of second author}
+
+% For the MDPI journals use author-date citation, please follow the formatting guidelines on http://www.mdpi.com/authors/references
+% To cite two works by the same author: \citeauthor{ref-journal-1a} (\citeyear{ref-journal-1a}, \citeyear{ref-journal-1b}). This produces: Whittaker (1967, 1975)
+% To cite two works by the same author with specific pages: \citeauthor{ref-journal-3a} (\citeyear{ref-journal-3a}, p. 328; \citeyear{ref-journal-3b}, p.475). This produces: Wong (1999, p. 328; 2000, p. 475)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% for journal Sci
+%\reviewreports{\\
+%Reviewer 1 comments and authors’ response\\
+%Reviewer 2 comments and authors’ response\\
+%Reviewer 3 comments and authors’ response
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PublishersNote{}
+\end{adjustwidth}
+\end{document}
+
