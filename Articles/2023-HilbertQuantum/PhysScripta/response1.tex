@@ -1,0 +1,299 @@
+\documentclass[11pt, executivepaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={158mm,237mm},
+ left=28mm,
+ top=28mm,
+ }
+\usepackage{hyperref}
+\hypersetup{colorlinks= true, allcolors=blue}
+\setcitestyle{aysep={}}
+\begin{document}
+
+
+\title{\textbf{Replies to Reviewers' Comments}}
+
+\author{The Authors}
+
+\maketitle
+
+
+\noindent First of all, we would like to thank the editorial board for the consideration of our article. Stepping back, the main line of inquiry of this paper, and our work more in general, is determining whether a particular mathematical structure is the ``correct'' one to represent a physical system. While we are convinced that no real progress can be made in the foundations of physics without establishing a precise link between mathematical models and the physical systems they are supposed to represent, the academic community does not seem set up to encourage these discussions. Since the problem sits right in between mathematics and physics, most physicists do not have enough of the technical mathematical background required, and most mathematicians do not have the physical intuition that in the end must guide the decisions.
+
+For example, one of us is working on the ill-definition of the path integral formulation of quantum field theory. That is, one of the most successfully used frameworks in physics assumes a measure that is mathematically proven not to exist. While one may think this is an important problem to address, most mathematicians consider the discussion settled that there is no solution, without looking for ways to address the problem, and most physicists simply do not care given that the calculations can be made to work, sometimes boasting of the fact that they do not care.
+
+As another example, two of us have worked on the physical significance of the Lagrangian and the action principle, clarifying what the action is, and why, under specific physical assumptions, it is minimized. The paper was rejected without review by a good number of journals, including one specialized in the foundations of physics, claiming that the topic is not of general interest. It was published in a ``catch-all'' journal. Given this context, we are grateful that the current paper was at least sent for review. 
+
+In the cover letter we specifically recommended ``not relying exclusively on reviewers who would focus primarily on the mathematical aspects'' because ``the core new idea is to look for physical justification of the mathematical structure, not simply internal mathematical consistency.'' We found, in fact, that the vast majority of physicists who read the paper concurred that having a time evolution oscillating between finite and infinite expectation values is an objective problem. On the other hand, most mathematicians either abstained (as it is a physical matter), or argued that the mathematics is consistent, and therefore there was no problem. Both reviewers, in different manners, did that, and as predicted, ``missed the main point of the paper.''
+
+We are now going to look at the reviews, section by section, to show how that is the case.
+
+\subsection*{Reviewer 1}
+
+Reviewer 1 starts with
+\begin{quote}
+This article is partially in my areas of expertise. The main observations I
+would like to make are the following.
+Some called paradoxes in quantum mechanics have been solved with proper
+use of mathematical formalism of non-relativistic quantum mechanics. See,
+in particular, the introduction of the book: D.M. Gitman, I.V. Tyutin, and
+B.L. Voronov. Self-adjoint Extensions in Quantum Mechanics: General Theory
+and Applications to Schrodinger and Dirac Equations with Singular Potentials,
+volume 62 of Progress in Mathematical Physics. Birkhauser, Boston, 2012. I
+think that references of this kind are related to the scope and subjects of the
+article submitted by the authors.
+\end{quote}
+
+The introduction of Gitman-Tyutin-Voronov clearly spells out what type of problems it aims to address:
+\begin{quote}
+The problem of a correct definition of quantum observables is generally nontrivial in the case of physical systems with boundaries and/or with singular interactions (including QFT models). In what
+follows, for the sake of brevity, we call such systems nontrivial physical systems (or simply nontrivial systems). The interest in this problem revives periodically in connection with studies of specific nontrivial systems such as a particle on a
+finite interval or on a semiaxis, a particle in singular potential fields, in particular in the Aharonov–Bohm or in $\delta$-like potential fields, and so on.
+\end{quote}
+That is, if one goes past the ``trivial'' case in which the domain of integrable functions is the entire $\mathbb{R}^n$, different issues arise, such as the difference between Hermitian, self-adjoint and symmetric operators. Note that the problem of infinite/undefined expectations exists also in the trivial case. Contrary to what the reviewer says, these references do not address the issue at hand any more than the references we already provided.
+
+The reviewer continues
+\begin{quote}
+	On the other hand, in Section C, the authors provide two examples of wave
+	functions. From the elementary definition of an operator, we need to specify its
+	domain and the rule that assigns the image of each element of its domain. In
+	particular, if we had the operator $x^n$ in $L^2$, the maximal domain of definition
+	is $\{\psi \in L^2 : x^n \psi \in L^2\}$. The wave function given in Equation 1 belongs to any
+	of these domains, for n = 0, 1, . . . ; however, the wave function in Equation 2
+	will not belong to such domains since $n \geq 1$. Henceforth, the statement that
+	``expectation values will diverge for all moments'' does not make sense because
+	the wave function given in Equation 1 does not belong to the domain of any
+	power $x^n$ for $n \geq 1$.
+\end{quote}
+The reviewer points out that, mathematically, it would be more proper to say that the expectation of the observable is not defined, instead of being infinite. Therefore, we should say that the expectation value of the energy, or the position, or the number of particles, is not defined. How does this solve the physical problem? Arguably, saying the expectation of the energy of a particular state is undefined is even worse than saying that it is infinite. 
+
+\begin{quote}
+	Another subject that I want to touch on is unitary transformations in nonrelativistic
+	quantum mechanics.
+	
+	Recall that an operator from one Hilbert space onto another is said to be
+	unitary or isomorphic if defined on the whole of the first one, sends it onto the
+	second Hilbert space, and preserves the inner product. See, for example, Section
+	40, p. 112, of N.I. Akhiezer and I.M. Glazman. Theory of Linear Operators in
+	Hilbert Space. Dover Publications, New York, 2 edition, 1993.
+	
+	The definition of a unitary transformation that I know is used in the mathematical
+	formalism of non-relativistic quantum mechanics is the definition above.
+	If this definition is equivalent to a change of variable, a reference discussing the
+	equivalence of both concepts would benefit the reader.
+\end{quote}
+We use the same standard definition of unitary transformation. If we didn't, the other reviewer would have raised the same objection. The fact that coordinate transformations, as all other changes of representation, are unitary transformations is established by Wigner's theorem. Even the Wikipedia page on Wigner's theorem mentions passive coordinate transformations in the context of changes of representation:
+\begin{quote}
+	Loosely speaking, a symmetry transformation is a change in which "nothing happens"[8] or a "change in our point of view"[9] that does not change the outcomes of possible experiments. For example, translating a system in a homogeneous environment should have no qualitative effect on the outcomes of experiments made on the system. Likewise for rotating a system in an isotropic environment. This becomes even clearer when one considers the mathematically equivalent passive transformations, i.e. simply changes of coordinates and let the system be.
+\end{quote}
+
+The reviewer continues
+\begin{quote}
+Along with the unitary transformation in quantum mechanics, we have the
+concept of two unitarily equivalent operators: Let H1 and H2 be two Hilbert
+spaces. Two linear operators say $\hat{P}$ in H1 and $\hat{S}$ in H2 with domains $D(\hat{P}) \subset H1$
+and $D(\hat{S}) \subset H1$, are isomorphic (or unitarily equivalent) if there is an unitary
+transformation $F$ such that $D(\hat{S}) = F(D(\hat{P}))$ and $S = F\hat{P}F^{-1}$ hold. See, for
+example, the provided definition in p.115 of N.I. Akhiezer and I.M. Glazman.
+Theory of Linear Operators in Hilbert Space. Dover Publications, New York, 2
+edition, 1993.
+With the definition of unitarily equivalent operators via a unitary transformation,
+it is prevented from having states with finite expectation values to
+be unitarily mapped to states with infinite expectation values, provided that
+we start with a state that belongs to the corresponding domain of the power
+operator.
+\end{quote}
+The reviewer confuses old position operator in the new frame $U X U^{-1}$  with the new position operator in the new frame $Y$. The old position operator $X$ and the new position operator $Y$ are \textbf{not} unitarily equivalent under the change of coordinate since the expectation value for $x$ and $y$ for the same state are necessarily going to be different. That's the whole point of a coordinate transformation: the position variable is different in the two frames.
+
+\begin{quote}
+The previous issues need to be revisited by the authors since some of their
+main conclusions are based on the definitions of unitary transformation and
+unitarily equivalent operators, which seem not to be considered by them. If
+the authors are dealing with and referring to different concepts, please, provide
+the (mathematical) definitions and references where they are introduced and
+discussed.
+\end{quote}
+Note that in the appendix, proposition 24 explicitly constructed the unitary transformation from the change of variables. Also note that the other reviewer didn't encounter a problem following our definitions.
+
+Changes of coordinates are a basic and fundamental notion in physics, and a pre-requisite to follow many physics arguments, including the one we make. The reviewer does not demonstrate a good understanding of the subject. Moreover, the reviewer shows no appreciation for the physical problem: they do not seem concerned that quantities like position, momentum, energy, number of particles, or any other unbounded quantities are not well defined on all states. This is exactly the kind of attitude that, as mentioned above, prevents the advancement of the mathematical foundations of physics.
+
+While we understand and agree that the lack of definition of unbounded quantities over a Hilbert space is not a mathematical problem, the lack of definition of position, momentum, energy or number of particles on a pure state is indeed a physical problem. The review shows that the reviewer is not capable of making that determination.
+
+\subsection*{Reviewer 2}
+
+Reviewer 2 starts with
+\begin{quote}
+The standard formulation of elementary quantum mechanics is in terms of
+self-adjoint operators acting in Hilbert space. The thesis of this paper is that
+part of this structure is unphysical.
+
+A Hilbert space is first of all a complex vector space. Second, it has an
+inner product. Finally, it is complete as a metric space. The unit vectors in
+Hilbert space determine the states of the system. Given a state and a self-adjoint
+operator, there is a corresponding probability distribution defined for the Borel
+subsets of the real numbers. The most important self-adjoint operators are the
+position operator Q and the momentum operator P.
+
+The authors accept the vector space structure and the inner product as
+‘physical”. However they reject the completeness as “non-physical”. The authors
+justify this on the grounds that “completeness forces us to include states
+with an infinite expectation value, which cannot be implemented physically”.
+\end{quote}
+The reviewer has correctly summed up the main point of the article.  The reviewer then proceeds with the following remark
+\begin{quote}
+The rather vague notion of “unphysical” used by the authors sometimes has
+to do with cardinality and sometime has to do with the extended real number
+system. However the main part of the argument involves only the latter notion.
+\end{quote}
+We defined physicality as
+\begin{quote}
+	On the other
+	hand, a mathematical definition is \textbf{unphysical} if it can
+	be shown to require properties or operations that cannot
+	have a physical counterpart.
+\end{quote}
+So, yes, different mathematical requirements may be unphysical depending on the the physics they are trying to describe. Modeling the number of people with positive and negative numbers, for example, is unphysical. Modeling distance with complex numbers is unphysical. In our opinion, the fact that some reviewers of \textbf{physics} papers have a problem with something that most physicists would take as obvious shows the sorry state of mathematical modeling in theoretical physics.
+
+\begin{quote}
+The authors give an explicit example. One can take the Hilbert space to
+consist of square-integrable functions of x, and Q to be multiplication by x.
+Then a state with Gaussian density gives finite expectation to Q, while a state
+with Cauchy density has undefined expectation. The Gaussian states gives finite
+expectation to Q to an even power, while the state with Cauchy density gives
+infinite expectation to Q to an even power.
+\end{quote}
+The reviewer has summed up the example correctly. This shows that we are not using non-standard techniques, as claimed by the previous reviewer. The reviewer proceeds to argue that having infinite expectation is not a problem.
+\begin{quote}
+The obvious criticism of this point of view is that exactly the same issue
+arises in probability theory. In fact, given a self-adjoint operator A and a state
+$\psi$, one may think of A as a random variable with a well-defined distribution.
+That is, if S is a Borel subset of the reals, then the indicator function $1_S$ applied
+to A is represented as an event $1_S(A)$ with expectation equal to the probability
+that A is in S. The physical consequence of this is that in repeated experiments
+sample proportions are likely to be close to probabilities.
+
+More generally, if f is a bounded Borel function, then f(A) is realized as a
+bounded random variable. The physical consequence is that in repeated trials
+the sample means are likely to be close to the expectation. In short, even though
+a random variable may have expectation infinity or minus infinity or undefined
+(infinity minus infinity), there is no problem extracting useful information from
+it.
+
+But what if one says that it is important to consider that the random variable
+be directly realized as predicting outcome values in independent repeated trials?
+This should be realized by sample means of the random variable itself.
+
+If the expectation is finite, then the sample mean values should be finite and
+for a large number of trials be close to the expectation. However even if the
+expectation is infinite, the sample means will be finite. All that happens is that
+for larger and larger numbers of trials the sample mean values will be larger and
+larger. How about the case when the expectation is undefined (infinity minus
+infinity)? Again the sample mean values will be finite. But they will fluctuate,
+getting arbitrarily positive and arbitrarily negative.
+
+In the case of the Cauchy distribution cited by the authors the sample means
+themselves have the Cauchy distribution. There is nothing infinite about that.
+\end{quote}
+The reviewer is essentially arguing that the infinity comes when you get infinite samples. Every outcome of each trial is finite. This would work if we were considering a statistical mixture of states that have finite expectation. At each trial, we would get a pure state from the mixture that has finite expectation. However, this is not the case.
+
+The state we constructed is a pure state, not a mixed state. That pure state can be itself the outcome of a \textbf{single} trial. The expectation cannot be understood simply as the average of infinitely many trials. If the infinite quantity is energy, given that it must be conserved, the pure state requires infinite energy to be prepared. A superposition of energy eigenstates cannot be understood as a statistical mixture.
+
+Moreover, we have also shown that, in Hilbert spaces, a unitary transformation exists that changes a finite expectation value to an infinite expectation value \textbf{in finite time}. Even if we allow the idea that pure states are themselves ensembles (a matter that is interpretation dependent), you still have this problem. Therefore, at the very least, Hilbert spaces are not physical because they allow such time evolutions.
+
+This provides a good example of the type of confusion which stems from the imprecise mapping between math and physics. Note that this misunderstanding on the part of the reviewer is precisely a problem of inadequate mapping between mathematical objects and physical ones, the type of problem that our research program aims to address. 
+
+\begin{quote}
+The authors make a positive suggestion: Consider using wave functions in
+the Schwartz space of smooth rapidly decreasing functions. For these states all
+powers of Q and P have finite expectation.
+
+But it seems awkward to have a restriction that such moments must have
+finite expectations, since this rules out most quantum mechanical calculations,
+including such central examples as the ground state of hydrogen. In that case
+higher moments of momentum diverge.
+\end{quote}
+The reviewer claims that the restriction to Schwartz spaces is ``awkward'', as it supposedly rules out most quantum mechanical calculations. Here is what we wrote in the conclusion
+\begin{quote}
+Similarly, we can pose a problem on the
+Schwartz space, extend to the Hilbert space or the space
+of distributions for calculation, and then bring the result
+back to the Schwartz space
+\end{quote}
+That is, we \textbf{specifically stated} that the space used for calculation can be whatever one wants. The ground state of the hydrogen atom is
+$$ \frac{1}{\sqrt{\pi} a_0^{3/2} }e^{-r/a_0} $$
+which is a Schwartz function. So the result is a Schwartz function (it decreases to infinity like an exponential).
+
+Note that we gave a \textbf{physical reason} for a possible restriction to the Schwartz space: the ability to perform quantum tomography, to identify states experimentally. Note that the reviewer uses mathematical convenience in calculation to discard this reason. It shows little consideration for the physical argument, which, again, is the main point.
+
+\begin{quote}
+The reviewer concludes that the issues discussed in this paper really have to
+do with general probability theory, and in this context they seem not to be a
+problem.
+\end{quote}
+Again, there is no issue in probability theory as each element itself has finite expectation. The infinity is potential as it is the expectation over infinitely many trials. Moreover, probability theory is not a theory of states and processes, like quantum mechanics. The issue here is that a single pure state can have an infinite value: the infinity is actual, not potential. Also, time evolutions are included that realize the actual infinity in finite time.
+
+
+\begin{quote}
+There are some questionable statements in the paper. For instance, it is
+claimed that the Schwartz space is the only vector subspace closed under Fourier
+transformations. This is clearly false: Consider the domain of a power of the
+harmonic oscillator Hamiltonian H = (1/2)(P2 + Q2).
+
+There is a claim that a change of variables leads to an antiunitary transformation.
+This seems to be a confusion arising from the fact that the authors
+neglect the absolute value on the Jacobian determinant associated with the
+change of variables.
+\end{quote}
+These are details that can be addressed, and have no bearing on the argument. Also note that the second criticism is on a detail of the change of variable, which means the reviewer had no problem with the rest, contrary to the first reviewer.
+
+The reviewer concludes
+\begin{quote}
+A final comment. The reviewer argued above that the way that a random
+variable is realized is by doing the experiment (perhaps many times) and examining
+the actual outcome values. This is one very standard approach to
+interpreting probability.
+In quantum mechanics this works for a self-adjoint operator, or even for
+a family of commuting self-adjoint operators. However there is the following
+result. It is so general that it does not even require an assumption that the
+experiment is repeated.
+Theorem. Consider a finite-dimensional Hilbert space of dimension at least
+4. Suppose that for each self-adjoint operator A there is an “experimental”
+value v(A). Suppose these values satisfy at least the following two properties:
+• v(A) is always an eigenvalue of A
+• A commutes with B implies v(A + B) = v(A) + v(B).
+Then this leads to a contradiction. For a proof see Bricmont, Goldstein,
+Hemmick: From EPR-Schrodinger paradox to nonlocality based on perfect correlations.
+In other words, the restriction to a commuting family is essential. But what
+is the precise mathematical criterion for choosing the particular family? That
+is the real problem of “physicality”.
+\end{quote}
+The reviewer now discusses interpretations of probability, and a theorem related to hidden variables. He claims that the real problem of ``physicality'' lies in understanding these issues. This makes it clear that, in the eye of the reviewer, we are not working on ``real'' issues.
+
+Note that hidden variables are, by definition, not experimentally definable. They cannot be measured, prepared, or studied in any way. They are mere conjectures. Therefore, in the context of this paper, they are unphysical. Note that most of the technical appendix of our paper is there to guarantee that all that we say is \textbf{independent} of interpretation. We reformulate superposition in terms of statistical mixtures because the latter have a clear physical meaning. We go out of our way to avoid interpretational issues, so that everything that we say is grounded in experimental constraints.
+
+In our opinion, the reviewer read the paper, understood the main point but, since their personal interests lie elsewhere, promptly dismissed it as irrelevant. Unfortunately, this is the attitude of the majority of people working on the foundations of quantum mechanics: if you are interested in positing hidden variables, parallel worlds, consciousness-induced collapses or other similar ideas, then you find a place in the ongoing discussion; if you want to understand exactly what mathematical features are physically justified, and maybe find mathematical definitions that are better suited to capture experimental/physical requirements, then you are dismissed because you are not working on ``real'' problems. 
+
+\subsection*{Conclusion}
+
+The main point of the paper was a physical one: we cannot prepare or measure infinite quantities, therefore pure states identified by infinite quantities cannot be physical. The only mathematical point required is to show that completeness forces us to include pure states that correspond to infinite/undefined quantities. Neither of the two reviewers disputed the mathematical point. Neither of the two reviewers, in our opinion, seriously and knowledgeably considered the physical point.
+
+While the immediate interest is for this paper, we feel that it is more important to recognize and mention the bigger problem, of which these reviews are a particular instance. We strongly believe that working toward mathematical tools that see their foundation/motivation in physical ideas and requirements is the only way to proceed toward a better understanding of our physical theories. This will have practical advantages in better understanding, better intuition and better generalized tools. This cannot happen if we can't even make the absolutely simple point that we cannot have pure states whose position or energy is undefined/infinite.
+
+We are actively looking for a journal in which such line of research can be discussed. We would welcome harsh criticism if it were on point and would push us towards our goal. We realize that it is hard to find reviewers on these topics precisely because, for various reasons, there is little active research on them... but one of the reasons there is little active research on them is because they are very difficult to publish.
+
+Naturally, it is the prerogative of the editorial board to decide whether this line of research is appropriate for the journal, particularly given the additional problem of finding suitable reviewers. We would completely understand if, even if in principle you agree with the spirit of our research, practical considerations make it unrealistic to pursue within the journal. In such case, we only ask you to let us know if you are aware of people, conferences or other journals that would be sympathetic to our endeavor.
+
+
+%\clearpage
+%\bibliographystyle{apalike}
+%\bibliography{bibliography}
+\end{document}
