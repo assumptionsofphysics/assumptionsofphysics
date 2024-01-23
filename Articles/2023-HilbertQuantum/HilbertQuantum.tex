@@ -372,19 +372,19 @@ Therefore we can set
 		\psi(y) &= \psi(x(y)) \sqrt{\frac{dx}{dy}}.
 	\end{aligned}
 \end{equation}
-If the change of variable does not change orientation, the above transformation is unitary.\footnote{If the orientation changes, the transformation is anti-unitary.}
+The above transformation is unitary.
 
 \begin{prop}
 	Let $\mathcal{H} = L^2(\mathbb{R})$ be the space of square integrable functions. Let $f : \mathbb{R} \to \mathbb{R}$ be an orientation-preserving diffeomorphism. Then the map $U : \mathcal{H} \to \mathcal{H}$ such that 
-	$\phi(y) = U(\psi(x)) \mapsto \psi(f^{-1}(y)) \sqrt{\left(\frac{df}{dx}\right)^{-1}}$ is a unitary transformation.
+	$\phi(y) = U(\psi(x)) \mapsto \psi(f^{-1}(y)) \sqrt{\left|\frac{df}{dx}\right|^{-1}}$ is a unitary transformation.
 \end{prop}
 \begin{proof}
 	Note that $f$ models a change of variables, therefore, in physics notation, $y = y(x) = f(x)$ and $x = x(y) = f^{-1}(y)$. Also note that both variables are real, therefore the Jacobian $\frac{df}{dx}$, which exists and  is nonzero because $f$ is a diffeomorphism, is real valued. Therefore $\left(\frac{df}{dx}\right)^\dagger = \frac{df}{dx}$. We have:
 	\begin{equation}
 		\begin{aligned}
 			\int \phi^\dagger(y) \phi(y) dy &= \int U(\psi(x))^\dagger U(\psi(x)) dy \\
-			 = \int \psi^\dagger(f^{-1}(y)) &\sqrt{\left(\frac{df}{dx}\right)^{-1}}\psi(f^{-1}(y)) \sqrt{\left(\frac{df}{dx}\right)^{-1}} dy \\
-			 &= \int \psi^\dagger(f^{-1}(y)) \psi(f^{-1}(y)) \left(\frac{df}{dx}\right)^{-1} dy \\
+			 = \int \psi^\dagger(f^{-1}(y)) &\sqrt{\left|\frac{df}{dx}\right|^{-1}}\psi(f^{-1}(y)) \sqrt{\left|\frac{df}{dx}\right|^{-1}} dy \\
+			 &= \int \psi^\dagger(f^{-1}(y)) \psi(f^{-1}(y)) \left|\frac{df}{dx}\right|^{-1} dy \\
 			 &= \int \psi^\dagger(x(y)) \psi(x(y)) \frac{dx}{dy} dy \\
 			 &= \int \psi^\dagger(x) \psi(x) dx.
 		\end{aligned}
