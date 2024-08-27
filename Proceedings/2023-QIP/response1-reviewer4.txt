@@ -1,0 +1,11 @@
+It is often the case that we get reviews that altogether miss the point of what we are trying to do, and then block publication. Therefore we really appreciate this reviewer as they not only understood the point, but were also able to elaborate on it. We additionally appreciate the attitude of "letting people try new things."
+
+>More puzzlingly, however, the
+function is not even monotonic. The authors do not, in my view, explain what
+the meaning of that particular anomaly might mean. ...  I would
+prefer to see the authors address the above remarks,
+
+We did not explain the meaning of the non-monotonicity because, at this point, we have no clear physical understanding. That is also why we only mentioned it in the future work section. We have, at least, added a remark to acknowledge that this is the current state.
+
+"Therefore there may be new mathematical ground to be explored as well as conceptual ground. The physical meaning of non-monotonicity is not yet clear to us. We know it appears only when adding states that can be expressed as a superposition of the original set. One approach\footnote{Also suggested by one anonymous reviewer.} would be to study the set of points that can be added without change to the measure."
+

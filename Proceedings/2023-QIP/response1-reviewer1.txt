@@ -1,0 +1,13 @@
+
+
+>I found this to be a highly interesting paper. ... I believe it to be scientifically sound and so I do not find a reason to support anything other than acceptance.
+
+We thank the referee for the kind words. We wholeheartedly agree with the spirit of the comments!
+
+>I do have one question, more a point of clarification - in speaking of states the authors use the term |x+>, which I presume refers to a mixed or superposition state. I do not think that this is made clear in the discussion.
+
+|x+> refers to a pure state prepared in the positive x direction (implicitly assuming a Cartesian coordinate system). We changed the text to:
+why is it that the set of pure states $\{ |z^+\>, |z^-\>\}$ counts as two states while the set of pure states $\{ |z^+\>, |x^+\> \}$ counts as less than two?
+
+
+

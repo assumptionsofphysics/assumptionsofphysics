@@ -1,0 +1,115 @@
+We thank the reviewer for the positive and interesting feedback. We really appreciate they feel we were able to present a highly technical and abstract subject in a clear and accessible way. Many comments go beyond the scope of the present paper and would certainly invite interesting discussion. If the reviewer is inclined, after the review process is completed, we would be delighted to continue the conversation.
+
+– The authors present this work as part of a major research project
+they call reverse physics, "which, starting from the laws, aims to
+find a minimal set of physical assumptions needed to rederive them".
+Trying to contextualize it, I immediately thought of axiomatization.
+Indeed, axiomatizations aims at exactly that, reducing a body of
+theorems to a minimal set that contains them within its logical
+implications, without redundancy or contradiction. It has been
+introduced for mathematical theories, but should quite as well apply
+to sufficiently formalized physical theory. So, what's the
+difference? It it lies in the working direction, i.e., here,
+extracting axioms from a given set of laws (analogous to inverse
+scattering), it would be interesting to whether there exist meta-
+theorems in logics indicating the prospects of this process, for
+example, by determining the number of required axioms as a kind of
+dimension of the space of propositions spanned by the laws.
+
+It would probably take a full paper to delve into these issues. First, it should be clear that mere axiomatization does not provide much insight into a physical theory. After all, the postulates of quantum mechanics can be considered axioms of the theory. In our mind, the issue is that the starting points, whatever we call them, should ideally be understandable in clear physics terms, which presents some additional problems.
+
+The first issue is the transition between the informal physical definitions (which are needed as they connect to experiments) to the formal language of the theory. During discussions, at least two philosophers of science argued that this was one of the key new elements in Galilean thinking: he knowingly studied idealized pendulums or falling bodies neglecting friction. Therefore there are considerations to be had even before the formal system is set up. We suspect, in fact, that some sort of idealization/simplification is a prerequisite to any formal physical theory. A clear understanding of how the transition from the informal side to the formal side works is part of our goal.
+
+The second issue is that the same assumption can be implemented formally in different ways. For example, the assumptions of determinism and reversibility can be implemented by requiring equal number of states to be mapped forward and backward in time; information on the initial state to correspond to equal information on the final state; the uncertainty for a peaked distribution to be conserved during evolution and so on. Therefore, you have one physical assumption that maps to multiple mathematical translations (i.e. multiple axioms) which can be proven to be equivalent. This is like the axiom of choice being equivalent to Zorn's lemma or the well-ordering theorem. Studying equivalences between these starting points is more important to us than any particular choice of starting point.
+
+It was actually another philosopher that told us that our approach was similar to how reverse mathematics operates, and therefore we adopted the name. Some of these issues are mentioned in our paper on reverse physics. Some not, as we have been gradually becoming more aware of them. Ideally, we would work with someone from the philosophy side to give a more clear conceptual framework to the reverse physics approach.
+
+– Concerning the specific case of quantum mechanics, I wwonder whether
+the authors are aware of other current projects which perhaps are very
+distinct as to their conceptual framework, but very close in spirit
+to the present work. In particular, there exist research activities
+aiming at an axiomatization of quantum mechanics that includes basic
+postulates on the information content or capacity of quantum systems
+(for a selection, not quite up to date, see my refs. [1-5] below).
+Mentioning these efforts would be instructive for readers and relevant
+regarding originality.
+
+We were aware of Hardy and Chiribella et al., with the second considered closer as they are not constrained to quantum mechanics. It is probably best to refer to the reverse physics paper, as this was written to give a sense of the difference between our approach and the others. We added a footnote:
+
+"To see how the reverse physics approach compares and contrasts with respect to other works that aim to find physically motivated starting points, for example in the context of quantum theory,[11-15] we refer to [10]."
+
+– Including also mixed states appears consequent in view of the
+objectives of the project. In quantum mechanics, however, mixed states
+occur only in open systems, by masking external components of
+the system which, taken into account, would render the total system
+closed and thus in a pure state. They therefore implicitly involve
+additional states, even a macroscopic environment if, e.g.,
+measurements are involved. I am not sure whether an attempt to count
+states makes sense if the very borders of the system are not well
+defined.
+
+The reviewer here is touching on another point that we are also working on: what are the assumptions/requirements needed to be able to define and characterize a physical system? Defining what happens at the boundary is indeeded crucial, and, in some sense, we believe that systems can only be defined if there are processes under which the system is, at least to some good approximation, isolated. These are details we will need to address in future works. We have added the following paragraph in the future work section:
+
+"Stepping back from the mathematical problem, there are also more conceptual issues that need to be understood. For example, what are the operational requirements to be able to quantify the number of states? It may turn out that the ability to operationally define and manipulate a system already provides all that is needed to define how to quantify states."
+
+That being said, we do believe that mixed states are a core concept. As for the objection raised, to our understanding, it is only improper mixtures (i.e. those describing a subsystem of an entangled system) that require another system. Proper mixtures (i.e. those that cannot be understood as coming from an entangled state) can arise in different ways, the most obvious being due to ignorance on the preparation. Moreover, if one can only perform experiments on a particular system, proper and improper mixtures are indistiguishable. It is only when we are able to define two independent systems that we can show that the mixture on one was improper. Therefore, when defining a single system, we can't technically make the distinction.
+
+Additionally, all that we can prepare and measure in practice are mixtures. We can never perfectly prepare or measure pure states. Even if we prepare an electron with spin up, there will be an uncertainty in the direction. At any rate, these are issues that are important, but go outside the scope of this paper.
+
+
+– Evidently, the non-additivity of quantum state measures is
+intimately related to the possibility of finite overlaps of quantum
+states, which in turn is a consequence of how quantum mechanics
+defines distances between Hilbert-space vectors. This indicates a
+relation between metric and measure on (hyper)spheres, which could add
+an important argument to the paper.
+
+The reviewer is again touching on another point we are already exploring. Both the spaces of classical and quantum mixtures are metric spaces under the Fisher-Rao metric. This can be understood as the infinitesimal version of the Jensen-Shannon divergence, which essentially tells us how the entropy increases under mixture. If two mixtures are non-overlapping, the JS divergence has maximum increase, both in classical and quantum mechanics. It should be possible to reframe this link in terms of state counting.
+
+Given that it would bring a whole set of new concepts to the paper, which would take significant space and add complexity, we had decided not to include this insight. Though it is clearly a target for future work.
+
+– The authors base part of their reasoning on a comparison of
+classical with quantum measures in the particular case of spherical
+state spaces. I doubt that this analogy is correct. In the classical
+case, this space could represent, for instance, the orientation of an
+angular momentum in three-dimensional space. In quantum mechanics, it
+refers to the Hilbert space of a two-state system. However, these
+spaces are not compatible. The abstract spherical Hilbert space of a
+two-state system\ has nothing to do with angle coordinates three-
+dimensional position space. Moreover, if mixed states come into play,
+say represented by a Bloch sphere, they do not correspond to
+probability densities on the surface, as the authors insinuate, but to
+points inside the sphere, i.e., to Bloch vectors with a radius less
+than one.
+
+Note that we are looking only for a mathematical comparison of the measures. Clearly the state spaces are different and the spaces of mixtures are not comparable. However, note that the Bloch sphere is the state space for a spin one-half system, which is the orientation of an (intrinsic) angular momentum in three dimensional space. Therefore the comparison between the two is not that stretched. We added a paragraph to clarify:
+
+"Note that the comparison is only at the mathematical level, so the only requirement is to find a mathematical space that can be used to represent states in the three cases. The sphere is used in classical mechanics to define the orientation of an angular momentum in three dimensions; the manifold is symplectic and allows both a Liouville measure and a counting measure. The (Bloch) sphere is used in quantum mechanics to represent the states of a two-state system, which can also represent the orientation of a spin one-half particle, and therefore it also allows a quantized measure."
+
+– The argument, put forward in section 5, that a quantum state measure
+attributing finite counts to finite continuous regions must be bounded
+from below, is evident. An immediate consequence is the concept of
+Planck cells, i.e., regions in phase space corresponding to that lower
+bound. This direct relationship to one of the basic traits of quantum
+mechanics might render this reasoning even more convincing. A further
+consequence, distinguishing quantum mechanics from a direct rigid
+discretization of space and time, notably to limit the information
+content of these quantities, is that quantization fixes the size, but
+in no way the shape of Planck cells.
+
+The reviewer is again touching on one of our related research directions. In the reverse physics paper, we use the lower bound on entropy (which is the same as a lower bound on the state count) to motivate a classical analogue of the uncertainty principle. The issue of Planck cells, in fact, is that even knowing that there are cells already implies that one can define a boundary between them in a sharp way, but that definition would imply the ability to resolve the space between cells, which is a contradiction. We suspect that quantum mechanics is essentially the only way to implement a zero entropy lower bound in a consistent way. This would be equivalent to showing the uniqueness of the quantized measure. So, indeed, this is all related.
+
+While, as the reviewer notes, there is a strong link between these ideas, we decided not to include them as we found that it may overwhelm some readers. One crazy idea at a time! :-)
+
+– An interesting historical aspect is that quantization as a
+consequence of a boundedness of entropy has been anticipated clearly
+by Planck, in his derivation of a finite quantum of action, and even
+earlier by Gibbs, proposing his paradox, and by Boltzmann himself,
+referring to discrete "complexions" in his definition of entropy.
+
+We were aware of some of Planck's work (a couple of philosophers made us aware of it) but we had no idea of similar efforts from Boltzmann. This is another topic of potential collaboration with someone more knowledgable with that literature: in a way, we are trying to understand how those arguments could be made to work to derive quantum mechanics.
+
+– Sections 2 and 3 have the same title ("Measure theory and
+quantifying states"). Certainly an unwanted mishap.
+
+We are extremely grateful to the reviewer to have caught this! We modified the title of section 3 to "Entropy and state quantification".

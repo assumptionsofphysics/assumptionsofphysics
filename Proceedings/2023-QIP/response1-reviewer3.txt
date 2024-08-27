@@ -1,0 +1,18 @@
+>The authors suggest that some new kind of a non-additive measure to be used in quantum mechanics. At first glance, the idea looked quite promising to me. However, the more attentively I was reading the manuscript, the more disappointed I was.
+
+We are sorry the rest of the manuscript did not live up to the initial promise and expectations of the referee.
+
+>Which formulation of Quantum Mechanics do they have in mind?
+
+The standard formulation of Quantum Mechanics, for which pure states are rays of a Hilbert space (or equivalently points in the projective space) and mixed states are density matrices (i.e. positive semi-definite Hermitian operators with trace one. We added the following footnote:
+
+"In this context, a pure state, or simply state, is mathematically represented by a ray of a Hilbert space (or equivalently a point in the projective space) and a mixed state is represented by a density matrix (i.e. a positive semi-definite Hermitian operator with trace one."
+
+
+>What is the role of set of points in this formulation?
+As mentioned in the text (line 62), in measure theory a measure assigns a value to a set of points. Our goal is to define a measure that given a set of (pure) quantum states (which are points in the state space), returns a value that quantifies the number of states.
+
+>What do they call states and what do they call the number of states after all?
+As mentioned above, states are simply the standard pure states in quantum mechanics. The number of states is given by the quantifying measure. In the classical discrete case this is given by the counting measure (i.e. the cardinality of the set) (line 69); in the classical continuous case this is given by the Liouville measure (i.e. volumes of phase space) (line 74); in the quantum case we defined it as the logarithm of the von Neumann entropy of a uniform mixture of those states (line 138).
+
+
