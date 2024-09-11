@@ -166,7 +166,7 @@ G_{\alpha\beta\gamma} &= \partial_\alpha g_{\beta \gamma} - \partial_\beta g_{\a
 - mg_{\alpha \beta} & 0 \end{matrix} \right] \\
 \end{aligned}
 \end{equation}
-Note the appearance of the new symbol $G_{\alpha\beta\gamma}$. Note it is different from the torsion as it anti-symmetrizes the first two indexes of the Christoffel symbols (the torsion uses the second two). We haven't found a reference in the literature.
+Note the appearance of the new symbol $G_{\alpha\beta\gamma}$. Note it is different from the torsion as it anti-symmetrizes the first two indexes of the Christoffel symbols (the torsion uses the second two).
 \begin{equation}
 \begin{aligned}
 G^{\alpha\beta\gamma} &= g^{\alpha\delta}g^{\beta\epsilon}g^{\gamma\zeta} G_{\delta\epsilon\zeta} = g^{\alpha\delta}g^{\beta\epsilon}g^{\gamma\zeta} \partial_\delta g_{\epsilon\zeta} - g^{\alpha\delta}g^{\beta\epsilon}g^{\gamma\zeta} \partial_\epsilon g_{\delta\zeta}\\
@@ -224,7 +224,7 @@ D_s u^\alpha &= d_s u^\alpha + u^\beta d_sx^\gamma \Gamma^\alpha_{\beta\gamma} =
 
 Again, note how the geodesic equation is recovered.
 
-\section{Anti-symmetric covariant derivative}
+\section{More on $G_{\alpha\beta\gamma}$}
 To better understand $G_{\alpha\beta\gamma}$, we study how the anti-symmetrization of the covariant derivative works.
 
 \begin{equation}
@@ -248,9 +248,7 @@ To better understand $G_{\alpha\beta\gamma}$, we study how the anti-symmetrizati
 \end{equation}
 Note how the symmetrization of the covariant derivative is equal to the symmetrization of the partial derivative. However, this is not true with the controvariant indexes. In this case, $G$ can be used to express the difference.
 
-\section{Is $G_{\alpha\beta\gamma}$ a tensor?}
-An open question is whether $G$ is a tensor or not.
-
+If we look at the transformation rules, $G$ is not a tensor.
 \begin{equation*}
 	\begin{aligned}
 		g_{\alpha'\beta'}&=\Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}g_{\alpha\beta} \\
@@ -266,21 +264,19 @@ An open question is whether $G$ is a tensor or not.
 		&+\Lambda_{\alpha'}^{\alpha}\Lambda_{\beta'}^{\beta}\Lambda_{\gamma'} G_{\alpha\beta\gamma} \\
 	\end{aligned}
 \end{equation*}
-Trying a direct calculation, it would not appear that $G$ is a tensor.
 
-However, we can show that the spatial part of the symplectic form must
-vary as a tensor with respect to position.
-\begin{equation*}
+If $G_{\alpha\beta\gamma}=0$, then $g_{\alpha\beta} = \partial_\alpha \partial_\beta S$ where $S$ is a scalar function. In fact
+\begin{equation}
 	\begin{aligned}
-		\omega_{a'b'} &= \partial_{a'}\xi^a \omega_{ab} \partial_{b'}\xi^b \\
-		\omega_{q^{\alpha'}q^{\beta'}} &= \partial_{\alpha'}q^\alpha \omega_{q^{\alpha}q^{\beta}} \partial_{\beta'}q^\beta \\
-		&=- m G_{\alpha'\beta'\gamma'} u^{\gamma'} - q F_{\alpha'\beta'} \\
-		&= \left(- m G_{\alpha\beta\gamma} u^{\gamma} - q F_{\alpha\beta} \right) \partial_{\alpha'}q^\alpha \partial_{\beta'}q^\beta \\
-		&= \left(- m G_{\alpha\beta\gamma} u^{\gamma} - q F_{\alpha\beta} \right) \partial_{\alpha'}q^\alpha \partial_{\beta'}q^\beta \\
-		&= - m G_{\alpha\beta\gamma} u^{\gamma} \partial_{\alpha'}q^\alpha \partial_{\beta'}q^\beta - q F_{\alpha'\beta'}  \\
+		G_{\alpha\beta\gamma}&=0=\partial_\alpha g_{\beta \gamma} - \partial_\beta g_{\alpha \gamma} \\
+		g_{\alpha \beta} &= \partial_\alpha a_\beta \\
+		g_{\alpha \beta} - g_{\beta \alpha} &= 0 = \partial_\alpha a_\beta - \partial_\beta a_\alpha \\
+		a_\alpha &= \partial_\alpha S \\
+		g_{\alpha \beta} &= \partial_\alpha \partial_\beta S
 	\end{aligned}
-\end{equation*}
-This would seem to indicate that $G$ is indeed a tensor.
+\end{equation}
+
+If we are in an inertial Cartesian frame, then $G_{\alpha\beta\gamma}=0$. What is the characteristic of reference frames in which $G_{\alpha\beta\gamma}=0$? Do they exist in curved space-time?
 
 
 \begin{thebibliography}{0}
