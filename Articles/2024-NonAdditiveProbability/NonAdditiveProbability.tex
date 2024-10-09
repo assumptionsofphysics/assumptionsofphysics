@@ -1,0 +1,131 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+
+\usepackage{assumptionsofphysics}
+\usepackage{tikz}
+\usepackage{breakurl}
+
+\newcommand\hull{\mathrm{hull}}
+\newcommand\stcap{\mathrm{scap}}
+\newcommand\fraction{\mathrm{frac}}
+\newcommand\frcap{\mathrm{fcap}}
+
+\newcommand{\ens}[1][e] {\mathsf{#1}} % Ensemble
+\newcommand{\Ens}[1][E] {\mathcal{#1}} % Ensemble space
+
+
+\def\>{\rangle}
+\def\<{\langle}
+\DeclareMathOperator{\erf}{erf}
+
+\begin{document}
+
+\title{A non-additive generalization of probability theory \\for quantum mechanics and beyond}
+\author{Gabriele Carcassi}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+\author{Christine A. Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\begin{abstract}
+	We present a physically motivated generalization of probability theory that is suitable for classical mechanics, quantum mechanics and any future physical theory that allows a statistical description. The goal is to put the use of classical and quantum probability in a broader context, and show how the current mathematical structures are likely not suitable to solve the open problems in the foundations of physics. For the more mathematically inclined, we will point to areas where new math or generalization of established math are needed. For the more philosophically incline, we will point to areas where further conceptual work is needed.
+	
+	
+	%Given a generic space of ensembles, we can define the fraction capacity as the maximum fraction of a particular ensemble that can be understood as a mixture of ensembles from a given set. This gives a non-additive (i.e. fuzzy) measure that reduces to a probability (i.e. additive) measure for classical spaces and for quantum measurements. We can also define the state capacity as the exponential of the maximum entropy reachable by a mixture of ensembles from a given set. This is also a non-additive measure and reduces to the Liouville measure in classical mechanics and the Hilbert space dimensions for subspaces of quantum mechanics. Conceptually, it gives us a notion of probability that is both theory and interpretation independent. Mathematically, it gives us a measure theoretic generalization of probability. Physically, it may allow to find new way to understand current theory and tool to investigate new ones. The purpose of this paper is to show the core ideas and present questions that may be developed on the mathematical, physical and philosophical side.
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}
+Paper for physicists:
+* argue that we need to develop mathematical structures from physical requirements
+* create a theory of probability that works for classical, quantum mechanics and beyond
+* inverted structure
+
+\section{Ensemble spaces}
+
+We are looking to find the minimal set of axioms required by a physical theory that allows statistical descriptions. Such a theory must, at the very least, provide us with a notion of ensemble, and a space of ensembles that are allowed in the theory. An ensemble can be understood as the infinite collection of the outputs of a particular preparation procedure. The ensemble space of classical mechanics, for example, is the space of continuous probability distributions of phase space. In quantum mechanics, instead, it is the space of density operators. While the ensemble space for each theory will be in principle different, some basic features will remain the same. We are looking for these basic features, necessary elements that any ensemble space must have.
+
+Note that there may good philosophical grounds to require that a physical theory allows for statistical descriptions. If a physical theory has to be testable, and repeatedly so, then we fail to see how it could be so without providing statistical tools. Every state preparation and measurement, in fact, is typically statistical in nature. The development of such arguments would be interesting to us.
+
+We have three basic requirements on ensembles: first, they have to be identifiable experimentally; second, they need to allow mixtures; lastly, they need an entropy well defined. Let us go through these items one by one.
+
+\subsection{Experimental verifiability}
+
+\subsection{Statistical mixtures}
+Another basic requirement of an ensemble space is ability to prepare a \textbf{mixture} of two ensembles. If $\ens[a], \ens[b] \in \Ens$ are two ensembles, and $p \in [0,1]$ a weight, we will find the $\ens = p \ens[a] + (1-p) \ens[b] \in \Ens$ that describes a process that selects the first ensemble over the second $p$ percent of the times. Mathematically, the ensemble space is endowed with a \textbf{convex structure}.
+
+Ultimately, the convex structure is responsible for all linear structures we have in physics. Both in classical and quantum mechanics, the ensemble space is not just a convex set, but a convex subset of a vector space. In those cases, in fact, the convex structure is, in a sense, invertible. If we fix $\ens$, $\ens[a]$ and $p$ then, if it exists, there is only one $\ens[b]$ such that $\ens = p \ens[a] + (1-p) \ens[b]$. The ensemble space is \textbf{complement}, meaning that there is only one complement to a component of an ensemble.
+
+However, we found no physical justification for this requirement, and we suspect that it may need to be relaxed in future physical theories.
+
+\subsection{Entropy}
+The last requirement is that each ensemble must have a well defined entropy. That is, there is a scalar function $S : \Ens \to \mathbb{R}$ that satisfies the following
+\begin{enumerate}
+	\item strictly convex: $S(p \ens[a] + (1-p) \ens[b]) - (p S(\ens[a]) + (1-p) S(\ens[b]) ) \geq 0$
+	\item upper bounded: $S(p \ens[a] + (1-p) \ens[b]) - (p S(\ens[a]) + (1-p) S(\ens[b]) ) \leq - p \log p - (1-p) \log(1-p)$
+\end{enumerate}
+The first tells us that, during mixing, the entropy cannot decrease, and it stays the same if and only we are mixing an ensemble with itself. The second tells us that the most the entropy can increase is given by the choice between the two ensembles.
+
+The entropy is ultimately responsible for all geometrical structure in physics. In classical mechanics, the geometry is essentially defined by volumes in phase space. The entropy of uniform distributions is given by the logarithm of the volume, meaning that given the volumes we are able to calculate the entropy and given the entropy we are able to reconstruct the volume. In quantum mechanics, the inner product (i.e. the Born rule) allows us to calculate the entropy of the mixture of two pure states, and given that entropy we can recover the Born rule.
+
+An interesting insight is that the entropy, being strictly concave, has a negative defined Hessian. The negation of the Hessian, then, is a symmetric positive defined function of two infinitesimal variations, and can serve as a metric tensor. In both classical and quantum mechanics this recovers the Fisher-Rao metric.
+
+Another important feature is that if two ensembles saturate the upper bound, then they are orthogonal in both classical and quantum mechanics. Therefore we define two ensembles to be \textbf{orthogonal} if their mixture lead to a maximal entropy increase. If two states are orthogonal, on physical grounds, the must have no common component. However, the reverse is not case: two pure states in quantum mechanics have no components to have in common, but are not necessarily orthogonal. However, classical probability spaces are exactly those space in which no common component implies orthogonality. This is the main source of the ``weirdness'' of quantum mechanics.
+
+To recap, the topological structure captures experimental verifiability and is responsible for the limits and the connection to measureable quantities. The convex structure captures statistical mixing and is responsible for all linear structures of physical theories. The entropic structure captures the variability within an ensemble and is ultimately responsible for all geometric structure. We now concentrate on recovering the measure theoretic structures associated to probability and state counting.
+
+\section{Fraction capacity}
+
+Suppose we have a physical theory that allows for a statistical description. At the very least, this has to provide a notion of ensemble together with the space of all possible ensembles allowed by the theory. We call this an \textbf{ensemble space} $\Ens$. 
+Given a target ensemble $\ens \in \Ens$ and an arbitrary ensemble $\ens[a] \in \Ens$ we will be able to write $\ens = p \ens[a] + (1-p) \ens[b]$ for some $p \in [0,1]$ and some $\ens[b] \in \Ens$. At the very least, we can use $p=0$ and $\ens[b] = \ens$. Given that $p$ is bounded, there will be a biggest $p$ possible which we call the \textbf{fraction} of $\ens[a]$ in $\ens$. Mathematically
+\begin{equation}
+	\fraction_{\ens}(\ens[a]) = \sup(\{ p \in [0,1] \, | \, \exists \, \ens_1 \in \Ens \text{ s.t. }  \ens = p \ens[a] + \bar{p} \ens_1 \}).
+\end{equation}
+This quantity tells us how much of ensemble $\ens$ can be constructed, can be characterized, by $\ens[a]$. 
+
+We now extend this idea from a single ensemble $\ens[a] \in \Ens$ to a set of ensembles $A \subset \Ens$., meaning we want to characterize how much of a target ensemble $\ens$ can be constructed as a mixture of ensembles from $A$. Given a set of ensembles $A$, its \textbf{hull}, noted $\hull(A)$ is the set of all mixtures that can be constructed from $A$. That is, is the set of all convex combinations $\sum_i^n p_i \ens[a]_i$ such that $\{a_i\}_1^n \subseteq A$. The \textbf{fraction capacity} is the biggest fraction among all the elements of the hull. Mathematically
+\begin{equation}
+	\frcap_{\ens}(A) = \sup(\fraction_{\ens}(\hull(A))\cup\{0\}).
+\end{equation}
+
+If $\Ens$ is a topological space, we can imagine the fraction capacity to be defined on the sigma algebra $\Sigma_{\Ens}$. We can then show that the fraction capacity $\frcap_{\ens} : \Sigma_{\Ens} \to [0,1]$ is a set function that satisfies the following:
+\begin{enumerate}
+	\item non-negative and unit bounded - $0 \leq \frcap_{\ens}(A) \leq 1$
+	\item monotone - $A \subseteq B \implies \frcap_{\ens}(A) \leq \frcap_{\ens}(B)$
+	\item sub-additive - $\frcap_{\ens}(A \cup B) \leq \frcap_{\ens}(A) + \frcap_{\ens}(B)$.
+	\item continuous from below and above - $\frcap_{\ens}(\lim\limits_{i \to \infty} A_i) = \lim\limits_{i \to \infty} \frcap_{\ens}(A_i)$ for any increasing or decreasing sequence $\{A_i\}$.
+\end{enumerate}
+
+
+
+\section{Statistical properties}
+
+\section{Beyond real valued quantities}
+
+
+\section{State capacity}
+
+\section{Quantization}
+* 3 pick 2
+
+\section{Quantizing space-time}
+* we need a non-additive measure on degrees of freedom
+*
+
+\section{Conclusion}
+
+
+
+\section*{Acknowledgments}
+This paper is part of the ongoing \textit{Assumptions of Physics} project \cite{aop-book}, which aims to identify a handful of physical principles from which the basic laws can be rigorously derived. This article was made possible through the support of grant \#62847 from the John Templeton Foundation.
+
+
+\bibliography{bibliography}
+
+\newcommand{\pj}[1] {\underbar{$#1$}}
+
+
+\end{document}
