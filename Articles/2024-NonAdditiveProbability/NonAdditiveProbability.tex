@@ -84,11 +84,11 @@ This perspective allows us to understand what negative probability is. Suppose w
 Pseudo-probability distributions, then, require the additional vector space structure. However, we found no physical justification to require the additional structure, and we suspect that it may need to be relaxed in future physical theories.  Therefore it is important that our fundamental definitions require only the convex structure, and not the vector space structure.
 
 \begin{tcolorbox}[colback=white, colframe=black]
-	Statistical mixture of ensemble $\Rightarrow$ An ensemble space $\Ens$ is a topological convex space.
+	Statistical mixture of ensembles $\Rightarrow$ An ensemble space $\Ens$ is a topological convex space.
 \end{tcolorbox}
 
 \subsection{Entropy}
-The last requirement is that each ensemble must have a well defined \textbf{entropy}. That is, there is a scalar function $S : \Ens \to \mathbb{R}$ that satisfies the following
+The last requirement is that each ensemble must have a well defined \textbf{entropy}. That is, there is a scalar function $S : \Ens \to \mathbb{R}$ that satisfies the following:
 \begin{enumerate}
 	\item strictly concave: $S(p \ens[a] + (1-p) \ens[b]) - (p S(\ens[a]) + (1-p) S(\ens[b]) ) \geq 0$
 	\item bounded from above: $S(p \ens[a] + (1-p) \ens[b]) - (p S(\ens[a]) + (1-p) S(\ens[b]) ) \leq - p \log p - (1-p) \log(1-p)$
