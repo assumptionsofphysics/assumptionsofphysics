@@ -1,0 +1,152 @@
+\documentclass[10pt,twocolumn, nofootinbib]{revtex4-2}
+
+\usepackage{assumptionsofphysics}
+\usepackage{tikz}
+\usepackage{breakurl}
+\usepackage{tcolorbox}
+
+\newcommand\stcap{\mathrm{scap}}
+\newcommand\fraction{\mathrm{frac}}
+\newcommand\frcap{\mathrm{fcap}}
+
+\newcommand{\ens}[1][e] {\mathsf{#1}} % Ensemble
+\newcommand{\Ens}[1][E] {\mathcal{#1}} % Ensemble space
+
+\newcommand\mix{\mathrm{mix}}
+\newcommand\component{\mathrm{comp}}
+\newcommand\cospan{\mathrm{cospan}}
+\newcommand\dist{\mathrm{dist}}
+\newcommand\hull{\mathrm{hull}}
+\newcommand\support{\mathrm{supp}}
+\newcommand\capacity{\mathrm{scap}}
+\newcommand\size{\mathrm{frac}}
+\newcommand\fcap{\mathrm{fcap}}
+
+\newcommand\vspan{\mathrm{span}}
+\newcommand\cl{\mathrm{cl}}
+
+\def\separate{\downmodels}
+\def\nseparate{\ndownmodels}
+\def\ortho{\perp}
+\def\northo{\nperp}
+
+\def\>{\rangle}
+\def\<{\langle}
+\DeclareMathOperator{\erf}{erf}
+
+\begin{document}
+
+\title{Ensemble spaces}
+\author{Gabriele Carcassi}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+\author{Christine A. Aidala}
+\affiliation{Physics Department, University of Michigan, Ann Arbor, MI 48109}
+
+\date{\today}
+
+
+\begin{abstract}
+	We present the current status of a theory of ensembles that is suitable as a basic theory for all other physical theories. We start with a minimum set of axioms that can be justified from basic physical requirements: experimental verifiability justifies a $T_0$ second countable topology, statistical mixing justifies a convex structure and the variability of ensembles justifies the existence of an entropy function. We show that various results can be recovered from just these three axioms and simple constructions. For example, we can show that an ensembles space must embed in a compact set of a vector space; the entropy induces a metric that generalizes the Fisher-Rao metrics of both classical and quantum mechanics; a more general non-additive probability can be defined which reduces to an additive one in classical mechanics and in quantum measurement context and so on. The goal is to generalize as much as possible the common structures of classical mechanics, quantum mechanics and, hopefully, field theories.
+
+	As the project touches aspects of many different fields (such as topology, function analysis, measure theory, classical and quantum mechanics, information theory, Riemmanian and symplectic geometry), this work is done in consultation with different experts. The main goal of this presentation is to find others that may be interested in this type of integrative work. 
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}
+
+The goal of our work is to find a minimal set of physically justifiable axioms from which we can build a theory that can serve as a basis for all physical theories. This seems to resonate with people working on reconstructions of quantum mechanics, in particular those working on Generalized Probability Theories. It was the recommendation of some of these to submit to QPL.
+
+The main difference in our approach is that we start at a more basic level and try to incorporate results from different areas (e.g. non-additive measure theory, Riemmanian and symplectic geometry, variational calculus, classical and quantum information theory, function analysis). That is, we want to find a minimal physically justifiable starting points from which most of these structure can be recovered with tighter mathematical constraints.
+
+As the project is, by its nature, rather interdisciplinary, and the publishing world is not setup to encourage the proper review of manuscript that cuts across so many field, the pre-print is effectively a new chapter of our Assumptions of Physics. Openly available, we constantly review the results with experts of different field, gaining a lot more feedback than what peer review allows. We enclose a snapshot of the chapter, though a more advanced version is available online. This is the only way we have found so that we can have every part reviewed by experts from different fields, while making sure all pieces fits together.
+
+\section{Basic requirements for a physical theory}
+
+The strategy is to find requirements that are constitutive of a physical theory. That is, we want to argue from requirement that are necessary to define a physical system and a physical theory, so that the only choice is between accepting those requirement or do nothing at all.
+
+In past work we argued that since science is about statement that are connected to experimental evidence, they require the notion of a verifiable statement: a statement that has an associated test that terminates successfully in finite time if and only if the statement is true. We should that the requirement of finite time verifiability leads to a structure where the experimentally defined possible cases are points of a $T_0$ \textbf{second countable topological space}, where the open sets are verifiable statements and Borel sets are statement associated to a test, regardless of termination. This gives a solid fundamental basis, that is able to justified even details like the analytical discontinuity of quantities over phase transitions.
+
+We now argue that, since the goal of physics is to find general laws that are repeatably testable, the subject of these laws must be ensembles. Laws, in fact, are relationships of the type ``whenever we have this, we have that'' and therefore relate one collection of instances to another collection of instances. Repeatability requires to be able to carry out the tests always ``one more time,'' which implicitly requires the instances to be infinite. Moreover, experimentally our preparation procedures are never exact, so both preparations and measurement are in terms of statistical objects. Therefore, any physical theory must \textbf{at least} define what ensembles the theory allows. Having justified the existence of an ensemble space in any physical theory, we not want to formulate a minimal set of axioms for these spaces.
+
+\section{Ensemble spaces}
+
+Ensembles must have, at least, the following three features: they have to be identifiable experimentally; they must allow statistical mixtures; their variability, their entropy, must be well-defined. Classical and quantum theory do satisfy these axioms. Let us go through these briefly, leaving the full justification to the supporting material.
+
+\subsection{Experimental verifiability}
+The first requirement is that ensembles must be connected to experimental verification. That is, we must have enough \textbf{verifiable statements} at our disposal to define ensembles and tell them apart. As mentioned before, we have already developed a full theory for this part, therefore this requirement justifies a $T_0$ second-countable topology on the space of ensemble $\Ens$. It is crucial to understand that the open sets represent the only statements experimentally verifiable, as this will put additional consistency requirements. For example, it would make no sense to assign non-zero probability to a set of cases that can never be experimentally reached.
+
+\begin{tcolorbox}[colback=white, colframe=black]
+	Experimental verifiability $\Rightarrow$ An ensemble space $\Ens$ is a $T_0$ second-countable topological space.
+\end{tcolorbox}
+
+
+\subsection{Statistical mixtures}
+Another basic requirement is the ability to prepare a \textbf{mixture} of two ensembles. If $\ens[a], \ens[b] \in \Ens$ are two ensembles, $p \in [0,1]$ a weight and $\bar{p} = 1-p$, then $\ens = p \ens[a] + \bar{p} \ens[b] \in \Ens$ is the ensemble that describes a process that selects the first ensemble over the second $p$ percent of the times. Mathematically, the ensemble space is endowed with a \textbf{convex structure}. Moreover, since the mixing operation must be consistent with experimental verifiability, it will be topologically continuous, and the ensemble space will be a topological convex space.
+
+\begin{tcolorbox}[colback=white, colframe=black]
+	Statistical mixture of ensembles $\Rightarrow$ An ensemble space $\Ens$ is a topological convex space.
+\end{tcolorbox}
+
+\subsection{Entropy}
+The last requirement is that, since each ensemble represents an infinite collection of preparations, the variability among those preparation is well-defined. That is, we have a well-defined \textbf{entropy} that quantifies us how much the elements in each ensemble are different from each other. 
+
+The variability will have consistency requirement with respect to mixing. Intuitively, the variability cannot decrease through a statistical mixture, and the maximum increase is given when to ensembles are \textbf{orthogonal} (noted $\ens[a] \ortho \ens[b]$), which means no instance from the first ensemble could have been prepared from the second and vice-versa. The entropy $S : \Ens \to \mathbb{R}$, then, satisfies the following conditions:
+\begin{enumerate}
+	\item strictly concave: $S(p \ens[a] + \bar{p} \ens[b]) - (p S(\ens[a]) + \bar{p} S(\ens[b]) ) \geq 0$
+	\item upper variability bound: $S(p \ens[a] + \bar{p} \ens[b]) - (p S(\ens[a]) + \bar{p} S(\ens[b]) ) \leq I(p,\bar{p})$; we define $\ens[a] \ortho \ens[b]$ if equality holds
+	\item mixtures preserves orthogonality: $\ens \ortho p \ens[a] + \bar{p} \ens[b]$ if and only if $\ens \ortho \ens[a]$ and $\ens \ortho \ens[b]$.
+\end{enumerate}
+Note that the function $I$ is left unspecified. These conditions are enough to show that $I$ must be the Shannon entropy, up to a multiplicative constant, which is now a general result independent of what type of ensemble space one has.
+
+\begin{tcolorbox}[colback=white, colframe=black]
+	Existence of entropy $\Rightarrow$ Strictly concave function whose upper bound defines orthogonality.
+\end{tcolorbox}
+
+\section{Results and open questions}
+
+The rest of the presentation is a series of results that can be derived on these three axioms alone.
+
+\textbf{Separateness vs orthogonality.} We can define two notions of ``distinctness'' among ensembles. Two ensembles are separate, $\ens[a] \separate \ens[b]$, if, intuitively, they have no common component. That is, there is no $\ens[c]$, the common component, such that $\ens[a] = p_1 \ens[c] + \bar{p}_1 \ens_1$ and $\ens[b] = p_2 \ens[c] + \bar{p}_2 \ens_2$. Two ensembles are orthogonal, $\ens[a] \ortho \ens[b]$, if they saturate the upper variability bound. One can prove that orthogonality implies separateness, but the reverse is not true.
+
+In classical spaces, the two coincides, which already gives a simple characterization for classical spaces: two ensembles that have no common component saturate the upper entropy bound. A lot of structure comes out between the interplay of these two simple concepts.
+
+\textbf{Entropic constraints on the convex space.} Imposing a convex structure only leaves over the door for pathological cases that the existence of the entropy excludes. The entropy, in fact, forces the convex space to embed into a vector space and each affine line will intersect the ensemble space for a finite interval. Specifically, it is the bounds on the entropy that imposes these constraints.
+
+Whether it embeds continuously into a topological vector space it still needs to be determined.
+
+\textbf{Convex sets and flats.} Note that the mixing operation can only be extended to finite convex combinations. This is intended as there is no mathematically safe and physically meaningful way to close under infinite combinations. For example, a probability distribution over countably many elements can have an infinite Shannon entropy. It is the topology that determines whether a specific infinite mixture is allowed or not. For this reason, we will always consider convex sets to be closed both under the convex structure and the topology. The $\hull$ of a set $A \subset \Ens$ is the closure on both structures, which represents all mixtures, finite or infinite, that can be generated from $A$.
+
+A flat, instead, will be closed on affine mixtures as well. While convex combinations always go ``inside'' the space, affine mixtures will extends the subspace to the boundaries of the ensemble space. Different structures will require the different closures, leading to a richer structure.
+
+\textbf{Entropic geometry.} The entropy imposes, without extra conditions, a geometric structure. We can define the mixing entropy $MS(\ens[a], \ens[b]) = S\left(\frac{1}{2}\ens[a] + \frac{1}{2} \ens[b]\right) - \left(\frac{1}{2} S(\ens[a]) + \frac{1}{2} S(\ens[b])\right).$ Conceptually, this tells us how much the entropy increases when mixing two elements. This quantity is non-negative, it is zero if and only if $\ens[a] = \ens[b]$ and it is one if and only if $\ens[a] \ortho \ens[b]$. While it does not satisfy the triangle inequality, this pseudo-distance tells us how ``different'' two ensembles are. It recovers the Jensen-Shannon divergence in both the classical and the quantum case.
+
+Since the mixing entropy is continuous, it can be used to generate open balls that are open sets in the topology. If it can be proved that, given an open set, every point has an open ball that is fully contained in the set, this would show that the topology is the one generated by entropy in such a way. This is still an open question. Moreover, in both classical and quantum mechanics, the Jensen-Shannon divergence is the square of a distance function. It is unknown whether this extends to the general case.
+
+Since the entropy is strictly concave, its Hessian is negative definite. Its negation, then, is a positive-definite bilinear form of variations. This can be understood as a metric tensor. In classical and quantum mechanics, this recovers the Fisher-Rao information metric. Some detail still need to be nailed down to make sure the construction is mathematically well-defined.
+
+\textbf{Fraction capacity and non-additive probability.} Given a target ensemble $\ens$ we can ask what part can be described by another ensemble $\ens[a]$. We define the \textbf{fraction} of $\ens[a]$ in $\ens$ to be $\fraction_{\ens}(\ens[a]) = \sup(\{ p \in [0,1] \, | \, \exists \, \ens_1 \in \Ens \text{ s.t. }  \ens = p \ens[a] + \bar{p} \ens_1 \})$. Given a set $A$, instead, we can ask what is the biggest component of $\ens$ that can be expressed as a convex combination of $A$. We define the\textbf{fraction capacity} of $A$ for $\ens$ to be $\frcap_{\ens}(A) = \sup(\fraction_{\ens}(\hull(A))\cup\{0\})$.
+
+The fraction capacity is then a set function that is non-negative, unit bounded, monotone, sub-additive, continuous from below and above and additive over orthogonal sets. It can be understood as a non-additive generalization of a probability measure that can only be defined on any physically meaningful state space.
+
+\textbf{Classical probability contexts.} We then define a classical probability context as a flat that does not allow multiple decomposition. In the finite dimensional case, this reduces to a simplex. Every classical space is also a classical probability context. The space of density operators that commute with a maximal set of observable also form a classical probability context. In these cases, we have developed a construction that allows us to show that each ensemble in a classical probability context is a classical probability measure.
+
+The construction allows us to create the points (e.g. the spectrum of possible values of position and momentum in classical mechanics) from the ensembles themselves. That is, given an ensemble space we do not know a priory whether the elements are distributions, and the points of the space are constructed as limits of ensembles that overlap less and less. Since the construction is physically motivated and requires no extra assumptions, the hope is that it can be used in field theories and a possible theory of quantum gravity.
+
+\textbf{State capacity.} Given an ensemble, we can ask what is its spread over physically distinguishable cases. It can be argued that the spread must be a monotonic function of the entropy, and must be subadditive. The exponential of the entropy has these properties, and can be used as a measure of volume of states. Given a set, we can define the state capacity as $\capacity(A) = \sup(2^{S(\hull(A))}\cup\{0\})$. This is another set function that is non-negative, monotone, subadditive and additive over orthogonal sets.
+
+The idea would be to use both the fraction and state capacity to extend the measure theoretic concepts to the non-additive case, so that we can create a non-additive theory of probability that can work for all physical theories.
+
+\textbf{Conclusion.} We found that these results were interesting to people working on foundations, particularly working on Generalized Probability Theories.
+
+\section*{Acknowledgments}
+This paper is part of the ongoing \textit{Assumptions of Physics} project \cite{aop-book}, which aims to identify a handful of physical principles from which the basic laws can be rigorously derived. This work was made possible through the support of grant \#62847 from the John Templeton Foundation.
+
+
+\bibliography{bibliography}
+
+\newcommand{\pj}[1] {\underbar{$#1$}}
+
+
+\end{document}
