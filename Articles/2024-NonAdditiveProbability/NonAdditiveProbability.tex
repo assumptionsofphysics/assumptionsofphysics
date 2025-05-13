@@ -147,7 +147,7 @@ First, let us understand the physical significance. An ensemble $\ens$ can be se
 
 We should now look at the requirements of the theorem, to see whether we can always apply it to an ensemble space. First of all, and ensemble space $\Ens$ is a convex subset of a convex sapce $V$. Moreover, since every Hausdorff first-countable topological vector space is metrizable, $\Ens$ is metrizable. However, $\Ens$ is not necessarily compact. In fact, $\Ens$ is not necessarily a closed subset of $V$. Consider the space of probability measures over $\mathbb{R}$. Since $\mathbb{R}$ is not compact, the space of probability measure over $\mathbb{R}$ cannot be compact.\footnote{TODO: Check with mathematicians} Moreover, the set of extreme points is given by the Dirac measures (i.e. probability one over a single point), which would have minus infinite entropy, and therefore cannot be part of the ensemble space. Therefore the theorem does not apply in general.
 
-We can apply Choquet theorem in the case where the closure of $\Ens$ in $V$ is a compact set $E$, which will also be convex\footnote{The closure of a convex set is convex} and metrizable. In this case, we are guaranteed that all ensembles allows a representation through a probability on points that may corresponds idealized ensembles (i.e. the Dirac measure) that are not, even conceptually, realizable. Many interesting cases fall into this restriction: the ensemble spaces of classical probability distribution over finitely many discrete cases fall in this restriction; the subset of ensembles over finite ranges of position and momentum; the ensemble spaces of all finite dimensional quantum systems.
+We can apply Choquet theorem in the case where the closure of $\Ens$ in $V$ is a compact set $E$, which will also be convex\footnote{The closure of a convex set is convex. TODO: finalize the proof} and metrizable. In this case, we are guaranteed that all ensembles allows a representation through a probability on points that may corresponds idealized ensembles (i.e. the Dirac measure) that are not, even conceptually, realizable. Many interesting cases fall into this restriction: the ensemble spaces of classical probability distribution over finitely many discrete cases fall in this restriction; the subset of ensembles over finite ranges of position and momentum; the ensemble spaces of all finite dimensional quantum systems.
 
 Note that ensembles over classical spaces will be represented by a unique probability measure, therefore the corresponding closure of the ensemble space is a Choquet simplex. However, quantum mixed states can be decomposed in multiple ways in terms of pure states, and therefore the closure of a quantum ensemble space is not a simplex.
 
@@ -166,6 +166,42 @@ In general, since the ensemble space is bounded along every direction, not all a
 Note that if $\overline{\Ens} = M_p(X)$, then the space of the extreme point is exactly the space of Dirac measures, and therefore $X$ corresponds to the pure states. Alternatively, either one ensemble is represented by an affine measure, or not all probability measures can be understood as mixtures of extreme points. If $\overline{\Ens}$ is compact, then this is exactly when $\overline{\Ens}$ is not a simplex and multiple decompositions are allowed.
 
 This alternative way of looking at measure theoretic representations, then, is consistent with the previous one. While quasiprobability distributions are very useful in practice, we want to stress that there is no single choice for $X$. To solve a specific problem, this may actually be useful as one can choose the most convenient $X$ for the problem. To develop a general theory for physics, however, this is not useful as each representation is not general enough.
+
+\section{Fraction capacity}
+
+TODO: intro
+
+Given that mixing coefficients have a more general applicability than probability of outcomes, let us concentrate on the following problem: given an ensemble $\ens \in \Ens$ and a (Borel) set of ensembles $A \subseteq \Ens$, what fraction of $\ens$ can be constructed by a mixture of $A$? How much of $\ens$ can be explained as coming from preparations corresponding to $A$? For example, let $\Ens$ be the space of all probability distributions for a six-sided die. Let $\ens_{123456}$ be the uniform distribution over all outcomes. Let $A_1 = \{\ens_1\}$ where $\ens_1$ represents outcome one with 100\% probability. Since we can write $\ens_{123456} = \frac{1}{6} \ens_{1} + \frac{5}{6} \ens_{23456}$, where $\ens_{23456}$ represents a uniform distributions over the five outcomes, $1/6$ of $\ens$ can be constructed from $A$, but no more. Similarly, if $A_{12} = \{\ens_{1},\ens_{2}\}$, we can write $\ens = \frac{1}{3} \left(\frac{1}{2} \ens_1 + \frac{1}{2} \ens_2 \right)  + \frac{2}{3} \ens_{3456}$, so $1/3$ of $\ens$ can be constructed from $A$, but no more. Note that, given the uniform distribution, $1/6$ is exactly the probably for the event $A_1$ and $1/3$ the probability for event $A_{12}$. This gives the basic insight for our definitions.
+
+Given a target ensemble $\ens \in \Ens$ and an arbitrary ensemble $\ens[a] \in \Ens$, we define the \textbf{fraction} of $\ens[a]$ in $\ens$ to be
+\begin{equation}
+	\fraction_{\ens}(\ens[a]) = \sup(\{ p \in [0,1] \, | \, \exists \, \ens_1 \in \Ens \text{ s.t. }  \ens = p \ens[a] + \bar{p} \ens_1 \}).
+\end{equation}
+The fraction is always well-defined because we can always write $\ens = 0 \ens[a] + 1 \ens$, therefore it must be zero or greater. This quantity tells us how much of ensemble $\ens$ can be constructed from $\ens[a]$. 
+
+We now extend this idea from a single ensemble $\ens[a] \in \Ens$ to a Borel set of ensembles $A \subset \Ens$. Given that the $\hull(A)$ is the set of all possible convex combinations (i.e. mixtures),\footnote{Since we work with convex sets within a topology, the hull is both the closed under the topology and convex combinations. That is, $\hull(A)$ is the smallest closed and convex set that contains $A$} we define the \textbf{fraction capacity} of $A$ for $\ens$ to be
+\begin{equation}
+	\frcap_{\ens}(A) = \sup(\fraction_{\ens}(\hull(A))\cup\{0\}).
+\end{equation}
+This returns the biggest fraction of $\ens$ that can be achieved with a mixture of elements of $A$.\footnote{The name fraction capacity is chosen to both signify the ability of the set $A$ to contain $\ens$ (i.e. fraction capacity of one means $\ens$ is within the convex combinations of $A$) and to indicate that it will be a non-additive monotonic measure, which are called ``capacities'' in some literature. TODO \href{ https://link.springer.com/book/10.1007/978-3-319-03155-2}{cite} }
+
+One can then show that the fraction capacity $\frcap_{\ens} : \Sigma_{\Ens} \to [0,1]$ is a set function that satisfies the following:
+\begin{enumerate}
+	\item non-negative and unit bounded - $\frcap_{\ens}(A) \in [0,1]$
+	\item monotone - $A \subseteq B \implies \frcap_{\ens}(A) \leq \frcap_{\ens}(B)$
+	\item sub-additive - $\frcap_{\ens}(A \cup B) \leq \frcap_{\ens}(A) + \frcap_{\ens}(B)$
+	\item continuous from below and above - $\frcap_{\ens}(\lim\limits_{i \to \infty} A_i) = \lim\limits_{i \to \infty} \frcap_{\ens}(A_i)$ for any increasing or decreasing sequence $\{A_i\}$.
+\end{enumerate}
+
+The first property readily comes from the domain of the fraction. For the second, note that $\hull$ and $\sup$ are both monotone. For sub-additivity, note that the fraction of two components can at most sum during mixing. For the last, increasing and decreasing sequences strictly add or remove possible mixtures, therefore they will lead to increasing or decreasing sequences of real numbers bounded between zero and one. The limit of these sequences must agree with the fraction capacity of the limit. If not for the lack of additivity over disjoint sets, the fraction capacity would be a probability measure.
+
+Our setup is very similar to what happens in Choquet theory. The fraction capacity, in fact, is not just defined on the extreme points, but it is defined on the whole space of ensembles. In the classical discrete case, for example, if $A \subset \Omega \subset \Ens$ is an event, then $\frcap_{\ens}(A)$ will return the probability of event $A$; if $P \subset \Ens$ represents all the Poisson distributions with integer coefficient, $frcap_{\ens}(P)$ will return how much of $\ens$ can be expressed is a mixture of those distributions. Similarly, the probability measures in Choquet theory are, in general, defined on the whole ensemble space, and then one finds those particular ones that have support on the extreme points.
+
+We can establish a direct connection between the fraction capacity and Choquet theory, because the ability to express an ensemble $\ens$ as the convex combination of $A$ is precisely the ability to find a measure $\mu$ that has support within $A$. That is, $\ens = \sum_{i=1}^{\infty} p_i \ens[a]_i$ if an only if the probability measure defined by $\mu(\{\ens[a]_i\}) = p_i$ represents $\ens$.\footnote{TODO: add proof somewhere} Consequently, if $M_{\ens}$ is the set of all probability measures that represent $\ens$ as defined in Choquet theory, then $\frcap_{\ens}(A) = \sup(\{\mu(A) \, | \, \mu \in M_{\ens}\})$.\footnote{TODO: prove somewhere}
+
+As we saw, the classical case corresponds to a simplex in Choquet theory. This means that each element of the ensemble space is represented by a unique probability measure over the extreme points. In that case, the fraction capacity extended on the extreme points will also be additive. In the non-classical case, the closure of the ensemble space will not be a simplex, and there will be multiple representations, which will lead to a non-additive measure. Suppose, in fact, that $\mu$ and $\nu$ are two distinct measures that represent the same ensemble $\ens$. Then there will be a set $A$ such such that $\mu(A) \neq \nu(A)$. Suppose, without loss of generality, that $\mu(A) > \nu(A)$ We will also have $\mu(A^{\complement}) = 1- \mu(A) < 1 - \nu(A) = \nu(A^{\complement})$. Since the fraction capacity for a set cannot be less than the measure on that set, we have $\frcap_{\ens}(A \cup A^{\complement})=\frcap_{\ens}(X) = 1 = \mu(A) + \mu(A^{\complement}) < \mu(A) + \nu(A^{\complement}) \leq \frcap_{\ens}(A) + \frcap_{\ens}(A^{\complement})$. That is, the fraction capacity is additive over disjoint sets of extreme points in and only in the classical case. In other words, the fraction capacity reduces to a classical probability distribution over pure states in the classical case.
+
+
 
 \section{Old introduction}
 
@@ -253,45 +289,6 @@ The key insight is that \textbf{mixing coefficients and probabilities are differ
 
 To recap, the topological structure captures experimental verifiability and is responsible for the limits and the connection to measureable quantities. The convex structure captures statistical mixing and is responsible for all linear structures of physical theories. The entropic structure captures the variability within an ensemble and is ultimately responsible for all geometric structures. Since the physical problem is indivisible, there is an interplay across these structure which goes beyond this article and we refer to our larger work.
 
-\section{Fraction capacity}
-
-Given that mixing coefficients have a more general applicability than probability of outcomes, let us concentrate on the following problem: given an ensemble $\ens \in \Ens$ and a (Borel) set of ensembles $A \subseteq \Ens$, what fraction of $\ens$ can be constructed by a mixture of $A$? How much of $\ens$ can be explained as coming from preparations corresponding to $A$? For example, let $\Ens$ be the space of all probability distributions for a six-sided die. Let $\ens_{123456}$ be the uniform distribution over all outcomes. Let $A_1 = \{\ens_1\}$ where $\ens_1$ represents outcome one with 100\% probability. Since we can write $\ens_{123456} = \frac{1}{6} \ens_{1} + \frac{5}{6} \ens_{23456}$, where $\ens_{23456}$ represents a uniform distributions over the five outcomes, $1/6$ of $\ens$ can be constructed from $A$, but no more. Similarly, if $A_{12} = \{\ens_{1},\ens_{2}\}$, we can write $\ens = \frac{1}{3} \left(\frac{1}{2} \ens_1 + \frac{1}{2} \ens_2 \right)  + \frac{2}{3} \ens_{3456}$, so $1/3$ of $\ens$ can be constructed from $A$, but no more. Note that, given the uniform distribution, $1/6$ is exactly the probably for the event $A_1$ and $1/3$ the probability for event $A_{12}$. This gives the basic insight for our definition.
-
-Given a target ensemble $\ens \in \Ens$ and an arbitrary ensemble $\ens[a] \in \Ens$, we define the \textbf{fraction} of $\ens[a]$ in $\ens$ to be
-\begin{equation}
-	\fraction_{\ens}(\ens[a]) = \sup(\{ p \in [0,1] \, | \, \exists \, \ens_1 \in \Ens \text{ s.t. }  \ens = p \ens[a] + \bar{p} \ens_1 \}).
-\end{equation}
-The fraction is always well-defined because we can always write $\ens = 0 \ens[a] + 1 \ens$, therefore it must be zero or greater. This quantity tells us how much of ensemble $\ens$ can be constructed from $\ens[a]$. 
-
-We now extend this idea from a single ensemble $\ens[a] \in \Ens$ to a Borel set of ensembles $A \subset \Ens$. Recalling that the $\hull(A)$ is the set of all possible convex combinations (i.e. mixtures), we define the\textbf{fraction capacity} of $A$ for $\ens$ to be
-\begin{equation}
-	\frcap_{\ens}(A) = \sup(\fraction_{\ens}(\hull(A))\cup\{0\}).
-\end{equation}
-This returns the biggest fraction of $\ens$ that can be achieved with a mixture of elements of $A$.\footnote{The name fraction capacity is chosen to both signify the ability of the set $A$ to contain $\ens$ (i.e. fraction capacity of one means $\ens$ is within the convex combinations of $A$) and to indicate that it will be a non-additive monotonic measure, which are called ``capacities'' in some literature. TODO \href{ https://link.springer.com/book/10.1007/978-3-319-03155-2}{cite} }
-
-One can then show that the fraction capacity $\frcap_{\ens} : \Sigma_{\Ens} \to [0,1]$ is a set function that satisfies the following:
-\begin{enumerate}
-	\item non-negative and unit bounded - $\frcap_{\ens}(A) \in [0,1]$
-	\item monotone - $A \subseteq B \implies \frcap_{\ens}(A) \leq \frcap_{\ens}(B)$
-	\item sub-additive - $\frcap_{\ens}(A \cup B) \leq \frcap_{\ens}(A) + \frcap_{\ens}(B)$
-	\item continuous from below and above - $\frcap_{\ens}(\lim\limits_{i \to \infty} A_i) = \lim\limits_{i \to \infty} \frcap_{\ens}(A_i)$ for any increasing or decreasing sequence $\{A_i\}$.
-\end{enumerate}
-
-The first property readily comes from the domain of the fraction. For the second, note that $\hull$ and $\sup$ are both monotone. For sub-additivity, note that the fraction of two components can at most sum during mixing. For the last, increasing and decreasing sequences strictly add or remove possible mixtures, therefore they will lead to increasing or decreasing sequences of real numbers bounded between zero and one. The limit of these sequences must agree with the fraction capacity of the limit.
-
-If not for the lack of additivity over disjoint sets, the fraction capacity would be a probability measure. However, the difference between fraction capacity and probability goes beyond that. While the probability measure is defined over sets of outcomes, the fraction capacity is defined over ensembles, over probability distributions. Conceptually the two are different object, but they, as we will see later, linked. Suppose $\Ens$ is the classical ensemble space given by the set of probability distributions over a sample space $\Omega$. Let $U \subseteq \Omega$ be an event, let $A_U \subset \Ens$ be the set of all probability distributions with support within $U$ and $\ens \in \Ens$ a probability distribution. Then we can show that $\frcap_{\ens}() $
-
-In the classical case, the fraction capacity reduces to a probability measure. Note that a probability satisfies all the properties of a fraction capacity, but it also satisfy on additional property: additivity over disjoint sets. That is, if $A \cup B = \emptyset$ then $\mu(A \cup B) = \mu(A) + \mu(B)$. Adding finite additivity over disjoint sets is enough as continuity will extended the property to additivity over countably many disjoint sets. Conversely, having countable additivity over disjoint sets implies sub-additivity and continuity from below and above. 
-
-
-
-While additivity over disjoint set holds in classical probability, it does not hold in quantum mechanics
-
- This is not true in general, as we can see in a simple example from quantum mechanics. Let $\Ens$ be the ensemble space of a qubit, that is the space of density matrices of a two dimensional Hilbert space. Geometrically, this is the convex set represented by a three dimensional ball. Let $\ens_{\psi} = |\psi\>\<\psi|$ be a pure state and let $\ens_{\phi} = |\phi\>\<\phi|$ be its orthogonal. Geometrically, these are two opposite points on the surface of the ball. The maximally mixed state can be expressed as $\ens = \frac{1}{2} \ens_0 + \frac{1}{2} \ens_1$. This is the center point of the ball and is in fact the midpoint between two opposite points. Since this is valid for any point, we have $\frcap_{\ens}(\{\ens_{\psi}\})=\frac{1}{2}$ for any $\ens_{\psi} \in \Ens$ and $\frcap_{\ens}(\{\ens_{\psi}, \ens_{\phi}\})=1$ for any pair of orthogonal pure states. If $A$ is a set of two orthogonal pure states, and $B$ is state different from the two, we have $\frcap_{\ens}(A \cup B) = 1 < \frcap_{\ens}(A) + \frcap_{\ens}(B) = \frac{3}{2}$.
-
-If we restrict ourselves to lattice of subsets of $\Ens$ we can recover additivity. For example, if we take a family $A_i$ of orthogonal sets (i.e. all the elements of one set are orthogonal to all the elements of any other set) and take an element that is a mixture of elements from that family, then the fraction capacity will be additive over the lattice formed by closing the family under union and intersection. In quantum mechanics, this would correspond to all probability distributions that are outcomes of the projective measurement that distinguishes between $A_i$. Part of the task, then, will be finding a set of necessary and sufficient conditions under which the fraction capacity for a particular ensemble is additive over a particular lattice of subsets
-
-What is important here is that 
 
 
 \section{Statistical properties}
