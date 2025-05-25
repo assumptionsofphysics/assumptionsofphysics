@@ -5,8 +5,13 @@
 \usepackage{breakurl}
 \usepackage{tcolorbox}
 
+\newcommand\mix{\mathrm{mix}}
+\newcommand\component{\mathrm{comp}}
+\newcommand\cospan{\mathrm{cospan}}
+\newcommand\dist{\mathrm{dist}}
 \newcommand\hull{\mathrm{hull}}
-\newcommand\stcap{\mathrm{scap}}
+\newcommand\support{\mathrm{supp}}
+\newcommand\capacity{\mathrm{scap}}
 \newcommand\fraction{\mathrm{frac}}
 \newcommand\frcap{\mathrm{fcap}}
 
@@ -193,13 +198,51 @@ One can then show that the fraction capacity $\frcap_{\ens} : \Sigma_{\Ens} \to 
 	\item continuous from below and above - $\frcap_{\ens}(\lim\limits_{i \to \infty} A_i) = \lim\limits_{i \to \infty} \frcap_{\ens}(A_i)$ for any increasing or decreasing sequence $\{A_i\}$.
 \end{enumerate}
 
-The first property readily comes from the domain of the fraction. For the second, note that $\hull$ and $\sup$ are both monotone. For sub-additivity, note that the fraction of two components can at most sum during mixing. For the last, increasing and decreasing sequences strictly add or remove possible mixtures, therefore they will lead to increasing or decreasing sequences of real numbers bounded between zero and one. The limit of these sequences must agree with the fraction capacity of the limit. If not for the lack of additivity over disjoint sets, the fraction capacity would be a probability measure.
+The first property readily comes from the range of the fraction. For the second, note that $\hull$ and $\sup$ are both monotone. For sub-additivity, note that the fraction of two components can at most sum during mixing. For the last, increasing and decreasing sequences strictly add or remove possible mixtures, therefore they will lead to increasing or decreasing sequences of real numbers bounded between zero and one. The limit of these sequences must agree with the fraction capacity of the limit. If not for the lack of additivity over disjoint sets, the fraction capacity would be a probability measure.
 
 Our setup is very similar to what happens in Choquet theory. The fraction capacity, in fact, is not just defined on the extreme points, but it is defined on the whole space of ensembles. In the classical discrete case, for example, if $A \subset \Omega \subset \Ens$ is an event, then $\frcap_{\ens}(A)$ will return the probability of event $A$; if $P \subset \Ens$ represents all the Poisson distributions with integer coefficient, $frcap_{\ens}(P)$ will return how much of $\ens$ can be expressed is a mixture of those distributions. Similarly, the probability measures in Choquet theory are, in general, defined on the whole ensemble space, and then one finds those particular ones that have support on the extreme points.
 
 We can establish a direct connection between the fraction capacity and Choquet theory, because the ability to express an ensemble $\ens$ as the convex combination of $A$ is precisely the ability to find a measure $\mu$ that has support within $A$. That is, $\ens = \sum_{i=1}^{\infty} p_i \ens[a]_i$ if an only if the probability measure defined by $\mu(\{\ens[a]_i\}) = p_i$ represents $\ens$.\footnote{TODO: add proof somewhere} Consequently, if $M_{\ens}$ is the set of all probability measures that represent $\ens$ as defined in Choquet theory, then $\frcap_{\ens}(A) = \sup(\{\mu(A) \, | \, \mu \in M_{\ens}\})$.\footnote{TODO: prove somewhere}
 
 As we saw, the classical case corresponds to a simplex in Choquet theory. This means that each element of the ensemble space is represented by a unique probability measure over the extreme points. In that case, the fraction capacity extended on the extreme points will also be additive. In the non-classical case, the closure of the ensemble space will not be a simplex, and there will be multiple representations, which will lead to a non-additive measure. Suppose, in fact, that $\mu$ and $\nu$ are two distinct measures that represent the same ensemble $\ens$. Then there will be a set $A$ such such that $\mu(A) \neq \nu(A)$. Suppose, without loss of generality, that $\mu(A) > \nu(A)$ We will also have $\mu(A^{\complement}) = 1- \mu(A) < 1 - \nu(A) = \nu(A^{\complement})$. Since the fraction capacity for a set cannot be less than the measure on that set, we have $\frcap_{\ens}(A \cup A^{\complement})=\frcap_{\ens}(X) = 1 = \mu(A) + \mu(A^{\complement}) < \mu(A) + \nu(A^{\complement}) \leq \frcap_{\ens}(A) + \frcap_{\ens}(A^{\complement})$. That is, the fraction capacity is additive over disjoint sets of extreme points in and only in the classical case. In other words, the fraction capacity reduces to a classical probability distribution over pure states in the classical case.
+
+\section{State capacity}
+
+We now want to introduce a measure theoretic representation of the entropy that generalizes the notion of count of states. Since entropy characterizes the variability of the preparations of the ensemble, greater variability means the ensemble is spread over more cases. Therefore the count of distinguishable states must be a monotonic function of the entropy. It has been shown[cite Hall] under very general conditions that the exponential of the entropy is the only function to have the appropriate features. One required feature, that we prove in general, is that the exponential of the entropy is subadditive (i.e. the count of states associated to a mixture cannot exceed the combined count of states associated to both mixtures) and it is additive for orthogonal ensembles (i.e. no overlap in possible instances) in a specific linear combination.
+
+Given a Borel set of ensembles $A \subseteq \Ens$, we define the \textbf{state capacity} of $A$ to be
+\begin{equation}
+\capacity(A) = \sup(2^{S(\hull(A))}\cup\{0\}).
+\end{equation}
+This returns the exponential of the biggest entropy achievable with a mixture of elements of $A$.
+
+One can then show that the fraction capacity $\capacity_{\ens} : \Sigma_{\Ens} \to [0,\infty]$ is a set function that satisfies the following:
+\begin{enumerate}
+	\item non-negative - $\capacity(A)\geq 0$
+	\item monotone - $A \subseteq B \implies \capacity(A) \leq \capacity(B)$
+	\item sub-additive - $\capacity(A \cup B) \leq \capacity(A) + \capacity(B)$
+	\item additive over orthogonal sets - $\capacity(A \cup B) = \capacity(A) + \capacity(B)$ if $A \ortho B$
+	\item continuous from below and above - $\capacity(\lim\limits_{i \to \infty} A_i) = \lim\limits_{i \to \infty} \capacity(A_i)$ for any increasing or decreasing sequence $\{A_i\}$.
+\end{enumerate}
+
+The first property readily comes from the range of the exponential. For the second, note that $\hull$, exponential and $\sup$ are all monotone. For sub-additivity, the exponential of the entropy itself is sub-additive, and it is additive over orthogonal ensembles. For the last, since the entropy itself  is continuous, this property carries over to the set function.
+
+Again we note that the non-additive measure we recover is very well-behaved, and connects directly with important quantities. When Choquet theory applies, state capacity can be extended to the extreme points. In the classical case, disjoint sets of extreme points will be orthogonal, meaning that the state capacity there restricted is an additive measure. In the discrete case, every point is associated to zero entropy, and since $2^0=1$, the state capacity reduces to the counting measure. In the continuous case, gives a subset of phase space $A$, the maximum entropy is reached by the uniform distribution $\rho_A$, which means we recover $\log_2 \capacity(A) = S(\rho_A)$, the fundamental postulate of statistical mechanics. Similarly, in quantum mechanics, given an orthogonal subspace $A$, the maximum entropy is recovered by the maximally mixed state, which means $\capacity(A) = 2^{\dim(A)}$.
+
+The state capacity, then, recovers the number of distinguishable states. In classical mechanics, all states are perfectly distinguishable. In quantum mechanics, only orthogonal state are distinguishable, and therefore the state capacity recovers the number of orthogonal states.
+
+\section{Connection to fuzzy logic}
+
+
+
+\section{Possible generalization of calculus}
+
+As we pointed out, the state capacity and the fraction capacities are always well-defined, even in the cases where, potentially, Choquet theory does not apply because the closure of the ensemble space is not compact.
+
+General problems:
+1) Can we always find extreme points?
+2) Can we generalize to the non-compact case? Can \href{https://en.wikipedia.org/wiki/Krein%E2%80%93Milman_theorem#convex_compactness}{convex compactness} help?
+3) In the classical case, both measures become additive on the extreme points. Standard calculus is used. Is there a non-additive version of calculus that generalizes?
 
 \section{Conclusion}
 
