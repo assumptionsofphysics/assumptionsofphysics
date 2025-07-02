@@ -174,14 +174,36 @@ Chouqet theory tells us, in the realm where it can be applied, that classical pr
 
 \section{Quasiprobability}
 
-Another way to represent quantum ensembles is through the use of quasiprobability distributions. These distributions (or measures) relax some of Kolmogorov's probability axioms\footnote{TODO: These should be stated earlier.}.
+%Goal of this section: quasi-probability representations are allowed by the embedding in a topological vector space. Choice of representations are guided by what observables are interesting for a specific problem.
 
-A measure $\mu: \Omega_X \to \mathbb{R}$ over a sample space $X$ with $\sigma$-algebra $\Omega_X$ is called a probability measure if it satisfies the following three axioms
+%Examples: Wigner, Husimi, Glauber P, SIC-POVM (space not made of spectra of operators), Kirkwood-Dirac (two-time correlation function - observables not necessarily taken at the same time )
+
+%Things to say: some people think about it as weakining axioms (cite papers on negative probability). It's more than that. Points describe events that are not necessarily mutually exclusive. TODO: example of two Wigner function/Husimi Q would be better that have no overlap but they are not orthogonal and/or two functions that have overlap but are orthogonal.
+
+A measure $\mu: \Omega_X \to \mathbb{R}$ over a sample space $X$ with $\sigma$-algebra $\Omega_X$ is called a probability measure if it satisfies the following three axioms\footnote{TODO: These should be stated earlier.}
 \begin{labeling}{Non-negativity:}
 	\item[Non-negativity:] $\forall x \in \Omega_X: \mu(x) \ge 0$
 	\item[Normalization:] $\mu(X) = 1$
 	\item[$\sigma$-additivity:] $\mu ( \bigcup_i x_i ) = \sum_i \mu ( x_i )$ for any countable sequence of disjoint sets $x_i \in \Omega_X$.
 \end{labeling}
+
+%Thing to say: all these representations are useful because they preserve the linear structure, meaning that convex combinations of ensembles are convex combinations of quasi-probability; expectation values are linear. Check, but it should be true.
+
+% 1 describe quasiprobability approaches; go through examples; point out that the quasi-probability can be negative; that one can recover expectations;
+
+\textbf{Quasi-probability representations.} Another way to represent quantum ensembles is through the use of quasiprobability distributions. While the Wigner function is probably the most widely known, there are in fact several different approach. The Wigner function represent quantum states, both pure and mixed, as a density function over position and momentum. This function integrates to one over the full space, like a probability density, but can have small negative regions, unlike a probability density. Recall that an affine combination is a linear combination where all coefficients sum to one but are not necessarily non-negative. Therefore, in general, quasi-probability distributions can be understood as affine combinations.
+
+For the Wigner function, the expectation of polynomials of position and momentum over phase space recovers expectations of polynomials of position and momentum in symmetric order (?). (Definitions and features?) In some problems, especially in quantum optics, normal ordering and anti-normal ordering are more useful. The Glauber P representation and the Husimi Q representation work like the Wigner function except that the expectations of polynomials recover the respective order. In other circumstances, quasi-probability distributions over observables different from position and momentum are more useful. For example, the Kirkwood-Dirac is used to represent two-time correlation functions over observables defined at different times. Quasi-probability representations are also used over discrete elements that may not even correspond to eigenstates of a particular operator. For example, the SIC-POVM represents density matrices as affine combinations of pure states that are ``equally distant'' from each other, which means that no two elements are orthogonal to each other.
+
+It should be clear that there are many ways to represent quantum states via quasi-probability distributions, and that the choice of representation is a matter of convenience for the problem at hand. All representations, though, have the following features in common. First, we have a map $W : \Ens \to Q(Z,\mathbb{R})$ that given each mixed state $\rho \in \Ens$ returns the corresponding quasi-probability function $w(z) \in Q(Z,\mathbb{R})$, where $Q(Z,\mathbb{R})$ is the function space used by the specific representation. The representation preserves convex combinations: $W(\sum_i p_i \rho_i) = \sum_i p_i W(\rho_i)$. That is, a statistical mixture of quasi-probability distributions represents the statistical mixture of the corresponding states. Since the map is linear, and expectation values are linear, one can express expectation values as integrals or sums over the quasi-probability $w(z)$. 
+
+% 2 Note that it's not about negative probability; disjoint not mutually exclusive
+
+\textbf{Not about negative probability.} It is very common to conceive the main difference between classical probability and these quasi-probabilities as the inclusion of negative probability. Sometimes these negative probabilities are justified as arising from constraints on probability distributions defined on different contexts. This is a mischaracterization. For example, the Husimi Q representation provides us with a non-negative quasi-probability function. That is, the Husimi Q is a non-negative density distribution that integrates to one, yet it is not a probability distribution.
+
+The crucial difference is that in classical probability all points of the sample space represent mutually exclusive events. That is, they can be prepared and observed independently from the others. Therefore, any two events that are disjoint are also mutually exclusive. This is not the case for quasi-probability in quantum mechanics. Husimi Q represents a state as decomposed over coherent states, which cannot represent mutually exclusive as they are not orthogonal. Similarly, we can imagine to embed the Bloch ball into a tetrahedron, which means every point in the Bloch ball could be represented as a convex combination of extreme points, meaning that they would be represented by a non-negative quasi-probability distribution over four elements. However, none of the four elements represent a valid state.
+
+% 3 These representations are possible because of the vector space structure of the ensemble space, and therefore something similar will be possible in ANY physical theory
 
 For example, affine measures do not necessarily satisfy non-negativity. The Wigner function is the probability density of such a measure and can be negative over small regions of phase space.
 
@@ -191,9 +213,11 @@ In general, since the ensemble space is bounded along every direction, not all a
 
 Note that if $\overline{\Ens} = M_p(X)$, then the space of the extreme point is exactly the space of Dirac measures, and therefore $X$ corresponds to the pure states. Alternatively, either one ensemble is represented by an affine measure, or not all probability measures can be understood as mixtures of extreme points. If $\overline{\Ens}$ is compact, then this is exactly when $\overline{\Ens}$ is not a simplex and multiple decompositions are allowed.
 
+
+% 4 pros and cons - can choose a repretation for the problem at hand; no fundamental representation; boundaries ore not well defined (i.e. which functions represnt valid states)
+
 This alternative way of looking at measure theoretic representations, then, is consistent with the previous one. While quasiprobability distributions are very useful in practice, we want to stress that there is no single choice for $X$. To solve a specific problem, this may actually be useful as one can choose the most convenient $X$ for the problem. To develop a general theory for physics, however, this is not useful as each representation is not general enough.
 
-TODO: disjoint supports of Wigner functions do not give orthogonal subspaces (CHECK)
 
 \section{Fraction capacity}
 
