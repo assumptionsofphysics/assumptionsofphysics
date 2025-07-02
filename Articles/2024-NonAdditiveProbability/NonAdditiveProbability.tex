@@ -4,6 +4,7 @@
 \usepackage{tikz}
 \usepackage{breakurl}
 \usepackage{tcolorbox}
+\usepackage{scrextend}	% for environment ``labeling''
 
 \newcommand\mix{\mathrm{mix}}
 \newcommand\component{\mathrm{comp}}
@@ -173,7 +174,16 @@ Chouqet theory tells us, in the realm where it can be applied, that classical pr
 
 \section{Quasiprobability}
 
-Another way to represent quantum ensembles is through the use of quasiprobability distributions. Given a topological space $X$, a measure $\mu: \mathcal{B}(X) \to \mathbb{R}$ is affine if $\mu(X)=1$, where $\mathcal{B}(X)$ is the Borel $\sigma$-algebra. All probability measures are affine measures, but the reverse is not true, as affine measures can be negative on particular regions. The Wigner function, for example, can be negative over small regions of phase space.
+Another way to represent quantum ensembles is through the use of quasiprobability distributions. These distributions (or measures) relax some of Kolmogorov's probability axioms\footnote{TODO: These should be stated earlier.}.
+
+A measure $\mu: \Omega_X \to \mathbb{R}$ over a sample space $X$ with $\sigma$-algebra $\Omega_X$ is called a probability measure if it satisfies the following three axioms
+\begin{labeling}{Non-negativity:}
+	\item[Non-negativity:] $\forall x \in \Omega_X: \mu(x) \ge 0$
+	\item[Normalization:] $\mu(X) = 1$
+	\item[$\sigma$-additivity:] $\mu ( \bigcup_i x_i ) = \sum_i \mu ( x_i )$ for any countable sequence of disjoint sets $x_i \in \Omega_X$.
+\end{labeling}
+
+For example, affine measures do not necessarily satisfy non-negativity. The Wigner function is the probability density of such a measure and can be negative over small regions of phase space.
 
 Given a space $X$, the space of all affine measures is a vector space, not just a convex subset as in the case of the space of probability measures. This means that, given an ensemble space, we may find a space $X$ such that the space of affine measures over $X$ is isomorphic to the embedding vector space $V$ as topological vector spaces. In this case, any element $v\in V$ can be represented uniquely by an affine measure $\mu_{v}$, regardless of whether they are actual ensembles or not.\footnote{The question of whether such an $X$ always exists is left open. We suspect a link exists between the statistical quantities $F_i$ that fully identify each ensemble and the space $X$.} Because the statistical quantities $F_i$ are affine functions, we will have $F_i(v) = \int_X F_i d\mu_{v}$.
 
