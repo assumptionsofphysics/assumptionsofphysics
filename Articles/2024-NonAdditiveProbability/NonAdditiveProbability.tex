@@ -156,6 +156,17 @@ Let us first give a summary of the main results in Choquet theory that are inter
 	Let $E$ be a metrizable compact convex subset of a locally convex space $V$, and let $\ens \in E$. Then there exists a probability measure $\mu_{\ens}$ on $X$ which represents $\ens$ and is supported by the extreme points of $X$.
 \end{thrm}
 
+A probability measure $\mu: \Omega_X \to \mathbb{R}$ over a sample space $X$ with $\sigma$-algebra $\Omega_X$ satisfies the three axioms by Kolmogorov
+\begin{enumerate}[label={\Roman*}]
+	\item\label{ax:pos} \textbf{Non-negativity:\,} $\forall x \in \Omega_X: \mu(x) \ge 0$
+	\item\label{ax:norm} \textbf{Normalization:\,} $\mu(X) = 1$
+	\item\label{ax:add} \textbf{$\sigma$-additivity:\,} $\mu ( \bigcup_i x_i ) = \sum_i \mu ( x_i )$ for any countable sequence of disjoint sets $x_i \in \Omega_X$.
+\end{enumerate}
+The last axiom is based on the (sometimes hidden) assumption of
+\begin{enumerate}[label={\Roman*}]\setcounter{enumi}{3}
+	\item\label{ax:exc} \textbf{Mutual exclusivity:\,} disjoint sets describe mutually exclusive events.
+\end{enumerate}
+
 % Physical meaning of representation with a measure.
 First, let us understand the physical significance. An ensemble $\ens$ can be seen as a probability measure $\mu$ over the ``pure states'' (i.e. the extreme points of $E$) if the value for every statistical quantity $f$ for $\ens$ can be recovered as an expectation over the pure states using the probability measure. That is, all statistical properties of $\ens$ can be recovered by the probability measure. This is what allows us to think of $\ens$ as a probability distribution. Note, however, that the Choquet theorem does not guarantee uniqueness. The probability measure is unique if and only if $E$ is a Choquet simplex, which is a generalization of the finite dimensional simplex. The characterization of the Choquet simplex is fairly technical, so we will simply define the Choquet simplex by the property of having a single decomposition in terms of extreme points.
 
@@ -178,14 +189,50 @@ Chouqet theory tells us, in the realm where it can be applied, that classical pr
 
 %Examples: Wigner, Husimi, Glauber P, SIC-POVM (space not made of spectra of operators), Kirkwood-Dirac (two-time correlation function - observables not necessarily taken at the same time )
 
-%Things to say: some people think about it as weakining axioms (cite papers on negative probability). It's more than that. Points describe events that are not necessarily mutually exclusive. TODO: example of two Wigner function/Husimi Q would be better that have no overlap but they are not orthogonal and/or two functions that have overlap but are orthogonal.
+The Wigner function is one of the most well-known examples of a quasi-probability function. The Wigner transform
+\begin{equation}
+	W_{\hat{O}} (q, p) = 2 \int_{-\infty}^{\infty} \langle x + y | \hat{\rho} | x - y \rangle e^{-2 i p y / \hbar} \; \mathrm dy
+\end{equation}
+maps operators (i.e., states and observables) on the Hilbert space onto functions on phase space. It allows calculation of expectation values as expected by turning the trace into a phase space integral
+\begin{equation}
+	\tr ( \hat{\rho} \hat{O} ) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} W_{\hat{\rho}} (q, p) W_{\hat{O}} (q, p) \; \mathrm dq \; \mathrm dp \; .
+\end{equation}
+This representation is most convenient when working with operators in symmetric ordering.
 
-A measure $\mu: \Omega_X \to \mathbb{R}$ over a sample space $X$ with $\sigma$-algebra $\Omega_X$ is called a probability measure if it satisfies the following three axioms\footnote{TODO: These should be stated earlier.}
-\begin{labeling}{Non-negativity:}
-	\item[Non-negativity:] $\forall x \in \Omega_X: \mu(x) \ge 0$
-	\item[Normalization:] $\mu(X) = 1$
-	\item[$\sigma$-additivity:] $\mu ( \bigcup_i x_i ) = \sum_i \mu ( x_i )$ for any countable sequence of disjoint sets $x_i \in \Omega_X$.
-\end{labeling}
+However, these functions don't define probability densities for two reasons. First of all, they can be negative on small regions\footnote{compared to $\hbar$} of phase space. And second of all, the events\footnote{technically measurable subsets like $[q - \epsilon, q + \epsilon] \times [p - \delta, p + \delta]$, etc.} $(q, p)$ are not mutually exclusive, which can be seen by the fact that Wigner functions of orthogonal pure states can overlap. For example, the eigenstates $| m \rangle$ of the harmonic oscillator with Wigner functions
+\begin{equation}
+	W_m (q, p) = \frac{(-1)^m}{\pi} e^{-(q^2+p^2)} L_m (2(q^2 + p^2))
+\end{equation}
+have support everywhere, since the Laguerre polynomials $L_m$ have finitely many zeros.
+
+The converse, however, is true, i.e., Wigner functions of disjoint support\footnote{TODO It is not obvious if any physical examples exist. One could attempt to construct density operators from two real Schwartz functions on $\mathbb{R}^2$ with disjoint support, which would yield self-adjoint trace-class operators, but they aren't necessarily positive.} are orthogonal, since the inner product of two pure states $\psi, \phi$ can be calculated as
+\begin{equation}
+	| \langle \psi | \phi \rangle |^2 = 2 \pi \hbar \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} W_\psi (q, p) W_\phi (q, p) \; \mathrm dq \; \mathrm dp \; .
+\end{equation}
+
+The Husimi Q function is another example of a quasi-probability density. It is convenient when working with operators in anti-normal order and defined as
+\begin{equation}\label{eq:husimi}
+	Q ( \alpha ) = \frac{1}{\pi} \langle \alpha | \hat{\rho} | \alpha \rangle
+\end{equation}
+where the $| \alpha \rangle$ are coherent states.
+
+Interestingly, these functions are always non-negative, therefore satisfying axiom \ref{ax:pos}. But probability densities are still not related to mutually exclusive events, as demanded by assumption \ref{ax:exc}.
+
+%Things to say: some people think about it as weakening axioms (cite papers on negative probability). It's more than that. Points describe events that are not necessarily mutually exclusive. TODO: example of two Wigner functions/Husimi Q would be better, that have no overlap but they are not orthogonal and/or two functions that have overlap but are orthogonal.
+
+For example the eigenstates $| n \rangle$ of the harmonic oscillator are orthogonal, but overlap with any coherent state $| \alpha \rangle$ for $\alpha \neq 0$. Their Husimi Q function $Q_n ( \alpha ) = \frac{1}{\pi} \langle \alpha | \hat{\rho_n} | \alpha \rangle = \frac{1}{\pi} \langle \alpha | n \rangle \langle | n | \alpha \rangle = \frac{1}{\pi} | \langle n | \alpha \rangle |^2 = \frac{1}{\pi} e^{| \alpha |^2} \frac{\alpha^{2n}}{n!} $ have identical support on all of $\mathbb{C}$\footnote{TODO We might be able to prove that Husimi Q functions always have support on all of $\mathbb{C}$, by expressing them via the \href{https://en.wikipedia.org/wiki/Segal\%E2\%80\%93Bargmann_space#The_Segal\%E2\%80\%93Bargmann_transform}{Segal-Bargmann transform}, which is a holomorphic function and as such has support everywhere. I'm not sure if there is a way to extend this to Wigner functions as well.}.
+
+The opposite case, however, can never happen. Pure states with Husimi Q functions of disjoint support must be orthogonal. To see that remember that for pure states $| \psi \rangle$ the corresponding Husimi Q function is $Q_\psi ( \alpha ) = \frac{1}{\pi} | \langle \psi | \alpha \rangle |^2$ and the coherent states $| \alpha \rangle$ form an overcomplete basis, i.e. give a partition of unity $1 = \frac{1}{\pi} \int | \alpha \rangle \langle \alpha | \; \mathrm d^2 \alpha$. That means we can write the inner product between two pure states $\psi, \phi$ as
+\begin{equation}
+	\langle \psi | \phi \rangle = \frac{1}{\pi} \int \langle \psi | \alpha \rangle \langle \alpha | \phi \rangle
+\end{equation}
+If $Q_\psi$ and $Q_\phi$ have disjoint support for each $\alpha$, either $\langle \psi | \alpha \rangle$ or $\langle \alpha | \phi \rangle$ vanish.
+
+Many other examples exist, like the Glauber-Sudarshan P function, which is related to normal ordering. In the finite-dimensional case, one approach is to expand the density operator in terms of symmetric, informationally-complete, positive operator-valued measures (SIC-POVMs)\footnote{The exact definition is not relevant for this article and can be found in the literature.}.  These can be constructed, for example, from a set of $d^2$ rank-1 projectors $P_i$ and there corresponding probabilities $p_i$ as
+\begin{equation}
+	\hat{\rho} = \sum_{n=1}^{d^2} \left[ (d^2 + 1) p_i - \frac{1}{d} \right] P_i \; ,
+\end{equation}
+where $p_i = \tr P_i \hat{\rho}$. There is no unique choice of projectors for a given Hilbert space and it is in fact an open question if SIC-POVMs exist in all dimensions $d$.
 
 %Thing to say: all these representations are useful because they preserve the linear structure, meaning that convex combinations of ensembles are convex combinations of quasi-probability; expectation values are linear. Check, but it should be true.
 
