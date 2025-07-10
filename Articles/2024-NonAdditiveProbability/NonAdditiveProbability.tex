@@ -317,18 +317,22 @@ Again we note that the non-additive measure we recover is very well-behaved, and
 
 The state capacity, then, recovers the number of distinguishable states. In classical mechanics, all states are perfectly distinguishable, the measure is additive. In quantum mechanics, only orthogonal state are distinguishable, therefore the measure is non-additive over pure states. We see again how the lack of single decomposition of ensembles over pure states is responsible for the failure of the additivity of the measure.
 
-\section{Connection to fuzzy logic}
+\section{Non-additive generalization of probability theory}
 
+\textbf{Requirements.} We have shown how fraction capacities and the state capacities give us generalized version of probability measure and state counting measures. The question now becomes: is there a generalization of all other elements of probability theory (e.g. probability densities, random variables, expectation) to the non-additive case? Some of these elements require some form of calculus. Is the a non-additive version of calculus that would allow such a generalization? In this section we will describe what the ideal scenario would be and what are the problems that need to be addressed.
 
+First of all, we would need a guarantee that the capacities can always be restricted to the extreme points, and that the restriction is unique. As we say, the capacities are defined on the ensemble space $\Ens$, while the standard measures are defined on the space $X$ that supports the measures. As we said before, the ensemble space may not have extreme points: points of phase space do not correspond to a valid ensemble. We have been trying to understand how to reconstruct the points and the topology of $X$ from the space of absolutely continuous probability measures, but haven't been successful so far.\footnote{An attempt, for example, is by using orthogonality to create the lattice of orthogonal subspaces and use something along the lines of Stone's representation theorem for Boolean algebra. However, this fails to recover the points correctly on the continuum even for classical mechanics.}
 
-\section{Possible generalization of calculus}
+Assuming we have a way to associate $\Ens$ with a set $X$ of extreme points (or equivalent notion), we can now think of the state capacity and the fraction capacity as non-additive measure over $X$. We have a notion of statistical variable $F : \Ens \to \mathbb{R}$ defined over the ensemble space, but in probability theory random variables are defined over the sample space. On the continuum, the expectation is recover through the integration over the probability density. Therefore, we are looking for a non-additive derivative $\rho = \frac{d \frcap_{\ens}}{d \capacity}$ that reduces to the Radon-Nikodym derivative in the additive case and non-additive integral such that
+\begin{equation}
+	F(\ens) = \int_X F(x) \rho(x) d\capacity.
+\end{equation}
+Though not a strict requirement, it would make sense if we found
+\begin{equation}
+	S(\ens) = \int_X \rho(x) \log \rho(x) d\capacity.
+\end{equation}
 
-As we pointed out, the state capacity and the fraction capacities are always well-defined, even in the cases where, potentially, Choquet theory does not apply because the closure of the ensemble space is not compact.
-
-General problems:
-1) Can we always find extreme points?
-2) Can we generalize to the non-compact case? Can \href{https://en.wikipedia.org/wiki/Krein%E2%80%93Milman_theorem#convex_compactness}{convex compactness} help?
-3) In the classical case, both measures become additive on the extreme points. Standard calculus is used. Is there a non-additive version of calculus that generalizes?
+Since the general problem is too hard to approach directly, a first step is to see whether such problem can be solved for the two-dimensional quantum case, the Bloch ball. There we can compute both the state capacity and the fraction capacity for different sets, and see whether some insights can be gained. Since there is already a rich literature on non-additive measures, we can see what results, if any, can be useful to our case.
 
 \section{Conclusion}
 
