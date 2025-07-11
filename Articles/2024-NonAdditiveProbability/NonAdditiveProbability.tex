@@ -217,11 +217,11 @@ Conversely, we can use signed measures to represent classical distributions. Sup
 
 Since we can represent classical states with signed probability measures, and quantum states with non-negative probability measure, the difference between classical probability and quantum quasi-probability does not lie in the use of negative probability. Instead, the crucial difference is that in classical probability all points of the sample space, and therefore disjoint regions, represent mutually exclusive events, and all mutually exclusive events are represented by disjoint regions. Mutually exclusive events and be prepared and observed independently from the others (i.e. they are orthogonal in the sense that they maximize entropy increase during mixture); we can assign some probability to some region without having to assign it to another disjoint region.\footnote{The only constraint is that the probability over the whole space is one.} This is not the case for quasi-probability in quantum mechanics.
 
-For example, the eigenstates $| m \rangle$ of the harmonic oscillator are orthogonal, mutually exclusive events. Their corresponding Wigner functions are
+For example, the Husimi Q functions of pure states $Q_\psi(\alpha) = \frac{1}{\pi} |\langle \alpha | \psi \rangle|^2$ have support everywhere, since we can express the inner product as \cite[eq. 11.7-1]{mandel1995}
 \begin{equation}
-	W_m (q, p) = \frac{(-1)^m}{\pi} e^{-(q^2+p^2)} L_m (2(q^2 + p^2)).
+	\langle \alpha | \psi \rangle = e^{-|\alpha|^2/2} F_\psi(\alpha^\ast)
 \end{equation}
-Their support is the whole $\mathbb{R}^2$ since the Laguerre polynomials $L_m$ have finitely many zeros, and therefore are not disjoint. Conversely, in a SIC-POVM we take $d^2$ pure states $P_i$ in a $d$ dimensional space, which means they cannot be all orthogonal to each other. For a Bloch sphere, the four corners of the tetrahedron are not all opposite to each other. Therefore, disjoint sets of $P_i$ do not correspond to mutually exclusive events. 
+where $F_\psi$ is an entire analytic function. Conversely, in a SIC-POVM we take $d^2$ pure states $P_i$ in a $d$ dimensional space, which means they cannot be all orthogonal to each other. For a Bloch sphere, the four corners of the tetrahedron are not all opposite to each other. Therefore, disjoint sets of $P_i$ do not correspond to mutually exclusive events. 
 
 While negative probability is a red herring, we want to understand two things. When can we use classical probability? Are quasi-probability representation specific to quantum mechanics, or are they more general? Fortunately, the ensemble space framework allows us to answer these questions directly.
 
