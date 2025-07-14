@@ -319,20 +319,85 @@ The state capacity, then, recovers the number of distinguishable states. In clas
 
 \section{Non-additive generalization of probability theory}
 
-\textbf{Requirements.} We have shown how fraction capacities and the state capacities give us generalized version of probability measure and state counting measures. The question now becomes: is there a generalization of all other elements of probability theory (e.g. probability densities, random variables, expectation) to the non-additive case? Some of these elements require some form of calculus. Is the a non-additive version of calculus that would allow such a generalization? In this section we will describe what the ideal scenario would be and what are the problems that need to be addressed.
+\textbf{Use of non-additive measure theory.} Given that extensive literature already exists for non-additive measure theory, we originally thought it would be just a matter of clarifying our definitions and connect them to the existing literature. However, things turned out to be more complicated, and we are now convinced that the tools already available are not applicable to our case.
 
-First of all, we would need a guarantee that the capacities can always be restricted to the extreme points, and that the restriction is unique. As we say, the capacities are defined on the ensemble space $\Ens$, while the standard measures are defined on the space $X$ that supports the measures. As we said before, the ensemble space may not have extreme points: points of phase space do not correspond to a valid ensemble. We have been trying to understand how to reconstruct the points and the topology of $X$ from the space of absolutely continuous probability measures, but haven't been successful so far.\footnote{An attempt, for example, is by using orthogonality to create the lattice of orthogonal subspaces and use something along the lines of Stone's representation theorem for Boolean algebra. However, this fails to recover the points correctly on the continuum even for classical mechanics.}
+In this section we will first clarify the requirements and what we expect to have from a non-additive generalization of integration and derivation. Then we will show that the tools we have found in the literature, like the Sugeno and Choquet integral, fail for simple examples.
 
-Assuming we have a way to associate $\Ens$ with a set $X$ of extreme points (or equivalent notion), we can now think of the state capacity and the fraction capacity as non-additive measure over $X$. We have a notion of statistical variable $F : \Ens \to \mathbb{R}$ defined over the ensemble space, but in probability theory random variables are defined over the sample space. On the continuum, the expectation is recover through the integration over the probability density. Therefore, we are looking for a non-additive derivative $\rho = \frac{d \frcap_{\ens}}{d \capacity}$ that reduces to the Radon-Nikodym derivative in the additive case and non-additive integral such that
+\textbf{Requirements.} We have shown how fraction capacities and the state capacities give us generalized version of probability measure and state counting measures. The question now becomes: is there a generalization of all other elements of probability theory (e.g. probability densities, random variables, expectation) to the non-additive case? Since integral and differential calculus in probability theory is based on measure theory, is the a non-additive version of calculus that would allow such a generalization?
+
+For simplicity, we will assume that Choquet theory applies: the ensemble space $\Ens$ has a clear set of extreme points $X$ and the capacities have a unique restriction to the extreme points. In principle, the general problem is more complicated since, as we mentioned before, $\Ens$ may not have extreme points. Whether one can always reconstruct the points and the topology of $X$ given $\Ens$ is an open question that we leave for our larger work.\footnote{One attempt, for example, was by using orthogonality to create the lattice of orthogonal subspaces and use something along the lines of Stone's representation theorem for Boolean algebra. However, this fails to recover the points correctly on the continuum even for classical mechanics. We are still trying to understand what mathematical structures have enough information to allow the reconstruction.} For our purposes, we can assume that both the state capacity and the fraction capacity as non-additive measure over $X$.
+
+We goal is to define an expectation for statistical variables that reduces to the standard case in classical theories, that is, in the additive case. We already have a notion of statistical variable $F : \Ens \to \mathbb{R}$ defined over the ensemble space. This too can be restricted on the extreme points $X$ and, given that $F$ is a linear functional, the values on the extreme points will fully determine the values for all other points of $\Ens$. In the classical case, the expectation is recovered through the integration of the variable over the probability density. Therefore, we would like a non-additive integral such that
 \begin{equation}
-	F(\ens) = \int_X F(x) \rho(x) d\capacity.
+	E[F] = F(\ens) = (E)\int_X F(x) d\frcap_{\ens}.
 \end{equation}
-Though not a strict requirement, it would make sense if we found
+which reduces to the Riemann integral in the classical (additive) case. The integral will depend only on the values of $F$ and $\frcap_{\ens}$ on $X$, but since these uniquely determine both $F$ and $\ens$, the integral can be understood as a map from $F$ and $\ens$ to $F(\ens)$, which is, in principle, well-defined. Therefore, in principle, this integral should exist.
+
+Additionally, we would like to be able to define an analogue of the probability density. We are therefore looking for a non-additive derivative $\rho = \frac{d \frcap_{\ens}}{d \capacity}$ that reduces to the Radon-Nikodym derivative in the classical (additive) case such that
 \begin{equation}
-	S(\ens) = \int_X \rho(x) \log \rho(x) d\capacity.
+	F(\ens) = (E)\int_X F(x) \rho(x) d\capacity
+\end{equation}
+under the previous integral. It is less clear whether this derivative is always well defined. Since in classical mechanics we have $S(\ens) = \int_X \rho \log \rho d\mu$ and in quantum mechanics $S(\ens) = \tr[\rho \log \rho]$, we would expect
+\begin{equation}
+	S(\ens) = (E)\int_X \rho(x) \log \rho(x) d\capacity.
+\end{equation}
+We do not know whether this second requirement is at all possible, or whether it can be used as guide in case that the previous derivative is not uniquely defined.
+
+\textbf{Quick overview of the literature.}
+
+\textbf{A test case for the Choquet integral.} We are not going to compute the Choquet integral for a two state quantum system and see that, unfortunately, it does not recover the expectation of the statistical variables in the corresponding ensemble space.
+
+The ensemble space for a two-state quantum system is the Bloch ball. The extreme points form a sphere and all other ensembles are the internal points of the sphere. The center point $\ens[o]$ is the maximally mixed state. Since $\ens[o]$ can always be obtained by the equal mixture of two opposite points, we have that the fraction capacity for every singleton of an extreme point is $\frcap_{\ens[o]}(\{\psi\}) =\frac{1}{2}$. A statistical variable $F$, instead is a linear function of the space. This means that two opposite points on the surface $\ens[a]$ and $\ens[b]$ will take the minimum and maximum values $a = F(\ens[a])$ and $b = F(\ens[b])$. For simplicity, we can picture $\ens[a]$ and $\ens[b]$ as the extreme points of the vertical axis.
+
+The Choque integral is defined as 
+\begin{equation}
+	\begin{aligned}
+(C)&\int F d\frcap_{\ens[o]} := \\
+&\int_{-\infty}^0
+(\frcap_{\ens[o]} (\{x | F (x) \geq s\})-\frcap_{\ens[o]}(X))\, ds \\
+&+
+\int^\infty_0
+\frcap_{\ens[o]} (\{x | F (x) \geq s\})\, ds.
+	\end{aligned}
+\end{equation}
+The set $\{x | F (x) \geq s\}$ corresponds to all the points of $X$, the surface of the sphere, that have a value of $F$ greater than a given $s$. Since $F$ is a linear function, this corresponds to the set of points above a given height. So, all we need to do to calculate the integral is calculate the fraction capacity for sets of sphere $A(s)$ where the bottom is cut off at all possible values.
+
+If $s\leq \frac{1}{2} F(\ens[a]) + \frac{1}{2} F(\ens[b])$, we are cutting the sphere at the midpoint or below. This means that $A(s)$ will include two opposite points. Since $\ens[o]$ can be expressed as the mixture of two opposite point, $\ens[o]$ is in the hull of $A(s)$ and therefore $\frcap_{\ens[o]}(A(s)) = 1$. Conversely, if $s > F(\ens[b])$, $A(s) = \emptyset$, which means $\frcap_{\ens[o]} = 0$. The non-trivial case, then, is when $\frac{1}{2} F(\ens[a]) + \frac{1}{2} F(\ens[b]) < s \leq F(\ens[b])$.
+
+In this case, the hull of $A(s)$ is the top spherical cap. We need to consider all possible convex combinations $\ens[o] = p \ens + \bar{p} \ens[c]$ where $\ens$ is in the spherical cap and $\ens[c]$ is not, and find the one with highest $p$. Since, for combinations along the same direction, $p$ increases as $\ens$ gets closer to $\ens[o]$ and as $\ens[c]$ gets further, $\ens[c]$ will be an extreme point on the lower hemisphere while $\ens$ will be on the disc at constant $s$, the lower side of the cap. Also note that the distance between $\ens[o]$ is the same for all extreme points, therefore, to maximize $p$, we simply need to minimize the distance between $\ens[o]$ and $\ens$. We have that $\ens$ must be the intersection between the vertical axis and the disk, and $\ens[c]$ will coincide with $\ens[a]$. The coefficient $p$ will be given by ratio of the distance $\overline{\ens[o]\ens[a]}$ and $\overline{\ens\ens[a]}$. Since $F$ is a linearly functional, we have
+\begin{equation}
+	\frac{\overline{\ens[o]\ens[a]}}{\overline{\ens\ens[a]}} = \frac{F(\ens[o])-F(\ens[a])}{F(\ens) - F(\ens[a])} = \frac{1}{2} \frac{F(\ens[b]) - F(\ens[a])}{s-F(\ens[a])}.
 \end{equation}
 
-Since the general problem is too hard to approach directly, a first step is to see whether such problem can be solved for the two-dimensional quantum case, the Bloch ball. There we can compute both the state capacity and the fraction capacity for different sets, and see whether some insights can be gained. Since there is already a rich literature on non-additive measures, we can see what results, if any, can be useful to our case.
+To recap, we have
+\begin{equation}
+	\frcap_{\ens[o]}(A(s))=
+	\begin{cases}
+		1 & \text{if } s\leq \frac{1}{2} a + \frac{1}{2} b\\
+		\frac{1}{2} \frac{b - a}{s-a} & \text{if } \frac{1}{2} a + \frac{1}{2} b < s \leq b\\
+		0 & \text{if } s > b.
+	\end{cases}
+\end{equation}
+We can now calculate the integral
+\begin{equation}
+	\begin{aligned}
+		(C)&\int F d\frcap_{\ens[o]} := 
+		\int_{-\infty}^0
+		(\frcap_{\ens[o]} (A(s))-\frcap_{\ens[o]}(X))\, ds \\
+		&+
+		\int^\infty_0
+		\frcap_{\ens[o]} (A(s))\, ds \\
+		&= \int_{-\infty}^0 (1 - 1)ds + \int_{0}^{\frac{1}{2} a + \frac{1}{2} b}  1 ds \\
+		&+ \int_{\frac{1}{2} a + \frac{1}{2} b}^{b}  \frac{1}{2} \frac{b - a}{s-a} ds + \int_{b}^{\infty} 0 ds \\
+		&=\left[s\right]_{0}^{\frac{1}{2} a + \frac{1}{2} b}
+		+ \frac{1}{2}\left(b - a\right)\left[\ln (s - a)\right]_{\frac{1}{2} a + \frac{1}{2} b}^{b} \\
+		&= \frac{1}{2} a + \frac{1}{2} b + \frac{1}{2}\left(b - a\right)\left[\ln (b - a)\right. \\
+		&+\left. \ln (\frac{1}{2} a + \frac{1}{2} b - a) \right] \\
+		&= \frac{1}{2} a + \frac{1}{2} b + \frac{1}{2}\left(b - a\right)\ln (2)
+	\end{aligned}
+\end{equation}
+
+Note that, since $\ens[o]$ is the center of the ball, $F(\ens[o]) = \frac{1}{2} a + \frac{1}{2} b \neq \frac{1}{2} a + \frac{1}{2} b + \frac{1}{2}\left(b - a\right)\ln (2)$. This means that the Choquet integral of the statistical variable with respect to the fraction capacity does not recover the expectation value.
 
 \section{Conclusion}
 
