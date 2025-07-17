@@ -228,9 +228,14 @@ where $F_\psi$ is an entire analytic function, which cannot vanish on an open se
 
 While negative probability is a red herring, we want to understand two things. When can we use classical probability? Are quasi-probability representation specific to quantum mechanics, or are they more general? Fortunately, the ensemble space framework allows us to answer these questions directly.
 
+
 % 3 These representations are possible because of the vector space structure of the ensemble space, and therefore something similar will be possible in ANY physical theory
 
-\textbf{Ensemble space embedding and signed measures.} We have already seen that we can represent ensembles using classical probability if and only the ensemble space is a simplex. Since any probability measure is possible, we can assign probability to two disjoint areas independently. This answers the first question.
+\textbf{Ensemble space embedding and signed measures.} As we saw when reviewing Choquet theory, and measure on the extreme points represents an ensemble. Classical spaces are those in which there is a one-to-one correspondence between each measure and each ensemble. We also saw that the hallmark of pseudo-probabilities is the lack of mutual exclusivity of the events. Why is mutual exclusivity linked to the lack of multiple representations?
+
+Suppose we have an ensemble $\ens$ that can be represented as different measures $p_1$ and $p_2$ over the extreme points. This means that there are two sets $A$ and $B$ for which $p_1(A) < p_2(A)$ and $p_1(B) > p_2(B)$. That is, we can move probability from $A$ to $B$ while leaving the ensemble, and therefore the entropy and all statistical variables, unchanged. If $A$ and $B$ where two mutually exclusive events, this would not be possible: if we could distinguish between $A$ and $B$, something would have to change. The only way for $A$ and $B$ to be mutually exclusive, then, is if different measures represent different ensembles, which means the ensemble space is a simplex. This answers the first question: we can use classical probability exactly when all extreme points are mutually exclusive (i.e. orthogonal as defined from the entropy) and the ensemble space is a simplex.
+
+In quantum mechanics, a classical context is a simplex embedded within the ensemble space. For the Bloch ball, a classical context is an axis that connect two opposite point. The points are orthogonal because the midpoint is the maximally mixed state, which therefore maximizes the entropy increase, and the line segment is a one simplex. If we take the position operator and consider all density operators that commute with $x$, this is exactly functions $\rho(x)$ that integrate two once, which is the space of probability supported by $X$, which is a simplex. We want to stress how the conceptual view and the mathematical view fits precisely together with little effort.
 
 For the second question, let $Z$ be the space over which we are defining our quasi-probability distributions.
 Note that, in general, $Z$ is not the space of states. Wigner functions, for example, are defined over phase space, which does not represent quantum states. Let $M^{\pm}(Z)$ the space of all bounded signed measures over $Z$. Since the linear combination of two bounded signed measure is a bounded signed measure, $M^{\pm}(Z)$ is a vector space. Now let $M_1^{\pm}(Z)$ be the space of signed probability measures. While it is not a subspace of $M(Z)$, it does not include the zero measure, it is an affine subspace therefore, up to the choice of an arbitrary origin, it is a vector space.
@@ -382,7 +387,7 @@ In this case, the hull of $A(s)$ is the top spherical cap. We need to consider a
 	\frac{\overline{\ens[o]\ens[a]}}{\overline{\ens\ens[a]}} = \frac{F(\ens[o])-F(\ens[a])}{F(\ens) - F(\ens[a])} = \frac{1}{2} \frac{b - a}{s-a}.
 \end{equation}
 
-To recap, we have
+To recap, we have (TODO: add a graph)
 \begin{equation}
 	\frcap_{\ens[o]}(A(s))=
 	\begin{cases}
@@ -412,7 +417,16 @@ We can now calculate the integral
 
 Note that, since $\ens[o]$ is the center of the ball, $F(\ens[o]) = \frac{1}{2} a + \frac{1}{2} b \neq \frac{1}{2} a + \frac{1}{2} b + \frac{1}{2}\left(b - a\right)\ln (2)$. This means that the Choquet integral of the statistical variable with respect to the fraction capacity does not recover the expectation value.
 
-\textbf{Ruling out Sugeno and Choquet integrals.}
+\textbf{Space of capacities and variables.} A bigger conceptual problem is that the space of possible fraction capacities of an ensemble space depends on the ensemble space. For a classical ensemble space, for example, only additive measures are allowed. Conversely, all statistical variables are linear on the ensemble space, so the restriction on the extreme points cannot be arbitrary. In the Bloch ball case, for example, all linear functions are fully determined by two opposite points on the sphere and by two value (i.e. the eigenstates and the eigenvalues of the corresponding operator). The value for all the other points is determined.
+
+This again corresponds to assumptions of mutual exclusivity of the extreme points and the corresponding events. As we saw before, the additivity of the measure corresponds to the ability to assign probability to a set without implicitly assigning probability to another. In terms of statistical variable, two mutually exclusive events can be assigned values independently. This, again, recovers how observable work in quantum mechanics, without mentioning quantum mechanics: only orthogonal states, that is mutually exclusive events, can associated to measurement outcomes and be given a classical probability distribution. The non-additivity of the fraction capacity and the non-arbitrariness of the statistical variables over the extreme points, then, must be linked to the shape of the ensemble space. To our knowledge, there is no such requirement for the more typical used of non-additive measure theory.
+
+Additionally, the non-additivity of the state capacity also depends on the degree of mutually exclusiveness of the events. It is additive for mutually exclusive events and sub-additive otherwise. Therefore state capacity, fraction capacity and statistical variables have to be, in a sense, compatible with each other.
+
+As we saw in the classical case, probability measures have to be absolutely continuous with respect to the state counting measure. Also, if the state capacity is additive, all disjoint events are mutually exclusive, which means the fraction capacity is additive and disjoint events can correspond to independent values for a statistical variable. Therefore, we wonder whether a more general compatibility condition exists between the fraction capacity and the state capacity/statistical variable respectively.
+
+We have not found similar discussion in the literature for non-additive measure, which makes us suspect that these considerations are specific to this setting.
+
 
 \section{Conclusion}
 
