@@ -399,15 +399,12 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 	\pgfmathsetmacro{\izz}{0}
 
 	% dimensions
-	\newcommand{\saxisoffset}{1.5}
-	\newcommand{\canvasaxisoffset}{-3}
 	\newcommand{\s}{-0.4}
 	\pgfmathsetmacro{\radiusats}{sqrt(1 - \s*\s)}
 	\pgfmathsetmacro{\stheta}{asin(\s)}
 	\pgfmathsetmacro{\minstheta}{asin(-\s)}
 	
 	\newcommand{\radius}{1}
-	\pgfmathsetmacro{\axislength}{2*\radius}
 	\newcommand{\margin}{1.3}
 	
 	\begin{tikzpicture}[x={(\xx cm, \xy cm)}, y={(\yx cm, \yy cm)}, z={(\zx cm, \zy cm)}, scale=1.3]
