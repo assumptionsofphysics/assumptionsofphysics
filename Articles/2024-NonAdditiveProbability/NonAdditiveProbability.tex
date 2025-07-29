@@ -545,12 +545,14 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 		
 		% cut 1
 		\begin{scope}[canvas is zx plane at y=\radius-\s]
+			\draw (-0.9*\margin, -1.1*\margin) node[below left, circle, draw, thick, color=colora] {1};
 			\filldraw[color=colora, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
 		\end{scope}
 
 		
 		% cut 2
 		\begin{scope}[canvas is zx plane at y=-\s]
+			\draw (-0.9*\margin, -1.1*\margin) node[below left, circle, draw, thick, color=colorb] {2};
 			\filldraw[color=colorb, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
 			\draw[color=colorb, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
 			\draw[color=colorb, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
@@ -558,6 +560,7 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 		
 		% cut 3
 		\begin{scope}[canvas is zx plane at y=\s]
+			\draw (-0.9*\margin, -1.1*\margin) node[below left, circle, draw, thick, color=colorc] {3};
 			\filldraw[color=colorc, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
 			\draw[color=colorc, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
 			\draw[color=colorc, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
