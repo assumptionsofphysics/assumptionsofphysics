@@ -494,7 +494,21 @@ To recap, we have
 \end{equation}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{ChoquetPlot.png}
+	\newcommand{\ticklength}{0.03}
+	\begin{tikzpicture}[scale=3]
+		% axes
+		\draw[->] (0, 0) -- (1.3, 0);
+		\draw (0, 0) node[left] {$0$} -- +(-\ticklength, 0) (0, 0.5) node[left] {$1/2$} -- +(-\ticklength, 0) (0, 1) node[left] {$1$} -- +(-\ticklength, 0);
+		\draw[->] (0, 0) -- (0, 1.1);
+		\draw (0, 0) node[below] {$a$} -- +(0, -\ticklength) (0.5, 0) node[below] {$1/2(a+b)$} -- +(0, -\ticklength) (1, 0) node[below] {$b$} -- +(0, -\ticklength);
+		% cases s <= 1/2(a+b) and 1/2(a+b) < s <= b
+		\draw[thick, blue, domain=0.5:1, samples=200] (0, 1) --plot (\x, {0.5/\x});
+		% mark discontinuity
+		\filldraw (1, 0.5) circle (0.02cm);
+		\draw (1, 0) circle (0.02cm);
+		% case s > b
+		\draw[thick, blue] (1, 0) -- (1.2, 0);
+	\end{tikzpicture}
 	\caption{The integrand $\frcap_{\ens[o]}(A(s))$ as a function of $s$.}
 \end{figure}
 We can now calculate the integral
