@@ -474,7 +474,105 @@ If $s\leq \frac{1}{2} F(\ens[a]) + \frac{1}{2} F(\ens[b])$, we are cutting the s
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{ChoquetCalculation2.jpg}
+	
+	% perspective
+	\newcommand{\yaw}{11}
+	\newcommand{\pitch}{28}
+	\newcommand{\roll}{23}
+	
+	% transformation matrix = components of data axes in canvas coordinates
+	\pgfmathsetmacro{\xx}{cos(\yaw)*cos(\pitch)}
+	\pgfmathsetmacro{\xy}{sin(\yaw)*cos(\pitch)}
+	\pgfmathsetmacro{\xz}{-sin(\pitch)}
+
+	\pgfmathsetmacro{\yx}{cos(\yaw)*sin(\pitch)*sin(\roll) - sin(\yaw)*cos(\roll)}
+	\pgfmathsetmacro{\yy}{sin(\yaw)*sin(\pitch)*sin(\roll) + cos(\yaw)*cos(\roll)}
+	\pgfmathsetmacro{\yz}{cos(\pitch)*sin(\roll)}
+	
+	\pgfmathsetmacro{\zx}{cos(\yaw)*sin(\pitch)*cos(\roll) + sin(\yaw)*sin(\roll)}
+	\pgfmathsetmacro{\zy}{sin(\yaw)*sin(\pitch)*cos(\roll) - cos(\yaw)*sin(\roll)}
+	\pgfmathsetmacro{\zz}{cos(\pitch)*cos(\roll)}
+
+	% intersection of yz grand circle with horizon
+	\pgfmathsetmacro{\ixx}{0}
+	\pgfmathsetmacro{\ixy}{\zz / sqrt(\zz*\zz + \yz*\yz)}
+	\pgfmathsetmacro{\ixz}{-\yz / sqrt(\zz*\zz + \yz*\yz)}
+	% intersection of zx grand circle with horizon
+	\pgfmathsetmacro{\iyx}{\zz / sqrt(\zz*\zz + \xz*\xz)}
+	\pgfmathsetmacro{\iyy}{0}
+	\pgfmathsetmacro{\iyz}{-\xz / sqrt(\zz*\zz + \xz*\xz)}
+	% intersection of xy grand circle with horizon
+	\pgfmathsetmacro{\izx}{-\yz / sqrt(\xz*\xz + \yz*\yz)}
+	\pgfmathsetmacro{\izy}{\xz / sqrt(\xz*\xz + \yz*\yz)}
+	\pgfmathsetmacro{\izz}{0}
+
+	% dimensions
+	\newcommand{\s}{0.5}
+	\pgfmathsetmacro{\radiusats}{sqrt(1 - \s*\s)}
+	\pgfmathsetmacro{\stheta}{asin(\s)}
+	\pgfmathsetmacro{\minstheta}{asin(-\s)}
+	
+	\newcommand{\radius}{1}
+	\newcommand{\margin}{1.3}
+	
+	\begin{tikzpicture}[x={(\xx cm, \xy cm)}, y={(\yx cm, \yy cm)}, z={(\zx cm, \zy cm)}, scale=1.2]
+		% Bloch sphere (outline drawn in canvas plane)
+		\draw (\xy, \yy, \zy) arc[start angle=90, end angle={acos(\radiusats*\iyx*\xx - \s*\yx + \radiusats*\iyz*\zx)}, radius=1 cm] coordinate (A);
+%		\draw[dash dot, red] (A) arc[start angle={acos(\radiusats*\iyx*\xx - \s*\yx + \radiusats*\iyz*\zx)}, end angle=-90, radius=1 cm];
+		\draw (\xy, \yy, \zy) arc[start angle=90, end angle={acos(-\radiusats*\iyx*\xx - \s*\yx - \radiusats*\iyz*\zx)}, radius=1 cm] coordinate (B);
+%		\draw[dash dot, green] (B) arc[start angle={acos(-\radiusats*\iyx*\xx - \s*\yx - \radiusats*\iyz*\zx)}, end angle=270, radius=1 cm];
+		\draw[dashed] (A) arc[start angle={acos(\radiusats*\iyx*\xx - \s*\yx + \radiusats*\iyz*\zx)}, end angle={acos(-\radiusats*\iyx*\xx - \s*\yx - \radiusats*\iyz*\zx)-360}, radius=1 cm];
+
+		
+		% special points
+		\shadedraw (0, 0, 0) circle (0.03 cm) node[below right] {$\mathsf{o}$};
+		\shadedraw (0, \radius, 0) circle (0.03 cm) node[above] {$\mathsf{b}$};
+		\shadedraw (0, -\radius, 0) circle (0.03cm) node[below] {$\mathsf{a}$};
+		\shadedraw (0, \s, 0) circle (0.03cm) node[left] {$\mathsf{e}$};
+		
+		% convex combination
+		\draw (0, -\radius, 0) -- (0, \s, 0);
+		\draw (2.25*\xx, 2.25*\yx, 2.25*\zx) node {$\ens[o] = \frac{\overline{\ens[o]\ens[a]}}{\overline{\ens[e]\ens[a]}} \ens[e] + \frac{\overline{\ens[o]\ens[e]}}{\overline{\ens[e]\ens[a]}} \ens[a]$};
+		
+		% s axis
+		\begin{scope}[shift={(-1.5*\xx, -1.5*\yx, -1.5*\zx)}]
+			\draw (0, -1, 0) -- (0, 0, 0);
+			\draw[->] (0, 0, 0) -- (0, 1, 0) node[below left] {$s$};
+		\end{scope}
+		
+		% cut
+		\begin{scope}[canvas is zx plane at y=\s]
+%			\filldraw[color=blue, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
+			\draw[blue, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
+			\draw[blue, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
+		\end{scope}
+		
+		% meridians and equator
+		\begin{scope}[canvas is yz plane at x=0]
+			% foreground above s
+			\draw (\ixy, \ixz) arc[start angle={atan2(\ixz, \ixy)}, end angle=90-\stheta, radius=1 cm] coordinate (C);
+			% foreground below s
+			\draw[dashed] (C) arc[start angle=90-\stheta, end angle={atan2(-\ixz, -\ixy)}, radius=1 cm] coordinate (D);
+			% background below s
+			\draw[loosely dotted] (D) arc[start angle={atan2(-\ixz, -\ixy)}, end angle=\stheta+270, radius=1 cm];
+			% background above s
+			\draw[densely dotted] (\ixy, \ixz) arc[start angle={atan2(\ixz, \ixy)}, end angle=\stheta-90, radius=1 cm];
+		\end{scope}
+%		\begin{scope}[canvas is xy plane at z=0]
+%			\draw[dashed] (\izx, \izy) arc[start angle={atan2(\izy, \izx)}, delta angle=180, radius=1 cm];
+%			\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, delta angle=180, radius=1 cm];
+%		\end{scope}
+		\begin{scope}[canvas is xy plane at z=0]
+			% foreground above s
+			\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, end angle=180-\stheta, radius=1 cm] coordinate (E);
+			% foreground below s
+			\draw[dashed] (E) arc[start angle=180-\stheta, end angle={atan2(\izy, \izx)+360}, radius=1 cm] coordinate (F);
+			% background below s
+			\draw[loosely dotted] (F) arc[start angle={atan2(\izy, \izx)}, end angle=\stheta, radius=1 cm];
+			% background above s
+			\draw[densely dotted] (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, end angle=\stheta, radius=1 cm];
+		\end{scope}
+	\end{tikzpicture}
 	\caption{...}
 \end{figure}
 
