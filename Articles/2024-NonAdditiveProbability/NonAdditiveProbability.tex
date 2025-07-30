@@ -99,7 +99,66 @@ where $I(p,\bar{p}) = - p \log p - \bar{p} \log(\bar{p})$.\footnote{In the large
 
 Using the convex structure, we say that two ensembles are separate, noted $\ens[a] \separate \ens[b]$, if they cannot be expressed as a mixture of a common ensemble. That is, there is no $\ens[c]$ such that $\ens[a] = \alpha \ens[c] + \bar{\alpha} \ens[d]$ and $\ens[b] = \beta \ens[c] + \bar{\beta} \ens$ from some $\alpha, \beta \in (0,1]$ and $\ens[d],\ens \in \Ens$. No ensemble is separate from itself. An internal point is an ensemble that is not separate from any ensemble (i.e. it is the mixture of any ensemble). An extreme point is an ensemble that is separate from all others (i.e. it is only a mixture of itself).
 
-TODO: figure with classical triangle and quantum Bloch Ball
+\begin{figure}[H]
+	\centering
+	
+	% perspective
+	\newcommand{\yaw}{11}
+	\newcommand{\pitch}{28}
+	\newcommand{\roll}{23}
+	
+	% transformation matrix = components of data axes in canvas coordinates
+	\pgfmathsetmacro{\xx}{cos(\yaw)*cos(\pitch)}
+	\pgfmathsetmacro{\xy}{sin(\yaw)*cos(\pitch)}
+	\pgfmathsetmacro{\xz}{-sin(\pitch)}
+
+	\pgfmathsetmacro{\yx}{cos(\yaw)*sin(\pitch)*sin(\roll) - sin(\yaw)*cos(\roll)}
+	\pgfmathsetmacro{\yy}{sin(\yaw)*sin(\pitch)*sin(\roll) + cos(\yaw)*cos(\roll)}
+	\pgfmathsetmacro{\yz}{cos(\pitch)*sin(\roll)}
+	
+	\pgfmathsetmacro{\zx}{cos(\yaw)*sin(\pitch)*cos(\roll) + sin(\yaw)*sin(\roll)}
+	\pgfmathsetmacro{\zy}{sin(\yaw)*sin(\pitch)*cos(\roll) - cos(\yaw)*sin(\roll)}
+	\pgfmathsetmacro{\zz}{cos(\pitch)*cos(\roll)}
+
+	% intersection of yz grand circle with horizon
+	\pgfmathsetmacro{\ixx}{0}
+	\pgfmathsetmacro{\ixy}{\zz / sqrt(\zz*\zz + \yz*\yz)}
+	\pgfmathsetmacro{\ixz}{-\yz / sqrt(\zz*\zz + \yz*\yz)}
+	% intersection of zx grand circle with horizon
+	\pgfmathsetmacro{\iyx}{\zz / sqrt(\zz*\zz + \xz*\xz)}
+	\pgfmathsetmacro{\iyy}{0}
+	\pgfmathsetmacro{\iyz}{-\xz / sqrt(\zz*\zz + \xz*\xz)}
+	% intersection of xy grand circle with horizon
+	\pgfmathsetmacro{\izx}{-\yz / sqrt(\xz*\xz + \yz*\yz)}
+	\pgfmathsetmacro{\izy}{\xz / sqrt(\xz*\xz + \yz*\yz)}
+	\pgfmathsetmacro{\izz}{0}
+
+	% dimensions
+	\newcommand{\radius}{1}
+	
+	\begin{tikzpicture}[x={(\xx cm, \xy cm)}, y={(\yx cm, \yy cm)}, z={(\zx cm, \zy cm)}, scale=1.2]
+		% Triangle
+		\draw (canvas cs: x=-3cm, y=-0.25cm) +(canvas polar cs: angle=90, radius=1cm) -- +(canvas polar cs: angle=210, radius=1cm) -- +(canvas polar cs: angle=330, radius=1cm) -- cycle;
+		
+		% Bloch sphere (outline drawn in canvas plane)
+		\draw (0, 0, 0) circle (\radius cm);
+		
+		% meridians and equator
+		\begin{scope}[canvas is yz plane at x=0]
+			\draw (\ixy, \ixz) arc[start angle={atan2(\ixz, \ixy)}, delta angle=180, radius=1 cm];
+			\draw[dashed] (-\ixy, -\ixz) arc[start angle={atan2(-\ixz, -\ixy)}, delta angle=180, radius=1 cm];
+		\end{scope}
+		\begin{scope}[canvas is zx plane at y=0]
+			\draw[dashed] (\iyz, \iyx) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=1 cm];
+			\draw (-\iyz, -\iyx) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=1 cm];
+		\end{scope}
+		\begin{scope}[canvas is xy plane at z=0]
+			\draw[dashed] (\izx, \izy) arc[start angle={atan2(\izy, \izx)}, delta angle=180, radius=1 cm];
+			\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, delta angle=180, radius=1 cm];
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Examples of a classical (triangle) and quantum (ball) ensemble space in three and two dimensions, respectively.}
+\end{figure}
 
 The set of all extreme points $X$, as we will see, plays a major role. However, on physical grounds, these may not be proper ensembles. In classical mechanics, these would correspond to Dirac measures: probability distributions all concentrated at a single point of phase space. Since we cannot reliably prepare a particle with infinite precision, and its entropy would correspond to minus infinity, these are not ensembles and they are not part of $\Ens$. For the purpose of Choquet theory, we will assume that there is a way to find the closure $E \supset \Ens$ that includes all extreme points $X$. Moreover, we will also assume $E$ to be compact, even though it will not be in general. How to properly make these identifications, and how to go beyond the compact case, is outside of the scope of this particular article.\footnote{An early attempt used the notion of orthogonality to create the lattice of orthogonal subspaces and use something along the lines of Stone's representation theorem for Boolean algebra. This does not work. An approach, currently under investigation, is to study limits over statistical quantities. We are still trying to understand what mathematical structures have enough information to allow the reconstruction.} Note that the classical discrete and the quantum case fall in the compact case. Moreover, the set of all probability distributions over a compact space $X$ also falls in the compact case. Therefore, apart from the technicality above, the compact case is still a very interesting case. To distinguish the context, in this article we will use $\Ens$ to indicate the general case and $E$ to indicate this ``compact closure.''
 
