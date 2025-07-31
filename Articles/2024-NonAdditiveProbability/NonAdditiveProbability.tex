@@ -606,7 +606,7 @@ If $s\leq \frac{1}{2} F(\ens[a]) + \frac{1}{2} F(\ens[b])$, we are cutting the s
 			\draw[blue, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
 		\end{scope}
 		
-		% meridians and equator
+		% meridians
 		\begin{scope}[canvas is yz plane at x=0]
 			% foreground above s
 			\draw (\ixy, \ixz) arc[start angle={atan2(\ixz, \ixy)}, end angle=90-\stheta, radius=1 cm] coordinate (C);
@@ -617,10 +617,6 @@ If $s\leq \frac{1}{2} F(\ens[a]) + \frac{1}{2} F(\ens[b])$, we are cutting the s
 			% background above s
 			\draw[densely dotted] (\ixy, \ixz) arc[start angle={atan2(\ixz, \ixy)}, end angle=\stheta-90, radius=1 cm];
 		\end{scope}
-%		\begin{scope}[canvas is xy plane at z=0]
-%			\draw[dashed] (\izx, \izy) arc[start angle={atan2(\izy, \izx)}, delta angle=180, radius=1 cm];
-%			\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, delta angle=180, radius=1 cm];
-%		\end{scope}
 		\begin{scope}[canvas is xy plane at z=0]
 			% foreground above s
 			\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, end angle=180-\stheta, radius=1 cm] coordinate (E);
