@@ -655,13 +655,13 @@ To recap, we have
 	\begin{tikzpicture}[scale=3, xticklabel/.style={anchor=base, inner sep=1pt, yshift=-2.5ex}]
 		% axes
 		\draw[->] (0, 0) -- (1.7, 0);
-		\draw (0, 0) node[left] {$0$} -- +(-\ticklength, 0) (0, 0.5) node[left] {$1/2$} -- +(-\ticklength, 0) (0, 1) node[left] {$1$} -- +(-\ticklength, 0);
-		\draw[->] (0, 0) -- (0, 1.2);
+		\draw (0, 0) node[left] {$0$} -- +(-\ticklength, 0) (0, 0.25) node[left] {$1/2$} -- +(-\ticklength, 0) (0, 0.5) node[left] {$1$} -- +(-\ticklength, 0);
+		\draw[->] (0, 0) -- (0, 0.6);
 		\draw (0, 0) node[xticklabel] {$0$} -- +(0, -\ticklength) (0.5, 0) node[xticklabel] {$a$} -- +(0, -\ticklength) (1, 0) node[xticklabel] {$1/2(a+b)$} -- +(0, -\ticklength) (1.5, 0) node[xticklabel] {$b$} -- +(0, -\ticklength);
 		% cases s <= 1/2(a+b) and 1/2(a+b) < s <= b
-		\draw[thick, blue, domain=1:1.5, samples=200] (0, 1) --plot (\x, {0.5/(\x-0.5)});
+		\draw[thick, blue, domain=1:1.5, samples=200] (0, 0.5) --plot (\x, {0.25/(\x-0.5)});
 		% mark discontinuity
-		\filldraw (1.5, 0.5) circle (0.02cm);
+		\filldraw (1.5, 0.25) circle (0.02cm);
 		\draw (1.5, 0) circle (0.02cm);
 		% case s > b
 		\draw[thick, blue] (1.5, 0) -- (1.7, 0);
