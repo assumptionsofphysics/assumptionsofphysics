@@ -6,6 +6,7 @@
 \usepackage{breakurl}
 \usepackage{tcolorbox}
 \usepackage{float}
+\usepackage{subcaption}
 
 \newcommand\mix{\mathrm{mix}}
 \newcommand\component{\mathrm{comp}}
@@ -233,6 +234,119 @@ In some problems, especially in quantum optics, normal ordering and anti-normal 
 where $p_i = \tr \left(P_i \rho\right)$.
 
 It should be clear that there are many ways to represent quantum states via quasi-probability distributions, and that the choice of representation is a matter of convenience for the problem at hand. All representations, though, have the following features in common. First, we have a map $W : \Ens \to Q(Z,\mathbb{R})$ that given each mixed state $\rho \in \Ens$ returns the corresponding quasi-probability function $w(z) \in Q(Z,\mathbb{R})$, where $Q(Z,\mathbb{R}) \subset L^1(Z,\mathbb{R})$ is the function space used by the specific representation. The space $Z$, in fact, can change from representation to representation: it is $\mathbb{R}^{2n}$ for a Wigner function, $\mathbb{C}^n$ for the Husimi Q and $[1, d^2] \subset \mathbb{N}$ for the SIC-POVM. All representations preserves convex combinations: $W(\sum_i p_i \rho_i) = \sum_i p_i W(\rho_i)$. That is, a statistical mixture of quasi-probability distributions represents the statistical mixture of the corresponding states. Since the map is linear, and expectation values are linear, one can express expectation values as integrals or sums over the quasi-probability $w(z)$. 
+
+\begin{figure}[H]
+	\centering
+	
+	% perspective
+	% from scipy.spatial.transform import Rotation as R
+	% R.from_euler("yx", [50, 10], degrees=True).as_euler("xyz", degrees=True).round(0)[::-1]
+	\newcommand{\yaw}{12}
+	\newcommand{\pitch}{49}
+	\newcommand{\roll}{15}
+	
+	% transformation matrix = components of data axes in canvas coordinates
+	\pgfmathsetmacro{\xx}{cos(\yaw)*cos(\pitch)}
+	\pgfmathsetmacro{\xy}{sin(\yaw)*cos(\pitch)}
+	\pgfmathsetmacro{\xz}{-sin(\pitch)}
+
+	\pgfmathsetmacro{\yx}{cos(\yaw)*sin(\pitch)*sin(\roll) - sin(\yaw)*cos(\roll)}
+	\pgfmathsetmacro{\yy}{sin(\yaw)*sin(\pitch)*sin(\roll) + cos(\yaw)*cos(\roll)}
+	\pgfmathsetmacro{\yz}{cos(\pitch)*sin(\roll)}
+	
+	\pgfmathsetmacro{\zx}{cos(\yaw)*sin(\pitch)*cos(\roll) + sin(\yaw)*sin(\roll)}
+	\pgfmathsetmacro{\zy}{sin(\yaw)*sin(\pitch)*cos(\roll) - cos(\yaw)*sin(\roll)}
+	\pgfmathsetmacro{\zz}{cos(\pitch)*cos(\roll)}
+
+	% intersection of yz grand circle with horizon
+	\pgfmathsetmacro{\ixx}{0}
+	\pgfmathsetmacro{\ixy}{\zz / sqrt(\zz*\zz + \yz*\yz)}
+	\pgfmathsetmacro{\ixz}{-\yz / sqrt(\zz*\zz + \yz*\yz)}
+	% intersection of zx grand circle with horizon
+	\pgfmathsetmacro{\iyx}{\zz / sqrt(\zz*\zz + \xz*\xz)}
+	\pgfmathsetmacro{\iyy}{0}
+	\pgfmathsetmacro{\iyz}{-\xz / sqrt(\zz*\zz + \xz*\xz)}
+	% intersection of xy grand circle with horizon
+	\pgfmathsetmacro{\izx}{-\yz / sqrt(\xz*\xz + \yz*\yz)}
+	\pgfmathsetmacro{\izy}{\xz / sqrt(\xz*\xz + \yz*\yz)}
+	\pgfmathsetmacro{\izz}{0}
+	
+	\newcommand{\radius}{1}
+	
+	\begin{subfigure}[c]{0.23\textwidth}
+		\centering
+		\begin{tikzpicture}[x={(\xx cm, \xy cm)}, y={(\yx cm, \yy cm)}, z={(\zx cm, \zy cm)}, scale=1.2]
+			% Bloch sphere (outline drawn in canvas plane)
+			\draw (0, 0, 0) circle (\radius cm);
+			
+			% meridians and equator
+			\begin{scope}[canvas is yz plane at x=0]
+				\draw (\ixy, \ixz) arc[start angle={atan2(\ixz, \ixy)}, delta angle=180, radius=1 cm];
+				\draw[dashed] (-\ixy, -\ixz) arc[start angle={atan2(-\ixz, -\ixy)}, delta angle=180, radius=1 cm];
+			\end{scope}
+			\begin{scope}[canvas is zx plane at y=0]
+				\draw[dashed] (\iyz, \iyx) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=1 cm];
+				\draw (-\iyz, -\iyx) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=1 cm];
+			\end{scope}
+			\begin{scope}[canvas is xy plane at z=0]
+				\draw[dashed] (\izx, \izy) arc[start angle={atan2(\izy, \izx)}, delta angle=180, radius=1 cm];
+				\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, delta angle=180, radius=1 cm];
+			\end{scope}
+			
+			% tetrahedron
+			\coordinate (A) at (0, 1, 0);
+			\coordinate (B) at (0, -1/3, {sqrt(8/9)});
+			\coordinate (C) at ({sqrt(2/3)}, -1/3, {-sqrt(2/9)});
+			\coordinate (D) at ({-sqrt(2/3)}, -1/3, {-sqrt(2/9)});
+			\begin{scope}[every node/.style={font=\tiny}]
+				\draw (A) -- (B) -- (C) -- cycle;
+				\draw (A) -- (B) -- (D) -- cycle;
+				\draw (A) -- (C) -- (D) -- cycle;
+				\draw (B) -- (C) -- (D) -- cycle;
+%				\shadedraw (A) circle (0.03 cm) node[above] {$| 0 \rangle$};
+%				\shadedraw (B) circle (0.03 cm) node[below] {$\frac{1}{\sqrt{3}} | 0 \rangle + \sqrt{\frac{2}{3}} e^{i\frac{2\pi}{3}} | 1 \rangle$};
+%				\shadedraw (C) circle (0.03 cm) node[above] {$\frac{1}{\sqrt{3}} | 0 \rangle + \sqrt{\frac{2}{3}} e^{i\frac{4\pi}{3}} | 1 \rangle$};
+%				\shadedraw (D) circle (0.03 cm) node[below] {$\frac{1}{\sqrt{3}} | 0 \rangle + \sqrt{\frac{2}{3}} | 1 \rangle$};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[c]{0.23\textwidth}
+		\centering
+		\begin{tikzpicture}[x={(\xx cm, \xy cm)}, y={(\yx cm, \yy cm)}, z={(\zx cm, \zy cm)}, scale=0.65]
+			% Bloch sphere (outline drawn in canvas plane)
+			\draw (0, 0, 0) circle (\radius cm);
+			
+			% meridians and equator
+			\begin{scope}[canvas is yz plane at x=0]
+				\draw (\ixy, \ixz) arc[start angle={atan2(\ixz, \ixy)}, delta angle=180, radius=1 cm];
+				\draw[dashed] (-\ixy, -\ixz) arc[start angle={atan2(-\ixz, -\ixy)}, delta angle=180, radius=1 cm];
+			\end{scope}
+			\begin{scope}[canvas is zx plane at y=0]
+				\draw[dashed] (\iyz, \iyx) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=1 cm];
+				\draw (-\iyz, -\iyx) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=1 cm];
+			\end{scope}
+			\begin{scope}[canvas is xy plane at z=0]
+				\draw[dashed] (\izx, \izy) arc[start angle={atan2(\izy, \izx)}, delta angle=180, radius=1 cm];
+				\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, delta angle=180, radius=1 cm];
+			\end{scope}
+			
+			% inscribed tetrahedron
+			\begin{scope}[scale=3, every node/.style={font=\small}]
+				\coordinate (A) at (0, 1, 0);
+				\coordinate (B) at (0, -1/3, {sqrt(8/9)});
+				\coordinate (C) at ({sqrt(2/3)}, -1/3, {-sqrt(2/9)});
+				\coordinate (D) at ({-sqrt(2/3)}, -1/3, {-sqrt(2/9)});
+				\draw (A) -- (B) -- (C) -- cycle;
+				\draw (A) -- (B) -- (D) -- cycle;
+				\draw (A) -- (C) -- (D) -- cycle;
+				\draw (B) -- (C) -- (D) -- cycle;
+			\end{scope}
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\caption{(a) Example of a SIC-POVM on a Bloch ball. The four extreme points of the tetrahedron represent the states $P_i$. States with positive $\lambda_i$ lie within the tetrahedron, while all other states require negative coefficients. (b) The Bloch ball can alternatively be circumscribed by a larger tetrahedron to guarantee positive coefficients, but the extreme points are no longer physical states.}
+\end{figure}
 
 % 2 Note that it's not about negative probability; disjoint not mutually exclusive
 
