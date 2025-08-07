@@ -392,7 +392,25 @@ As a comparison, in the previous case all probability measures were given over a
 
 Note that the linearity in our axioms is in terms of mixing coefficients, not probability of outcomes. That is, regardless of whether we can characterize experiment outcomes with probability distributions, preparation procedures will always allow us to create a statistical mixture. As we saw in Choquet theory, the difficulty is that there are multiple ways to mix pure states to recover the same ensemble. However, the question of what is the biggest mixture coefficient one can use in a specific case is well-defined, and generalizes to the non-compact case as well. Therefore, our generalization of probability is not in terms of what an ensemble can lead to (i.e. measurements), but in terms of how ensembles can be produced (i.e. preparations).
 
-\textbf{Fraction capacity.} Let us concentrate on the following problem: given an ensemble $\ens \in \Ens$ and a (Borel) set of ensembles $A \subseteq \Ens$, what fraction of $\ens$ can be constructed by a mixture of $A$? How much of $\ens$ can be explained as coming from preparations corresponding to $A$? For example, let $\Ens$ be the space of all probability distributions for a six-sided die. Let $\ens_{123456}$ be the uniform distribution over all outcomes. Let $A_1 = \{\ens_1\}$ where $\ens_1$ represents outcome one with 100\% probability. Since we can write $\ens_{123456} = \frac{1}{6} \ens_{1} + \frac{5}{6} \ens_{23456}$, where $\ens_{23456}$ represents a uniform distributions over the five outcomes, $1/6$ of $\ens$ can be constructed from $A$, but no more. Similarly, if $A_{12} = \{\ens_{1},\ens_{2}\}$, we can write $\ens = \frac{1}{3} \left(\frac{1}{2} \ens_1 + \frac{1}{2} \ens_2 \right)  + \frac{2}{3} \ens_{3456}$, so $1/3$ of $\ens$ can be constructed from $A$, but no more. Note that, given the uniform distribution, $1/6$ is exactly the probability for the event $A_1$ and $1/3$ the probability for event $A_{12}$. This gives the basic insight for our definitions.
+\textbf{Fraction capacity.} Let us concentrate on the following problem: given an ensemble $\ens \in \Ens$ and a (Borel) set of ensembles $A \subseteq \Ens$, what fraction of $\ens$ can be constructed by a mixture of $A$? How much of $\ens$ can be explained as coming from preparations corresponding to $A$? For example, let $\Ens$ be the space of all probability distributions for a six-sided die. Let $\ens_{123456}$ be the uniform distribution over all outcomes. Let $A_1 = \{\ens_1\}$ where $\ens_1$ represents outcome one with 100\% probability. Since we can write $\ens_{123456} = \frac{1}{6} \ens_{1} + \frac{5}{6} \ens_{23456}$ (see \eqref{eq:dice} for an illustration), where $\ens_{23456}$ represents a uniform distributions over the five outcomes, $1/5$ of $\ens$ can be constructed from $A$, but no more. Similarly, if $A_{12} = \{\ens_{1},\ens_{2}\}$, we can write $\ens = \frac{1}{3} \left(\frac{1}{2} \ens_1 + \frac{1}{2} \ens_2 \right)  + \frac{2}{3} \ens_{3456}$, so $1/3$ of $\ens$ can be constructed from $A$, but no more. Note that, given the uniform distribution, $1/5$ is exactly the probability for the event $A_1$ and $1/3$ the probability for event $A_{12}$. This gives the basic insight for our definitions.
+
+\begin{equation}\label{eq:dice}
+	\def\xstep{0.75em}
+	\begin{tikzpicture}[y=3ex, x=\xstep]
+		\draw (0, 0) foreach \x in {1,...,6} { -- (\x, 0) -- (\x, -0.2) (\x, 0) } -- ++(1, 0);
+		\draw plot[ybar, bar width={\xstep / 2}] coordinates{(1, 1/5) (2, 1/5) (3, 1/5) (4, 1/5) (5, 1/5) (6, 1/5)};
+	\end{tikzpicture}
+	= \frac{1}{6}
+	\begin{tikzpicture}[y=3ex, x=\xstep]
+		\draw (0, 0) foreach \x in {1,...,6} { -- (\x, 0) -- (\x, -0.2) (\x, 0) } -- ++(1, 0);
+		\draw plot[ybar, bar width={\xstep / 2}] coordinates{(1, 1)};
+	\end{tikzpicture}
+	+ \frac{5}{6}
+	\begin{tikzpicture}[y=3ex, x=\xstep]
+		\draw (0, 0) foreach \x in {1,...,6} { -- (\x, 0) -- (\x, -0.2) (\x, 0) } -- ++(1, 0);
+		\draw plot[ybar, bar width={\xstep / 2}] coordinates{(2, 1/5) (3, 1/5) (4, 1/5) (5, 1/5) (6, 1/5)};
+	\end{tikzpicture}
+\end{equation}
 
 Given a target ensemble $\ens \in \Ens$ and an arbitrary ensemble $\ens[a] \in \Ens$, we define the \textbf{fraction} of $\ens[a]$ in $\ens$ to be
 \begin{equation}
