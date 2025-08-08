@@ -516,13 +516,17 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 	\pgfmathsetmacro{\izz}{0}
 
 	% dimensions
-	\newcommand{\s}{-0.4}
+	\newcommand{\s}{-0.5}
 	\pgfmathsetmacro{\radiusats}{sqrt(1 - \s*\s)}
 	\pgfmathsetmacro{\stheta}{asin(\s)}
 	\pgfmathsetmacro{\minstheta}{asin(-\s)}
 	
 	\newcommand{\radius}{1}
 	\newcommand{\margin}{1.3}
+	
+	\definecolor{colora}{HTML}{1EBCB4}
+	\definecolor{colorb}{HTML}{E57C04}
+	\definecolor{colorc}{HTML}{7A5CE3}
 	
 	\begin{tikzpicture}[x={(\xx cm, \xy cm)}, y={(\yx cm, \yy cm)}, z={(\zx cm, \zy cm)}, scale=1.2]
 		% Bloch sphere (outline drawn in canvas plane)
@@ -539,11 +543,24 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 			\draw[->] (0, 0, 0) -- (0, 1, 0) node[below left] {$s$};
 		\end{scope}
 		
-		% cut
+		% cut 1
+		\begin{scope}[canvas is zx plane at y=\radius-\s]
+			\filldraw[color=colora, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
+		\end{scope}
+
+		
+		% cut 2
+		\begin{scope}[canvas is zx plane at y=-\s]
+			\filldraw[color=colorb, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
+			\draw[color=colorb, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
+			\draw[color=colorb, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
+		\end{scope}
+		
+		% cut 3
 		\begin{scope}[canvas is zx plane at y=\s]
-			\filldraw[color=blue, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
-			\draw[blue, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
-			\draw[blue, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
+			\filldraw[color=colorc, thick, draw opacity=1, fill opacity=0.1] (-\margin, -\margin) -- (\margin, -\margin) -- (\margin, \margin) -- (-\margin, \margin) -- cycle;
+			\draw[color=colorc, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
+			\draw[color=colorc, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
 		\end{scope}
 		
 		% meridians and equator
@@ -561,11 +578,11 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 		\end{scope}
 		
 		% empty case
-		\draw (3.75*\xx+\xy, 3.75*\yx+\yy, 3.75*\zx+\zy) node {$s > b$};
+		\draw[color=colora] (3.75*\xx+\xy, 3.75*\yx+\yy, 3.75*\zx+\zy) node {$s > b$};
 		
 		% northern case
 		\begin{scope}[shift={(4.5*\xx-0.2*\xy, 4.5*\yx-0.2*\yy, 4.5*\zx-0.2*\zy)}, scale=0.5]
-			\draw (-3.5, +1.3, 0) node {$\frac{1}{2} ( a + b ) < s < b$};
+			\draw[color=colorb] (-3.5, +1.3, 0) node {$\frac{1}{2} ( a + b ) < s < b$};
 			
 			% north pole
 			\shadedraw (0, \radius, 0) circle (0.03 cm) node[above] {$\mathsf{b}$};
@@ -576,8 +593,8 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 			
 			% cut
 			\begin{scope}[canvas is zx plane at y=-\s]
-				\draw[blue, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
-				\draw[blue, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
+				\draw[color=colorb, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
+				\draw[color=colorb, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
 			\end{scope}
 			
 			% meridians
@@ -593,7 +610,7 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 
 		% southern case
 		\begin{scope}[shift={(3*\xx-\xy, 3*\yx-\yy, 3*\zx-\zy)}, scale=0.5]
-			\draw (3.5, -0.5, 0) node {$s < \frac{1}{2} ( a + b )$};
+			\draw[color=colorc] (3.5, -0.5, 0) node {$s < \frac{1}{2} ( a + b )$};
 			
 			% north pole
 			\shadedraw (0, 0, 0) circle (0.03 cm) node[below] {$\mathsf{o}$};
@@ -604,8 +621,8 @@ The Sugeno integral does not recover the Lebesgue integral in the case the capac
 			\draw (\xy, \yy, \zy) arc[start angle=90, end angle={360-acos(-\radiusats*\iyx*\xx + \s*\yx - \radiusats*\iyz*\zx)}, radius=1 cm];
 			% cut
 			\begin{scope}[canvas is zx plane at y=\s]
-				\draw[blue, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
-				\draw[blue, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
+				\draw[color=colorc, thick, dashed] ({\iyz * \radiusats}, {\iyx * \radiusats}) arc[start angle={atan2(\iyx, \iyz)}, delta angle=180, radius=\radiusats cm];
+				\draw[color=colorc, thick] ({-\iyz * \radiusats}, {-\iyx * \radiusats}) arc[start angle={atan2(-\iyx, -\iyz)}, delta angle=180, radius=\radiusats cm];
 			\end{scope}
 			
 			% meridians and equator
