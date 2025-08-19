@@ -823,11 +823,23 @@ Additionally, the non-additivity of the state capacity also depends on the degre
 
 \section{Conclusion}
 
-We have seen that classical probability arises exactly when we are describing a set of ensembles that can always be decomposed in a unique set of mutually distinguishable cases. In quantum mechanics, instead, pure states
+We have seen how we can give a unified picture for how different measure theoretic tools can be used to represent states in physical theories. Standard probability theory can be understood as representing ensembles as mixtures of pure states, as extreme points. In particular, classical probability applies under the following equivalent conditions:
+\begin{enumerate}
+	\item the space of ensembles is a Choquet simplex
+	\item every probability distribution over the pure states identifies a unique ensemble
+	\item every ensembles is uniquely decomposable into pure states
+	\item sets of pure states identify mutually exclusive events
+	\item the fraction capacity of every ensemble is additive.
+\end{enumerate}
+Quantum mechanics fails to be characterized by classical probability precisely because it does not satisfies any of these conditions. We also saw that it is the embedding of any space of ensembles into a vector space that allows the use of quasi-probability, which is mandated by very minimal physical assumptions. However, quasi-probability representations are not unique, and therefore are not suitable as foundational descriptions.
+
+We have seen, instead, that non-additive measures can be created to generalize probability and state counting measure to the general case. Intuitively, the fraction capacity simply tells us how much of a particular ensemble can be understood as coming from a mixture of a set of other ensembles. The state capacity, instead, is highest exponential entropy achievable by mixing a given sets of ensembles, which reduces to the Liouville measure of classical mechanics and the dimensionality for quantum subspaces.
+
+In principle, these non-additive measures should allow a generalization of probability calculus that reduces to classical probability in the classical case. We have seen, however, that the two standard non-additive integrals (i.e. the Sugeno and the Choquet integral) are not suitable. It will likely need a broader collaboration to build these tools.
 
 
 \section*{Acknowledgments}
-This paper is part of the ongoing \textit{Assumptions of Physics} project \cite{aop-book}, which aims to identify a handful of physical principles from which the basic laws can be rigorously derived. This article was made possible through the support of grant \#62847 from the John Templeton Foundation.
+This paper is part of the ongoing \textit{Assumptions of Physics} project \cite{aop-book}, which aims to identify a handful of physical principles from which the basic laws can be rigorously derived. This article was made possible through the support of grant \#62847 from the John Templeton Foundation. We thank Vicen\c{c} Torra, Zuzana Ontkovi\v{c}ov\'{a} and Michel Grabisch for useful pointers and discussion.
 
 
 \bibliography{bibliography}
