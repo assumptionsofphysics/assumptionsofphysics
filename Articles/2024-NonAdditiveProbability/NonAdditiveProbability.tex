@@ -49,11 +49,9 @@
 
 \maketitle
 
-%TODO: literature search on use of signed measure in QM. ( e.g. \href{https://arxiv.org/pdf/2302.00118}{this paper})
-
 \section{Introduction}
 
-In the past few decades, there has been a growing interest in developing approaches that generalize the notion of states and physical theories in terms of probabilistic and/or entropic concepts \cite{plavala2023,ariano2017,caticha2019,hall2016,wilce2025}, which stems from the underlying aim to characterize physical theories from an operational viewpoint. One basic insight is that statistical/probabilistic concepts often provide a suitable basis for this generalization, and it is in this setting where most of these approaches operate. A key problem, then, is what notion of probability should be used given that the standard measure theoretic Kolmogorovian approach does not generally work in quantum mechanics\cite{chsh1969,fine1982}. Quasiprobabilistic approaches \cite{zachos2005,mandel1995,monchietti2025} are also used in quantum mechanics, but it is not completely clear how exactly they relate to the standard one.
+In the past few decades, there has been a growing interest in developing approaches that generalize the notion of states and physical theories in terms of probabilistic and/or entropic concepts \cite{plavala2023,wilce2025,ariano2017,caticha2019,hall2016}, which stems from the underlying aim to characterize physical theories from an operational viewpoint. One basic insight is that statistical/probabilistic concepts often provide a suitable basis for this generalization, and it is in this setting where most of these approaches operate. A key problem, then, is what notion of probability should be used given that the standard measure theoretic Kolmogorovian approach does not generally work in quantum mechanics\cite{chsh1969,fine1982}. Quasiprobabilistic approaches \cite{zachos2005,mandel1995,monchietti2025} are also used in quantum mechanics, but it is not completely clear how exactly they relate to the standard one.
 
 The paper aims to ask the following question: can we, by arguing from necessity, find a minimal set of physical requirements for a state space of a physical system that allows us to directly connect to all the measure theoretic structures currently used in physics (i.e. probability measures, Liouville measure to count states, quasiprobability, ...) and point to a straightforward generalization of such structures? We will show that this is indeed possible.\footnote{Note that we believe that the requirements we set, though necessary, are not sufficient to generalize the Lie algebra given by the classical Poisson brackets and the quantum commutators, meaning they cannot fully recover mechanics. Nonetheless, they are enough to recover measure theoretic structures, the topic of this paper.}
 
@@ -206,16 +204,6 @@ For example, the ensemble space for a two state quantum system, the Bloch ball, 
 The core insight from Chouqet theory, then, is that both in the classical and quantum case we can represent ensembles as a probability distribution over a set of states. However, only in the classical case is this representation unique. In the quantum case, mixed states can be decomposed into pure states in multiple ways, and it is this multiple decomposition that makes the ensemble space not a simplex, and therefore the space not classical. Unique representation of ensembles is a desirable property, and standard probability measures are not going to provide it in general.
 
 \section{Quasiprobability}
-
-%Goal of this section: quasiprobability representations are allowed by the embedding in a topological vector space. Choice of representations are guided by what observables are interesting for a specific problem.
-
-%Examples: Wigner, Husimi, Glauber P, SIC-POVM (space not made of spectra of operators), Kirkwood-Dirac (two-time correlation function - observables not necessarily taken at the same time )
-
-%Things to say: some people think about it as weakining axioms (cite papers on negative probability). It's more than that. Points describe events that are not necessarily mutually exclusive. TODO: example of two Wigner function/Husimi Q would be better that have no overlap but they are not orthogonal and/or two functions that have overlap but are orthogonal.
-
-%Thing to say: all these representations are useful because they preserve the linear structure, meaning that convex combinations of ensembles are convex combinations of quasiprobability; expectation values are linear. Check, but it should be true.
-
-% 1 describe quasiprobability approaches; go through examples; point out that the quasiprobability can be negative; that one can recover expectations;
 
 \textbf{Quasiprobability representations.} Another way to represent quantum ensembles is through the use of quasiprobability distributions, of which the Wigner function is probably the most widely known. The Wigner transform $W : \Ens \to L^1(\mathbb{R}^2, \mathbb{R}) $, defined as \cite[eq.~11.8-3a]{mandel1995}
 \begin{equation}
@@ -388,7 +376,7 @@ As a comparison, in the previous case all probability measures were given over a
 
 \section{Fraction capacity}
 
-\textbf{Probability of outcomes vs fraction of components.} We saw that classical probability fails in quantum mechanics because pure states are not always mutually exclusive, are not orthogonal. That is why, in quantum mechanics, probability can be defined only once a context, an orthogonal basis, is chosen. Therefore, at a conceptual level, probabilities can only give us a patchwork representation of ensembles. Some authors embrace this view, by characterizing states as the collection of all probability distributions of all possible results, each distribution providing partial information. [CITATION NEEDED] However, there is a different route.
+\textbf{Probability of outcomes vs fraction of components.} We saw that classical probability fails in quantum mechanics because pure states are not always mutually exclusive, are not orthogonal. That is why, in quantum mechanics, probability can be defined only once a context, an orthogonal basis, is chosen. Therefore, at a conceptual level, probabilities can only give us a patchwork representation of ensembles. Some authors embrace this view, by characterizing states as the collection of all probability distributions of all possible results, each distribution providing partial information.\cite{plavala2023,wilce2025} However, there is a different route.
 
 Note that the linearity in our axioms is in terms of mixing coefficients, not probability of outcomes. That is, regardless of whether we can characterize experiment outcomes with probability distributions, preparation procedures will always allow us to create a statistical mixture. As we saw in Choquet theory, the difficulty is that there are multiple ways to mix pure states to recover the same ensemble. However, the question of what is the biggest mixture coefficient one can use in a specific case is well-defined, and generalizes to the non-compact case as well. Therefore, our generalization of probability is not in terms of what an ensemble can lead to (i.e. measurements), but in terms of how ensembles can be produced (i.e. preparations).
 
