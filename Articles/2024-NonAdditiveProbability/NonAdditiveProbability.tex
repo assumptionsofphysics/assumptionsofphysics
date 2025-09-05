@@ -16,7 +16,10 @@
 \newcommand\support{\mathrm{supp}}
 \newcommand\capacity{\mathrm{scap}}
 \newcommand\fraction{\mathrm{frac}}
+\newcommand\size{\mathrm{frac}}
 \newcommand\frcap{\mathrm{fcap}}
+\newcommand\fcap{\mathrm{fcap}}
+\newcommand\chull{\mathrm{chull}}
 
 \newcommand{\ens}[1][e] {\mathsf{#1}} % Ensemble
 \newcommand{\Ens}[1][E] {\mathcal{#1}} % Ensemble space
@@ -870,5 +873,141 @@ This paper is part of the ongoing \textit{Assumptions of Physics} project \cite{
 
 \newcommand{\pj}[1] {\underbar{$#1$}}
 
+\appendix
+\section*{Axioms}
+\begin{axiom}[Axiom of ensemble] 
+	The state of a system is given by an \textbf{ensemble}, which represents all possible preparations of equivalent systems prepared according to the same procedure. The set of all possible ensembles for a particular system is an \textbf{ensemble space}. Formally, an ensemble space is a $\mathsf{T}_0$ second countable topological space where each element is called an ensemble.
+\end{axiom}
+
+\begin{justification}
+	In experimental settings, preparation procedures never prepare a system exactly in the same configuration. Experimental results, then, are always in terms of statistical preparations and statistical measurements. A physical theory, then, must be able to talk about the possible statistical descriptions possible by the theory. States, then, can be understood as ensembles, idealized statistical descriptions, as those are what is connected to experimental practice.
+	
+	Equivalently, reproducibility is a basic requirement of a physical theory. A physical law, then, must be understood as describing a relationship that always exists whenever the same set of circumstances is replicated. Given that we need to always be able to replicate those circumstances ``one more time'', the relationship is about countably infinite preparations and results: ensembles. Therefore, to the extent that physics is about reproducible experimental results, the basic theoretical description of a system is in terms of ensembles. This justifies the use of ensembles as the fundamental object to describe the state of a system.\footnote{Note that reproducibility also already implies that all properties that characterize an ensemble must be relative to the procedure. If the properties depended, for example, on absolute space or absolute time, then different practitioners would not be able to prepare the same ensemble.}
+	
+	Ensembles are experimentally defined objects, and therefore they are possibilities of an experimental domain. Therefore an ensemble space is a $\mathsf{T}_0$ second countable topological space where each element is an ensemble and the topology is induced by the verifiable statements.
+\end{justification}
+
+\begin{defn}
+	Given a real number $p \in [0,1]$, its complement is defined as $\bar{p} = 1-p$.
+\end{defn}
+
+\begin{axiom}[Axiom of mixture]\label{pm_es_axiomMixture}
+	The statistical mixture of two ensembles is an ensemble. Formally, an ensemble space $\Ens$ is equipped with an operation $+ : [0, 1] \times \Ens \times \Ens \to \Ens$ called \textbf{mixing}, noted with the infix notation $p \ens[a] + \bar{p} \ens[b]$, with the following properties:
+	\begin{itemize}
+		\item \textbf{Continuity}: the map $+(p, \ens[a], \ens[b])  \to p \ens[a] + \bar{p} \ens[b]$ is continuous (with respect to the product topology of $[0, 1] \times \Ens \times \Ens$)
+		\item \textbf{Identity}: $1 \ens[a] + 0 \ens[b] = \ens[a]$
+		\item \textbf{Idempotence}:  $p \ens[a] + \bar{p} \ens[a] = \ens[a]$ for all $p \in [0,1]$
+		\item \textbf{Commutativity}: $p \ens[a] + \bar{p} \ens[b] = \bar{p} \ens[b] + p \ens[a]$ for all $p \in [0,1]$
+		\item \textbf{Associativity}: $p_1 \ens_1 + \bar{p}_1\left(\frac{1-p_1-p_3}{\bar{p}_1}\ens_2 + \frac{p_3}{\bar{p}_1}\ens_3\right) =  \bar{p}_3\left(\frac{p_1}{\bar{p}_3} \ens_1 +  \frac{1-p_1-p_3}{\bar{p}_3}\ens_2\right) + p_3 \ens_3$ where $p_1, p_3 \in [0,1)$ and $p_1 + p_3 \leq 1$
+	\end{itemize}
+\end{axiom}
+
+\begin{justification}
+	This axiom captures the ability to create a mixture merely by selecting between the output of different processes. Let $\ens_1$ and $\ens_2$ be two ensembles that represent the output of two different processes $P_1$ and $P_2$. Let a selector $S_p$ be a process that outputs two symbols, the first with probability $p$ and the second with probability $\bar{p}$. Then we can create another process $P$ that, depending on the selector, outputs either the output of $P_1$ or $P_2$. All possible preparations of such a procedure will form an ensemble. Therefore we are justified in equipping an ensemble space with a mixing operation that takes a real number from zero to one, and two ensembles.
+	
+	Given that mixing represents an experimental relationship, and all experimental relationships must be continuous in the natural topology, mixing must be a continuous function. Note that $p$ is a continuously ordered quantity, where no value is perfectly experimentally verifiable, and therefore the natural topology is the one of the reals. This justifies continuity.
+
+	If $p=1$, the output of $P$ will always be the output of $P_1$. This justifies the identity property. If $P_1$ and $P_2$ are the same process, then the output of $P$ will always be the output of $P_1$. This justifies the idempotence property. The order in which the processes are given does not matter as long as the same probability is matched to the same process. The process $P$ is identical under permutation of $P_1$ and $P_2$. This justifies commutativity. If we are mixing three processes $P_1$, $P_2$ and $P_3$, as long as the final probabilities are the same, it does not matter if we mix $P_1$ and $P_2$ first or $P_2$ and $P_3$. This justifies associativity.
+\end{justification}
+
+\begin{coro}
+	An ensemble space is a convex space.
+\end{coro}
+
+\begin{proof}
+	The properties of the axiom of mixture match the basic definition of convex spaces, which can be taken from \href{https://ncatlab.org/nlab/show/convex+space}{ncatlab} and \href{https://arxiv.org/abs/0903.5522}{this excellent paper}.  The notation and terminology will be slightly different to better map to physics ideas. 
+\end{proof}
+
+\begin{axiom}[Axiom of entropy]
+	Every element of the ensemble is associated with an \textbf{entropy} which quantifies the variability of the preparations of the ensemble. Formally, an ensemble space $\Ens$ is equipped with a function $S : \Ens \to \mathbb{R}$, defined up to a positive multiplicative constant representing the unit numerical value. The entropy has the following properties:
+	\begin{itemize}
+		\item \textbf{Continuity}\footnote{Currently, we are imposing that the entropy is continuous. There may be a chance that this requirement is redundant, as strict concavity and the upper variability bound may already impose this. We have found proofs that show that real valued convex/concave functions of real values are continuous. These proofs fail at the extreme points, but the upper variability bound may fix this. Another open question is whether differentiability is also an independent requirement.}
+		\item \textbf{Strict concavity}: $S(p\ens[a] + \bar{p} \ens[b]) \geq p S(\ens[a]) + \bar{p} S(\ens[b])$ with the equality holding if and only if $\ens[a] = \ens[b]$
+		\item \textbf{Upper variability bound}: there exists a universal function $I(p_1, p_2)$ (i.e. the same for all ensemble spaces) such that $S(p\ens[a] + \bar{p} \ens[b]) \leq I(p, \bar{p}) + p S(\ens[a]) + \bar{p} S(\ens[b])$; if the equality holds, $\ens[a]$ and $\ens[b]$ are \textbf{mutually exclusive} or \textbf{orthogonal}, noted $\ens[a] \ortho \ens[b]$
+		\item \textbf{Mixtures preserve orthogonality}:\footnote{It is unclear whether ``mixtures preserve orthogonality'' is an independent axiom. Intuitively, the following argument tells us that it is. Take the 2 dimensional simplex (i.e. a triangle) that represents a classical discrete probability space over three elements. Take the standard entropy, which will satisfy ``mixtures preserve orthogonality''. This is because the middle point has entropy $\log 3$. We can imagine redefining the entropy so that it is a little bit lower in the center but it is unchanged on the sides. However, one needs to provide an actual example and show that it satisfies all axioms. It may also be that only one direction is an independent axiom. That is, that orthogonality with the components implies orthogonality with the mixtures. This is what does not hold for separateness.} $\ens[a] \ortho \ens[b]$ and $\ens[a] \ortho \ens[c]$ if and only if $\ens[a] \ortho p \ens[b] + \bar{p} \ens[c]$ for any $p \in (0,1)$
+	\end{itemize}
+\end{axiom}
+
+\begin{justification}
+	The entropy quantifies the variability of the instances within an ensemble. Since the ensemble represents a collection of preparations of equivalent systems, and since each instance will in general be potentially different, it is legitimate to ask how much variability there is among the different instances. We are assuming that the entropy is a quantity (i.e. a linearly ordered property), meaning that it is always meaningful to tell whether one ensemble has more variability than another. If this is the case, the later requirements of continuity and strict concavity will force the entropy to be a real valued quantity. This is because the variability will change under statistical mixtures, and since statistical mixtures are performed with real valued coefficients, the variability will have to be a real valued quantity. Whether it is conceptually possible to have a characterization of variability that is not linearly ordered but still have a meaningful connection with statistical mixing is an open question, therefore we are not able to fully justify entropy's linear ordering at this time. Therefore the linear ordering of the entropy should be considered an assumption. Provided that assumption, we are justified to assume the existence of a real valued function that returns the entropy, a measure of variability of the ensemble.
+	
+	Since the entropy is a real valued quantity, it will have a corresponding unit. This unit is independent from all other units, and therefore the overall structure of the ensemble space must be independent of this choice. Mathematically, the physical dimension of the unit is not captured, just its numeric value. A change of unit may change the numeric value by a multiplicative constant. Since variability is an ordered quantity, we want the change of units to respect the ordering and therefore it should be a positive multiplicative constant. This justifies that the entropy function is defined up to a positive multiplicative constant.
+	
+	Note that the additivity of the entropy over independent systems fixes the absolute scale. If $S_{AB} = S_A + S_B$, in fact, one can't rescale all three terms by an additive factor and preserve the relationship.
+	
+	The variability, in the end, will have physical consequences, and it will therefore be measurable, thus experimentally verifiable: it will have to be a topologically continuous function. Moreover, small changes in the ensemble should produce small changes in the variability, which justifies analytical continuity. We are therefore justified to assume continuity of the entropy.
+	
+	Suppose we have two ensembles and we perform a statistical mixture. There are going to be three sources of variability: the two ensembles and the random choice at every instance. The total contribution from the original ensembles will be the average variability of the original ensembles. This is increased by the variability introduced by the random choice, which is always a positive contribution. Therefore the final variability cannot be less than the average of the original ensembles. That is, $S(p\ens[a] + \bar{p} \ens[b]) \geq p S(\ens[a]) + \bar{p} S(\ens[b])$. If we are mixing an ensemble with itself, this is equivalent to just choosing from the original ensemble, therefore the variability will not increase. Conversely, if the variability stays the same, it means that the random choice does not increase the variability, and therefore we must be choosing between equivalent ensembles. Therefore we are justified to assume that entropy is strictly concave.
+	
+	On the other hand, the variability cannot increase arbitrarily during mixture. The maximum variability will be given when the two ensembles are mutually exclusive, when an instance of the first ensemble cannot be produced by the second ensemble. That is, a single instance is enough to determine whether we have the first ensemble or the second. In this case, the variability is increased by the variability of the random choice, which must depend only on the mixture coefficient, and not the nature of the ensembles themselves. That is, $S(p\ens[a] + \bar{p} \ens[b]) \leq I(p, \bar{p}) + p S(\ens[a]) + \bar{p} S(\ens[b])$ is the upper variability bound, which is saturated if and only if the $\ens[a]$ and $\ens[b]$ are mutually exclusive. The actual function $I$ is left unspecified and, as we show in proposition \ref{pm_es_entropyUnique}, it will correspond to the Shannon entropy as it is the only indicator of variability that will satisfy the axiom of entropy. This justifies the upper variability bound.
+	
+	Now suppose ensemble $\ens[a]$ is mutually exclusive from both $\ens[b]$ and $\ens[c]$. That is, an instance of $\ens[a]$ cannot ever be produced by either $\ens[b]$ or $\ens[c]$. Then an instance of $\ens[a]$ cannot be produced by a mixture of $\ens[b]$ and $\ens[c]$, since ultimately a mixture of $\ens[b]$ and $\ens[c]$ will return an instance of one of the two. Therefore $\ens[a]$ is mutually exclusive from any mixture of $\ens[b]$ and $\ens[c]$. The argument works in reverse as well: if an instance of $\ens[a]$ cannot be produced by a mixture of $\ens[b]$ and $\ens[c]$, then it cannot be produced by either. This justifies mixtures preserve orthogonality.
+\end{justification}
+
+
+\section{Propositions}
+\subsection{State capacity}
+\begin{prop}
+	The state capacity is a set function that is
+	\begin{enumerate}
+		\item non-negative: $\capacity(A) \in [0, +\infty]$
+		\item monotone: $A \subseteq B \implies \capacity(A) \leq \capacity(B)$
+		\item subadditive: $\capacity(A \cup B) \leq \capacity(A) + \capacity(B)$
+		\item additive over orthogonal sets: $A \ortho B \implies \capacity(A \cup B) = \capacity(A) + \capacity(B)$ 
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	1. The state capacity takes a subset of $\Ens$ and returns a real value and is therefore a set function. The exponential can only return non-negative values, therefore the state capacity of a set is non-negative. 
+	
+	2. The $\hull$ is a monotone function. The image of a set through a map is a monotone function. The supremum is a monotone function. Therefore the state capacity is a monotone function.
+	
+	3. Let $A, B \subseteq \Ens$ and let $\ens = p \ens[a] + \bar{p} \ens[b]$ for some $p \in [0,1]$, $\ens[a] \in A$ and $\ens[b] \in B$. By \ref{pm_es_exponentialEntropySubadditivity} and the definition of state capacity, $2^{S(\ens)} \leq 2^{S(\ens[a])} + 2^{S(\ens[b])} \leq \capacity(A) + \capacity(B)$. Since this is true for any finite mixture of elements of $A$ and $B$, it will be true for any element of $\hull(A \cup B)$. Consequently, the supremum of the exponential entropy cannot exceed the sum of the state capacities. Therefore $\capacity(A \cup B) \leq \capacity(A) + \capacity(B)$ (i.e. the state capacity is subadditive).
+	
+	4. Let $A, B \subseteq \Ens$ be two orthogonal subsets. Let $\{\ens[a]_i\} \subseteq A$ be a sequence of ensembles such that $2^{S(\ens[a]_i)} \to \capacity(A)$ and let $\{\ens[b]_i\} \subseteq B$ be a sequence of ensembles such that $2^{S(\ens[b]_i)} \to \capacity(B)$. Consider $\ens_i = p_i \ens[a]_i + \bar{p_i} \ens[b]_i$ where $p_i = \frac{2^{S(\ens[a]_i)}}{2^{S(\ens[a]_i)} + 2^{S(\ens[b]_i)}}$. Then, by \ref{pm_es_exponentialEntropySubadditivity}, $2^{S(\ens_i)} = 2^{S(\ens[a]_i)} + 2^{S(\ens[b]_i)}$. This means that $2^{S(\ens_i)} \to \capacity(A) + \capacity(B)$. Therefore $\capacity(A \cup B)$ must be at least $\capacity(A) + \capacity(B)$. Combining with the previous result, $\capacity(A \cup B) = \capacity(A) + \capacity(B)$. Therefore the state capacity, as a set function, is additive over orthogonal sets of ensembles.
+\end{proof}
+
+\begin{prop}
+	The state capacity is continuous from above and below.
+\end{prop}
+
+\begin{proof}
+	Let $\{A_i\} \subseteq \Sigma_{\Ens}$ be an increasing sequence. Given that the state capacity is monotone, $\{\capacity(A_i)\}$ is a an increasing sequence and it will converge in the extended real line. Let $A = \lim\limits_{i \to \infty} A_i$. We have $A = \cup A_i$ and $A_i \subseteq A$ for all $i$. Since state capacity is monotone, $\capacity(A_i) \leq \capacity(A)$ for all $i$ and therefore $\lim\limits_{i \to \infty} \capacity(A_i) \leq \capacity(A)$. Given any $\ens[a] \in \chull(A)$, we can find a sequence $\ens[a]_i \in \chull(A_i)$ such that $\ens[a]_i \to \ens[a]$. Because of the continuity of the entropy, $S(\ens[a]_i) \to S(\ens[a])$. This means we cannot have $k$ such that $\capacity(A) > k > \capacity(A_i)$ for all $i$, and therefore $\lim\limits_{i \to \infty} \capacity(A_i) = \capacity(A)$.
+	
+	The same argument works for decreasing sequences by inverting the order.
+\end{proof}
+
+
+\subsection{Fraction capacity}
+\begin{coro}
+	The fraction capacity uniquely identifies an ensemble. That is, let $\ens[a], \ens[b] \in \Ens$ such that $\ens[a] \neq \ens[b]$. Then $\fcap_{\ens[a]} \neq \fcap_{\ens[b]}$.
+\end{coro}
+
+\begin{proof}
+	Note that $\ens = 1 \ens[a] + 0 \ens[b]$ if and only if $\ens = \ens[a]$. Therefore, let $\ens[a], \ens[b] \in \Ens$ such that $\ens[a] \neq \ens[b]$. We have $\fcap_{\ens[a]}(\{\ens[a]\}) = 1$ and $\fcap_{\ens[b]}(\{\ens[a]\}) \neq 1$. Which means $\fcap_{\ens[a]} \neq \fcap_{\ens[b]}$.
+\end{proof}
+
+\begin{prop}
+	The fraction capacity for an ensemble is a set function that is
+	\begin{enumerate}
+		\item non-negative and unit bounded: $\fcap_{\ens}(A) \in [0,1]$
+		\item monotone: $A \subseteq B \implies \fcap_{\ens}(A) \leq \fcap_{\ens}(B)$
+		\item subadditive: $\fcap_{\ens}(A \cup B) \leq \fcap_{\ens}(A) + \fcap_{\ens}(B)$
+		\item continuous from below: $\fcap_{\ens}(\lim\limits_{i \to \infty} A_i) = \lim\limits_{i \to \infty} \fcap_{\ens}(A_i)$ for any increasing sequence $\{A_i\}$
+		\item continuous from above: $\fcap_{\ens}(\lim\limits_{i \to \infty} A_i) = \lim\limits_{i \to \infty} \fcap_{\ens}(A_i)$ for any decreasing sequence $\{A_i\}$
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	1. The fraction capacity takes a subset of $\Ens$ and returns a real value and is therefore a set function. The mixture coefficients are real values between zero and one. The supremum of a set of numbers between zero and one is between zero and one, and therefore the fraction capacity for an ensemble is non-negative and unit bounded.
+	
+	2. The $\hull$ is a monotone function. The image of a set through a map is a monotone function. The supremum is a monotone function. Therefore the fraction capacity is a monotone function.
+	
+	3. Let $A, B \subseteq \Ens$ and let $p \in [0,1]$ such that $\ens = p \ens_1 + \bar{p} \ens_2$ for some $\ens_1 \in \hull(A \cup B)$ and $\ens_2 \in \Ens$. Since $\ens_1 \in \hull(A \cup B)$, we can write $\ens_1 = \lambda \ens[a] + \bar{\lambda} \ens[b]$ for some $\lambda \in [0,1]$, $\ens[a] \in A$ and $\ens[b] \in B$. Therefore we have $\ens = p \lambda \ens[a] + p \bar{\lambda} \ens[b] + \bar{p} \ens_2$. By the definition of fraction capacity, we must have $p\lambda \leq \fcap_{\ens}(A)$ and $p\bar{\lambda} \leq \fcap_{\ens}(B)$, therefore $p = p\lambda + p\bar{\lambda} \leq \fcap_{\ens}(A) + \fcap_{\ens}(B)$. 	Since $\fcap_{\ens}(A \cup B)$ is the supremum for a set of $p$s for which the expression always holds, we have $\fcap_{\ens}(A \cup B) \leq \fcap_{\ens}(A) + \fcap_{\ens}(B)$. The fraction capacity is subadditive.
+	
+	4. Let $\{A_i\} \subseteq \Sigma_{\Ens}$ be an increasing sequence. That is $A_i \subseteq A_{i+1}$ for all $i$. Given that the fraction capacity is monotone, $\{\fcap_{\ens}(A_i)\}$ is an increasing sequence. Note that $\fcap_{\ens}(A_i) \leq 1$ for all $i$, therefore the sequence will have an upper bound which will coincide with the limit. Let $A = \lim\limits_{i \to \infty} A_i$. We have $A = \bigcup A_i$ and $A_i \subseteq A$ for all $i$. Since fraction capacity is monotone, we have $\fcap_{\ens}(A_i) \leq \fcap_{\ens}(A)$ for all $i$ and therefore $\lim\limits_{i \to \infty} \fcap_{\ens}(A_i) \leq \fcap_{\ens}(A)$. Suppose $\lim\limits_{i \to \infty} \fcap_{\ens}(A_i) < \fcap_{\ens}(A)$. Then there would be an $\ens[a] \in \hull(A)$ such that $\size_{\ens}(\ens[a]) > \size_{\ens}(\ens[b])$ for all $\ens[b] \in \hull(A_i)$ for all $i$. But if $\ens[a] \in \hull(A)$, then it can be written as a finite combination of finitely many elements of $A$. Then we will be able to find a $k$ such that $A_k$ will contain all the elements, and therefore $\ens[a] \in A_k$. But this means $\ens[a] \leq \fcap_{\ens}(A_k)$ which is a contradiction. Therefore $\lim\limits_{i \to \infty} \fcap_{\ens}(A_i) = \fcap_{\ens}(A)$.
+	
+	5. The previous argument works in the same way for decreasing sequences by inverting the order.
+\end{proof}
 
 \end{document}
