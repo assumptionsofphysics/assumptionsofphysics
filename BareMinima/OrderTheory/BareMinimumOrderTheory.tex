@@ -39,16 +39,14 @@
 
 
 \begin{abstract}
-This note presents a condensed summary of order theory which can function as a crash course, refresher and/or reference. Bare minima are meant to give a rough overview, by no means complete, of the subject to the intellectually curious, particularly in the context of foundational questions in physics.
+A summary overview of order theory, which can be used as a reference, refresher or to be aware of what one does not know.
 \end{abstract}
 
 \section{Introduction}
 
-The mathematical structures studied by order theory appear in different contexts, making the topic relevant to those interested in foundational questions. Core structures in fields such mathematical logic, topology and measure theory, can be characterized and understood in purely order theoretic terms; characterizing number types (i.e. integers, rational and reals) as different order types makes a better link to physics; physical concepts (e.g. part-whole inclusion) are also naturally captured with order theory.
+Order theory studies partially ordered sets (POSETs): sets equipped with a notion of order. These structures are pervasive in mathematics as play a role in logic, computer science, topology, measure theory, group theory, and beyond. Even number types types (i.e. integers, rational and reals) can be characterized purely on their order structure. A as different order types makes a better link to physics; physical concepts (e.g. part-whole inclusion) are also naturally captured with order theory.
 
 Roughly speaking, orders are transitive relationships that are not symmetric. Order theory studies and catalogs these structures, together with order preserving transformations. For more details on order theory, see for example \cite{davey2002introduction, pinter2014book}.
-
-\emph{This work is part of Assumptions of Physics (\url{https://assumptionsofphysics.org}), a project that aims to identify a handful of physical principles from which the basic laws can be rigorously derived.}
 
 \section{TBD}
 
@@ -63,8 +61,6 @@ Roughly speaking, orders are transitive relationships that are not symmetric. Or
 
 \subsection{Basic definitions}
 
-Mathematically, the following is the most convenient and common way to define order relationships.
-
 \begin{defn}[Partial orders and poset]
 	A \textbf{partial order} \marginleft{Partial order, poset: $(X, \leq)$} $\leq$ is a binary relationship over a set $X$ that is:
 	\begin{description}
@@ -72,11 +68,11 @@ Mathematically, the following is the most convenient and common way to define or
 		\item[Antisymmetric] if $a \leq b$ and $b \leq a$ then $a = b$ for all $a, b \in X$
 		\item[Transitive] if $a \leq b$ and $b \leq c$ then $a \leq c$ for all $a, b, c \in X$.
 	\end{description}
-	A \textbf{partially ordered set}, or \textbf{poset}, is a tuple $(X, \leq)$ consisting on a set and a partial order.
+	A \textbf{partially ordered set}, or \textbf{poset}, is a tuple $(X, \leq)$ consisting of a set and a partial order.
 \end{defn}
 
 \begin{remark}
-	To give a sense of the broad range of applicability: sets are ordered by set inclusion ($\{0, 1\} \subseteq \{0, 1, 2\}$); statements are ordered by implication/narrowness (\statement{Snoopy is a dog} $\narrower$ \statement{Snoopy is a mammal}); systems are ordered by is-a-part-of (`piston' $\subseteq$ `engine' $\subseteq$ `car').
+	To give a sense of the broad range of applicability: sets are ordered by set inclusion ($\{0, 1\} \subseteq \{0, 1, 2\}$); statements are ordered by implication/narrowness/specificity (\statement{Snoopy is a dog} $\narrower$ \statement{Snoopy is a mammal}); systems are ordered by is-a-part-of (`piston' $\subseteq$ `engine' $\subseteq$ `car').
 \end{remark}
 
 \begin{defn}[Linear order]
@@ -109,7 +105,7 @@ A more loose idea of order is a preorder, for which two different elements can b
 \end{defn}
 
 \begin{prop}
-	A preorder induces a partial order on the set of equivalence classes defined by the preorder. That is, define $\sim$ on $X$ such that $a \sim b$ if $a \lesssim b$ and $b \lesssim a$. This is an equivalence relationship. Now define $\lesssim$ on $X_{/\sim}$ such that $a_{/\sim} \lesssim b_{/\sim}$ if $a \lesssim b$. This is a preorder.
+	A preorder induces a partial order on the set of equivalence classes defined by the preorder. That is, define $\sim$ on $X$ such that $a \sim b$ if $a \lesssim b$ and $b \lesssim a$. This is an equivalence relationship. Now define $\lesssim$ on $X_{/\sim}$ such that $a_{/\sim} \lesssim b_{/\sim}$ if $a \lesssim b$. This is a partial order.
 \end{prop}
 
 \begin{defn}[Predecessors and successors]
@@ -118,7 +114,7 @@ A more loose idea of order is a preorder, for which two different elements can b
 
 \marginright{TODO: Hesse diagram}
 
-Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse diagrams}. Each element in the poset is represented by a vertex. A line connects upwards an element to its immediate successor, so that lowest elements are at the bottom.
+Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse diagrams}. Each element of the poset is represented by a vertex. A line connects upwards an element to its immediate successor, so that lowest elements are at the bottom.
 
 \begin{defn}[Dense order]
 	An order is \textbf{dense} \marginleft{Dense order} if for any two elements $a < b$ we can always find a third element $c \in X$ between the two $a < c < b$.
@@ -127,16 +123,26 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 \subsection{Morphisms}
 
 \begin{defn}
-	A \textbf{monotonic function} \marginleft{Monotonic function} (also called \textbf{monotone}, \textbf{increasing} or \textbf{order preserving}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that respects the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(a) \leq_Y f(b)$.
+	An \textbf{increasing function} \marginleft{Increasing function} (also called \textbf{order preserving}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that preserves the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(a) \leq_Y f(b)$. It is \textbf{strictly increasing} if $a \leq_X b \implies f(a) <_Y f(b)$.
 \end{defn}
 
 \begin{defn}
-	An \textbf{order embedding} \marginleft{Order embedding} is a monotonic function that respects the order in both directions. That is, a map $f : X \to Y$ such that $a \leq_X b \iff f(a) \leq_Y f(b)$.
+	A \textbf{decreasing function} \marginleft{Decreasing function} (also called \textbf{order reversing}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that reverses the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(b) \leq_Y f(a)$.  It is \textbf{strictly decreasing} if $a \leq_X b \implies f(b) <_Y f(a)$.
 \end{defn}
 
 \begin{defn}
-	An \textbf{order isomorphism} \marginleft{Order isomorphism} is an invertible embedding (i.e. bijective monotonic function whose inverse is monotonic). Two posets are \textbf{order isomorophic} if there exist an order isomoprhism between them.
+	A \textbf{monotonic function} \marginleft{Monotonic function} (also called \textbf{monotone}) is a map that is either increasing or decreasing.
 \end{defn}
+
+\begin{defn}
+	An \textbf{order embedding} \marginleft{Order embedding} is a monotonic function where the image have the same ordering. That is, a map $f : X \to Y$ such that $a \leq_X b \iff f(a) \leq_Y f(b)$.
+\end{defn}
+
+\begin{defn}
+	An \textbf{order isomorphism} \marginleft{Order isomorphism} is an invertible embedding (i.e. bijective monotonic function whose inverse is monotonic). Two posets are \textbf{order isomorphic} (or have the same \textbf{order type}) if there exists an order isomorphism between them.
+\end{defn}
+
+\subsection{Filters and ideals AFTER}
 
 \begin{defn}
 	Let $X$ be a poset. \marginleft{Up-sets and \\ down-sets} An \textbf{up-set}, or \textbf{increasing set}, or \textbf{order filter}, is a subset $A \subseteq X$ that contains all the successors of its elements. That is, if $a \in A$ then for all $b \in X$ such that $a \leq b$ we have $b \in A$. Dually, a \textbf{down-set}, or \textbf{decreasing set}, or \textbf{order ideal}, is a subset $A \subseteq X$ that contains all the predecessors of its elements. That is, if $a \in A$ then for all $b \in X$ such that $b \leq a$ we have $b \in A$.
@@ -152,12 +158,16 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 	Let $P$ be an \marginleft{Upper/Lower bounds} ordered set and let $A \subseteq P$. An \textbf{upper bound} (or \textbf{lower bound}) is an element $p \in P$ such that $a \leq p$ (or $p \leq a$) for all $a \in A$.
 \end{defn}
 
+\begin{remark}
+	The upper/lowers bound of $A$ are not necessarily in $A$.
+\end{remark}
+
 \begin{defn}[Supremum and infimum]
 	The \textbf{supremum}, \marginleft{Supremum and infimum} or \textbf{least upper bound} of $A$ is, if it exists, the least element within all upper bounds of $A$. Conversely, the \textbf{infimum},  or \textbf{greatest lower bound} of $A$ is, if it exists, the greatest element within all lower bounds of $A$.
 \end{defn}
 
 \begin{defn}[Join and meet]
-	The \textbf{join} \marginleft{Join and meet: $\vee, \wedge$} of two elements $a, b \in X$ or of a set $A$, noted $a \vee b$ and $\bigvee A$, is their supremum if it exists. The \textbf{meet} of two elements $a, b \in X$, noted $a \wedge b$, is their infimum, if it exists.
+	The \textbf{join} \marginleft{Join and meet: $\vee, \wedge$} of two elements $a, b \in X$ or of a set $A \subseteq X$, noted $a \vee b$ and $\bigvee A$, is their supremum if it exists. The \textbf{meet} of two elements $a, b \in X$ or of a set $A \subseteq X$, noted $a \wedge b$ and $\bigwedge A$, is their infimum, if it exists.
 \end{defn}
 
 
@@ -187,7 +197,8 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 			a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c).
 		\end{align*}
 		A complete lattice is \textbf{infinitely distributive} if the same holds over infinite operations.
-		\item[Complemented.] A bounded lattice is \textbf{complemented} if every element has a unique complement.
+		\item[Complemented.] A bounded lattice is \textbf{complemented} if every element has a complement. It is uniquely complement if the complement is unique.
+		\item[Ortho-complemented.] A bounded lattice is \textbf{complemented} if every element has a unique complement.
 	\end{description}
 \end{defn}
 
