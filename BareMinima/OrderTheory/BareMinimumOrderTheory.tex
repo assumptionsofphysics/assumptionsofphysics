@@ -79,6 +79,19 @@ Roughly speaking, orders are transitive relationships that are not symmetric. Or
 	A \textbf{linear order}, \marginleft{Linear order,\\ chain} or \textbf{total order}, is a partial order where every pair is ordered. That is, given $a, b \in X$ either $a \leq b$ or $b \leq a$. A \textbf{chain} typically refers to a subset of a partial order that is linearly ordered.
 \end{defn}
 
+\begin{defn}[Maximal subsets]
+	A linearly \marginleft{Maximal subset} ordered subset (i.e. a chain) is \textbf{maximal} if it is not a scrict subset of another linearly ordered subset.
+\end{defn}
+
+
+\begin{prop}[Kuratowski's Lemma or Hausdorff maximal principle]
+	Every linearly ordered subset is the subset of some maximal linearly ordered subset.
+\end{prop}
+
+\begin{prop}
+	Kuratowski's Lemma is equivalent to the axiom of choice.
+\end{prop}
+
 The more intuitive notion of `before' and `after' would not include the equal. The two notions can be shows to be equivalent.
 
 \begin{defn}[Strict order]
@@ -155,12 +168,12 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 \end{defn}
 
 \begin{defn}[Upper and lower bounds]
-	Let $P$ be an \marginleft{Upper/Lower bounds} ordered set and let $A \subseteq P$. An \textbf{upper bound} (or \textbf{lower bound}) is an element $p \in P$ such that $a \leq p$ (or $p \leq a$) for all $a \in A$.
+	Let $X$ be an \marginleft{Upper/Lower bounds} ordered set and let $A \subseteq X$. An \textbf{upper bound} (or \textbf{lower bound}) is an element $x \in X$ such that $a \leq x$ (or $x \leq a$) for all $a \in A$.
 \end{defn}
 
-\begin{remark}
-	The upper/lowers bound of $A$ are not necessarily in $A$.
-\end{remark}
+\begin{prop}[Zorn's lemma]
+	Every non-empty partially ordered set for which every linearly ordered subset has an upper bound contains at least one maximal element.
+\end{prop}
 
 \begin{defn}[Supremum and infimum]
 	The \textbf{supremum}, \marginleft{Supremum and infimum} or \textbf{least upper bound} of $A$ is, if it exists, the least element within all upper bounds of $A$. Conversely, the \textbf{infimum},  or \textbf{greatest lower bound} of $A$ is, if it exists, the greatest element within all lower bounds of $A$.
@@ -191,6 +204,7 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 	We define\marginleft{Complete, distributive, complemented} the following additional properties on lattices:
 	\begin{description}
 		\item[Completeness.] A lattice is \textbf{complete} if all subsets have joins and meet, not just finite ones.
+		\item[Modularity.] A lattice is \textbf{modular} if $a \leq b$ implies $a \vee (c \wedge b) = (a \vee c) \wedge b$
 		\item[Distributivity.] A lattice is \textbf{distributive} if it satisfies
 		\begin{align*}
 			a \vee (b \wedge c) = (a \vee b) \wedge (a \vee c) \\
@@ -198,9 +212,14 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 		\end{align*}
 		A complete lattice is \textbf{infinitely distributive} if the same holds over infinite operations.
 		\item[Complemented.] A bounded lattice is \textbf{complemented} if every element has a complement. It is uniquely complement if the complement is unique.
-		\item[Ortho-complemented.] A bounded lattice is \textbf{complemented} if every element has a unique complement.
+		\item[Orthocomplemented.] A bounded lattice is \textbf{orthocomplemented} if for every element $a$ there is a complement $a^{\bot}$ such that $a^{\bot\bot} = a$ and if $a \leq b$ then $b^{\bot} \leq a^{\bot}$
+		\item[Orthomodular.] A lattice is \textbf{orthomodular} if it is orthocomplemented and if $a \leq b$ implies $a \vee (a^{\bot} \wedge b) = (a \vee a^{\bot}) \wedge b$ (i.e. modularity holds at least of orthocomplements)
 	\end{description}
 \end{defn}
+
+\begin{prop}
+	Every distributive lattice is a modular. Every complete lattice is bounded.
+\end{prop}
 
 \begin{prop}
 	Every lattice \marginleft{Completion} admits a \textbf{completion}, the smallest complete lattice that contains it. The completion is unique up to an order isomorphism.
@@ -209,19 +228,6 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 \begin{remark}
 	The completion is constructed by finding pairs $(A, B)$ of subsets $A, B \subseteq X$ such that $A$ is the set of lower bounds for $B$ and $B$ is the set of lower bounds of $A$. For the rationals $\mathbb{Q}$, these pairs correspond to Dedekind cuts, and the completion of $\mathbb{Q}$ as a lattice is the lattice of the reals $\mathbb{R}$.
 \end{remark}
-
-\begin{prop}[Zorn's lemma]
-	Every non-empty partially ordered set for which every linearly ordered subset has an upper bound contains at least one maximal element.
-\end{prop}
-
-\begin{defn}[Maximal subsets]
-	A linearly \marginleft{Maximal subset} ordered subset is \textbf{maximal} if it is not a scrict subset of another linearly ordered subset.
-\end{defn}
-
-
-\begin{prop}[Kuratowski's Lemma]
-	Every linearly ordered subset is the subset of some maximal linearly ordered subset.
-\end{prop}
 
 \section{Algebras and orders}
 
