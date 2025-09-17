@@ -353,6 +353,25 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 	Every complete unbounded dense linearly ordered set which admits a countable dense subset is order isomorphic to the reals $\mathbb{R}$.
 \end{prop}
 
+\section{Closures and intersection structures}
+
+\begin{defn}
+	Given a poset $(X, \leq)$ a \textbf{closure operator} is a map $c : X \to X$ that satisfies the following for all $a,b \in X$:
+	\begin{enumerate}
+		\item \textbf{extensive}: $a \leq c(a)$
+		\item \textbf{increasing}: $a \subseteq b \implies c(a) \subseteq c(b)$
+		\item \textbf{idempotent}: $c(c(a)) = c(a)$.
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}
+	Given a set $S$, an \textbf{intersection structure}, or $\bigcap$-structure, on $S$ is a family $X \subseteq 2^{S}$ of subsets of $S$ that is closed under arbitrary intersection. That is, $\bigcap A_i \in X$ for every non-empty family $A_i \in X$. A topped intersection structure on $S$ is an intersection structure such that $S \in X$.
+\end{defn}
+
+\begin{prop}
+	Let $C : 2^{S} \to 2^{S}$ be a closure operator. Then the set of closed sets $X = \{ A \subset S \, | \, C(A) = A\}$ is a topped intersection structure. Conversely, Let $X$ be a topped intersection structure, $C(A) = \bigcap \{B \in X \, | \, | A \subset B \}$ is a closure operator.
+\end{prop}
+
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
