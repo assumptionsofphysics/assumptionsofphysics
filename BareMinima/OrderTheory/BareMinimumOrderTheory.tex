@@ -198,7 +198,7 @@ Examples of preorders: multi-dimensional objects compared by a single variable; 
 \end{defn}
 
 \begin{defn}[Lattice - order theoretic]
-	A \textbf{lattice} \marginleft{Lattice} is a partially ordered set in which every pair of elements has both a supremum/join and an infimum/meet. A \textbf{sublattice} is a subposet of a lattice.
+	A \textbf{lattice} \marginleft{Lattice \\ (order)} is a partially ordered set in which every pair of elements has both a supremum/join and an infimum/meet. A \textbf{sublattice} is a subposet of a lattice.
 \end{defn}
 
 \begin{prop}[Connecting lemma]
@@ -283,7 +283,7 @@ Examples of preorders: multi-dimensional objects compared by a single variable; 
 Lattices can be equivalently defined as algebraic structures.
 
 \begin{defn}[Lattice - algebraic]
-	An algebraic \marginleft{Lattice (algebraic)} structure $(X, \vee, \wedge)$ consisting of a set $X$ and two binary operations $\vee$ and $\wedge$ is an \textbf{(algebraic) lattice} if it satisfies the following properties:
+	An algebraic \marginleft{Lattice \\(algebra)} structure $(X, \vee, \wedge)$ consisting of a set $X$ and two binary operations $\vee$ and $\wedge$ is an \textbf{(algebraic) lattice} if it satisfies the following properties:
 	\begin{description}
 		\item[Associativity] $(a \vee b) \vee c = a \vee (b \vee c)$
 		and $(a \wedge b) \wedge c = a \wedge (b \wedge c)$
@@ -301,7 +301,7 @@ Lattices can be equivalently defined as algebraic structures.
 \end{prop}
 
 \begin{defn}[Boolean algebra]
-	An algebraic \marginleft{Boolean algebra} structure $(X, \vee, \wedge, \neg, \bot, \top)$ is a \textbf{Boolean algebra} if it satisfies the following properties:
+	An algebraic \marginleft{Boolean \\ algebra} structure $(X, \vee, \wedge, \neg, \bot, \top)$ is a \textbf{Boolean algebra} if it satisfies the following properties:
 	\begin{description}
 		\item[Lattice] $(X, \vee, \wedge)$ is a lattice
 		\item[Distributivity] $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee b)$
@@ -322,7 +322,7 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 \end{defn}
 
 \begin{defn}
-	A \textbf{Heyting algebra} \marginleft{Heyting algebra} is a bounded lattice for which the relative pseudo-complement always exists.
+	A \textbf{Heyting algebra} \marginleft{Heyting \\ algebra} is a bounded lattice for which the relative pseudo-complement always exists.
 \end{defn}
 
 \begin{prop}
@@ -413,7 +413,7 @@ All number types we use to represent the value of physical quantities can be cha
 \section{Closures and intersection structures}
 
 \begin{defn}
-	Given a poset $(X, \leq)$ a \textbf{closure operator} is a map $cl : X \to X$ that satisfies the following for all $a,b \in X$:
+	Given a poset $(X, \leq)$ \marginleft{Closure} a \textbf{closure operator} is a map $cl : X \to X$ that satisfies the following for all $a,b \in X$:
 	\begin{enumerate}
 		\item \textbf{extensive}: $a \leq cl(a)$
 		\item \textbf{increasing}: $a \leq b \implies cl(a) \leq cl(b)$
@@ -424,7 +424,7 @@ All number types we use to represent the value of physical quantities can be cha
 Examples of closure operators: the ceiling function that returns the smallest integer greater than a given real number; the span operator over a vector space; the topological closure.
 
 \begin{defn}
-	Given a set $S$, an \textbf{intersection structure}, or $\bigcap$-structure, on $S$ is a family $X \subseteq 2^{S}$ of subsets of $S$ that is closed under arbitrary intersection. That is, $\bigcap A_i \in X$ for every non-empty family $A_i \in X$. A topped intersection structure on $S$ is an intersection structure such that $S \in X$.
+	Given a set $S$, \marginleft{Intersection \\structure} an \textbf{intersection structure}, or $\bigcap$-structure, on $S$ is a family $X \subseteq 2^{S}$ of subsets of $S$ that is closed under arbitrary intersection. That is, $\bigcap A_i \in X$ for every non-empty family $A_i \in X$. A topped intersection structure on $S$ is an intersection structure such that $S \in X$.
 \end{defn}
 
 Examples of topped intersection structures: the lattice of subspaces of a given vector space, the lattice of subgroups of a group, the family of closed subsets of a topological space.
