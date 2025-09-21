@@ -45,7 +45,7 @@ A summary overview of order theory, which can be used as a reference, refresher 
 
 \section{Introduction}
 
-Order theory studies partially ordered sets (posets): sets equipped with a notion of order. These structures are pervasive in mathematics as they play a role in logic, computer science, topology, measure theory, group theory, and beyond. Even number types (i.e. integers, rational and reals) can be characterized purely by their order structure. Some physical concepts (e.g. part-whole inclusion) are also naturally captured with order theory.
+Order theory studies partially ordered sets (posets): sets equipped with a notion of order. These structures are pervasive in mathematics as they play a role in logic, computer science, topology, measure theory, group theory, and beyond. Even number types (i.e. integers, rationals and reals) can be characterized purely by their order structure. Some physical concepts (e.g. part-whole inclusion) are also naturally captured with order theory.
 
 Roughly speaking, orders are transitive relationships that are not symmetric. Order theory studies and catalogs these structures, together with order preserving transformations. For more details on order theory, see for example \cite{davey2002introduction, pinter2014book}.
 
@@ -66,7 +66,7 @@ Roughly speaking, orders are transitive relationships that are not symmetric. Or
 Example of posets: family of sets ordered by set inclusion ($\{x, y\} \subseteq \{x, y, z\}$); statements ordered by implication/narrowness/specificity (\statement{Snoopy is a dog} $\narrower$ \statement{Snoopy is a mammal}); systems ordered by is-a-part-of (`piston' $\subseteq$ `engine' $\subseteq$ `car'); numbers ordered by magnitude ($2 \leq 3$).
 
 \begin{defn}[Subposet]
-	Given a poset $(X, \leq)$, a \textbf{subposet} is a poset $(Y, \leq_Y)$ where $Y \subset X$ and $\leq_Y = \leq |_Y$.
+	Given a poset $(X, \leq)$, a \textbf{subposet} is a poset $(Y, \leq_Y)$ where $Y \subseteq X$ and $\leq_Y = \leq |_{Y \times Y}$.
 \end{defn}
 
 \marginright{
@@ -83,16 +83,16 @@ $$
 Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse diagrams}. Each element of the poset is represented by a vertex. A line connects upwards an element to its immediate successor, so that lowest elements are at the bottom.
 
 \begin{defn}[Linear order]
-	A \textbf{linear order}, \marginleft{Linear order,\\ chain} or \textbf{total order}, is a partial order where every pair is ordered. That is, given $a, b \in X$ either $a \leq b$ or $b \leq a$. A \textbf{chain} typically refers to a subset of a partial order that is linearly ordered.
+	A \textbf{linear order}, \marginleft{Linear order,\\ chain, \\anti-chain} or \textbf{total order}, is a partial order where every pair of elements is comparable. That is, given $a, b \in X$ either $a \leq b$ or $b \leq a$. A \textbf{chain} typically refers to a subset of a partial order that is linearly ordered. An \textbf{anti-chain} is a subset of a partial order in which elements are only comparable to themselves.
 \end{defn}
 
 \begin{defn}[Maximal subsets]
-	A linearly \marginleft{Maximal subset} ordered subset (i.e. a chain) is \textbf{maximal} if it is not a scrict subset of another linearly ordered subset.
+	A linearly \marginleft{Maximal subset} ordered subset (i.e. a chain) is \textbf{maximal} if it is not a strict subset of another linearly ordered subset.
 \end{defn}
 
 
 \begin{prop}[Kuratowski's Lemma or Hausdorff maximal principle]
-	Every linearly ordered subset is the subset of some maximal linearly ordered subset.
+	Every chain is the subset of some maximal chain (i.e. maximal linearly ordered subset).
 \end{prop}
 
 \begin{prop}
@@ -123,10 +123,8 @@ The more intuitive notion of `before' and `after' would not include the equal. T
 \end{defn}
 
 \begin{defn}[Discrete order]
-	A \textbf{discrete order} \marginleft{Discrete order} is an order in which every element that has a predecessor/successor has an immediate predecessor/successor.
+	A \textbf{discrete order} \marginleft{Discrete order} is an order in which every element that has a predecessor/successor has an immediate predecessor/successor. A \textbf{discrete linear order} is an order that is both linear and discrete. Be aware that discrete order often refers to an anti-chain.
 \end{defn}
-
-Note that discrete order may also mean an order in which every element is only related to itself (i.e. the partial order is an equivalence relation).
 
 A more loose idea of order is a preorder, for which two different elements can be in the same order position.
 
@@ -219,7 +217,7 @@ Examples of preorders: multi-dimensional objects compared by a single variable; 
 			a \vee (b \wedge c) = (a \vee b) \wedge (a \vee c) \\
 			a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c).
 		\end{align*}
-		A complete lattice is \textbf{infinitely distributive} if the same holds over infinite operations.
+		A complete lattice is \textbf{infinitely distributive}, or \textbf{completely distributive} if the same holds over infinite operations.
 		\item[Complemented] A bounded lattice is \textbf{complemented} if every element has a complement. It is \textbf{uniquely complemented} if the complement is unique.
 		\item[Orthocomplemented] A bounded lattice is \textbf{orthocomplemented} if for every element $a$ there is a complement $a^{\bot}$ such that $a^{\bot\bot} = a$ and if $a \leq b$ then $b^{\bot} \leq a^{\bot}$.
 		\item[Orthomodular] A lattice is \textbf{orthomodular} if it is orthocomplemented and if $a \leq b$ implies $a \vee (a^{\bot} \wedge b) = (a \vee a^{\bot}) \wedge b$ (i.e. modularity holds at least of orthocomplements)
@@ -249,7 +247,7 @@ Examples of preorders: multi-dimensional objects compared by a single variable; 
 \end{prop}
 
 \begin{prop}
-	A lattice is distributive if an only if it does not contain an $M_3$ (diamond) or $N_5$ (pentagon) sublattice.
+	A lattice is distributive if and only if it does not contain an $M_3$ (diamond) or $N_5$ (pentagon) sublattice.
 \end{prop}
 
 \begin{prop}
@@ -257,7 +255,7 @@ Examples of preorders: multi-dimensional objects compared by a single variable; 
 \end{prop}
 
 \begin{remark}
-	The completion is constructed by finding pairs $(A, B)$ of subsets $A, B \subseteq X$ such that $A$ is the set of lower bounds for $B$ and $B$ is the set of upper bounds of $A$. For the rationals $\mathbb{Q}$, these pairs correspond to Dedekind cuts, and the completion of $\mathbb{Q}$ as a lattice is the lattice of the reals $\mathbb{R}$.
+	The Dedekind-MacNeille completion is constructed by finding pairs $(A, B)$ of subsets $A, B \subseteq X$ such that $A$ is the set of lower bounds for $B$ and $B$ is the set of upper bounds of $A$. For the rationals $\mathbb{Q}$, these pairs correspond to Dedekind cuts, and the completion of $\mathbb{Q}$ as a lattice is the lattice of the reals $\mathbb{R}$.
 \end{remark}
 
 \subsection{Filters, ideals and other subsets}
@@ -304,8 +302,8 @@ Lattices can be equivalently defined as algebraic structures.
 	An algebraic \marginleft{Boolean \\ algebra} structure $(X, \vee, \wedge, \neg, \bot, \top)$ is a \textbf{Boolean algebra} if it satisfies the following properties:
 	\begin{description}
 		\item[Lattice] $(X, \vee, \wedge)$ is a lattice
-		\item[Distributivity] $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee b)$
-and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
+		\item[Distributivity] $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee c)$
+and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c)$
 		\item[Identity] $a \vee \bot = a$
 		and $a \wedge \top = a$
 		\item[Complementation] $a \vee \neg a = \top$
@@ -336,7 +334,7 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 \section{Set representation of lattices}
 
 \begin{prop}[Stone's representation theorem]
-	Every distributive lattice is order isomorphic to a lattice of subsets ordered by inclusion.
+	Every bounded distributive lattice is order isomorphic to a lattice of subsets ordered by inclusion.
 \end{prop}
 
 \begin{prop}[Boolean algebras]
