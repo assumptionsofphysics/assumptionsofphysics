@@ -12,6 +12,7 @@
 	urlcolor=blue,
 	linkcolor=blue
 }
+\usepackage[all,pdf]{xy}
 \frenchspacing
 
 \newcommand{\marginleft}[1] {\reversemarginpar\marginpar{#1}}
@@ -44,18 +45,9 @@ A summary overview of order theory, which can be used as a reference, refresher 
 
 \section{Introduction}
 
-Order theory studies partially ordered sets (POSETs): sets equipped with a notion of order. These structures are pervasive in mathematics as play a role in logic, computer science, topology, measure theory, group theory, and beyond. Even number types types (i.e. integers, rational and reals) can be characterized purely on their order structure. A as different order types makes a better link to physics; physical concepts (e.g. part-whole inclusion) are also naturally captured with order theory.
+Order theory studies partially ordered sets (posets): sets equipped with a notion of order. These structures are pervasive in mathematics as they play a role in logic, computer science, topology, measure theory, group theory, and beyond. Even number types (i.e. integers, rational and reals) can be characterized purely by their order structure. Some physical concepts (e.g. part-whole inclusion) are also naturally captured with order theory.
 
 Roughly speaking, orders are transitive relationships that are not symmetric. Order theory studies and catalogs these structures, together with order preserving transformations. For more details on order theory, see for example \cite{davey2002introduction, pinter2014book}.
-
-\section{TBD}
-
-* fixpoint theorems
-* Zorn's lemma
-
-* Galois connection
-
-? graded posets
 
 \section{Orders}
 
@@ -71,9 +63,24 @@ Roughly speaking, orders are transitive relationships that are not symmetric. Or
 	A \textbf{partially ordered set}, or \textbf{poset}, is a tuple $(X, \leq)$ consisting of a set and a partial order.
 \end{defn}
 
-\begin{remark}
-	To give a sense of the broad range of applicability: sets are ordered by set inclusion ($\{0, 1\} \subseteq \{0, 1, 2\}$); statements are ordered by implication/narrowness/specificity (\statement{Snoopy is a dog} $\narrower$ \statement{Snoopy is a mammal}); systems are ordered by is-a-part-of (`piston' $\subseteq$ `engine' $\subseteq$ `car').
-\end{remark}
+Example of posets: family of sets ordered by set inclusion ($\{x, y\} \subseteq \{x, y, z\}$); statements ordered by implication/narrowness/specificity (\statement{Snoopy is a dog} $\narrower$ \statement{Snoopy is a mammal}); systems ordered by is-a-part-of (`piston' $\subseteq$ `engine' $\subseteq$ `car'); numbers ordered by magnitude ($2 \leq 3$).
+
+\begin{defn}[Subposet]
+	Given a poset $(X, \leq)$, a \textbf{subposet} is a poset $(Y, \leq_Y)$ where $Y \subset X$ and $\leq_Y = \leq |_Y$.
+\end{defn}
+
+\marginright{
+$$
+\def\arl{\ar@{-}}
+\xymatrix@R=10pt@C=4pt{
+	& \{x,y,z\}\arl[dl]\arl[d]\arl[dr] & \\
+	\{x,y\}\arl[d]\arl[dr] & \{x,z\}\arl[dl]|\hole\arl[dr]|\hole & \{y,z\}\arl[dl]\arl[d] \\
+	\{x\}\arl[dr]   & \{y\}\arl[d]   & \{z\}\arl[dl] \\
+	& \{\varnothing\} \\
+}
+$$
+}
+Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse diagrams}. Each element of the poset is represented by a vertex. A line connects upwards an element to its immediate successor, so that lowest elements are at the bottom.
 
 \begin{defn}[Linear order]
 	A \textbf{linear order}, \marginleft{Linear order,\\ chain} or \textbf{total order}, is a partial order where every pair is ordered. That is, given $a, b \in X$ either $a \leq b$ or $b \leq a$. A \textbf{chain} typically refers to a subset of a partial order that is linearly ordered.
@@ -92,7 +99,7 @@ Roughly speaking, orders are transitive relationships that are not symmetric. Or
 	Kuratowski's Lemma is equivalent to the axiom of choice.
 \end{prop}
 
-The more intuitive notion of `before' and `after' would not include the equal. The two notions can be shows to be equivalent.
+The more intuitive notion of `before' and `after' would not include the equal. The two notions can be shown to be equivalent.
 
 \begin{defn}[Strict order]
 	A \textbf{strict partial order} \marginleft{Strict order} $<$ is a binary relationship over a set $X$ that is:
@@ -107,7 +114,21 @@ The more intuitive notion of `before' and `after' would not include the equal. T
 	A strict partial order can be converted to a non-strict partial order (or vice-versa) by adding (or removing) the identity relationship. That is, given $<$ we can define $\leq$ such that $a \leq b$ if $a < b$ or $a = b$. On the other hand, given $\leq$ we can define $<$ such that $a < b$ if $a \leq b$ and $a \neq b$.
 \end{prop}
 
-A more loose idea of order is a preorder, for which two different elements can be in the same order position. For example, the relationship has-no-fewer-elements for set is a preorder.
+\begin{defn}[Predecessors and successors]
+	A \textbf{predecessor} \marginleft{Predecessor, successor} (or \textbf{successor}) of an element $a \in X$ is an element that comes strictly before (or strictly after) $a$. That is, it is an element $b \in X$ such that $b < a$ (or $a < b$). A predecessor (or successor) is  \textbf{immediate} if there are no elements in between. That is, $b < a$ (or $a < b$) and there is no $c \in X$ such that $b < c < a$  (or $a < c < b$).
+\end{defn}
+
+\begin{defn}[Dense order]
+	An order is \textbf{dense} \marginleft{Dense order} if for any two elements $a < b$ we can always find a third element $c \in X$ between the two $a < c < b$.
+\end{defn}
+
+\begin{defn}[Discrete order]
+	A \textbf{discrete order} \marginleft{Discrete order} is an order in which every element that has a predecessor/successor has an immediate predecessor/successor.
+\end{defn}
+
+Note that discrete order may also mean an order in which every element is only related to itself (i.e. the partial order is an equivalence relation).
+
+A more loose idea of order is a preorder, for which two different elements can be in the same order position.
 
 \begin{defn}[Preorder]
 	A \textbf{preorder} \marginleft{Preorder} $\lesssim$ is a binary relationship over a set $X$ that is:
@@ -117,30 +138,20 @@ A more loose idea of order is a preorder, for which two different elements can b
 	\end{description}
 \end{defn}
 
+Examples of preorders: multi-dimensional objects compared by a single variable; sets compared by their cardinality; sets of integers compared by the sum of the elements.
+
 \begin{prop}
 	A preorder induces a partial order on the set of equivalence classes defined by the preorder. That is, define $\sim$ on $X$ such that $a \sim b$ if $a \lesssim b$ and $b \lesssim a$. This is an equivalence relationship. Now define $\lesssim$ on $X_{/\sim}$ such that $a_{/\sim} \lesssim b_{/\sim}$ if $a \lesssim b$. This is a partial order.
 \end{prop}
 
-\begin{defn}[Predecessors and successors]
-	A \textbf{predecessor} \marginleft{Predecessor, successor} (or \textbf{successor}) of an element $a \in X$ is an element that comes strictly before (or strictly after) $a$. That is, it is an element $b \in X$ such that $b < a$ (or $a < b$). A predecessor (or successor) is  \textbf{immediate} if there are no elements in between. That is, $b < a$ (or $a < b$) and there is no $c \in X$ such that $b < c < a$  (or $a < c < b$).
-\end{defn}
-
-\marginright{TODO: Hesse diagram}
-
-Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse diagrams}. Each element of the poset is represented by a vertex. A line connects upwards an element to its immediate successor, so that lowest elements are at the bottom.
-
-\begin{defn}[Dense order]
-	An order is \textbf{dense} \marginleft{Dense order} if for any two elements $a < b$ we can always find a third element $c \in X$ between the two $a < c < b$.
-\end{defn}
-
 \subsection{Morphisms}
 
 \begin{defn}
-	An \textbf{increasing function} \marginleft{Increasing function} (also called \textbf{order preserving}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that preserves the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(a) \leq_Y f(b)$. It is \textbf{strictly increasing} if $a \leq_X b \implies f(a) <_Y f(b)$.
+	An \textbf{increasing function} \marginleft{Increasing function} (also called \textbf{order preserving}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that preserves the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(a) \leq_Y f(b)$. It is \textbf{strictly increasing} if $a <_X b \implies f(a) <_Y f(b)$.
 \end{defn}
 
 \begin{defn}
-	A \textbf{decreasing function} \marginleft{Decreasing function} (also called \textbf{order reversing}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that reverses the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(b) \leq_Y f(a)$.  It is \textbf{strictly decreasing} if $a \leq_X b \implies f(b) <_Y f(a)$.
+	A \textbf{decreasing function} \marginleft{Decreasing function} (also called \textbf{order reversing}) is a map between two posets $(X, \leq_X)$ and $(Y, \leq_Y)$ that reverses the order. That is, a map $f : X \to Y$ such that $a \leq_X b \implies f(b) \leq_Y f(a)$.  It is \textbf{strictly decreasing} if $a <_X b \implies f(b) <_Y f(a)$.
 \end{defn}
 
 \begin{defn}
@@ -148,17 +159,11 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 \end{defn}
 
 \begin{defn}
-	An \textbf{order embedding} \marginleft{Order embedding} is a monotonic function where the image have the same ordering. That is, a map $f : X \to Y$ such that $a \leq_X b \iff f(a) \leq_Y f(b)$.
+	An \textbf{order embedding} \marginleft{Order embedding} is a monotonic function where the image has the same ordering. That is, a map $f : X \to Y$ such that $a \leq_X b \iff f(a) \leq_Y f(b)$.
 \end{defn}
 
 \begin{defn}
-	An \textbf{order isomorphism} \marginleft{Order isomorphism} is an invertible embedding (i.e. bijective monotonic function whose inverse is monotonic). Two posets are \textbf{order isomorphic} (or have the same \textbf{order type}) if there exists an order isomorphism between them.
-\end{defn}
-
-\subsection{Filters and ideals AFTER}
-
-\begin{defn}
-	Let $X$ be a poset. \marginleft{Up-sets and \\ down-sets} An \textbf{up-set}, or \textbf{increasing set}, or \textbf{order filter}, is a subset $A \subseteq X$ that contains all the successors of its elements. That is, if $a \in A$ then for all $b \in X$ such that $a \leq b$ we have $b \in A$. Dually, a \textbf{down-set}, or \textbf{decreasing set}, or \textbf{order ideal}, is a subset $A \subseteq X$ that contains all the predecessors of its elements. That is, if $a \in A$ then for all $b \in X$ such that $b \leq a$ we have $b \in A$.
+	An \textbf{order isomorphism} \marginleft{Order isomorphism} is an invertible embedding (i.e. bijective increasing function whose inverse is increasing). Two posets are \textbf{order isomorphic} (or have the same \textbf{order type}) if there exists an order isomorphism between them.
 \end{defn}
 
 \subsection{Bounds}
@@ -175,6 +180,10 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 	Every non-empty partially ordered set for which every linearly ordered subset has an upper bound contains at least one maximal element.
 \end{prop}
 
+\begin{prop}
+	Zorn's lemma is equivalent to the axiom of choice.
+\end{prop}
+
 \begin{defn}[Supremum and infimum]
 	The \textbf{supremum}, \marginleft{Supremum and infimum} or \textbf{least upper bound} of $A$ is, if it exists, the least element within all upper bounds of $A$. Conversely, the \textbf{infimum},  or \textbf{greatest lower bound} of $A$ is, if it exists, the greatest element within all lower bounds of $A$.
 \end{defn}
@@ -189,11 +198,11 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 \end{defn}
 
 \begin{defn}[Lattice - order theoretic]
-	A \textbf{lattice} \marginleft{Lattice} is a partially ordered sets in which every pair of elements has both a supremum/join and an infimum/meet.
+	A \textbf{lattice} \marginleft{Lattice} is a partially ordered set in which every pair of elements has both a supremum/join and an infimum/meet. A \textbf{sublattice} is a subposet of a lattice.
 \end{defn}
 
 \begin{prop}[Connecting lemma]
-	If $X$ is a lattice then $a \leq b$, $a \vee b = b$ and $a \wedge b = a$ are equivalent.
+	If $X$ is a lattice then $a \leq b \iff a \vee b = b \iff a \wedge b = a$.
 \end{prop}
 
 \begin{prop}
@@ -203,22 +212,44 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 \begin{defn}[Lattice properties]
 	We define\marginleft{Complete, distributive, complemented} the following additional properties on lattices:
 	\begin{description}
-		\item[Completeness.] A lattice is \textbf{complete} if all subsets have joins and meet, not just finite ones.
-		\item[Modularity.] A lattice is \textbf{modular} if $a \leq b$ implies $a \vee (c \wedge b) = (a \vee c) \wedge b$
-		\item[Distributivity.] A lattice is \textbf{distributive} if it satisfies
+		\item[Completeness] A lattice is \textbf{complete} if all subsets have joins and meet, not just finite ones.
+		\item[Modularity] A lattice is \textbf{modular} if $a \leq b$ implies $a \vee (c \wedge b) = (a \vee c) \wedge b$
+		\item[Distributivity] A lattice is \textbf{distributive} if it satisfies
 		\begin{align*}
 			a \vee (b \wedge c) = (a \vee b) \wedge (a \vee c) \\
 			a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c).
 		\end{align*}
 		A complete lattice is \textbf{infinitely distributive} if the same holds over infinite operations.
-		\item[Complemented.] A bounded lattice is \textbf{complemented} if every element has a complement. It is uniquely complement if the complement is unique.
-		\item[Orthocomplemented.] A bounded lattice is \textbf{orthocomplemented} if for every element $a$ there is a complement $a^{\bot}$ such that $a^{\bot\bot} = a$ and if $a \leq b$ then $b^{\bot} \leq a^{\bot}$
-		\item[Orthomodular.] A lattice is \textbf{orthomodular} if it is orthocomplemented and if $a \leq b$ implies $a \vee (a^{\bot} \wedge b) = (a \vee a^{\bot}) \wedge b$ (i.e. modularity holds at least of orthocomplements)
+		\item[Complemented] A bounded lattice is \textbf{complemented} if every element has a complement. It is \textbf{uniquely complemented} if the complement is unique.
+		\item[Orthocomplemented] A bounded lattice is \textbf{orthocomplemented} if for every element $a$ there is a complement $a^{\bot}$ such that $a^{\bot\bot} = a$ and if $a \leq b$ then $b^{\bot} \leq a^{\bot}$.
+		\item[Orthomodular] A lattice is \textbf{orthomodular} if it is orthocomplemented and if $a \leq b$ implies $a \vee (a^{\bot} \wedge b) = (a \vee a^{\bot}) \wedge b$ (i.e. modularity holds at least of orthocomplements)
 	\end{description}
 \end{defn}
-
+\marginright{
+	$$
+	\def\arl{\ar@{-}}
+	\xymatrix@R=7pt@C=4pt{
+		& M_3 & \\
+		 & \top\arl[dl]\arl[d]\arl[dr] & \\
+		a\arl[dr] & b\arl[d] & c\arl[dl] \\
+		& \bot \\
+	}
+	\xymatrix@R=2pt@C=4pt{
+		& N_5 & \\
+		& \top\arl[dl]\arl[ddr] & \\
+		a\arl[dd] &  & \\
+		 &  & c\arl[ddl] \\
+		b\arl[dr] &  &  \\
+		& \bot \\
+}
+	$$
+}
 \begin{prop}
 	Every distributive lattice is a modular. Every complete lattice is bounded.
+\end{prop}
+
+\begin{prop}
+	A lattice is distributive if an only if it does not contain an $M_3$ (diamond) or $N_5$ (pentagon) sublattice.
 \end{prop}
 
 \begin{prop}
@@ -226,38 +257,58 @@ Simple orders \marginleft{Hasse diagram}  can be depicted using \textbf{Hasse di
 \end{prop}
 
 \begin{remark}
-	The completion is constructed by finding pairs $(A, B)$ of subsets $A, B \subseteq X$ such that $A$ is the set of lower bounds for $B$ and $B$ is the set of lower bounds of $A$. For the rationals $\mathbb{Q}$, these pairs correspond to Dedekind cuts, and the completion of $\mathbb{Q}$ as a lattice is the lattice of the reals $\mathbb{R}$.
+	The completion is constructed by finding pairs $(A, B)$ of subsets $A, B \subseteq X$ such that $A$ is the set of lower bounds for $B$ and $B$ is the set of upper bounds of $A$. For the rationals $\mathbb{Q}$, these pairs correspond to Dedekind cuts, and the completion of $\mathbb{Q}$ as a lattice is the lattice of the reals $\mathbb{R}$.
 \end{remark}
 
-\section{Algebras and orders}
+\subsection{Filters, ideals and other subsets}
+
+\begin{defn}
+	Let $X$ be a poset. \marginleft{Upward and \\ downward closed} A subset $A \subseteq X$ is \textbf{upward closed} (or \textbf{downward closed}), if it contains all elements greater (or less) than of its elements. That is, if $a \in A$, then $b \in A$ for all $b \in X$ such that $a \leq b$ (or $b \leq a$).
+\end{defn}
+
+\begin{defn}
+	Let $X$ be a poset. \marginleft{Upward and \\ downward \\  directed} A subset $A \subseteq X$ is \textbf{upward directed} (or \textbf{downward directed}), if any finite set has an upper (or lower) bound. That is, if $a,b \in A$, then we can find $c \in A$ such that $a \leq c$ and $b \leq c$ (or $c \leq a$ and $c \leq b$).
+\end{defn}
+
+\begin{defn}
+	Let $X$ be a poset. \marginleft{Filters and \\ ideals} A subset $A \subseteq X$ is a \textbf{filter} if it is upward closed and downward directed. It is a \textbf{proper filter} if $A \neq X$. It is a \textbf{principal filter}, noted $\uparrow a$ if it contains and only contains all elements greater than $a \in X$. Conversely, $A$ is an \textbf{ideal} if it is downward closed and upward directed. It is a \textbf{proper ideal} if $A \neq X$. It is a \textbf{principal ideal}, noted $\downarrow a$ if it contains and only contains all elements less than $a \in X$.
+\end{defn}
+
+\begin{defn}
+	A filter (or ideal) \marginleft{Maximal \\ filters \\ and ideals} is \textbf{maximal} if it is proper and no other filter (or ideal) contains it. A maximal filter is also called an \textbf{ultrafilter}.
+\end{defn}
+
+\section{Lattices as algebras}
+
+Lattices can be equivalently defined as algebraic structures.
 
 \begin{defn}[Lattice - algebraic]
 	An algebraic \marginleft{Lattice (algebraic)} structure $(X, \vee, \wedge)$ consisting of a set $X$ and two binary operations $\vee$ and $\wedge$ is an \textbf{(algebraic) lattice} if it satisfies the following properties:
 	\begin{description}
-		\item[Associativity.] $(a \vee b) \vee c = a \vee (b \vee c)$
+		\item[Associativity] $(a \vee b) \vee c = a \vee (b \vee c)$
 		and $(a \wedge b) \wedge c = a \wedge (b \wedge c)$
-		\item[Commutativity.] $a \vee b = b \vee a$
+		\item[Commutativity] $a \vee b = b \vee a$
 		and $a \wedge b = b \wedge a$
-		\item[Idempotency.] $a \vee a = a$
+		\item[Idempotency] $a \vee a = a$
 		and $a \wedge a = a$
-		\item[Absorption.] $a \vee (a \wedge b) = a$
+		\item[Absorption] $a \vee (a \wedge b) = a$
 		and $a \wedge (a \vee b) = a$
 	\end{description}
 \end{defn}
 
 \begin{prop}
-	Every order lattice is an algebraic lattice and every algebraic lattice is an order lattice where $a \leq b$ if $a \vee b = b$.
+	Every order lattice is an algebraic lattice and every algebraic lattice is an order lattice where $a \leq b$ if and only if $a \vee b = b$.
 \end{prop}
 
 \begin{defn}[Boolean algebra]
 	An algebraic \marginleft{Boolean algebra} structure $(X, \vee, \wedge, \neg, \bot, \top)$ is a \textbf{Boolean algebra} if it satisfies the following properties:
 	\begin{description}
-		\item[Lattice.] $(X, \vee, \wedge)$ is a lattice
-		\item[Distributivity.] $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee b)$
+		\item[Lattice] $(X, \vee, \wedge)$ is a lattice
+		\item[Distributivity] $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee b)$
 and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
-		\item[Identity.] $a \vee \bot = a$
+		\item[Identity] $a \vee \bot = a$
 		and $a \wedge \top = a$
-		\item[Complementation.] $a \vee \neg a = \top$
+		\item[Complementation] $a \vee \neg a = \top$
 		and $a \wedge \neg a = \bot$
 	\end{description}
 \end{defn}
@@ -275,14 +326,14 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 \end{defn}
 
 \begin{prop}
-	All Heyting algebras are distributive lattices. Every Boolean algebra is a Heyting algebra where the pseudo-complement coincide with the complement. If a Heyting algebra is complemented then it is a Boolean algebra.
+	All Heyting algebras are distributive lattices. Every Boolean algebra is a Heyting algebra where the pseudo-complement coincides with the complement. If a Heyting algebra is complemented then it is a Boolean algebra.
 \end{prop}
 
 \begin{remark}
 	Boolean algebras are used to capture the two-valued (i.e. true, false) classical logic. Heyting algebras are used to capture the three-valued (i.e. true, false, undetermined) intuitionistic/constructivist logic. The order is the logical implication. The complement is the negation, which always exists in classical logic but not in intuitionistic (i.e. not true is not necessarily false).
 \end{remark}
 
-\section{Representation as sets}
+\section{Set representation of lattices}
 
 \begin{prop}[Stone's representation theorem]
 	Every distributive lattice is order isomorphic to a lattice of subsets ordered by inclusion.
@@ -293,7 +344,7 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 	\begin{description}
 		\item[Join] represented by the union
 		\item[Meet] represented by the intersection
-		\item[Pseudo-complement] represented by the set complement.
+		\item[Complement] represented by the set complement.
 	\end{description}
 	Conversely, every collection of sets closed under union, intersection and complement forms a Boolean algebra.
 \end{prop}
@@ -312,7 +363,7 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 \end{prop}
 
 \begin{prop}[Lattice of subgroups]
-	Given a group, the set of its subgroups, as a collection of sets ordered by inclusion, is a lattice following correspondence:
+	Given a group, the set of its subgroups, as a collection of sets ordered by inclusion, is a lattice with the following correspondence:
 	\begin{description}
 		\item[Join] represented by the subgroup generated by the union
 		\item[Meet] represented by the intersection.
@@ -320,20 +371,20 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 \end{prop}
 
 \begin{prop}[Lattice of subspaces]
-	Given a vector space, the set of its subspaces, as a collection of sets ordered by inclusion, is a complemented lattice following correspondence:
+	Given a vector space, the set of its subspaces, as a collection of sets ordered by inclusion, is a complemented lattice with the following correspondence:
 	\begin{description}
 		\item[Join] represented by the subspace spanned by the union
 		\item[Meet] represented by the intersection
-		\item[Complement] represented by the orthogonal subspace.
+		\item[Complement] represented by the orthogonal subspace (for inner product spaces).
 	\end{description}
 \end{prop}
 
 \begin{remark}
-	Note how the order theoretic operations (i.e. join, meet, complement, ...), except for Boolean algebras, do not always map to the set theoretic operations (i.e. intersection, union, complement, ...). This creates confusion when one tries to attach intuition from one to the other.	
+	Note how the order theoretic operations (i.e. join, meet, complement), except for Boolean algebras, do not always map to the set theoretic operations (i.e. intersection, union, complement). This may be confusing when one tries to attach intuition from one to the other.
 	
 	In Heyting algebras the pseudo-complement is often called ``negation'' and noted as $\neg a$ because, in some formulas, plays the same formal role. However, it is not a negation in a strict sense since the join of an element with its psuedo-complement is not the top. Logically, the negation of ``proposition $a$ is proven to be true'' is ``proposition $a$ is not proven to be true'' while the pseudo-complement is ``proposition $a$ is proven to be false''.
 	
-	Similarly, quantum logic takes the lattice of subspaces as the lattice of propositions. The lattice fails to be distributive on the join operation, and this is taken to mean that the disjunction is not distributive. However, the join fails to map to the union. Logically, the disjunction of \statement{the spin of system was prepared in the z+ direction} and \statement{the spin of system was prepared in the z- direction} is \statement{the spin of system was prepared in either the z+ or z- direction} while the join in terms of subspaces is \statement{the spin of system was prepared in any direction}.
+	Similarly, quantum logic takes the lattice of subspaces as the lattice of propositions. The lattice fails to be distributive on the join operation, and this is taken to mean that the disjunction is not distributive. However, the join fails to map to the union. Logically, the disjunction of \statement{the spin of the system was prepared in the z+ direction} and \statement{the spin of the system was prepared in the z- direction} is \statement{the spin of the system was prepared in either the z+ or z- direction} while the join in terms of subspaces is \statement{the spin of the system was prepared in any direction}.
 	
 	Understanding these differences is critical to give the correct physical interpretation of the corresponding mathematical definitions and results.
 	
@@ -341,37 +392,46 @@ and $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge b)$
 
 \section{Numbers as order types}
 
+All number types we use to represent the value of physical quantities can be characterized by their ordering relationship. This includes their topology, as it is the order topology in all cases. Note that the complex numbers do not fit this pattern.
+
 \begin{prop}
-	Every linearly ordered set $X$ in which each element has one predecessor and one successor is order isomorphic to the integers $\mathbb{Z}$.
+	Every discretely linearly ordered set with a lower bound and no upper bound is order isomorphic to the naturals $\mathbb{N}$.
 \end{prop}
 
 \begin{prop}
+	Every unbounded discretely linearly ordered set is order isomorphic to the integers $\mathbb{Z}$.
+\end{prop}
+
+\begin{prop}[Cantor's isomorphism theorem]
 	 Every unbounded countable dense linearly ordered set is order isomorphic to the rationals $\mathbb{Q}$.
 \end{prop}
 
-\begin{prop}
+\begin{prop}[Cantor's characterization of the real line]
 	Every complete unbounded dense linearly ordered set which admits a countable dense subset is order isomorphic to the reals $\mathbb{R}$.
 \end{prop}
 
 \section{Closures and intersection structures}
 
 \begin{defn}
-	Given a poset $(X, \leq)$ a \textbf{closure operator} is a map $c : X \to X$ that satisfies the following for all $a,b \in X$:
+	Given a poset $(X, \leq)$ a \textbf{closure operator} is a map $cl : X \to X$ that satisfies the following for all $a,b \in X$:
 	\begin{enumerate}
-		\item \textbf{extensive}: $a \leq c(a)$
-		\item \textbf{increasing}: $a \subseteq b \implies c(a) \subseteq c(b)$
-		\item \textbf{idempotent}: $c(c(a)) = c(a)$.
+		\item \textbf{extensive}: $a \leq cl(a)$
+		\item \textbf{increasing}: $a \leq b \implies cl(a) \leq cl(b)$
+		\item \textbf{idempotent}: $cl(cl(a)) = cl(a)$.
 	\end{enumerate}
 \end{defn}
+
+Examples of closure operators: the ceiling function that returns the smallest integer greater than a given real number; the span operator over a vector space; the topological closure.
 
 \begin{defn}
 	Given a set $S$, an \textbf{intersection structure}, or $\bigcap$-structure, on $S$ is a family $X \subseteq 2^{S}$ of subsets of $S$ that is closed under arbitrary intersection. That is, $\bigcap A_i \in X$ for every non-empty family $A_i \in X$. A topped intersection structure on $S$ is an intersection structure such that $S \in X$.
 \end{defn}
 
-\begin{prop}
-	Let $C : 2^{S} \to 2^{S}$ be a closure operator. Then the set of closed sets $X = \{ A \subset S \, | \, C(A) = A\}$ is a topped intersection structure. Conversely, Let $X$ be a topped intersection structure, $C(A) = \bigcap \{B \in X \, | \, | A \subset B \}$ is a closure operator.
-\end{prop}
+Examples of topped intersection structures: the lattice of subspaces of a given vector space, the lattice of subgroups of a group, the family of closed subsets of a topological space.
 
+\begin{prop}
+	Let $C : 2^{S} \to 2^{S}$ be a closure operator. Then the set of closed sets $X = \{ A \subseteq S \, | \, C(A) = A\}$ is a topped intersection structure. Conversely, Let $X$ be a topped intersection structure, $C(A) = \bigcap \{B \in X \, | \, A \subseteq B \}$ is a closure operator.
+\end{prop}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
