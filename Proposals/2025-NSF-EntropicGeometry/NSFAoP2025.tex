@@ -1,0 +1,55 @@
+\documentclass[letterpaper,12pt,prl,tightenlines,onecolumn,notitlepage,longbibliography,floatfix,nofootinbib]{revtex4-2}
+\usepackage[left=1.01in,right=1.01in,bottom=1.01in,top=1.01in]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{epsfig}
+\usepackage{epsf}
+\usepackage{color}
+\usepackage{array}
+\usepackage{epstopdf}
+%\pagestyle{empty}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{30}
+\usepackage{rotating}
+\usepackage{multirow}
+%\usepackage[compact]{titlesec}
+\usepackage{assumptionsofphysics}
+
+\newcommand{\ens}[1][e] {\mathsf{#1}} % Ensemble
+\newcommand{\Ens}[1][E] {\mathcal{#1}} % Ensemble space
+
+
+
+\begin{document}
+%\bibliographystyle{plain}
+%\bibliographystyle{apsrmp4-1}
+\title{Title here}
+\date{\today}
+\author{Christine A. Aidala}
+\maketitle
+\newpage
+\pagenumbering{gobble}
+\input{ProjectSummary}
+\newpage
+%\pagenumbering{arabic}
+\setcounter{page}{0}
+\input{NarrativeBody}
+\cleardoublepage
+%\input{biosketch}
+\cleardoublepage
+%\input{support}
+\cleardoublepage
+\section{References Cited}
+%\setcounter{page}{1}
+\bibliography{NSFAoP2025}
+\cleardoublepage
+%\input{facilities}
+%\cleardoublepage
+%\input{equipment}
+%\cleardoublepage
+%\setcounter{page}{1}
+\end{document}
