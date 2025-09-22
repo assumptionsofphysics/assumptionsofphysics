@@ -24,6 +24,7 @@
 *-blx.aux
 *-blx.bib
 *.run.xml
+*Notes.bib
 
 ## Build tool auxiliary files:
 *.fdb_latexmk
@@ -89,12 +90,6 @@ sympy-plots-for-*.tex/
 # todonotes
 *.tdo
 
-# xindy
-*.xdy
-*.bib
-*.tex~txs0
-
-!bibliography.bib
 *.spl
 templates/
 Proceedings/2019-ICNFP/ioplatexguidelines*
