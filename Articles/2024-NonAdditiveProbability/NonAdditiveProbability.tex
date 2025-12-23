@@ -93,25 +93,6 @@ Lastly, we lay down the requirements for a non-additive generalization of probab
 
 \textbf{Basic requirements for an ensemble space}. In our larger work, we strive to give all axioms and mathematical definitions solid grounding in physical requirements.\footnote{We call this approach Physical Mathematics, which stems from the observation that when physical objects are mapped to the right mathematical objects, the physical specification maps to the mathematical definitions.} Here we will only present a summary for the present investigation, leaving details to the appendix and our ongoing work.\cite{aop-book}
 
-Since physical laws deal with experimentally reproducible relationships, they are inherently relationships between statistical ensembles. Therefore, any physical theory must define the space of all ensembles allowed within the theory. In the classical case, this corresponds to a probability distribution over a discrete set of outcomes (e.g. a fair coin) or over phase space (e.g. the symplectic manifold representing position and momentum for a classical particle). In the quantum case, this corresponds to a mixed state (e.g. a positive semi-definite self-adjoint operator of trace one).
-
-In this work, we will take an ensemble space $\Ens$ to be a bounded convex subset of a locally convex metrizable second countable topological vector space endowed with an entropy function. The topology captures experimental verifiability as open sets represent experimentally verifiable statements\cite{aop-book,kelly1996}.\footnote{A verifiable statement is an assertion for which there exists an experimental test that finishes successfully in finite time if and only if the statement is true.} Convexity, and linearity more in general, comes from allowing statistical mixtures: if $\ens[a],\ens[b] \in \Ens$ are ensembles, then $p \ens[a] + \bar{p} \ens[b]$ represents the statistical mixture where $\ens[a]$ is taken with probability $p$ and $\ens[b]$ with probability $\bar{p} = 1 - p$.\footnote{Only finite mixtures are guaranteed, while the topology will decide whether an infinite mixture $\sum_{i=1}^{\infty} p_i \ens_i$ converges in the space or not.} Lastly, the entropy characterizes the variability of the elements within an ensemble. In this context, a statistical quantity, representing the expectation of a real valued quantity, is an affine continuous function $F : \Ens \to \mathbb{R}$. That is, $F(p \ens[a] + \bar{p} \ens[b]) = p F(\ens[a]) + \bar{p} F(\ens[b])$.
-
-Each physical theory satisfies these axioms, even though it may be represented very differently mathematically. Classical mechanics, for example, is typically described in terms of the geometry of phase space. Quantum mechanics is most often defined in terms of complex inner product spaces, but can be reframed in terms of quasiprobability distributions. Therefore, while the above requirements are needed for a physical theory, it does not necessarily mean that it is convenient to describe problems or make calculations in terms of those definitions. In fact, those requirements interact with each other leading to a rich mathematical structure that connects to many of the structures we use in mathematical physics, and our goal is mainly to see how the different representations are connected. In particular, here we want to examine the different ways that measure theory can be used to represent ensembles in any given physical theory.
-
-% space is metrizable https://proofwiki.org/wiki/Birkhoff-Kakutani_Theorem/Topological_Vector_Space
-
-\textbf{Ensemble spaces as convex sets.} For the purpose of measure theoretic representations, it is best to understand an ensemble space $\Ens$ as a convex subset of a metrizable second countable locally convex topological vector space $V$.\footnote{To see the connection between the requirements and this mathematical characterization see the appendix.} See Fig.~\ref{convex_examples} for examples. The entropy is a function $S : \Ens \to \mathbb{R}$ that satisfies the following bounds
-\begin{equation}
-	\begin{aligned}
-		p S(\ens[a]) + \bar{p} &S(\ens[b]) \leq S(p \ens[a] + \bar{p} \ens[b]) \\
-		&\leq I(p,\bar{p}) + p S(\ens[a]) + \bar{p} S(\ens[b])
-	\end{aligned}
-\end{equation}
-where $I(p,\bar{p}) = - p \log p - \bar{p} \log(\bar{p})$.\footnote{The Shannon entropy is recovered as the only upper bound possible.}  Intuitively, the variability (i.e.~the entropy) cannot decrease during mixing, and will have an upper bound when mixing two ensembles whose instances are always distinguishable.
-
-Using the convex structure, we say that two ensembles are separate, noted $\ens[a] \separate \ens[b]$, if they cannot be expressed as a mixture of a common ensemble. That is, there is no $\ens[c]$ such that $\ens[a] = \alpha \ens[c] + \bar{\alpha} \ens[d]$ and $\ens[b] = \beta \ens[c] + \bar{\beta} \ens$ from some $\alpha, \beta \in (0,1]$ and $\ens[d],\ens \in \Ens$. No ensemble is separate from itself. An internal point is an ensemble that is not separate from any ensemble (i.e.~it is the mixture of any ensemble). An extreme point is an ensemble that is separate from all others (i.e.~it is only a mixture of itself).
-
 \begin{figure}[H]
 	\centering
 	
@@ -124,7 +105,7 @@ Using the convex structure, we say that two ensembles are separate, noted $\ens[
 	\pgfmathsetmacro{\xx}{cos(\yaw)*cos(\pitch)}
 	\pgfmathsetmacro{\xy}{sin(\yaw)*cos(\pitch)}
 	\pgfmathsetmacro{\xz}{-sin(\pitch)}
-
+	
 	\pgfmathsetmacro{\yx}{cos(\yaw)*sin(\pitch)*sin(\roll) - sin(\yaw)*cos(\roll)}
 	\pgfmathsetmacro{\yy}{sin(\yaw)*sin(\pitch)*sin(\roll) + cos(\yaw)*cos(\roll)}
 	\pgfmathsetmacro{\yz}{cos(\pitch)*sin(\roll)}
@@ -132,7 +113,7 @@ Using the convex structure, we say that two ensembles are separate, noted $\ens[
 	\pgfmathsetmacro{\zx}{cos(\yaw)*sin(\pitch)*cos(\roll) + sin(\yaw)*sin(\roll)}
 	\pgfmathsetmacro{\zy}{sin(\yaw)*sin(\pitch)*cos(\roll) - cos(\yaw)*sin(\roll)}
 	\pgfmathsetmacro{\zz}{cos(\pitch)*cos(\roll)}
-
+	
 	% intersection of yz grand circle with horizon
 	\pgfmathsetmacro{\ixx}{0}
 	\pgfmathsetmacro{\ixy}{\zz / sqrt(\zz*\zz + \yz*\yz)}
@@ -145,7 +126,7 @@ Using the convex structure, we say that two ensembles are separate, noted $\ens[
 	\pgfmathsetmacro{\izx}{-\yz / sqrt(\xz*\xz + \yz*\yz)}
 	\pgfmathsetmacro{\izy}{\xz / sqrt(\xz*\xz + \yz*\yz)}
 	\pgfmathsetmacro{\izz}{0}
-
+	
 	% dimensions
 	\newcommand{\radius}{1}
 	
@@ -170,10 +151,29 @@ Using the convex structure, we say that two ensembles are separate, noted $\ens[
 			\draw (-\izx, -\izy) arc[start angle={atan2(-\izy, -\izx)}, delta angle=180, radius=1 cm];
 		\end{scope}
 	\end{tikzpicture}
-	\caption{Examples of a classical discrete ensemble space with three pure states (triangle) and of a two dimensional quantum ensemble space (ball).}\label{convex_examples}
+	\caption{Examples of a classical discrete ensemble space with three pure states (triangle) and of a two dimensional quantum ensemble space (ball). Infinite dimensional spaces, like continuous classical ensemble spaces and quantum ensemble space with continuous quantities cannot be visually represented. }\label{convex_examples}
 \end{figure}
 
-The set of all extreme points $X$, as we will see, plays a major role. However, on physical grounds, these may not be proper ensembles. In classical mechanics, these would correspond to Dirac measures: probability distributions all concentrated at a single point of phase space. Since we cannot reliably prepare a particle with infinite precision, and its entropy would correspond to minus infinity, these are not ensembles and they are not part of $\Ens$. For the purpose of Choquet theory, we will assume that there is a way to find the closure $E \supset \Ens$ that includes all extreme points $X$. Moreover, we will also assume $E$ to be compact, even though it will not be in general. How to properly make these identifications, and how to go beyond the compact case, is outside the scope of this particular article.\footnote{An early attempt used the notion of orthogonality to create the lattice of orthogonal subspaces and use something along the lines of Stone's representation theorem for Boolean algebra. This does not work. An approach, currently under investigation, is to study limits over statistical quantities. We are still trying to understand what mathematical structures have enough information to allow the reconstruction.} Note that the classical discrete and the quantum case fall in the compact case. Moreover, the set of all probability distributions over a compact space $X$ also falls in the compact case. Therefore, apart from the technicality above, the compact case is still a very interesting case. To distinguish the context, in this article we will use $\Ens$ to indicate the general case and $E$ to indicate this ``compact closure.''
+Since physical laws deal with experimentally reproducible relationships, they are inherently relationships between statistical ensembles. Therefore, any physical theory must define the space of all ensembles allowed within the theory. In the classical case, this corresponds to a probability distribution over a discrete set of outcomes (e.g. a fair coin) or over phase space (e.g. the symplectic manifold representing position and momentum for a classical particle). In the quantum case, this corresponds to a mixed state (e.g. a positive semi-definite self-adjoint operator of trace one). See Fig.~\ref{convex_examples} for examples. 
+
+In this work, we will take an ensemble space $\Ens$ to be a bounded convex subset of a locally convex metrizable second countable topological vector space endowed with an entropy function. The second countable topology captures experimental verifiability as open sets represent experimentally verifiable statements\cite{aop-book,kelly1996}.\footnote{A verifiable statement is an assertion for which there exists an experimental test that finishes successfully in finite time if and only if the statement is true.} Convexity, and linearity more in general, comes from allowing statistical mixtures: if $\ens[a],\ens[b] \in \Ens$ are ensembles, then $p \ens[a] + \bar{p} \ens[b]$ represents the statistical mixture where $\ens[a]$ is taken with probability $p$ and $\ens[b]$ with probability $\bar{p} = 1 - p$.\footnote{Only finite mixtures are guaranteed, while the topology will decide whether an infinite mixture $\sum_{i=1}^{\infty} p_i \ens_i$ converges in the space or not.} Lastly, the entropy characterizes the variability of the elements within an ensemble. The entropy is a function $S : \Ens \to \mathbb{R}$ that satisfies the following bounds
+\begin{equation}
+	\begin{aligned}
+		p S(\ens[a]) + \bar{p} &S(\ens[b]) \leq S(p \ens[a] + \bar{p} \ens[b]) \\
+		&\leq I(p,\bar{p}) + p S(\ens[a]) + \bar{p} S(\ens[b])
+	\end{aligned}
+\end{equation}
+where $I(p,\bar{p}) = - p \log p - \bar{p} \log(\bar{p})$.\footnote{The Shannon entropy is recovered as the only upper bound possible.}  Intuitively, the variability (i.e.~the entropy) cannot decrease during mixing, and will have an upper bound when mixing two ensembles whose instances are always distinguishable.
+
+In this context, a statistical quantity, representing the expectation of a real valued quantity, is an affine continuous function $F : \Ens \to \mathbb{R}$. That is, $F(p \ens[a] + \bar{p} \ens[b]) = p F(\ens[a]) + \bar{p} F(\ens[b])$. We also assume that there are enough statistical quantities to identify each ensemble. That is, there is a family $F_i$ such that $\ens[a] = \ens[b]$ if and only if $F_i(\ens[a]) = F_i(\ens[b])$ for all $i \in I$. This connects to the typical constructions for function spaces and their dual.
+
+Since any physical theory must provide experimental verifiability, statistical mixing and an entropy function, this gives us a general and solid conceptual foundation. While we are still in the process of understanding exactly how these requirements give us local convexity and metrizability, for the purpose of this work, we will simply assume them.
+
+% space is metrizable https://proofwiki.org/wiki/Birkhoff-Kakutani_Theorem/Topological_Vector_Space
+
+\textbf{Extreme points and compactness.} Using the convex structure, we say that two ensembles are separate, noted $\ens[a] \separate \ens[b]$, if they cannot be expressed as a mixture of a common ensemble. That is, there is no $\ens[c]$ such that $\ens[a] = \alpha \ens[c] + \bar{\alpha} \ens[d]$ and $\ens[b] = \beta \ens[c] + \bar{\beta} \ens$ from some $\alpha, \beta \in (0,1]$ and $\ens[d],\ens \in \Ens$. No ensemble is separate from itself. An internal point is an ensemble that is not separate from any ensemble (i.e.~it is the mixture of any ensemble). An extreme point is an ensemble that is separate from all others (i.e.~it is only a mixture of itself).
+
+The set of all extreme points $X$, as we will see, plays a major role in Choquet theory. However, on physical grounds, these may not be proper ensembles. In classical mechanics, these would correspond to Dirac measures: probability distributions all concentrated at a single point of phase space. Since we cannot reliably prepare a particle with infinite precision, and its entropy would correspond to minus infinity, these are not ensembles and they are not part of $\Ens$. For the purpose of Choquet theory, we will assume that there is a way to find the closure $E \supset \Ens$ that includes all extreme points $X$. Moreover, we will also assume $E$ to be compact, even though it will not be in general. How to properly make these identifications, and how to go beyond the compact case, is outside the scope of this particular article.\footnote{An early attempt used the notion of orthogonality to create the lattice of orthogonal subspaces and use something along the lines of Stone's representation theorem for Boolean algebra. This does not work. An approach, currently under investigation, is to study limits over statistical quantities. We are still trying to understand what mathematical structures have enough information to allow the reconstruction.} Note that the classical discrete and the quantum case fall in the compact case. Moreover, the set of all probability distributions over a compact space $X$ also falls in the compact case. Therefore, apart from the technicality above, the compact case is still a very interesting case. To distinguish the context, in this article we will use $\Ens$ to indicate the general case and $E$ to indicate this ``compact closure.''
 
 \textbf{Orthogonality and separatedness.} We will say that two ensembles are orthogonal, noted $\ens[a] \ortho \ens[b]$, when their mixture gives a maximal entropy increase. This will recover the notion of orthogonality for both classical and quantum spaces. Conceptually, these correspond to two ensembles where all instances are distinct from the other: they are mutually exclusive and a single instance is enough to distinguish between the two ensembles. 
 
@@ -183,7 +183,7 @@ TODO: add figure that shows separatedness/orthogonality in classical and quantum
 
 It is the ease with which such distinctions between the classical and quantum case can be made that is the main appeal of this structure. We will see over and over how mutual exclusivity is linked to classical probability and its failure in quantum, and other non-classical, theories.
 
-To summarize, a repeatedly verifiable physical theory requires ensembles, which must be defined experimentally, allow statistical mixing and provide an entropy. Additionally, we require the existence of enough statistical quantities to identify each ensemble. Under these assumptions, an ensemble space $\Ens$ is a convex set of a metrizable second countable locally convex topological vector space $V$. In some cases, for simplicity, we will require $\Ens$ to admit a ``compact closure'' $E$, so that it includes the set $X$ of its extreme points. We now turn to the question of how we can represent both the entropy and each ensemble in terms of some measure theoretic structure.
+To summarize, a repeatedly verifiable physical theory requires ensembles, which must be defined experimentally, allow statistical mixing and provide an entropy. Additionally, we require the existence of enough statistical quantities to identify each ensemble. We therefore take an ensemble space $\Ens$ to be a bounded convex subset of a metrizable second countable locally convex topological vector space $V$. In some cases, for simplicity, we will require $\Ens$ to admit a ``compact closure'' $E$, so that it includes the set $X$ of its extreme points. We now turn to the question of how we can represent both the entropy and each ensemble in terms of some measure theoretic structure.
 
 \section{Probability measures and Choquet theory}
 
@@ -197,7 +197,7 @@ This last requirement codifies the idea that disjoint events are mutually exclus
 \begin{equation}
 	E[F] = \int_X F dp.
 \end{equation}
-The expectation is linear with respect to the variable (i.e.~$E[aF+bG]= aE[F]+bE[G]$). In our case, what is more interesting is that it is an affine of the probability measure: if $p = \lambda p_1 + \bar{\lambda} p_2$ then $\int_X F dp = \lambda \int_X F dp_1 + \bar{\lambda} \int_X F dp_2$. That is, as we required for statistical variables, the expectation for a mixture is the mixture of the expectations.
+The expectation is linear with respect to the variable (i.e.~$E[aF+bG]= aE[F]+bE[G]$). In our case, what is more interesting is that it is an affine function of the probability measure: if $p = \lambda p_1 + \bar{\lambda} p_2$ then $\int_X F dp = \lambda \int_X F dp_1 + \bar{\lambda} \int_X F dp_2$. That is, as we required for statistical variables, the expectation for a mixture is the mixture of the expectations.
 
 \textbf{Absolute continuity of probability measures.} As we saw before, probability measures over a single point on the continuum cannot be understood as valid ensembles. To address this, we add a requirement that is both physically meaningful and mathematically useful. Let $\mu : \Sigma_X \to [0, + \infty]$ be a measure on $X$ that quantifies the count of states in each region. In the discrete case this is simply the counting measure (i.e.~three possible faces of the die correspond to three possible states), while in the continuous case this corresponds to the Liouville measure (i.e.~volumes in phase space correspond to the count of states). This measure is additive over disjoint regions as they represent mutually exclusive events. The requirement is that we can assign a non-zero probability only to events that have a non-zero count of states. That is, if for a particular event $A$ we have $p(A) \neq 0$, then we must have that $\mu(A) \neq 0$ as well. Mathematically, $p$ is absolutely continuous with respect to $\mu$, and this is exactly the case in which a probability density $\rho = \frac{dp}{d\mu}$ can be defined.\footnote{In the general case, we can still assign non-zero probability to a point of a manifold, provided that the topology and the measure $\mu$ consistently allow for it. Physically, it means that those points are ``special'' both in terms of experimental verifiability and entropy/count of states. While the general framework allows for it, it is not crucial for our discussion here.} This is another example in which a physical requirement (probability must be zero if there are no possible states), once properly spelled out (absolute continuity), justifies common physical intuition (we assume a probability density exists).
 
@@ -216,6 +216,8 @@ The above theorem tells us that the map between probability measures and ensembl
 	Let $E$ be a closed convex metrizable subset of a locally convex TVS $V$. Then $E$ is a Choquet simplex if and only if for each $\ens \in E$ there exists a unique measure $p_{\ens}$ which represents $\ens$ and is supported by the extreme points $X$.
 \end{thrm}
 The Choquet simplex, whose mathematical characterization is rather technical, is a generalization of the finite dimensional simplex. The key point is that $E$ is a Choquet simplex if and only if the ensemble space does not allow multiple decompositions in terms of pure states. This confirms the physical intuition from classical and quantum statistical mechanics.
+
+TODO add picture
 
 For example, the ensemble space for a two state quantum system, the Bloch ball, is a compact convex subset of $\mathbb{R}^3$. Any internal point can be seen as the convex combination of points on the surface, the pure states. The center, which represents the maximally mixed state, can be thought of as an equal mixture of any two opposite points, or a uniform distribution over the whole surface. The fact that any ensemble can be seen as a mixture of a set of pure states, then, is reflected by the first Choquet theorem, and it is valid for all physical theories. Uniqueness of the representation fails, however, precisely because the ensemble space is not a simplex: it is not a classical space.
 
