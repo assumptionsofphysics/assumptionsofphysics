@@ -1,0 +1,492 @@
+\documentclass[entropy,article,submit,moreauthors]{Definitions/mdpi} 
+%\documentclass[preprints,article,submit,moreauthors]{Definitions/mdpi} 
+% For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal. Changing "submit" to "accept" before posting will remove line numbers.
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+%\externaleditor{Firstname Lastname} % More than 1 editor, please add `` and '' before the last editor name
+\datereceived{ } 
+\daterevised{ } % Comment out if no revised date
+\dateaccepted{ } 
+\datepublished{ } 
+%\datecorrected{} % For corrected papers: "Corrected: XXX" date in the original paper.
+%\dateretracted{} % For retracted papers: "Retracted: XXX" date in the original paper.
+%\doinum{} % Used for some special journals, like molbank
+%\pdfoutput=1 % Uncommented for upload to arXiv.org
+%\CorrStatement{yes}  % For updates
+%\longauthorlist{yes} % For many authors that exceed the left citation part
+%\IsAssociation{yes} % For association journals
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, float, amsmath, amssymb, lineno, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, colortbl, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, array, tabularx, pbox, ragged2e, tocloft, marginnote, marginfix, enotez, amsthm, natbib, hyperref, cleveref, scrextend, url, geometry, newfloat, caption, draftwatermark, seqsplit
+% cleveref: load \crefname definitions after \begin{document}
+
+%=================================================================
+% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+
+\newtheorem{condth}{Condition}
+\renewcommand*{\thecondth}{\Roman{condth}}
+\newenvironment{condition}[2][]{\renewcommand{\thecondth}{#2}\begin{condth}[#1]\label{#2}}{\end{condth}\renewcommand{\thecondth}{\Roman{condth}}}
+
+\def\>{\rangle}
+\def\<{\langle}
+
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\tr}{tr}
+
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{Reverse Quantum Mechanics}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0000-0000-000X} % Add \orcidA{} behind the author's name
+%\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Gabriele Carcassi $^{1}$\orcidA{}, Tobias Thrien $^{2}$ and Christine A. Aidala $^{2,}$*}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Firstname Lastname, Firstname Lastname and Firstname Lastname}
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Affiliation 1; e-mail@e-mail.com\\
+$^{2}$ \quad Affiliation 2; e-mail@e-mail.com}
+
+% Contact information of the corresponding author
+\corres{Correspondence: e-mail@e-mail.com; Tel.: (optional; include country code; if there are multiple corresponding authors, add author initials) +xx-xxxx-xxx-xxxx (F.L.)}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation.}  
+% Current address should not be the same as any items in the Affiliation section.
+
+%\secondnote{These authors contributed equally to this work.}
+% The commands \thirdnote{} till \eighthnote{} are available for further notes.
+
+%\simplesumm{} % Simple summary
+
+%\conference{} % An extended version of a conference paper
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{TBD.}
+
+% Keywords
+\keyword{keyword 1; keyword 2; keyword 3 (List three to ten pertinent keywords specific to the article; yet reasonably common within the subject discipline.)} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Diversity
+%\LSID{\url{http://}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Applied Sciences
+%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Data
+%\dataset{DOI number or link to the deposited data set if the data set is published separately. If the data set shall be published as a supplement to this paper, this field will be filled by the journal editors. In this case, please submit the data set as a supplement.}
+%\datasetlicense{License under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal BioTech, Fishes, Neuroimaging and Toxins
+%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Encyclopedia
+%\encyclopediadef{For entry manuscripts only: please provide a brief overview of the entry title instead of an abstract.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Different journals have different requirements. Please check the specific journal guidelines in the "Instructions for Authors" on the journal's official website.
+%\addhighlights{yes}
+%\renewcommand{\addhighlights}{%
+%
+%\noindent This is an optional section, the goal of which is to increase the discoverability and readability of the article via search engines and other scholars. Highlights should not be a copy of the abstract, but a simple overview allowing the reader to quickly and simply find out what the article is about and what can be cited from it. Each of these parts should be up to 2 bullet points.\vspace{3pt}\\
+%\textbf{What are the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}\vspace{3pt}
+%\textbf{What are the implications of the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}
+%}
+
+\begin{document}
+
+\section{Introduction}
+
+
+
+\section{Introduction to Reverse Physics}
+
+In the foundations of mathematics,[cite reverse mathematics, other set theory books] a common fruitful strategy is to analyze the logical dependencies of different statements over a set of precondition. A famous example is the following: [cite set theory book, handbook]
+\begin{Theorem}
+	Over Zermelo-Fraenkel set theory, the following are equivalent:
+	\begin{description}
+		\item[AoC] (Axiom of Choice) For every non-empty set $X$ there exists a function $f$ that assigns to each nonempty set $S \subseteq X$ some
+		representative element $f ( S ) \in S$;
+		\item [WOP] (Well Ordering Principle) Every set can be well-ordered;
+		\item [ZL] (Zorn's Lemma) Every non-empty partially ordered set $P$ with the property that every chain in $P$ is bounded has a maximal element.
+	\end{description}
+\end{Theorem}
+These type of investigations allow one to better understand the structure of mathematics and clarify what each starting point commits us to, particularly when the intuition can be faulty. As Jerry Bona's stated:[handbook]
+\begin{quote}
+	The Axiom of Choice is obviously true, the well-ordering principle obviously false, and who can tell about Zorn's lemma?
+\end{quote}
+In Reverse Physics, we similarly want to break physical theories into a set of mathematical and physical conditions and study their logical relationship.
+
+For example, if we set
+\begin{condition}[Classical states for 1 DOF]{CST-1D}
+	The state of the system is represented by position and momentum $(q,p) \in \mathbb{R}^2$. The count of states is given by the Liouville measure $\mu(U) = \int_U dq dp$. The ensemble space is represented by the set of probability distributions $\rho(q, p)$ (i.e. probability measures that are absolutely continuous with respect to the Liouville measure),
+\end{condition}
+then we have [cite book]
+\begin{Theorem}
+	Over \ref{CST-1D}, the following are equivalent:
+	\begin{description}
+		\item[HM-1D] (Hamiltonian mechanics) The equations of motion are given by $d_t q = \partial_p H$ and $d_t p = - \partial_p H$.
+		\item [DI-SYMP] (Symplectomorphism) The evolution leaves the symplectic form $\omega= dq \wedge dp$ invariant;
+		\item [DI-POI] (Poisson bracket invariance) The evolution leaves the Poisson bracket $\{f,g\} = \partial_q f \partial_p g - \partial_p f \partial_q g$ invariant;
+		\item [DR-DIV] (Incompressible flow) The displacement field $S^a = (d_t q, d_t p)$ is divergenceless: $\partial_a S^a = 0$;
+		\item[DR-DEN] (Volume conservation) The Liouville measure is invariant;
+		\item[DR-EV] (Determinism and reversibility) Past and future states are mapped one to one (i.e. the count of states is preserved);
+		\item[DR-THER] (Thermodynamic reversibility) The evolution is thermodynamic reversible (i.e. the entropy given by $\log \mu(U)$ is conserved);
+		\item[DR-INFO] (Conservation of information) The information about the system is conserved (i.e. the information entropy given by $- \int \rho \log \rho dq dp$ is conserved).
+	\end{description}
+\end{Theorem}
+The first five conditions are purely mathematical. The last four are more physical. The bridge between them is possible because condition \ref{CST-1D} clearly states the connection between the math and the physics. This allows the proofs to bridge mathematical and physical arguments. All conditions that have the same prefix are equivalent. Therefore, all DR conditions are different specifications of the same assumption of determinism and reversibility, linking different notions of vector calculus, differential geometry, statistics, measure theory, thermodynamics and information theory. In the general case, the DR conditions are not equivalent to the DI conditions. In fact, DI is logically stronger: DI implies DR but not the other way around. The difference is the assumption IND of independent of all degrees of freedom. We find that DI = DR + IND, which is equivalent to Hamiltonian mechanics. These are the type of systematic investigation that we want to extend to all physical theories.
+
+As we will see, Reverse Physics for quantum mechanics is significantly harder: the standard postulates do not neatly correspond to separate physical assumptions; in fact, there is a significant mismatch between the mathematical definitions and the physical objects they supposedly represent. No perfect interpretation or reconstruction of quantum mechanics, then, is possible within the current established mathematical framework. Since this final goal is not obtainable, we will use Reverse Physics to disentangle some of the key pieces of quantum theory and get a sense of what are the moving parts.\footnote{Reverse Physics is effectively applying notions of Reverse Engineering to the physical theories.} In fact, the ability to carve out precise results within a larger imperfect context is exactly one of the strength of the methodology, as these conclusions can be used as the bedrock for further analysis.
+
+As part of out strategy, we only look for ideas that can, at least potentially, be made mathematically precise, physically meaningful and philosophically consistent.\footnote{One may argue these ideas may not exist. This is a self-fulfilling prophecy, they can only be found if one is looking for them.} However, it has to be clear that physics is the driving force. Since the physics clearly works experimentally, if the math or the philosophy do not, it follows that the latter need to be aligned. Therefore, if our favorite mathematical tool or philosophical position clashes with some of the Reverse Physics results, they need to be either abandoned or, more likely, amended.
+
+As a final note, we are openly looking for people interested in defining common conventions and rules within Reverse Physics. This will be an iterative process, as we learn which strategies and techniques are most effective.
+
+\section{The problem with Hilbert spaces}
+
+\textbf{Accidents of time.} The formalization of quantum mechanics on top of Hilbert spaces is due to von Neumann, who, three years later, stated:[quote Redei]
+\begin{quote}
+	``I would like to make a confession which may seem immoral: I do not believe absolutely in Hilbert space any more. ''
+\end{quote}
+The core problem was that he could not see a good physical justification for them. One can argue that the choice still made sense back then, because Hilbert spaces were the best functional analysis tools at the time. Topological vector spaces, the most prominent foundational tool for modern functional analysis, arrived later and were, in a sense, retrofitted by Gelfand through rigged Hilbert spaces. While these provides better tools for calculation, states are still element of a Hilbert space, therefore they do not solve the conceptual issue. In other words, the choice of Hilbert spaces is mostly a historical accident, that ignores almost a century of advances in functional analysis.
+
+In finite dimensions, there is only one vector space topology and all linear functionals are continuous. But, as Aliprantis and Border state [cite Hitchhiker's guide]
+\begin{quote}
+	Since there is more than one topology of interest on an infinite dimensional space, the choice of topology is a key modeling decision that can have economic as well as technical consequences.
+\end{quote}
+The choice of the correct space, then, is a physics problem, not a mathematical one. It is fascinating that this point is better understood within economics than physics.
+
+\textbf{Unphysicality of Hilbert spaces.} Let us use Reverse Physics to analyze the suitability of Hilbert spaces. We will set the following conditions:
+
+\begin{condition}[Continuity of measurable quantities]{[B]COBS}
+ 	Small state changes lead to small changes of measurable quantities. That is, the expectation of a quantity is a continuous function of the state.
+\end{condition}
+ 
+\begin{condition}[Measurable quantities well-defined in all frames]{[B]WDQ}
+ 	All states can equivalently be expressed in all frames. That is, if a quantity is well-defined in one frame, the corresponding quantity in another frame will be well-defined.
+\end{condition}
+
+\begin{condition}[Distinguishability of different systems]{[B]STDIST}
+ 	Different physical systems have a different mathematical representation. That is, the mathematical representation of different physical systems must have enough structure to tell them apart.
+\end{condition}
+
+Note that the conditions are marked with [B]. In Reverse Physics, this marks \textbf{base conditions}, conditions that must hold in any well-formed physical theory. The collection of all base conditions form the base theory for all of physics, and every physical theory is a specialization of this base theory. One of the long-term goals of Reverse Physics is to find such base theory.
+
+The use of Hilbert spaces can be characterized as
+\begin{condition}[Quantum states on Hilbert space]{QST:H}
+	The state space of the system is represented by the projective space $P(\mathcal{H})$ of a complex Hilbert space $\mathcal{H}$. Observables are represented by self-adjoint operators,
+\end{condition}
+which lead to
+\begin{Theorem}[Unphysicality of Hilbert spaces in quantum mechanics]
+	Condition \ref{QST:H} is inconsistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
+\end{Theorem}
+
+The unphysicality stems from the failure of base conditions, which are supposed to be valid in all theories. For a violation of \ref{[B]COBS}, suppose $|i\>$ represents the i-th the energy level of a harmonic oscillator. The sequence $\sqrt{\frac{j-1}{j}}|0\> + \sqrt{\frac{1}{j}}|j\>$ converges to the ground state as $j \to \infty$, while the expectation of $N$ converges to $1$. \textbf{Convergence to a state does not imply observable converge to those of that state.} This is precisely because, in the topology of a Hilbert space, only bounded operators are continuous and therefore all unbounded operators are not continuous.
+
+For a violation of \ref{[B]WDQ}, suppose a one-dimensional space, for simplicity, with two observers $X$ and $Y$ linked by the coordinate transformation $y(x) = \tan \left(\frac{\pi}{2} \erf(x) \right)$. A Guassian wave packet $\psi(x) = \sqrt{\frac{e^{-x^2}}{\sqrt{\pi}}}$ in the first frame will become $\phi(y) = \sqrt{\frac{1}{\pi (y^2 + 1)}}$ in the frame. The wavefunction will be in the domain of the position $X$ of the first observer but not in the domain of the position $Y$ of the second observer, since $\<Y\psi(y) \mid Y\psi(y)\>$ does not converge. \textbf{Position is not defined in all frames.} The cause is that, in a Hilbert space, unbounded operators are not defined on the while space, and their domain can, in principle, even be disjoint.
+
+For a violation of \ref{[B]STDIST}, consider the space $L^2(\mathbb{R})$ for a single DOF and the space $L^2(\mathbb{R}^n)$ for $n$ DOF. Since they are both infinite dimensional and separable, they are isomorphic as Hilbert spaces. Therefore, mathematically, the space are indistinguishable. \textbf{The state space of a single particle is indistinguishable from the space of all the particles in the universe.} The cause is that the definition does not capture enough information to characterize the physical system.
+
+\textbf{A more physical definition.} A full solution to the mathematical problems is not just out of scope of this work, but it is also not possible if we do not understand what the physical requirements. The issue, that often confuses philosophers and mathematicians, is that in physics we relax requirements depending on the problem at hand. For example, we typically think of a classical Hamiltonian as a nice, smooth function defined on all phase space. However, we also use Coulomb potentials, which diverge at the origin. Similarly, we think of mass and charge density distribution as smooth functions of physical space. However, we also use point particles, which correspond to infinite densities. Therefore, we already know we are never going to have a single set of conditions that are always valid, this is not how physics works. What we need to find is a set of reasonable condition for the standard case, so that we know when and how we are violating them with a further approximations. The general goal, then, is force everything to be explicit.
+
+Let us give, then, a tentative definition of a notion of a vector space that works better for quantum systems.
+\begin{Definition}
+	A \textbf{quantum vector space} is a complete second countable complex topological vector space $V$ that satisfies the following:
+	\begin{itemize}
+		\item $V$ is equipped with an inner product $\< \cdot , \cdot \> : V \times V \to \mathbb{C}$; an observable is a continuous everywhere defined self-adjoint linear operator $X : V \to V$
+		\item $V$ is equipped with a set of defining observables $\{X_i\}_{i \in I}$ satisfying a given Lie algebra of commutation relationships $\frac{[X_i, X_j]}{\imath \hbar} = \sum\limits_k C_{ij}^k X_k$
+		\item the topology is the coarsest vector space topology making the defining observables and the inner product continuous.
+	\end{itemize}
+\end{Definition}
+We still have a complex vector space, with a topology and an inner product that is continuous in that topology. However, observables must be defined for all states and must be continuous, which addresses both \ref{[B]COBS} and \ref{[B]WDQ}. Moreover, a set of defining observables is specified, together with their commutation relationships. This is something we do anyway in physics, so it seems harmless, but it actually solves a couple of different problems. First of all, it solves \ref{[B]STDIST}. Consider two Schwartz spaces $\mathcal{S}(\mathbb{R})$ and $\mathcal{S}(\mathbb{R}^n)$. These are still isomorphic, so, even if all polynomials of position and momentum are continuous, the spaces are isomorphic as topological vector spaces. However, if we add the Lie algebra of the commutators $\frac{[X^i, P_j]}{\imath \hbar} = \delta^i_j I$, a linear transformation will not be able to change the number of generators, and therefore the spaces are no longer isomorphic. The algebra of operators, then, must be part of the definition of the state space of a physical system. Additionally, this inclusion fixes the topology.
+
+In Reverse Physics, there is a consistent general result that topologies in physical theories correspond to experimental verifiability: the open sets correspond to experimentally verifiable statements. [cite us, kevin kelly, ...] Therefore, if a system is fully characterized by a set of defining observables and their probability distribution, it makes sense that their topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice.
+\begin{condition}[Quantum states]{QST:V}
+	The state space of the system is represented by the projective space $P(V)$ of a quantum vector space $V$.
+\end{condition}
+\begin{Theorem}[Partial physicality of quantum vector spaces]
+	Condition \ref{QST:V} is consistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
+\end{Theorem}
+
+It should be clear that this does not solve all problems. For example, it clearly lack some maximality condition on the Lie algebra so that it covers, in some sense, the whole space. Also, $\<\psi \mid (X + I) \psi \>$ is technically summing expectations of position expressed in meters with a probability, which is a dimensionally incongruent. So, representing observables as linear operators is, very likely, a shortcut. But, again, the idea is neither to solve all the problems at once, which leads to paralysis, not to ignore it, which leads to lack of progress. We just need to make local incremental progress in the direction of a global total solution.
+
+\textbf{Section summary.} To sum up, the topology of the state space is connected to experimental verifiability, as open sets correspond to what is experimentally accessible. Hilbert spaces do not have the right topology. To fix this, the vector space must come additionally equipped with a set of defining observables and their commutation relationship, which is what we already do anyway, and the topology is the one generated by those observables and the inner product, because those are exactly the entities that tell us how we distinguish states.
+
+\section{Ensembles and convex structure}
+
+\textbf{States without inner product.} We now want to peel the mathematical definition, layer by layer, to understand what mathematical requirement represent what physical condition. The first thing we should note that the construction of the projective space $V$ does not depend, nor require, an the inner product. Is stating that states are rays of a complex vector space enough to exclude classical mechanics? It turns out, it isn't.\footnote{A consequence of states being represented by rays this is that the linearity of the underlying vector space must be understood merely as mathematical convenience. Non-linear maps that preserve rays exist, and therefore they would preserve all the physics. A non-linear representation, then, is possible but uselessly inconvenient.}
+
+\begin{condition}[Quantum states are rays]{QP-RAY}
+	The state space of the system is represented by the projective space $P(V)$ of a complex topological vector space $V$.
+\end{condition}
+
+\begin{condition}[Classical state space]{CST}
+	The state space is represented by a symplectic manifold $(X,\omega)$. The count of configurations for each DOF over a region $\Sigma$ is given $\int_{\Sigma} \omega$ and the count of states is given by the Liouville measure $\mu(U) = \int_U \omega^n$.
+	
+	The ensemble space is represented by the set of probability distributions $\rho(x)$ (i.e. Radon-Nikodym derivative of probability measures that are absolutely continuous with respect to the Liouville measure).
+	
+	The conditional probability over states is given by $p(x_1 | x_2) = \delta_{x_1 x_2}$ for all $x_1, x_2 \in X$, meaning that all states represent mutually exclusive events.
+\end{condition}
+
+\begin{Theorem}
+	Conditions \ref{QP-RAY} and \ref{CST} are consistent.
+\end{Theorem}
+
+Finite-dimensional complex projective spaces are a symplectic manifold, therefore they allow classical Hamiltonian mechanics and classical statistical mechanics.  Therefore, when studying the classical Larmor precession, we can claim that the ``state of the magnetic dipole is a ray in a complex Hilbert space'' because the projective space for a two-dimensional quantum system is exactly a sphere, the Bloch sphere. In the infinite dimensional case, the projective space cease to be a manifold, which is a requirement for classical mechanics. It is an open question whether \ref{QP-RQY} would be compatible with a classical field theory in that case. Overall, the space of pure states is, in general, not enough even to distinguish between classical and quantum states.
+
+\textbf{Adding ensembles.} In the classical Larmor precession case, the space of ensembles would correspond to all the possible probability densities over the sphere. For qubit, the space of ensembles corresponds to the internal point of the ball. These are clearly two different spaces: the first is a convex subset of an infinite dimensional space while the second is a convex set of a three dimensional case. In fact, we have:
+
+\begin{condition}[Quantum ensembles are density operators]{QE-DENS}
+	The ensemble space of the system is represented by the set of density operators acting on a quantum vector space $V$;
+\end{condition}
+
+\begin{Theorem}
+	Conditions \ref{QE-DENS} and \ref{CST} are inconsistent.
+\end{Theorem}
+
+It is the space of ensembles, then, that gives us the first true difference between the space of classical and quantum states. This is only the first hint that both classical and quantum mechanics are, at their core, statistical theories.
+
+The incompatibility can be understood in terms of the decomposability of ensembles. The space of ensembles, in fact, must have a \textbf{convex structure} where convex combinations $\sum_i p_i \rho_i$ represent statistical mixtures. In classical mechanics, each ensemble corresponds to a unique probability measures over pure states; in quantum mechanics, every mixed state can be decomposed in infinitely many ways (e.g. the maximally mixed state of a qubit is the equal mixture of any two orthogonal states).\footnote{The space of classical ensembles is akin to a Choquet simplex, while the quantum one isn't.} This is, ultimately, a property of the convex structure, which gives us a discriminating condition.\footnote{Another result in Reverse Physics is that superpositions of state vectors exactly correspond to multiple decompositions of ensembles.} A classical system can always be thought as being in a particular state precisely because ensembles have a single decomposition in terms of states. This is exactly what does not work in quantum mechanics.
+
+\section{Orthogonality and mutual exclusivity}
+
+\textbf{Inner product and orthogonality.} Note that \ref{QE-DENS} implicitly require the inner product through the definition of trace-class operators. Does this implicitly require the Born rule as well? The following result is useful for that analysis.
+\begin{condition}[Mutual exclusivity conditions]{[B]MUTEX}
+	Let $\psi_i \in P(\mathcal{H})$ be a countable sequence of states. Then the following are equivalent:
+	\begin{itemize}
+		\item $\psi_i$ are mutually exclusive
+		\item $p(\psi_i | \psi_j) = \delta_{ij}$
+		\item the entropy obeys $S(\sum_i p_i \psi_i) = - \sum_i p_i \log p_i$ for all $p_i$ such that $\sum_i p_i = 1$.
+	\end{itemize}
+\end{condition}
+\begin{condition}[Conditional expectation from Born rule]{BR-BORN}
+	The conditional probability $p : P(V) \times P(V) \to [0,1]$ is given by the Born rule. That is, $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.
+\end{condition}
+\begin{condition}[Von Neumann entropy]{BR-ENT}
+	The entropy function $S : D(V) \to \mathbb{R}$ is given by the Shannon entropy: $S(\rho) = - \tr(\rho \log \rho)$.
+\end{condition}
+\begin{condition}[Orthogonality is mutual exclusivity]{BR-ORME}
+	Orthogonal states are mutually exclusive.
+\end{condition}
+\begin{Theorem}
+	Over \ref{QE-DENS}+\ref{[B]MUTEX}, conditions \ref{BR-BORN}, \ref{BR-ENT} and \ref{BR-ORME} are equivalent. Moreover, \ref{QE-DENS}+\ref{[B]MUTEX} does imply \ref{BR-BORN}.
+\end{Theorem}
+
+Condition \ref{[B]MUTEX} captures the idea that the same concept, the mutual exclusivity of preparations $A$ and $B$, can be characterized in two equivalent ways. In terms of conditional probability, if we prepared $A$, there is zero probability of finding something that $B$ could have prepared; in terms of information entropy, we can use $A$ and $B$ to transfer a whole bit of entropy. Since these are necessary property of mutual exclusivity, \ref{[B]MUTEX} is a base condition. The equivalence between \ref{BR-BORN} and \ref{BR-ENT} stems from the fact that the conditional probability between two states is an invertible function of the entropy of their equal mixture. Note that \ref{BR-BORN} implies that orthogonal states are mutually exclusive, and therefore \ref{BR-ORME}. Since every density operator can be orthogonally decomposed, \ref{BR-ORME} implies \ref{BR-ENT} through \ref{[B]MUTEX}.
+
+The Born rule, then, has the implicit assumption that mutually exclusive preparations exist, which is not required by \ref{QE-DENS}. A counter-example would be an ensemble space, either classical or quantum, in which there is an entropy cutoff and pure states are not reachable, even as a limit. While each state can still be reconstructed statistically through a tomography, it cannot be confirmed with a single-shot measurement, effectively because all preparations are too noisy. No pair of preparations would allow to reliably transfer one bit. We do not see (yet) any fundamental reason as to why this case should be ruled out a priori, and in may as well be that states in a future more fundamental theory have this property.
+
+\textbf{Probability requires mutual exclusivity.} The crucial insight is that the convex structure of the ensemble space is not enough to define probability, it requires this addition \textbf{entropy structure}. The mixture coefficients $p_i$ of a mixture $\sum_i p_i \psi_i$ can be interpreted as probability if and only if $\psi_i$ are mutually exclusive. Kolmogorov probability, in fact, is based on the assumption that all the elements of the sample space are mutually exclusive. In this light, contextuality is more than justified: there is no alternative.
+
+The independence of the entropic structure from the convex structure of the ensemble space is present in classical mechanics as well: the Liouville measure is not unique for a classical space, and exactly correspond to the entropy of uniform distributions in each region. Therefore it is not possible to recostruct the entropy from the convex set of probability measures alone. Since entropy is a property of ensembles, this is yet another hint that both classical and quantum mechanics are, at their core, statistical theories, theories about ensembles.
+
+Theorems and derivation of the Born rule, like Gleason's theorem, or some approaches to Generalized Probabilistic Theories (GPT) often fail to make this distinction explicit. Many of these approaches, in fact, show that a unique affine linear functional with some features (e.g. zero and one antipodal ensembles) exist and identify that as probabilities. But the last move implicitly assumes mutual exclusivity, which may not be warranted. Moreover, classical mechanics requires the symplectic form in the definition of state space, and since the Liouville measure cannot be reconstruct from the convex structure alone, we do not see how these strategies can recover the classical space. Similar, in fact bigger, problems will exist for field theories. Reverse Physics, then, teach us to be very cautious and proceed very slowly: we can only know the conditions we made explicit.
+
+\section{Unitaries as deterministic and reversible processes}
+
+1) Equivalence between lots of conditions
+
+\section{Projections as equilibration processes}
+
+1) Not all measurements are projections
+2) Continuous operators cannot have projections
+3) Projections are processes with equilibria
+
+Analogy with thermodynamics
+
+\section{Classical mechanics as high-entropy limit}
+
+\section{States as equilibria}
+
+\section{Discussion}
+
+
+\section{Conclusions}
+
+
+\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
+
+\funding{Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.}
+
+\institutionalreview{In this section, please add the Institutional Review Board Statement and approval number for studies involving humans or animals. You might choose to exclude this statement if the study did not require ethical approval. Please note that the Editorial Office might ask you for further information. Please add ``The study was conducted in accordance with the Declaration of Helsinki, and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving humans OR ``The animal study protocol was approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving animals OR ``Ethical review and approval were waived for this study due to REASON (please provide a detailed justification).” OR ``Not applicable.” for studies not involving humans or animals.}
+
+\informedconsent{Any research article describing a study involving humans should contain this statement. Please add ``Informed consent was obtained from all subjects involved in the study.'' OR ``Patient consent was waived due to REASON (please provide a detailed justification).'' OR ``Not applicable'' for studies not involving humans. You might also choose to exclude this statement if the study did not involve humans.
+
+Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves). Please state ``Written informed consent has been obtained from the patient(s) to publish this paper.” if applicable.}
+
+\dataavailability{We encourage all authors of articles published in MDPI journals to share their research data. In this section, please provide details regarding where data supporting reported results can be found, including links to publicly archived datasets analyzed or generated during the study. Where no new data were created, or where data are unavailable due to privacy or ethical restrictions, a statement is still required. Suggested Data Availability Statements are available in the section ``MDPI Research Data Policies” at \url{https://www.mdpi.com/ethics}.} 
+
+%\durcstatement{Current research is limited to the [please insert a specific academic field, e.g., XXX], which is beneficial [share benefits and/or primary use] and does not pose a threat to public health or national security. Authors acknowledge the dual-use potential of the research involving xxx and confirm that all necessary precautions have been taken to prevent potential misuse. As an ethical responsibility, authors strictly adhere to relevant national and international laws about DURC. Authors advocate for responsible deployment, ethical considerations, regulatory compliance, and transparent reporting to mitigate misuse risks and foster beneficial outcomes.}
+
+% Only for journal Nursing Reports
+%\publicinvolvement{Please describe how the public (patients, consumers, carers) were involved in the research. Consider reporting against the GRIPP2 (Guidance for Reporting Involvement of Patients and the Public) checklist. If the public were not involved in any aspect of the research add: ``No public involvement in any aspect of this research''.}
+%
+%% Only for journal Nursing Reports
+%\guidelinesstandards{Please add a statement indicating which reporting guideline was used when drafting the report. For example, ``This manuscript was drafted against the XXX (the full name of reporting guidelines and citation) for XXX (type of research) research''. A complete list of reporting guidelines can be accessed via the equator network: \url{https://www.equator-network.org/}.}
+%
+%% Only for journal Nursing Reports
+%\useofartificialintelligence{Please describe in detail any and all uses of artificial intelligence (AI) or AI-assisted tools used in the preparation of the manuscript. This may include, but is not limited to, language translation, language editing and grammar, or generating text. Alternatively, please state that “AI or AI-assisted tools were not used in drafting any aspect of this manuscript”.}
+
+\acknowledgments{In this section, you can acknowledge any support given that is not covered by the author contribution or funding sections. This may include administrative and technical support, or donations in kind (e.g., materials used for experiments). Where GenAI has been used for purposes such as generating text, data, or graphics, or for study design, data collection, analysis, or interpretation of data, please add ``During the preparation of this manuscript/study, the author(s) used [tool name, version information] for the purposes of [description of use]. The authors have reviewed and edited the output and take full responsibility for the content of this publication.”}
+
+\conflictsofinterest{Declare conflicts of interest or state ``The authors declare no conflicts of interest.” Authors must identify and declare any personal circumstances or interests that may be perceived as inappropriately influencing the representation or interpretation of reported research results. Any role of the funders in the design of the study; in the collection, analyses or interpretation of data; in the writing of the manuscript; or in the decision to publish the results must be declared in this section. If there is no role, please state ``The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the~results”.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+
+%% Only for journal Encyclopedia
+%\entrylink{The Link to this entry published on the encyclopedia platform.}
+
+\abbreviations{Abbreviations}{%
+The following abbreviations are used in this manuscript:\\
+
+\noindent 
+\begin{tabular}{@{}ll}
+MDPI & Multidisciplinary Digital Publishing Institute\\
+DOAJ & Directory of open access journals\\
+TLA   & Three-letter acronym\\
+LD      & Linear dichroism
+\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+\appendixstart
+\appendix
+\section[\appendixname~\thesection]{}
+\subsection[\appendixname~\thesubsection]{}
+
+The appendix is an optional section that can contain details and data supplemental to the main text---for example, explanations of experimental details that would disrupt the flow of the main text but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data are shown in the main text can be added here if brief, or as Supplementary Materials. Mathematical proofs of results not central to the paper can be added as an appendix.
+
+\begin{table}[H] 
+\caption{This is a table caption.\label{tab5}}
+%\newcolumntype{C}{>{\centering\arraybackslash}X}
+\begin{tabularx}{\textwidth}{CCC}
+\toprule
+\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}\\
+\midrule
+Entry 1		& Data			& Data\\
+Entry 2		& Data			& Data\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section[\appendixname~\thesection]{}
+
+All appendix sections must be cited in the main text. In the appendices, figures, tables, etc., should be labeled starting with “A”, e.g., Figure A1, Figure A2, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\isPreprints{}{% This command is only used for ``preprints''.
+\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\reftitle{References}
+
+% References must be numbered in order of appearance in the text (including citations in tables and legends) and listed individually at the end of the manuscript. We recommend preparing the references with a bibliography software package, such as EndNote, ReferenceManager or Zotero, to avoid typing mistakes and duplicated references. Include the digital object identifier (DOI) for all references where available.
+% Please provide either the correct journal abbreviation (e.g. according to the “The list of Title Word Abbreviations” https://portal.issn.org/ltwa) or the full name of the journal. 
+% Citations and references in the Supplementary Materials are permitted provided that they also appear in the reference list here. 
+% In the text, reference numbers should be placed in square brackets [ ] and placed before the punctuation; for example, [1], [1–3] or [1,3]. For embedded citations in the text with pagination, use both parentheses and brackets to indicate the reference number and page numbers; for example, [5] (p. 10), or [6] (pp. 101–105).
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+% \bibliography{your_external_BibTeX_file}
+
+%=====================================
+% References, variant B: internal bibliography
+%=====================================
+
+% ACS format
+\begin{thebibliography}{999}
+% Reference 1
+\bibitem{ref-journal}
+Author~1, T. The title of the cited article. {\em Journal Abbreviation} {\bf 2008}, {\em 10}, 142--149.
+% Reference 2
+\bibitem{ref-book1}
+Author~2, L. The title of the cited contribution. In {\em The Book Title}; Editor 1, F., Editor 2, A., Eds.; Publishing House: City, Country, 2007; pp. 32--58.
+% Reference 3
+\bibitem{ref-book2}
+Author 1, A.; Author 2, B. \textit{Book Title}, 3rd ed.; Publisher: Publisher Location, Country, 2008; pp. 154--196.
+% Reference 4
+\bibitem{ref-unpublish}
+Author 1, A.B.; Author 2, C. Title of Unpublished Work. \textit{Abbreviated Journal Name} year, \textit{phrase indicating stage of publication (submitted; accepted; in press)}.
+% Reference 5
+\bibitem{ref-url}
+Title of Site. Available online: URL (accessed on Day Month Year).
+% Reference 6
+\bibitem{ref-proceeding}
+Author 1, A.B.; Author 2, C.D.; Author 3, E.F. Title of presentation. In Proceedings of the Name of the Conference, Location of Conference, Country, Date of Conference (Day Month Year); Abstract Number (optional), Pagination (optional).
+% Reference 7
+\bibitem{ref-thesis}
+Author 1, A.B. Title of Thesis. Level of Thesis, Degree-Granting University, Location of University, Date of Completion.
+\end{thebibliography}
+
+% If authors have biography, please use the format below
+%\section*{Short Biography of Authors}
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author1.pdf}}}
+%{\textbf{Firstname Lastname} Biography of first author}
+%
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author2.jpg}}}
+%{\textbf{Firstname Lastname} Biography of second author}
+
+% For the MDPI journals use author-date citation, please follow the formatting guidelines on http://www.mdpi.com/authors/references
+% To cite two works by the same author: \citeauthor{ref-journal-1a} (\citeyear{ref-journal-1a}, \citeyear{ref-journal-1b}). This produces: Whittaker (1967, 1975)
+% To cite two works by the same author with specific pages: \citeauthor{ref-journal-3a} (\citeyear{ref-journal-3a}, p. 328; \citeyear{ref-journal-3b}, p.475). This produces: Wong (1999, p. 328; 2000, p. 475)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% for journal Sci
+%\reviewreports{\\
+%Reviewer 1 comments and authors’ response\\
+%Reviewer 2 comments and authors’ response\\
+%Reviewer 3 comments and authors’ response
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PublishersNote{}
+%\isPreprints{}{% This command is only used for ``preprints''.
+\end{adjustwidth}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\end{document}
+

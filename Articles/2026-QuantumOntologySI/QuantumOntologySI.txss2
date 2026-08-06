@@ -1,0 +1,110 @@
+{
+    "InternalPDFViewer": {
+        "Embedded": true,
+        "File": "QuantumOntologySI.pdf"
+    },
+    "Session": {
+        "Bookmarks": [
+            {
+                "bookmarkNumber": 1,
+                "fileName": "../../../book/rp_QuantumMechanics.tex",
+                "lineNumber": 234,
+                "text": "rp_QuantumMechanics.tex\nSince condition \\ref{rp-qm-qe-condEnsemblesAreDensityOperators} is stronger than \\ref{rp-qm-qp-condStatesAreRays}, we should understand what is the mathematical structure implied by the first that is not necessary on the second. Note that, to construct the projective space, we do not need the inner product structure. The vector space structure is sufficient. Therefore, consider the map $m : \\mathcal{H} \\to \\mathcal{H}$ on the Bloch sphere defined by"
+            }
+        ],
+        "CurrentFile": "QuantumOntologySI.tex",
+        "FileVersion": 1,
+        "Files": [
+            {
+                "Col": 41,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/briefs/002-SuperpositionAndMultipleMixtures.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 21
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/common/assumptionsofphysics.sty",
+                "FirstLine": 137,
+                "FoldedLines": "",
+                "Line": 135
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "../../../book/formatting.tex",
+                "FirstLine": 22,
+                "FoldedLines": "",
+                "Line": 52
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/briefs/003-BornRuleEntropy.tex",
+                "FirstLine": 100,
+                "FoldedLines": "",
+                "Line": 150
+            },
+            {
+                "Col": 162,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/briefs/009-UnitaryEntropy.tex",
+                "FirstLine": 35,
+                "FoldedLines": "",
+                "Line": 52
+            },
+            {
+                "Col": 448,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/briefs/013-HilbertUnphysicality.tex",
+                "FirstLine": 21,
+                "FoldedLines": "",
+                "Line": 21
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/briefs/014-QuantumVectorSpaces.tex",
+                "FirstLine": 93,
+                "FoldedLines": "",
+                "Line": 114
+            },
+            {
+                "Col": 0,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/briefs/012-UnitaryQuasistatic.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 8
+            },
+            {
+                "Col": 60,
+                "EditorGroup": 0,
+                "FileName": "../../../community-articles/briefs/015-SymmetricSelfAdjoint.tex",
+                "FirstLine": 203,
+                "FoldedLines": "",
+                "Line": 131
+            },
+            {
+                "Col": 22,
+                "EditorGroup": 0,
+                "FileName": "template.tex",
+                "FirstLine": 0,
+                "FoldedLines": "",
+                "Line": 4
+            },
+            {
+                "Col": 29,
+                "EditorGroup": 0,
+                "FileName": "QuantumOntologySI.tex",
+                "FirstLine": 102,
+                "FoldedLines": "",
+                "Line": 134
+            }
+        ],
+        "MasterFile": "",
+        "VerticalSplit": false
+    }
+}
