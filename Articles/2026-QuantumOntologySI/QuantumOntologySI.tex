@@ -43,6 +43,7 @@
 
 \DeclareMathOperator{\erf}{erf}
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Dom}{Dom}
 
 
 %=================================================================
@@ -163,7 +164,7 @@ then we have [cite book]
 \begin{Theorem}
 	Over \ref{CST-1D}, the following are equivalent:
 	\begin{description}
-		\item[HM-1D] (Hamiltonian mechanics) The equations of motion are given by $d_t q = \partial_p H$ and $d_t p = - \partial_p H$.
+		\item[HM-1D] (Hamiltonian mechanics) The equations of motion are given by $d_t q = \partial_p H$ and $d_t p = - \partial_q H$.
 		\item [DI-SYMP] (Symplectomorphism) The evolution leaves the symplectic form $\omega= dq \wedge dp$ invariant;
 		\item [DI-POI] (Poisson bracket invariance) The evolution leaves the Poisson bracket $\{f,g\} = \partial_q f \partial_p g - \partial_p f \partial_q g$ invariant;
 		\item [DR-DIV] (Incompressible flow) The displacement field $S^a = (d_t q, d_t p)$ is divergenceless: $\partial_a S^a = 0$;
@@ -187,9 +188,9 @@ As a final note, we are openly looking for people interested in defining common 
 \begin{quote}
 	``I would like to make a confession which may seem immoral: I do not believe absolutely in Hilbert space any more. ''
 \end{quote}
-The core problem was that he could not see a good physical justification for them. One can argue that the choice still made sense back then, because Hilbert spaces were the best functional analysis tools at the time. Topological vector spaces, the most prominent foundational tool for modern functional analysis, arrived later and were, in a sense, retrofitted by Gelfand through rigged Hilbert spaces. While these provides better tools for calculation, states are still element of a Hilbert space, therefore they do not solve the conceptual issue. In other words, the choice of Hilbert spaces is mostly a historical accident, that ignores almost a century of advances in functional analysis.
+However, one can argue that the choice made sense at that time, as functional analysis was not well-developed. Topological vector spaces, the most prominent foundational tool for modern functional analysis, arrived later and were, in a sense, retrofitted by Gelfand through rigged Hilbert spaces. While these provides better tools for calculation, states are still element of a Hilbert space, therefore they do not solve the conceptual issue. In other words, the choice of Hilbert spaces is mostly a historical accident, that ignores almost a century of advances in functional analysis.
 
-In finite dimensions, there is only one vector space topology and all linear functionals are continuous. But, as Aliprantis and Border state [cite Hitchhiker's guide]
+Briefly, in finite dimensions, there is only one vector space topology and all linear functionals are continuous. But, as Aliprantis and Border state [cite Hitchhiker's guide]
 \begin{quote}
 	Since there is more than one topology of interest on an infinite dimensional space, the choice of topology is a key modeling decision that can have economic as well as technical consequences.
 \end{quote}
@@ -211,11 +212,10 @@ The choice of the correct space, then, is a physics problem, not a mathematical 
 
 Note that the conditions are marked with [B]. In Reverse Physics, this marks \textbf{base conditions}, conditions that must hold in any well-formed physical theory. The collection of all base conditions form the base theory for all of physics, and every physical theory is a specialization of this base theory. One of the long-term goals of Reverse Physics is to find such base theory.
 
-The use of Hilbert spaces can be characterized as
+Characterizing the use of Hilbert spaces in quantum mechanics leads to the following
 \begin{condition}[Quantum states on Hilbert space]{QST:H}
-	The state space of the system is represented by the projective space $P(\mathcal{H})$ of a complex Hilbert space $\mathcal{H}$. Observables are represented by self-adjoint operators,
+	The state space of the system is represented by the projective space $\mathcal{P}(\mathcal{H})$ of a separable complex Hilbert space $\mathcal{H}$. The ensemble space is represented by the density operators $\mathcal{D}(\mathcal{H})$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$. The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
 \end{condition}
-which lead to
 \begin{Theorem}[Unphysicality of Hilbert spaces in quantum mechanics]
 	Condition \ref{QST:H} is inconsistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
 \end{Theorem}
@@ -226,9 +226,18 @@ For a violation of \ref{[B]WDQ}, suppose a one-dimensional space, for simplicity
 
 For a violation of \ref{[B]STDIST}, consider the space $L^2(\mathbb{R})$ for a single DOF and the space $L^2(\mathbb{R}^n)$ for $n$ DOF. Since they are both infinite dimensional and separable, they are isomorphic as Hilbert spaces. Therefore, mathematically, the space are indistinguishable. \textbf{The state space of a single particle is indistinguishable from the space of all the particles in the universe.} The cause is that the definition does not capture enough information to characterize the physical system.
 
-\textbf{A more physical definition.} A full solution to the mathematical problems is not just out of scope of this work, but it is also not possible if we do not understand what the physical requirements. The issue, that often confuses philosophers and mathematicians, is that in physics we relax requirements depending on the problem at hand. For example, we typically think of a classical Hamiltonian as a nice, smooth function defined on all phase space. However, we also use Coulomb potentials, which diverge at the origin. Similarly, we think of mass and charge density distribution as smooth functions of physical space. However, we also use point particles, which correspond to infinite densities. Therefore, we already know we are never going to have a single set of conditions that are always valid, this is not how physics works. What we need to find is a set of reasonable condition for the standard case, so that we know when and how we are violating them with a further approximations. The general goal, then, is force everything to be explicit.
+\textbf{How to proceed.} The conclusion is that it is not currently possible to provide a complete interpretation or a reconstruction of quantum theory. The mathematical objects cannot faithfully correspond to physical entities because they do not posses the right conditions. The complication is that finding an appropriate mathematical formalism, understanding the physics being described and having a clear conceptual picture are not independent problems. Therefore, we have to abandon the idea, at least for now, that we will solve all problems. But we do need a methodology that allows to find, characterize and solve individual problems in a way that will fit in the complete solution. This, in our opinion, is the key methodology problem in the foundation of physics, which Reverse Physics aims to address.
 
-Let us give, then, a tentative definition of a notion of a vector space that works better for quantum systems.
+%We will focus, therefore, not on what we want to say, but on what we must say. One may want a clear ontology, for example. We will not give one, because if we do not first understand what each mathematical piece means physically, our ``clear'' ontology may not survive. On the other hand, if we concentrate on what the theory must say at a mathematical, physical and conceptual level, we will find anchor points on which we
+
+
+
+
+\section{Topology and experimental verifiability}
+
+\textbf{A more physical definition.} While Hilbert spaces clearly have issues, it should be clear that the formalism is very successful anyway. Discarding it, then, would be utterly foolish. The idea is to understand what the problems are and fix them in a minimal way. Ideally, the mathematician would appreciate the clarification, while the physicist would not even understand what the difference is.
+
+Let us try addressing the previous problems simply by fixing the topology and give a more complete definition for a vector space to be used in quantum mechanics.
 \begin{Definition}
 	A \textbf{quantum vector space} is a complete second countable complex topological vector space $V$ that satisfies the following:
 	\begin{itemize}
@@ -237,26 +246,32 @@ Let us give, then, a tentative definition of a notion of a vector space that wor
 		\item the topology is the coarsest vector space topology making the defining observables and the inner product continuous.
 	\end{itemize}
 \end{Definition}
-We still have a complex vector space, with a topology and an inner product that is continuous in that topology. However, observables must be defined for all states and must be continuous, which addresses both \ref{[B]COBS} and \ref{[B]WDQ}. Moreover, a set of defining observables is specified, together with their commutation relationships. This is something we do anyway in physics, so it seems harmless, but it actually solves a couple of different problems. First of all, it solves \ref{[B]STDIST}. Consider two Schwartz spaces $\mathcal{S}(\mathbb{R})$ and $\mathcal{S}(\mathbb{R}^n)$. These are still isomorphic, so, even if all polynomials of position and momentum are continuous, the spaces are isomorphic as topological vector spaces. However, if we add the Lie algebra of the commutators $\frac{[X^i, P_j]}{\imath \hbar} = \delta^i_j I$, a linear transformation will not be able to change the number of generators, and therefore the spaces are no longer isomorphic. The algebra of operators, then, must be part of the definition of the state space of a physical system. Additionally, this inclusion fixes the topology.
-
-In Reverse Physics, there is a consistent general result that topologies in physical theories correspond to experimental verifiability: the open sets correspond to experimentally verifiable statements. [cite us, kevin kelly, ...] Therefore, if a system is fully characterized by a set of defining observables and their probability distribution, it makes sense that their topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice.
 \begin{condition}[Quantum states]{QST:V}
-	The state space of the system is represented by the projective space $P(V)$ of a quantum vector space $V$.
+	The state space of the system is represented by the projective space $\mathcal{P}(V)$ of a quantum vector space $V$. The ensemble space is represented by the density operators $\mathcal{D}(V)$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.  The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
 \end{condition}
 \begin{Theorem}[Partial physicality of quantum vector spaces]
 	Condition \ref{QST:V} is consistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
 \end{Theorem}
 
-It should be clear that this does not solve all problems. For example, it clearly lack some maximality condition on the Lie algebra so that it covers, in some sense, the whole space. Also, $\<\psi \mid (X + I) \psi \>$ is technically summing expectations of position expressed in meters with a probability, which is a dimensionally incongruent. So, representing observables as linear operators is, very likely, a shortcut. But, again, the idea is neither to solve all the problems at once, which leads to paralysis, not to ignore it, which leads to lack of progress. We just need to make local incremental progress in the direction of a global total solution.
+We still have a complex vector space, with a topology and an inner product that is continuous in that topology. However, observables must be defined for all states and must be continuous, which addresses both \ref{[B]COBS} and \ref{[B]WDQ}. Moreover, a set of defining observables is specified, together with their commutation relationships, which solves \ref{[B]STDIST}. In fact, consider the two Schwartz spaces $\mathcal{S}(\mathbb{R})$ and $\mathcal{S}(\mathbb{R}^2)$. These are still isomorphic as topological inner product spaces. However, if we add the Lie algebra of the commutators $\frac{[X^i, P_j]}{\imath \hbar} = \delta^i_j I$, a linear transformation will not be able to change the number of generators, and therefore the spaces are no longer isomorphic. Specifying the algebra of observables is something we do anyway in physics, so the addition is exactly one of those changes that makes the math significantly sturdier while leaving the physicist puzzled, wondering why weren't we doing that already.
 
-\textbf{Section summary.} To sum up, the topology of the state space is connected to experimental verifiability, as open sets correspond to what is experimentally accessible. Hilbert spaces do not have the right topology. To fix this, the vector space must come additionally equipped with a set of defining observables and their commutation relationship, which is what we already do anyway, and the topology is the one generated by those observables and the inner product, because those are exactly the entities that tell us how we distinguish states.
+Note that conditions \ref{QST:H} and \ref{QST:V} have a semicolon, which indicates we are trying to define the same condition, though we have alternative definitions to explore.
+
+\textbf{The physical meaning of topology.} The fix is not merely technical, it is also conceptual. Topologies in physical theories capture experimental verifiability, with open sets correspond to experimentally verifiable statements. [cite us, kevin kelly, ...] \footnote{A couple of mathematicians told us they introduce the subject that way.} Therefore, if a system is fully characterized by a set of defining observables and their probability distribution, it makes sense that their topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice. It also gives us a clean way to characterize the topology mathematically. Suppose $X$ and $P$ are defining operators. Since they are everywhere continuous, $X^nP^m$ are also everywhere continuous and so are the semi-norms $\|X^n P^m\psi\|$, which, it turns out, generate the topology. For position and momentum, then, one recovers the Schwartz space.
+
+This kind of definition gives us a better idea of what a well-defined space could be so that we understand when, and when and how to violate it. An issue that often confuses philosophers and mathematicians, is that in physics we relax requirements depending on the problem at hand. For example, we typically think of a classical Hamiltonian as a nice, smooth function defined on all phase space. However, we also use Coulomb potentials, which diverge at the origin. Similarly, we think of mass and charge density distribution as smooth functions of physical space. However, we also use point particles, which correspond to infinite densities. Therefore, we already know we are never going to have a single set of conditions that are always valid, because this is not how physics works. What we need to find is a set of reasonable condition for the standard case, so that we know when and how we are violating them with a further approximations. Therefore, the Coulomb potential or the point-particle approximations live in some limit, that can be precisely characterize with an appropriate topology, so that we know what side of experimental verifiable we are abandoning. The general goal, then, is force everything to be explicit.
+
+\textbf{Partial solutions.} We stress that the above proposal is not complete. First of all, the space of density operators $\mathcal{D}(V)$ is currently mathematically ill-defined for infinite mixtures of pure states. Secondly, it lacks some maximality condition on the Lie algebra so that it covers, in some sense, all the observables.
+
+There are other conceptual problems. For example, $\<\psi \mid (X + I) \psi \>$ is technically summing expectations of position expressed in meters with a probability, which is a dimensionally incongruent. So, representing observables as linear operators is, very likely, a shortcut for something else. Again, the goal is neither to find something that fixes everything at once, which just leads to paralysis, nor to just ignore all problems. The path is to continue the analysis piece by piece, gain progress insights within a unified framework, until it is clear how they all must fit.
+
 
 \section{Ensembles and convex structure}
 
 \textbf{States without inner product.} We now want to peel the mathematical definition, layer by layer, to understand what mathematical requirement represent what physical condition. The first thing we should note that the construction of the projective space $V$ does not depend, nor require, an the inner product. Is stating that states are rays of a complex vector space enough to exclude classical mechanics? It turns out, it isn't.\footnote{A consequence of states being represented by rays this is that the linearity of the underlying vector space must be understood merely as mathematical convenience. Non-linear maps that preserve rays exist, and therefore they would preserve all the physics. A non-linear representation, then, is possible but uselessly inconvenient.}
 
 \begin{condition}[Quantum states are rays]{QP-RAY}
-	The state space of the system is represented by the projective space $P(V)$ of a complex topological vector space $V$.
+	The state space of the system is represented by the projective space $\mathcal{P}(V)$ of a complex topological vector space $V$.
 \end{condition}
 
 \begin{condition}[Classical state space]{CST}
@@ -271,7 +286,7 @@ It should be clear that this does not solve all problems. For example, it clearl
 	Conditions \ref{QP-RAY} and \ref{CST} are consistent.
 \end{Theorem}
 
-Finite-dimensional complex projective spaces are a symplectic manifold, therefore they allow classical Hamiltonian mechanics and classical statistical mechanics.  Therefore, when studying the classical Larmor precession, we can claim that the ``state of the magnetic dipole is a ray in a complex Hilbert space'' because the projective space for a two-dimensional quantum system is exactly a sphere, the Bloch sphere. In the infinite dimensional case, the projective space cease to be a manifold, which is a requirement for classical mechanics. It is an open question whether \ref{QP-RQY} would be compatible with a classical field theory in that case. Overall, the space of pure states is, in general, not enough even to distinguish between classical and quantum states.
+Finite-dimensional complex projective spaces are a symplectic manifold, therefore they allow classical Hamiltonian mechanics and classical statistical mechanics.  Therefore, when studying the classical Larmor precession, we can claim that the ``state of the magnetic dipole is a ray in a complex Hilbert space'' because the projective space for a two-dimensional quantum system is exactly a sphere, the Bloch sphere. In the infinite dimensional case, the projective space cease to be a manifold, which is a requirement for classical mechanics. It is an open question whether \ref{QP-RAY} would be compatible with a classical field theory in that case. Overall, the space of pure states is, in general, not enough even to distinguish between classical and quantum states.
 
 \textbf{Adding ensembles.} In the classical Larmor precession case, the space of ensembles would correspond to all the possible probability densities over the sphere. For qubit, the space of ensembles corresponds to the internal point of the ball. These are clearly two different spaces: the first is a convex subset of an infinite dimensional space while the second is a convex set of a three dimensional case. In fact, we have:
 
@@ -291,7 +306,7 @@ The incompatibility can be understood in terms of the decomposability of ensembl
 
 \textbf{Inner product and orthogonality.} Note that \ref{QE-DENS} implicitly require the inner product through the definition of trace-class operators. Does this implicitly require the Born rule as well? The following result is useful for that analysis.
 \begin{condition}[Mutual exclusivity conditions]{[B]MUTEX}
-	Let $\psi_i \in P(\mathcal{H})$ be a countable sequence of states. Then the following are equivalent:
+	Let $\psi_i \in \mathcal{P}(\mathcal{H})$ be a countable sequence of states. Then the following are equivalent:
 	\begin{itemize}
 		\item $\psi_i$ are mutually exclusive
 		\item $p(\psi_i | \psi_j) = \delta_{ij}$
@@ -299,31 +314,66 @@ The incompatibility can be understood in terms of the decomposability of ensembl
 	\end{itemize}
 \end{condition}
 \begin{condition}[Conditional expectation from Born rule]{BR-BORN}
-	The conditional probability $p : P(V) \times P(V) \to [0,1]$ is given by the Born rule. That is, $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.
+	The conditional probability $p : \mathcal{P}(V) \times \mathcal{P}(V) \to [0,1]$ is given by the Born rule. That is, $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.
 \end{condition}
 \begin{condition}[Von Neumann entropy]{BR-ENT}
-	The entropy function $S : D(V) \to \mathbb{R}$ is given by the Shannon entropy: $S(\rho) = - \tr(\rho \log \rho)$.
+	The entropy function $S : \mathcal{D}(V) \to \mathbb{R}$ is given by the von Neumann entropy: $S(\rho) = - \tr(\rho \log \rho)$.
 \end{condition}
 \begin{condition}[Orthogonality is mutual exclusivity]{BR-ORME}
 	Orthogonal states are mutually exclusive.
 \end{condition}
 \begin{Theorem}
-	Over \ref{QE-DENS}+\ref{[B]MUTEX}, conditions \ref{BR-BORN}, \ref{BR-ENT} and \ref{BR-ORME} are equivalent. Moreover, \ref{QE-DENS}+\ref{[B]MUTEX} does imply \ref{BR-BORN}.
+	Over \ref{QE-DENS}+\ref{[B]MUTEX}, conditions \ref{BR-BORN}, \ref{BR-ENT} and \ref{BR-ORME} are equivalent. Moreover, \ref{QE-DENS}+\ref{[B]MUTEX} does not imply \ref{BR-BORN}.
 \end{Theorem}
 
-Condition \ref{[B]MUTEX} captures the idea that the same concept, the mutual exclusivity of preparations $A$ and $B$, can be characterized in two equivalent ways. In terms of conditional probability, if we prepared $A$, there is zero probability of finding something that $B$ could have prepared; in terms of information entropy, we can use $A$ and $B$ to transfer a whole bit of entropy. Since these are necessary property of mutual exclusivity, \ref{[B]MUTEX} is a base condition. The equivalence between \ref{BR-BORN} and \ref{BR-ENT} stems from the fact that the conditional probability between two states is an invertible function of the entropy of their equal mixture. Note that \ref{BR-BORN} implies that orthogonal states are mutually exclusive, and therefore \ref{BR-ORME}. Since every density operator can be orthogonally decomposed, \ref{BR-ORME} implies \ref{BR-ENT} through \ref{[B]MUTEX}.
+Condition \ref{[B]MUTEX} captures the idea that the same concept, the mutual exclusivity of preparations $A$ and $B$, can be characterized in other two equivalent ways. In terms of conditional probability, if we prepared $A$, there is zero probability of finding something that $B$ could have prepared; in terms of information entropy, we can use $A$ and $B$ to transfer a whole bit of entropy. Since these are necessary properties of mutual exclusivity, \ref{[B]MUTEX} is a base condition. The equivalence between \ref{BR-BORN} and \ref{BR-ENT} stems from the fact that the conditional probability between two states is an invertible function of the entropy of their equal mixture. Note that \ref{BR-BORN} implies that orthogonal states are mutually exclusive, and therefore \ref{BR-ORME}. Since every density operator can be orthogonally decomposed, \ref{BR-ORME} implies \ref{BR-ENT} through \ref{[B]MUTEX}.
 
-The Born rule, then, has the implicit assumption that mutually exclusive preparations exist, which is not required by \ref{QE-DENS}. A counter-example would be an ensemble space, either classical or quantum, in which there is an entropy cutoff and pure states are not reachable, even as a limit. While each state can still be reconstructed statistically through a tomography, it cannot be confirmed with a single-shot measurement, effectively because all preparations are too noisy. No pair of preparations would allow to reliably transfer one bit. We do not see (yet) any fundamental reason as to why this case should be ruled out a priori, and in may as well be that states in a future more fundamental theory have this property.
+The Born rule, then, has the implicit assumption that mutually exclusive preparations exist, which is not required by \ref{QE-DENS}. A counter-example would be an ensemble space, either classical or quantum, in which there is an entropy cutoff and pure states are not reachable, even as a limit. While each state can still be reconstructed statistically through a tomography, it cannot be confirmed with a single-shot measurement, effectively because all preparations are too noisy. No pair of preparations would allow to reliably transfer one bit. We do not see (yet) any fundamental reason as to why this case should be ruled out a priori, and it may as well be that states in a future more fundamental theory have this property.
 
-\textbf{Probability requires mutual exclusivity.} The crucial insight is that the convex structure of the ensemble space is not enough to define probability, it requires this addition \textbf{entropy structure}. The mixture coefficients $p_i$ of a mixture $\sum_i p_i \psi_i$ can be interpreted as probability if and only if $\psi_i$ are mutually exclusive. Kolmogorov probability, in fact, is based on the assumption that all the elements of the sample space are mutually exclusive. In this light, contextuality is more than justified: there is no alternative.
+\textbf{Probability requires mutual exclusivity.} The crucial insight is that the convex structure of the ensemble space is not enough to define probability, it requires this additional \textbf{entropic structure}. The mixture coefficients $p_i$ of a mixture $\sum_i p_i \psi_i$ can be interpreted as probability if and only if $\psi_i$ are mutually exclusive. Kolmogorov probability, in fact, is based on the assumption that all the elements of the sample space are mutually exclusive. In this light, contextuality is more than justified: there is no alternative.
 
-The independence of the entropic structure from the convex structure of the ensemble space is present in classical mechanics as well: the Liouville measure is not unique for a classical space, and exactly correspond to the entropy of uniform distributions in each region. Therefore it is not possible to recostruct the entropy from the convex set of probability measures alone. Since entropy is a property of ensembles, this is yet another hint that both classical and quantum mechanics are, at their core, statistical theories, theories about ensembles.
+The independence of the entropic structure from the convex structure of the ensemble space is present in classical mechanics as well: the Liouville measure is an additional structure on top of $\mathbb{R}^n$, and exactly correspond to the entropy of uniform distributions in each region. Therefore it is not possible to recostruct the entropy from the convex set of probability measures alone. Since entropy is a property of ensembles, this is yet another hint that both classical and quantum mechanics are, at their core, statistical theories, theories about ensembles.
 
 Theorems and derivation of the Born rule, like Gleason's theorem, or some approaches to Generalized Probabilistic Theories (GPT) often fail to make this distinction explicit. Many of these approaches, in fact, show that a unique affine linear functional with some features (e.g. zero and one antipodal ensembles) exist and identify that as probabilities. But the last move implicitly assumes mutual exclusivity, which may not be warranted. Moreover, classical mechanics requires the symplectic form in the definition of state space, and since the Liouville measure cannot be reconstruct from the convex structure alone, we do not see how these strategies can recover the classical space. Similar, in fact bigger, problems will exist for field theories. Reverse Physics, then, teach us to be very cautious and proceed very slowly: we can only know the conditions we made explicit.
 
 \section{Unitaries as deterministic and reversible processes}
 
-1) Equivalence between lots of conditions
+We now turn our attention to time evolution, for which we have the following result.
+\begin{condition}[Evolution preserves statistical mixtures]{[B]EVMIX}
+	The evolution of a statistical mixture is the statistical mixture of the evolutions. That is, the evolution from each $t_0$ to each $t_1$, with $t_1\geq t_0$, is given by an affine map $\Phi_{t_0 \to t_1}:\mathcal{D}(\mathcal{H})\to \mathcal{D}(\mathcal{H})$ such that $\Phi_{t_0 \to t_0}=I$, $\Phi_{t_1 \to t_2}\circ \Phi_{t_0 \to t_1}=\Phi_{t_0 \to t_2}$ and $(\rho,t_0,t_1)\mapsto \Phi_{t_0 \to t_1}(\rho)$ is jointly continuous.
+\end{condition}
+
+\begin{condition}[Time-independent evolution]{EVTI}
+	Evolution depends only on elapsed time. That is, $\Phi_{t_0 \to t_1}=\Phi_{t_1-t_0}$.
+\end{condition}
+
+\begin{condition}[Schrödinger equation]{DR-SCEQ}
+	The evolution follows the equation $\frac{d}{dt} \psi(t) = \frac{H}{\imath \hbar} \psi(t)$, where $H$ is a self-adjoint operator and $\psi(t) \in \Dom(H)$.
+\end{condition}
+
+\begin{condition}[Unitary evolution]{DR-UNIT}
+	Time evolution is represented by a strongly continuous one-parameter group of unitary operators. That is, $\Phi_t(\rho)=U_t\rho U_t^\dagger$, where $U_t:\mathcal{H}\to\mathcal{H}$, $U_0=I$, $U_{t+s}=U_tU_s$ and $U_t^\dagger U_t=U_tU_t^\dagger=I$.
+\end{condition}
+
+\begin{condition}[Bijective map]{DR-EV}
+	Distinct past states map to distinct future states and vice-versa. That is, if $\psi_I$ and $\phi_I$ are two initial states, $\psi_F$ and $\phi_F$ are the corresponding evolved future states and $\psi_P$ and $\phi_P$ are the corresponding reconstructed past states, then $\psi_I = \phi_I \iff \psi_F = \phi_F \iff \psi_P = \phi_P$.
+\end{condition}
+
+\begin{condition}[Preservation of conditional probability]{DR-PROB}
+	Conditional probability remains the same across past and future states. That is, if $\psi_I$ and $\phi_I$ are two initial states, $\psi_F$ and $\phi_F$ are the corresponding evolved future states and $\psi_P$ and $\phi_P$ are the corresponding reconstructed past states, then $p(\psi_I \mid \phi_I) = p(\psi_F \mid \phi_F) = p(\psi_P \mid \phi_P)$.
+\end{condition}
+
+\begin{condition}[Conservation of information entropy]{DR-INFO}
+	Future and past ensembles have the same information entropy. That is, if $\rho_I$ is an initial ensemble, $\rho_F$ is the corresponding evolved future ensemble and $\rho_P$ is the corresponding reconstructed past ensemble, then $S(\rho_I) = S(\rho_F) = S(\rho_P)$.
+\end{condition}
+
+\begin{Theorem}
+	Over \ref{QST:H}+\ref{[B]EVMIX}+\ref{EVTI}, conditions \ref{DR-SCEQ}, \ref{DR-UNIT}, \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} are equivalent.
+\end{Theorem}
+
+The base condition \ref{[B]EVMIX} captures the idea that time evolution preserves statistical mixtures. If the statistical mixture represents lack of knowledge of the initial conditions, then this lack of knowledge has to be transported on the final state. Condition \ref{EVTI} restricts to the case in which the process is time independent. In this case, if we have a bijection between pure states, the affine continuity will force the evolution to be a unitary group. In this sense, condition \ref{[B]EVMIX} does most of the work. Conditions \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} just impose the bijection: \ref{DR-EV} does so directly; \ref{DR-PROB} through the Born rule, since $p(\psi|\phi) = 1 \iff \psi = \phi$; \ref{DR-INFO} through the entropy, because the entropy of an equal mixture of two pure states is an invertible function of the conditional probability between them. 
+
+The theorem can be extended to the time dependent case, by requiring the evolution to be differentiable instead of time independent. Physically, this effectively means that the time dependence is slow enough that, at some small scale, the evolution can be approximated with time independent evolution.
 
 \section{Projections as equilibration processes}
 
@@ -335,7 +385,9 @@ Analogy with thermodynamics
 
 \section{Classical mechanics as high-entropy limit}
 
-\section{States as equilibria}
+\section{States as ensembles in equilibrium}
+
+Mixed states are Gibbs equilibria in Hilbert spaces. Imposing this gives us Montel.
 
 \section{Discussion}
 
@@ -393,8 +445,9 @@ LD      & Linear dichroism
 \appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
 \appendixstart
 \appendix
-\section[\appendixname~\thesection]{}
-\subsection[\appendixname~\thesubsection]{}
+\section[\appendixname~\thesection]{Proofs}
+\subsection[\appendixname~\thesubsection]{Time evolution}
+
 
 The appendix is an optional section that can contain details and data supplemental to the main text---for example, explanations of experimental details that would disrupt the flow of the main text but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data are shown in the main text can be added here if brief, or as Supplementary Materials. Mathematical proofs of results not central to the paper can be added as an appendix.
 
