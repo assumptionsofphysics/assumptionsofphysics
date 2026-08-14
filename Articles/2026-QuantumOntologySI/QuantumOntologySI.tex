@@ -340,7 +340,7 @@ Theorems and derivation of the Born rule, like Gleason's theorem, or some approa
 
 We now turn our attention to time evolution, for which we have the following result.
 \begin{condition}[Evolution preserves statistical mixtures]{[B]EVMIX}
-	The evolution of a statistical mixture is the statistical mixture of the evolutions. That is, the evolution from each $t_0$ to each $t_1$, with $t_1\geq t_0$, is given by an affine map $\Phi_{t_0 \to t_1}:\mathcal{D}(\mathcal{H})\to \mathcal{D}(\mathcal{H})$ such that $\Phi_{t_0 \to t_0}=I$, $\Phi_{t_1 \to t_2}\circ \Phi_{t_0 \to t_1}=\Phi_{t_0 \to t_2}$ and $(\rho,t_0,t_1)\mapsto \Phi_{t_0 \to t_1}(\rho)$ is jointly continuous.
+	The evolution of a statistical mixture is the statistical mixture of the evolutions. That is, let $\mathcal{D}$ be the ensemble space of the system, the evolution from each $t_0$ to each $t_1$, with $t_1\geq t_0$, is given by an affine map $\Phi_{t_0 \to t_1}:\mathcal{D}\to \mathcal{D}$ such that $\Phi_{t_0 \to t_0}=I$, $\Phi_{t_1 \to t_2}\circ \Phi_{t_0 \to t_1}=\Phi_{t_0 \to t_2}$ and $(\rho,t_0,t_1)\mapsto \Phi_{t_0 \to t_1}(\rho)$ is jointly continuous.
 \end{condition}
 
 \begin{condition}[Time-independent evolution]{EVTI}
@@ -375,13 +375,67 @@ The base condition \ref{[B]EVMIX} captures the idea that time evolution preserve
 
 The theorem can be extended to the time dependent case, by requiring the evolution to be differentiable instead of time independent. Physically, this effectively means that the time dependence is slow enough that, at some small scale, the evolution can be approximated with time independent evolution.
 
+The above results make it clear that the Schrodinger equation applies, and only applies, for isolated system: when the evolution of the system depends, and only depends, on itself. But this presents a conceptual problem: how can we claim that the system is isolated when its evolution depends on the Hamiltonian, which is not uniquely determined by the system, but by its interaction with the environment? These are the type of conceptual, philosophical, problems that Reverse Physics aims to bring to light, that shows, once again, that physics, math and philosophy need to work together if we are to find a final solution.
+
+We note that this problem can be easily solved if we lean more into the idea that states are ensembles. The Hamiltonian is a property of the boundary between system and environment. The state is not a complete description of the system, but rather only what is relevant and what is not altered by the system/environment interaction. Therefore, the definition of system implies a cutoff, which is determined by the sensitivity, or lack thereof, of a given set of processes to the internal dynamics of the system. The state of a spin one-half ion, then, can be described with the same theoretical apparatus than that of an electron precisely because, in a given set of circumstances, process will not depend on its internal structure. The state of a system, then, is effectively defined as ``quotient'' on all internal and system/environment fluctuations, much like a state in thermodynamics. An eigenstate of the Hamiltonian will represent a state that is unchanged by, in equilibrium with, the environment, which does not mean there is no interaction between them. In fact, on physical ground, everything is always interactive with everything at least gravitationally. The logical consequence is that, with a different Hamiltonian, the type of system/environment fluctations implicitly hidden by the state would be different, but that is exactly what quantum mechanics tells us. If we change the quantities that a Hamiltonian keeps fixed, other quantities will be forced to fluctuate. Therefore, this view already points to quantum contextuality. As for the math, this work cannot fully develop a philosophical picture either. What we want to show that a consistent picture across disciplines exists.
+
 \section{Projections as equilibration processes}
 
-1) Not all measurements are projections
-2) Continuous operators cannot have projections
-3) Projections are processes with equilibria
+\textbf{Measurements as equilibrations.} We now turn our attention to measurement processes. While we will mainly discuss the usual projective measurement model, we want to stress that this does not correspond exactly to all types of measurements in physics. Most of the time, in fact, a measurement in physics aims to reconstruct the original state, which is more akin to quantum tomography. Many measurements are destructive, therefore there is no final state that is the eigenstate of the observable. Lastly, quantities like temperature are definitely measurable, but they do not correspond to self-adjoint operators and do not have eigenstates: they are parameters of a specific family of ensembles. While this is obvious, at least at an intuitive level, to the vast majority of experimental physicists we encounter, it does not seem so for many mathematicians and philosophers. Therefore, we want to at least raise the issue.
 
-Analogy with thermodynamics
+Like for the state definition, projective measurements merge different elements that should be held distinct. The first, is the prediction; the second one, is the state update. 
+
+\begin{condition}[Processes preserve statistical mixtures]{[B]BBMIX}
+	The output of a statistical mixture under a black-box process is the statistical mixture of the outputs. That is, a black-box process $\Phi : \mathcal{D} \to \mathcal{D}$ is an affine map, where $\mathcal{D}$ is the ensemble space of the system.
+\end{condition}
+
+\begin{condition}[Projective-measurement prediction]{EQ-MEAS}
+	Given an observable $X=\sum_x xP_x$, the output of the black-box process $\Phi_X$ is given by $\Phi_X(\rho)=\sum_x P_x \rho P_x$.
+\end{condition}
+
+\begin{condition}[Measurement equilibration]{EQ-LIND}
+	Given an observable $X=\sum_x xP_x$, the black-box process $\Phi_X$ can be described as equilibration under a Lindblad equation with vanishing Hamiltonian and jump operator $X$. That is, $\frac{d\rho}{dt}=X\rho X-\frac{1}{2}\{X^2,\rho\}$ and $\Phi_X(\rho)=\lim\limits_{t\to\infty}\rho(t)$, where $\rho = \rho(0)$.
+\end{condition}
+
+\begin{condition}[Closest commuting ensemble]{EQ-HS}
+	Given an observable $X$, the output of the black-box process $\Phi_X$ is the ensemble commuting with $X$ that is closest to the incoming ensemble in Hilbert--Schmidt distance. That is, $\Phi_X(\rho)=\operatorname*{argmin}\limits_{\sigma\in\mathcal D(\mathcal H),\,[\sigma,X]=0}\|\rho-\sigma\|^2_{HS}$.
+\end{condition}
+
+\begin{condition}[Closest commuting ensemble in information]{EQ-KL}
+	Given an observable $X$, the output of the black-box process $\Phi_X$ is the ensemble commuting with $X$ that is closest to the incoming ensemble in relative entropy. That is, $\Phi_X(\rho)=\operatorname*{argmin}\limits_{\sigma\in\mathcal D(\mathcal H),\,[\sigma,X]=0}D(\rho\Vert\sigma)$.
+\end{condition}
+
+\begin{condition}[Finite-dimensional system]{FD}
+	The space of ensembles of the system is finite-dimensional.
+\end{condition}
+
+\begin{Theorem}
+	Over \ref{QST:H}, conditions \ref{EQ-MEAS}, \ref{EQ-LIND} and \ref{EQ-HS} are equivalent. Over \ref{QST:H}+\ref{FD}, condition \ref{EQ-KL} is also equivalent to the others.
+\end{Theorem}
+
+The first step in the measurement process, the one responsible for the decoherence, can be implemented with the simplest possible open quantum system: one with no Hamiltonian and the observable as the jump operator. The process is purely dissipative equilibration process, meaning that all outputs are equilibria of the process. Unlike thermodynamics equilibration, however, it does not maximize the entropy given some constraints. In fact, it outputs the equilibrium that is closest to the initial state. The distance can always be expressed as the Hilbert-Schmidt distance, which is the inner product between density matrices, or as the relative entropy in finite dimension. In infinite dimension, the entropy of the final ensemble can be infinite, which makes it impossible to determine the equilibrium uniquely. However, this is again a likely problem with Hilbert spaces, as ensembles with infinite entropy cannot be implement experimentally, not even approximately.
+
+The second step in the measurement, the update of the state based on the experimental output, is the same as the classical case. The projective-measurement process, in fact, output a classical mixture of possible cases, and the measurement outcome simply select which one is the correct one in that particular instance.
+
+\textbf{Unitary evolution from measurements.} The above theorem shows that we can always understand a measurement in terms of an open system. The following shows that we can always understand unitary evolution as a sequence of infinitesimal projective measurements.
+
+\begin{Definition}[State-adaptive projective process]
+	A state-adaptive projective process is a process that acts as a projective measurement on each ensemble. That is, it is an affine map $\Psi: \mathcal{D} \to \mathcal{D}$ on the ensemble space such that, for every incoming ensemble $\rho$, there is a projective decomposition $\{P_a^\rho\}$ of the identity for which $\Psi(\rho)=\sum_a P_a^\rho\rho P_a^\rho$. The projective decomposition may depend on the incoming ensemble.
+\end{Definition}
+
+\begin{condition}[Projective evolution]{DR-PROJ}
+	Time evolution is the limit of repeated applications of an infinitesimal state-adaptive projective process that allows perfect prediction and perfect reconstruction. That is, evolution over elapsed time $t$ is obtained by applying the same process of duration $t/n$, $n$ times, in the limit $n\to\infty$. Moreover, the probabilities of the predicted and reconstructed state sequences tend to one.
+\end{condition}
+
+\begin{Theorem}
+	Over \ref{QST:H}, conditions \ref{DR-UNIT} and \ref{DR-PROJ} are equivalent.
+\end{Theorem}
+
+A state-adaptive projective process effectively is a measurement process where the choice of measurement depend on the initial state. Each incoming state, even mixed state, see a projective measurement, but each state may see a different projective measurement. To recover the unitary evolution, one repeats the process at each infinitesimal time-step in a way that the change is infinitesimal. This is similar to a quantum Zeno effect or quantum Zeno transport [cite].
+
+A simple way to understand this, suppose one starts with an eigenstate $\psi$ of some observable $X$. The state will evolve in the Schroedinger picture and the observable will evolve in the Heisenberg picture. Which means, the evolved state will also be an eigenstate of the evolved observable. In this sense, the unitary process is ``measuring'' the evolved observable at every instance. The above result formalizes this intuition.
+
+\textbf{Forward and backward measurement problem.} The conclusion is that we can understand the measurement process as an equilibration of an open quantum system, which is a special case of unitary evolution for system plus environment; but we can also understand unitary evolution as a quasi-static process made of infinitesimal equilibrations at each time-step. That is, this equivalence addressed both the forward (i.e. unitary $\to$ projection measurements) and backward (i.e. projection measurement $\to$ unitary) problems. The key is, again, assuming that states represent statistical ensembles, as only in this case one can define equilibration processes.
 
 \section{Classical mechanics as high-entropy limit}
 
