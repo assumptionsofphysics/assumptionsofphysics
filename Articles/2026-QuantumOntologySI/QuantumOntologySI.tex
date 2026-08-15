@@ -439,6 +439,26 @@ A simple way to understand this, suppose one starts with an eigenstate $\psi$ of
 
 \section{Classical mechanics as high-entropy limit}
 
+\begin{condition}[One DOF]{1DOF}
+	The system is fully characterized by conjugate position and momentum, together with their Lie bracket (i.e. $\{q,p\}=1$ in classical mechanics and $\frac{[X,P]}{\imath\hbar}=I$ in quantum mechanics).
+\end{condition}
+\begin{condition}[Small $\hbar$]{CL-HBAR}
+	The value of the constant $\hbar$ can be considered small for the problems at hand.
+\end{condition}
+\begin{condition}[High entropy]{CL-HENT}
+	The entropy can be considered high for the problems at hand.
+\end{condition}
+\begin{condition}[Classical limit]{CL-CST}
+	The system can be approximated by a classical system for the problems at hand.
+\end{condition}
+\begin{Theorem}
+	Over \ref{QST:H}+\ref{1DOF}, the conditions \ref{CL-HBAR}, \ref{CL-HENT} and \ref{CL-CST} are equivalent.
+\end{Theorem}
+
+Since \ref{1DOF} is part of the base theory, it must hold in both the quantum and classical descriptions. Therefore, in the classical limit, the quantum commutator must reduce to the classical Poisson bracket. In the Weyl--Wigner representation, the quantum commutator is represented by the Moyal bracket. A result from deformation theory states that, up to a change of representation, the Moyal bracket is the unique non-trivial formal differentiable deformation of the Poisson bracket on canonical phase space. Moreover, it reduces to the Poisson bracket when $\hbar$ becomes negligible. Within this setting, conditions \ref{CL-CST} and \ref{CL-HBAR} therefore describe the same limit.
+
+To connect this limit to entropy, consider the Lindblad evolution given by $H=0$ and $L=a^\dagger$. This channel stretches both position and momentum by $\sqrt{\lambda}$, increases entropy and suppresses the negative regions of the Wigner function in the limit $\lambda\to\infty$. The same transformation can instead be described using the rescaled observables $\hat X=X/\sqrt{\lambda}$ and $\hat P=P/\sqrt{\lambda}$. These satisfy $[\hat X,\hat P]=\imath\hbar/\lambda$, so increasing the entropy through $\lambda\to\infty$ is equivalent to taking the effective value of $\hbar$ to zero. In entropic terms, this shifts the entropy assigned to the pure-state scale from zero to $-\log\lambda$, which tends to minus infinity. Every finite entropy is therefore high relative to the entropy of pure states.\footnote{This is analogous to setting $c\to\infty$ in the non-relativistic limit: one does not change the physical constant, but expresses the approximation by moving the limiting scale infinitely far away.} Conditions \ref{CL-HBAR} and \ref{CL-HENT} therefore describe the same limit.
+
 \section{States as ensembles in equilibrium}
 
 Mixed states are Gibbs equilibria in Hilbert spaces. Imposing this gives us Montel.
