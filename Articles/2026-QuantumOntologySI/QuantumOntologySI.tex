@@ -461,7 +461,26 @@ To connect this limit to entropy, consider the Lindblad evolution given by $H=0$
 
 \section{States as ensembles in equilibrium}
 
-Mixed states are Gibbs equilibria in Hilbert spaces. Imposing this gives us Montel.
+\begin{condition}[Dynamical equilibrium]{EE-DIN}
+	Every ensemble $\rho$ is the dynamical equilibrium of some unitary process.
+\end{condition}
+
+\begin{condition}[Spectral equilibrium]{EE-MEAS}
+	Every ensemble $\rho$ is the output of some spectral equilibration process (i.e. nonselective projective measurement).
+\end{condition}
+
+\begin{condition}[Thermodynamic equilibrium]{EE-THER}
+	Every full-rank ensemble $\rho$ is the thermodynamic equilibrium for some Hamiltonian. Every non full-rank ensembles is an approximate thermodynamic equilibrium for some Hamiltonian.
+\end{condition}
+
+\begin{Theorem}
+	Condition \ref{QST:H} implies \ref{EE-DIN}, \ref{EE-MEAS} and \ref{EE-THER}.
+\end{Theorem}
+
+For \ref{EE-DIN}, set $H=\rho$. Then $[H,\rho] = 0$, so $\rho$ is stationary. For \ref{EE-MEAS}, choose $X = \rho$. Then $[X,\rho] = 0$, so $\rho$ is a fixed point. For \ref{EE-THER}, if $\rho$ is full rank, choose $H=-\log\rho/\beta$ \cite{Wilming2017}. Then $e^{-\beta H}=\rho$ and $Z=\tr(\rho)=1$. Otherwise, use the same definition on the support of $\rho$ and assign energies $kn^2$ to an orthonormal basis of its kernel. The corresponding normalized Gibbs states converge to $\rho$ in Hilbert--Schmidt norm as $k\to\infty$, since $\sum_n e^{-\beta kn^2}\to0$.
+
+TODO: add comment. Mixed states are Gibbs equilibria in Hilbert spaces. Imposing this gives us Montel.
+
 
 \section{Discussion}
 
