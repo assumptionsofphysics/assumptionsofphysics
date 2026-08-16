@@ -214,13 +214,13 @@ Note that the conditions are marked with [B]. In Reverse Physics, this marks \te
 
 Characterizing the use of Hilbert spaces in quantum mechanics leads to the following
 \begin{condition}[Quantum states on Hilbert space]{QST:H}
-	The state space of the system is represented by the projective space $\mathcal{P}(\mathcal{H})$ of a separable complex Hilbert space $\mathcal{H}$. The ensemble space is represented by the density operators $\mathcal{D}(\mathcal{H})$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$. The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
+	The state space of a quantum system is represented by the projective space $\mathcal{P}(\mathcal{H})$ of a separable complex Hilbert space $\mathcal{H}$. The ensemble space is represented by the density operators $\mathcal{D}(\mathcal{H})$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$. The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
 \end{condition}
 \begin{Theorem}[Unphysicality of Hilbert spaces in quantum mechanics]
 	Condition \ref{QST:H} is inconsistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
 \end{Theorem}
 
-The unphysicality stems from the failure of base conditions, which are supposed to be valid in all theories. For a violation of \ref{[B]COBS}, suppose $|i\>$ represents the i-th the energy level of a harmonic oscillator. The sequence $\sqrt{\frac{j-1}{j}}|0\> + \sqrt{\frac{1}{j}}|j\>$ converges to the ground state as $j \to \infty$, while the expectation of $N$ converges to $1$. \textbf{Convergence to a state does not imply observable converge to those of that state.} This is precisely because, in the topology of a Hilbert space, only bounded operators are continuous and therefore all unbounded operators are not continuous.
+Since \ref{QST:H} is applies to all quantum systems and base conditions apply to all physical theories, a single counter-example suffice to prove the inconsistency. For a violation of \ref{[B]COBS}, suppose $|i\>$ represents the i-th the energy level of a harmonic oscillator. The sequence $\sqrt{\frac{j-1}{j}}|0\> + \sqrt{\frac{1}{j}}|j\>$ converges to the ground state as $j \to \infty$, while the expectation of $N$ converges to $1$. \textbf{Convergence to a state does not imply observable converge to those of that state.} This is precisely because, in the topology of a Hilbert space, only bounded operators are continuous and therefore all unbounded operators are not continuous.
 
 For a violation of \ref{[B]WDQ}, suppose a one-dimensional space, for simplicity, with two observers $X$ and $Y$ linked by the coordinate transformation $y(x) = \tan \left(\frac{\pi}{2} \erf(x) \right)$. A Guassian wave packet $\psi(x) = \sqrt{\frac{e^{-x^2}}{\sqrt{\pi}}}$ in the first frame will become $\phi(y) = \sqrt{\frac{1}{\pi (y^2 + 1)}}$ in the frame. The wavefunction will be in the domain of the position $X$ of the first observer but not in the domain of the position $Y$ of the second observer, since $\<Y\psi(y) \mid Y\psi(y)\>$ does not converge. \textbf{Position is not defined in all frames.} The cause is that, in a Hilbert space, unbounded operators are not defined on the while space, and their domain can, in principle, even be disjoint.
 
@@ -247,15 +247,18 @@ Let us try addressing the previous problems simply by fixing the topology and gi
 	\end{itemize}
 \end{Definition}
 \begin{condition}[Quantum states]{QST:V}
-	The state space of the system is represented by the projective space $\mathcal{P}(V)$ of a quantum vector space $V$. The ensemble space is represented by the density operators $\mathcal{D}(V)$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.  The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
+	The state space of a quantum system is represented by the projective space $\mathcal{P}(V)$ of a quantum vector space $V$. The ensemble space is represented by the density operators $\mathcal{D}(V)$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.  The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
 \end{condition}
 \begin{Theorem}[Partial physicality of quantum vector spaces]
-	Condition \ref{QST:V} is consistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
+	Condition \ref{QST:V} implies \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
 \end{Theorem}
 
-We still have a complex vector space, with a topology and an inner product that is continuous in that topology. However, observables must be defined for all states and must be continuous, which addresses both \ref{[B]COBS} and \ref{[B]WDQ}. Moreover, a set of defining observables is specified, together with their commutation relationships, which solves \ref{[B]STDIST}. In fact, consider the two Schwartz spaces $\mathcal{S}(\mathbb{R})$ and $\mathcal{S}(\mathbb{R}^2)$. These are still isomorphic as topological inner product spaces. However, if we add the Lie algebra of the commutators $\frac{[X^i, P_j]}{\imath \hbar} = \delta^i_j I$, a linear transformation will not be able to change the number of generators, and therefore the spaces are no longer isomorphic. Specifying the algebra of observables is something we do anyway in physics, so the addition is exactly one of those changes that makes the math significantly sturdier while leaving the physicist puzzled, wondering why weren't we doing that already.
+Note that conditions \ref{QST:H} and \ref{QST:V} have a semicolon. In Reverse Physics, this indicates alternative versions of the same condition. In fact, note that \ref{QST:V} still postulates a complex vector space, with a topology and an inner product that is continuous in that topology. The changes are, by design, as little as possible.
 
-Note that conditions \ref{QST:H} and \ref{QST:V} have a semicolon, which indicates we are trying to define the same condition, though we have alternative definitions to explore.
+However, \ref{QST:V} guarantees the previous base conditions. Observables and inner product must be continuous, which addresses \ref{[B]COBS}. Observables must be defined for all states, therefore it is not possible for two frames to use different observable with different domains, which addresses \ref{[B]WDQ}. Moreover, two different systems will have either a different set of defining observables, or different commutation relationships, which solves \ref{[B]STDIST}.
+
+
+TODO: see whether the following is still useful. In fact, consider the two Schwartz spaces $\mathcal{S}(\mathbb{R})$ and $\mathcal{S}(\mathbb{R}^2)$. These are still isomorphic as topological inner product spaces. However, if we add the Lie algebra of the commutators $\frac{[X^i, P_j]}{\imath \hbar} = \delta^i_j I$, a linear transformation will not be able to change the number of generators, and therefore the spaces are no longer isomorphic. Specifying the algebra of observables is something we do anyway in physics, so the addition is exactly one of those changes that makes the math significantly sturdier while leaving the physicist puzzled, wondering why weren't we doing that already.
 
 \textbf{The physical meaning of topology.} The fix is not merely technical, it is also conceptual. Topologies in physical theories capture experimental verifiability, with open sets correspond to experimentally verifiable statements. [cite us, kevin kelly, ...] \footnote{A couple of mathematicians told us they introduce the subject that way.} Therefore, if a system is fully characterized by a set of defining observables and their probability distribution, it makes sense that their topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice. It also gives us a clean way to characterize the topology mathematically. Suppose $X$ and $P$ are defining operators. Since they are everywhere continuous, $X^nP^m$ are also everywhere continuous and so are the semi-norms $\|X^n P^m\psi\|$, which, it turns out, generate the topology. For position and momentum, then, one recovers the Schwartz space.
 
@@ -270,33 +273,40 @@ There are other conceptual problems. For example, $\<\psi \mid (X + I) \psi \>$ 
 
 \textbf{States without inner product.} We now want to peel the mathematical definition, layer by layer, to understand what mathematical requirement represent what physical condition. The first thing we should note that the construction of the projective space $V$ does not depend, nor require, an the inner product. Is stating that states are rays of a complex vector space enough to exclude classical mechanics? It turns out, it isn't.\footnote{A consequence of states being represented by rays this is that the linearity of the underlying vector space must be understood merely as mathematical convenience. Non-linear maps that preserve rays exist, and therefore they would preserve all the physics. A non-linear representation, then, is possible but uselessly inconvenient.}
 
-\begin{condition}[Quantum states are rays]{QP-RAY}
-	The state space of the system is represented by the projective space $\mathcal{P}(V)$ of a complex topological vector space $V$.
+\begin{condition}[Quantum state space only]{QP-RAY}
+	The state space of a quantum system is represented by the projective space $\mathcal{P}(V)$ of a complex topological vector space $V$.
 \end{condition}
 
-\begin{condition}[Classical state space]{CST}
-	The state space is represented by a symplectic manifold $(X,\omega)$. The count of configurations for each DOF over a region $\Sigma$ is given $\int_{\Sigma} \omega$ and the count of states is given by the Liouville measure $\mu(U) = \int_U \omega^n$.
-	
-	The ensemble space is represented by the set of probability distributions $\rho(x)$ (i.e. Radon-Nikodym derivative of probability measures that are absolutely continuous with respect to the Liouville measure).
-	
-	The conditional probability over states is given by $p(x_1 | x_2) = \delta_{x_1 x_2}$ for all $x_1, x_2 \in X$, meaning that all states represent mutually exclusive events.
+\begin{condition}[Classical state space only]{CP}
+	The state space of a classical system is represented by a symplectic manifold $(X,\omega)$.
+\end{condition}
+
+\begin{condition}[Classical-Quantum exclusivity]{CQE}
+	A system cannot be both classical and quantum.
 \end{condition}
 
 \begin{Theorem}
-	Conditions \ref{QP-RAY} and \ref{CST} are consistent.
+	Condition \ref{QP-RAY}+\ref{CP} is consistent with $\neg$\ref{CQE}.
 \end{Theorem}
 
-Finite-dimensional complex projective spaces are a symplectic manifold, therefore they allow classical Hamiltonian mechanics and classical statistical mechanics.  Therefore, when studying the classical Larmor precession, we can claim that the ``state of the magnetic dipole is a ray in a complex Hilbert space'' because the projective space for a two-dimensional quantum system is exactly a sphere, the Bloch sphere. In the infinite dimensional case, the projective space cease to be a manifold, which is a requirement for classical mechanics. It is an open question whether \ref{QP-RAY} would be compatible with a classical field theory in that case. Overall, the space of pure states is, in general, not enough even to distinguish between classical and quantum states.
+
+To prove the theorem, it suffices to show that there is a system, classical or quantum, whose state space can be both represented by a projective space and by a symplectic manifold. Finite-dimensional complex projective spaces are a symplectic manifold, therefore any finite dimensional quantum system will work. Furthermore, the state space of a classical magnetic dipole is a sphere, which can be represented by the complex projective line (i.e. a two-state quantum system). In general, the space of pure states is not enough even to distinguish between classical and quantum states.
 
 \textbf{Adding ensembles.} In the classical Larmor precession case, the space of ensembles would correspond to all the possible probability densities over the sphere. For qubit, the space of ensembles corresponds to the internal point of the ball. These are clearly two different spaces: the first is a convex subset of an infinite dimensional space while the second is a convex set of a three dimensional case. In fact, we have:
 
-\begin{condition}[Quantum ensembles are density operators]{QE-DENS}
-	The ensemble space of the system is represented by the set of density operators acting on a quantum vector space $V$;
+\begin{condition}[Quantum ensemble space]{QE-DENS}
+	The state space of a quantum system is represented by the projective space $\mathcal{P}(\mathcal{H})$ of a separable complex Hilbert space $\mathcal{H}$. The ensemble space is represented by the density operators $\mathcal{D}(\mathcal{H})$.
+\end{condition}
+
+\begin{condition}[Classical ensemble space]{CE}
+	The state space of a classical system is represented by a symplectic manifold $(X,\omega)$. The ensemble space is represented by the set of probability distributions $\rho(x)$ (i.e. Radon-Nikodym derivative of probability measures that are absolutely continuous with respect to the Liouville measure).
 \end{condition}
 
 \begin{Theorem}
-	Conditions \ref{QE-DENS} and \ref{CST} are inconsistent.
+	Condition \ref{QE-DENS}+\ref{CE} implies \ref{CQE} for every non-trivial system (i.e. state space has more than one state).
 \end{Theorem}
+
+The ensemble space allows us to distinguish the classical case from the quantum case because classical ensembles are characterized by a single distribution over states while non-trivial quantum ensembles admit infinitely many, equivalent decompositions. If the system is non-trivial, we can find a non-trivial ensemble and check for multiple decompositions.
 
 It is the space of ensembles, then, that gives us the first true difference between the space of classical and quantum states. This is only the first hint that both classical and quantum mechanics are, at their core, statistical theories.
 
