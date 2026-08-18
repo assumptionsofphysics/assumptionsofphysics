@@ -201,14 +201,14 @@ As a final note, we are openly looking for people interested in defining common 
 Note that the conditions are marked with [B]. In Reverse Physics, this marks \textbf{base conditions}, conditions that must hold in any well-formed physical theory. The collection of all base conditions form the base theory for all of physics, and every physical theory is a specialization of this base theory. One of the long-term goals of Reverse Physics is to find such base theory.
 
 Characterizing the use of Hilbert spaces in quantum mechanics leads to the following
-\begin{condition}[Quantum states on Hilbert space]{QST:H}
+\begin{condition}[Quantum states and observables]{QSTO:H}
 	The state space of a quantum system is represented by the projective space $\mathcal{P}(\mathcal{H})$ of a separable complex Hilbert space $\mathcal{H}$. The ensemble space is represented by the density operators $\mathcal{D}(\mathcal{H})$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$. The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
 \end{condition}
 \begin{Theorem}[Unphysicality of Hilbert spaces in quantum mechanics]
-	Condition \ref{QST:H} is inconsistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
+	Condition \ref{QSTO:H} is inconsistent with \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
 \end{Theorem}
 
-Since \ref{QST:H} applies to all quantum systems and base conditions apply to all physical theories, a single counter-example suffice to prove the inconsistency. For a violation of \ref{[B]COBS}, suppose $|i\>$ represents the i-th the energy level of a harmonic oscillator. The sequence $\sqrt{\frac{j-1}{j}}|0\> + \sqrt{\frac{1}{j}}|j\>$ converges to the ground state as $j \to \infty$, while the expectation of $N$ converges to $1$. \emph{Convergence to a state does not imply observable converge to those of that state.} This is precisely because, in the topology of a Hilbert space, only bounded operators are continuous and therefore all unbounded operators are not continuous.
+Since \ref{QSTO:H} applies to all quantum systems and base conditions apply to all physical theories, a single counter-example suffice to prove the inconsistency. For a violation of \ref{[B]COBS}, suppose $|i\>$ represents the i-th the energy level of a harmonic oscillator. The sequence $\sqrt{\frac{j-1}{j}}|0\> + \sqrt{\frac{1}{j}}|j\>$ converges to the ground state as $j \to \infty$, while the expectation of $N$ converges to $1$. \emph{Convergence to a state does not imply observable converge to those of that state.} This is precisely because, in the topology of a Hilbert space, only bounded operators are continuous and therefore all unbounded operators are not continuous.
 
 For a violation of \ref{[B]WDQ}, suppose a one-dimensional space, for simplicity, with two observers $X$ and $Y$ linked by the coordinate transformation $y(x) = \tan \left(\frac{\pi}{2} \erf(x) \right)$. A Guassian wave packet $\psi(x) = \sqrt{\frac{e^{-x^2}}{\sqrt{\pi}}}$ in the first frame will become $\phi(y) = \sqrt{\frac{1}{\pi (y^2 + 1)}}$ in the frame. The wavefunction will be in the domain of the position $X$ of the first observer but not in the domain of the position $Y$ of the second observer, since $\<Y\psi(y) \mid Y\psi(y)\>$ does not converge. \emph{Position is not defined in all frames.} The cause is that, in a Hilbert space, unbounded operators are not defined on the while space, and their domain can, in principle, even be disjoint.
 
@@ -238,16 +238,16 @@ It is fascinating that this point is better understood within economics than phy
 		\item the topology is the coarsest vector space topology making the defining observables and the inner product continuous.
 	\end{itemize}
 \end{Definition}
-\begin{condition}[Quantum states]{QST:V}
+\begin{condition}[Quantum states and observables]{QSTO:V}
 	The state space of a quantum system is represented by the projective space $\mathcal{P}(V)$ of a quantum vector space $V$. Observables are represented by continuous everywhere defined self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.  The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
 \end{condition}
 \begin{Theorem}[Partial physicality of quantum vector spaces]
-	Condition \ref{QST:V} implies \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
+	Condition \ref{QSTO:V} implies \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
 \end{Theorem}
 
-Note that conditions \ref{QST:H} and \ref{QST:V} have a semicolon. In Reverse Physics, this indicates alternative versions of the same condition. In fact, note that \ref{QST:V} still postulates a complex vector space, with a topology and an inner product that is continuous in that topology. The changes are, by design, as little as possible: since Hilbert spaces can be used despite their problems, ignoring the framework completely would be utterly foolish.
+Note that conditions \ref{QSTO:H} and \ref{QSTO:V} have a semicolon. In Reverse Physics, this indicates alternative versions of the same condition. In fact, note that \ref{QSTO:V} still postulates a complex vector space, with a topology and an inner product that is continuous in that topology. The changes are, by design, as little as possible: since Hilbert spaces can be used despite their problems, ignoring the framework completely would be utterly foolish.
 
-We can see that \ref{QST:V} guarantees the previous base conditions. Observables and inner product must be continuous, which addresses \ref{[B]COBS}. Observables must be defined for all states, therefore it is not possible for two frames to use different observable with different domains, which addresses \ref{[B]WDQ}. Moreover, two different systems will have either a different set of defining observables, or different commutation relationships, which solves \ref{[B]STDIST}.
+We can see that \ref{QSTO:V} guarantees the previous base conditions. Observables and inner product must be continuous, which addresses \ref{[B]COBS}. Observables must be defined for all states, therefore it is not possible for two frames to use different observable with different domains, which addresses \ref{[B]WDQ}. Moreover, two different systems will have either a different set of defining observables, or different commutation relationships, which solves \ref{[B]STDIST}.
 
 \textbf{The physical meaning of topology.} The fix is not merely technical, it is also conceptual. Topologies in physical theories capture experimental verifiability, with open sets correspond to experimentally verifiable statements. [cite us, kevin kelly, ...] \footnote{A couple of mathematicians told us they introduce the subject that way.} Therefore, if a system is fully characterized by a set of defining observables and their probability distributions, it makes sense that their topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice.
 
@@ -364,7 +364,7 @@ We now turn our attention to time evolution, for which we have the following res
 \end{condition}
 
 \begin{Theorem}
-	Over \ref{QST:H}+\ref{[B]EVMIX}+\ref{EVTI}, conditions \ref{DR-SCEQ}, \ref{DR-UNIT}, \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} are equivalent.
+	Over \ref{QSTO:H}+\ref{[B]EVMIX}+\ref{EVTI}, conditions \ref{DR-SCEQ}, \ref{DR-UNIT}, \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} are equivalent.
 \end{Theorem}
 
 The base condition \ref{[B]EVMIX} captures the idea that time evolution preserves statistical mixtures. If the statistical mixture represents lack of knowledge of the initial conditions, then this lack of knowledge has to be transported on the final state. Condition \ref{EVTI} restricts to the case in which the process is time independent. In this case, if we have a bijection between pure states, the affine continuity will force the evolution to be a unitary group. In this sense, condition \ref{[B]EVMIX} does most of the work. Conditions \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} just impose the bijection: \ref{DR-EV} does so directly; \ref{DR-PROB} through the Born rule, since $p(\psi|\phi) = 1 \iff \psi = \phi$; \ref{DR-INFO} through the entropy, because the entropy of an equal mixture of two pure states is an invertible function of the conditional probability between them. 
@@ -408,7 +408,7 @@ The theorem can be extended to the time dependent case, by requiring the evoluti
 \end{condition}
 
 \begin{Theorem}
-	Over \ref{QST:H}, conditions \ref{EQ-MEAS}, \ref{EQ-LIND} and \ref{EQ-HS} are equivalent. Over \ref{QST:H}+\ref{FD}, condition \ref{EQ-KL} is also equivalent to the others.
+	Over \ref{QSTO:H}, conditions \ref{EQ-MEAS}, \ref{EQ-LIND} and \ref{EQ-HS} are equivalent. Over \ref{QSTO:H}+\ref{FD}, condition \ref{EQ-KL} is also equivalent to the others.
 \end{Theorem}
 
 A nonselective projective measurements removes the off diagonal elements of the incoming state with respect to the spectral eigenspaces. A purely dissipative Lindblad process where $X$ is the jump operator does precisely that. More over, density operators that commute with $X$ are exactly those that are unchanged by nonselective projective measurements. Within those, the output is the closest one to the input in terms of the Hilbert-Schmidt distance, which is the inner product between density matrices, or, in finite dimension, of the relative entropy.
@@ -426,7 +426,7 @@ A nonselective projective measurements removes the off diagonal elements of the 
 \end{condition}
 
 \begin{Theorem}
-	Over \ref{QST:H}, conditions \ref{DR-UNIT} and \ref{DR-PROJ} are equivalent.
+	Over \ref{QSTO:H}, conditions \ref{DR-UNIT} and \ref{DR-PROJ} are equivalent.
 \end{Theorem}
 
 A state-adaptive projective process effectively is a measurement process where the choice of measurement depend on the initial state. Each incoming state, even mixed state, see a projective measurement, but each state may see a different projective measurement. To recover the unitary evolution, one repeats the process at each infinitesimal time-step in a way that the change is infinitesimal. This is similar to a quantum Zeno effect or quantum Zeno transport [cite].
@@ -452,7 +452,7 @@ The following result establishes the connection between classical and quantum me
 	The system can be approximated by a classical system for the problems at hand.
 \end{condition}
 \begin{Theorem}
-	Over \ref{QST:H}+\ref{1DOF}, the conditions \ref{CL-HBAR}, \ref{CL-HENT} and \ref{CL-CST} are equivalent.
+	Over \ref{QSTO:H}+\ref{1DOF}, the conditions \ref{CL-HBAR}, \ref{CL-HENT} and \ref{CL-CST} are equivalent.
 \end{Theorem}
 
 Since \ref{1DOF} is part of the base theory, it must hold in both the quantum and classical descriptions. Therefore, in the classical limit, the quantum commutator must reduce to the classical Poisson bracket. In the Weyl--Wigner representation, the quantum commutator is represented by the Moyal bracket\cite{Moyal1949}. A result from deformation theory states that, up to a change of representation, the Moyal bracket is the unique non-trivial formal differentiable deformation of the Poisson bracket on canonical phase space\cite{BayenEtAl1978I,Gutt1979,OvsienkoRoger1992}. Moreover, it reduces to the Poisson bracket when $\hbar$ becomes negligible\cite{hillery1984distribution}. Within this setting, conditions \ref{CL-CST} and \ref{CL-HBAR} therefore describe the same limit.
@@ -480,7 +480,7 @@ This results shows that quantum states can be characterized as three types of eq
 \end{condition}
 
 \begin{Theorem}
-	Condition \ref{QST:H} implies \ref{EE-DIN}, \ref{EE-MEAS} and \ref{EE-THER}.
+	Condition \ref{QSTO:H} implies \ref{EE-DIN}, \ref{EE-MEAS} and \ref{EE-THER}.
 \end{Theorem}
 
 For \ref{EE-DIN}, set $H=\rho$. Then $[H,\rho] = 0$, so $\rho$ is stationary. For \ref{EE-MEAS}, choose $X = \rho$. Then $[X,\rho] = 0$, so $\rho$ is a fixed point. For \ref{EE-THER}, if $\rho$ is full rank, choose $H=-\log\rho/\beta$ \cite{Wilming2017}. Then $e^{-\beta H}=\rho$ and $Z=\tr(\rho)=1$. Otherwise, use the same definition on the support of $\rho$ and assign energies $kn^2$ to an orthonormal basis of its kernel. The corresponding normalized Gibbs states converge to $\rho$ in Hilbert--Schmidt norm as $k\to\infty$, since $\sum_n e^{-\beta kn^2}\to0$.
