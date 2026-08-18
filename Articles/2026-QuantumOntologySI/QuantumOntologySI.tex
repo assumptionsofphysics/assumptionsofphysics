@@ -233,13 +233,13 @@ It is fascinating that this point is better understood within economics than phy
 \begin{Definition}
 	A \textbf{quantum vector space} is a complete second countable complex topological vector space $V$ that satisfies the following:
 	\begin{itemize}
-		\item $V$ is equipped with an inner product $\< \cdot , \cdot \> : V \times V \to \mathbb{C}$; an observable is a continuous everywhere defined self-adjoint linear operator $X : V \to V$
-		\item $V$ is equipped with a set of defining observables $\{X_i\}_{i \in I}$ satisfying a given Lie algebra of commutation relationships $\frac{[X_i, X_j]}{\imath \hbar} = \sum\limits_k C_{ij}^k X_k$
+		\item $V$ is equipped with an inner product $\< \cdot , \cdot \> : V \times V \to \mathbb{C}$
+		\item $V$ is equipped with a set of defining observables $\{X_i\}_{i \in I}$, which are everywhere defined self-adjoint linear operators $X_i : V \to V$, satisfying a given Lie algebra of commutation relationships $\frac{[X_i, X_j]}{\imath \hbar} = \sum\limits_k C_{ij}^k X_k$
 		\item the topology is the coarsest vector space topology making the defining observables and the inner product continuous.
 	\end{itemize}
 \end{Definition}
 \begin{condition}[Quantum states]{QST:V}
-	The state space of a quantum system is represented by the projective space $\mathcal{P}(V)$ of a quantum vector space $V$. The ensemble space is represented by the density operators $\mathcal{D}(V)$. Observables are represented by self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.  The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
+	The state space of a quantum system is represented by the projective space $\mathcal{P}(V)$ of a quantum vector space $V$. The ensemble space is represented by the density operators $\mathcal{D}(V)$. Observables are represented by continuous everywhere defined self-adjoint operators. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.  The entropy is given by the von Neumann entropy: $S(\rho) = -\tr(\rho \log \rho)$.
 \end{condition}
 \begin{Theorem}[Partial physicality of quantum vector spaces]
 	Condition \ref{QST:V} implies \ref{[B]COBS}, \ref{[B]WDQ} and \ref{[B]STDIST}.
