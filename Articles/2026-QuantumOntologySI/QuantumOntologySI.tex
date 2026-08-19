@@ -55,7 +55,7 @@
 %\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{Gabriele Carcassi $^{1}$\orcidA{}, Tobias Thrien $^{2}$ and Christine A. Aidala $^{2,}$*}
+\Author{Gabriele Carcassi $^{1}$\orcidA{}, Tobias Thrien $^{2}$ and Christine A. Aidala $^{3,}$*}
 
 %\longauthorlist{yes}
 
@@ -136,7 +136,15 @@ $^{2}$ \quad Affiliation 2; e-mail@e-mail.com}
 
 \section{Introduction}
 
+The core question around this special issue is: ``What kinds of entities does quantum mechanics refer to?'' The fact that, after one hundred year from the birth of the theory, this question still has not conclusive answer, should force us to step back and ask: ``What methodology is being used to answer this question? Is it appropriate? How does it compare to other methodologies used in foundational disciplines?''
 
+Interpretations and reconstructions of quantum mechanics seem to be the most used methods, but they both suffer similar issues. First of all, they proceed as though we have already identified the appropriate mathematical entities that \emph{can} map one-to-one to physical entities, and it is just a matter of giving them physical meaning or an alternative definition. But known open problems show that we are not in that position. In fact, we argue that a better understanding of the physics is required to inform what the correct mathematical structures should be. A second problem is that, most of the time, the ontology of an interpretation or the different starting point of a reconstruction are chosen, effectively, as a matter of preference. One may privilege information theoretic aspects; another wants a realist answer to the measurement problem; yet another focus on mathematical rigor, with the physics only appearing after 120 pages of theorems. We do not contend that everyone is entitled to each approach. The issue is that, in practice, even understanding exactly the result and limitations of one approach requires significant investment, and it is even more difficult to make comparison. A third problem is that many claims remain specific to the approach and cannot serve as a common basis. If one introduces entities that, by their definition, are not experimentally accessible, there will never be experimental evidence for them, and the experimental physicists will see no use for them. Some moves work very well in finite dimensional systems, but do not carry to infinite dimensional ones. Some work in the other way. Interpretations and reconstructions that are based on those moves cannot provide insights that are general. Our conclusion, then, is that these methodologies are unlikely to provide incontrovertible results that can reach a broad consensus.
+
+If we look at the foundation of mathematics, while there are very different school of thoughts on what should be accepted as mathematics, there is tacit agreement that there must be some logic system that provides well-defined sentences and rules of inference, and a set of axioms on the objects those sentences describe. One may accept or not accept the law of the excluded middle or the Axiom of Countable Choice, but he will will agree that, if one or the other is accepted, it will have consequences. The aim of Reverse Physics is to perform similar analysis for all physical theories, providing stable common results that one can use freely in their interpretation, reconstructions or as insights for future theories. With that in mind, Reverse Physics aims to be practical. Each result should be expressible and provable with standard tools, available to anyone with a advanced undergrad background in math and physics, and cleanly extractable from the overall framework. 
+
+In this paper, we will see how the methodology is being applied to quantum mechanics by presenting a series of results. Many of these have been separately made available, either through publication or through our website, to test the methodology and gather feedback. In section two we will give a brief introduction to Reverse Physics. In section three we will see that Hilbert spaces fail to respect basic physical conditions. In section four we see a way to partly fix the vector space formulation. In section five we see that it the convex structure of statistical ensembles that differentiate quantum from classical mechanics. In section six we see that the Born is independent of said structure, and forces orthogonality to correspond to mutual exclusivity. In section seven we see that unitary evolution is exactly deterministic and reversible evolution. In section eight we see that nonselective projective measurements are equilibrations, they can be understood as the limit of an open evolution and that unitary evolution can be seen as an infinite sequence of infinitesimal measurements. In section nine se wee that classical mechanics can be recovered as the high-entropy limit of quantum mechanics. In section ten we see that all states, including pure once, are dynamical, statistical and approximately thermodynamic equilibria. Since all these results strictly follow both the mathematics and the physics, they can inform all interpretation and reconstructions.
+
+These results are part of an open research program called Assumptions of Physics. All these results and more will be collected in our open source and open access book. The proofs are left in the appendix, which is effectively a collection of the notes that are already available through our website. We are constantly looking for people from different background interested in carrying out this research program.
 
 \section{Introduction to Reverse Physics}
 
@@ -481,40 +489,32 @@ This results shows that quantum states can be characterized as three types of eq
 
 For \ref{EE-DIN}, set $H=\rho$. Then $[H,\rho] = 0$, so $\rho$ is stationary. For \ref{EE-MEAS}, choose $X = \rho$. Then $[X,\rho] = 0$, so $\rho$ is a fixed point. For \ref{EE-THER}, if $\rho$ is full rank, choose $H=-\log\rho/\beta$ \cite{Wilming2017}. Then $e^{-\beta H}=\rho$ and $Z=\tr(\rho)=1$. Otherwise, use the same definition on the support of $\rho$ and assign energies $kn^2$ to an orthonormal basis of its kernel. The corresponding normalized Gibbs states converge to $\rho$ in Hilbert--Schmidt norm as $k\to\infty$, since $\sum_n e^{-\beta kn^2}\to0$.
 
-\textbf{States as ensemble.} Since the above result holds in quantum theory, it has to hold in any interpretation. Therefore, a minimal ensemble interpretation is unavoidable. The math and physics, then, points to a fundamentality of the concept of ensemble which, in retrospect, is philosophycally obvious. If scientific laws are about relationships that can always be experimentally reproduce, the objects of those relationship are not the single instances of the replications, but rather the infinite collection of all past, present and future replications. The state of the system in a physical law, then, cannot describe a complete picture of the system, but only those aspect that can be replicated experimentally. The zero bound on the entropy precisely divides what information is reliable accessible through all experimentation. This lower bound is not epistemic, but determined by the physical processes that act on the system. We aim to fully develop these philosophical ideas in future, hopefully in collaboration with other philosophers of science.
-
-\section{Discussion}
-
+\textbf{States as ensemble.} Since the above result holds in quantum theory, it has to hold in any interpretation. Therefore, a minimal ensemble interpretation is unavoidable. The math and physics, then, points to a fundamentality of the concept of ensemble which, in retrospect, is philosophycally obvious. If scientific laws are about relationships that can always be experimentally reproduce, the objects of those relationship are not the single instances of the replications, but rather the infinite collection of all past, present and future replications. The state of the system in a physical law, then, cannot describe a complete picture of the system, but only those aspect that can be replicated experimentally. The zero bound on the entropy precisely divides what information is reliable accessible through all experimentation. This lower bound is not epistemic, but determined by the physical processes that act on the system. We aim to fully develop these philosophical ideas in future, hopefully in collaboration with other philosophers of science, and to use them as a foundation for a more cohesive mathematical framework.
 
 \section{Conclusions}
 
+In this paper we have shown how Reverse Physics leads a series of results on the foundation of quantum mechanics that helps better characterize each element of the theory. It does so by breaking up the theory in a series of different conditions, some mathematical and some physical, and study their logical relationship. Base conditions are those that must be present in every well-defined physical theory, and be used to examine the physical suitability of current and future mathematical structure. We have seen that it is the convex space of statistical ensembles, not the space of pure state, that differentiates quantum from classical mechanics, and that the Born rule is an additional, independent, assumption equivalent to assuming orthogonality represent mutual exclusivity. Unitary evolution is equivalent to deterministic and reversible evolution and nonselective projective measurement to a particular type of equilibration process. This equilibration process can be described as the limit of an open evolution, while unitary evolution can be described as an infinitesimal sequence of infinitesimal equilibration process. This means that unitary evolution and projective measurements can be reconciled with each other. The classical limit can be recovered as the high entropy limit of quantum mechanics, and all states, including pure one, are dynamical, statistical and approximately thermodynamic equilibria.
 
-\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
+These results consistently point in the direction that quantum states should be understood as ensembles, which is likely to guide both a better understanding of the theory and a more precise mathematical characterization. Moreover, since the conditions studied are routinely used in theoretical and experimental practice, any interpretation or reconstruction consistent with those conditions must also be consistent with the results presented here. These insights can therefore be productively used to pursue more targeted foundational questions.
 
-\funding{Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.}
 
-\institutionalreview{In this section, please add the Institutional Review Board Statement and approval number for studies involving humans or animals. You might choose to exclude this statement if the study did not require ethical approval. Please note that the Editorial Office might ask you for further information. Please add ``The study was conducted in accordance with the Declaration of Helsinki, and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving humans OR ``The animal study protocol was approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving animals OR ``Ethical review and approval were waived for this study due to REASON (please provide a detailed justification).” OR ``Not applicable.” for studies not involving humans or animals.}
+\authorcontributions{TBD}
 
-\informedconsent{Any research article describing a study involving humans should contain this statement. Please add ``Informed consent was obtained from all subjects involved in the study.'' OR ``Patient consent was waived due to REASON (please provide a detailed justification).'' OR ``Not applicable'' for studies not involving humans. You might also choose to exclude this statement if the study did not involve humans.
+%For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.
 
-Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves). Please state ``Written informed consent has been obtained from the patient(s) to publish this paper.” if applicable.}
+\funding{TBD}
 
-\dataavailability{We encourage all authors of articles published in MDPI journals to share their research data. In this section, please provide details regarding where data supporting reported results can be found, including links to publicly archived datasets analyzed or generated during the study. Where no new data were created, or where data are unavailable due to privacy or ethical restrictions, a statement is still required. Suggested Data Availability Statements are available in the section ``MDPI Research Data Policies” at \url{https://www.mdpi.com/ethics}.} 
+%Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.
 
-%\durcstatement{Current research is limited to the [please insert a specific academic field, e.g., XXX], which is beneficial [share benefits and/or primary use] and does not pose a threat to public health or national security. Authors acknowledge the dual-use potential of the research involving xxx and confirm that all necessary precautions have been taken to prevent potential misuse. As an ethical responsibility, authors strictly adhere to relevant national and international laws about DURC. Authors advocate for responsible deployment, ethical considerations, regulatory compliance, and transparent reporting to mitigate misuse risks and foster beneficial outcomes.}
+\institutionalreview{Not applicable.}
 
-% Only for journal Nursing Reports
-%\publicinvolvement{Please describe how the public (patients, consumers, carers) were involved in the research. Consider reporting against the GRIPP2 (Guidance for Reporting Involvement of Patients and the Public) checklist. If the public were not involved in any aspect of the research add: ``No public involvement in any aspect of this research''.}
-%
-%% Only for journal Nursing Reports
-%\guidelinesstandards{Please add a statement indicating which reporting guideline was used when drafting the report. For example, ``This manuscript was drafted against the XXX (the full name of reporting guidelines and citation) for XXX (type of research) research''. A complete list of reporting guidelines can be accessed via the equator network: \url{https://www.equator-network.org/}.}
-%
-%% Only for journal Nursing Reports
-%\useofartificialintelligence{Please describe in detail any and all uses of artificial intelligence (AI) or AI-assisted tools used in the preparation of the manuscript. This may include, but is not limited to, language translation, language editing and grammar, or generating text. Alternatively, please state that “AI or AI-assisted tools were not used in drafting any aspect of this manuscript”.}
+\informedconsent{Not applicable.}
 
-\acknowledgments{In this section, you can acknowledge any support given that is not covered by the author contribution or funding sections. This may include administrative and technical support, or donations in kind (e.g., materials used for experiments). Where GenAI has been used for purposes such as generating text, data, or graphics, or for study design, data collection, analysis, or interpretation of data, please add ``During the preparation of this manuscript/study, the author(s) used [tool name, version information] for the purposes of [description of use]. The authors have reviewed and edited the output and take full responsibility for the content of this publication.”}
+\dataavailability{This study generated no data.} 
 
-\conflictsofinterest{Declare conflicts of interest or state ``The authors declare no conflicts of interest.” Authors must identify and declare any personal circumstances or interests that may be perceived as inappropriately influencing the representation or interpretation of reported research results. Any role of the funders in the design of the study; in the collection, analyses or interpretation of data; in the writing of the manuscript; or in the decision to publish the results must be declared in this section. If there is no role, please state ``The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the~results”.} 
+\acknowledgments{This paper is part of the ongoing open research program \emph{Assumptions of Physics}\cite{aop-book}.}
+
+\conflictsofinterest{The authors declare no conflicts of interest.} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optional
@@ -527,10 +527,7 @@ The following abbreviations are used in this manuscript:\\
 
 \noindent 
 \begin{tabular}{@{}ll}
-MDPI & Multidisciplinary Digital Publishing Institute\\
-DOAJ & Directory of open access journals\\
-TLA   & Three-letter acronym\\
-LD      & Linear dichroism
+DOF & Degree Of Freedom\\
 \end{tabular}
 }
 
@@ -541,26 +538,6 @@ LD      & Linear dichroism
 \appendix
 \section[\appendixname~\thesection]{Proofs}
 \subsection[\appendixname~\thesubsection]{Time evolution}
-
-
-The appendix is an optional section that can contain details and data supplemental to the main text---for example, explanations of experimental details that would disrupt the flow of the main text but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data are shown in the main text can be added here if brief, or as Supplementary Materials. Mathematical proofs of results not central to the paper can be added as an appendix.
-
-\begin{table}[H] 
-\caption{This is a table caption.\label{tab5}}
-%\newcolumntype{C}{>{\centering\arraybackslash}X}
-\begin{tabularx}{\textwidth}{CCC}
-\toprule
-\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}\\
-\midrule
-Entry 1		& Data			& Data\\
-Entry 2		& Data			& Data\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section[\appendixname~\thesection]{}
-
-All appendix sections must be cited in the main text. In the appendices, figures, tables, etc., should be labeled starting with “A”, e.g., Figure A1, Figure A2, etc.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\isPreprints{}{% This command is only used for ``preprints''.
