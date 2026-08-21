@@ -342,7 +342,7 @@ Theorems and derivations of the Born rule, like Gleason's theorem, or some appro
 
 \section{Unitaries as deterministic and reversible processes}
 
-We now turn our attention to time evolution, for which we have the following result.
+We now turn our attention to time evolution, for which we have the following result \cite{Carcassi2026SchroedingerCharacterizations,Carcassi2026UnitaryEntropy}.
 \begin{condition}[Evolution preserves statistical mixtures]{[B]EVMIX}
 	The evolution of a statistical mixture is the statistical mixture of the evolutions. That is, let $\mathcal{D}$ be the ensemble space of the system. The evolution from each $t_0$ to each $t_1$, with $t_1\geq t_0$, is given by an affine map $\Phi_{t_0 \to t_1}:\mathcal{D}\to \mathcal{D}$ such that $\Phi_{t_0 \to t_0}=I$, $\Phi_{t_1 \to t_2}\circ \Phi_{t_0 \to t_1}=\Phi_{t_0 \to t_2}$ and $(\rho,t_0,t_1)\mapsto \Phi_{t_0 \to t_1}(\rho)$ is jointly continuous.
 \end{condition}
@@ -379,9 +379,9 @@ The base condition \ref{[B]EVMIX} captures the idea that time evolution preserve
 
 The theorem can be extended to the time-dependent case by requiring the evolution to be differentiable instead of time independent (i.e. a differentiable unitary propagator). Physically, this effectively means that the time dependence is slow enough that, at some small scale, the evolution can be approximated by time-independent evolution.
 
-\textbf{Applicability of unitary evolution.} The above results make it clear that the Schrödinger equation applies, and only applies, to deterministic and reversible systems: when the evolution of the system depends, and only depends, on itself. Any open evolution is necessarily not unitary, and a measurement is necessarily not a closed evolution since the system must interact with the probe.
+\textbf{Applicability of unitary evolution.} The above results make it clear that the Schrödinger equation applies, and only applies, to deterministic and reversible systems: when the evolution of the system depends, and only depends, on itself. Any open evolution, then, is necessarily not unitary, and a measurement is necessarily not a closed evolution since the system must interact with the probe \cite{nielsen2010quantum,BreuerPetruccione2002}.
 
-\textbf{Determinism and reversibility for ensembles.} If the state is an ensemble, deterministic and reversible evolution does not mean that there is no stochastic component in the system-environment interaction. The stochastic component can simply remain within the uncertainty of the initial ensemble, like for a stochastic equilibrium. Therefore, the evolution can also be understood as the quasi-static evolution of stochastic equilibria.
+\textbf{Determinism and reversibility for ensembles.} If the state is an ensemble, deterministic and reversible evolution does not mean that there is no stochastic component in the system-environment interaction. The stochastic component can simply remain within the uncertainty of the initial ensemble, like for a stochastic equilibrium \cite{Nelson1966}. Therefore, the evolution can also be understood as the quasi-static evolution of stochastic equilibria \cite{Pavliotis2014,MaesNetocny2014}.
 
 %But this presents a conceptual problem: how can we claim that the system is isolated when its evolution depends on the Hamiltonian, which is not uniquely determined by the system, but by its interaction with the environment? These are the types of conceptual, philosophical problems that Reverse Physics aims to bring to light, showing, once again, that physics, math and philosophy need to work together if we are to find a final solution.
 
