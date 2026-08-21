@@ -188,7 +188,7 @@ As we will see, Reverse Physics for quantum mechanics is significantly harder: t
 
 As part of our strategy, we only look for ideas that can, at least potentially, be made mathematically precise, physically meaningful and philosophically consistent.\footnote{One may argue that these ideas may not exist. This is a self-fulfilling prophecy: they can only be found if one is looking for them.} However, it has to be clear that physics is the driving force. Since the physics clearly works experimentally, if the math or the philosophy do not, it follows that the latter need to be aligned. Therefore, if our favorite mathematical tool or philosophical position clashes with some of the Reverse Physics results, it needs to be either abandoned or, more likely, amended.
 
-As a final note, we are openly looking for people interested in defining common conventions and rules within Reverse Physics. This will be an iterative process, as we learn which strategies and techniques are most effective.
+The examples that follow illustrate the range of logical relationships that Reverse Physics can expose: consistency or inconsistency with physical requirements, implication, independence and equivalence between mathematical and physical conditions.
 
 \section{The problem with Hilbert spaces}
 
@@ -330,6 +330,8 @@ Classical ensembles are characterized by a single distribution over states while
 	Over \ref{QE-DENS}+\ref{[B]MUTEX}+\ref{[B]PMIX}, conditions \ref{BR-BORN}, \ref{BR-ENT} and \ref{BR-ORME} are equivalent. Moreover, \ref{BR-BORN} is independent of \ref{QE-DENS}+\ref{[B]MUTEX}+\ref{[B]PMIX}.
 \end{Theorem}
 
+This type of result is characteristic of Reverse Physics: structures normally packaged together in the standard formulation are separated and shown to represent different assumptions.
+
 Condition \ref{[B]MUTEX} captures the idea that the same concept, the mutual exclusivity of preparations $A$ and $B$, can be characterized in two other equivalent ways. In terms of conditional probability, if we prepared $A$, there is zero probability of finding something that $B$ could have prepared; in terms of information entropy, we can use $A$ and $B$ to transfer a whole bit of entropy. Since these are necessary properties of mutual exclusivity, \ref{[B]MUTEX} is a base condition. The equivalence between \ref{BR-BORN} and \ref{BR-ENT} stems from the fact that the conditional probability between two states is an invertible function of the entropy of their equal mixture. Note that \ref{BR-BORN} implies that orthogonal states are mutually exclusive, and therefore \ref{BR-ORME}. Since every density operator can be orthogonally decomposed, \ref{BR-ORME} implies \ref{BR-ENT} through \ref{[B]MUTEX}.
 
 The Born rule, then, has the implicit assumption that mutually exclusive preparations exist, which is not required by \ref{QE-DENS}. As a counterexample, consider the Bloch sphere and ball as the state and ensemble spaces for a two-state system. This state space assumes that the pure states are reachable. Now, suppose there is an entropy cutoff because of unavoidable noise. The reachable space, then, is a smaller ball centered at the origin. In that case, the state space $\mathcal{P}$ is the inner sphere, while $\mathcal{D}$ is the inner ball. While each state in $\mathcal{P}$ can still be reconstructed statistically through tomography, it cannot be confirmed with a single-shot measurement because of the noise. Similarly, no pair of preparations would allow the reliable transfer of one bit. Since the full and the cutoff balls are affinely isomorphic, \ref{QE-DENS} is still valid. In general, we do not see (yet) any fundamental reason why the existence of mutually exclusive states should be imposed a priori, and it may be that state spaces in a future more fundamental theory do not have this property.
@@ -374,6 +376,8 @@ We now turn our attention to time evolution, for which we have the following res
 \begin{Theorem}
 	Over \ref{QSTO:H}+\ref{[B]EVMIX}+\ref{EVTI}, conditions \ref{DR-SCEQ}, \ref{DR-UNIT}, \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} are equivalent.
 \end{Theorem}
+
+This illustrates the role of explicitly stating the background assumptions: the conservation conditions become equivalent to unitary evolution only after evolution of mixtures and time independence have been assumed.
 
 The base condition \ref{[B]EVMIX} captures the idea that time evolution preserves statistical mixtures. If the statistical mixture represents lack of knowledge of the initial conditions, then this lack of knowledge has to be transported to the final state. Condition \ref{EVTI} restricts to the case in which the process is time independent. In this case, if we have a bijection between pure states, the affine continuity will force the evolution to be a unitary group. In this sense, condition \ref{[B]EVMIX} does most of the work. Conditions \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} just impose the bijection: \ref{DR-EV} does so directly; \ref{DR-PROB} through the Born rule, since $p(\psi|\phi) = 1 \iff \psi = \phi$; \ref{DR-INFO} through the entropy, because the entropy of an equal mixture of two pure states is an invertible function of the conditional probability between them.
 
@@ -459,6 +463,8 @@ The following result establishes the connection between classical and quantum me
 	Over \ref{QSTO:H}+\ref{1DOF}, the conditions \ref{CL-HBAR}, \ref{CL-HENT} and \ref{CL-CST} are equivalent.
 \end{Theorem}
 
+This is an example of cross-theory comparison that makes explicit the shared physical structure being preserved: the Lie bracket.
+
 Since \ref{1DOF} is part of the base theory, it must hold in both the quantum and classical descriptions. Therefore, in the classical limit, the quantum commutator must reduce to the classical Poisson bracket. In the Weyl--Wigner representation, the quantum commutator is represented by the Moyal bracket\cite{Moyal1949}. A result from deformation theory states that, up to a change of representation, the Moyal bracket is the unique non-trivial formal differentiable deformation of the Poisson bracket on canonical phase space\cite{BayenEtAl1978I,Gutt1979,OvsienkoRoger1992}. Moreover, it reduces to the Poisson bracket when $\hbar$ becomes negligible\cite{hillery1984distribution}. Within this setting, conditions \ref{CL-CST} and \ref{CL-HBAR} therefore describe the same limit.
 
 To connect this limit to entropy, consider the Lindblad evolution given by $H=0$ and $L=a^\dagger$\cite{aop-phys-ClassicalHighEntropyLimit}. This channel stretches both position and momentum by $\sqrt{\lambda}$, increases entropy and suppresses the negative regions of the Wigner function in the limit $\lambda\to\infty$. The same transformation can instead be described using the rescaled observables $\hat X=X/\sqrt{\lambda}$ and $\hat P=P/\sqrt{\lambda}$. These satisfy $[\hat X,\hat P]=\imath\hbar/\lambda$, so increasing the entropy through $\lambda\to\infty$ is equivalent to taking the effective value of $\hbar$ to zero. In entropic terms, this shifts the entropy assigned to the pure-state scale from zero to $-\log\lambda$, which tends to minus infinity. Every finite entropy is therefore high relative to the entropy of pure states.\footnote{This is analogous to setting $c\to\infty$ in the non-relativistic limit: one does not change the physical constant, but expresses the approximation by moving the limiting scale infinitely far away.} Conditions \ref{CL-HBAR} and \ref{CL-HENT} therefore describe the same limit.
@@ -469,7 +475,7 @@ To connect this limit to entropy, consider the Lindblad evolution given by $H=0$
 
 \section{States as ensembles in equilibrium}
 
-This result shows that quantum states can be characterized as three types of equilibria.
+This result shows that quantum states can be characterized as three types of equilibria, and that the same mathematical condition can have multiple physical consequences.
 
 \begin{condition}[Dynamical equilibrium]{EE-DIN}
 	Every ensemble $\rho$ is the dynamical equilibrium of some unitary process.
