@@ -192,7 +192,7 @@ As a final note, we are openly looking for people interested in defining common 
 
 \section{The problem with Hilbert spaces}
 
-\textbf{Unphysicality of Hilbert spaces.} A successful interpretation or reconstruction of quantum mechanics relies on the suitability of the mathematical structure to represent the corresponding physical objects. However, the following result shows that the Hilbert space formulation of quantum mechanics presents problems in that respect.
+\textbf{Unphysicality of Hilbert spaces.} A successful interpretation or reconstruction of quantum mechanics relies on the suitability of the mathematical structure to represent the corresponding physical objects. However, the following result shows that the Hilbert space formulation of quantum mechanics presents problems in that respect \cite{CarcassiCalderonAidala2025}.
 
 \begin{condition}[Continuity of measurable quantities]{[B]COBS}
  	Small state changes lead to small changes of measurable quantities. That is, the expectation of a quantity is a continuous function of the state.
@@ -222,12 +222,12 @@ For a violation of \ref{[B]WDQ}, suppose a one-dimensional space, for simplicity
 
 For a violation of \ref{[B]STDIST}, consider the space $L^2(\mathbb{R})$ for a single DOF and the space $L^2(\mathbb{R}^n)$ for $n$ DOF. Since they are both infinite-dimensional and separable, they are isomorphic as Hilbert spaces. Therefore, mathematically, the spaces are indistinguishable. \emph{The state space of a single particle is indistinguishable from the space of all the particles in the universe.} The cause is that the definition does not capture enough information to characterize the physical system.
 
-\textbf{Accidents of time.} The use of Hilbert space in quantum mechanics seems to be dogmatically accepted by the majority of physicists, mathematicians and philosophers of physics, even those that work on foundational issues, even though it is known that there are problems, especially in quantum field theory, and even though von Neumann, the creator of the formalism, later stated:[quote Redei]
+\textbf{Accidents of time.} The use of Hilbert space in quantum mechanics seems to be dogmatically accepted by the majority of physicists, mathematicians and philosophers of physics, even those that work on foundational issues \cite{Halvorson2011}, even though it is known that there are problems, especially in quantum field theory, and even though von Neumann, the creator of the formalism, later stated \cite{Redei1996}:
 \begin{quote}
 	``I would like to make a confession which may seem immoral: I do not believe absolutely in Hilbert space any more.''
 \end{quote}
 
-Many consider these problems, such as the lack of convergence above, as merely mathematical ones. As Aliprantis and Border state: [cite Hitchhiker's guide]
+Many consider these problems, such as the lack of convergence above, as merely mathematical ones. But as Aliprantis and Border state \cite[p. 163]{AliprantisBorder2006}:
 \begin{quote}
 	Since there is more than one topology of interest on an infinite dimensional space, the choice of topology is a key modeling decision that can have economic as well as technical consequences.
 \end{quote}
@@ -257,7 +257,7 @@ Note that conditions \ref{QSTO:H} and \ref{QSTO:V} have a colon. In Reverse Phys
 
 We can see that \ref{QSTO:V} guarantees the previous base conditions. Observables and the inner product must be continuous, which addresses \ref{[B]COBS}. Observables must be defined for all states; therefore, it is not possible for two frames to use different observables with different domains, which addresses \ref{[B]WDQ}. Moreover, two different systems will have either a different set of defining observables or different commutation relationships, which solves \ref{[B]STDIST}.
 
-\textbf{The physical meaning of topology.} The fix is not merely technical; it is also conceptual. Topologies in physical theories capture experimental verifiability, with open sets corresponding to experimentally verifiable statements. [cite us, kevin kelly, ...] \footnote{A couple of mathematicians told us they introduce the subject that way.} Therefore, if a system is fully characterized by a set of defining observables and their probability distributions, it makes sense that its topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice.
+\textbf{The physical meaning of topology.} The fix is not merely technical; it is also conceptual. Topologies in physical theories capture experimental verifiability, with open sets corresponding to experimentally verifiable statements \cite{aop-book,aop-math-topologydistinguishability,Kelly1996,GeninKelly2017,Vickers1989}. Therefore, if a system is fully characterized by a set of defining observables and their probability distributions, it makes sense that its topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice.
 
 Now, the above is only a partial solution that solves some problems and opens others. But the result stands, and it starts giving us some insight into why the problem exists and how, in a final solution, it should be solved. The topology must be connected to observables, and the definition of the state must include their Lie algebra. For the rest of the paper, we will go back to analyzing the Hilbert space formalism itself, identifying what parts are actually physically interesting and significant.
 
