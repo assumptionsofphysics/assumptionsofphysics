@@ -259,7 +259,7 @@ We can see that \ref{QSTO:V} guarantees the previous base conditions. Observable
 
 \textbf{The physical meaning of topology.} The fix is not merely technical; it is also conceptual. Topologies in physical theories capture experimental verifiability, with open sets corresponding to experimentally verifiable statements \cite{aop-book,aop-math-topologydistinguishability,Kelly1996,GeninKelly2017,Vickers1989}. Therefore, if a system is fully characterized by a set of defining observables and their probability distributions, it makes sense that its topology (i.e. how we identify states experimentally) is fully characterized by the observables and the Born rule (i.e. the inner product). The above definition, then, is both justified on physical grounds and works in practice.
 
-Now, the above is only a partial solution that solves some problems and opens others. But the result stands, and it starts giving us some insight into why the problem exists and how, in a final solution, it should be solved. The topology must be connected to observables, and the definition of the state must include their Lie algebra. For the rest of the paper, we will go back to analyzing the Hilbert space formalism itself, identifying what parts are actually physically interesting and significant.
+Now, the above is only a partial solution that solves some problems and opens others.\footnote{For example, we need a way to define density operators without direct reference to the spectral theorem. Also, dimensional analysis is, strictly speaking, incompatible with observables being linear operators.} But the result stands, and it starts giving us some insight into why the problem exists and how, in a final solution, it should be solved. The topology must be connected to observables, and the definition of the state must include their Lie algebra. For the rest of the paper, we will go back to analyzing the Hilbert space formalism itself, identifying what parts are actually physically interesting and significant.
 
 \section{Pure states are not enough}
 
@@ -291,16 +291,16 @@ To prove the theorem, it suffices to show that there is a system, classical or q
 \end{condition}
 
 \begin{condition}[Classical ensemble space]{CE}
-	The state space of a classical system is represented by a symplectic manifold $(X,\omega)$. The ensemble space is represented by the set of probability distributions $\rho(x)$ (i.e. Radon--Nikodym derivatives of probability measures that are absolutely continuous with respect to the Liouville measure).
+	The state space of a classical system is represented by a symplectic manifold $(X,\omega)$. The ensemble space is represented by the set of probability distributions $\rho(q^i,p_j)$ (i.e. Radon--Nikodym derivatives of probability measures that are absolutely continuous with respect to the Liouville measure).
 \end{condition}
 
 \begin{Theorem}
 	Condition \ref{QE-DENS}+\ref{CE} implies \ref{CQE} for every non-trivial system (i.e. the state space has more than one state).
 \end{Theorem}
 
-Classical ensembles are characterized by a single distribution over states while non-trivial quantum ensembles admit infinitely many, equivalent decompositions \cite{BengtssonZyczkowski2017,Kupsch1998}. If the system is non-trivial, we can find a non-trivial ensemble and check for multiple decompositions.
+Classical ensembles are characterized by a single distribution over states while non-trivial quantum ensembles admit infinitely many, equivalent decompositions \cite{BengtssonZyczkowski2017,Kupsch1998}. If the system is non-trivial, we can find a non-trivial ensemble and check for multiple decompositions to determine whether the system is classical or not.
 
-\textbf{Convex space of ensembles.} The space of ensembles, in fact, must have a \textbf{convex structure} where convex combinations $\sum_i p_i \rho_i$ represent statistical mixtures. In this structure, we can see that quantum ensembles allow multiple decompositions in terms of pure states,\footnote{Another result in Reverse Physics is that superpositions of state vectors exactly correspond to multiple decompositions of ensembles \cite{CarcassiCalderonAidala2025,Carcassi2026Superpositions}.} while classical ensembles do not.\footnote{The space of classical ensembles is akin to a Choquet simplex, while the quantum one isn't.} This last property is what allows us to treat a classical system as being in a particular well-defined, if unknown, state; the lack of this property is exactly why this does not work in quantum mechanics \cite{Kupsch1998}. The uncertainty over two particular states becomes uncertainty over any superposition of those two states.
+\textbf{Convex space of ensembles.} The space of ensembles, in fact, must have a \textbf{convex structure} where convex combinations (i.e. $\sum_i p_i \rho_i$ with $\sum_i p_i = 1$ and $p_i\geq 0$) represent statistical mixtures. In this structure, we can see that quantum ensembles allow multiple decompositions in terms of pure states,\footnote{Another result in Reverse Physics is that superpositions of state vectors exactly correspond to multiple decompositions of ensembles \cite{CarcassiCalderonAidala2025,Carcassi2026Superpositions}.} while classical ensembles do not.\footnote{The space of classical ensembles is akin to a Choquet simplex, while the quantum one isn't.} This last property is what allows us to treat a classical system as being in a particular well-defined, if unknown, state; the lack of this property is exactly why this does not work in quantum mechanics \cite{Kupsch1998}. The uncertainty over two particular states becomes uncertainty over any superposition of those two states.
 
 \section{Orthogonality and mutual exclusivity}
 
