@@ -56,7 +56,7 @@
 \newcommand{\orcidauthorC}{0000-0001-9540-4988}
 
 % Authors, for the paper (add full first names)
-\Author{Gabriele Carcassi $^{\orcidA{}}$, Tobias Thrien $^{\orcidB{}}$ and Christine A. Aidala $^{*\orcidC{}}$}
+\Author{Gabriele Carcassi $^{*\orcidA{}}$, Tobias Thrien $^{\orcidB{}}$ and Christine A. Aidala $^{\orcidC{}}$}
 
 %\longauthorlist{yes}
 
@@ -68,7 +68,7 @@
 Department of Physics, University of Michigan, Ann Arbor, Michigan 48109, USA}
 
 % Contact information of the corresponding author
-\corres{Correspondence: caidala@umich.edu}
+\corres{Correspondence: carcassi@umich.edu}
 
 % Current address and/or shared authorship
 %\firstnote{Current address: Affiliation.}  
@@ -321,7 +321,7 @@ Classical ensembles are characterized by a single distribution over states while
 	The conditional probability $p : \mathcal{P} \times \mathcal{P} \to [0,1]$ is given by the Born rule. That is, $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$.
 \end{condition}
 \begin{condition}[Von Neumann entropy]{BR-ENT}
-	The entropy function $S : \mathcal{D} \to [0,+\infty]$ is given by the von Neumann entropy: $S(\rho) = - \tr(\rho \log \rho)$.
+	The entropy function $S : \mathcal{D} \to [0,+\infty]$ is given by the von Neumann entropy $S(\rho) = - \tr(\rho \log \rho)$.
 \end{condition}
 \begin{condition}[Orthogonality is mutual exclusivity]{BR-ORME}
 	Orthogonal states are mutually exclusive.
@@ -383,7 +383,7 @@ The base condition \ref{[B]EVMIX} captures the idea that time evolution preserve
 
 The theorem can be extended to the time-dependent case by requiring the evolution to be differentiable instead of time independent (i.e. a differentiable unitary propagator). Physically, this effectively means that the time dependence is slow enough that, at some small scale, the evolution can be approximated by time-independent evolution.
 
-\textbf{Applicability of unitary evolution.} The above results make it clear that the Schrödinger equation applies, and only applies, to deterministic and reversible systems: when the evolution of the system depends, and only depends, on itself. Any open evolution, then, is necessarily not unitary, and a measurement is necessarily not a closed evolution since the system must interact with the probe \cite{nielsen2010quantum,BreuerPetruccione2002}.
+\textbf{Applicability of unitary evolution.} The above results make it clear that the Schrödinger equation applies, and only applies, to deterministic and reversible systems: when the evolution of the system depends, and only depends, on the system itself. Any open evolution, then, is necessarily not unitary, and a measurement is necessarily not a closed evolution since the system must interact with the probe \cite{nielsen2010quantum,BreuerPetruccione2002}.
 
 \textbf{Determinism and reversibility for ensembles.} If the state is an ensemble, deterministic and reversible evolution does not mean that there is no stochastic component in the system-environment interaction. The stochastic component can simply remain within the uncertainty of the initial ensemble, like for a stochastic equilibrium \cite{Nelson1966}. Therefore, the evolution can also be understood as the quasi-static evolution of stochastic equilibria \cite{Pavliotis2014,MaesNetocny2014}.
 
@@ -477,8 +477,8 @@ To connect this limit to entropy, consider an open quantum system with the Lindb
 
 This result shows that quantum states can be characterized as three types of equilibria, and that the same mathematical condition can have multiple physical consequences.
 
-\begin{condition}[Dynamical equilibrium]{EE-DYN}
-	Every ensemble $\rho$ is the dynamical equilibrium of some unitary process.
+\begin{condition}[Dynamic equilibrium]{EE-DYN}
+	Every ensemble $\rho$ is the dynamic equilibrium of some unitary process.
 \end{condition}
 
 \begin{condition}[Spectral equilibrium]{EE-MEAS}
@@ -493,21 +493,21 @@ This result shows that quantum states can be characterized as three types of equ
 	Condition \ref{QSTO:H} implies \ref{EE-DYN}, \ref{EE-MEAS} and \ref{EE-THER}.
 \end{Theorem}
 
-For \ref{EE-DYN}, set $H=\rho$. Then $[H,\rho] = 0$, so $\rho$ is stationary. For \ref{EE-MEAS}, choose $X = \rho$. Then $[X,\rho] = 0$, so $\rho$ is a fixed point. For \ref{EE-THER}, if $\rho$ is full rank, choose $H=-\log\rho/\beta$ \cite{Wilming2017}. Then $e^{-\beta H}=\rho$ and $Z=\tr(\rho)=1$. Otherwise, use the same definition on the support of $\rho$ and assign energies $kn^2$ to an orthonormal basis of its kernel. The corresponding normalized Gibbs states converge to $\rho$ in Hilbert--Schmidt norm as $k\to\infty$, since $\sum_n e^{-\beta kn^2}\to0$.
+For \ref{EE-DYN}, set $H=\rho$. Then $[H,\rho] = 0$, so $\rho$ is stationary. For \ref{EE-MEAS}, choose $X = \rho$. Then $[X,\rho] = 0$, so $\rho$ is a fixed point. For \ref{EE-THER}, if $\rho$ is full rank, choose $H=-\log\rho/\beta$ \cite{Wilming2017}. Then $e^{-\beta H}=\rho$ and $Z=\tr(\rho)=1$. Otherwise, use the same definition on the support of $\rho$ and assign energies $kn^2$ to an orthonormal basis of its kernel. The corresponding normalized Gibbs states converge to $\rho$ in the Hilbert--Schmidt norm as $k\to\infty$, since $\sum_n e^{-\beta kn^2}\to0$.
 
 \textbf{States as ensembles.} Since the above result holds in quantum theory, it has to hold in any interpretation. Therefore, an ensemble interpretation is not just minimal \cite{Ballentine1970,HomeWhitaker1992}, but it is unavoidable in the sense that it is already baked into the mathematical structure. The math and physics, then, point to the fundamentality of the concept of ensemble which, in retrospect, is philosophically obvious. If scientific laws are about relationships that can always be experimentally reproduced, the objects of those relationships are not the single instances of the replications, but rather the infinite collection of all past, present and future replications. The state of the system in a physical law, then, cannot describe a complete picture of the system, but only those aspects that can be replicated experimentally. The zero bound on the entropy precisely divides what information is reliably accessible through all experimentation. This lower bound is not epistemic, but determined by the physical processes that act on the system under the chosen conditions. We aim to fully develop these philosophical ideas in the future, hopefully in collaboration with other philosophers of science, and to use them as a foundation for a more cohesive mathematical framework.
 
 \section{Conclusions}
 
-In this paper we have shown how Reverse Physics leads to a series of results on the foundations of quantum mechanics that help better characterize each element of the theory. It does so by breaking up the theory into a series of conditions, some mathematical and some physical, and studying their logical relationships. It can be used to distinguish base conditions, those that must be present in every well-defined physical theory, from those that represent additional more restrictive assumptions. It allows to study logical equivalence between mathematical and physical conditions, highlighting when the mathematical framework fails to be physically significant. Most importantly, all the results stand on their own as self-contained theorems, and are formulated within the standard vector-space representation of quantum mechanics, making them accessible to the widest possible audience. Moreover, similar results are available for classical mechanics, allowing cross-theory comparisons.
+In this paper we have shown how Reverse Physics leads to a series of results on the foundations of quantum mechanics that help better characterize each element of the theory. It does so by breaking up the theory into a series of conditions, some mathematical and some physical, and studying their logical relationships. It can be used to distinguish base conditions, those that must be present in every well-defined physical theory, from those that represent additional, more restrictive assumptions. It allows one to study logical equivalence between mathematical and physical conditions, highlighting when the mathematical framework fails to be physically significant. Most importantly, all the results stand on their own as self-contained theorems, and are formulated within the standard vector-space representation of quantum mechanics, making them accessible to the widest possible audience. Moreover, similar results are available for classical mechanics, allowing cross-theory comparisons.
 
-This means that the results can be used in many different ways for many different goals. The teacher or student that simply wants to have a better understanding of the framework, the philosopher who want to develop their interpretation and extend the theory with a well-defined ontology, the researcher that want to reconstruct quantum theory from different premises, the physicists who want to develop a new theory: all of them can benefit from a more detailed understanding of the relationships between the many different conditions studied. As the methodology mature, we hope that many other results can be incorporated with the same style, making a lot easier to share fundamental insights and results.
+This means that the results can be used in many different ways for many different goals. The teachers or students who simply want to have a better understanding of the framework, the philosophers who want to develop their interpretation and extend the theory with a well-defined ontology, the researchers who want to reconstruct quantum theory from different premises, the physicists who want to develop a new theory: all of them can benefit from a more detailed understanding of the relationships among the many different conditions studied. As the methodology matures, we hope that many other results can be incorporated with the same style, making it much easier to share fundamental insights and results.
 
 \authorcontributions{TBD}
 
 %For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.
 
-\funding{TBD}
+\funding{This paper was made possible through the support of grant \#62847 from the John Templeton Foundation.}
 
 %Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.
 
@@ -517,7 +517,7 @@ This means that the results can be used in many different ways for many differen
 
 \dataavailability{This study generated no data.} 
 
-\acknowledgments{This paper is part of the ongoing open research program \emph{Assumptions of Physics}\cite{aop-book}.}
+\acknowledgments{This paper is part of the ongoing open research program \emph{Assumptions of Physics} \cite{aop-book}.}
 
 \conflictsofinterest{The authors declare no conflicts of interest.} 
 
