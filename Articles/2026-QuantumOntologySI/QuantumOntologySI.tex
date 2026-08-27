@@ -85,7 +85,7 @@ Department of Physics, University of Michigan, Ann Arbor, Michigan 48109, USA}
 \abstract{Reverse Physics is a methodology that breaks physical theories into separate mathematical and physical conditions to establish their logical relationships. To showcase the power of the methodology, we present several results for quantum mechanics and their related insights. The standard Hilbert-space formulation conflicts with basic physical requirements, while a minimal topological modification can solve these problems. The ensemble space, rather than the pure-state space, distinguishes classical from quantum systems. The Born rule is an additional assumption linking orthogonality, mutual exclusivity and information entropy. Under explicit background conditions, unitary evolution is equivalent to deterministic and reversible evolution. Nonselective projective measurements can be characterized as Lindblad equilibration processes, while unitary evolution can be characterized as a limit of infinitesimal projective processes. Classical mechanics is recovered as the high-entropy limit of quantum mechanics, and every quantum state, pure or mixed, is a dynamical, spectral and thermodynamic equilibrium. These results are self-contained, use the standard vector-space representation and can thus be used as common tools and constraints for teaching, interpretations, reconstructions and future theories.}
 
 % Keywords
-\keyword{keyword 1; keyword 2; keyword 3 (List three to ten pertinent keywords specific to the article; yet reasonably common within the subject discipline.)} 
+\keyword{Reverse Physics; formal and mathematical frameworks for quantum ontology; quantum mechanics; quantum information; classical limit} 
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
@@ -144,7 +144,7 @@ If we look at the foundations of mathematics, while there are very different sch
 
 In this paper, we will see how the methodology is being applied to quantum mechanics by presenting a series of results. Many of these have been separately made available, either through publication or through our website \cite{AssumptionsOfPhysicsWebsite}, to test the methodology and gather feedback. In section two we will give a brief introduction to Reverse Physics. In section three we will see that Hilbert spaces fail to respect basic physical conditions. In section four we see a way to partly fix the vector space formulation. In section five we see that it is the convex structure of statistical ensembles that differentiates quantum from classical mechanics. In section six we see that the Born rule is independent of said structure, and is equivalent to assuming orthogonality and mutual exclusivity coincide. In section seven we see that unitary evolution is exactly deterministic and reversible evolution. In section eight we see that nonselective projective measurements are equilibrations, that they can be understood as the limit of an open evolution and that unitary evolution can be seen as an infinite sequence of infinitesimal measurements. In section nine we see that classical mechanics can be recovered as the high-entropy limit of quantum mechanics. In section ten we see that all states, including pure ones, are dynamic, statistical and approximately thermodynamic equilibria. Since all these results strictly follow both the mathematics and the physics, they can inform all interpretations and reconstructions.
 
-These results are part of an open research program called Assumptions of Physics. All these results and more will be collected in our open-source and open-access book. The proofs are left in the appendix, which is effectively a collection of the notes and papers that are already available through our website. [TODO: Decide if will put in appendix or not.] We are continuously looking for people from different backgrounds who are interested in helping us to carry out this research program.
+All results are part of an open research program called Assumptions of Physics. To keep the focus on the methodology and results, we will include proof sketches. The interested reader can find the full details in published articles and technical briefs available through our website \cite{AssumptionsOfPhysicsWebsite}.
 
 \section{Introduction to Reverse Physics}
 
@@ -263,7 +263,7 @@ Now, the above is only a partial solution that solves some problems and opens ot
 
 \section{Pure states are not enough}
 
-\textbf{States without inner product.} Since a Hilbert space is a fairly sophisticated mathematical object, we want to peel back the mathematical definition, layer by layer, to understand what mathematical requirements represent what physical conditions. The first thing we should note is that the construction of the projective space neither depends on nor requires the inner product. Is stating that states are rays of a complex vector space enough to exclude classical mechanics? It turns out it isn't.\footnote{A consequence of states being represented by rays is that the linearity of the underlying vector space must be understood merely as a mathematical convenience. Non-linear maps that preserve rays exist, and therefore they would preserve all the physics. A non-linear representation, then, is possible but uselessly inconvenient \cite{Carcassi2026Nonlinear}.}
+\textbf{States without inner product.} Since a Hilbert space is a fairly sophisticated mathematical object, we want to peel back the mathematical definition, layer by layer, to understand what mathematical requirements represent what physical conditions. The first thing we should note is that the construction of the projective space neither depends on nor requires the inner product. Is stating that states are rays of a complex vector space enough to exclude classical mechanics? It turns out it is not.\footnote{A consequence of states being represented by rays is that the linearity of the underlying vector space must be understood merely as a mathematical convenience. Non-linear maps that preserve rays exist, and therefore they would preserve all the physics. A non-linear representation, then, is possible but uselessly inconvenient \cite{Carcassi2026Nonlinear}.}
 
 \begin{condition}[Quantum state space only]{QP-RAY}
 	The state space of a quantum system is represented by the projective space $\mathcal{P}(V)$ of a complex topological vector space $V$.
@@ -342,7 +342,7 @@ The independence of the entropic structure from the convex structure of the ense
 
 Theorems and derivations of the Born rule, like Gleason's theorem, or some approaches to Generalized Probabilistic Theories (GPT) often fail to make this distinction explicit \cite{Gleason1957,Plavala2023}. Many of these approaches, in fact, show that a unique affine linear functional with some features (e.g. zero and one antipodal ensembles) exists and identify it with probability. But the last move implicitly assumes mutual exclusivity, which may not be warranted. Moreover, classical mechanics requires the symplectic form in the definition of the state space, and since the Liouville measure cannot be reconstructed from the convex structure alone, these strategies cannot recover the classical state space. Similar, and in fact bigger, problems will exist for field theories.
 
-\section{Unitaries as deterministic and reversible processes}
+\section{Unitary evolutions as deterministic and reversible processes}
 
 We now turn our attention to time evolution, for which we have the following result \cite{Carcassi2026SchroedingerCharacterizations,Carcassi2026UnitaryEntropy}.
 \begin{condition}[Evolution preserves statistical mixtures]{[B]EVMIX}
@@ -503,11 +503,11 @@ In this paper we have shown how Reverse Physics leads to a series of results on 
 
 This means that the results can be used in many different ways for many different goals. The teachers or students who simply want to have a better understanding of the framework, the philosophers who want to develop their interpretation and extend the theory with a well-defined ontology, the researchers who want to reconstruct quantum theory from different premises, the physicists who want to develop a new theory: all of them can benefit from a more detailed understanding of the relationships among the many different conditions studied. As the methodology matures, we hope that many other results can be incorporated with the same style, making it much easier to share fundamental insights and results.
 
-\authorcontributions{TBD}
+\authorcontributions{Conceptualization, methodology, G.C.; validation, C.A.A. and T.T.; writing---original draft preparation, G.C.; writing---review and editing, C.A.A. and T.T.; funding acquisition, C.A.A. and G.C. All authors have read and agreed to the published version of the manuscript.}
 
 %For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.
 
-\funding{This paper was made possible through the support of grant \#62847 from the John Templeton Foundation.}
+\funding{This paper was made possible in part through the support of grant \#62847 from the John Templeton Foundation.}
 
 %Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.
 
@@ -517,7 +517,7 @@ This means that the results can be used in many different ways for many differen
 
 \dataavailability{This study generated no data.} 
 
-\acknowledgments{This paper is part of the ongoing open research program \emph{Assumptions of Physics} \cite{aop-book}.}
+\acknowledgments{This paper is part of the ongoing open research program \emph{Assumptions of Physics} \cite{aop-book}. During the preparation of this manuscript, the authors used ChatGPT 5.6 Sol for the purposes of proof verification, literature search and consistency checks. The authors have reviewed and edited the output and take full responsibility for the content of this publication.}
 
 \conflictsofinterest{The authors declare no conflicts of interest.} 
 
@@ -535,14 +535,6 @@ The following abbreviations are used in this manuscript:\\
 DOF & Degree Of Freedom\\
 \end{tabular}
 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Optional
-\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
-\appendixstart
-\appendix
-\section[\appendixname~\thesection]{Proofs}
-\subsection[\appendixname~\thesubsection]{Time evolution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\isPreprints{}{% This command is only used for ``preprints''.
