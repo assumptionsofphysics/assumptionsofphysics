@@ -1,0 +1,42 @@
+% Requires \usepackage{tikz} and \usetikzlibrary{arrows.meta}.
+% Cross-sections lie in parallel constant-time planes; time points right.
+\begin{tikzpicture}[
+    x=1cm,y=1cm,
+    axis/.style={line width=0.65pt,-{Latex[length=2.2mm]}},
+    section/.style={line width=0.95pt,line join=round},
+    flow/.style={line width=0.7pt,dash pattern=on 4pt off 3pt,
+                 -{Latex[length=2.4mm]},shorten >=1.5pt},
+    every node/.style={font=\large}
+]
+    % The projected q and p directions span each cross-section.
+    \draw[axis] (0,0) -- (8.5,0) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,4.05) node[above] {$p$};
+    \draw[axis] (-1.45,-1.05) -- (2.05,1.49) node[below right] {$q$};
+
+    % Four corresponding points on the initial and final boundaries.
+    % The final section expands while keeping its centre at the same (q,p).
+    \begin{scope}[shift={(1.40,2.31)},rotate=-15]
+        \coordinate (aTop)    at (0,0.95);
+        \coordinate (aRight)  at ({0.47*cos(30)},{0.95*sin(30)});
+        \coordinate (aBottom) at (0,-0.95);
+        \coordinate (aLeft)   at ({0.47*cos(210)},{0.95*sin(210)});
+    \end{scope}
+    \begin{scope}[shift={(6.80,2.31)},rotate=-15]
+        \coordinate (bTop)    at (0,1.425);
+        \coordinate (bRight)  at ({0.705*cos(30)},{1.425*sin(30)});
+        \coordinate (bBottom) at (0,-1.425);
+        \coordinate (bLeft)   at ({0.705*cos(210)},{1.425*sin(210)});
+    \end{scope}
+
+    % Evolution curves joining the two cross-sections.
+    \draw[flow] (aTop)    .. controls (3.15,3.23) and (5.05,3.48) .. (bTop);
+    \draw[flow] (aLeft)   .. controls (2.65,1.96) and (4.45,1.88) .. (bLeft);
+    \draw[flow] (aRight)  .. controls (3.65,2.69) and (5.72,2.82) .. (bRight);
+    \draw[flow] (aBottom) .. controls (3.20,1.42) and (5.05,1.12) .. (bBottom);
+
+    % Regular tilted ellipses with smooth joins throughout.
+    \draw[section,shift={(1.40,2.31)},rotate=-15]
+        (0,0) ellipse[x radius=0.47,y radius=0.95];
+    \draw[section,shift={(6.80,2.31)},rotate=-15]
+        (0,0) ellipse[x radius=0.705,y radius=1.425];
+\end{tikzpicture}
