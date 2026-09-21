@@ -12,6 +12,13 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 
+\newtheorem{theorem}{Theorem}
+
+\newtheorem{condth}{Condition}
+\renewcommand*{\thecondth}{\Roman{condth}}
+\newenvironment{condition}[2][]{\renewcommand{\thecondth}{#2}\begin{condth}[#1]\label{#2}}{\end{condth}\renewcommand{\thecondth}{\Roman{condth}}}
+
+
 \title{A variational principle for non-conservative dynamics}
 \author{TBD }
 
@@ -26,11 +33,32 @@
 
 TBD
 
+TODO: state that all objects are assumed smooth. Then remove mention of differentiability and smoothness throughout
+
+\begin{condition}[Classical states]{CST}
+	The state space of a classical system with $n$ independent degrees of freedom (DOF) is represented by the symplectic manifold $(\mathbb{R}^{2n}, \omega)$. Each state is represented by position and momentum $(q^i,p_j) \in \mathbb{R}^{2n}$ and $\omega = \sum_i dq^i \wedge dp_i$. The count of configurations\footnote{By \emph{configuration} we mean the position-momentum pair for a single DOF.} for a DOF is given by the $\int_{\Sigma} \omega = \int_{\Sigma} \sum_i dq^i dp_i$. The count of states is given by the Liouville measure $\int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. All geometric objects are assumed smooth.
+\end{condition}
+
+\begin{theorem}
+	Consider the following conditions:
+	\begin{description}
+		\item[TE-EOM] (Equations of motion) The evolution obeys explicit equations of motion. That is, $d_t \gamma^a(t) = S^a$.
+		\item [TE-FLUX] (Evolution kills the flux) The evolution kills the flux of configuration. That is, there exists a configuration flux form $w_{ab}$ such that $d_t \gamma^a(t) w_{ab}=0$;
+		\item [TE-STFL] (Principle of stationary flux) The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi$ such that $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path and its variation.
+		\item [DI-SYMP] (Symplectomorphism) The evolution preserves the configuration count and DOF independence. That is, $d_t \omega = 0$.
+		\item [DI-STACH] (Principle of stationary action in phase space) The evolution between two given positions is the one for which the phase space action is stationary. That is, there exists an action functional $\mathcal{A}_H[\gamma] = \int (p_i d_t q^i -H)dt$ such that  $\delta \mathcal{A}_H[\gamma] = 0$.
+		\item[KE](Kinematic Equivalence)
+		The system can be equivalently described in dynamic and kinematic variables. That is, there is an invertible map between position and momentum $(q^i, p_i)$ and position and velocity $(x^i, v^i)$.
+		\item [DI+KE-STAC] (Principle of stationary action) The evolution between two given positions is the one for which the action is stationary. That is, there exists an action functional $\mathcal{A}_L[\gamma^{q^i}] = \int L(x^i, v^i, t)dt$ with $|\partial_{v^i} \partial_{v^j} L| \neq 0$ such that  $\delta \mathcal{A}_L[\gamma^{q^i}] = 0$.
+	\end{description}
+	
+\end{theorem}
+
 \section{Arbitrary dynamics in the extended phase space}
 
 In this section we outline the theory for a classical dynamical system on the extended phase space. At each time, we have standard phase space with the geometry given by the count of configurations defined by the closed form $\omega_{ab}$. The dynamics in time, however, need not be conservative (i.e. Hamiltonian). The main result is the existence of a flux form $w_{ab}$ that characterizes the flux of configurations through a surface, and that the only direction that kills said flux is the displacement field $S^a$. That is, $v^a w_{ab} = 0$ if and only if $v^a = k S^a$ for some $k \in \mathbb{R}$.  
 
-We consider a system as defined by classical mechanics, where each state is fully identified by position and conjugate momentum $(q^i,p_j) \in \mathbb{R}^{2n}$. Given a region $U \subseteq \mathbb{R}^{2n}$, the count of states is given by $\int_U \Omega = \int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. That is, the volume form $\Omega$ that defines the count of states locally is the product of the count of configuration for each degree of freedom (DOF) given by $\omega_{ab}$. In the context of Reverse Physics, this corresponds to the Infinitesimal Reducibility (IR) assumption (i.e the system can be thought as made of infinitesimal parts, or particles) and the INDependence of all degrees of freedom (IND).
+We consider a system as defined by classical mechanics, classed assumption (CST) for Classical STates, where each state is fully identified by position and conjugate momentum $(q^i,p_j) \in \mathbb{R}^{2n}$. Given a region $U \subseteq \mathbb{R}^{2n}$, the count of states is given by $\int_U \Omega = \int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. That is, the volume form $\Omega$ that defines the count of states locally is the product of the count of configuration for each degree of freedom (DOF) given by $\omega_{ab}$. In the context of Reverse Physics, this corresponds to the Infinitesimal Reducibility (IR) assumption (i.e the system can be thought as made of infinitesimal parts, or particles) and the INDependence of all degrees of freedom (IND).
 
 Extending this setting with time, states are identified at a specific time using generalized coordinates $\xi^a = (q^i,p_i,t) \in \mathbb{R}^{2n+1}$. A path for the system is defined by a curve $\gamma^a(t) = (q^i(t), p_i(t), t)$, which tells us how the system evolves in time. Note that the time component has to match time itself, $\gamma^t(t) = t$, meaning that time plays a double role of coordinate (i.e. an element of $\xi^a$) and affine parameter (i.e. the parameter of the curve).
 
@@ -193,18 +221,17 @@ The crucial new insight is that the variational principle in terms of the flux d
     \end{aligned}
 \end{equation}
 
-TODO: note that we can write a "Lagrangian type expression" by contracting $w_{ab}d_t\gamma^b$. This gives us a one form instead of a scalar function like the Lagrangian, but we could express it based on the decomposition in one DOF.
-
 Since $w_{ab} \eta^a(t) d_t \gamma^b(t) = 0$ for all space-momentum variations $\eta^a(t)$, $w_{ab} d_t \gamma^b(t) = 0$ whenever $a \in \{q^i, p_i\}$. Now consider $d_t \gamma^a(t) w_{ab} d_t \gamma^b(t)$. This is equal to zero by anti-symmetry of $w_{ab}$. Putting the two results together, we have $d_t \gamma^t(t) w_{tb} d_t \gamma^b(t) = 0$. Since $d_t \gamma^t(t) = 1$, $w_{tb} d_t \gamma^b(t) = 0$. Therefore, 
 \begin{equation}
     \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \iff d_t \gamma^a(t) w_{ab} = 0.
 \end{equation}
 Given \ref{evolutionsKillFlux}, $\gamma^a(t)$ is a solution of the equations of motion.
 
-In true spirit of Reverse Physics, we found five equivalent conditions
+In true spirit of Reverse Physics, we found six conditions with the following relationship
 \begin{equation}
 \begin{aligned}
-    d_t \gamma^a(t) = S^a &\iff d_t \gamma^a(t) w_{ab}=0 \iff \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \\&\stackrel{\text{DR}}{\iff} \delta \mathcal{A}_H[\gamma + \epsilon \eta] = 0 \stackrel{\text{DR+KE}}{\iff} \delta \mathcal{A}_L[q(t) + \epsilon \eta^q(t)] = 0.
+    d_t \gamma^a(t) = S^a &\iff d_t \gamma^a(t) w_{ab}=0 \iff \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \\&\stackrel{\text{+DR}}{\impliedby} \delta \mathcal{A}_H[\gamma] = 0 \iff d_t \omega =0 \\
+    &\stackrel{\text{+KE}}{\impliedby} \delta \mathcal{A}_L[\gamma^{q^i}] = 0.
 \end{aligned}
 \end{equation}
 The first three conditions are equivalent over (CST), the assumptions that we are dealing with a classical state space, represented by a symplectic manifold for which the symplectic form represents the count of configurations for independent degrees of freedom. Over (CST)+(DR), the count of states and DOF independence is preserved, $w_{ab}$ is closed, which allows us to define, at least locally, a potential $\theta_a$ and use Stokes' theorem. Lastly, over (CST)+(DR)+(KE), the action can be expressed in terms of a Lagrangian. The more general variational principle, then, is the one in terms of the flux, which can be stated in the following way:
@@ -212,9 +239,673 @@ The first three conditions are equivalent over (CST), the assumptions that we ar
     \textbf{Principle of stationary flux.} The path taken by a classical dynamical system between two configurations is the one that renders the flux around it stationary.
 \end{quote}
 
+\pagebreak
 
+\section{Flux Lagrangians and kinematic equivalence}
+
+In this section we express the principle of stationary flux in kinematic variables. We'll define the flux Lagrangian $\mathrm{FL}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of a Lagrangian for non-conservative dynamics. From this, the equation of motion, canonical momentum and a symplectic form can be recovered. Most notably, in the conservative case the proper flux Lagrangian is simply the difference of an ordinary Lagrangian evaluated on the two states: $\mathrm{FL}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
+
+\subsection{From dynamic to kinematic picture}
+
+We start by assuming Kinematic Equivalence (KE). That is, the change of variables
+\begin{equation}
+	x^i=q^i,
+	\qquad
+	v^i=S^{q^i}(q,p,t)
+\end{equation}
+can be inverted to give
+\begin{equation}
+	q^i=x^i,
+	\qquad
+	p_i=P_i(x,v,t).
+\end{equation}
+That is,
+\begin{equation}
+	S^{q^i}(x,P(x,v,t),t)=v^i.
+\end{equation}
+For convenience, we also define the force function
+\begin{equation}
+	F_i(x,v,t):=S^{p_i}(x,P(x,v,t),t).
+\end{equation}
+The evolution can therefore be written as
+\begin{equation}\label{eq:kinematicEvolution}
+	d_t x^i=v^i,
+	\qquad
+	d_tP_i(x,v,t)=F_i(x,v,t).
+\end{equation}
+
+Now, let $x_a(t)$ and $x_b(t)$ be two paths defined on the same interval $[t_0,t_1]$, with velocities $v_a=d_t x_a$ and $v_b=d_t x_b$. Define the differences
+\begin{equation}
+	\Delta x^i=x_b^i-x_a^i,
+	\qquad
+	\Delta v^i=v_b^i-v_a^i
+\end{equation}
+so that we can interpolate between the two paths at each time by
+\begin{equation}
+	x_s^i=x_a^i+s\Delta x^i,
+	\qquad
+	v_s^i=v_a^i+s\Delta v^i,
+	\qquad s\in[0,1].
+\end{equation}
+Since $d_t x_s^i=v_s^i$, each intermediate path is a kinematic path. This gives us the following surface on the extended phase space
+\begin{equation}
+	\Sigma_{ab}(t,s)
+	=
+	\bigl(x_s(t),P(x_s(t),v_s(t),t),t\bigr).
+\end{equation}
+
+For brevity, let $P_{i,s}=P_i(x_s,v_s,t)$ and $F_{i,s}=F_i(x_s,v_s,t)$ be the components of the momentum and force functions for $s$. The tangent vectors to this surface are
+\begin{equation}
+	\partial_s\Sigma_{ab}
+	=
+	\bigl(\Delta x^i,\partial_sP_{i,s},0\bigr),
+	\qquad
+	\partial_t\Sigma_{ab}
+	=
+	\bigl(v_s^i,d_tP_{i,s},1\bigr).
+\end{equation}
+
+Using the configuration flux form
+\begin{equation}
+	w
+	=
+	dq^i\wedge dp_i
+	-S^{p_i}dq^i\wedge dt
+	+S^{q^i}dp_i\wedge dt,
+\end{equation}
+we find
+\begin{equation}
+	\begin{aligned}
+		w_{cd}\partial_s\Sigma_{ab}^{c}\partial_t\Sigma_{ab}^{d}
+		&=
+		w_{q^i p_j}
+		\partial_s\Sigma_{ab}^{q^i}\partial_t\Sigma_{ab}^{p_j}
+		+
+		w_{q^i t}
+		\partial_s\Sigma_{ab}^{q^i}\partial_t\Sigma_{ab}^{t} +
+		w_{p_i q^j}
+		\partial_s\Sigma_{ab}^{p_i}\partial_t\Sigma_{ab}^{q^j}
+		\\
+		&\quad+
+		w_{p_i t}
+		\partial_s\Sigma_{ab}^{p_i}\partial_t\Sigma_{ab}^{t} +
+		w_{t q^j}
+		\partial_s\Sigma_{ab}^{t}\partial_t\Sigma_{ab}^{q^j}
+		+
+		w_{t p_j}
+		\partial_s\Sigma_{ab}^{t}\partial_t\Sigma_{ab}^{p_j}\\
+		&=
+		\delta_i^j\,\Delta x^i\,d_tP_{j,s}
+		-F_{i,s}\,\Delta x^i\cdot1 -
+		\delta_j^i\,\partial_sP_{i,s}\,v_s^j \\
+		&\quad+v_s^i\,\partial_sP_{i,s}\cdot1 +
+		F_{j,s}\cdot0\cdot v_s^j
+		-v_s^j\cdot0\cdot d_tP_{j,s}\\
+		&=
+		\Delta x^i d_tP_{i,s}
+		-F_{i,s}\Delta x^i
+		-\partial_sP_{i,s}v_s^i
+		+v_s^i\partial_sP_{i,s}\\
+		&=
+		\Delta x^i\bigl(d_tP_{i,s}-F_{i,s}\bigr).
+	\end{aligned}
+\end{equation}
+
+We can now express the flux over the surface, and integrate by parts the first term to simplify the expression.
+\begin{equation}
+	\begin{aligned}
+		\phi[\Sigma_{ab}]
+		&= \int_{\Sigma_{ab}} w = 
+		\int_{t_0}^{t_1}\int_0^1
+		\Delta x^i\bigl(d_tP_{i,s}-F_{i,s}\bigr)\,ds\,dt\\
+		&=
+		\left[
+		\int_0^1\Delta x^iP_{i,s}\,ds
+		\right]_{t_0}^{t_1}
+		-
+		\int_{t_0}^{t_1}\int_0^1
+		\bigl(P_{i,s}\Delta v^i+F_{i,s}\Delta x^i\bigr)\,ds\,dt.
+	\end{aligned}
+\end{equation}
+The boundary term vanishes because the two paths have the same position endpoints. We can therefore define
+\begin{equation}\label{eq:properFluxLagrangian}
+	\mathrm{FL}(x_a,v_a,x_b,v_b,t)
+	:=
+	\int_0^1
+	\left[
+	P_i(x_s,v_s,t)\Delta v^i
+	+F_i(x_s,v_s,t)\Delta x^i
+	\right]ds
+\end{equation}
+and obtain
+\begin{equation}\label{eq:fluxLagrangianFlux}
+	\mathcal{FA}[x_a(t),x_b(t)]
+	:=
+	\int_{t_0}^{t_1}\mathrm{FL}(x_a(t),d_t x_a(t),x_b(t),d_t x_b(t),t)\,dt.
+\end{equation}
+When the two paths have the same position endpoints, the boundary term vanishes and \(\mathcal{FA}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]\).
+
+We call $\mathrm{FL}$ a \emph{flux Lagrangian} and its integral $\mathcal{FA}$ the \emph{flux action}. The former, unlike an ordinary Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them.
+
+Exchanging the two states reverses $\Delta x$ and $\Delta v$ and replaces $s$ with $1-s$. Thus,
+\begin{equation}\label{eq:fluxLagrangianAntisymmetry}
+	\mathrm{FL}(x_b,v_b,x_a,v_a,t)
+	=
+	-\mathrm{FL}(x_a,v_a,x_b,v_b,t).
+\end{equation}
+In particular, $\mathrm{FL}(x,v,x,v,t)=0$. This antisymmetry is a general property of the flux Lagrangian, as it does not depend on the dynamics, conservative or not.
+
+The flux Lagrangian has another interesting property. If we differentiate it with respect to the second velocity we have
+\begin{equation}
+	\begin{aligned}
+		\frac{\partial \mathrm{FL}}{\partial v_b^j}
+		&=
+		\int_0^1
+		\left[
+		s\frac{\partial P_i}{\partial v^j}(x_s,v_s,t)
+		\Delta v^i
+		+P_j(x_s,v_s,t)
+		+s\frac{\partial F_i}{\partial v^j}(x_s,v_s,t)
+		\Delta x^i
+		\right]ds.
+	\end{aligned}
+\end{equation}
+When the states are the same, $\Delta x=\Delta v=0$. Therefore
+\begin{equation}
+	\left.
+	\frac{\partial \mathrm{FL}}{\partial v_b^j}
+	\right|_{x_a=x_b=x,\;v_a=v_b=v}
+	=
+	P_j(x,v,t).
+\end{equation}
+By KE, the map $v \mapsto P(x,v,t)$ is a global diffeomorphism between
+velocity and momentum at each fixed position and time. We call a
+flux Lagrangian with this property \emph{hyperregular}. Therefore,
+the flux Lagrangian constructed from the configuration flux is
+both antisymmetric and hyperregular.
+
+\subsection{From kinematic to dynamic picture}
+
+We now reverse the construction. Suppose we identify states by position and velocity $(x^i,v^j)$ and that we are given a smooth antisymmetric hyperregular flux Lagrangian $\mathrm{FL}(x_a,v_a,x_b,v_b,t)$. For future convenience, define its diagonal derivatives by
+\begin{equation}\label{eq:fluxLagrangianDiagonal}
+	\begin{aligned}
+		P_i(x,v,t)
+		&:=
+		\left.
+		\frac{\partial \mathrm{FL}}{\partial v_b^i}
+		\right|_{x_a=x_b=x,\;v_a=v_b=v},\\
+		F_i(x,v,t)
+		&:=
+		\left.
+		\frac{\partial \mathrm{FL}}{\partial x_b^i}
+		\right|_{x_a=x_b=x,\;v_a=v_b=v}.
+	\end{aligned}
+\end{equation}
+
+Consider the variation of the second path about the first,
+\begin{equation}
+	\begin{aligned}
+	&x_a(t)=x(t),
+	\qquad
+	x_b(t)=x(t)+\epsilon\eta(t), \\
+	&v_a(t)=d_tx(t),
+	\qquad
+	v_b(t)=d_tx(t)+\epsilon d_t\eta(t),
+	\end{aligned}
+\end{equation}
+with $\eta(t_0)=\eta(t_1)=0$. By integrating by parts in the second term, we find
+\begin{equation}
+	\begin{aligned}
+		\delta_b\mathcal{FA}[x(t),x(t);\eta(t)]
+		&:=
+		\left.
+		\frac{d}{d\epsilon}
+		\mathcal{FA}[x(t),x(t)+\epsilon\eta(t)]
+		\right|_{\epsilon=0}\\
+		&=
+		\int_{t_0}^{t_1}
+		\bigl(F_i\eta^i+P_i d_t\eta^i\bigr)\,dt
+		=
+		\int_{t_0}^{t_1}
+		\bigl(F_i-d_tP_i\bigr)\eta^i\,dt.
+	\end{aligned}
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:fluxLagrangianStationarity}
+	\delta_b\mathcal{FA}[x(t),x(t);\eta(t)]=0
+	\text{ for all adm. }\eta(t)
+	\iff
+	d_tP_i=F_i,
+	 v^i=d_tx^i.
+\end{equation}
+Expanding the total derivative of $P_i$, the equations become
+\begin{equation}
+	\frac{\partial P_i}{\partial v^j}d_tv^j
+	=
+	F_i
+	-
+	\frac{\partial P_i}{\partial x^j}v^j
+	-
+	\frac{\partial P_i}{\partial t}.
+\end{equation}
+By hyperregularity, $\frac{\partial P_i}{\partial v^j}$ is invertible and therefore the acceleration $d_t v$ is a function of $(x,v,t)$.
+
+We find that the principle of stationary flux expressed on the flux action for a hyperregular flux Lagrangian recovers the equations of motion. Note that stationarity here is taken in the second argument at coincident paths. It is not the variation of the identically zero functional $\mathcal{FA}[x(t),x(t)]$ in both arguments together.
+
+We can recover the dynamics in dynamical variables. Since $\mathrm{FL}$ is hyperregular, we set
+\begin{equation}
+	q^i=x^i,
+	\qquad
+	p_i=P_i(x,v,t),
+\end{equation}
+and denote the inverse velocity map by $v^i=V^i(q,p,t)$. Define
+\begin{equation}
+	S^{q^i}(q,p,t)=V^i(q,p,t),
+	\qquad
+	S^{p_i}(q,p,t)=F_i(q,V(q,p,t),t),
+	\qquad
+	S^t=1.
+\end{equation}
+The stationary paths then satisfy $d_tq^i=S^{q^i}$ and $d_tp_i=S^{p_i}$. The constructed dynamic description has configuration counting form
+\begin{equation}
+	\omega=dq^i\wedge dp_i
+\end{equation}
+and configuration flux form
+\begin{equation}
+	w
+	=
+	dq^i\wedge dp_i
+	-S^{p_i}dq^i\wedge dt
+	+S^{q^i}dp_i\wedge dt.
+\end{equation}
+
+Thus a hyperregular flux Lagrangian supplies both the kinematic evolution and the correspondence between velocity and momentum. It also supplies a symplectic counting structure.
+
+\subsection{Equivalent and proper flux Lagrangians}
+
+Note that the variational equations depend only on the diagonal derivatives of $\mathrm{FL}$. We therefore call two flux Lagrangians equivalent when they give the same functions $P_i$ and $F_i$ through \eqref{eq:fluxLagrangianDiagonal}. Equivalent flux Lagrangians yield the same momentum map, counting structure and equations of motion.
+
+Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use \eqref{eq:properFluxLagrangian} to construct a new function $\mathrm{FL}_{\mathrm{pr}}$. Its diagonal derivatives are
+\begin{equation}
+	\left.\frac{\partial \mathrm{FL}_{\mathrm{pr}}}{\partial v_b^i}\right|_{\mathrm{diag}}
+	=P_i,
+	\qquad
+	\left.\frac{\partial \mathrm{FL}_{\mathrm{pr}}}{\partial x_b^i}\right|_{\mathrm{diag}}
+	=F_i.
+\end{equation}
+Indeed, at coincident states the factors $\Delta x$ and $\Delta v$ vanish, leaving only the terms obtained by differentiating those factors. Thus $\mathrm{FL}_{\mathrm{pr}}$ is equivalent to the original $\mathrm{FL}$.
+
+We call a flux Lagrangian \emph{proper} if it satisfies \eqref{eq:properFluxLagrangian} with its own diagonal derivatives. For the chosen interpolation, each equivalence class has exactly
+one proper representative, since its defining expression is fixed
+by $P_i$ and $F_i$. The two constructions are therefore inverse in the following sense. Starting from dynamic variables, a counting form and an evolution satisfying KE, we obtain a proper flux Lagrangian that reconstructs the same data. Starting from an arbitrary hyperregular flux Lagrangian, we reconstruct those data and obtain its proper representative.
+
+As with the standard Lagrangian case, even in this non-conservative case the equations of motion do not uniquely identify a proper hyperregular flux Lagrangian. One can verify, for example, that for any smooth function $g(x,t)$
+\begin{equation}
+	P_i'=P_i+\partial_{x^i}g,
+	\qquad
+	F_i'=F_i+\partial_t\partial_{x^i}g
+	+v^j\partial_{x^j}\partial_{x^i}g
+\end{equation}
+leads to
+\begin{equation}	F_i'-d_tP_i'=F_i-d_tP_i,
+\end{equation}
+the same equations of motion. This is simply because conjugate momentum is defined up to a gauge. In a kinematic picture, this change of gauge will yield the same equations of motion.
+
+\subsection{The conservative case}
+
+We conclude by studying the conservative case, and how the flux Lagrangian reduces to an ordinary Lagrangian. Starting from dynamic variables, we already know that $w=-d\theta$, so the flux through the
+surface between two paths with matching endpoints is minus the difference of their actions.
+Under KE, these become ordinary Lagrangian actions.
+
+Let's first confirm
+this relationship directly from the definition of the proper flux
+Lagrangian. We have
+\begin{equation}
+	S^{q^i}=\frac{\partial H}{\partial p_i},
+	\qquad
+	S^{p_i}=-\frac{\partial H}{\partial q^i}.
+\end{equation}
+Along the interpolation, these relations give
+$v_s^i=\partial_{p_i}H$ and $F_{i,s}=-\partial_{q^i}H$.
+Since $\partial_s t=0$, we have
+\begin{equation}
+	\begin{aligned}
+		\partial_s H(x_s,P_s,t)
+		&=
+		\frac{\partial H}{\partial q^i}\Delta x^i
+		+
+		\frac{\partial H}{\partial p_i}\partial_sP_{i,s}\\
+		&=
+		-F_{i,s}\Delta x^i
+		+v_s^i\partial_sP_{i,s}.
+	\end{aligned}
+\end{equation}
+Substituting into the definition of the proper flux Lagrangian, and using integration by parts, yields
+\begin{equation}
+	\begin{aligned}
+		\mathrm{FL}_{\mathrm{pr}}(x_a,v_a,x_b,v_b,t)
+		&=
+		\int_0^1
+		\left[
+		P_{i,s}\Delta v^i+F_{i,s}\Delta x^i
+		\right]ds\\
+		&=
+		\int_0^1
+		\left[
+		P_{i,s}\Delta v^i
+		+v_s^i\partial_sP_{i,s}
+		-\partial_s H(x_s,P_s,t)
+		\right]ds\\
+		&=
+		\int_0^1
+		\partial_s\left(P_{i,s}v_s^i-H(x_s,P_s,t)\right)ds\\
+		&=
+		\left[P_{i,s}v_s^i-H(x_s,P_s,t)\right]_{s=0}^{s=1}.
+	\end{aligned}
+\end{equation}
+The boundary expression is precisely the ordinary Lagrangian
+\begin{equation}
+	L(x,v,t)
+	=
+	P_i(x,v,t)v^i-H(x,P(x,v,t),t),
+\end{equation}
+viewed as a scalar function on extended phase space in kinematic
+coordinates. Therefore,
+\begin{equation}\label{eq:fluxLagrangianDifference}
+	\mathrm{FL}_{\mathrm{pr}}(x_a,v_a,x_b,v_b,t)
+	=
+	L(x_b,v_b,t)-L(x_a,v_a,t).
+\end{equation}
+For a path and its variation, the flux action is consequently
+\begin{equation}
+	\mathcal{FA}_{\mathrm{pr}}[x(t),x(t)+\epsilon\eta(t)]
+	=
+	\mathcal{A}_L[x(t)+\epsilon\eta(t)]-\mathcal{A}_L[x(t)].
+\end{equation}
+Stationarity in the second path recovers the ordinary principle of
+stationary action, as expected from the previous section.
+
+Equation \eqref{eq:fluxLagrangianDifference} also gives an additional
+property. Writing $\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)$, where $\chi = (x, v)$ represents the pair of kinematic variables, we find
+\begin{equation}\label{eq:fluxLagrangianAdditivity}
+	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_c,t)
+	=
+	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)
+	+
+	\mathrm{FL}_{\mathrm{pr}}(\chi_b,\chi_c,t).
+\end{equation}
+Equivalently, for every time interval $[u,v] \subset \mathbb{R}$, we have
+\begin{equation}\label{eq:fluxActionAdditivity}
+	\mathcal{FA}_{\mathrm{pr}}[x_a(t),x_c(t)]
+	=
+	\mathcal{FA}_{\mathrm{pr}}[x_a(t),x_b(t)]
+	+
+	\mathcal{FA}_{\mathrm{pr}}[x_b(t),x_c(t)].
+\end{equation}
+for all paths, regardless of the endpoints. The above, in fact, means that $\int_u^v
+\left[
+\mathrm{FL}_{\mathrm{pr}}(\chi_a(t),\chi_c(t),t)
+-\mathrm{FL}_{\mathrm{pr}}(\chi_a(t),\chi_b(t),t)
+-\mathrm{FL}_{\mathrm{pr}}(\chi_b(t),\chi_c(t),t)
+\right]dt=0$ for all paths. This means the integrand must be zero at any given time. Intuitively, additivity means that the intermediate path cancels: the flux action is determined by the initial and final paths. This mirrors the contour dependence of configuration flux in the conservative case.
+
+With this property in mind, we can work the equivalence in reverse. Suppose we are given a proper hyperregular flux Lagrangian that satisfies additivity. Choose a reference kinematic state $\chi_r$ and
+define
+\begin{equation}
+	L(x,v,t)
+	:=
+	\mathrm{FL}_{\mathrm{pr}}(\chi_r,(x,v),t).
+\end{equation}
+Applying \eqref{eq:fluxLagrangianAdditivity} to $\chi_r,\chi_a,\chi_b$ gives
+\begin{equation}
+	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t).
+\end{equation}
+Its diagonal derivatives therefore recover
+\begin{equation}
+	P_i(x,v,t)=\frac{\partial L}{\partial v^i},
+	\qquad
+	F_i(x,v,t)=\frac{\partial L}{\partial x^i}.
+\end{equation}
+The equations of motion become
+\begin{equation}
+	F_i-d_tP_i
+	=
+	\frac{\partial L}{\partial x^i}
+	-
+	d_t\frac{\partial L}{\partial v^i}
+	=0,
+	\qquad v^i=d_tx^i.
+\end{equation}
+
+By hyperregularity, $p_i=P_i(x,v,t)$ has a smooth global inverse
+$v^i=V^i(q,p,t)$, with $q=x$. Define
+\begin{equation}
+	H(q,p,t)
+	=
+	p_iV^i(q,p,t)-L(q,V(q,p,t),t).
+\end{equation}
+Differentiating in dynamic coordinates, we obtain
+\begin{equation}
+	\begin{aligned}
+		\frac{\partial H}{\partial p_i}
+		&=
+		V^i+
+		\left(p_j-\frac{\partial L}{\partial v^j}\right)
+		\frac{\partial V^j}{\partial p_i}
+		=
+		V^i,\\
+		\frac{\partial H}{\partial q^i}
+		&=
+		\left(p_j-\frac{\partial L}{\partial v^j}\right)
+		\frac{\partial V^j}{\partial q^i}
+		-
+		\frac{\partial L}{\partial x^i}
+		=
+		-F_i,
+	\end{aligned}
+\end{equation}
+where derivatives of $L$ and the functions $F_i$ are evaluated at
+$(x,v,t)=(q,V(q,p,t),t)$. Hence the reconstructed evolution satisfies
+\begin{equation}
+	S^{q^i}=\frac{\partial H}{\partial p_i},
+	\qquad
+	S^{p_i}=-\frac{\partial H}{\partial q^i}.
+\end{equation}
+Its configuration flux form is therefore
+$w=-d(p_i\,dq^i-H\,dt)$ and is closed.
+
+We have thus established both directions:
+\begin{equation}
+	\begin{aligned}
+		dw=0
+		&\iff
+		\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t)
+		\text{ for some }L\\
+		&\iff
+		\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_c,t)
+		=
+		\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)
+		+
+		\mathrm{FL}_{\mathrm{pr}}(\chi_b,\chi_c,t).
+	\end{aligned}
+\end{equation}
+It should be stressed that additivity characterizes the conservative case only for proper flux Lagrangians. An equivalent flux Lagrangian need not itself satisfy this property, since its values away from coincident states are not fixed by the equations of motion and momentum map.
 
 \pagebreak
+
+\section{Notes for $d_t \gamma^a(t) w_{ab}$}
+
+Define
+$$
+\mathcal E_b[\gamma]
+:=
+d_t\gamma^a\,w_{ab}.
+$$
+
+We have:
+$$
+\begin{aligned}
+	\begin{pmatrix}
+		\mathcal E_{q^j} &
+		\mathcal E_{p_j} &
+		\mathcal E_t
+	\end{pmatrix}
+	&=
+	\begin{pmatrix}
+		d_tq^i & d_tp_i & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		0 & \delta_i{}^j & -S^{p_i}\\
+		-\delta^i{}_j & 0 & S^{q^i}\\
+		S^{p_j} & -S^{q^j} & 0
+	\end{pmatrix}
+	\\[2mm]
+	&=
+	\begin{pmatrix}
+		-d_tp_j+S^{p_j}
+		&
+		d_tq^j-S^{q^j}
+		&
+		-S^{p_i}d_tq^i+S^{q^i}d_tp_i
+	\end{pmatrix}.
+\end{aligned}
+$$
+
+Antisymmetry gives
+
+$$
+d_t\gamma^b\mathcal E_b
+=
+d_t\gamma^a w_{ab}d_t\gamma^b
+=
+0,
+$$
+
+and therefore
+
+$$
+\mathcal E_t
+=
+-d_tq^i\,\mathcal E_{q^i}
+-d_tp_i\,\mathcal E_{p_i}.
+$$
+
+Thus \(\mathcal E_t=0\) follows from the other components.
+
+Now introduce the KE change of coordinates
+
+$$
+x^i=q^i,
+\qquad
+v^i=S^{q^i}(q,p,t).
+$$
+
+KE means that this can be inverted:
+
+$$
+q^i=x^i,
+\qquad
+p_i=P_i(x,v,t).
+$$
+Therefore
+$$
+S^{q^i}(x,P(x,v,t),t)=v^i.
+$$
+Below, \(S^{p_i}\) is evaluated at \((x,P(x,v,t),t)\), and
+$$
+d_tP_i
+=
+\frac{\partial P_i}{\partial x^j}d_tx^j
++
+\frac{\partial P_i}{\partial v^j}d_tv^j
++
+\frac{\partial P_i}{\partial t}.
+$$
+
+To calculate \(\mathcal E_b=d_t\gamma^a w_{ab}\) in the new coordinates, transform its components as a covector:
+$$
+\mathcal E_{x^i}
+=
+\mathcal E_{q^i}
++
+\mathcal E_{p_j}\frac{\partial P_j}{\partial x^i},
+\qquad
+\mathcal E_{v^i}
+=
+\mathcal E_{p_j}\frac{\partial P_j}{\partial v^i}.
+$$
+Substituting \(\mathcal E_{q^i}=S^{p_i}-d_tP_i\) and \(\mathcal E_{p_i}=d_tx^i-v^i\) gives
+$$
+\boxed{
+	\begin{aligned}
+		\mathcal E_{x^i}
+		&=
+		S^{p_i}-d_tP_i
+		+
+		(d_tx^j-v^j)\frac{\partial P_j}{\partial x^i},
+		\\[2mm]
+		\mathcal E_{v^i}
+		&=
+		(d_tx^j-v^j)\frac{\partial P_j}{\partial v^i}.
+	\end{aligned}
+}
+$$
+The time component is fixed by antisymmetry:
+$$
+\mathcal E_t
+=
+-d_tx^i\,\mathcal E_{x^i}
+-d_tv^i\,\mathcal E_{v^i}.
+$$
+Here \(\mathcal E_t\) denotes the component in the new coordinates.
+
+These formulas make the reduction transparent. Since \(\partial P_j/\partial v^i\) is invertible, \(\mathcal E_{v^i}=0\) gives \(d_tx^i=v^i\). Restricting to curves with this property leaves
+$$
+\boxed{
+	\begin{aligned}
+		\mathcal E_{x^i}
+		&=S^{p_i}-d_tP_i,
+		\\
+		\mathcal E_{v^i}
+		&=0,
+		\\
+		\mathcal E_t
+		&=-v^i\mathcal E_{x^i}.
+	\end{aligned}
+}
+$$
+Thus the only remaining equations are \(d_tP_i=S^{p_i}\), with \(P_i=P_i(x,d_tx,t)\). Which can be expanded as:
+$$
+\boxed{
+	S^{p_i}(x,P,t)
+	-
+	\frac{\partial P_i}{\partial x^j}v^j
+	-
+	\frac{\partial P_i}{\partial v^j}d_tv^j
+	-
+	\frac{\partial P_i}{\partial t}= 0.
+}
+$$
+This is an implicit function of the acceleration.
+
+In the conservative case, the Legendre transform
+$$
+L(x,v,t)=P_i v^i-H(x,P,t)
+$$
+satisfies \(\partial L/\partial v^i=P_i\) and \(\partial L/\partial x^i=S^{p_i}\). Consequently,
+$$
+\boxed{
+	\mathcal E_{x^i}
+	=
+	\frac{\partial L}{\partial x^i}
+	-
+	d_t\frac{\partial L}{\partial v^i}
+	=0,
+	\qquad v^i=d_tx^i,
+}
+$$
+recovering the Euler–Lagrange equations.
+
 
 \section{Math for 1 DOF}
 
