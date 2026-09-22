@@ -302,25 +302,6 @@ To sum up, we have the following five conditions with the following relationship
 \end{equation}
 which corresponds to theorem \ref{thrm:dyn}. Once we assume \ref{CSD}, classical states represented by position and momentum, the first three conditions equivalently represent general dynamics while the second two equivalently represent the special case of conservative dynamics.
 
-\section{Stray pieces}
-
-This quantity provides the most direct understanding of the principle of stationary action, even though it is expressed in terms of momentum. If we further assume Kinematic Equivalence (KE), that the momenta $p_i$ are expressible as functions of $q^i$, $\dot q^i$ and $t$, we recover the standard formulation of the action in terms of a Lagrangian.
-\begin{equation}
-	\begin{aligned}
-		\mathcal{A}_H[\gamma] 
-		&= \int_{t_0}^{t_1} ( p_i \dot q^i - H) dt  \stackrel{\text{KE}}{=} \int_{t_0}^{t_1} L(q^i, \dot q^i, t) dt = \mathcal{A}_L[q(t)].
-	\end{aligned}
-\end{equation}
-The action, then, is the line integral of the potential $\theta_a$ of the flux of configurations. 
-
-Given the equivalence between action and flux, the variational principle can be expressed in terms of either. That is, 
-\begin{equation}
-	\delta \mathcal{A}_H[\gamma + \epsilon \eta] = 0 \iff  \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0.
-\end{equation}
-for all possible variations $\eta(t)$. This tells us that the principle of stationary action is equivalent to requiring that the flux of configurations through the infinitesimal surface between the path and the variation is zero, regardless of the variation. This was the insight of the previous work.
-
-\pagebreak
-
 \section{Principle of stationary flux}
 
 In this section we express the principle of stationary flux in kinematic variables. We'll define the flux Lagrangian $\mathrm{FL}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of a Lagrangian for non-conservative dynamics. From this, the equation of motion, canonical momentum and a symplectic form can be recovered. Most notably, in the conservative case the proper flux Lagrangian is simply the difference of an ordinary Lagrangian evaluated on the two states: $\mathrm{FL}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
