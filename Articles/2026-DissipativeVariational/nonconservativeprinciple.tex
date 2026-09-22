@@ -321,13 +321,17 @@ for all possible variations $\eta(t)$. This tells us that the principle of stati
 
 \pagebreak
 
-\section{Flux Lagrangians and kinematic equivalence}
+\section{Principle of stationary flux}
 
 In this section we express the principle of stationary flux in kinematic variables. We'll define the flux Lagrangian $\mathrm{FL}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of a Lagrangian for non-conservative dynamics. From this, the equation of motion, canonical momentum and a symplectic form can be recovered. Most notably, in the conservative case the proper flux Lagrangian is simply the difference of an ordinary Lagrangian evaluated on the two states: $\mathrm{FL}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
 
 \subsection{From dynamic to kinematic picture}
 
-We start by assuming Kinematic Equivalence (KE). That is, the change of variables
+The first task it to re-express the principle of stationary flux on kinematic variables. Additionally, we would like the new principle to work, as much as possible, like the principle of stationary action.
+
+We consider a system as defined by classical mechanics described by kinematic variables, as in condition \ref{CSK}. Each state is fully identified by position and velocity $(x^i, v^i) \in \mathbb{R}^{2n}$, so that, over evolutions, $v^i (t) = d_t x^i(t)$.\footnote{We use $x^i$ and $v^i$, instead of $q^i$ and $\dot{q}^i$, for two reasons. First, to make it clear that these are independent variables used to chart the same state space, and that $v^i (t) = d_t x^i(t)$ applies only on trajectories. Second, to remind ourselves that, while $x^i = q^i$, in general, $\partial_{x^i} \neq \partial_{q^i}$.}
+
+Assuming Kinematic Equivalence \ref{KE}, we can change coordinates from $(x^i, v^i)$ to $(q^i, p_i)$ and vice-versa. That is, the change of variables
 \begin{equation}
 	x^i=q^i,
 	\qquad
@@ -343,7 +347,7 @@ That is,
 \begin{equation}
 	S^{q^i}(x,P(x,v,t),t)=v^i.
 \end{equation}
-For convenience, we also define the force function
+For convenience, we also define the force functions
 \begin{equation}
 	F_i(x,v,t):=S^{p_i}(x,P(x,v,t),t).
 \end{equation}
@@ -373,6 +377,7 @@ Since $d_t x_s^i=v_s^i$, each intermediate path is a kinematic path. This gives 
 	=
 	\bigl(x_s(t),P(x_s(t),v_s(t),t),t\bigr).
 \end{equation}
+This surface correspond to the two paths in extend phase space connected at every $t$ by a straight segment in kinematic variables.
 
 For brevity, let $P_{i,s}=P_i(x_s,v_s,t)$ and $F_{i,s}=F_i(x_s,v_s,t)$ be the components of the momentum and force functions for $s$. The tangent vectors to this surface are
 \begin{equation}
@@ -385,15 +390,7 @@ For brevity, let $P_{i,s}=P_i(x_s,v_s,t)$ and $F_{i,s}=F_i(x_s,v_s,t)$ be the co
 	\bigl(v_s^i,d_tP_{i,s},1\bigr).
 \end{equation}
 
-Using the configuration flux form
-\begin{equation}
-	w
-	=
-	dq^i\wedge dp_i
-	-S^{p_i}dq^i\wedge dt
-	+S^{q^i}dp_i\wedge dt,
-\end{equation}
-we find
+Applying the configuration flux form to each infinitesimal element, we find
 \begin{equation}
 	\begin{aligned}
 		w_{cd}\partial_s\Sigma_{ab}^{c}\partial_t\Sigma_{ab}^{d}
@@ -431,7 +428,7 @@ we find
 	\end{aligned}
 \end{equation}
 
-We can now express the flux over the surface, and integrate by parts the first term to simplify the expression.
+We can now express the flux over the whole surface, and integrate by parts the first term to simplify the expression.
 \begin{equation}
 	\begin{aligned}
 		\phi[\Sigma_{ab}]
@@ -447,7 +444,8 @@ We can now express the flux over the surface, and integrate by parts the first t
 		\bigl(P_{i,s}\Delta v^i+F_{i,s}\Delta x^i\bigr)\,ds\,dt.
 	\end{aligned}
 \end{equation}
-The boundary term vanishes because the two paths have the same position endpoints. We can therefore define
+
+Since we want an action-like expression, an integral of some function in time, we can define
 \begin{equation}\label{eq:properFluxLagrangian}
 	\mathrm{FL}(x_a,v_a,x_b,v_b,t)
 	:=
@@ -463,11 +461,11 @@ and obtain
 	:=
 	\int_{t_0}^{t_1}\mathrm{FL}(x_a(t),d_t x_a(t),x_b(t),d_t x_b(t),t)\,dt.
 \end{equation}
-When the two paths have the same position endpoints, the boundary term vanishes and \(\mathcal{FA}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]\).
+When the two paths have the same position endpoints, the boundary term vanishes and $\mathcal{FA}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$.
 
-We call $\mathrm{FL}$ a \emph{flux Lagrangian} and its integral $\mathcal{FA}$ the \emph{flux action}. The former, unlike an ordinary Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them.
+In analogy with Lagrangian mechanics, we call $\mathrm{FL}$ a \emph{flux Lagrangian} and its integral $\mathcal{FA}$ the \emph{flux action}. The former, unlike an ordinary Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them. Unlike the standard action, the physical meaning is now clearly linked to flux of configuration.
 
-Exchanging the two states reverses $\Delta x$ and $\Delta v$ and replaces $s$ with $1-s$. Thus,
+We now want to characterize the flux Lagrangian by two key properties. Note that exchanging the two states reverses $\Delta x$ and $\Delta v$ and replaces $s$ with $1-s$. Thus,
 \begin{equation}\label{eq:fluxLagrangianAntisymmetry}
 	\mathrm{FL}(x_b,v_b,x_a,v_a,t)
 	=
@@ -498,15 +496,13 @@ When the states are the same, $\Delta x=\Delta v=0$. Therefore
 	=
 	P_j(x,v,t).
 \end{equation}
-By KE, the map $v \mapsto P(x,v,t)$ is a global diffeomorphism between
-velocity and momentum at each fixed position and time. We call a
-flux Lagrangian with this property \emph{hyperregular}. Therefore,
-the flux Lagrangian constructed from the configuration flux is
-both antisymmetric and hyperregular.
+By \ref{KE}, the map $v \mapsto P(x,v,t)$ is a global diffeomorphism between velocity and momentum at each fixed position and time. In analogy with Lagrangian mechanics, we call a flux Lagrangian with this property \emph{hyperregular}. Therefore, the flux Lagrangian constructed from the configuration flux is both antisymmetric and hyperregular.
 
-\subsection{From kinematic to dynamic picture}
+By definition, then, since $\mathcal{FA}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$ for paths with the same endpoints, the principle of stationary flux in phase space will lead to a stationary flux action.
 
-We now reverse the construction. Suppose we identify states by position and velocity $(x^i,v^j)$ and that we are given a smooth antisymmetric hyperregular flux Lagrangian $\mathrm{FL}(x_a,v_a,x_b,v_b,t)$. For future convenience, define its diagonal derivatives by
+\subsection{From stationary flux to dynamics}
+
+We now need to show that we can reverse the construction. First, we want to show that the principle of stationary flux leads to equations of motion for position and velocity. Suppose we identify states by position and velocity $(x^i,v^i)$ and that we are given a smooth antisymmetric hyperregular flux Lagrangian $\mathrm{FL}(x_a,v_a,x_b,v_b,t)$. For convenience, define its diagonal derivatives by
 \begin{equation}\label{eq:fluxLagrangianDiagonal}
 	\begin{aligned}
 		P_i(x,v,t)
@@ -522,7 +518,7 @@ We now reverse the construction. Suppose we identify states by position and velo
 	\end{aligned}
 \end{equation}
 
-Consider the variation of the second path about the first,
+Consider a variation of the second path about the first,
 \begin{equation}
 	\begin{aligned}
 	&x_a(t)=x(t),
@@ -570,9 +566,9 @@ Expanding the total derivative of $P_i$, the equations become
 \end{equation}
 By hyperregularity, $\frac{\partial P_i}{\partial v^j}$ is invertible and therefore the acceleration $d_t v$ is a function of $(x,v,t)$.
 
-We find that the principle of stationary flux expressed on the flux action for a hyperregular flux Lagrangian recovers the equations of motion. Note that stationarity here is taken in the second argument at coincident paths. It is not the variation of the identically zero functional $\mathcal{FA}[x(t),x(t)]$ in both arguments together.
+We find that the principle of stationary flux expressed on the flux action for a hyperregular flux Lagrangian recovers the equations of motion. Note that stationarity here is taken in the second argument at coincident paths. It is not the variation of the identically zero functional $\mathcal{FA}[x(t),x(t)]$ in both arguments together. We write $\delta_b \mathcal{FA}[x(t),x(t)]$ to remind ourselves that the variation is taken on the second argument.
 
-We can recover the dynamics in dynamical variables. Since $\mathrm{FL}$ is hyperregular, we set
+Lastly, we need to show that we can recover the dynamics in dynamical variables. Since $\mathrm{FL}$ is hyperregular, we set
 \begin{equation}
 	q^i=x^i,
 	\qquad
@@ -599,11 +595,11 @@ and configuration flux form
 	+S^{q^i}dp_i\wedge dt.
 \end{equation}
 
-Thus a hyperregular flux Lagrangian supplies both the kinematic evolution and the correspondence between velocity and momentum. It also supplies a symplectic counting structure.
+Thus a hyperregular flux Lagrangian supplies both the kinematic evolution and the correspondence between velocity and momentum. It also supplies a symplectic counting structure. This shows that \ref{CSD}+KE+TE-EOM is equivalent to \ref{CSK}+KE-STFL. It is remarkable that, apart from smoothness, hyperregularity and antisymmetry, no other requirement was put on the flux Lagrangian.
 
 \subsection{Equivalent and proper flux Lagrangians}
 
-Note that the variational equations depend only on the diagonal derivatives of $\mathrm{FL}$. We therefore call two flux Lagrangians equivalent when they give the same functions $P_i$ and $F_i$ through \eqref{eq:fluxLagrangianDiagonal}. Equivalent flux Lagrangians yield the same momentum map, counting structure and equations of motion.
+Note that the variational equations depend only on the diagonal derivatives of $\mathrm{FL}$. Two flux Lagrangians with the same diagonal derivatives, then, yield the same momentum map, counting structure and equations of motion. We therefore call two flux Lagrangians equivalent when they give the same functions $P_i$ and $F_i$ through \eqref{eq:fluxLagrangianDiagonal}.
 
 Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use \eqref{eq:properFluxLagrangian} to construct a new function $\mathrm{FL}_{\mathrm{pr}}$. Its diagonal derivatives are
 \begin{equation}
@@ -615,9 +611,8 @@ Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use \
 \end{equation}
 Indeed, at coincident states the factors $\Delta x$ and $\Delta v$ vanish, leaving only the terms obtained by differentiating those factors. Thus $\mathrm{FL}_{\mathrm{pr}}$ is equivalent to the original $\mathrm{FL}$.
 
-We call a flux Lagrangian \emph{proper} if it satisfies \eqref{eq:properFluxLagrangian} with its own diagonal derivatives. For the chosen interpolation, each equivalence class has exactly
-one proper representative, since its defining expression is fixed
-by $P_i$ and $F_i$. The two constructions are therefore inverse in the following sense. Starting from dynamic variables, a counting form and an evolution satisfying KE, we obtain a proper flux Lagrangian that reconstructs the same data. Starting from an arbitrary hyperregular flux Lagrangian, we reconstruct those data and obtain its proper representative.
+We call a flux Lagrangian \emph{proper} if it satisfies \eqref{eq:properFluxLagrangian} with its own diagonal derivatives. Each equivalence class has exactly
+one proper representative, since its defining expression is fixed by $P_i$ and $F_i$. The two constructions are therefore inverse in the following sense. Starting from dynamical variables, a counting form and an evolution satisfying KE, we obtain a proper flux Lagrangian that reconstructs the same data. Starting from an arbitrary hyperregular flux Lagrangian, we reconstruct those data and obtain its proper representative. This will be exactly the one recovered if we went to dynamical variables and then back to kinematic variables.
 
 As with the standard Lagrangian case, even in this non-conservative case the equations of motion do not uniquely identify a proper hyperregular flux Lagrangian. One can verify, for example, that for any smooth function $g(x,t)$
 \begin{equation}
@@ -635,112 +630,16 @@ the same equations of motion. This is simply because conjugate momentum is defin
 
 We conclude by studying the conservative case, and how the flux Lagrangian reduces to an ordinary Lagrangian. Starting from dynamic variables, we already know that $w=-d\theta$, so the flux through the
 surface between two paths with matching endpoints is minus the difference of their actions.
-Under KE, these become ordinary Lagrangian actions.
-
-Let's first confirm
-this relationship directly from the definition of the proper flux
-Lagrangian. We have
-\begin{equation}
-	S^{q^i}=\frac{\partial H}{\partial p_i},
-	\qquad
-	S^{p_i}=-\frac{\partial H}{\partial q^i}.
-\end{equation}
-Along the interpolation, these relations give
-$v_s^i=\partial_{p_i}H$ and $F_{i,s}=-\partial_{q^i}H$.
-Since $\partial_s t=0$, we have
+Under KE, these become ordinary Lagrangian actions. In fact, recalling that $L = p_i d_t q^i - H$,
 \begin{equation}
 	\begin{aligned}
-		\partial_s H(x_s,P_s,t)
-		&=
-		\frac{\partial H}{\partial q^i}\Delta x^i
-		+
-		\frac{\partial H}{\partial p_i}\partial_sP_{i,s}\\
-		&=
-		-F_{i,s}\Delta x^i
-		+v_s^i\partial_sP_{i,s}.
+		\mathcal{A}_H[\gamma] 
+		&= \int_{t_0}^{t_1} ( p_i d_t q^i - H) dt  \stackrel{\text{KE}}{=} \int_{t_0}^{t_1} L(q^i(t), d_t q^i(t), t) dt = \mathcal{A}_L[q(t)].
 	\end{aligned}
 \end{equation}
-Substituting into the definition of the proper flux Lagrangian, and using integration by parts, yields
-\begin{equation}
-	\begin{aligned}
-		\mathrm{FL}_{\mathrm{pr}}(x_a,v_a,x_b,v_b,t)
-		&=
-		\int_0^1
-		\left[
-		P_{i,s}\Delta v^i+F_{i,s}\Delta x^i
-		\right]ds\\
-		&=
-		\int_0^1
-		\left[
-		P_{i,s}\Delta v^i
-		+v_s^i\partial_sP_{i,s}
-		-\partial_s H(x_s,P_s,t)
-		\right]ds\\
-		&=
-		\int_0^1
-		\partial_s\left(P_{i,s}v_s^i-H(x_s,P_s,t)\right)ds\\
-		&=
-		\left[P_{i,s}v_s^i-H(x_s,P_s,t)\right]_{s=0}^{s=1}.
-	\end{aligned}
-\end{equation}
-The boundary expression is precisely the ordinary Lagrangian
-\begin{equation}
-	L(x,v,t)
-	=
-	P_i(x,v,t)v^i-H(x,P(x,v,t),t),
-\end{equation}
-viewed as a scalar function on extended phase space in kinematic
-coordinates. Therefore,
-\begin{equation}\label{eq:fluxLagrangianDifference}
-	\mathrm{FL}_{\mathrm{pr}}(x_a,v_a,x_b,v_b,t)
-	=
-	L(x_b,v_b,t)-L(x_a,v_a,t).
-\end{equation}
-For a path and its variation, the flux action is consequently
-\begin{equation}
-	\mathcal{FA}_{\mathrm{pr}}[x(t),x(t)+\epsilon\eta(t)]
-	=
-	\mathcal{A}_L[x(t)+\epsilon\eta(t)]-\mathcal{A}_L[x(t)].
-\end{equation}
-Stationarity in the second path recovers the ordinary principle of
-stationary action, as expected from the previous section.
+The standard principle of stationary action, then, is exactly the principle of stationary action in phase space restricted by kinematic equivalence.
 
-Equation \eqref{eq:fluxLagrangianDifference} also gives an additional
-property. Writing $\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)$, where $\chi = (x, v)$ represents the pair of kinematic variables, we find
-\begin{equation}\label{eq:fluxLagrangianAdditivity}
-	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_c,t)
-	=
-	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)
-	+
-	\mathrm{FL}_{\mathrm{pr}}(\chi_b,\chi_c,t).
-\end{equation}
-Equivalently, for every time interval $[u,v] \subset \mathbb{R}$, we have
-\begin{equation}\label{eq:fluxActionAdditivity}
-	\mathcal{FA}_{\mathrm{pr}}[x_a(t),x_c(t)]
-	=
-	\mathcal{FA}_{\mathrm{pr}}[x_a(t),x_b(t)]
-	+
-	\mathcal{FA}_{\mathrm{pr}}[x_b(t),x_c(t)].
-\end{equation}
-for all paths, regardless of the endpoints. The above, in fact, means that $\int_u^v
-\left[
-\mathrm{FL}_{\mathrm{pr}}(\chi_a(t),\chi_c(t),t)
--\mathrm{FL}_{\mathrm{pr}}(\chi_a(t),\chi_b(t),t)
--\mathrm{FL}_{\mathrm{pr}}(\chi_b(t),\chi_c(t),t)
-\right]dt=0$ for all paths. This means the integrand must be zero at any given time. Intuitively, additivity means that the intermediate path cancels: the flux action is determined by the initial and final paths. This mirrors the contour dependence of configuration flux in the conservative case.
-
-With this property in mind, we can work the equivalence in reverse. Suppose we are given a proper hyperregular flux Lagrangian that satisfies additivity. Choose a reference kinematic state $\chi_r$ and
-define
-\begin{equation}
-	L(x,v,t)
-	:=
-	\mathrm{FL}_{\mathrm{pr}}(\chi_r,(x,v),t).
-\end{equation}
-Applying \eqref{eq:fluxLagrangianAdditivity} to $\chi_r,\chi_a,\chi_b$ gives
-\begin{equation}
-	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t).
-\end{equation}
-Its diagonal derivatives therefore recover
+Conversely, starting with a hyperregular Lagrangian $L$, we can define
 \begin{equation}
 	P_i(x,v,t)=\frac{\partial L}{\partial v^i},
 	\qquad
@@ -792,9 +691,109 @@ $(x,v,t)=(q,V(q,p,t),t)$. Hence the reconstructed evolution satisfies
 	S^{p_i}=-\frac{\partial H}{\partial q^i}.
 \end{equation}
 Its configuration flux form is therefore
-$w=-d(p_i\,dq^i-H\,dt)$ and is closed.
+$w=-d(p_i\,dq^i-H\,dt)$ and is closed. This means that \ref{CSD}+KE+DI-SYMP is equivalent to \ref{CSK}+KEDI-STAC, proving the second equivalence of theorem \ref{thrm:bridge}. Since $DI-SYMP \implies TE-EOM$, the middle implication of theorem \ref{thrm:bridge} is also proved.
 
-We have thus established both directions:
+Let us now study the flux Lagrangian in the conservative case directly from its definition. We have
+\begin{equation}
+	S^{q^i}=\frac{\partial H}{\partial p_i},
+	\qquad
+	S^{p_i}=-\frac{\partial H}{\partial q^i}.
+\end{equation}
+Along the surface interpolation, these relations give
+$v_s^i=\partial_{p_i}H$ and $F_{i,s}=-\partial_{q^i}H$.
+Since $\partial_s t=0$, we have
+\begin{equation}
+	\begin{aligned}
+		\partial_s H(x_s,P_s,t)
+		&=
+		\frac{\partial H}{\partial q^i}\Delta x^i
+		+
+		\frac{\partial H}{\partial p_i}\partial_sP_{i,s}\\
+		&=
+		-F_{i,s}\Delta x^i
+		+v_s^i\partial_sP_{i,s}.
+	\end{aligned}
+\end{equation}
+Substituting into the definition of the proper flux Lagrangian, and using integration by parts, yields
+\begin{equation}
+	\begin{aligned}
+		\mathrm{FL}_{\mathrm{pr}}(x_a,v_a,x_b,v_b,t)
+		&=
+		\int_0^1
+		\left[
+		P_{i,s}\Delta v^i+F_{i,s}\Delta x^i
+		\right]ds\\
+		&=
+		\int_0^1
+		\left[
+		P_{i,s}\Delta v^i
+		+v_s^i\partial_sP_{i,s}
+		-\partial_s H(x_s,P_s,t)
+		\right]ds\\
+		&=
+		\int_0^1
+		\partial_s\left(P_{i,s}v_s^i-H(x_s,P_s,t)\right)ds\\
+		&=
+		\left[P_{i,s}v_s^i-H(x_s,P_s,t)\right]_{s=0}^{s=1}.
+	\end{aligned}
+\end{equation}
+The boundary expression is precisely the ordinary Lagrangian
+\begin{equation}
+	L(x,v,t)
+	=
+	P_i(x,v,t)v^i-H(x,P(x,v,t),t),
+\end{equation}
+viewed as a scalar function on extended phase space in kinematic coordinates. Since $(x_a,v_a)$ and $(x_b,v_b)$ are the endpoints of the interpolation in $s$, 
+\begin{equation}\label{eq:fluxLagrangianDifference}
+	\mathrm{FL}_{\mathrm{pr}}(x_a,v_a,x_b,v_b,t)
+	=
+	L(x_b,v_b,t)-L(x_a,v_a,t).
+\end{equation}
+For a path and its variation, the flux action is consequently
+\begin{equation}
+	\mathcal{FA}_{\mathrm{pr}}[x(t),x(t)+\epsilon\eta(t)]
+	=
+	\mathcal{A}_L[x(t)+\epsilon\eta(t)]-\mathcal{A}_L[x(t)].
+\end{equation}
+Stationarity of the flux recovers the ordinary principle of stationary action, as expected from the previous section. This tells us that the second case is indeed a special case, but it does not characterize it.
+
+Note that equation \eqref{eq:fluxLagrangianDifference} also gives an additional
+property. Writing $\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)$, where $\chi = (x, v)$ represents the pair of kinematic variables, we find
+\begin{equation}\label{eq:fluxLagrangianAdditivity}
+	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_c,t)
+	=
+	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)
+	+
+	\mathrm{FL}_{\mathrm{pr}}(\chi_b,\chi_c,t).
+\end{equation}
+Equivalently, for every time interval $[u,v] \subset \mathbb{R}$, we have
+\begin{equation}\label{eq:fluxActionAdditivity}
+	\mathcal{FA}_{\mathrm{pr}}[x_a(t),x_c(t)]
+	=
+	\mathcal{FA}_{\mathrm{pr}}[x_a(t),x_b(t)]
+	+
+	\mathcal{FA}_{\mathrm{pr}}[x_b(t),x_c(t)].
+\end{equation}
+for all paths, regardless of the endpoints. The above, in fact, means that $\int_u^v
+\left[
+\mathrm{FL}_{\mathrm{pr}}(\chi_a(t),\chi_c(t),t)
+-\mathrm{FL}_{\mathrm{pr}}(\chi_a(t),\chi_b(t),t)
+-\mathrm{FL}_{\mathrm{pr}}(\chi_b(t),\chi_c(t),t)
+\right]dt=0$ for all paths. This means the integrand must be zero at any given time. Intuitively, additivity means that the intermediate path cancels: the flux action is determined by the initial and final paths. This mirrors the contour dependence of configuration flux in the conservative case.
+
+With this property in mind, we can work the equivalence in reverse. Suppose we are given a proper hyperregular flux Lagrangian that satisfies additivity. Choose a reference kinematic state $\chi_r$ and
+define
+\begin{equation}
+	L(x,v,t)
+	:=
+	\mathrm{FL}_{\mathrm{pr}}(\chi_r,(x,v),t).
+\end{equation}
+Applying \eqref{eq:fluxLagrangianAdditivity} to $\chi_r,\chi_a,\chi_b$ gives
+\begin{equation}
+	\mathrm{FL}_{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t).
+\end{equation}
+
+If the above applies, the derivatives in the second set of state variables coincide with the derivative of the Lagrangian. Therefore, the momentum maps $P_i$ and the force maps $F_i$ are the same, regardless of whether they are defined on the flux Lagrangian or the Lagrangian. This means that:
 \begin{equation}
 	\begin{aligned}
 		dw=0
@@ -809,6 +808,8 @@ We have thus established both directions:
 		\mathrm{FL}_{\mathrm{pr}}(\chi_b,\chi_c,t).
 	\end{aligned}
 \end{equation}
+We find, then, that the conservative case is exactly when the proper flux Lagrangian is additive or, equivalently, is the difference of an ordinary Lagrangian evaluated on two states. This means that KE-STFL $\impliedby$ KEDI-STFL $\iff$ KEDI-STAC, thus proving theorem \ref{thrm:kin}.
+
 It should be stressed that additivity characterizes the conservative case only for proper flux Lagrangians. An equivalent flux Lagrangian need not itself satisfy this property, since its values away from coincident states are not fixed by the equations of motion and momentum map.
 
 \pagebreak
