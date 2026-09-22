@@ -35,23 +35,37 @@ TBD
 
 TODO: state that all objects are assumed smooth. Then remove mention of differentiability and smoothness throughout
 
-\begin{condition}[Classical states]{CST}
-	The state space of a classical system with $n$ independent degrees of freedom (DOF) is represented by the symplectic manifold $(\mathbb{R}^{2n}, \omega)$. Each state is represented by position and momentum $(q^i,p_j) \in \mathbb{R}^{2n}$ and $\omega = \sum_i dq^i \wedge dp_i$. The count of configurations\footnote{By \emph{configuration} we mean the position-momentum pair for a single DOF.} for a DOF is given by the $\int_{\Sigma} \omega = \int_{\Sigma} \sum_i dq^i dp_i$. The count of states is given by the Liouville measure $\int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. All geometric objects are assumed smooth.
+\begin{condition}[Smoothness]{SM}
+	All geometric objects are assumed smooth.
+\end{condition}
+
+\begin{condition}[Classical states in dynamical variables]{CSD}
+	The state \linebreak space of a classical system with $n$ independent degrees of freedom (DOF) is represented by position and conjugate momentum. That is, given a set of $n$ position variables $q^i$, we can find a set of $n$ conjugate momentum variables $p_i$ such that each state is identified by position and momentum $(q^i,p_j) \in \mathbb{R}^{2n}$. Moreover, the count of configurations\footnote{By \emph{configuration} we mean the position-momentum pair for a single DOF.} for a DOF is given by $\int_{\Sigma} \omega = \int_{\Sigma} \sum_i dq^i dp_i$ with $\omega = \sum_i dq^i \wedge dp_i$. The count of states is given by the Liouville measure $\int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. 
+\end{condition}
+
+\begin{condition}[Classical states in kinematic variables]{CSK}
+	The state \linebreak space of a classical system with $n$ independent degrees of freedom (DOF) is represented by position and velocity. That is, given a set of $n$ position variables $x^i$, we can find a set of $n$ velocity variables $v^i$ such that each state is identified by position and velocity $(x^i,v^j) \in \mathbb{R}^{2n}$. Moreover, over time evolution, $v^i = d_t x^i$.
 \end{condition}
 
 \begin{theorem}
 	Consider the following conditions:
 	\begin{description}
 		\item[TE-EOM] (Equations of motion) The evolution obeys explicit equations of motion. That is, $d_t \gamma^a(t) = S^a$.
-		\item [TE-FLUX] (Evolution kills the flux) The evolution kills the flux of configuration. That is, there exists a configuration flux form $w_{ab}$ such that $d_t \gamma^a(t) w_{ab}=0$;
-		\item [TE-STFL] (Principle of stationary flux) The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi$ such that $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path and its variation.
+		\item [TE-FLUX] (Evolution kills the flux) The evolution kills the flux of configuration. That is, there exists a configuration flux form $w_{ab}$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $d_t \gamma^a(t) w_{ab}=0$;
+		\item [TE-STFL] (Principle of stationary flux in phase space) The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi[\Sigma]=\int_{\Sigma} w$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path $\gamma^a$ and its variation $\gamma^a + \epsilon \eta^a$.
 		\item [DI-SYMP] (Symplectomorphism) The evolution preserves the configuration count and DOF independence. That is, $d_t \omega = 0$.
-		\item [DI-STACH] (Principle of stationary action in phase space) The evolution between two given positions is the one for which the phase space action is stationary. That is, there exists an action functional $\mathcal{A}_H[\gamma] = \int (p_i d_t q^i -H)dt$ such that  $\delta \mathcal{A}_H[\gamma] = 0$.
+		\item [DI-STAC] (Principle of stationary action in phase space) The evolution between two given positions is the one for which the phase space action is stationary. That is, there exists an action functional $\mathcal{A}_H[\gamma] = \int (p_i d_t q^i -H)dt$ such that  $\delta \mathcal{A}_H[\gamma] = 0$.
 		\item[KE](Kinematic Equivalence)
 		The system can be equivalently described in dynamic and kinematic variables. That is, there is an invertible map between position and momentum $(q^i, p_i)$ and position and velocity $(x^i, v^i)$.
-		\item [DI+KE-STAC] (Principle of stationary action) The evolution between two given positions is the one for which the action is stationary. That is, there exists an action functional $\mathcal{A}_L[\gamma^{q^i}] = \int L(x^i, v^i, t)dt$ with $|\partial_{v^i} \partial_{v^j} L| \neq 0$ such that  $\delta \mathcal{A}_L[\gamma^{q^i}] = 0$.
+		\item [KE-STFL] (Principle of stationary flux) The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux action functional $\mathcal{FA}[x^i_a(t), x^i_b(t)] =$ \linebreak $\int \mathrm{FL}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$ where $\mathrm{FL}$ is a hyperregular flux Lagrangian such that  $\delta_b \mathcal{FA}[x^i(t),x^i(t)] = 0$.
+		\item [KEDI-STFL] (Principle of stationary flux) The evolution between two given positions is the one that renders the additive flux around it stationary. That is, there exists a flux action functional $\mathcal{FA}[x^i_a(t), x^i_b(t)] =$  $\int \mathrm{FL}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$ where $\mathrm{FL}$ is an additive hyperregular flux Lagrangian such that  $\delta_b \mathcal{FA}[x^i(t),x^i(t)] = 0$.
+		\item [KEDI-STAC] (Principle of stationary action) The evolution between two given positions is the one for which the action is stationary. That is, there exists an action functional $\mathcal{A}_L[x^i(t)] = \int L(x^i(t), d_t x^i(t), t)dt$ where $L$ is a hyperregular Lagrangian such that $\delta \mathcal{A}_L[x^i(t)] = 0$.
 	\end{description}
+	Correspondence across kinematic and dynamical variables: over \ref{SM}, \ref{CSD} \linebreak +KE+TE-EOM $\iff$ \ref{CSK}+KE-STFL $\impliedby$ \ref{CSD}+KE+DI-SYMP $\iff$ \ref{CSK}+KEDI-STFL.
 	
+	Characterizations of general and conservative dynamics in dynamical variables: over \ref{SM}+\ref{CSD}, TE-EOM $\iff$ TE-FLUX $\iff$ TE-STFL $\impliedby$ DI-SYMP $\iff$ DI-STAC.
+	
+	Characterization of general and conservative dynamics in kinematic variables: over \ref{SM}+\ref{CSK}, KE-STFL $\impliedby$ KEDI-STFL $\iff$ KEDI-STAC.
 \end{theorem}
 
 \section{Arbitrary dynamics in the extended phase space}
