@@ -35,46 +35,99 @@ TBD
 
 TODO: state that all objects are assumed smooth. Then remove mention of differentiability and smoothness throughout
 
+\section{Conditions and their relationships}
+
+In this section, following the practice of Reverse Physics, we summarize the mathematical and physical conditions we are going to encounter throughout this work and state their logical relationships within three theorems. The rest of the paper establishes these relationships while explaining their physical meaning and the constructions connecting them.
+
+\subsection{Background conditions}
+
+We will always assume the following to be true.
 \begin{condition}[Smoothness]{SM}
 	All geometric objects are assumed smooth.
 \end{condition}
+This condition simplifies the discussion, and it is often assumed in the context of differential geometry. Note that, as of now, we do not have an equivalent physical condition, and therefore we do not know whether smoothness has physical significance.
 
+The following condition characterizes classical states in terms of position and momentum, as it is done in the context of Hamiltonian mechanics.
 \begin{condition}[Classical states in dynamical variables]{CSD}
 	The state \linebreak space of a classical system with $n$ independent degrees of freedom (DOF) is represented by position and conjugate momentum. That is, given a set of $n$ position variables $q^i$, we can find a set of $n$ conjugate momentum variables $p_i$ such that each state is identified by position and momentum $(q^i,p_j) \in \mathbb{R}^{2n}$. Moreover, the count of configurations\footnote{By \emph{configuration} we mean the position-momentum pair for a single DOF.} for a DOF is given by $\int_{\Sigma} \omega = \int_{\Sigma} \sum_i dq^i dp_i$ with $\omega = \sum_i dq^i \wedge dp_i$. The count of states is given by the Liouville measure $\int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. 
 \end{condition}
+Note that conjugate momentum is not unique in classical mechanics. The relationship between position and conjugate momentum is simply that they, together, allow us to count configurations (i.e. ways that a single DOF can be specified) through the symplectic form.
 
+The following condition characterizes classical states in terms of position and velocity, as it is done in the context of Newtonian and Lagrangian mechanics.
 \begin{condition}[Classical states in kinematic variables]{CSK}
 	The state \linebreak space of a classical system with $n$ independent degrees of freedom (DOF) is represented by position and velocity. That is, given a set of $n$ position variables $x^i$, we can find a set of $n$ velocity variables $v^i$ such that each state is identified by position and velocity $(x^i,v^j) \in \mathbb{R}^{2n}$. Moreover, over time evolution, $v^i = d_t x^i$.
 \end{condition}
+Note that, in this case, no count of configuration is given. However, the condition gives the relationship $v^i = d_t x^i$ between variables during evolution, and no such relationship is given in \ref{CSD}.
 
-\begin{theorem}
-	Consider the following conditions:
-	\begin{description}
-		\item[TE-EOM] (Equations of motion) The evolution obeys explicit equations of motion. That is, $d_t \gamma^a(t) = S^a$.
-		\item [TE-FLUX] (Evolution kills the flux) The evolution kills the flux of configuration. That is, there exists a configuration flux form $w_{ab}$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $d_t \gamma^a(t) w_{ab}=0$;
-		\item [TE-STFL] (Principle of stationary flux in phase space) The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi[\Sigma]=\int_{\Sigma} w$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path $\gamma^a$ and its variation $\gamma^a + \epsilon \eta^a$.
-		\item [DI-SYMP] (Symplectomorphism) The evolution preserves the configuration count and DOF independence. That is, $d_t \omega = 0$.
-		\item [DI-STAC] (Principle of stationary action in phase space) The evolution between two given positions is the one for which the phase space action is stationary. That is, there exists an action functional $\mathcal{A}_H[\gamma] = \int (p_i d_t q^i -H)dt$ such that  $\delta \mathcal{A}_H[\gamma] = 0$.
-		\item[KE](Kinematic Equivalence)
-		The system can be equivalently described in dynamic and kinematic variables. That is, there is an invertible map between position and momentum $(q^i, p_i)$ and position and velocity $(x^i, v^i)$.
-		\item [KE-STFL] (Principle of stationary flux) The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux action functional $\mathcal{FA}[x^i_a(t), x^i_b(t)] =$ \linebreak $\int \mathrm{FL}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$ where $\mathrm{FL}$ is a hyperregular flux Lagrangian such that  $\delta_b \mathcal{FA}[x^i(t),x^i(t)] = 0$.
-		\item [KEDI-STFL] (Principle of stationary flux) The evolution between two given positions is the one that renders the additive flux around it stationary. That is, there exists a flux action functional $\mathcal{FA}[x^i_a(t), x^i_b(t)] =$  $\int \mathrm{FL}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$ where $\mathrm{FL}$ is an additive hyperregular flux Lagrangian such that  $\delta_b \mathcal{FA}[x^i(t),x^i(t)] = 0$.
-		\item [KEDI-STAC] (Principle of stationary action) The evolution between two given positions is the one for which the action is stationary. That is, there exists an action functional $\mathcal{A}_L[x^i(t)] = \int L(x^i(t), d_t x^i(t), t)dt$ where $L$ is a hyperregular Lagrangian such that $\delta \mathcal{A}_L[x^i(t)] = 0$.
-	\end{description}
-	Correspondence across kinematic and dynamical variables: over \ref{SM}, \ref{CSD} \linebreak +KE+TE-EOM $\iff$ \ref{CSK}+KE-STFL $\impliedby$ \ref{CSD}+KE+DI-SYMP $\iff$ \ref{CSK}+KEDI-STFL.
-	
-	Characterizations of general and conservative dynamics in dynamical variables: over \ref{SM}+\ref{CSD}, TE-EOM $\iff$ TE-FLUX $\iff$ TE-STFL $\impliedby$ DI-SYMP $\iff$ DI-STAC.
-	
-	Characterization of general and conservative dynamics in kinematic variables: over \ref{SM}+\ref{CSK}, KE-STFL $\impliedby$ KEDI-STFL $\iff$ KEDI-STAC.
+The following condition makes sure that we can link the two descriptions.
+\begin{condition}[Kinematic Equivalence]{KE}
+	The system can be equivalently described in dynamic and kinematic variables. That is, there is an invertible map between position and momentum $(q^i, p_i)$ and position and velocity $(x^i, v^i)$.
+\end{condition}
+Note that this is an additional condition, as it is independent from \ref{CSD} and \ref{CSK}. However, it is implied by both the principle of stationary action and the principle of stationary flux in their kinematic formulation. That is, the hyperregularity of both the standard and flux Lagrangians ensures enough information to recover conjugate momentum and the symplectic configuration count.
+
+\subsection{Evolution and variational conditions}
+
+In the context of \ref{CSD}, the following three conditions characterize general dynamics.
+\begin{condition}[Equations of motion]{TE-EOM}
+	The evolution obeys explicit equations of motion. That is, $d_t \gamma^a(t) = S^a$.
+\end{condition}
+\begin{condition}[Evolution kills the flux]{TE-FLUX}
+	The evolution kills the flux of configuration. That is, there exists a configuration flux form $w_{ab}$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $d_t \gamma^a(t) w_{ab}=0$.
+\end{condition}
+\begin{condition}[Principle of stationary flux in phase space]{TE-STFL}
+	The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi[\Sigma]=\int_{\Sigma} w$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path $\gamma^a$ and its variation $\gamma^a + \epsilon \eta^a$.
+\end{condition}
+We will see that these are actually equivalent characterizations of time evolution, and therefore, following Reverse Physics standard, they share the same prefix TE. Note that the principle of stationary flux is among the three characterizations.
+
+Still in the context of \ref{CSD}, the following two conditions characterize conservative dynamics.
+\begin{condition}[Symplectomorphism]{DI-SYMP}
+	The evolution preserves the configuration count and DOF independence. That is, $d_t \omega = 0$.
+\end{condition}
+\begin{condition}[Principle of stationary action in phase space]{DI-STAC}
+	The evolution between two given positions is the one for which the phase space action is stationary. That is, there exists an action functional $\mathcal{A}_H[\gamma] = \int (p_i d_t q^i -H)dt$ such that  $\delta \mathcal{A}_H[\gamma] = 0$.
+\end{condition}
+In previous work, we have already shown that these two are equivalent, and that, physically, they are equivalent to assuming determinism and reversibility plus the preservation of independence of the degrees of freedom. As such, they share the same prefix DI.
+
+In the context of \ref{CSK}, we have the main result of this paper.
+\begin{condition}[Principle of stationary flux]{KE-STFL}
+	The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux action functional $\mathcal{FA}[x^i_a(t), x^i_b(t)] =$ \linebreak $\int \mathrm{FL}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$ where $\mathrm{FL}$ is a hyperregular flux Lagrangian such that  $\delta_b \mathcal{FA}[x^i(t),x^i(t)] = 0$.
+\end{condition}
+This is effectively condition \ref{TE-STFL} expressed under the assumption of Kinematic Equivalence, which allows us to express momentum, and therefore the flux, in terms of kinematic variables. That is why the prefix is KE.
+
+Lastly, still in the context of \ref{CSK}, we can characterize conservative dynamics with the following.
+\begin{condition}[Principle of stationary additive flux]{KEDI-STFL}
+	The evolution between two given positions is the one that renders the additive flux around it stationary. That is, there exists a flux action functional $\mathcal{FA}[x^i_a(t), x^i_b(t)] =$  $\int \mathrm{FL}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$ where $\mathrm{FL}$ is an additive hyperregular flux Lagrangian such that  $\delta_b \mathcal{FA}[x^i(t),x^i(t)] = 0$.
+\end{condition}
+\begin{condition}[Principle of stationary action]{KEDI-STAC}
+	The evolution between two given positions is the one for which the action is stationary. That is, there exists an action functional $\mathcal{A}_L[x^i(t)] = \int L(x^i(t), d_t x^i(t), t)dt$ where $L$ is a hyperregular Lagrangian such that $\delta \mathcal{A}_L[x^i(t)] = 0$.
+\end{condition}
+Conservative dynamics is recovered when the flux action is additive and the flux Lagrangian can be expressed in terms of the standard Lagrangian. Effectively, the principle of stationary action is a special case of the principle of stationary flux for the conservative case. As such, these conditions are labeled KEDI because they capture both KE and DI.
+
+\subsection{Theorems}
+
+The first theorem establishes the correspondence across kinematic and dynamical variables.
+\begin{theorem}\label{thrm:bridge}
+	Over \ref{SM}, \ref{CSD}+KE+TE-EOM $\iff$ \ref{CSK}+KE-STFL $\impliedby$ \ref{CSD}+KE+DI-SYMP $\iff$ \ref{CSK}+KEDI-STAC.
+\end{theorem}
+Note how KE enters differently: for the dynamical variables, it is an extra assumption; for the kinematic variables, it is part of the principles of stationary flux and action. Also note how the conservative case, i.e. the DI assumption, is a further specialization of the general conditions.
+
+The remaining two theorems establish the characterization for general and conservative dynamics in the respective descriptions.
+\begin{theorem}\label{thrm:dyn}
+	Over \ref{SM}+\ref{CSD}, TE-EOM $\iff$ TE-FLUX $\iff$ TE-STFL $\impliedby$ DI-SYMP $\iff$ DI-STAC.
+\end{theorem}
+\begin{theorem}\label{thrm:kin}
+	Over \ref{SM}+\ref{CSK}, KE-STFL $\impliedby$ KEDI-STFL $\iff$ KEDI-STAC.
 \end{theorem}
 
-\section{Arbitrary dynamics in the extended phase space}
+\section{Dynamics in the extended phase space}
 
-In this section we outline the theory for a classical dynamical system on the extended phase space. At each time, we have standard phase space with the geometry given by the count of configurations defined by the closed form $\omega_{ab}$. The dynamics in time, however, need not be conservative (i.e. Hamiltonian). The main result is the existence of a flux form $w_{ab}$ that characterizes the flux of configurations through a surface, and that the only direction that kills said flux is the displacement field $S^a$. That is, $v^a w_{ab} = 0$ if and only if $v^a = k S^a$ for some $k \in \mathbb{R}$.  
+In this section we outline the theory for a classical dynamical system on the extended phase space, effectively addressing all equivalences stated in theorem \ref{thrm:dyn}. At each time, we have standard phase space with the geometry given by the count of configurations defined by the closed form $\omega_{ab}$. The dynamics in time, however, need not be conservative (i.e. Hamiltonian). The main result is the existence of a flux form $w_{ab}$ that characterizes the flux of configurations through a surface, and that the only direction that kills said flux is the displacement field $S^a$. That is, $v^a w_{ab} = 0$ if and only if $v^a = k S^a$ for some $k \in \mathbb{R}$. This is what allows us to formulate the principle of stationary flux in general terms. In the conservative case, the dynamics preserves the symplectic form over phase space and it can be characterized by the principle of stationary action in phase space form.
 
-We consider a system as defined by classical mechanics, classed assumption (CST) for Classical STates, where each state is fully identified by position and conjugate momentum $(q^i,p_j) \in \mathbb{R}^{2n}$. Given a region $U \subseteq \mathbb{R}^{2n}$, the count of states is given by $\int_U \Omega = \int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. That is, the volume form $\Omega$ that defines the count of states locally is the product of the count of configuration for each degree of freedom (DOF) given by $\omega_{ab}$. In the context of Reverse Physics, this corresponds to the Infinitesimal Reducibility (IR) assumption (i.e the system can be thought as made of infinitesimal parts, or particles) and the INDependence of all degrees of freedom (IND).
+\subsection{General dynamics}
 
-Extending this setting with time, states are identified at a specific time using generalized coordinates $\xi^a = (q^i,p_i,t) \in \mathbb{R}^{2n+1}$. A path for the system is defined by a curve $\gamma^a(t) = (q^i(t), p_i(t), t)$, which tells us how the system evolves in time. Note that the time component has to match time itself, $\gamma^t(t) = t$, meaning that time plays a double role of coordinate (i.e. an element of $\xi^a$) and affine parameter (i.e. the parameter of the curve).
+We consider a system as defined by classical mechanics described by dynamical variables, as in condition \ref{CSD}. Each state is fully identified by position and conjugate momentum $(q^i,p_i) \in \mathbb{R}^{2n}$. Given a region $U \subseteq \mathbb{R}^{2n}$, the count of states is given by $\int_U \Omega = \int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. That is, the volume form $\Omega$ that defines the count of states locally is the product of the count of configuration for each degree of freedom (DOF) given by $\omega_{ab}$.
+
+Extending this setting with time, states are identified at a specific time using generalized coordinates $\xi^a = (q^i,p_i,t) \in \mathbb{R}^{2n+1}$. A path for the system is defined by a curve $\gamma^a(t) = (q^i(t), p_i(t), t)$, which tells us how the system evolves in time. Note that the time component has to match time itself, $\gamma^t(t) = t$, meaning that time plays a double role of coordinate (i.e. an element of $\xi^a$) and affine parameter (i.e. the parameter of the curve). Therefore, a partial derivative $\partial_t$ will correspond to a derivative at $q^i$ and $p_i$ constant, while a total derivative $d_t$ will correspond to a derivative along a path $\gamma^a(t)$.
 
 \begin{figure}[h]
     \centering
@@ -82,7 +135,7 @@ Extending this setting with time, states are identified at a specific time using
     \caption{Every two-dimensional surface at constant time is transported to another two-dimensional surface at constant time forming an evolution tube. The flux of configurations must be zero on the sides, therefore the net flux is the count of configurations at the end minus the count of configurations at the beginning. The dynamics is conservative if the flux over a closed surface is always zero, meaning that each evolution tube conserves the count of configurations and the independence of the degrees of freedom (i.e. mixed planes, like $(q^1,q^2)$, do not identify configurations for an independent DOF).}\label{evolutionTube}
 \end{figure}
 
-Assuming that we have a dynamical system that leaves probability densities well-defined throughout the evolution, there must be a displacement field $S^a(q^i,p_i,t)$ that tells how states evolve in time.\footnote{We will require the evolution to be differentiable in all parameters, leaving the exact physical meaning of that requirement for future work.} Therefore $\gamma^a(t)$ is an evolution of the system if and only if $d_t \gamma^a(t) = S^a(\gamma^a(t)) = S^a(q^i(t),p_i(t),t)$, which represents the equation of motion. In components, this becomes
+Assuming we have a dynamical system, there will be a smooth displacement field $S^a(q^i,p_i,t)$ that tells how states evolve in time. Therefore $\gamma^a(t)$ is an evolution of the system if and only if $d_t \gamma^a(t) = S^a(\gamma^a(t)) = S^a(q^i(t),p_i(t),t)$, which represents the equation of motion. In components, this becomes
 \begin{equation}
     d_t \gamma^a(t) = \begin{bmatrix}
 \dfrac{dq^i}{dt} \\[1em]
@@ -94,9 +147,9 @@ S^{p_i}(q^i,p_i,t) \\[1em]
 S^{t}(q^i,p_i,t) 
 \end{bmatrix}= S^a(q^i,p_i,t).
 \end{equation}
-Since $\gamma^t = t$, we must have that $S^t=1$.
+Since $\gamma^t = t$, we must have that $S^t=1$. This corresponds to condition \ref{TE-EOM}.
 
-We now want to characterize the flux of states, how the count of states flows in time. As described in Fig. \ref{evolutionTube}, if we start with a region $U$ at constant time, this will be mapped to a region $U'$ at a future time, forming an evolution tube where $U$ and $U'$ are the ends and the sides are evolution curves. The sides are always tangent to the displacement field $S^a$ and therefore they do not contribute to the flux. Given a generic hypersurface $U$, we are looking for a linear functional $\Phi(U) = \int_U W$ that must coincide with the state counting volume form at equal time, $W|_t = \Omega$ and must be zero along the flow, $W(S^a, \cdots) = 0$. This is enough to characterize the state flux form $W$.
+We now want to characterize the flux of states, how the count of states flows in time. As described in Fig. \ref{evolutionTube}, if we start with a region $U$ at constant time, this will be mapped to a region $U'$ at a future time, forming an evolution tube where $U$ and $U'$ are the ends and the sides are evolution curves. The sides are always tangent to the displacement field $S^a$ and therefore they do not contribute to the flux. Given a generic hypersurface $U$, we are looking for a linear functional $\Phi(U) = \int_U W$ that must coincide with the state counting volume form at equal time, $W|_t = \Omega$ and must be zero along the flow, $W(S^a, \cdot) = 0$. This is enough to characterize the state flux form $W$.
 
 In fact, all components with no time index will either be zero, if there are repetitions, or $\pm 1$ depending on orientation. For example,
 \begin{equation}
@@ -128,24 +181,7 @@ Since $\Omega = \omega^n/n!$, we can also write $W = w^n/n!$ with
         \end{bmatrix} \\
     \end{aligned},
 \end{equation}
-and $\phi(\Sigma) = \int_{\Sigma} w$ will describe the flux of configuration for a single DOF. Given the setting, then, this is the natural way to extend the symplectic form to the extended phase space for a dynamical system.
-
-In our previous work we had shown that conservative/Hamiltonian dynamics is exactly recovered when the flux is zero over closed surfaces. In this case, $w_{ab}$ is closed and can be expressed as minus the exterior derivative of a one form $\theta_a$. Without loss of generality, one finds
-\begin{equation}
-    \begin{aligned}
-        \theta_a &= \begin{bmatrix}
-            p_i & 0 & -H
-        \end{bmatrix} \\
-        w_{ab} &= - \partial_a \wedge \theta_b = \begin{bmatrix}
-            0 & \delta_i^j & \partial_{q^i} H \\
-            -\delta_j^i & 0 & \partial_{p_i} H \\
-            - \partial_{q^j} H & -\partial_{p_j} H & 0
-        \end{bmatrix} \\
-        S^{q^i} &= \partial_{p_i} H \\
-        S^{p_i} &= - \partial_{q^i} H \\
-        S^t &= 1.
-    \end{aligned}
-\end{equation}
+and $\phi(\Sigma) = \int_{\Sigma} w$ will describe the flux of configuration for a single DOF. Given the setting, then, this is the natural way to extend the symplectic form to the extended phase space for a dynamical system. This is the flux form described in condition \ref{TE-FLUX}.
 
 Note that the relationship between $S^a$ and $w_{ab}$ is even stronger. Suppose, in fact, that $v^a w_{ab} = 0$. We have
 \begin{equation}
@@ -173,17 +209,35 @@ where the last equation is not independent from the previous and therefore provi
 \begin{equation}
     v^a w_{ab} = 0 \iff v^a = S^a v^t.
 \end{equation}
-That is, the displacement field is the only degenerate direction, up to a scalar multiple, of the flux form. This also means that 
+That is, the displacement field is the only degenerate direction, up to a scalar multiple, of the flux form. This is a consequence of the fact that $w_{ab}|_{(q^i,p_i)} = \omega_{ab}$: since $\omega_{ab}$ is non-degenerate, there is only one degenerate direction. This also means that 
 \begin{equation}\label{evolutionsKillFlux}
     d_t \gamma^a(t) = S^a  \iff d_t \gamma^a(t) w_{ab} = 0.
 \end{equation}
-That is, $\gamma^a(t)$ is a solution of the equation of motion if and only it kills the configuration flux form precisely because surfaces tangent to the flow have no flux. This relationship is true regardless of whether the dynamics is conservative and is the cornerstone of the generalization of the variational principle of least action to non-conservative dynamics.
+That is, $\gamma^a(t)$ is a solution of the equation of motion if and only it kills the configuration flux form precisely because surfaces tangent to the flow have no flux. This proves the equivalence between \ref{TE-EOM} and \ref{TE-FLUX} over \ref{CSD}. We stress, again, that this relationship is true regardless of whether the dynamics is conservative.
 
-\section{Generalized variational principle}
+\subsection{The conservative dynamics}
 
-In this section we show that the relationship \ref{evolutionsKillFlux} can be turned into a generalized variational principle for all dynamics that coincides with the principle of least action for the conservative ones.
+The conservative/Hamiltonian case is exactly recovered when the flux is zero over closed surfaces. Going back to Fig.\ref{evolutionTube}, if the count of configuration is conserved, flux through every evolution tube is zero. The vanishing flux through infinitesimal evolution tubes, together with the closedness of the equal-time configuration counting form $\omega$, implies that $w$ is closed. We can therefore write $w_{ab} = - \partial_a \wedge \theta_b$.
 
-In our previous work, we showed that the principle of stationary action is a variation version of \ref{evolutionsKillFlux}. Let us summarize the result before we understand how to extend it. Let us consider a path $\gamma^a(t)$ with $t \in (t_0, t_1)$ and define $\mathcal{A}_H[\gamma]$ as the integral of $\theta_a$ along $\gamma^a$. Assuming (DR), we have
+The spatial parts of $w$ are fixed by $\omega$, and therefore, without loss of generality, we have
+\begin{equation}
+	\begin{aligned}
+		\theta_a &= \begin{bmatrix}
+			p_i & 0 & -H
+		\end{bmatrix} \\
+		w_{ab} &= - \partial_a \wedge \theta_b = \begin{bmatrix}
+			0 & \delta_i^j & \partial_{q^i} H \\
+			-\delta_j^i & 0 & \partial_{p_i} H \\
+			- \partial_{q^j} H & -\partial_{p_j} H & 0
+		\end{bmatrix} \\
+		S^{q^i} &= \partial_{p_i} H \\
+		S^{p_i} &= - \partial_{q^i} H \\
+		S^t &= 1.
+	\end{aligned}
+\end{equation}
+This recovers Hamilton's equations. Conversely, Hamilton’s equations give $w=-d\theta$, so $w$ is closed and the configuration count is preserved along every evolution tube. Thus Hamiltonian dynamics is equivalent to condition DI-SYMP.\footnote{In Reverse Physics, we also find other conditions equivalent to Hamiltonian evolution.}
+
+The conservative case can equivalently be expressed in terms of the principle of stationary action on the extended phase space. Let us consider a path $\gamma^a(t)$ with $t \in [t_0, t_1]$ and define the action $\mathcal{A}_H[\gamma]$ as the integral of $\theta_a$ along $\gamma^a$. We have
 \begin{equation}
     \begin{aligned}
         \mathcal{A}_H[\gamma] &= \int_\gamma \theta_a d\gamma^a = \int_{t_0}^{t_1} \theta_a d_t \gamma^a dt \\
@@ -195,14 +249,7 @@ In our previous work, we showed that the principle of stationary action is a var
         = \int_{t_0}^{t_1} ( p_i \dot q^i - H) dt.
     \end{aligned}
 \end{equation}
-This quantity provides the most direct understanding of the principle of stationary action, even though it is expressed in terms of momentum. If we further assume Kinematic Equivalence (KE), that the momenta $p_i$ are expressible as functions of $q^i$, $\dot q^i$ and $t$, we recover the standard formulation of the action in terms of a Lagrangian.
-\begin{equation}
-	\begin{aligned}
-		\mathcal{A}_H[\gamma] 
-		&= \int_{t_0}^{t_1} ( p_i \dot q^i - H) dt  \stackrel{\text{KE}}{=} \int_{t_0}^{t_1} L(q^i, \dot q^i, t) dt = \mathcal{A}_L[q(t)].
-	\end{aligned}
-\end{equation}
-The action, then, is the line integral of the potential $\theta_a$ of the flux of configurations. 
+
 
 Now, let us consider a different path $\tilde \gamma^a(t) = \gamma^a(t) + \epsilon \eta^a(t)$ that starts and ends at the same position. Then $\eta^{q^i}(t_0)=\eta^{q^i}(t_1)=0$, and, since $\gamma^t(t) = t = \tilde\gamma^t(t)$, $\eta^t(t) = 0$. We can take the two paths and close them in a loop with a straight line in momentum at $t_0$ and $t_1$. We can find a surface $\Sigma$ such that its boundary $\partial \Sigma$ is that loop. We can, for example, choose $\Sigma^a_{\gamma, \epsilon \eta} : [t_0, t_1] \times [0,\epsilon] \to \mathbb{R}^{2n+1}$ given by $\Sigma^a_{\gamma, \epsilon \eta}(t,s) = \gamma^a(t) + s \eta^a(t)$, which satisfies $\Sigma^a_{\gamma, \epsilon \eta}(t,0) = \gamma^a(t)$ and $\Sigma^a_{\gamma, \epsilon \eta}(t,\epsilon) = \tilde \gamma^a(t)$. Note that, for a curve $\lambda^a(s) = (\hat{q}^i, p_i(s), \hat{t})$ that only varies in momenta at a fixed position $\hat{q}^i$ and time $t$, we have
 \begin{equation}
@@ -218,40 +265,59 @@ Therefore, the straight lines in momentum provide no contribution to the action.
 \end{equation}
 That is, the difference of the action between the two paths is minus the flux through the surface between them.
 
-Given the equivalence between action and flux, the variational principle can be expressed in terms of either. That is, 
-\begin{equation}
-    \delta \mathcal{A}_H[\gamma + \epsilon \eta] = 0 \iff  \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0.
-\end{equation}
-for all possible variations $\eta(t)$. This tells us that the principle of stationary action is equivalent to requiring that the flux of configurations through the infinitesimal surface between the path and the variation is zero, regardless of the variation. This was the insight of the previous work.
-
-The crucial new insight is that the variational principle in terms of the flux does not require the existence of the potential $\theta_a$ to recover the equations of motion. In fact, we find:
+The principle of stationary action, then, amounts to requiring that the flux through the infinitesimal surface connecting a path and any variation is zero. Geometrically, this can only happen if the path is tangent to the displacement field $S^a$, which means it is a solution of the equations of motion. Mathematically, we find:
 \begin{equation}\label{variationOnFlux}
-    \begin{aligned}
-        \delta \phi[\Sigma_{\gamma, \epsilon \eta}] &= \partial_\epsilon \phi(\Sigma_{\gamma,\epsilon\eta})|_{\epsilon=0} \\
-        &= \partial_{\epsilon} \int_{t_0}^{t_1} \int_0^{\epsilon} w_{ab} \partial_s \Sigma^a_{\gamma, \epsilon \eta}(t,s) \partial_t \Sigma^b_{\gamma, \epsilon \eta}(t,s) ds dt |_{\epsilon=0} \\
-        &= \int_{t_0}^{t_1} \partial_{\epsilon} \int_0^{\epsilon} w_{ab} \eta^a(t) (d_t \gamma^b(t) + s d_t \eta^b(t) ) ds dt |_{\epsilon=0} \\
-        &= \int_{t_0}^{t_1} w_{ab} \eta^a(t) (d_t \gamma^b(t) + \epsilon d_t \eta^b(t)) dt |_{\epsilon=0} \\
-        &= \int_{t_0}^{t_1} w_{ab} \eta^a(t) d_t \gamma^b(t) dt \\
-    \end{aligned}
+	\begin{aligned}
+		- \delta \mathcal{A}_H[\gamma] &=
+		\delta\phi[\Sigma_{\gamma,\epsilon\eta}]= \partial_\epsilon \phi(\Sigma_{\gamma,\epsilon\eta})|_{\epsilon=0} \\
+		&= \partial_{\epsilon} \int_{t_0}^{t_1} \int_0^{\epsilon} w_{ab} \partial_s \Sigma^a_{\gamma, \epsilon \eta}(t,s) \partial_t \Sigma^b_{\gamma, \epsilon \eta}(t,s) ds dt |_{\epsilon=0} \\
+		&= \int_{t_0}^{t_1} \partial_{\epsilon} \int_0^{\epsilon} w_{ab} \eta^a(t) (d_t \gamma^b(t) + s d_t \eta^b(t) ) ds dt |_{\epsilon=0} \\
+		&= \int_{t_0}^{t_1} w_{ab} \eta^a(t) (d_t \gamma^b(t) + \epsilon d_t \eta^b(t)) dt |_{\epsilon=0} \\
+		&= \int_{t_0}^{t_1} w_{ab} \eta^a(t) d_t \gamma^b(t) dt \\
+	\end{aligned}
 \end{equation}
-
-Since $w_{ab} \eta^a(t) d_t \gamma^b(t) = 0$ for all space-momentum variations $\eta^a(t)$, $w_{ab} d_t \gamma^b(t) = 0$ whenever $a \in \{q^i, p_i\}$. Now consider $d_t \gamma^a(t) w_{ab} d_t \gamma^b(t)$. This is equal to zero by anti-symmetry of $w_{ab}$. Putting the two results together, we have $d_t \gamma^t(t) w_{tb} d_t \gamma^b(t) = 0$. Since $d_t \gamma^t(t) = 1$, $w_{tb} d_t \gamma^b(t) = 0$. Therefore, 
+Since $w_{ab} \eta^a(t) d_t \gamma^b(t) = 0$ for all space-momentum variations $\eta^a(t)$, $w_{ab} d_t \gamma^b(t) = 0$ whenever $a \in \{q^i, p_i\}$. Now consider $d_t \gamma^a(t) w_{ab} d_t \gamma^b(t)$. This is equal to zero by anti-symmetry of $w_{ab}$. Putting the two results together, we have $d_t \gamma^t(t) w_{tb} d_t \gamma^b(t) = 0$. Since $d_t \gamma^t(t) = 1$, $w_{tb} d_t \gamma^b(t) = 0$. Therefore, in the conservative case, 
 \begin{equation}
-    \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \iff d_t \gamma^a(t) w_{ab} = 0.
+	\delta \mathcal{A}_H[\gamma] = 0 \iff d_t \gamma^a(t) w_{ab} = 0.
 \end{equation}
-Given \ref{evolutionsKillFlux}, $\gamma^a(t)$ is a solution of the equations of motion.
+This proves the equivalence between \ref{DI-SYMP} and \ref{DI-STAC}.
 
-In true spirit of Reverse Physics, we found six conditions with the following relationship
+\subsection{Stationary flux in the extended phase space}
+
+If we look closely at the derivation in \ref{variationOnFlux}, we note that the only part that depends on conservative dynamics is the expression of the action. The flux and its variation only require $w_{ab}$, which is well-defined for general dynamics. Therefore the following conclusion
+\begin{equation}
+	\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \iff d_t \gamma^a(t) w_{ab} = 0
+\end{equation}
+is valid in general. This gives us a way to characterize any dynamics through a variational principle, which can be stated in the following way:
+\begin{quote}
+	\textbf{Principle of stationary flux.} The path taken by a classical dynamical system between two positions is the one that renders the flux around it stationary.
+\end{quote}
+This, again, is simply a consequence of the fact that each evolution is locally tangent to the displacement field at every point, and therefore an infinitesimal surface around an evolution, will also be tangent to the field, leading to no flux. Conversely, if the path is not tangent, there will be a direction in which a variation will ``catch'' some of the flux. The standard action exists only in the special conservative case, when the flux form is closed.
+
+To sum up, we have the following five conditions with the following relationship
 \begin{equation}
 \begin{aligned}
-    d_t \gamma^a(t) = S^a &\iff d_t \gamma^a(t) w_{ab}=0 \iff \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \\&\stackrel{\text{+DR}}{\impliedby} \delta \mathcal{A}_H[\gamma] = 0 \iff d_t \omega =0 \\
-    &\stackrel{\text{+KE}}{\impliedby} \delta \mathcal{A}_L[\gamma^{q^i}] = 0.
+    d_t \gamma^a(t) = S^a &\iff d_t \gamma^a(t) w_{ab}=0 \iff \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \\&\stackrel{\text{+DI}}{\impliedby} \delta \mathcal{A}_H[\gamma] = 0 \iff d_t \omega =0.
 \end{aligned}
 \end{equation}
-The first three conditions are equivalent over (CST), the assumptions that we are dealing with a classical state space, represented by a symplectic manifold for which the symplectic form represents the count of configurations for independent degrees of freedom. Over (CST)+(DR), the count of states and DOF independence is preserved, $w_{ab}$ is closed, which allows us to define, at least locally, a potential $\theta_a$ and use Stokes' theorem. Lastly, over (CST)+(DR)+(KE), the action can be expressed in terms of a Lagrangian. The more general variational principle, then, is the one in terms of the flux, which can be stated in the following way:
-\begin{quote}
-    \textbf{Principle of stationary flux.} The path taken by a classical dynamical system between two configurations is the one that renders the flux around it stationary.
-\end{quote}
+which corresponds to theorem \ref{thrm:dyn}. Once we assume \ref{CSD}, classical states represented by position and momentum, the first three conditions equivalently represent general dynamics while the second two equivalently represent the special case of conservative dynamics.
+
+\section{Stray pieces}
+
+This quantity provides the most direct understanding of the principle of stationary action, even though it is expressed in terms of momentum. If we further assume Kinematic Equivalence (KE), that the momenta $p_i$ are expressible as functions of $q^i$, $\dot q^i$ and $t$, we recover the standard formulation of the action in terms of a Lagrangian.
+\begin{equation}
+	\begin{aligned}
+		\mathcal{A}_H[\gamma] 
+		&= \int_{t_0}^{t_1} ( p_i \dot q^i - H) dt  \stackrel{\text{KE}}{=} \int_{t_0}^{t_1} L(q^i, \dot q^i, t) dt = \mathcal{A}_L[q(t)].
+	\end{aligned}
+\end{equation}
+The action, then, is the line integral of the potential $\theta_a$ of the flux of configurations. 
+
+Given the equivalence between action and flux, the variational principle can be expressed in terms of either. That is, 
+\begin{equation}
+	\delta \mathcal{A}_H[\gamma + \epsilon \eta] = 0 \iff  \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0.
+\end{equation}
+for all possible variations $\eta(t)$. This tells us that the principle of stationary action is equivalent to requiring that the flux of configurations through the infinitesimal surface between the path and the variation is zero, regardless of the variation. This was the insight of the previous work.
 
 \pagebreak
 
