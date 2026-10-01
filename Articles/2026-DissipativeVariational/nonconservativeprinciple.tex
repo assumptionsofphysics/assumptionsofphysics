@@ -61,7 +61,7 @@ Note that, in this case, no count of configuration is given. However, the condit
 
 The following condition makes sure that we can link the two descriptions.
 \begin{condition}[Kinematic Equivalence]{KE}
-	The system can be equivalently described in dynamic and kinematic variables. That is, there is an invertible map between position and momentum $(q^i, p_i)$ and position and velocity $(x^i, v^i)$.
+	The system can be equivalently described in dynamical and kinematic variables. That is, there is an invertible map between position and momentum $(q^i, p_i)$ and position and velocity $(x^i, v^i)$.
 \end{condition}
 Note that this is an additional condition, as it is independent from \ref{CSD} and \ref{CSK}. However, it is implied by both the principle of stationary action and the principle of stationary flux in their kinematic formulation. That is, the hyperregularity of both the action and flux Lagrangians ensures enough information to recover conjugate momentum and the symplectic configuration count.
 
@@ -72,10 +72,10 @@ In the context of \ref{CSD}, the following three conditions characterize general
 	The evolution obeys explicit equations of motion. That is, $d_t \gamma^a(t) = S^a$.
 \end{condition}
 \begin{condition}[Evolution kills the flux]{TE-FLUX}
-	The evolution kills the flux of configuration. That is, there exists a configuration flux form $w_{ab}$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $d_t \gamma^a(t) w_{ab}=0$.
+	The evolution kills the flux of configuration. That is, there exists a configuration flux form $w_{ab}$ such that $w_{ab}|_{(q,p)}=\omega_{ab}$ and $d_t \gamma^a(t) w_{ab}=0$.
 \end{condition}
 \begin{condition}[Principle of stationary flux in phase space]{TE-STFL}
-	The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi[\Sigma]=\int_{\Sigma} w$ such that $w_{ab}|_{(q^i,p_j)}=\omega_{ab}$ and $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path $\gamma^a$ and its variation $\gamma^a + \epsilon \eta^a$.
+	The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi[\Sigma]=\int_{\Sigma} w$ such that $w_{ab}|_{(q,p)}=\omega_{ab}$ and $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path $\gamma^a$ and its variation $\gamma^a + \epsilon \eta^a$.
 \end{condition}
 We will see that these are actually equivalent characterizations of time evolution, and therefore, following Reverse Physics standard, they share the same prefix TE. Note that the principle of stationary flux is among the three characterizations.
 
@@ -121,7 +121,7 @@ The remaining two theorems establish the characterization for general and conser
 
 \section{Dynamics in the extended phase space}
 
-In this section we outline the theory for a classical dynamical system on the extended phase space, effectively addressing all equivalences stated in theorem \ref{thrm:dyn}. At each time, we have standard phase space with the geometry given by the count of configurations defined by the closed form $\omega_{ab}$. The dynamics in time, however, need not be conservative (i.e. Hamiltonian). The central idea is the existence of a flux form $w_{ab}$ that characterizes the flux of configurations through a surface. The only direction that kills said flux form is the displacement field $S^a$, as configurations flow along the displacement field, not through it. This means that $v^a w_{ab} = 0$ if and only if $v^a = k S^a$ for some $k \in \mathbb{R}$. The principle of stationary flux in general terms is, effectively, an integral way to express the same fact: system evolutions are those path for which the flux is zero between the bath and a small variation. In the conservative case, the dynamics preserves the symplectic form over phase space, the flux form is closed and admits a potential one form. The action is the line integral of that one form, and the principle of stationary action, by Stokes' theorem, becomes the principle of stationary action in phase space form.
+In this section we outline the theory for a classical dynamical system on the extended phase space, effectively addressing all equivalences stated in theorem \ref{thrm:dyn}. At each time, we have standard phase space with the geometry given by the count of configurations defined by the closed form $\omega_{ab}$. The dynamics in time, however, need not be conservative (i.e. Hamiltonian). The central idea is the existence of a flux form $w_{ab}$ that characterizes the flux of configurations through a surface. The only direction that kills said flux form is the displacement field $S^a$, as configurations flow along the displacement field, not through it. This means that $v^a w_{ab} = 0$ if and only if $v^a = k S^a$ for some $k \in \mathbb{R}$. The principle of stationary flux in general terms is, effectively, an integral way to express the same fact: system evolutions are those path for which the flux is zero between the bath and a small variation. In the conservative case, the dynamics preserves the symplectic form over phase space, the flux form is closed and admits a potential one form. The action is the line integral of that one form, and the principle of stationary action, by Stokes' theorem, becomes the principle of stationary flux in phase space form.
 
 \subsection{General dynamics}
 
@@ -149,7 +149,7 @@ S^{t}(q^i,p_i,t)
 \end{equation}
 Since $\gamma^t = t$, we must have that $S^t=1$. This corresponds to condition \ref{TE-EOM}.
 
-We now want to characterize the flux of states, how the count of states flows in time. As described in Fig. \ref{evolutionTube}, if we start with a region $U$ at constant time, this will be mapped to a region $U'$ at a future time, forming an evolution tube where $U$ and $U'$ are the ends and the sides are evolution curves. The sides are always tangent to the displacement field $S^a$ and therefore they do not contribute to the flux. Given a generic hypersurface $U$, we are looking for a linear functional $\Phi(U) = \int_U W$ that must coincide with the state counting volume form at equal time, $W|_{(q^i,p_i)} = \Omega$ and must be zero along the flow, $W(S^a, \cdot) = 0$. This is enough to characterize the state flux form $W$.
+We now want to characterize the flux of states, how the count of states flows in time. As described in Fig. \ref{evolutionTube}, if we start with a region $U$ at constant time, this will be mapped to a region $U'$ at a future time, forming an evolution tube where $U$ and $U'$ are the ends and the sides are evolution curves. The sides are always tangent to the displacement field $S^a$ and therefore they do not contribute to the flux. Given a generic hypersurface $U$, we are looking for a linear functional $\Phi[U] = \int_U W$ that must coincide with the state counting volume form at equal time, $W|_{(q,p)} = \Omega$ and must be zero along the flow, $W(S^a, \cdot) = 0$. This is enough to characterize the state flux form $W$.
 
 In fact, all components with no time index will either be zero, if there are repetitions, or $\pm 1$ depending on orientation. For example,
 \begin{equation}
@@ -181,7 +181,7 @@ Since $\Omega = \omega^n/n!$, we can also write $W = w^n/n!$ with
         \end{bmatrix} \\
     \end{aligned},
 \end{equation}
-and $\phi(\Sigma) = \int_{\Sigma} w$ will describe the flux of configuration for a single DOF. Given the setting, then, this is the only natural way to extend the symplectic form to the extended phase space for a dynamical system. This is the flux form described in condition \ref{TE-FLUX}.
+and $\phi[\Sigma] = \int_{\Sigma} w$ will describe the flux of configuration for a single DOF. Given the setting, then, this is the only natural way to extend the symplectic form to the extended phase space for a dynamical system. This is the flux form described in condition \ref{TE-FLUX}.
 
 Note that the relationship between $S^a$ and $w_{ab}$ is even stronger. Suppose, in fact, that $v^a w_{ab} = 0$. We have
 \begin{equation}
@@ -209,7 +209,7 @@ where the last equation is not independent from the previous and therefore provi
 \begin{equation}
     v^a w_{ab} = 0 \iff v^a = S^a v^t.
 \end{equation}
-That is, the displacement field is the only degenerate direction, up to a scalar multiple, of the flux form. This is a consequence of the fact that $w_{ab}|_{(q^i,p_i)} = \omega_{ab}$: since $\omega_{ab}$ is non-degenerate, there is only one degenerate direction for $w_{ab}$. This also means that 
+That is, the displacement field is the only degenerate direction, up to a scalar multiple, of the flux form. This is a consequence of the fact that $w_{ab}|_{(q,p)} = \omega_{ab}$: since $\omega_{ab}$ is non-degenerate, there is only one degenerate direction for $w_{ab}$. This also means that
 \begin{equation}\label{evolutionsKillFlux}
     d_t \gamma^a(t) = S^a  \iff d_t \gamma^a(t) w_{ab} = 0.
 \end{equation}
@@ -269,7 +269,7 @@ The principle of stationary action, then, amounts to requiring that the flux thr
 \begin{equation}\label{variationOnFlux}
 	\begin{aligned}
 		- \delta \mathcal{A}_H[\gamma] &=
-		\delta\phi[\Sigma_{\gamma,\epsilon\eta}]= \partial_\epsilon \phi(\Sigma_{\gamma,\epsilon\eta})|_{\epsilon=0} \\
+		\delta\phi[\Sigma_{\gamma,\epsilon\eta}]= \partial_\epsilon \phi[\Sigma_{\gamma,\epsilon\eta}]|_{\epsilon=0} \\
 		&= \partial_{\epsilon} \int_{t_0}^{t_1} \int_0^{\epsilon} w_{ab} \partial_s \Sigma^a_{\gamma, \epsilon \eta}(t,s) \partial_t \Sigma^b_{\gamma, \epsilon \eta}(t,s) ds dt |_{\epsilon=0} \\
 		&= \int_{t_0}^{t_1} \partial_{\epsilon} \int_0^{\epsilon} w_{ab} \eta^a(t) (d_t \gamma^b(t) + s d_t \eta^b(t) ) ds dt |_{\epsilon=0} \\
 		&= \int_{t_0}^{t_1} w_{ab} \eta^a(t) (d_t \gamma^b(t) + \epsilon d_t \eta^b(t)) dt |_{\epsilon=0} \\
@@ -304,9 +304,9 @@ which corresponds to theorem \ref{thrm:dyn}. Once we assume \ref{CSD}, classical
 
 \section{Dynamics over kinematic variables}
 
-In this section we express the principle of stationary flux in kinematic variables, giving a physically motivated variational principle that applies to any dynamics. We'll define the flux Lagrangian $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of the action Lagrangian for general dynamics. The flux $\mathcal{F}[x^i_a(t), x^i_b(t)]$ is a functional of the two paths that define the contour of the surface. The equation of motion, the canonical momentum and a the symplectic form can all be recovered from the flux and the flux Lagrangian. In the conservative case, the flux Lagrangian is additive and can be reduces to the difference of an ordinary Lagrangian evaluated on the two states: $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
+In this section we express the principle of stationary flux in kinematic variables, giving a physically motivated variational principle that applies to any dynamics. We'll define the flux Lagrangian $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of the action Lagrangian for general dynamics. The flux $\mathcal{F}[x^i_a(t), x^i_b(t)]$ is a functional of the two paths that define the contour of the surface. The equation of motion, the conjugate momentum and the symplectic form can all be recovered from the flux and the flux Lagrangian. In the conservative case, the flux Lagrangian is additive and can be reduces to the difference of an action Lagrangian evaluated on the two states: $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
 
-\subsection{From dynamic to kinematic picture}
+\subsection{From dynamical to kinematic picture}
 
 The first task it to re-express the principle of stationary flux on kinematic variables. Additionally, we would like the new principle to work, as much as possible, like the principle of stationary action.
 
@@ -440,9 +440,9 @@ and obtain
 \begin{equation}\label{eq:fluxLagrangianFlux}
 	\mathcal{F}[x_a(t),x_b(t)]
 	:=
-	\int_{t_0}^{t_1}\mathrm{FL}(x_a(t),d_t x_a(t),x_b(t),d_t x_b(t),t)\,dt.
+	\int_{t_0}^{t_1}L_{\mathcal{F}}(x_a(t),d_t x_a(t),x_b(t),d_t x_b(t),t)\,dt.
 \end{equation}
-When the two paths have the same position endpoints, the boundary term vanishes and $\mathcal{FA}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$.
+When the two paths have the same position endpoints, the boundary term vanishes and $\mathcal{F}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$.
 
 In analogy with Lagrangian mechanics, we call $L_{\mathcal{F}}$ a \emph{flux Lagrangian} and its integral $\mathcal{F}$ the \emph{flux}. The former, unlike an action Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them. Unlike the action, then, the flux has a precise physical characterization in terms of configuration, which makes the name ``flux'' descriptive of both the geometry and the physics.
 
@@ -479,7 +479,7 @@ When the states are the same, $\Delta x=\Delta v=0$. Therefore
 \end{equation}
 By \ref{KE}, the map $v \mapsto P(x,v,t)$ is a global diffeomorphism between velocity and momentum at each fixed position and time. In analogy with Lagrangian mechanics, we call a flux Lagrangian with this property \emph{hyperregular}. Therefore, the flux Lagrangian constructed from the configuration flux is both antisymmetric and hyperregular.
 
-By definition, then, since $\mathcal{F}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$ for paths with the same endpoints, the principle of stationary flux in phase space will lead to a stationary flux action.
+By definition, then, since $\mathcal{F}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$ for paths with the same endpoints, the principle of stationary flux in phase space will lead to a stationary flux.
 
 \subsection{From stationary flux to dynamics}
 
@@ -547,9 +547,9 @@ Expanding the total derivative of $P_i$, the equations become
 \end{equation}
 By hyperregularity, $\frac{\partial P_i}{\partial v^j}$ is invertible and therefore the acceleration $d_t v$ is a function of $(x,v,t)$.
 
-We find that the principle of stationary flux expressed on the flux action for a hyperregular flux Lagrangian recovers the equations of motion. Note that stationarity here is taken in the second argument at coincident paths. It is not the variation of the identically zero functional $\mathcal{F}[x(t),x(t)]$ in both arguments together. We write $\delta_b \mathcal{F}[x(t),x(t)]$ to remind ourselves that the variation is taken on the second argument.
+We find that the principle of stationary flux expressed through $\mathcal{F}$ for a hyperregular flux Lagrangian recovers the equations of motion. Note that stationarity here is taken in the second argument at coincident paths. It is not the variation of the identically zero functional $\mathcal{F}[x(t),x(t)]$ in both arguments together. We write $\delta_b \mathcal{F}[x(t),x(t)]$ to remind ourselves that the variation is taken on the second argument.
 
-Lastly, we need to show that we can recover the dynamics in dynamical variables. Since $\mathrm{FL}$ is hyperregular, we set
+Lastly, we need to show that we can recover the dynamics in dynamical variables. Since $L_{\mathcal{F}}$ is hyperregular, we set
 \begin{equation}
 	q^i=x^i,
 	\qquad
@@ -563,7 +563,7 @@ and denote the inverse velocity map by $v^i=V^i(q,p,t)$. Define
 	\qquad
 	S^t=1.
 \end{equation}
-The stationary paths then satisfy $d_tq^i=S^{q^i}$ and $d_tp_i=S^{p_i}$. The constructed dynamic description has configuration counting form
+The stationary paths then satisfy $d_tq^i=S^{q^i}$ and $d_tp_i=S^{p_i}$. The constructed dynamical description has configuration counting form
 \begin{equation}
 	\omega=dq^i\wedge dp_i
 \end{equation}
@@ -580,7 +580,7 @@ Thus a hyperregular flux Lagrangian supplies both the kinematic evolution and th
 
 \subsection{Equivalent and proper flux Lagrangians}
 
-Note that the variational equations depend only on the diagonal derivatives of $\mathrm{FL}$. Two flux Lagrangians with the same diagonal derivatives, then, yield the same momentum map, counting structure and equations of motion. We therefore call two flux Lagrangians equivalent when they give the same functions $P_i$ and $F_i$ through \eqref{eq:fluxLagrangianDiagonal}.
+Note that the variational equations depend only on the diagonal derivatives of $L_{\mathcal{F}}$. Two flux Lagrangians with the same diagonal derivatives, then, yield the same momentum map, counting structure and equations of motion. We therefore call two flux Lagrangians equivalent when they give the same functions $P_i$ and $F_i$ through \eqref{eq:fluxLagrangianDiagonal}.
 
 Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use \eqref{eq:properFluxLagrangian} to construct a new function $L_{\mathcal{F}}^{\mathrm{pr}}$. Its diagonal derivatives are
 \begin{equation}
@@ -590,12 +590,12 @@ Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use \
 	\left.\frac{\partial L_{\mathcal{F}}^{\mathrm{pr}}}{\partial x_b^i}\right|_{\mathrm{diag}}
 	=F_i.
 \end{equation}
-Indeed, at coincident states the factors $\Delta x$ and $\Delta v$ vanish, leaving only the terms obtained by differentiating those factors. Thus $\mathrm{FL}_{\mathrm{pr}}$ is equivalent to the original $\mathrm{FL}$.
+Indeed, at coincident states the factors $\Delta x$ and $\Delta v$ vanish, leaving only the terms obtained by differentiating those factors. Thus $L_{\mathcal{F}}^{\mathrm{pr}}$ is equivalent to the original $L_{\mathcal{F}}$.
 
 We call a flux Lagrangian \emph{proper} if it satisfies \eqref{eq:properFluxLagrangian} with its own diagonal derivatives. Each equivalence class has exactly
 one proper representative, since its defining expression is fixed by $P_i$ and $F_i$. The two constructions are therefore inverse in the following sense. Starting from dynamical variables, a counting form and an evolution satisfying KE, we obtain a proper flux Lagrangian that reconstructs the same data. Starting from an arbitrary hyperregular flux Lagrangian, we reconstruct those data and obtain its proper representative. This will be exactly the one recovered if we went to dynamical variables and then back to kinematic variables.
 
-As with the standard Lagrangian case, even in this non-conservative case the equations of motion do not uniquely identify a proper hyperregular flux Lagrangian. One can verify, for example, that for any smooth function $g(x,t)$
+As with the action Lagrangian case, even in this general case the equations of motion do not uniquely identify a proper hyperregular flux Lagrangian. One can verify, for example, that for any smooth function $g(x,t)$
 \begin{equation}
 	P_i'=P_i+\partial_{x^i}g,
 	\qquad
@@ -609,18 +609,18 @@ the same equations of motion. This is simply because conjugate momentum is defin
 
 \subsection{The conservative case}
 
-We conclude by studying the conservative case, and how the flux Lagrangian reduces to an ordinary Lagrangian. Starting from dynamic variables, we already know that $w=-d\theta$, so the flux through the
+We conclude by studying the conservative case, and how the flux Lagrangian reduces to an action Lagrangian. Starting from dynamical variables, we already know that $w=-d\theta$, so the flux through the
 surface between two paths with matching endpoints is minus the difference of their actions.
-Under KE, these become ordinary Lagrangian actions. In fact, recalling that $L = p_i d_t q^i - H$,
+Under KE, these become actions expressed in kinematic variables. In fact, recalling that $L = p_i d_t q^i - H$,
 \begin{equation}
 	\begin{aligned}
 		\mathcal{A}_H[\gamma] 
-		&= \int_{t_0}^{t_1} ( p_i d_t q^i - H) dt  \stackrel{\text{KE}}{=} \int_{t_0}^{t_1} L(q^i(t), d_t q^i(t), t) dt = \mathcal{A}_L[q(t)].
+		&= \int_{t_0}^{t_1} ( p_i d_t q^i - H) dt  \stackrel{\text{KE}}{=} \int_{t_0}^{t_1} L(x^i(t), d_t x^i(t), t) dt = \mathcal{A}_L[x(t)].
 	\end{aligned}
 \end{equation}
 The principle of stationary action, then, is exactly the principle of stationary action in phase space restricted by kinematic equivalence.
 
-Conversely, starting with a hyperregular Lagrangian $L$, we can define
+Conversely, starting with a hyperregular action Lagrangian $L$, we can define
 \begin{equation}
 	P_i(x,v,t)=\frac{\partial L}{\partial v^i},
 	\qquad
@@ -644,7 +644,7 @@ $v^i=V^i(q,p,t)$, with $q=x$. Define
 	=
 	p_iV^i(q,p,t)-L(q,V(q,p,t),t).
 \end{equation}
-Differentiating in dynamic coordinates, we obtain
+Differentiating in dynamical coordinates, we obtain
 \begin{equation}
 	\begin{aligned}
 		\frac{\partial H}{\partial p_i}
@@ -718,7 +718,7 @@ Substituting into the definition of the proper flux Lagrangian, and using integr
 		\left[P_{i,s}v_s^i-H(x_s,P_s,t)\right]_{s=0}^{s=1}.
 	\end{aligned}
 \end{equation}
-The boundary expression is precisely the ordinary Lagrangian
+The boundary expression is precisely the action Lagrangian
 \begin{equation}
 	L(x,v,t)
 	=
@@ -730,7 +730,7 @@ viewed as a scalar function on extended phase space in kinematic coordinates. Si
 	=
 	L(x_b,v_b,t)-L(x_a,v_a,t).
 \end{equation}
-For a path and its variation, the flux action is consequently
+For a path and its variation, the flux is consequently
 \begin{equation}
 	\mathcal{F}^{\mathrm{pr}}[x(t),x(t)+\epsilon\eta(t)]
 	=
@@ -760,7 +760,7 @@ for all paths, regardless of the endpoints. The above, in fact, means that $\int
 L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a(t),\chi_c(t),t)
 -L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a(t),\chi_b(t),t)
 -L_{\mathcal{F}}^{\mathrm{pr}}(\chi_b(t),\chi_c(t),t)
-\right]dt=0$ for all paths. This means the integrand must be zero at any given time. Intuitively, additivity means that the intermediate path cancels: the flux action is determined by the initial and final paths. This mirrors the contour dependence of configuration flux in the conservative case.
+\right]dt=0$ for all paths. This means the integrand must be zero at any given time. Intuitively, additivity means that the intermediate path cancels: the flux is determined by the initial and final paths. This mirrors the contour dependence of configuration flux in the conservative case.
 
 With this property in mind, we can work the equivalence in reverse. Suppose we are given a proper hyperregular flux Lagrangian that satisfies additivity. Choose a reference kinematic state $\chi_r$ and
 define
@@ -774,7 +774,7 @@ Applying \eqref{eq:fluxLagrangianAdditivity} to $\chi_r,\chi_a,\chi_b$ gives
 	L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t).
 \end{equation}
 
-If the above applies, the derivatives in the second set of state variables coincide with the derivative of the Lagrangian. Therefore, the momentum maps $P_i$ and the force maps $F_i$ are the same, regardless of whether they are defined on the flux Lagrangian or the Lagrangian. This means that:
+If the above applies, the derivatives in the second set of state variables coincide with the derivative of the action Lagrangian. Therefore, the momentum maps $P_i$ and the force maps $F_i$ are the same, regardless of whether they are defined on the flux Lagrangian or the action Lagrangian. This means that:
 \begin{equation}
 	\begin{aligned}
 		dw=0
@@ -789,7 +789,7 @@ If the above applies, the derivatives in the second set of state variables coinc
 		L_{\mathcal{F}}^{\mathrm{pr}}(\chi_b,\chi_c,t).
 	\end{aligned}
 \end{equation}
-We find, then, that the conservative case is exactly when the proper flux Lagrangian is additive or, equivalently, is the difference of an ordinary Lagrangian evaluated on two states. This means that KE-STFL $\impliedby$ KEDI-STFL $\iff$ KEDI-STAC, thus proving theorem \ref{thrm:kin}.
+We find, then, that the conservative case is exactly when the proper flux Lagrangian is additive or, equivalently, is the difference of an action Lagrangian evaluated on two states. This means that KE-STFL $\impliedby$ KEDI-STFL $\iff$ KEDI-STAC, thus proving theorem \ref{thrm:kin}.
 
 It should be stressed that additivity characterizes the conservative case only for proper flux Lagrangians. An equivalent flux Lagrangian need not itself satisfy this property, since its values away from coincident states are not fixed by the equations of motion and momentum map.
 
