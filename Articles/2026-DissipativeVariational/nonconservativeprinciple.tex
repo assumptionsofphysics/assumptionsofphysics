@@ -19,7 +19,7 @@
 \newenvironment{condition}[2][]{\renewcommand{\thecondth}{#2}\begin{condth}[#1]\label{#2}}{\end{condth}\renewcommand{\thecondth}{\Roman{condth}}}
 
 
-\title{A variational principle for non-conservative dynamics}
+\title{A unified variational framework for conservative and non-conservative dynamics of classical systems}
 \author{TBD }
 
 \begin{document}
@@ -31,9 +31,30 @@
 
 \section{Introduction}
 
-TBD
+Given the success of the principle of least action in classical mechanics, and its limitation to conservative systems, many extensions have been proposed and developed to adapt the variational principle in more general contexts. The approaches are rather different. Some supplement the mechanical equations or variational prescription with generalized forces and dissipation functions, as in the Lagrange--d'Alembert and Rayleigh approaches~\cite{gaybalmaz,minguzzi}. Others seek ordinary Lagrangian or Hamiltonian descriptions through explicit time dependence or multiplier methods~\cite{kanai,nuccitamizhmani}, or generalize the derivative dependence of the Lagrangian to include acceleration, higher-order or fractional derivatives~\cite{paisuhlenbeck,riewe,almeidamalinowska}. Another group enlarges the set of variables, introducing auxiliary systems, environmental degrees of freedom or doubled histories~\cite{bateman,caldeiraleggett,galley,galleytsangstein,martindiego}. Herglotz-type approaches instead allow the Lagrangian to depend on the action itself~\cite{lazo,almeidamalinowska}. Geometric extensions include conformally symplectic, contact and cocontact dynamics~\cite{mclachlan,bravetti,cocontact}. Thermodynamic and open-system formulations introduce entropy-production constraints, reversible--irreversible coupling or energy-exchange structures~\cite{gaybalmaz,gaybalmazopen,generic,porthamiltonian}. Finally, surface formulations replace the path-based variational description with one built from a dynamical two-form~\cite{kochanstrings,kochan}.
 
-TODO: state that all objects are assumed smooth. Then remove mention of differentiability and smoothness throughout
+If we want to understand which one provides a true generalization, we first must answer the question: what does it mean to provide a generalization? For example, we can say that set theory generalizes the principle of least action, as the latter can be expressed within that larger context given by the former. This is not very helpful as it extends the domain of discourse far beyond classical dynamical systems. Conversely, we can extend Euler-Lagrange equations using a Rayleigh dissipation function. This is unsatisfactory for the opposite problem: it does not cover all dissipative forces. Therefore, we need to clarify what a system is in the context of classical mechanics, identify a suitable variational principle and then show that it applies to all possible dynamics of such a system, and only such a system. Moreover, the conservative case must be recovered as a special case under a clear additional physical assumption. Reverse Physics will supply the methodology of establishing equivalences between different physical and mathematical conditions.
+
+In the context of classical mechanics, the minimum requirement to define a system is to identify a full set of state variables, such as the pairs of position and momentum, and a symplectic form $\omega = \sum_i dq^i \wedge dp_i$ that, at least locally, counts the configurations of each independent degree of freedom (DOF). The counting form, in fact, is needed to define Gibbs entropy for both joint and marginal distributions, without which no invariant notion of reversibility, and therefore of system isolation, can be given. Consequently, it is also tied to the definition of conservative evolution, and therefore of energy.
+
+Given that we are studying the dynamics of the system, the appropriate setting for a generalized variational principle is that of phase space extended by time. A valid evolution $\gamma(t)$ must satisfy $d_t \gamma^a(t) = S^a$, where $S$ is the displacement vector field that describes the flow of states in the extended phase space. To study the flow of configurations, we define the flux form $w$ which must have two properties: it must recover $\omega$ at equal time, and guarantee that $S$ is parallel to the flow (i.e. $S^a w_{ab} = 0$). This fully characterizes $w$ and guarantees that $S^a$ identifies, up to a scalar factor, the only direction that kills the flow at each point. Therefore,  $$d_t \gamma^a(t) = S^a \iff d_t \gamma^a(t) w_{ab} \eta^b(t)=0$$ for all possible $\eta^a(t)$. This is the key physical and geometrical property on which everything else is built. The second condition, in fact, can be expressed in integral form, by requiring that the first variation of the flux between the path and any variation is zero (i.e. $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$).  In other words, the variational principle is the integral expression of requiring the path to kill the flux form.
+
+In the case of conservative dynamics (DI), the flux form is closed, conserves the count of configurations in time, and admits, at least locally, a potential one form $\theta$. Using Stokes's theorem, the condition on the flux can be reformulated in terms of the line integral of $\theta$, which recovers the principle of least action expressed in phase space. Therefore, we have the following relationships:
+\begin{equation}
+	\begin{aligned}
+		d_t \gamma^a(t) = S^a &\iff d_t \gamma^a(t) w_{ab}=0 \iff \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \\&\stackrel{\text{+DI}}{\impliedby} \delta \mathcal{A}_H[\gamma] = 0 \iff d_t \omega =0.
+	\end{aligned}
+\end{equation}
+
+Under the additional assumption of kinematic equivalence (KE), momentum can be expressed as a function of position, velocity and time, and therefore the variational principle can be fully reformulated in terms of kinematic variables. Restricted by KE, the generalized variational principle can be expressed in terms of a flux functional $\mathcal{F}[x^i_a(t), x^i_b(t)] = \int L_{\mathcal{F}}(x^i_a(t), d_t x^i_a(t), \linebreak x^i_b(t), d_t x^i_b(t), t)dt$ where $L_{\mathcal{F}}$ is a flux Lagrangian. This recovers a variational principle similar to the one proposed by \cite{galley,galleytsangstein}. In the conservative case, we can choose an additive flux Lagrangian, and the principle can be expressed, using Stokes' theorem, on the boundaries. This recovers the standard principle of least action and the action Lagrangian. Summing up, we have:
+\begin{equation}
+	\begin{aligned}
+		d_t \gamma^a(t) &= S^a \stackrel{\text{+KE}}{\impliedby} \delta_b\mathcal{F}[x(t),x(t);\eta(t)]=0 \iff d_t\frac{\partial L_{\mathcal{F}}}{\partial v_b^i}=\frac{\partial L_{\mathcal{F}}}{\partial x_b^i} \\&\stackrel{\text{+DI}}{\impliedby} \delta \mathcal{A}_L[x^i(t)] = 0 \iff L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t).
+	\end{aligned}
+\end{equation}
+Note that, since the second path varies around the first, the first variation and derivatives are evaluated on the diagonal.
+
+The key result is that \textbf{all smooth dynamics on phase space can be expressed through the principle of stationary flux and any dynamics expressed through the principle of stationary flux is a dynamics on phase space}. In this sense, assuming smooth dynamics, the principle is exhaustive because it covers exactly all the possible dynamics for classical mechanics. Relaxing the smoothness of the dynamics, while retaining the notion of configuration count necessary for classical mechanics, then, is the only possible further generalization, which we leave for future work.
 
 \section{Conditions and their relationships}
 
@@ -1675,6 +1696,27 @@ We note once more, that up to appropriate boundary conditions, the previous impl
 %Mathematically, of course we can not only see that it fits (which was to be expected), but we can also reverse-engineer the sink/source encoding to get that $\rho=-\frac{b}{m}$. So the states created or absorbed in $M$ are constant. Up to appropriate boundary conditions on $\partial M$, one should be able to recover $f(p)=-\frac{b}{2m}p^2$ from $\Delta f =-\frac{b}{m}.$
 
 \begin{thebibliography}{100}
+\bibitem{minguzzi} E. Minguzzi, A unifying mechanical equation with applications to non-holonomic constraints and dissipative phenomena. J. Geom. Mech. 7, 473--482 (2015). doi:10.3934/jgm.2015.7.473.
+\bibitem{kanai} E. Kanai, On the Quantization of the Dissipative Systems. Prog. Theor. Phys. 3, 440--442 (1948). doi:10.1143/ptp/3.4.440.
+\bibitem{nuccitamizhmani} M. C. Nucci, K. M. Tamizhmani, Lagrangians for Dissipative Nonlinear Oscillators: The Method of Jacobi Last Multiplier. J. Nonlinear Math. Phys. 17, 167--178 (2010). doi:10.1142/S1402925110000696.
+\bibitem{caldeiraleggett} A. O. Caldeira, A. J. Leggett, Path integral approach to quantum Brownian motion. Physica A 121, 587--616 (1983). doi:10.1016/0378-4371(83)90013-4.
+\bibitem{lazo} M. J. Lazo, J. Paiva, J. T. S. Amaral, G. S. F. Frederico, An Action Principle for Action-dependent Lagrangians: toward an Action Principle to non-conservative systems. J. Math. Phys. 59, 032902 (2018). doi:10.1063/1.5019936.
+\bibitem{mclachlan} R. McLachlan, M. Perlmutter, Conformal Hamiltonian systems. J. Geom. Phys. 39, 276--300 (2001). doi:10.1016/S0393-0440(01)00020-1.
+\bibitem{generic} M. Grmela, H. C. \"Ottinger, Dynamics and thermodynamics of complex fluids. I. Development of a general formalism. Phys. Rev. E 56, 6620--6632 (1997). doi:10.1103/PhysRevE.56.6620.
+\bibitem{porthamiltonian} A. J. van der Schaft, B. M. Maschke, Port-Hamiltonian systems on graphs. arXiv:1107.2006 (2011).
+\bibitem{paisuhlenbeck} A. Pais, G. E. Uhlenbeck, On Field Theories with Non-Localized Action. Phys. Rev. 79, 145--165 (1950). doi:10.1103/PhysRev.79.145.
+\bibitem{riewe} F. Riewe, Nonconservative Lagrangian and Hamiltonian mechanics. Phys. Rev. E 53, 1890--1899 (1996). doi:10.1103/PhysRevE.53.1890.
+\bibitem{almeidamalinowska} R. Almeida, A. B. Malinowska, Fractional variational principle of Herglotz. Discrete Contin. Dyn. Syst. B 19, 2367--2381 (2014). doi:10.3934/dcdsb.2014.19.2367.
+\bibitem{bateman} H. Bateman, On Dissipative Systems and Related Variational Principles. Phys. Rev. 38, 815--819 (1931). doi:10.1103/PhysRev.38.815.
+\bibitem{galley} C. R. Galley, Classical Mechanics of Nonconservative Systems. Phys. Rev. Lett. 110, 174301 (2013). doi:10.1103/PhysRevLett.110.174301.
+\bibitem{galleytsangstein} C. R. Galley, D. Tsang, L. C. Stein, The principle of stationary nonconservative action for classical mechanics and field theories. arXiv:1412.3082 (2014).
+\bibitem{martindiego} D. Mart\'in de Diego, R. Sato Mart\'in de Almagro, Variational order for forced Lagrangian systems. arXiv:1712.09377 (2017).
+\bibitem{bravetti} A. Bravetti, H. Cruz, D. Tapias, Contact Hamiltonian mechanics. Ann. Phys. 376, 17--39 (2017). doi:10.1016/j.aop.2016.11.003.
+\bibitem{cocontact} M. de Le\'on, J. Gaset, X. Gr\`acia, M. C. Mu\~noz-Lecanda, X. Rivas, Time-dependent contact mechanics. arXiv:2205.09454 (2022).
+\bibitem{gaybalmaz} F. Gay-Balmaz, H. Yoshimura, A Lagrangian variational formulation for nonequilibrium thermodynamics. Part I: Discrete systems. J. Geom. Phys. 111, 169--193 (2017). doi:10.1016/j.geomphys.2016.08.018.
+\bibitem{gaybalmazopen} F. Gay-Balmaz, H. Yoshimura, A Variational Formulation of Nonequilibrium Thermodynamics for Discrete Open Systems with Mass and Heat Transfer. arXiv:1811.11665 (2018).
+\bibitem{kochanstrings} D. Kochan, Direct quantization of equations of motion: from classical dynamics to transition amplitudes via strings. arXiv:hep-th/0703073 (2007).
+\bibitem{kochan} D. Kochan, Functional integral for non-Lagrangian systems. arXiv:1001.1863 (2010).
 \bibitem{geoact} G. Carcassi, C. A. Aidala, Geometric and physical interpretation of the action principle. Sci Rep 13, 12138 (2023).
 \bibitem{hodge} G. Schwartz, Hodge Decomposition - A Method for Solving Boundary Value Problems, Lecture Notes in Mathematics, Springer-Verlag Berlin Heidelberg, 1995.
 \end{thebibliography}
