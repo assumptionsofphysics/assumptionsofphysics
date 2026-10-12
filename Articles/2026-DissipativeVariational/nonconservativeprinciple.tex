@@ -54,7 +54,7 @@ Under the additional assumption of kinematic equivalence (KE), momentum can be e
 \end{equation}
 Note that, since the second path varies around the first, the first variation and derivatives are evaluated on the diagonal.
 
-The key result is that \textbf{all smooth dynamics on phase space can be expressed through the principle of stationary flux and any dynamics expressed through the principle of stationary flux is a dynamics on phase space}. In this sense, assuming smooth dynamics, the principle is exhaustive because it covers exactly all the possible dynamics for classical mechanics. Relaxing the smoothness of the dynamics, while retaining the notion of configuration count necessary for classical mechanics, then, is the only possible further generalization, which we leave for future work.
+The key result is that \textbf{all smooth dynamics on phase space can be expressed through the principle of stationary flux and any dynamics expressed through the principle of stationary flux is a dynamics on phase space}. In this sense, assuming smooth dynamics, the principle is exhaustive because it covers exactly all the possible dynamics for classical mechanics. This approach recovers other results, but in a more unified and physically motivated setting. In principle, the treatement can be further generalized by relaxing the  smoothness requirement on the dynamics, while retaining the notion of configuration count necessary for classical mechanics. We leave this for future work.
 
 \section{Conditions and their relationships}
 
@@ -325,7 +325,7 @@ which corresponds to theorem \ref{thrm:dyn}. Once we assume \ref{CSD}, classical
 
 \section{Dynamics over kinematic variables}
 
-In this section we express the principle of stationary flux in kinematic variables, giving a physically motivated variational principle that applies to any dynamics. We'll define the flux Lagrangian $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of the action Lagrangian for general dynamics. The flux $\mathcal{F}[x^i_a(t), x^i_b(t)]$ is a functional of the two paths that define the contour of the surface. The equation of motion, the conjugate momentum and the symplectic form can all be recovered from the flux and the flux Lagrangian. In the conservative case, the flux Lagrangian is additive and can be reduces to the difference of an action Lagrangian evaluated on the two states: $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
+In this section we express the principle of stationary flux in kinematic variables, giving a physically motivated variational principle that applies to any dynamics over kinematic variables. We'll define the flux Lagrangian $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of the action Lagrangian for general dynamics. The flux $\mathcal{F}[x^i_a(t), x^i_b(t)]$ is a functional of the two paths that define the contour of the surface. The equation of motion, the conjugate momentum and the symplectic form can all be recovered from the flux and the flux Lagrangian. In the conservative case, the flux Lagrangian, in its proper form, is additive and can be reduced to the difference of an action Lagrangian evaluated on the two states: $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
 
 \subsection{From dynamical to kinematic picture}
 
@@ -465,7 +465,7 @@ and obtain
 \end{equation}
 When the two paths have the same position endpoints, the boundary term vanishes and $\mathcal{F}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$.
 
-In analogy with Lagrangian mechanics, we call $L_{\mathcal{F}}$ a \emph{flux Lagrangian} and its integral $\mathcal{F}$ the \emph{flux}. The former, unlike an action Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them. Unlike the action, then, the flux has a precise physical characterization in terms of configuration, which makes the name ``flux'' descriptive of both the geometry and the physics.
+In analogy with Lagrangian mechanics, we call $L_{\mathcal{F}}$ a \emph{flux Lagrangian} and its integral $\mathcal{F}$ the \emph{flux}. The former, unlike an action Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them. Moreover, the flux has a precise physical characterization in terms of configuration, which makes the name ``flux'' descriptive of both the geometry and the physics.
 
 We now want to characterize the flux Lagrangian by two key properties. Note that exchanging the two states reverses $\Delta x$ and $\Delta v$ and replaces $s$ with $1-s$. Thus,
 \begin{equation}\label{eq:fluxLagrangianAntisymmetry}
@@ -757,7 +757,7 @@ For a path and its variation, the flux is consequently
 	=
 	\mathcal{A}_L[x(t)+\epsilon\eta(t)]-\mathcal{A}_L[x(t)].
 \end{equation}
-Stationarity of the flux recovers the ordinary principle of stationary action, as expected from the previous section. This tells us that the second case is indeed a special case, but it does not characterize it.
+This recovers stationary action as a special case. It remains to characterize conservative dynamics directly through the flux Lagrangian.
 
 Note that equation \eqref{eq:fluxLagrangianDifference} also gives an additional
 property. Writing $L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)$, where $\chi = (x, v)$ represents the pair of kinematic variables, we find
