@@ -1,0 +1,449 @@
+\documentclass[entropy,article,submit,moreauthors]{Definitions/mdpi} 
+%\documentclass[preprints,article,submit,moreauthors]{Definitions/mdpi} 
+% For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal. Changing "submit" to "accept" before posting will remove line numbers.
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+%\externaleditor{Firstname Lastname} % More than 1 editor, please add `` and '' before the last editor name
+\datereceived{ } 
+\daterevised{ } % Comment out if no revised date
+\dateaccepted{ } 
+\datepublished{ } 
+%\datecorrected{} % For corrected papers: "Corrected: XXX" date in the original paper.
+%\dateretracted{} % For retracted papers: "Retracted: XXX" date in the original paper.
+%\doinum{} % Used for some special journals, like molbank
+%\pdfoutput=1 % Uncommented for upload to arXiv.org
+%\CorrStatement{yes}  % For updates
+%\longauthorlist{yes} % For many authors that exceed the left citation part
+%\IsAssociation{yes} % For association journals
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, float, amsmath, amssymb, lineno, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, colortbl, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, array, tabularx, pbox, ragged2e, tocloft, marginnote, marginfix, enotez, amsthm, natbib, hyperref, cleveref, scrextend, url, geometry, newfloat, caption, draftwatermark, seqsplit
+% cleveref: load \crefname definitions after \begin{document}
+
+%=================================================================
+% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+
+\newtheorem{condth}{Condition}
+\renewcommand*{\thecondth}{\Roman{condth}}
+\newenvironment{condition}[2][]{\renewcommand{\thecondth}{#2}\begin{condth}[#1]\label{#2}}{\end{condth}\renewcommand{\thecondth}{\Roman{condth}}}
+
+\def\>{\rangle}
+\def\<{\langle}
+
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Dom}{Dom}
+
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{Reverse Physics for Quantum Mechanics}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-1071-6251} % Add \orcidA{} behind the author's name
+\newcommand{\orcidauthorB}{0009-0005-9232-2617} % Add \orcidB{} behind the author's name
+\newcommand{\orcidauthorC}{0000-0001-9540-4988}
+
+% Authors, for the paper (add full first names)
+\Author{Gabriele Carcassi $^{*\orcidA{}}$, Tobias Thrien $^{\orcidB{}}$ and Christine A. Aidala $^{\orcidC{}}$}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Gabriele Carcassi, Tobias Thrien and Christine A. Aidala}
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address[1]{%
+Department of Physics, University of Michigan, Ann Arbor, Michigan 48109, USA}
+
+% Contact information of the corresponding author
+\corres{Correspondence: carcassi@umich.edu}
+
+%\simplesumm{} % Simple summary
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{Reverse Physics is a methodology that breaks physical theories into separate mathematical and physical conditions to establish their logical relationships. To showcase the power of the methodology, we present several results for quantum mechanics and their related insights. The standard Hilbert-space formulation conflicts with basic physical requirements, while a minimal topological modification can solve these problems. The ensemble space, rather than the pure-state space, distinguishes classical from quantum systems. The Born rule is an additional assumption linking orthogonality, mutual exclusivity and information entropy. Under explicit background conditions, unitary evolution is equivalent to deterministic and reversible evolution. Nonselective projective measurements can be characterized as Lindblad equilibration processes, while unitary evolution can be characterized as a limit of infinitesimal projective processes. Classical mechanics is recovered as the high-entropy limit of quantum mechanics, and every quantum state, pure or mixed, is a dynamic, spectral and thermodynamic equilibrium. These results are self-contained, use the standard vector-space representation and can thus be used as common tools and constraints for teaching, interpretations, reconstructions and future theories.}
+
+% Keywords
+\keyword{Reverse Physics; formal and mathematical frameworks for quantum ontology; quantum mechanics; quantum information; classical limit} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Different journals have different requirements. Please check the specific journal guidelines in the "Instructions for Authors" on the journal's official website.
+%\addhighlights{yes}
+%\renewcommand{\addhighlights}{%
+%
+%\noindent This is an optional section, the goal of which is to increase the discoverability and readability of the article via search engines and other scholars. Highlights should not be a copy of the abstract, but a simple overview allowing the reader to quickly and simply find out what the article is about and what can be cited from it. Each of these parts should be up to 2 bullet points.\vspace{3pt}\\
+%\textbf{What are the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}\vspace{3pt}
+%\textbf{What are the implications of the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}
+%}
+
+\begin{document}
+
+\section{Introduction}
+
+The core question of this special issue is, ``What kinds of entities does quantum mechanics refer to?'' The fact that, one hundred years after the birth of the theory, this question still has no conclusive answer \cite{SchlosshauerKoflerZeilinger2013,JedlickaEtAl2025} should force us to step back and ask, ``What methodology is being used to answer this question? Is it appropriate? How does it compare to other methodologies used in foundational disciplines?''
+
+Interpretations and reconstructions of quantum mechanics seem to be the most used methods \cite{Myrvold2022,Grinbaum2007,Berghofer2024}, but they both suffer similar issues. First of all, they proceed as though we have already identified the appropriate mathematical entities that \emph{can} map one-to-one to physical entities, and it is just a matter of giving them physical meaning or an alternative definition. But known open problems show that we are not in that position \cite{CarcassiCalderonAidala2025,JaffeWitten2006,Gallavotti2006,Heathcote1990,Ruetsche2011,EarmanFraser2006,Redei1996,Toader2021}. In fact, we argue that a better understanding of the physics is required to inform what the correct mathematical structures should be. A second problem is that, most of the time, the ontology of an interpretation or the different starting points of a reconstruction are chosen, effectively, as a matter of preference \cite{SchlosshauerKoflerZeilinger2013,JedlickaEtAl2025,Grinbaum2007,Berghofer2024}. One may privilege information-theoretic aspects; another wants a realist answer to the measurement problem; yet another focuses on mathematical rigor \cite{Berghofer2024,AlloriEtAl2008,KronzLupher2024}, with the physics, in some cases, only appearing after 120 pages of theorems. We do not contest that everyone is entitled to their approach. The issue is that, in practice, even understanding exactly the results and limitations of one approach requires significant investment, and it is even more difficult to make comparisons. A third problem is that many claims remain specific to the approach and cannot serve as a common basis. For example, if one introduces entities with features that, by their definition, are not, directly or indirectly, experimentally accessible, their relevance to experimental physics will be limited and not universal. On the technical side, some moves work very well in finite-dimensional systems, but do not carry over to infinite-dimensional ones. Some work in the opposite direction \cite{Ruetsche2011}. Interpretations and reconstructions that are based on those moves cannot provide insights that are general. Our conclusion, then, is that these methodologies are unlikely to provide incontrovertible results that can reach a broad consensus.
+
+If we look at the foundations of mathematics, while there are very different schools of thought on what should be accepted as mathematics, there is tacit agreement that there must be some logical system that provides well-defined sentences and rules of inference, and a set of axioms on the objects those sentences describe \cite{Horsten2022,Ferreiros2008}. One may accept or not accept the law of the excluded middle or the Axiom of Countable Choice, but all will agree that, if one or the other is accepted, it will have consequences. The aim of Reverse Physics \cite{aop-phys-ReversePhysics} is to perform a similar analysis for all physical theories, providing stable common results that one can use freely in their interpretations, reconstructions or as insights for future theories. With that in mind, Reverse Physics aims to be practical. Each result should be expressible and provable with standard tools (e.g. vector space formulation, phase-space formulation), accessible to anyone with an advanced undergraduate background in math and physics, and cleanly extractable from the overall framework.
+
+For the past five years, we have been working on refining the methodology, to make it as close as possible to the practice of mathematical logic while retaining the ability to work with informal objects, as required by physics. In this paper, we will present the status of this process, through a series of results that have functioned as different test cases. Most of the results presented are new, and the others were reformulated using the refined methodology. We will provide only proof sketches, leaving the  full details in technical briefs available through our website \cite{AssumptionsOfPhysicsWebsite} and other works. The goal, in fact, is to showcase the methodology to those that are both interested in the foundations of physics and well-versed in formal and informal logic, making philosophers of physics particularly suited to its review and criticism.
+
+In section two we will give a brief introduction to Reverse Physics. In section three we will see that Hilbert spaces fail to respect basic physical conditions. In section four we see a way to partly fix the vector space formulation. In section five we see that it is the convex structure of statistical ensembles that differentiates quantum from classical mechanics. In section six we see that the Born rule is independent of said structure, and is equivalent to assuming orthogonality and mutual exclusivity coincide. In section seven we see that unitary evolution is exactly deterministic and reversible evolution. In section eight we see that nonselective projective measurements are equilibrations, that they can be understood as the limit of an open evolution and that unitary evolution can be seen as an infinite sequence of infinitesimal measurements. In section nine we see that classical mechanics can be recovered as the high-entropy limit of quantum mechanics. In section ten we see that all states, including pure ones, are dynamic, statistical and approximately thermodynamic equilibria. The results follow from standard textbook mathematics and physics, without interpretation-specific assumptions, thus clarifying what we are committing ourselves to when we use the theory. As such, they can inform all interpretations and reconstructions.
+
+\section{Introduction to Reverse Physics}
+
+In the foundations of mathematics, a common fruitful strategy is to analyze the logical dependencies of different statements over a set of preconditions \cite{Simpson2009,Stillwell2018}. A famous example is the following \cite{Pinter2014,Schechter1997}:
+\begin{Theorem}
+	Over Zermelo-Fraenkel set theory, the following are equivalent:
+	\begin{description}
+		\item[AoC] (Axiom of Choice) For every non-empty set $X$ there exists a function $f$ that assigns to each nonempty set $S \subseteq X$ some
+		representative element $f ( S ) \in S$;
+		\item [WOP] (Well-Ordering Principle) Every set can be well-ordered;
+		\item [ZL] (Zorn's Lemma) Every non-empty partially ordered set $P$ with the property that every chain in $P$ is bounded has a maximal element.
+	\end{description}
+\end{Theorem}
+These types of investigations allow one to better understand the structure of mathematics and clarify what each starting point commits us to, particularly when intuition can be faulty. As Jerry Bona declared \cite[p. 145]{Schechter1997} regarding intuition about these three equivalent statements:
+\begin{quote}
+	``The Axiom of Choice is obviously true, the well-ordering principle obviously false, and who can tell about Zorn's lemma?''
+\end{quote}
+In Reverse Physics, we similarly want to break physical theories into a set of mathematical and physical conditions and study their logical relationships.
+
+For example, if we set
+\begin{condition}[Classical states for 1 DOF]{CST-1D}
+	The state of the system is represented by position and momentum $(q,p) \in \mathbb{R}^2$. The count of states is given by the Liouville measure $\mu(U) = \int_U dq dp$. The ensemble space is represented by the set of probability distributions $\rho(q, p)$ (i.e. probability measures that are absolutely continuous with respect to the Liouville measure).
+\end{condition}
+then we have \cite{aop-book,aop-phil-Hamiltonianinformation}
+\begin{Theorem}
+	Over \ref{CST-1D}, the following are equivalent:
+	\begin{description}
+		\item[HM-1D] (Hamiltonian mechanics) The equations of motion are given by $d_t q = \partial_p H$ and $d_t p = - \partial_q H$.
+		\item [DI-SYMP] (Symplectomorphism) The evolution leaves the symplectic form $\omega= dq \wedge dp$ invariant;
+		\item [DI-POI] (Poisson bracket invariance) The evolution leaves the Poisson bracket $\{f,g\} = \partial_q f \partial_p g - \partial_p f \partial_q g$ invariant;
+		\item [DR-DIV] (Incompressible flow) The displacement field $S^a = (d_t q, d_t p)$ is divergenceless: $\partial_a S^a = 0$;
+		\item[DR-DEN] (Volume conservation) The Liouville measure is invariant;
+		\item[DR-EV] (Determinism and reversibility) Past and future states are mapped one to one (i.e. the count of states is preserved);
+		\item[DR-THER] (Thermodynamic reversibility) The evolution is thermodynamically reversible (i.e. the entropy given by $\log \mu(U)$ is conserved);
+		\item[DR-INFO] (Conservation of information) The information about the system is conserved (i.e. the information entropy given by $- \int \rho \log \rho dq dp$ is conserved).
+	\end{description}
+\end{Theorem}
+The first five conditions are purely mathematical. The last four are more physical. The bridge between them is possible because condition \ref{CST-1D} clearly states the connection between the math and the physics. This allows the proofs to bridge mathematical and physical arguments. All conditions that have the same prefix represent the same set of physical assumptions. For example, all DR conditions are different specifications of the same assumption of determinism and reversibility, linking different notions of vector calculus, differential geometry, statistics, measure theory, thermodynamics and information theory. On the other hand, DI is stronger as it also includes assumption IND of independence of all degrees of freedom. In other words, DI = DR + IND. If we only have a single DOF, then IND is automatically true as a single DOF is a trivial set of independent DOFs, therefore DI and DR are equivalent. If we have multiple DOFs, however, DI is a stronger condition. Therefore, the conditions are equivalent over \ref{CST-1D}, but not over CST-ND.
+
+These are the types of systematic investigations that we want to extend to all physical theories. We want to be able to establish logical relationships, but these may depend on the background theory chosen. Some conditions, in fact, may be applicable across theories. For example, DR-EV and DR-INFO will reappear later when discussing unitary evolution. The naming convention, then, helps us keep track conceptual relationships that span across different theories, finding those that survive across all physical theories.
+
+As we will see, Reverse Physics for quantum mechanics is significantly harder: the standard postulates do not neatly correspond to separate physical assumptions; in fact, there is a significant mismatch between the mathematical definitions and the physical objects they supposedly represent. No perfect interpretation or reconstruction of quantum mechanics, then, is possible within the current established mathematical framework, that maps, and only maps, valid physical objects to valid mathematical ones. Since this final goal is not readily obtainable, we first need to disentangle some of the key pieces of quantum theory and get a sense of what the moving parts are.\footnote{Reverse Physics is effectively applying notions of reverse engineering to physical theories.} We designed Reverse Physics to allow one to carve out precise results within a larger imperfect context, so that one can use those conclusions as the bedrock for further analysis.
+
+The examples that follow illustrate the range of logical relationships that Reverse Physics can expose: consistency or inconsistency with physical requirements, implication, independence and equivalence between mathematical and physical conditions.
+
+\section{Mathematical prerequisites}
+
+In this section we prove a key mathematical proposition that will be used later in the theorem. In the most general setting, a process can be characterized by a map between an initial ensemble to a final ensemble. This map will be continuous if and only if small changes of the input correspond to small changes of the output. Moreover, it will be affine if and only if the process preserves statistical mixing. Lastly, bijectivity of the map will be related to determinism and reversibility. Since, in quantum mechanics, ensembles are represented by density operators, it will be useful to characterize bijective continuous affine maps between density operators in multiple ways.
+
+The key insight is that affinity forces the bijectivity on pure states to the bijectivity of density operators. Since density operator are trace-class and self-adjoint, they can always be expressed as a convex countable mixture of pure states. Since the map is affine and continuous, the mixture of the output is the output of the mixture. Therefore, the map on the pure states defines the map on all mixtures and vice-versa: a continuous affine maps is bijective on pure states if and only if it is bijective on the all mixed states.
+
+Morever, bijective continuous affine maps can always be represented as conjugation by unitary or anti-unitary action on the Hilbert space. Given that pure states are uniquely represented by rays (i.e. projectors/density operators), and not vectors, it allows to more clearly map physics requirements to the vector space representation.
+
+\begin{Proposition}[Affine pure-state correspondence]\label{AFF-PURE}
+	Let $\mathcal{H}$ be a nonzero complex Hilbert space, and let
+	$D(\mathcal{H})$ be its space of density operators. Denote by
+	$\mathcal{P}(\mathcal{H})$ its pure states, represented by rank-one
+	orthogonal projectors. Let
+	$T:D(\mathcal{H})\to D(\mathcal{H})$
+	be a trace-norm continuous affine map. Then the following are equivalent:
+	\begin{enumerate}
+		\item $T$ is bijective on all density operators;
+		\item $T$ is bijective on all pure states;
+		\item $T$ maps pure states onto pure states and preserves their
+		Born transition probabilities (i.e. $	\tr\bigl(T(P)T(Q)\bigr)=\tr(PQ)$ ) for every $P,Q\in\mathcal{P}(\mathcal{H})$;
+		\item there exists either a unitary or an anti-unitary operator $W:\mathcal{H}\to\mathcal{H}$ such that $T(\rho)=W\rho W^\dagger$ for every $\rho\in D(\mathcal{H})$.
+	\end{enumerate}
+\end{Proposition}
+
+\begin{proof}
+	We prove the theorem with the following order of implications $1\implies2\implies3\implies4\implies1$.
+	Note that if $\dim\mathcal{H}=1$, the density-operator space is a singleton
+	and all four conditions hold. We therefore assume
+	$\dim\mathcal{H}\geq2$.
+	
+	Let us first show that $1\implies2$. The idea is that an affine
+	bijection preserves whether a state admits a nontrivial
+	decomposition into a statistical mixture. Since both the map
+	and its inverse preserve mixing, such a decomposition can
+	be transported in either direction. Since pure states are exactly those states that do not admit nontrivial decompositions, states are mapped bijectively.
+	
+	More explicitly, suppose $T$ is bijective on all density
+	operators. Its inverse is affine because $T$ is affine.
+	Let $P$ be pure and suppose
+	$T(P)=\lambda\rho+(1-\lambda)\sigma$, with $0<\lambda<1$.
+	Applying the inverse gives
+	\begin{equation}
+		P=\lambda T^{-1}(\rho)+(1-\lambda)T^{-1}(\sigma).
+	\end{equation}
+	Since $P$ is pure,
+	$T^{-1}(\rho)=T^{-1}(\sigma)=P$.
+	Consequently, $\rho=\sigma=T(P)$, so $T(P)$ is pure.
+	Applying the same argument to $T^{-1}$ shows that the
+	preimage of every pure state is pure. Thus $T$ maps pure
+	states bijectively onto pure states.
+
+	We now show that $2\implies3$. The idea is to examine the mixtures supported on a two-dimensional subspace. These form a Bloch ball, whose surface consists of pure states. We will show that affinity and injectivity on pure states force the induced map to preserve the geometry of this ball. Since every pair of distinct pure states is supported on a two-dimensional subspace, this will establish preservation of all Born transition probabilities.
+
+	Let $E$ be two-dimensional, with orthogonal pure states $P,Q$ spanning it, and set
+	\begin{equation}
+	\tau=\frac{I_E}{2}=\frac{P+Q}{2}.
+	\end{equation}
+	Since $T(P)$ and $T(Q)$ are distinct pure states, their ranges span a two-dimensional subspace $F$, which is the support of $T(\tau)$.
+
+	Every density operator $\rho$ supported on $E$ satisfies
+	\begin{equation}
+	\tau=\frac{\rho+(I_E-\rho)}{2},
+	\end{equation}
+	where $I_E-\rho$ is also a density operator. Affinity and positivity therefore imply that $T(\rho)$ is supported on $F$: neither positive summand can have support outside the support of their sum. Thus $T$ maps the Bloch ball on $E$ into the Bloch ball on $F$.
+
+	Choose Bloch coordinates on both spaces. Affinity gives
+	\begin{equation}
+	\mathbf{r}\longmapsto\mathbf{a}+M\mathbf{r},
+	\end{equation}
+	with $M$ a real $3\times3$ matrix. Pure states correspond to unit vectors. Injectivity on pure states makes $M$ invertible: otherwise, opposite unit vectors in its kernel would have the same image.
+
+	Since both $\mathbf{r}$ and $-\mathbf{r}$ represent pure states,
+	\begin{equation}
+	\|\mathbf{a}+M\mathbf{r}\|^2
+	=\|\mathbf{a}-M\mathbf{r}\|^2=1
+	\qquad\text{for }\|\mathbf{r}\|=1.
+	\end{equation}
+	Subtracting gives $\mathbf{a}\cdot M\mathbf{r}=0$ for every unit vector $\mathbf{r}$. Invertibility of $M$ then forces $\mathbf{a}=0$. Consequently, $M$ preserves the unit sphere and, by linearity, all lengths and inner products.
+
+	For pure states $R,S$ with Bloch vectors $\mathbf{r},\mathbf{s}$,
+	\begin{equation}
+	\tr(RS)=\frac{1+\mathbf{r}\cdot\mathbf{s}}{2}.
+	\end{equation}
+	Preservation of the inner product therefore gives $\tr(T(R)T(S))=\tr(RS)$. Every pair of distinct pure states is supported on a two-dimensional subspace, so this holds throughout $\mathcal{H}$. Surjectivity on pure states is already assumed, completing $2\implies3$.
+	
+	Next, let us show that $3\implies4$. This is, effectively, an application of Wigner's theorem, that states that bijective ray transformations preserving Born transition probabilities can be implemented by unitary or anti-unitary operators.
+	
+	The Born transition probabilities determine whether two pure states coincide: $\tr(PQ)=1$ if and only if $P=Q$. Their preservation therefore makes $T$ injective on pure states. Together with the assumed surjectivity, this gives a bijection of the pure-state space preserving all transition probabilities.
+	
+	Wigner's theorem now applies
+	\cite[Theorem~5.29]{Landsman2017}: there is a unitary or anti-unitary operator $W:\mathcal{H}\to\mathcal{H}$ such that
+	\begin{equation}
+		T(P)=WPW^\dagger
+	\end{equation}
+	for every pure state $P$. It remains to extend this representation to all density operators.
+	
+	Every density operator has a finite or countable spectral
+	decomposition
+	\begin{equation}
+		\rho=\sum_n p_nP_n,
+		\qquad
+		p_n>0,
+		\qquad
+		\sum_n p_n=1,
+	\end{equation}
+	where the $P_n$ are mutually orthogonal pure states. For a finite sum, affinity immediately gives
+	\begin{equation}
+		T(\rho)
+		=\sum_n p_nT(P_n)
+		=W\rho W^\dagger.
+	\end{equation}
+	For an infinite sum, set
+	\begin{equation}
+		s_N=\sum_{n=1}^{N}p_n,
+		\qquad
+		\rho_N=\frac{1}{s_N}\sum_{n=1}^{N}p_nP_n.
+	\end{equation}
+	These are density operators, and
+	$\|\rho_N-\rho\|_1=2(1-s_N)\to0$.
+	The finite-mixture argument gives
+	$T(\rho_N)=W\rho_NW^\dagger$.
+	By continuity of $T$ and trace-norm continuity of unitary
+	or anti-unitary conjugation, taking the limit gives
+	\begin{equation}
+		T(\rho)=W\rho W^\dagger.
+	\end{equation}
+	This proves $3\implies4$.
+	
+	Finally, $4\implies1$. This step is just a verification that unitary and anti-unitary conjugation gives us a bijective map on all density operators.
+	
+	Unitary and anti-unitary conjugation preserve positivity and trace, so both $\rho\mapsto W\rho W^\dagger$ and $\rho\mapsto W^\dagger\rho W$ map density operators to density operators. These maps are inverses of one another. Hence $T$ is bijective on all density operators, completing the cycle of implications.
+\end{proof}
+
+These results should not be surprising to those familiar with the literature, as they are present, in one form or another, in many places. They work in finite as well as infinite dimensions. In finite dimensions, it suffices that $T$ is injective on the pure states $P(\mathcal{H})$, as the compactness of $P(\mathcal{H})$ will force $T$ to be bijective on $P(\mathcal{H})$. In infinite dimensions, this does not work: the map $|n\> \mapsto |n+1\>$, which shifts the energy levels of a harmonic oscillator, is a counterexample.
+
+\section{Conditions}
+
+The next step is to establish the conditions needed for the theorem. In this case, we will have a typical equivalence theorem: a set of background conditions are assumed and, on top of hose, we prove the equivalence of difference conditions. In this section we go through these condition, showing why the wording on some is critical.
+
+The first background condition condition represents the standard structure of quantum states on Hilbert space. This effectively brings in the standard vector space representation used in quantum mechanics.
+\begin{condition}[Quantum states]{QST:H}
+	The state space of a quantum system is represented by the projective space $\mathcal{P}(\mathcal{H})$ of a separable complex Hilbert space $\mathcal{H}$. The ensemble space is represented by the density operators $\mathcal{D}(\mathcal{H})$. The conditional probability is given by the Born rule $p(\psi|\phi) = \frac{\< \phi | \psi \>\< \psi | \phi \>}{\< \psi | \psi \>\< \phi | \phi \>}$. The entropy is given by the von Neumann entropy $S(\rho) = -\tr(\rho \log \rho)$.
+\end{condition}
+Note that this does not provide a definition for quantum states. We recognize that states, system, measurements, and so on, are all informal notions that depend on context, which will change in time. This is true for most concepts in science and in everyday speech. We are only saying that quantum states can be represented by elements of a projective space $\mathcal{P}(\mathcal{H})$: each state corresponds to a different element. This is the only feature that is used about quantum system, therefore everything else is left undefined. We are not saying that the representation is faithfully, that every element corresponds to a physical state. We are not assuming an ontology for quantum states, or for complex numbers. We are not assuming a specific version of set theory, or category theory, as a foundation. Any that will allow to specify the condition will do. In the future, we do want to understand what minimal mathematical axioms are required to express these concepts, to have a solid connection to reverse mathematics. But, for many reasons, it is premature at this point.
+
+The condition tacitly implies that the representation is a choice, which is, again, just a recognition of how things are. One could use Wigner functions, Husimi Q functions, or any other pseudo-probability representation. One could also use the probability density and phase. One could imagine, in fact, having a condition QST:W for the first, QST:Q for the second, and so on, and then have a theorem that shows the equivalence of those representations. This would fit the spirit of the overall reverse physics program, and could serve as a concise summary for anyone who starts to work on quantum foundation. Note that the different proposed names imply that the same notion (i.e. \emph{Q}uantum\emph{ST}ates), is being represented in different ways (i.e. \emph{H}ilbert spaces, \emph{W}igner functions). While these rules are not yet finalized, we find it useful to keep track of all different conditions and their relationship.
+
+The next base condition tells us that time evolution preserves statistical mixture: the evolution of a mixture is the mixture of the revolutions of the individual components.
+\begin{condition}[Evolution preserves statistical mixtures]{[B]EVMIX}
+	The evolution of a statistical mixture is the statistical mixture of the evolutions. That is, let $\mathcal{D}$ be the ensemble space of the system, the evolution from each $t_0$ to each $t_1$, with $t_1\geq t_0$, is given by an affine map $\Phi_{t_0 \to t_1}:\mathcal{D}\to \mathcal{D}$ such that $\Phi_{t_0 \to t_0}=I$, $\Phi_{t_1 \to t_2}\circ \Phi_{t_0 \to t_1}=\Phi_{t_0 \to t_2}$ and $(\rho,t_0,t_1)\mapsto \Phi_{t_0 \to t_1}(\rho)$ is jointly continuous.
+\end{condition}
+Note that the condition is prefixed with [B], which indicates a base condition for physics. In reverse mathematics, the base theory (typically RCA0) is effectively the background theory for the whole subject. It's the minimum you need to do anything. Part of the problem in the foundations of physics is that we have no such base theory for physics. We do not have a standard characterization for states, processes or physical quantity that all other physical theory simply specializes. One of the goals of reverse physics, in fact, is to find such base theory for physics. As we disentangle the ball of yarn into different condition, we can ask whether one is so fundamental that all physical theories must follow. In this case, if we define time evolution on the statistical ensembles of any system, since the statistical ensemble represents different chosen preparations at different time, the evolution of each instance cannot depend on the evolution of the other. Therefore, $\Phi(p\rho + (1-p)\sigma) = p \Phi(\rho) + (1-p) \Phi(\sigma)$. Time evolution, then, it must be affine. This is why the condition is prefixed with [B] and it is expressed in a way to not depend on quantum mechanics specifically.
+
+Note the condition holds because statistical ensembles were understood as statistical mixture, but ensemble can represent different things. If it represents, for example, the different concentration of two elements present in a flask undergoing an autocatalytic reaction, the evolution will not be affine. Current physics language often does not make these distinction clear or easy to make clear. In our view, improving the language surrounding these notions is even more important than clarifying mathematical dependencies, as they impact which physical models are valid and which aren't. Again, the goal of reverse physics is to tease out these implicit assumptions, make them explicit and, most importantly, organize them.
+
+As the lack background condition, we are going to restrict the dynamics to the time-independent case.
+\begin{condition}[Time-independent evolution]{EVTI}
+	Evolution depends only on elapsed time. That is, $\Phi_{t_0 \to t_1}=\Phi_{t_1-t_0}$.
+\end{condition}
+This is not a fundamental limitation of the equivalence we are going to show, but rather a simplifying condition to make our proofs easier to digest.
+
+Having specified and discussed the background conditions, let us present and analyze the fine conditions we want to prove. First, the Schrödinger equation.
+\begin{condition}[Schrödinger equation]{DR-SCEQ}
+	The evolution follows the equation $\frac{d}{dt} \psi(t) = \frac{H(t)}{\imath \hbar} \psi(t)$, where $H(t)$ is a self-adjoint operator.
+\end{condition}
+Note that the condition still allows for time dependent evolution. As the goal is to develop a common dependency tree for all conditions, we do not want to have two separate conditions: one for a family $H(t)$ and a single $H$. It will be \ref{EVTI} that will allow us to choose a single time-independent Hamiltonian, in the same way that it will constrain all other conditions.
+
+Also note that we are not making domains explicit. First, because these are often not made explicit, and the average physicists may think we are not using the standard expression, but one with caveats. Second, because the domain problem exists in a Hilbert space but does not exist, for example, in a Schwartz space. As we said before, there is no assumption that the Hilbert space representation is faithful. It makes sense, then, to tacitly assume that the conditions are implicitly expressed on those states that are faithful, rather than remarking it every time in each condition. The unspecified parts are available for a convenient mathematical completion because the physics does not constrain them. These are exactly the kind of mathematical details that should be analyzed independently, to see whether the mathematical representation could be improved or clarified, but ultimately should not appear in the conditions because they are not part of the physics.
+
+The second condition to study is unitary evolution.
+\begin{condition}[Unitary evolution]{DR-UNIT}
+	Time evolution is represented by a strongly continuous one-parameter group of unitary operators. That is, $\Phi_t(\rho)=U_t\rho U_t^\dagger$, where $U_t:\mathcal{H}\to\mathcal{H}$, $U_0=I$, $U_{t+s}=U_tU_s$ and $U_t^\dagger U_t=U_tU_t^\dagger=I$.
+\end{condition}
+This characterization of time evolution is the one preferred on the mathematical side. The equivalence to the previous condition is well known, and it connects more directly to the next characterizations of time evolution. This is also the element that would become more involved in the time-dependent case. Effectively, one needs the time evolution to be differentiable so that generators exists at all time. The corresponding physical assumption is that the evolution map varies ``slowly,'' so that, around each time $t$, there is a time-independent evolution that agrees to first-order with the time-dependent one. Therefore the proof would still first be restricted to the time-independent case, and then generalized to this case. The interest part there, then, would be the equivalence between different characterizations of differentiability for time evolution.
+
+We finally introduce the first physical condition: deterministic and reversible evolution in terms of bijective maps.
+\begin{condition}[Bijective map]{DR-EV}
+	Distinct past states map to distinct future states and vice-versa. That is, if $\psi_I$ and $\phi_I$ are two initial states, $\psi_F$ and $\phi_F$ are the corresponding evolved future states and $\psi_P$ and $\phi_P$ are the corresponding reconstructed past states, then $\psi_I = \phi_I \iff \psi_F = \phi_F \iff \psi_P = \phi_P$.
+\end{condition}
+The reader will have noticed the DR prefix for all these conditions: it stands for determinism and reversibility. The idea is that the assumption of determinism and reversibility can be expressed in several equivalent conditions. Therefore, all the conditions with the DR prefix are not only equivalent, but represent the equivalence class corresponding to the determinism and reversibility assumption.
+
+Note that the wording of the condition is carefully worded so that it solves a crucial problem while not attracting attention to it. One may think that requiring that two distinct initial states are mapped to two distinct final state is enough to require determinism and reversibility. It is not. This just imposes a bijection only on the image of the map (i.e. the final states reached by the map). Consider the map $|n\> \mapsto |n+1\>$, which shifts the energy levels of a harmonic oscillator. This does map distinct initial states to distinct final states, but the ground state ``disappears.'' This also means that the ground has no past: if we started in the ground state, where did it come from?
+
+To make the condition truly symmetric with respect to time, the idea is that any present state must have both a future and a past, and both must be uniquely determined by the present state. Because of the time independence, we can take the present to be the future, for which the past is the present. This now establish a bijection between initial and final states. Talking about past, present and future states, then, is not redundant, but actually makes the relationship more clear in all the physical characterizations.
+
+The second physical condition is in terms of the Born rule.
+\begin{condition}[Preservation of conditional probability]{DR-PROB}
+	Conditional probability remains the same across past and future states. That is, if $\psi_I$ and $\phi_I$ are two initial states, $\psi_F$ and $\phi_F$ are the corresponding evolved future states and $\psi_P$ and $\phi_P$ are the corresponding reconstructed past states, then $p(\psi_I \mid \phi_I) = p(\psi_F \mid \phi_F) = p(\psi_P \mid \phi_P)$.
+\end{condition}
+As before, we have pairs of states that are evolved and reconstructed in time. The difference is that it is not equality that is conserved, but their conditional probability. That is, in the contest of quantum mechanics, we can characterize how the Born rule changes in time, and we can request that it stays the same.
+
+The last condition is in terms of the entropy.
+\begin{condition}[Conservation of information entropy]{DR-INFO}
+	Future and past ensembles have the same information entropy. That is, if $\rho_I$ is an initial ensemble, $\rho_F$ is the corresponding evolved future ensemble and $\rho_P$ is the corresponding reconstructed past ensemble, then $S(\rho_I) = S(\rho_F) = S(\rho_P)$.
+\end{condition}
+Conceptually, we are requiring that the information needed to identify the elements of the mixture remains unchanged in time: the information I give you on the input is exactly the same information that I gave you on the output. The connection to determinism and reversibility should, therefore, not be surprising. What is interesting, however, is understanding exactly what the condition is saying.
+
+This time, we are only evolving one ensemble at a time, not comparing two. However, we need to understand what is being mapped, and it is easier with an example. Suppose we have a classical particle under Brownian motion, such that, if we started exactly at the origin, after some time the particle would spread according to a Gaussian. The more time passes, the more the Gaussian spreads. Now, the reconstructed past ensemble is not the inverse of the map. In fact, in general, a final distribution could have come from different initial distribution. We are asking a different question: suppose I know that the particle is exactly at the origin, what can I tell about it's past position? In the same way that we can't tell exactly where the particle is going to be, we are can't tell exactly where it came from. The reconstructed past stats is also a Gaussian, with the spread increased the further we con in the past. Mathematically, we have the event $X_0 = 0$ which corresponds to the set $A$ of all the trajectory that pass through position zero at time zero. Then we take the probability distribution of the variable $X_t$ conditioned on $A$. But since the dynamics is symmetric in time, the probability distribution for $X_t$ and $X_{-t}$ will be the same, with the variance given by $2D|t|$ where $D$ is the diffusion coefficient.
+
+What the condition is imposing, then, these future and past distributions have the same entropy. And, hopefully, it should be clear why it works, at least in this Brownian motion example. Since spreading of the distribution increases entropy, this cannot happen. Therefore the condition imposes that diffusion coefficient is $0$.
+
+
+
+
+\section{Conclusions}
+
+In this paper we have shown how Reverse Physics leads to a series of results on the foundations of quantum mechanics that help better characterize each element of the theory. It does so by breaking up the theory into a series of conditions, some mathematical and some physical, and studying their logical relationships. It can be used to distinguish base conditions, those that must be present in every well-defined physical theory, from those that represent additional, more restrictive assumptions. It allows one to study logical equivalence between mathematical and physical conditions, highlighting when the mathematical framework fails to be physically significant. Most importantly, all the results stand on their own as self-contained theorems, and are formulated within the standard vector-space representation of quantum mechanics, making them accessible to the widest possible audience. Moreover, similar results are available for classical mechanics, allowing cross-theory comparisons.
+
+This means that the results can be used in many different ways for many different goals. The teachers or students who simply want to have a better understanding of the framework, the philosophers who want to develop their interpretation and extend the theory with a well-defined ontology, the researchers who want to reconstruct quantum theory from different premises, the physicists who want to develop a new theory: all of them can benefit from a more detailed understanding of the relationships among the many different conditions studied. As the methodology matures, we hope that many other results can be incorporated with the same style, making it much easier to share fundamental insights and results.
+
+\authorcontributions{Conceptualization, methodology, G.C.; validation, C.A.A. and T.T.; writing---original draft preparation, G.C.; writing---review and editing, C.A.A. and T.T.; funding acquisition, C.A.A. and G.C. All authors have read and agreed to the published version of the manuscript.}
+
+%For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.
+
+\funding{This paper was made possible in part through the support of grant \#62847 from the John Templeton Foundation.}
+
+%Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.
+
+\institutionalreview{Not applicable.}
+
+\informedconsent{Not applicable.}
+
+\dataavailability{This study generated no data.} 
+
+\acknowledgments{This paper is part of the ongoing open research program \emph{Assumptions of Physics} \cite{aop-book}. The authors wish to thank Andrea Oldofredi for helpful discussions.  During the preparation of this manuscript, the authors used ChatGPT 5.6 Sol for the purposes of proof verification, literature search and consistency checks. The authors have reviewed and edited the output and take full responsibility for the content of this publication.}
+
+\conflictsofinterest{The authors declare no conflicts of interest.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+
+%\abbreviations{Abbreviations}{%
+%The following abbreviations are used in this manuscript:\\
+
+%\noindent 
+%\begin{tabular}{@{}ll}
+%DOF & Degree Of Freedom\\
+%\end{tabular}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\isPreprints{}{% This command is only used for ``preprints''.
+\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\reftitle{References}
+
+% References must be numbered in order of appearance in the text (including citations in tables and legends) and listed individually at the end of the manuscript. We recommend preparing the references with a bibliography software package, such as EndNote, ReferenceManager or Zotero, to avoid typing mistakes and duplicated references. Include the digital object identifier (DOI) for all references where available.
+% Please provide either the correct journal abbreviation (e.g. according to the “The list of Title Word Abbreviations” https://portal.issn.org/ltwa) or the full name of the journal. 
+% Citations and references in the Supplementary Materials are permitted provided that they also appear in the reference list here. 
+% In the text, reference numbers should be placed in square brackets [ ] and placed before the punctuation; for example, [1], [1–3] or [1,3]. For embedded citations in the text with pagination, use both parentheses and brackets to indicate the reference number and page numbers; for example, [5] (p. 10), or [6] (pp. 101–105).
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+% \bibliography{your_external_BibTeX_file}
+
+%=====================================
+% References, variant B: internal bibliography
+%=====================================
+
+% ACS format
+\bibliography{bibliography,assumptionsofphysics,MoyalBracket,Introduction,ReversePhysics}
+
+% If authors have biography, please use the format below
+%\section*{Short Biography of Authors}
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author1.pdf}}}
+%{\textbf{Firstname Lastname} Biography of first author}
+%
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author2.jpg}}}
+%{\textbf{Firstname Lastname} Biography of second author}
+
+% For the MDPI journals use author-date citation, please follow the formatting guidelines on http://www.mdpi.com/authors/references
+% To cite two works by the same author: \citeauthor{ref-journal-1a} (\citeyear{ref-journal-1a}, \citeyear{ref-journal-1b}). This produces: Whittaker (1967, 1975)
+% To cite two works by the same author with specific pages: \citeauthor{ref-journal-3a} (\citeyear{ref-journal-3a}, p. 328; \citeyear{ref-journal-3b}, p.475). This produces: Wong (1999, p. 328; 2000, p. 475)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% for journal Sci
+%\reviewreports{\\
+%Reviewer 1 comments and authors’ response\\
+%Reviewer 2 comments and authors’ response\\
+%Reviewer 3 comments and authors’ response
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PublishersNote{}
+%\isPreprints{}{% This command is only used for ``preprints''.
+\end{adjustwidth}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\end{document}
+
