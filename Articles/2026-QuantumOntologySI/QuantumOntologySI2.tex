@@ -110,6 +110,10 @@ For the past five years, we have been working on refining the methodology, to ma
 
 In section two we will give a brief introduction to Reverse Physics. In section three we will see that Hilbert spaces fail to respect basic physical conditions. In section four we see a way to partly fix the vector space formulation. In section five we see that it is the convex structure of statistical ensembles that differentiates quantum from classical mechanics. In section six we see that the Born rule is independent of said structure, and is equivalent to assuming orthogonality and mutual exclusivity coincide. In section seven we see that unitary evolution is exactly deterministic and reversible evolution. In section eight we see that nonselective projective measurements are equilibrations, that they can be understood as the limit of an open evolution and that unitary evolution can be seen as an infinite sequence of infinitesimal measurements. In section nine we see that classical mechanics can be recovered as the high-entropy limit of quantum mechanics. In section ten we see that all states, including pure ones, are dynamic, statistical and approximately thermodynamic equilibria. The results follow from standard textbook mathematics and physics, without interpretation-specific assumptions, thus clarifying what we are committing ourselves to when we use the theory. As such, they can inform all interpretations and reconstructions.
 
+
+Given that mathematical objects are purely formal while physical objects must Before proceeding with the proof, we want to again stress that while one should try to maximize the formal aspect of the reasoning, some informal parts will be unavoidable because physics is not, as discussed before, purely formal. On the practical side, one is left with two choices. 
+
+
 \section{Introduction to Reverse Physics}
 
 In the foundations of mathematics, a common fruitful strategy is to analyze the logical dependencies of different statements over a set of preconditions \cite{Simpson2009,Stillwell2018}. A famous example is the following \cite{Pinter2014,Schechter1997}:
@@ -356,7 +360,72 @@ This time, we are only evolving one ensemble at a time, not comparing two. Howev
 What the condition is imposing, then, these future and past distributions have the same entropy. And, hopefully, it should be clear why it works, at least in this Brownian motion example. Since spreading of the distribution increases entropy, this cannot happen. Therefore the condition imposes that diffusion coefficient is $0$.
 
 
+\section{Theorem}
 
+Having gone through all the conditions, we can now state the theorem.
+
+\begin{Theorem}
+	Over \ref{QST:H}+\ref{[B]EVMIX}+\ref{EVTI}, conditions \ref{DR-SCEQ}, \ref{DR-UNIT}, \ref{DR-EV}, \ref{DR-PROB} and \ref{DR-INFO} are equivalent.
+\end{Theorem}
+
+\begin{proof}
+	The background is set by the conjunction of the first three conditions. Therefore, throughout the theorem, we are assuming the Hilbert space characterization of quantum states and that the time evolution map is affine over ensembles and constant in time. To show the equivalence, we have to assume each condition independently and show that the others can derived from it.
+	
+	We first show that all the physical conditions imply unitary evolution.
+	
+	\ref{DR-EV} $\implies$ \ref{DR-UNIT}. First, we show that \ref{DR-EV} gives us a continuous bijective map on pure states between two fixed times. By \ref{EVTI}, there exists a family of maps $\Phi_t : \mathcal{D}(\mathcal{H}) \to \mathcal{P}(\mathcal{D})$ that evolves a pure state for an elapsed time $t$. By \ref{DR-EV}, the evolution of a pure state is a pure state, and pure states can be reconstructed using the evolution. Consider $\psi_1 = \Phi_t(\psi_0)$. Then $\psi_1$ is the future state corresponding to the initial state $\psi_0$. Moreover, $\psi_0$ is a past state corresponding to the initial state $\psi_1$. Similarly for $\phi_1 = \Phi_t(\phi_0)$. By \ref{DR-EV}, $\psi_0 = \phi_0$ if and only if $\psi_1 = \phi_1$, which also means that the reconstructed state must be unique. Since every state admits an evolution and a reconstruction, $\Phi_t$ maps pure states bijectively onto pure states. By \ref{[B]EVMIX}, $\Phi_t$ is continuous and affine. Since $\Phi_t$ is continuous, affine and is a bijection on pure states, by proposition \ref{AFF-PURE} it is implemented by either a unitary or an anti-unitary operator.
+	
+	Next, we show that the family of all fixed time evolution can be represented by a unitary group. The anti-unitary case is excluded by composition. In fact, $\Phi_t=\Phi_{t/2}\circ \Phi_{t/2}$, and the composition of two maps implemented by an anti-unitary is implemented by a unitary. Therefore every $\Phi_t$ is implemented by a unitary. The composition law gives a continuous projective unitary representation of elapsed time. The phases can be chosen so that $U_0=I$ and $U_{t+s}=U_tU_s$. Joint continuity of $\Phi_t$ gives strong continuity of $U_t$. The inverses define $U_{-t}=U_t^\dagger$, yielding a strongly continuous one-parameter unitary group. Therefore \ref{DR-UNIT} holds.
+	
+	\ref{DR-PROB} $\implies$ \ref{DR-UNIT}. We show that preserving the Born rule is equivalent to preserving equality of state. In fact, two states are the same if and only if their conditional probability is one. Therefore
+	\begin{equation}
+		\psi_I=\phi_I
+		\iff p(\psi_I\mid\phi_I)=1
+		\iff p(\psi_F\mid\phi_F)=1
+		\iff \psi_F=\phi_F,
+	\end{equation}
+	and the same argument applies to the reconstructed past states. Therefore \ref{DR-PROB} implies \ref{DR-EV}, which implies \ref{DR-UNIT} by the previous argument.
+	
+	\ref{DR-INFO} $\implies$ \ref{DR-UNIT}. We show that conservation of entropy implies preserving equality on pure states. First, entropy conservation means pure states must be mapped to pure states. Second, affinity and entropy conservation leads to the preservation of the Jensen--Shannon divergence, which forces the conservation of the identity of pure states.
+	
+	Recall that pure ensembles are exactly the ensembles with zero von Neumann entropy. Let $\psi_I \in \mathcal{P}(\mathcal{H})$ be a pure state and $\psi_F, \psi_P \in \mathcal{D}(\mathcal{H})$ be the, possible mixed, evolution and reconstructions. By \ref{DR-INFO}, $S(\phi_I)=S(\phi_F)=S(\phi_P)=0$, which means $\psi_F$ and $\psi_P$ are pure states. Therefore, the evolution and reconstructions of pure states are pure state.
+	
+	Next, consider the quantum Jensen--Shannon divergence $QJSD(\rho, \sigma) = S\left(\frac{1}{2}\rho + \frac{1}{2}\sigma\right) - \frac{1}{2}S(\rho) - \frac{1}{2}S(\sigma)$. Since $\Phi_t$ is affine, we have
+	\begin{equation}
+		\begin{aligned}
+			QJSD(\Phi_t(\rho), \Phi_t(\sigma)) &= S\left(\frac{1}{2}\Phi_t(\rho) + \frac{1}{2}\Phi_t(\sigma)\right) - \frac{1}{2}S(\Phi_t(\rho)) - \frac{1}{2}S(\Phi_t(\sigma)) \\
+			&= S\left(\Phi_t\left(\frac{1}{2}\rho + \frac{1}{2}\sigma\right)\right) - \frac{1}{2}S(\Phi_t(\rho)) - \frac{1}{2}S(\Phi_t(\sigma)) \\
+			&= S\left(\frac{1}{2}\rho + \frac{1}{2}\sigma\right) - \frac{1}{2}S(\rho) - \frac{1}{2}S(\sigma) = QJSD(\rho, \sigma).
+		\end{aligned}
+	\end{equation}
+	If $\psi_I,\phi_I \in \mathcal{P}(\mathcal{H})$ are two pure states, $\psi_I=\phi_I$ if and only if $QJSD(\psi_I, \phi_I) = S\left(\frac{1}{2}\psi_I + \frac{1}{2}\phi_I\right) = 0$: the mixture of two pure states is a pure state if and only if the two pure states are not distinct. Since $\psi_F = \Phi_t(\psi_I)$ and $\phi_F = \Phi_t(\phi_I)$.
+	\begin{equation}
+		\psi_I=\phi_I
+		\iff QJSD(\psi_I,\phi_I)=0
+		\iff QJSD(\psi_F,\phi_F)=0
+		\iff \psi_F=\phi_F.
+	\end{equation}
+	
+	For the reconstruction, for a general mixture the evolution of the reconstructed state is not the initial state because the uncertainty in the prediction and reconstruction will compound. However, since both the evolution and reconstructions are pure states, the two will coincide. For consistency between the evolution and the reconstruction map, the initial state must be a statistical component of the evolution of the reconstruction. Formally, if $\Theta_t : \mathcal{D}(\mathcal{H}) \to \mathcal{D}(\mathcal{H})$ is the reconstruction map over an interval $t$, we will have $\Phi_t(\Theta_t(\rho_I)) = p \rho_I + (1-p) \sigma$. If the evolution maps pure states to pure states, then $\sigma$ must be equal to $\rho_I$ whenever $\rho_I$ is a pure state. That means that the reconstruction is the inverse of evolution. Therefore, the reconstruction preserves the equality of states. Therefore, \ref{DR-EV} holds.
+	
+	Note how the above reasoning uses physical arguments as well as formal. That is, the relationship between the evolution and reconstruction map is not fully formalized, and physical reasoning to fill the gap. Having a fully formalized relationship, in fact, is neither necessary nor sufficient for the argument to hold, and, in this case, is not desirable. It is not sufficient because providing a formal definition does not mean that the definition is capturing the physics: there has to be a physical justification for it. It is not necessary because if, in the end, it is the physical justification of the formal definition that supports the argument, we logically can skip the middle. It is not desirable because, if we wanted to formalize the maps and their relationship, it would require a lot more space and a heavier exposition. On a practical level, then, it is better to leave the formalization for future work.
+	
+	We now show that unitary evolution gives all three physical conditions. That is, \ref{DR-UNIT} $\implies$ \ref{DR-EV}+\ref{DR-PROB}+\ref{DR-INFO}. Given the evolved future states $\psi_F=U_t\psi_I$ and $\phi_F=U_t\phi_I$, their corresponding reconstructed past states are the initial states $U_t^\dagger\psi_F=\psi_I$ and $U_t^\dagger\phi_F=\phi_I$. Since $U_t$ and $U_t^\dagger$ are bijective, \ref{DR-UNIT} implies \ref{DR-EV}. Moreover,
+	\begin{equation}
+		p(\psi_I\mid\phi_I)=p(\psi_F\mid\phi_F)=p(\psi_P\mid\phi_P),
+	\end{equation}
+	so \ref{DR-PROB} holds. Lastly, let $\rho_F=U_t\rho_IU_t^\dagger$ and $\rho_P=U_t^\dagger\rho_FU_t=\rho_I$. Unitary conjugation preserves eigenvalues, including multiplicities. Since the von Neumann entropy depends only on those eigenvalues,
+	\begin{equation}
+		S(\rho_I)=S(\rho_F)=S(\rho_P),
+	\end{equation}
+	and \ref{DR-INFO} holds.
+	
+	Lastly, \ref{DR-SCEQ} $\iff$ \ref{DR-UNIT}. The connection between unitary group and the Schrödinger equation is a well-known result. By Stone's theorem, every strongly continuous one-parameter unitary group has a unique self-adjoint generator $H$ such that
+	\begin{equation}
+		U_t=e^{\frac{Ht}{\imath \hbar}}.
+	\end{equation}
+	For every $\psi(0)\in\Dom(H)$, the curve $\psi(t)=U_t\psi(0)$ is differentiable and satisfies \ref{DR-SCEQ}. Conversely, a time-independent self-adjoint Hamiltonian defines through the same expression a strongly continuous one-parameter unitary group. Therefore \ref{DR-SCEQ} and \ref{DR-UNIT} are equivalent, completing the proof.
+\end{proof}
 
 \section{Conclusions}
 
