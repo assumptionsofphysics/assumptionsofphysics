@@ -152,11 +152,11 @@ Note that, once these equivalences are established, we can add different modes o
 
 \section{Mathematical prerequisites}
 
-In this section we prove a key mathematical proposition that will be used later in the theorem. In the most general setting, a process can be characterized by a map between an initial ensemble to a final ensemble. This map will be continuous if and only if small changes of the input correspond to small changes of the output. Moreover, it will be affine if and only if the process preserves statistical mixing. Lastly, bijectivity of the map will be related to determinism and reversibility. Since, in quantum mechanics, ensembles are represented by density operators, it will be useful to characterize bijective continuous affine maps between density operators in multiple ways.
+In this section we prove a key mathematical proposition that will be used later in the theorem. In the most general setting, a process can be characterized by a map from an initial ensemble to a final ensemble. This map will be continuous if and only if small changes of the input correspond to small changes of the output. Moreover, it will be affine if and only if the process preserves statistical mixing. Lastly, bijectivity of the map will be related to determinism and reversibility. Since, in quantum mechanics, ensembles are represented by density operators, it will be useful to characterize bijective continuous affine maps between density operators in multiple ways.
 
-The key insight is that affinity forces the bijectivity on pure states to the bijectivity of density operators. Since density operator are trace-class and self-adjoint, they can always be expressed as a convex countable mixture of pure states. Since the map is affine and continuous, the mixture of the output is the output of the mixture. Therefore, the map on the pure states defines the map on all mixtures and vice-versa: a continuous affine maps is bijective on pure states if and only if it is bijective on the all mixed states.
+The key insight is that affinity forces the bijectivity on pure states to be equivalent to the bijectivity on density operators. Since density operators are trace-class and self-adjoint, they can always be expressed as a convex countable mixture of pure states. Since the map is affine and continuous, the mixture of the output is the output of the mixture. Therefore, the map on the pure states defines the map on all mixtures and vice-versa: a continuous affine map is bijective on pure states if and only if it is bijective on all mixed states.
 
-Morever, bijective continuous affine maps can always be represented as conjugation by unitary or anti-unitary action on the Hilbert space. This is because the preservation of affine combinations forces the Born rule to be conserved. Given that pure states are uniquely represented by rays, and not vectors, expressing the requirements in terms of projectors and density operators allows to more clearly map physics requirements to the vector space representation.
+Moreover, bijective continuous affine maps can always be represented as conjugation by unitary or anti-unitary action on the Hilbert space. This is because the preservation of affine combinations forces the Born rule to be conserved. Given that pure states are uniquely represented by rays, and not vectors, expressing the requirements in terms of projectors and density operators allows one to more clearly map physics requirements to the vector space representation.
 
 \begin{Proposition}[Affine pure-state correspondence]\label{AFF-PURE}
 	Let $\mathcal{H}$ be a nonzero complex Hilbert space, and let
@@ -175,7 +175,7 @@ Morever, bijective continuous affine maps can always be represented as conjugati
 \end{Proposition}
 
 \begin{proof}
-	We prove the theorem with the following order of implications $1\implies2\implies3\implies4\implies1$.
+	We prove the proposition with the following order of implications $1\implies2\implies3\implies4\implies1$.
 	Note that if $\dim\mathcal{H}=1$, the density-operator space is a singleton
 	and all four conditions hold. We therefore assume
 	$\dim\mathcal{H}\geq2$.
@@ -235,7 +235,7 @@ Morever, bijective continuous affine maps can always be represented as conjugati
 	\end{equation}
 	Preservation of the inner product therefore gives $\tr(T(R)T(S))=\tr(RS)$. Every pair of distinct pure states is supported on a two-dimensional subspace, so this holds throughout $\mathcal{H}$. Surjectivity on pure states is already assumed, completing $2\implies3$.
 	
-	Next, let us show that $3\implies4$. This is, effectively, an application of Wigner's theorem, that states that bijective ray transformations preserving Born transition probabilities can be implemented by unitary or anti-unitary operators.
+	Next, let us show that $3\implies4$. This is, effectively, an application of Wigner's theorem, which states that bijective ray transformations preserving Born transition probabilities can be implemented by unitary or anti-unitary operators.
 	
 	The Born transition probabilities determine whether two pure states coincide: $\tr(PQ)=1$ if and only if $P=Q$. Their preservation therefore makes $T$ injective on pure states. Together with the assumed surjectivity, this gives a bijection of the pure-state space preserving all transition probabilities.
 	
@@ -278,7 +278,7 @@ Morever, bijective continuous affine maps can always be represented as conjugati
 	\end{equation}
 	This proves $3\implies4$.
 	
-	Finally, $4\implies1$. This step is just a verification that unitary and anti-unitary conjugation gives us a bijective map on all density operators.
+	Finally, $4\implies1$. This step is just a verification that unitary and anti-unitary conjugation give us a bijective map on all density operators.
 	
 	Unitary and anti-unitary conjugation preserve positivity and trace, so both $\rho\mapsto W\rho W^\dagger$ and $\rho\mapsto W^\dagger\rho W$ map density operators to density operators. These maps are inverses of one another. Hence $T$ is bijective on all density operators, completing the cycle of implications.
 \end{proof}
