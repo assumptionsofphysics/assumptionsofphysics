@@ -199,11 +199,11 @@ Moreover, bijective continuous affine maps can always be represented as conjugat
 
 	We now show that $2\implies3$. The idea is to examine the mixtures supported on a two-dimensional subspace. These form a Bloch ball, whose surface consists of pure states. We will show that affinity and injectivity on pure states force the induced map to preserve the geometry of this ball. Since every pair of distinct pure states is supported on a two-dimensional subspace, this will establish preservation of all Born transition probabilities.
 
-	Let $E$ be two-dimensional, with orthogonal pure states $P,Q$ spanning it, and set
+	Let $E$ be a two-dimensional subspace, with orthogonal pure states $P,Q$ spanning it, and set
 	\begin{equation}
-	\tau=\frac{I_E}{2}=\frac{P+Q}{2}.
+	\tau=\frac{I_E}{2}=\frac{P+Q}{2},
 	\end{equation}
-	Since $T(P)$ and $T(Q)$ are distinct pure states, their ranges span a two-dimensional subspace $F$, which is the support of $T(\tau)$.
+	where $I_E$ is the identity restricted to the subspace. Since $T(P)$ and $T(Q)$ are distinct pure states, their ranges span a two-dimensional subspace $F$, which is the support of $T(\tau)$.
 
 	Every density operator $\rho$ supported on $E$ satisfies
 	\begin{equation}
@@ -396,7 +396,7 @@ Having gone through all the conditions, we can now state the theorem.
 		\iff \psi_F=\phi_F.
 	\end{equation}
 	
-	For the reconstruction, in general the evolution of the reconstructed state is not the initial state because the uncertainty in the prediction and reconstruction will compound. However, since both the evolution and reconstruction are pure states, the two will coincide. For consistency between the evolution and the reconstruction map, the initial state must be a statistical component of the evolution of the reconstruction. Formally, if $\Theta_t : \mathcal{D}(\mathcal{H}) \to \mathcal{D}(\mathcal{H})$ is the reconstruction map over an interval $t$, we will have $\Phi_t(\Theta_t(\rho_I)) = p \rho_I + (1-p) \sigma$ with $p>0$. If the evolution maps pure states to pure states, if $\rho_I$ is a pure state, then either $\sigma = \rho_I$ or $p=1$. That means that, on pure states, the reconstruction is the inverse of evolution. Therefore, the reconstruction preserves the equality of states. Therefore, \ref{DR-EV} holds.
+	For the reconstruction, in general the evolution of the reconstructed state is not the initial state because the uncertainty in the prediction and reconstruction will compound. However, since both the evolution and reconstruction are pure states, the two will coincide. For consistency between the evolution and the reconstruction map, the initial state must be a statistical component of the evolution of the reconstruction. Formally, if $\Theta_t : \mathcal{D}(\mathcal{H}) \to \mathcal{D}(\mathcal{H})$ is the reconstruction map over an interval $t$, we will have $\Phi_t(\Theta_t(\rho_I)) = p \rho_I + (1-p) \sigma$ for some $p>0$. If the evolution maps pure states to pure states, if $\rho_I$ is a pure state, then either $\sigma = \rho_I$ or $p=1$. That means that, on pure states, the reconstruction is the inverse of evolution. Therefore, the reconstruction preserves the equality of states. Therefore, \ref{DR-EV} holds.
 	
 	Note how the above argument is an example of informal reasoning we anticipated in the methodology. If we wanted to formalize both evolution and reconstruction maps and their relationship, it would require a lot more space and a heavier exposition. On a practical level, then, it is better to leave the formalization for future work and instead focus on more impactful results.
 	
