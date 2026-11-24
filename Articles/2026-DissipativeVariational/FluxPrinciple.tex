@@ -844,6 +844,107 @@ On the other hand, the only work we could find that introduces a two-path variat
 
 Our work, then, recovers these two approaches, reconciles them and puts them in a bigger, unified, framework. That is, we recover Kochan's extended-phase-space formulation also in the case where KE fails, and specialize it to the kinematic formulation given by Galley et al. It also provides a better link to symplectic geometry and classical statistical mechanics, identifying the connection between the flux and the symplectic form, which is itself linked to the definition of entropy for statistical systems.
 
+\section{Rayleigh dissipation}
+
+We conclude by briefly calculating all the key objects for the case of a hyperregular action Lagrangian $L(x,v,t)$ and a Rayleigh dissipation function $R(x,v,t)$. The momentum and force maps are
+\begin{equation}
+	P_i=\frac{\partial L}{\partial v^i},
+	\qquad
+	F_i=\frac{\partial L}{\partial x^i}
+	-\frac{\partial R}{\partial v^i}.
+\end{equation}
+Using the Hamiltonian associated with $L$, the equations of motion are
+\begin{equation}
+	\begin{aligned}
+		\frac{dq^i}{dt}&=S^{q^i}=\frac{\partial H}{\partial p_i},\\
+		\frac{dp_i}{dt}&=S^{p_i}=-\frac{\partial H}{\partial q^i}
+		-\frac{\partial R}{\partial v^i},\\
+		\frac{dt}{dt}&=S^t=1.
+	\end{aligned}
+\end{equation}
+In dynamical variables, derivatives of $R$ are evaluated at
+$(x,v)=(q,V(q,p,t))$. In the coordinate order $(q^i,p_i,t)$,
+the configuration flux form has components
+\begin{equation}
+	w_{cd}=
+	\begin{bmatrix}
+		0 & \delta_i^j &
+		\dfrac{\partial H}{\partial q^i}
+		+\dfrac{\partial R}{\partial v^i}\\
+		-\delta_j^i & 0 &
+		\dfrac{\partial H}{\partial p_i}\\
+		-\dfrac{\partial H}{\partial q^j}
+		-\dfrac{\partial R}{\partial v^j} &
+		-\dfrac{\partial H}{\partial p_j} & 0
+	\end{bmatrix}.
+\end{equation}
+
+Using the interpolation $(x_s,v_s)$ defined above, the proper flux
+Lagrangian becomes
+\begin{equation}
+	\begin{aligned}
+		L_{\mathcal F}^{\mathrm{pr}}
+		&=\int_0^1
+		\left[
+		\frac{\partial L}{\partial v^i}\Delta v^i
+		+
+		\left(
+		\frac{\partial L}{\partial x^i}
+		-\frac{\partial R}{\partial v^i}
+		\right)\Delta x^i
+		\right]_{(x_s,v_s,t)}ds\\
+		&=L(x_b,v_b,t)-L(x_a,v_a,t)
+		-\Delta x^i\int_0^1
+		\frac{\partial R}{\partial v^i}(x_s,v_s,t)\,ds.
+	\end{aligned}
+\end{equation}
+The first two terms are additive; the Rayleigh contribution
+generally is not.
+
+For quadratic dissipation with position-independent coefficients,
+\begin{equation}
+	R(v,t)=\frac12 C_{ij}(t)v^iv^j,
+	\qquad C_{ij}=C_{ji},
+\end{equation}
+the integral gives
+\begin{equation}
+	L_{\mathcal F}^{\mathrm{pr}}
+	=L(x_b,v_b,t)-L(x_a,v_a,t)
+	-\frac12 C_{ij}(t)(x_b^i-x_a^i)(v_a^j+v_b^j).
+\end{equation}
+
+For example, a damped harmonic oscillator has
+\begin{equation}
+	L=\frac12 mv^2-\frac12 kx^2,
+	\qquad R=\frac12 bv^2.
+\end{equation}
+Its equations of motion are
+\begin{equation}
+	\begin{aligned}
+		\frac{dq}{dt}&=S^q=\frac{p}{m},\\
+		\frac{dp}{dt}&=S^p=-kq-\frac{b}{m}p,\\
+		\frac{dt}{dt}&=S^t=1.
+	\end{aligned}
+\end{equation}
+Its configuration flux form and proper flux Lagrangian are
+\begin{equation}
+	w_{cd}=
+	\begin{bmatrix}
+		0 & 1 & kq+\dfrac{b}{m}p\\
+		-1 & 0 & \dfrac{p}{m}\\
+		-kq-\dfrac{b}{m}p & -\dfrac{p}{m} & 0
+	\end{bmatrix},
+\end{equation}
+\begin{equation}
+	L_{\mathcal F}^{\mathrm{pr}}
+	=\frac m2(v_b^2-v_a^2)
+	-\frac k2(x_b^2-x_a^2)
+	-\frac b2(x_b-x_a)(v_a+v_b).
+\end{equation}
+Stationary flux gives $m\,d_t^2x+b\,d_t x+kx=0$.
+For $b=0$, the flux Lagrangian reduces to the additive difference
+of action Lagrangians.
+
 \section{Summary}
 \label{sec:summary}
 We have derived from first principles a completely general, unified variational framework for both conservative and nonconservative dynamics of classical systems, defining a surface variational principle in classical phase space extended by time.  This framework can be used for systems described either by dynamic or kinematic variables.  Using reverse physics methodology, we have identified various relevant physical and mathematical conditions and established logical relationships among them, such that the physical commitments and assumptions entailed by different mathematical structures and expressions can be clearly understood.  We moreover believe that it is likely possible to remove the assumption of smoothness, with the result holding when the dynamics is simply once differentiable; however, we leave this to future work.  
