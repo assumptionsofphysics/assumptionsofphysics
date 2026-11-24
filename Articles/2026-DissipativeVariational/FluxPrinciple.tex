@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[nofootinbib,aps,pre]{revtex4-2}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -18,35 +18,43 @@
 \renewcommand*{\thecondth}{\Roman{condth}}
 \newenvironment{condition}[2][]{\renewcommand{\thecondth}{#2}\begin{condth}[#1]\label{#2}}{\end{condth}\renewcommand{\thecondth}{\Roman{condth}}}
 
-
-\title{A unified variational framework for conservative and non-conservative dynamics of classical systems}
-\author{TBD }
-
 \begin{document}
-\maketitle
+
+\title{A unified variational framework for conservative and \\nonconservative dynamics of classical systems}
+
+\author{Gabriele Carcassi$^1$, J\'ozsef J. Kolumb\'an$^{2,3}$ and Christine A. Aidala$^1$
+}\affiliation{\vbox{1.~Physics Department, University of Michigan, 450 Church Street,
+	Ann Arbor, MI 48109-1040,
+	United States}\\
+  \vbox{2.~Department of Analysis and Operations Research, Institute of Mathematics, Budapest University of Technology and Economics, Műegyetem rkp. 3., H-1111 Budapest, Hungary}
+  \vbox{3.~HUN-REN Alfr\'ed R\'enyi Institute of Mathematics, 1053 Budapest, Re\'altanoda utca 13-15, Hungary}
+  }
+
+
 
 \begin{abstract}
-    TBD
+    Abstract TBD
 \end{abstract}
+\maketitle
 
 \section{Introduction}
 
-Given the success of the principle of least action in classical mechanics, and its limitation to conservative systems, many extensions have been proposed and developed to adapt the variational principle in more general contexts. The approaches are rather different. Some supplement the mechanical equations or variational prescription with generalized forces and dissipation functions, as in the Lagrange--d'Alembert and Rayleigh approaches~\cite{gaybalmaz,minguzzi}. Others seek ordinary Lagrangian or Hamiltonian descriptions through explicit time dependence or multiplier methods~\cite{kanai,nuccitamizhmani}, or generalize the derivative dependence of the Lagrangian to include acceleration, higher-order or fractional derivatives~\cite{paisuhlenbeck,riewe,almeidamalinowska}. Another group enlarges the set of variables, introducing auxiliary systems, environmental degrees of freedom or doubled histories~\cite{bateman,caldeiraleggett,galley,galleytsangstein,martindiego}. Herglotz-type approaches instead allow the Lagrangian to depend on the action itself~\cite{lazo,almeidamalinowska}. Geometric extensions include conformally symplectic, contact and cocontact dynamics~\cite{mclachlan,bravetti,cocontact}. Thermodynamic and open-system formulations introduce entropy-production constraints, reversible--irreversible coupling or energy-exchange structures~\cite{gaybalmaz,gaybalmazopen,generic,porthamiltonian}. Finally, surface formulations replace the path-based variational description with one built from a dynamical two-form~\cite{kochanstrings,kochan}.
+Given the success of the principle of least action in classical mechanics, and its limitation to conservative systems, many extensions have been proposed and developed to adapt the variational principle to more general contexts. The approaches are rather different. Some supplement the mechanical equations or variational prescription with generalized forces and dissipation functions, as in the Lagrange--d'Alembert and Rayleigh approaches~\cite{gaybalmaz,minguzzi}. Others seek ordinary Lagrangian or Hamiltonian descriptions through explicit time dependence or multiplier methods~\cite{kanai,nuccitamizhmani}, or generalize the derivative dependence of the Lagrangian to include acceleration, higher-order or fractional derivatives~\cite{paisuhlenbeck,riewe,almeidamalinowska}. Another group enlarges the set of variables, introducing auxiliary systems, environmental degrees of freedom or doubled histories~\cite{bateman,caldeiraleggett,galley,galleytsangstein,martindiego}. Herglotz-type approaches instead allow the Lagrangian to depend on the action itself~\cite{lazo,almeidamalinowska}. Geometric extensions include conformally symplectic, contact and cocontact dynamics~\cite{mclachlan,bravetti,cocontact}. Thermodynamic and open-system formulations introduce entropy-production constraints, reversible--irreversible coupling or energy-exchange structures~\cite{gaybalmaz,gaybalmazopen,generic,porthamiltonian}. Finally, surface formulations replace the path-based variational description with one built from a dynamical two-form~\cite{kochanstrings,kochan}.
 
-If we want to understand which one provides a true generalization, we first must answer the question: what does it mean to provide a generalization? For example, we can say that set theory generalizes the principle of least action, as the latter can be expressed within that larger context given by the former. This is not very helpful as it extends the domain of discourse far beyond classical dynamical systems. Conversely, we can extend Euler-Lagrange equations using a Rayleigh dissipation function. This is unsatisfactory for the opposite problem: it does not cover all dissipative forces. Therefore, we need to clarify what a system is in the context of classical mechanics, identify a suitable variational principle and then show that it applies to all possible dynamics of such a system, and only such a system. Moreover, the conservative case must be recovered as a special case under a clear additional physical assumption. Reverse Physics will supply the methodology of establishing equivalences between different physical and mathematical conditions.
+If we want to understand which one provides a true generalization, we first must answer the question: what does it mean to provide a generalization? As an extreme example, we can say that set theory generalizes the principle of least action, as the latter can be expressed within that larger context given by the former. This is not very helpful as it extends the domain of discourse far beyond classical dynamical systems. Conversely, we can extend the Euler-Lagrange equations using a Rayleigh dissipation function. This is unsatisfactory for the opposite problem: it does not cover all dissipative forces. Therefore, we need to clarify what a system is in the context of classical mechanics, identify a suitable variational principle and then show that it applies to all possible dynamics of such a system, and only such a system. Moreover, the conservative case must be recovered as a special case under a clear additional physical assumption. In the present work we provide such a generalization. The reverse physics approach developed by some of us~\cite{aop-book,aop-rp,aop-rpqm}, which breaks physical theories into separate mathematical and physical conditions to establish their logical relationships, will supply the methodology of establishing equivalences between different physical and mathematical conditions.
 
 In the context of classical mechanics, the minimum requirement to define a system is to identify a full set of state variables, such as the pairs of position and momentum, and a symplectic form $\omega = \sum_i dq^i \wedge dp_i$ that, at least locally, counts the configurations of each independent degree of freedom (DOF). The counting form, in fact, is needed to define Gibbs entropy for both joint and marginal distributions, without which no invariant notion of reversibility, and therefore of system isolation, can be given. Consequently, it is also tied to the definition of conservative evolution, and therefore of energy.
 
-Given that we are studying the dynamics of the system, the appropriate setting for a generalized variational principle is that of phase space extended by time. A valid evolution $\gamma(t)$ must satisfy $d_t \gamma^a(t) = S^a$, where $S$ is the displacement vector field that describes the flow of states in the extended phase space. To study the flow of configurations, we define the flux form $w$ which must have two properties: it must recover $\omega$ at equal time, and guarantee that $S$ is parallel to the flow (i.e. $S^a w_{ab} = 0$). This fully characterizes $w$ and guarantees that $S^a$ identifies, up to a scalar factor, the only direction that kills the flow at each point. Therefore,  $$d_t \gamma^a(t) = S^a \iff d_t \gamma^a(t) w_{ab} \eta^b(t)=0$$ for all possible $\eta^a(t)$. This is the key physical and geometrical property on which everything else is built. The second condition, in fact, can be expressed in integral form, by requiring that the first variation of the flux between the path and any variation is zero (i.e. $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$).  In other words, the variational principle is the integral expression of requiring the path to kill the flux form.
+Given that we are studying the dynamics of the system, the appropriate setting for a generalized variational principle is that of phase space extended by time, as noted in a previous work by some of us that focused on the conservative case~\cite{geoact}. A valid evolution $\gamma(t)$ must satisfy $d_t \gamma^a(t) = S^a$, where $S$ is the displacement vector field that describes the flow of states in the extended phase space. To study the flow of configurations, we define the flux form $w$ which must have two properties: it must recover $\omega$ at equal time, and guarantee that $S$ is parallel to the flow (i.e.~$S^a w_{ab} = 0$). This fully characterizes $w$ and guarantees that $S^a$ identifies, up to a scalar factor, the only direction that kills the flow at each point. Therefore,  $$d_t \gamma^a(t) = S^a \iff d_t \gamma^a(t) w_{ab} \eta^b(t)=0$$ for all possible variations $\eta^a(t)$. This is the key physical and geometric property on which everything else is built. The second condition, in fact, can be expressed in integral form, by requiring that the first variation of the flux between the path and any variation is zero.  In other words, the variational principle is the integral expression of requiring the path to kill the flux form.
 
-In the case of conservative dynamics (DI), the flux form is closed, conserves the count of configurations in time, and admits, at least locally, a potential one form $\theta$. Using Stokes's theorem, the condition on the flux can be reformulated in terms of the line integral of $\theta$, which recovers the principle of least action expressed in phase space. Therefore, we have the following relationships:
+In the case of conservative dynamics, the flux form is closed, conserves the count of configurations in time, and admits, at least locally, a potential one-form $\theta$. Using Stokes' theorem, the condition on the flux can be reformulated in terms of the line integral of $\theta$, which recovers the principle of least action expressed in phase space~\cite{geoact}. \textcolor{red}{CAA: I propose we remove the following sentence and Eq.~(1) and consider moving Eq.~(1) at the end of the paper. }Therefore, we have the following relationships:
 \begin{equation}
 	\begin{aligned}
 		d_t \gamma^a(t) = S^a &\iff d_t \gamma^a(t) w_{ab}=0 \iff \delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \\&\stackrel{\text{+DI}}{\impliedby} \delta \mathcal{A}_H[\gamma] = 0 \iff d_t \omega =0.
 	\end{aligned}
 \end{equation}
 
-Under the additional assumption of kinematic equivalence (KE), momentum can be expressed as a function of position, velocity and time, and therefore the variational principle can be fully reformulated in terms of kinematic variables. Restricted by KE, the generalized variational principle can be expressed in terms of a flux functional $\mathcal{F}[x^i_a(t), x^i_b(t)] = \int L_{\mathcal{F}}(x^i_a(t), d_t x^i_a(t), \linebreak x^i_b(t), d_t x^i_b(t), t)dt$ where $L_{\mathcal{F}}$ is a flux Lagrangian. This recovers a variational principle similar to the one proposed by \cite{galley,galleytsangstein}. In the conservative case, we can choose an additive flux Lagrangian, and the principle can be expressed, using Stokes' theorem, on the boundaries. This recovers the standard principle of least action and the action Lagrangian. Summing up, we have:
+Under the additional assumption of kinematic equivalence (KE), momentum can be expressed as a function of position, velocity and time, and therefore the variational principle can be fully reformulated in terms of kinematic variables. Restricted by KE, the generalized variational principle can be expressed in terms of a flux functional $\mathcal{F}[x^i_a(t), x^i_b(t)] = \int L_{\mathcal{F}}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$ where $L_{\mathcal{F}}$ is a flux Lagrangian. This recovers a variational principle similar to the one proposed by Refs.~\cite{galley,galleytsangstein}. In the conservative case, we can choose an additive flux Lagrangian, and the principle can be expressed, using Stokes' theorem, on the boundaries. This recovers the standard principle of least action and the action Lagrangian. \textcolor{red}{CAA: Similarly, I propose moving Eq. (2) to the end of the paper, jumping straight to ``The key result'' here in the Introduction. }Summing up, we have:
 \begin{equation}
 	\begin{aligned}
 		d_t \gamma^a(t) &= S^a \stackrel{\text{+KE}}{\impliedby} \delta_b\mathcal{F}[x(t),x(t);\eta(t)]=0 \iff d_t\frac{\partial L_{\mathcal{F}}}{\partial v_b^i}=\frac{\partial L_{\mathcal{F}}}{\partial x_b^i} \\&\stackrel{\text{+DI}}{\impliedby} \delta \mathcal{A}_L[x^i(t)] = 0 \iff L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t).
@@ -54,11 +62,16 @@ Under the additional assumption of kinematic equivalence (KE), momentum can be e
 \end{equation}
 Note that, since the second path varies around the first, the first variation and derivatives are evaluated on the diagonal.
 
-The key result is that \textbf{all smooth dynamics on phase space can be expressed through the principle of stationary flux and any dynamics expressed through the principle of stationary flux is a dynamics on phase space}. In this sense, assuming smooth dynamics, the principle is exhaustive because it covers exactly all the possible dynamics for classical mechanics. This approach recovers other results, but in a more unified and physically motivated setting. In principle, the treatement can be further generalized by relaxing the  smoothness requirement on the dynamics, while retaining the notion of configuration count necessary for classical mechanics. We leave this for future work.
+The key result is that \textbf{all smooth dynamics on phase space can be expressed through the principle of stationary flux and any dynamics expressed through the principle of stationary flux is a dynamics on phase space}. In this sense, assuming smooth dynamics, the principle is exhaustive because it covers exactly all the possible dynamics for classical mechanics. This approach recovers other results, but in a more unified and physically motivated setting. In principle, the treatment can be further generalized by relaxing the  smoothness requirement on the dynamics, while retaining the notion of configuration count necessary for classical mechanics. We leave this for future work.
+
+The rest of the paper is structured as follows.  Section~\ref{sec:conditions} provides an overview of the relevant mathematical and physical conditions and the logical relationships among them that will be established.  Section~\ref{sec:dynamicalvar} then establishes the relationships for dynamics described on phase space, and Sec.~\ref{sec:kinematicvar} establishes those for dynamics described in terms of kinematic variables. Section~\ref{sec:othervarprinc} discusses the relationship of our results to other generalizations of the principle of stationary action in classical mechanics, and finally in Sec.~\ref{sec:summary} we summarize the work presented.
+
+
 
 \section{Conditions and their relationships}
+\label{sec:conditions}
 
-In this section, following the practice of Reverse Physics, we summarize the mathematical and physical conditions we are going to encounter throughout this work and state their logical relationships within three theorems. The rest of the paper establishes these relationships while explaining their physical meaning and the constructions connecting them.
+In this section, following the practice of reverse physics, we summarize the mathematical and physical conditions we are going to encounter throughout this work and state their logical relationships within three theorems. The rest of the paper establishes these relationships while explaining their physical meaning and the constructions connecting them.  
 
 \subsection{Background conditions}
 
@@ -68,27 +81,27 @@ Throughout this work, we will assume the following to be true.
 \end{condition}
 Note that, as of now, we do not have an equivalent physical characterization for this condition, and therefore we do not know whether smoothness has physical significance. It is also likely that the theorems established here have more general validity. Therefore this condition, which is often assumed in the context of differential geometry, should be understood as a simplifying assumption.
 
-The following condition characterizes classical states in terms of position and momentum, as it is done in the context of Hamiltonian mechanics.
+The following condition characterizes classical states in terms of position and momentum, as is done in the context of Hamiltonian mechanics.
 \begin{condition}[Classical states in dynamical variables]{CSD}
-	The state \linebreak space of a classical system with $n$ independent degrees of freedom (DOF) is represented by position and conjugate momentum. That is, given a set of $n$ position variables $q^i$, we can find a set of $n$ conjugate momentum variables $p_i$ such that each state is identified by position and momentum $(q^i,p_j) \in \mathbb{R}^{2n}$. Moreover, the count of configurations\footnote{By \emph{configuration} we mean the position-momentum pair for a single DOF.} for a DOF is given by $\int_{\Sigma} \omega = \int_{\Sigma} \sum_i dq^i dp_i$ with $\omega = \sum_i dq^i \wedge dp_i$. The count of states is given by the Liouville measure $\int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. 
+	The state space of a classical system with $n$ independent degrees of freedom (DOFs) is represented by position and conjugate momentum. That is, given a set of $n$ position variables $q^i$, we can find a set of $n$ conjugate momentum variables $p_i$ such that each state is identified by position and momentum $(q^i,p_j) \in \mathbb{R}^{2n}$. Moreover, the count of configurations\footnote{By \emph{configuration} we mean the position-momentum pair for a single DOF.} for a DOF is given by $\int_{\Sigma} \omega = \int_{\Sigma} \sum_i dq^i dp_i$ with $\omega = \sum_i dq^i \wedge dp_i$. The count of states is given by the Liouville measure $\int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. 
 \end{condition}
-Note that conjugate momentum is not unique in classical mechanics. The relationship between position and conjugate momentum is simply that they, together, allow us to count configurations (i.e. ways that a single DOF can be specified) through the symplectic form.
+Note that conjugate momentum is not unique in classical mechanics. The relationship between position and conjugate momentum is simply that they, together, allow us to count configurations (i.e.~ways that a single DOF can be specified) through the symplectic form.
 
-The following condition characterizes classical states in terms of position and velocity, as it is done in the context of Newtonian and Lagrangian mechanics.
+The following condition characterizes classical states in terms of position and velocity, as is done in the context of Newtonian and Lagrangian mechanics.
 \begin{condition}[Classical states in kinematic variables]{CSK}
-	The state \linebreak space of a classical system with $n$ independent degrees of freedom (DOF) is represented by position and velocity. That is, given a set of $n$ position variables $x^i$, we can find a set of $n$ velocity variables $v^i$ such that each state is identified by position and velocity $(x^i,v^j) \in \mathbb{R}^{2n}$. Moreover, over time evolution, $v^i = d_t x^i$.
+	The state \linebreak space of a classical system with $n$ independent degrees of freedom (DOFs) is represented by position and velocity. That is, given a set of $n$ position variables $x^i$, we can find a set of $n$ velocity variables $v^i$ such that each state is identified by position and velocity $(x^i,v^j) \in \mathbb{R}^{2n}$. Moreover, over time evolution, $v^i = d_t x^i$.
 \end{condition}
-Note that, in this case, no count of configuration is given. However, the condition gives the relationship $v^i = d_t x^i$ between variables during evolution, and no such relationship is given in \ref{CSD}.
+Note that, in this case, no count of configurations is given. However, the condition gives the relationship $v^i = d_t x^i$ between variables during evolution, and no such relationship is given in \ref{CSD}.
 
 The following condition makes sure that we can link the two descriptions.
 \begin{condition}[Kinematic Equivalence]{KE}
 	The system can be equivalently described in dynamical and kinematic variables. That is, there is an invertible map between position and momentum $(q^i, p_i)$ and position and velocity $(x^i, v^i)$.
 \end{condition}
-Note that this is an additional condition, as it is independent from \ref{CSD} and \ref{CSK}. However, it is implied by both the principle of stationary action and the principle of stationary flux in their kinematic formulation. That is, the hyperregularity of both the action and flux Lagrangians ensures enough information to recover conjugate momentum and the symplectic configuration count.
+Note that this is an additional condition, as it is independent of \ref{CSD} and \ref{CSK}. However, it is implied by both the principle of stationary action and the principle of stationary flux in their kinematic formulation. That is, the hyperregularity of both the action and flux Lagrangians ensures enough information to recover conjugate momentum and the symplectic configuration count.
 
 \subsection{Evolution and variational conditions}
 
-In the context of \ref{CSD}, the following three conditions characterize general dynamics.
+In the context of \ref{CSD}, i.e.~classical states using dynamical variables, the following three conditions regarding time evolution characterize general dynamics.
 \begin{condition}[Equations of motion]{TE-EOM}
 	The evolution obeys explicit equations of motion. That is, $d_t \gamma^a(t) = S^a$.
 \end{condition}
@@ -98,7 +111,7 @@ In the context of \ref{CSD}, the following three conditions characterize general
 \begin{condition}[Principle of stationary flux in phase space]{TE-STFL}
 	The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $\phi[\Sigma]=\int_{\Sigma} w$ such that $w_{ab}|_{(q,p)}=\omega_{ab}$ and $\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0$ where $\Sigma_{\gamma, \epsilon \eta}$ is the surface between the path $\gamma^a$ and its variation $\gamma^a + \epsilon \eta^a$.
 \end{condition}
-We will see that these are actually equivalent characterizations of time evolution, and therefore, following Reverse Physics standard, they share the same prefix TE. Note that the principle of stationary flux is among the three characterizations.
+We will see that these are actually equivalent characterizations of time evolution, and therefore, following reverse physics standards, they share the same prefix TE. Note that the principle of stationary flux is among the three characterizations.
 
 Still in the context of \ref{CSD}, the following two conditions characterize conservative dynamics.
 \begin{condition}[Symplectomorphism]{DI-SYMP}
@@ -107,9 +120,9 @@ Still in the context of \ref{CSD}, the following two conditions characterize con
 \begin{condition}[Principle of stationary action in phase space]{DI-STAC}
 	The evolution between two given positions is the one for which the phase space action is stationary. That is, there exists an action functional $\mathcal{A}_H[\gamma] = \int (p_i d_t q^i -H)dt$ such that  $\delta \mathcal{A}_H[\gamma] = 0$.
 \end{condition}
-In previous work, we have already shown that these two are equivalent, and that, physically, they are equivalent to assuming determinism and reversibility plus the preservation of independence of the degrees of freedom. As such, they share the same prefix DI.
+In previous work~\cite{geoact}, we have already shown that these two are equivalent, and that, physically, they are equivalent to assuming determinism and reversibility plus the preservation of independence of the degrees of freedom. As such, they share the same prefix DI.
 
-In the context of \ref{CSK}, we can characterize general dynamics with the following principle.
+In the context of \ref{CSK}, i.e.~using kinematic variables, we can characterize general dynamics with the following principle.
 \begin{condition}[Principle of stationary flux]{KE-STFL}
 	The evolution between two given positions is the one that renders the flux around it stationary. That is, there exists a flux functional $$\mathcal{F}[x^i_a(t), x^i_b(t)] = \int L_{\mathcal{F}}(x^i_a(t), d_t x^i_a(t), x^i_b(t), d_t x^i_b(t), t)dt$$ where $L_{\mathcal{F}}$ is a hyperregular flux Lagrangian such that  $\delta_b \mathcal{F}[x^i(t),x^i(t)] = 0$.
 \end{condition}
@@ -130,7 +143,7 @@ The first theorem establishes the correspondence across kinematic and dynamical 
 \begin{theorem}\label{thrm:bridge}
 	Over \ref{SM}, \ref{CSD}+KE+TE-EOM $\iff$ \ref{CSK}+KE-STFL $\impliedby$ \ref{CSD}+KE+DI-SYMP $\iff$ \ref{CSK}+KEDI-STAC.
 \end{theorem}
-Note how KE enters differently: for the dynamical variables, it is an extra assumption; for the kinematic variables, it is part of the principles of stationary flux and action. Also note how the conservative case, i.e. the DI assumption, is a further specialization of the general conditions.
+Note how kinematic equivalence (KE) enters differently: for the dynamical variables, it is an extra assumption; for the kinematic variables, it is part of the principles of stationary flux and action. Also note how the conservative case, i.e.~the DI assumption, is a further specialization of the general conditions.
 
 The remaining two theorems establish the characterization for general and conservative dynamics in the respective descriptions.
 \begin{theorem}\label{thrm:dyn}
@@ -140,23 +153,26 @@ The remaining two theorems establish the characterization for general and conser
 	Over \ref{SM}+\ref{CSK}, KE-STFL $\impliedby$ KEDI-STFL $\iff$ KEDI-STAC.
 \end{theorem}
 
-\section{Dynamics in the extended phase space}
+Having laid out the various conditions and stated the theorems to be established that capture the logical relationships among these conditions, we now proceed to discuss first dynamics in the extended phase space and then in terms of kinematic variables.
 
-In this section we outline the theory for a classical dynamical system on the extended phase space, effectively addressing all equivalences stated in theorem \ref{thrm:dyn}. At each time, we have standard phase space with the geometry given by the count of configurations defined by the closed form $\omega_{ab}$. The dynamics in time, however, need not be conservative (i.e. Hamiltonian). The central idea is the existence of a flux form $w_{ab}$ that characterizes the flux of configurations through a surface. The only direction that kills said flux form is the displacement field $S^a$, as configurations flow along the displacement field, not through it. This means that $v^a w_{ab} = 0$ if and only if $v^a = k S^a$ for some $k \in \mathbb{R}$. The principle of stationary flux in general terms is, effectively, an integral way to express the same fact: system evolutions are those path for which the flux is zero between the bath and a small variation. In the conservative case, the dynamics preserves the symplectic form over phase space, the flux form is closed and admits a potential one form. The action is the line integral of that one form, and the principle of stationary action, by Stokes' theorem, becomes the principle of stationary flux in phase space form.
+\section{Dynamics in the extended phase space}
+\label{sec:dynamicalvar}
+
+In this section we outline the theory for a classical dynamical system on the extended phase space, effectively addressing all equivalences stated in theorem \ref{thrm:dyn}. At each time, we have standard phase space with the geometry given by the count of configurations defined by the closed form $\omega_{ab}$. The dynamics in time, however, need not be conservative (i.e.~Hamiltonian). The central idea is the existence of a flux form $w_{ab}$ that characterizes the flux of configurations through a surface. The only direction that kills said flux form is the displacement field $S^a$, as configurations flow along the displacement field, not through it. This means that $v^a w_{ab} = 0$ if and only if $v^a = k S^a$ for some $k \in \mathbb{R}$. The principle of stationary flux in general terms is, effectively, an integral way to express the same fact: system evolutions are those paths for which the flux is zero between the path and a small variation. In the conservative case, the dynamics preserves the symplectic form over phase space, the flux form is closed and admits a potential one-form. The action is the line integral of that one-form, and the principle of stationary action, by Stokes' theorem, becomes the principle of stationary flux in phase space formulation.
 
 \subsection{General dynamics}
 
-We consider a system defined by classical mechanics described by dynamical variables, as in condition \ref{CSD}. Each state is fully identified by position and conjugate momentum $(q^i,p_i) \in \mathbb{R}^{2n}$. Given a region $U \subseteq \mathbb{R}^{2n}$, the count of states is given by $\int_U \Omega = \int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. That is, the volume form $\Omega$ that defines the count of states locally is the product of the count of configuration for each degree of freedom (DOF) given by $\omega_{ab}$.
+We consider a system defined by classical mechanics described by dynamical variables, as in condition \ref{CSD}. Each state is fully identified by position and conjugate momentum $(q^i,p_i) \in \mathbb{R}^{2n}$. Given a region $U \subseteq \mathbb{R}^{2n}$, the count of states is given by $\int_U \Omega = \int_U \omega^n / n! = \int_U \prod_i dq^i dp_i$. That is, the volume form $\Omega$ that defines the count of states locally is the product of the count of configurations for each DOF given by $\omega_{ab}$.
 
-Extending this setting with time, states are identified at a specific time using generalized coordinates $\xi^a = (q^i,p_i,t) \in \mathbb{R}^{2n+1}$. A path for the system is defined by a curve $\gamma^a(t) = (q^i(t), p_i(t), t)$, which tells us how the system evolves in time. Note that the time component has to match time itself, $\gamma^t(t) = t$, meaning that time plays a double role of coordinate (i.e. an element of $\xi^a$) and affine parameter (i.e. the parameter of the curve). Therefore, a partial derivative $\partial_t$ will correspond to a derivative at $q^i$ and $p_i$ constant, while a total derivative $d_t$ will correspond to a derivative along a path $\gamma^a(t)$.
+Extending this setting with time, states are identified at a specific time using generalized coordinates $\xi^a = (q^i,p_i,t) \in \mathbb{R}^{2n+1}$. A path for the system is defined by a curve $\gamma^a(t) = (q^i(t), p_i(t), t)$, which tells us how the system evolves in time. Note that the time component has to match time itself, $\gamma^t(t) = t$, meaning that time plays a double role of coordinate (i.e.~an element of $\xi^a$) and affine parameter (i.e.~the parameter of the curve). Therefore, a partial derivative $\partial_t$ will correspond to a derivative at $q^i$ and $p_i$ constant, while a total derivative $d_t$ will correspond to a derivative along a path $\gamma^a(t)$.
 
 \begin{figure}[h]
     \centering
 	\input{DissipativeFlux.tikz}
-    \caption{Every two-dimensional surface at constant time is transported to another two-dimensional surface at constant time forming an evolution tube. The flux of configurations must be zero on the sides, therefore the net flux is the count of configurations at the end minus the count of configurations at the beginning. The dynamics is conservative if the flux over a closed surface is always zero, meaning that each evolution tube conserves the count of configurations and the independence of the degrees of freedom (i.e. mixed planes, like $(q^1,q^2)$, do not identify configurations for an independent DOF).}\label{evolutionTube}
+    \caption{Every two-dimensional surface at constant time is transported to another two-dimensional surface at constant time forming an evolution tube. The flux of configurations must be zero on the sides, therefore the net flux is the count of configurations at the end minus the count of configurations at the beginning. The dynamics is conservative if the flux over a closed surface is always zero, meaning that each evolution tube conserves the count of configurations and the independence of the degrees of freedom (i.e.~mixed planes, like $(q^1,q^2)$, do not identify configurations for an independent DOF).}\label{evolutionTube}
 \end{figure}
 
-Assuming we have a dynamical system, there will be a smooth displacement field $S^a(q^i,p_i,t)$ that tells how states evolve in time. Therefore $\gamma^a(t)$ is an evolution of the system if and only if $d_t \gamma^a(t) = S^a(\gamma^a(t)) = S^a(q^i(t),p_i(t),t)$, which represents the equation of motion. In components, this becomes
+Assuming we have a dynamical system, there will be a smooth displacement field $S^a(q^i,p_i,t)$ that describes how states evolve in time. Therefore $\gamma^a(t)$ is an evolution of the system if and only if $d_t \gamma^a(t) = S^a(\gamma^a(t)) = S^a(q^i(t),p_i(t),t)$, which represents the equation of motion. In components, this becomes
 \begin{equation}
     d_t \gamma^a(t) = \begin{bmatrix}
 \dfrac{dq^i}{dt} \\[1em]
@@ -170,7 +186,7 @@ S^{t}(q^i,p_i,t)
 \end{equation}
 Since $\gamma^t = t$, we must have that $S^t=1$. This corresponds to condition \ref{TE-EOM}.
 
-We now want to characterize the flux of states, how the count of states flows in time. As described in Fig. \ref{evolutionTube}, if we start with a region $U$ at constant time, this will be mapped to a region $U'$ at a future time, forming an evolution tube where $U$ and $U'$ are the ends and the sides are evolution curves. The sides are always tangent to the displacement field $S^a$ and therefore they do not contribute to the flux. Given a generic hypersurface $U$, we are looking for a linear functional $\Phi[U] = \int_U W$ that must coincide with the state counting volume form at equal time, $W|_{(q,p)} = \Omega$ and must be zero along the flow, $W(S^a, \cdot) = 0$. This is enough to characterize the state flux form $W$.
+We now want to characterize the flux of states, how the count of states flows in time. As described in Fig.~\ref{evolutionTube}, if we start with a region $U$ at constant time, this will be mapped to a region $U'$ at a future time, forming an evolution tube where $U$ and $U'$ are the ends and the sides are evolution curves. The sides are always tangent to the displacement field $S^a$ and therefore they do not contribute to the flux. Given a generic hypersurface $U$, we are looking for a linear functional $\Phi[U] = \int_U W$ that must coincide with the state counting volume form at equal time, $W|_{(q,p)} = \Omega$, and must be zero along the flow, $W(S^a, \cdot) = 0$. This is enough to characterize the state flux form $W$.
 
 In fact, all components with no time index will either be zero, if there are repetitions, or $\pm 1$ depending on orientation. For example,
 \begin{equation}
@@ -178,7 +194,7 @@ In fact, all components with no time index will either be zero, if there are rep
         W_{q^1 p_1 q^2 p_2 \cdots q^n p_n} = 1 & W_{q^1 q^2 p_1 p_2 \cdots q^n p_n} = -1 & W_{q^1 q^1 q^2 p_2 \cdots q^n p_n} = 0.
     \end{matrix}
 \end{equation}
-To find the time components, we can use $W(S^a, \cdots) = 0$, which in component notation is $S^{a^1} W_{a^1 a^2 \cdots a^{2n}} = 0$. If we fix the free indexes with position and momentum variables, the only non-zero terms are those where $a^1$ is either remaining state variable or $t$, which sets an equivalence between the component of $S^a$ in the remaining state variable and the time component of $W$. For example, suppose $q^i$ is our free variable, the constraint gives us
+To find the time components, we can use $W(S^a, \cdots) = 0$, which in component notation is $S^{a^1} W_{a^1 a^2 \cdots a^{2n}} = 0$. If we fix the free indexes with position and momentum variables, the only nonzero terms are those where $a^1$ is either the remaining state variable or $t$, which sets an equivalence between the component of $S^a$ in the remaining state variable and the time component of $W$. For example, suppose $q^i$ is our free variable. The constraint gives us
 \begin{equation}
 \begin{aligned}
     0 &= S^a W_{\cdots q^{i-1}p_{i-1}\,a\,p_iq^{i+1}p_{i+1}\cdots} \\
@@ -202,7 +218,7 @@ Since $\Omega = \omega^n/n!$, we can also write $W = w^n/n!$ with
         \end{bmatrix} \\
     \end{aligned},
 \end{equation}
-and $\phi[\Sigma] = \int_{\Sigma} w$ will describe the flux of configuration for a single DOF. Given the setting, then, this is the only natural way to extend the symplectic form to the extended phase space for a dynamical system. This is the flux form described in condition \ref{TE-FLUX}.
+and $\phi[\Sigma] = \int_{\Sigma} w$ will describe the flux of configurations for a single DOF. Given the setting, then, this is the only natural way to extend the symplectic form to the extended phase space for a dynamical system. This is the flux form described in condition \ref{TE-FLUX}.
 
 Note that the relationship between $S^a$ and $w_{ab}$ is even stronger. Suppose, in fact, that $v^a w_{ab} = 0$. We have
 \begin{equation}
@@ -230,7 +246,7 @@ where the last equation is not independent from the previous and therefore provi
 \begin{equation}
     v^a w_{ab} = 0 \iff v^a = S^a v^t.
 \end{equation}
-That is, the displacement field is the only degenerate direction, up to a scalar multiple, of the flux form. This is a consequence of the fact that $w_{ab}|_{(q,p)} = \omega_{ab}$: since $\omega_{ab}$ is non-degenerate, there is only one degenerate direction for $w_{ab}$. This also means that
+That is, the displacement field is the only degenerate direction, up to a scalar multiple, of the flux form. This is a consequence of the fact that $w_{ab}|_{(q,p)} = \omega_{ab}$: since $\omega_{ab}$ is nondegenerate, there is only one degenerate direction for $w_{ab}$. This also means that
 \begin{equation}\label{evolutionsKillFlux}
     d_t \gamma^a(t) = S^a  \iff d_t \gamma^a(t) w_{ab} = 0.
 \end{equation}
@@ -238,7 +254,7 @@ That is, $\gamma^a(t)$ is a solution of the equation of motion if and only it ki
 
 \subsection{The conservative dynamics}
 
-The conservative/Hamiltonian case is exactly recovered when the flux is zero over closed surfaces. Going back to Fig.\ref{evolutionTube}, if the count of configuration is conserved, flux through every evolution tube is zero. The vanishing flux through infinitesimal evolution tubes, together with the closedness of the equal-time configuration counting form $\omega$, implies that $w$ is closed. We can therefore write $w_{ab} = - \partial_a \wedge \theta_b$.
+The conservative/Hamiltonian case is exactly recovered when the flux is zero over closed surfaces. Going back to Fig.~\ref{evolutionTube}, if the count of configurations is conserved, flux through every evolution tube is zero. The vanishing flux through infinitesimal evolution tubes, together with the closedness of the equal-time configuration counting form $\omega$, implies that $w$ is closed. We can therefore write $w_{ab} = - \partial_a \wedge \theta_b$.
 
 The spatial parts of $w$ are fixed by $\omega$, and therefore, without loss of generality, we have
 \begin{equation}
@@ -256,7 +272,7 @@ The spatial parts of $w$ are fixed by $\omega$, and therefore, without loss of g
 		S^t &= 1.
 	\end{aligned}
 \end{equation}
-This recovers Hamilton's equations. Conversely, Hamilton’s equations give $w=-d\theta$, so $w$ is closed and the configuration count is preserved along every evolution tube. Thus Hamiltonian dynamics is equivalent to condition DI-SYMP.\footnote{In Reverse Physics, we also find other conditions equivalent to Hamiltonian evolution.}
+This recovers Hamilton's equations. Conversely, Hamilton’s equations give $w=-d\theta$, so $w$ is closed and the configuration count is preserved along every evolution tube. Thus Hamiltonian dynamics is equivalent to condition DI-SYMP.\footnote{In reverse physics, we also find other conditions equivalent to Hamiltonian evolution~\cite{aop-book}.}
 
 The conservative case can equivalently be expressed in terms of the principle of stationary action on the extended phase space. Let us consider a path $\gamma^a(t)$ with $t \in [t_0, t_1]$ and define the action $\mathcal{A}_H[\gamma]$ as the integral of $\theta_a$ along $\gamma^a$. We have
 \begin{equation}
@@ -297,7 +313,7 @@ The principle of stationary action, then, amounts to requiring that the flux thr
 		&= \int_{t_0}^{t_1} w_{ab} \eta^a(t) d_t \gamma^b(t) dt \\
 	\end{aligned}
 \end{equation}
-Since $w_{ab} \eta^a(t) d_t \gamma^b(t) = 0$ for all space-momentum variations $\eta^a(t)$, $w_{ab} d_t \gamma^b(t) = 0$ whenever $a \in \{q^i, p_i\}$. Now consider $d_t \gamma^a(t) w_{ab} d_t \gamma^b(t)$. This is equal to zero by anti-symmetry of $w_{ab}$. Putting the two results together, we have $d_t \gamma^t(t) w_{tb} d_t \gamma^b(t) = 0$. Since $d_t \gamma^t(t) = 1$, $w_{tb} d_t \gamma^b(t) = 0$. Therefore, in the conservative case, 
+Since $w_{ab} \eta^a(t) d_t \gamma^b(t) = 0$ for all position-momentum variations $\eta^a(t)$, $w_{ab} d_t \gamma^b(t) = 0$ whenever $a \in \{q^i, p_i\}$. Now consider $d_t \gamma^a(t) w_{ab} d_t \gamma^b(t)$. This is equal to zero by antisymmetry of $w_{ab}$. Putting the two results together, we have $d_t \gamma^t(t) w_{tb} d_t \gamma^b(t) = 0$. Since $d_t \gamma^t(t) = 1$, $w_{tb} d_t \gamma^b(t) = 0$. Therefore, in the conservative case, 
 \begin{equation}
 	\delta \mathcal{A}_H[\gamma] = 0 \iff d_t \gamma^a(t) w_{ab} = 0.
 \end{equation}
@@ -305,7 +321,7 @@ This proves the equivalence between \ref{DI-SYMP} and \ref{DI-STAC}.
 
 \subsection{Stationary flux in the extended phase space}
 
-If we look closely at the derivation in \ref{variationOnFlux}, we note that the only part that depends on conservative dynamics is the expression of the action. The flux and its variation only require $w_{ab}$, which is well-defined for general dynamics. Therefore the following conclusion
+If we look closely at the derivation Eq.~\eqref{variationOnFlux}, we note that the only part that depends on conservative dynamics is the expression of the action. The flux and its variation only require $w_{ab}$, which is well-defined for general dynamics. Therefore the following conclusion
 \begin{equation}
 	\delta \phi[\Sigma_{\gamma, \epsilon \eta}]=0 \iff d_t \gamma^a(t) w_{ab} = 0
 \end{equation}
@@ -313,7 +329,7 @@ is valid in general. This gives us a way to characterize any dynamics through a 
 \begin{quote}
 	\textbf{Principle of stationary flux.} The path taken by a classical dynamical system between two positions is the one that renders the flux around it stationary.
 \end{quote}
-This, again, is simply a consequence of the fact that each evolution is locally tangent to the displacement field at every point, and therefore an infinitesimal surface around an evolution, will also be tangent to the field, leading to no flux. Conversely, if the path is not tangent, there will be a direction in which a variation will ``catch'' some of the flux. The action exists only in the special conservative case, when the flux form is closed.
+This, again, is simply a consequence of the fact that each evolution is locally tangent to the displacement field at every point, and therefore an infinitesimal surface around an evolution will also be tangent to the field, leading to no flux. Conversely, if the path is not tangent, there will be a direction in which a variation will ``catch'' some of the flux. The action exists only in the special conservative case, when the flux form is closed.
 
 To sum up, we have the following five conditions with the following relationship
 \begin{equation}
@@ -324,16 +340,17 @@ To sum up, we have the following five conditions with the following relationship
 which corresponds to theorem \ref{thrm:dyn}. Once we assume \ref{CSD}, classical states represented by position and momentum, the first three conditions equivalently represent general dynamics while the second two equivalently represent the special case of conservative dynamics.
 
 \section{Dynamics over kinematic variables}
+\label{sec:kinematicvar}
 
-In this section we express the principle of stationary flux in kinematic variables, giving a physically motivated variational principle that applies to any dynamics over kinematic variables. We'll define the flux Lagrangian $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of the action Lagrangian for general dynamics. The flux $\mathcal{F}[x^i_a(t), x^i_b(t)]$ is a functional of the two paths that define the contour of the surface. The equation of motion, the conjugate momentum and the symplectic form can all be recovered from the flux and the flux Lagrangian. In the conservative case, the flux Lagrangian, in its proper form, is additive and can be reduced to the difference of an action Lagrangian evaluated on the two states: $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
+In this section we express the principle of stationary flux in kinematic variables, giving a physically motivated variational principle that applies to any dynamics over kinematic variables, \textcolor{red}{effectively addressing all equivalences stated in theorem \ref{thrm:kin}}. We define the flux Lagrangian $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t)$ which is a function of two kinematic states and plays the role of the action Lagrangian for general dynamics. The flux $\mathcal{F}[x^i_a(t), x^i_b(t)]$ is a functional of the two paths that define the contour of the surface. The equation of motion, the conjugate momentum and the symplectic form can all be recovered from the flux and the flux Lagrangian. In the conservative case, the flux Lagrangian, in its proper form, is additive and can be reduced to the difference of an action Lagrangian evaluated on the two states: $L_{\mathcal{F}}(x_a, v_a, x_b, v_b, t) = L(x_b, v_b, t) - L(x_a, v_a, t)$.
 
 \subsection{From dynamical to kinematic picture}
 
-The first task it to re-express the principle of stationary flux on kinematic variables. Additionally, we would like the new principle to work, as much as possible, like the principle of stationary action.
+The first task is to re-express the principle of stationary flux on kinematic variables. Additionally, we would like the new principle to work, as much as possible, like the principle of stationary action.
 
 We consider a system as defined by classical mechanics described by kinematic variables, as in condition \ref{CSK}. Each state is fully identified by position and velocity $(x^i, v^i) \in \mathbb{R}^{2n}$, so that, over evolutions, $v^i (t) = d_t x^i(t)$.\footnote{We use $x^i$ and $v^i$, instead of $q^i$ and $\dot{q}^i$, for two reasons. First, to make it clear that these are independent variables used to chart the same state space, and that $v^i (t) = d_t x^i(t)$ applies only on trajectories. Second, to remind ourselves that, while $x^i = q^i$, in general, $\partial_{x^i} \neq \partial_{q^i}$.}
 
-Assuming Kinematic Equivalence \ref{KE}, we can change coordinates from $(x^i, v^i)$ to $(q^i, p_i)$ and vice-versa. That is, the change of variables
+Assuming kinematic equivalence (\ref{KE}), we can change coordinates from $(x^i, v^i)$ to $(q^i, p_i)$ and vice-versa. That is, the change of variables
 \begin{equation}
 	x^i=q^i,
 	\qquad
@@ -379,7 +396,7 @@ Since $d_t x_s^i=v_s^i$, each intermediate path is a kinematic path. This gives 
 	=
 	\bigl(x_s(t),P(x_s(t),v_s(t),t),t\bigr).
 \end{equation}
-This surface correspond to the two paths in extend phase space connected at every $t$ by a straight segment in kinematic variables.
+This surface corresponds to the two paths in extended phase space connected at every $t$ by a straight segment in kinematic variables.
 
 For brevity, let $P_{i,s}=P_i(x_s,v_s,t)$ and $F_{i,s}=F_i(x_s,v_s,t)$ be the components of the momentum and force functions for $s$. The tangent vectors to this surface are
 \begin{equation}
@@ -430,7 +447,7 @@ Applying the configuration flux form to each infinitesimal element, we find
 	\end{aligned}
 \end{equation}
 
-We can now express the flux over the whole surface, and integrate by parts the first term to simplify the expression.
+We can now express the flux over the whole surface and integrate the first term by parts to simplify the expression.
 \begin{equation}
 	\begin{aligned}
 		\phi[\Sigma_{ab}]
@@ -465,7 +482,7 @@ and obtain
 \end{equation}
 When the two paths have the same position endpoints, the boundary term vanishes and $\mathcal{F}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$.
 
-In analogy with Lagrangian mechanics, we call $L_{\mathcal{F}}$ a \emph{flux Lagrangian} and its integral $\mathcal{F}$ the \emph{flux}. The former, unlike an action Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them. Moreover, the flux has a precise physical characterization in terms of configuration, which makes the name ``flux'' descriptive of both the geometry and the physics.
+In analogy with Lagrangian mechanics, we call $L_{\mathcal{F}}$ a \emph{flux Lagrangian} and its integral $\mathcal{F}$ the \emph{flux}. The former, unlike an action Lagrangian, compares two states at the same time; the latter compares two paths and, when the position endpoints coincide, equals minus the flux of configurations across the chosen surface between them. Moreover, the flux has a precise physical characterization in terms of configurations, which makes the name ``flux'' descriptive of both the geometry and the physics.
 
 We now want to characterize the flux Lagrangian by two key properties. Note that exchanging the two states reverses $\Delta x$ and $\Delta v$ and replaces $s$ with $1-s$. Thus,
 \begin{equation}\label{eq:fluxLagrangianAntisymmetry}
@@ -500,7 +517,7 @@ When the states are the same, $\Delta x=\Delta v=0$. Therefore
 \end{equation}
 By \ref{KE}, the map $v \mapsto P(x,v,t)$ is a global diffeomorphism between velocity and momentum at each fixed position and time. In analogy with Lagrangian mechanics, we call a flux Lagrangian with this property \emph{hyperregular}. Therefore, the flux Lagrangian constructed from the configuration flux is both antisymmetric and hyperregular.
 
-By definition, then, since $\mathcal{F}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$ for paths with the same endpoints, the principle of stationary flux in phase space will lead to a stationary flux.
+By definition, then, since $\mathcal{F}[x_a(t),x_b(t)]=-\phi[\Sigma_{ab}]$ for paths with the same endpoints, the principle of stationary flux in phase space will lead to a stationary flux.\textcolor{red}{CAA: Is this redundant?}
 
 \subsection{From stationary flux to dynamics}
 
@@ -551,7 +568,7 @@ with $\eta(t_0)=\eta(t_1)=0$. By integrating by parts in the second term, we fin
 Consequently,
 \begin{equation}\label{eq:fluxLagrangianStationarity}
 	\delta_b\mathcal{F}[x(t),x(t);\eta(t)]=0
-	\text{ for all adm. }\eta(t)
+	\text{ for all admissible }\eta(t)
 	\iff
 	d_tP_i=F_i,
 	 v^i=d_tx^i.
@@ -601,9 +618,9 @@ Thus a hyperregular flux Lagrangian supplies both the kinematic evolution and th
 
 \subsection{Equivalent and proper flux Lagrangians}
 
-Note that the variational equations depend only on the diagonal derivatives of $L_{\mathcal{F}}$. Two flux Lagrangians with the same diagonal derivatives, then, yield the same momentum map, counting structure and equations of motion. We therefore call two flux Lagrangians equivalent when they give the same functions $P_i$ and $F_i$ through \eqref{eq:fluxLagrangianDiagonal}.
+Note that the variational equations depend only on the diagonal derivatives of $L_{\mathcal{F}}$. Two flux Lagrangians with the same diagonal derivatives, then, yield the same momentum map, counting structure and equations of motion. We therefore call two flux Lagrangians equivalent when they give the same functions $P_i$ and $F_i$ in Eq.~\eqref{eq:fluxLagrangianDiagonal}.
 
-Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use \eqref{eq:properFluxLagrangian} to construct a new function $L_{\mathcal{F}}^{\mathrm{pr}}$. Its diagonal derivatives are
+Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use Eq.~\eqref{eq:properFluxLagrangian} to construct a new function $L_{\mathcal{F}}^{\mathrm{pr}}$. Its diagonal derivatives are
 \begin{equation}
 	\left.\frac{\partial L_{\mathcal{F}}^{\mathrm{pr}}}{\partial v_b^i}\right|_{\mathrm{diag}}
 	=P_i,
@@ -613,7 +630,7 @@ Given any hyperregular flux Lagrangian, we can extract $P_i$ and $F_i$ and use \
 \end{equation}
 Indeed, at coincident states the factors $\Delta x$ and $\Delta v$ vanish, leaving only the terms obtained by differentiating those factors. Thus $L_{\mathcal{F}}^{\mathrm{pr}}$ is equivalent to the original $L_{\mathcal{F}}$.
 
-We call a flux Lagrangian \emph{proper} if it satisfies \eqref{eq:properFluxLagrangian} with its own diagonal derivatives. Each equivalence class has exactly
+We call a flux Lagrangian \emph{proper} if it satisfies Eq.~\eqref{eq:properFluxLagrangian} with its own diagonal derivatives. Each equivalence class has exactly
 one proper representative, since its defining expression is fixed by $P_i$ and $F_i$. The two constructions are therefore inverse in the following sense. Starting from dynamical variables, a counting form and an evolution satisfying KE, we obtain a proper flux Lagrangian that reconstructs the same data. Starting from an arbitrary hyperregular flux Lagrangian, we reconstruct those data and obtain its proper representative. This will be exactly the one recovered if we went to dynamical variables and then back to kinematic variables.
 
 As with the action Lagrangian case, even in this general case the equations of motion do not uniquely identify a proper hyperregular flux Lagrangian. One can verify, for example, that for any smooth function $g(x,t)$
@@ -655,8 +672,9 @@ The equations of motion become
 	-
 	d_t\frac{\partial L}{\partial v^i}
 	=0,
-	\qquad v^i=d_tx^i.
+	\qquad v^i=d_tx^i,
 \end{equation}
+which we recognize as the Euler-Lagrange equations.
 
 By hyperregularity, $p_i=P_i(x,v,t)$ has a smooth global inverse
 $v^i=V^i(q,p,t)$, with $q=x$. Define
@@ -759,8 +777,8 @@ For a path and its variation, the flux is consequently
 \end{equation}
 This recovers stationary action as a special case. It remains to characterize conservative dynamics directly through the flux Lagrangian.
 
-Note that equation \eqref{eq:fluxLagrangianDifference} also gives an additional
-property. Writing $L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)$, where $\chi = (x, v)$ represents the pair of kinematic variables, we find
+Note that Eq.~\eqref{eq:fluxLagrangianDifference} also gives an additional
+property. Writing $L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)$, where $\chi = (x, v)$ represents the pair of kinematic variables \textcolor{red}{(CAA: consider writing out the variable pairs each time instead of $\chi$, for possibly greater clarity?)}, we find
 \begin{equation}\label{eq:fluxLagrangianAdditivity}
 	L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_c,t)
 	=
@@ -768,7 +786,7 @@ property. Writing $L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)$, where $\chi 
 	+
 	L_{\mathcal{F}}^{\mathrm{pr}}(\chi_b,\chi_c,t).
 \end{equation}
-Equivalently, for every time interval $[u,v] \subset \mathbb{R}$, we have
+Equivalently, for every time interval $[t_0,t_1] \subset \mathbb{R}$, we have
 \begin{equation}\label{eq:fluxActionAdditivity}
 	\mathcal{F}^{\mathrm{pr}}[x_a(t),x_c(t)]
 	=
@@ -776,12 +794,15 @@ Equivalently, for every time interval $[u,v] \subset \mathbb{R}$, we have
 	+
 	\mathcal{F}^{\mathrm{pr}}[x_b(t),x_c(t)].
 \end{equation}
-for all paths, regardless of the endpoints. The above, in fact, means that $\int_u^v
+for all paths, regardless of the endpoints. The above, in fact, means that 
+\begin{equation}\int_{t_0}^{t_1}
 \left[
 L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a(t),\chi_c(t),t)
 -L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a(t),\chi_b(t),t)
 -L_{\mathcal{F}}^{\mathrm{pr}}(\chi_b(t),\chi_c(t),t)
-\right]dt=0$ for all paths. This means the integrand must be zero at any given time. Intuitively, additivity means that the intermediate path cancels: the flux is determined by the initial and final paths. This mirrors the contour dependence of configuration flux in the conservative case.
+\right]dt=0
+\end{equation}
+for all paths. This means the integrand must be zero at any given time. Intuitively, additivity means that the intermediate path cancels: the flux is determined by the initial and final paths. This mirrors the contour dependence of configuration flux in the conservative case.
 
 With this property in mind, we can work the equivalence in reverse. Suppose we are given a proper hyperregular flux Lagrangian that satisfies additivity. Choose a reference kinematic state $\chi_r$ and
 define
@@ -790,7 +811,7 @@ define
 	:=
 	L_{\mathcal{F}}^{\mathrm{pr}}(\chi_r,(x,v),t).
 \end{equation}
-Applying \eqref{eq:fluxLagrangianAdditivity} to $\chi_r,\chi_a,\chi_b$ gives
+Applying Eq.~\eqref{eq:fluxLagrangianAdditivity} to $\chi_r,\chi_a,\chi_b$ gives
 \begin{equation}
 	L_{\mathcal{F}}^{\mathrm{pr}}(\chi_a,\chi_b,t)=L(\chi_b,t)-L(\chi_a,t).
 \end{equation}
@@ -815,38 +836,49 @@ We find, then, that the conservative case is exactly when the proper flux Lagran
 It should be stressed that additivity characterizes the conservative case only for proper flux Lagrangians. An equivalent flux Lagrangian need not itself satisfy this property, since its values away from coincident states are not fixed by the equations of motion and momentum map.
 
 \section{Relationship to other variational principles}
+\label{sec:othervarprinc}
 
-The only reference we could find in the literature of a surface variational principle in the extended phase space for classical mechanics is due to Kochan~\cite{kochanstrings,kochan}. In that work, classical equations of motion are encoded in a dynamical two-form which, up to the sign convention, coincides with ours. No connection to the configuration count or flow is established, and there is no expression of the principle in terms of a flux Lagrangian. Moreover, this result is not the main goal, but rather presented as a way to generalize the path integral of quantum mechanics to the non-conservative case. However, non-conservative dynamics in quantum mechanics does not conserve entropy, while the dynamics proposed retains unitary evolution, thus conserving entropy. Such discrepancies are the reason we are looking for a fully physically motivated principle.
+The only reference we could find in the literature of a surface variational principle in the extended phase space for classical mechanics is due to Kochan~\cite{kochanstrings,kochan}. In that work, classical equations of motion are encoded in a dynamical two-form which, up to the sign convention, coincides with ours. No connection to the configuration count or flow is established, and there is no expression of the principle in terms of a flux Lagrangian. Moreover, that result is not the main goal, but rather presented as a way to generalize the path integral of quantum mechanics to the nonconservative case. However, nonconservative dynamics in quantum mechanics does not conserve entropy, while the dynamics proposed in Refs.~\cite{kochanstrings,kochan} retains unitary evolution, thus conserving entropy. Such discrepancies are the reason we are looking for a fully physically motivated principle.
 
-On the other hand, the only work we could find that introduces a two-path variational principle is due to Galley~\cite{galley} and developed further in \cite{galleytsangstein,martindiego}. The principle is introduced as a modification of the principle of stationary action, which is taken as given, for general dynamics. While the formal part is very similar, the variational principle is described as acting on two histories, and it is presented as having a fundamental origin in quantum theory. Since we have shown that classical mechanics suffices to recover the principle, quantum theory cannot play a fundamental role in the origin of the principle. Moreover, Galley et al stress the decomposition of the flux Lagrangian into conservative and non-conservative parts, which, unfortunately, is not unique.
+On the other hand, the only work we could find that introduces a two-path variational principle is due to Galley~\cite{galley} and developed further in Refs.~\cite{galleytsangstein,martindiego}. The principle is introduced as a modification of the principle of stationary action, which is taken as given, for general dynamics. While the formal part is very similar, the variational principle is described as acting on two histories, and it is presented as having a fundamental origin in quantum theory. Since we have shown that classical mechanics suffices to recover the principle, quantum theory cannot play a fundamental role in the origin of the principle. Moreover, Galley et al.~stress the decomposition of the flux Lagrangian into conservative and nonconservative parts, which, unfortunately, is not unique.
 
 Our work, then, recovers these two approaches, reconciles them and puts them in a bigger, unified, framework. That is, we recover Kochan's extended-phase-space formulation also in the case where KE fails, and specialize it to the kinematic formulation given by Galley et al. It also provides a better link to symplectic geometry and classical statistical mechanics, identifying the connection between the flux and the symplectic form, which is itself linked to the definition of entropy for statistical systems.
 
-\begin{thebibliography}{100}
-\bibitem{minguzzi} E. Minguzzi, A unifying mechanical equation with applications to non-holonomic constraints and dissipative phenomena. J. Geom. Mech. 7, 473--482 (2015). doi:10.3934/jgm.2015.7.473.
-\bibitem{kanai} E. Kanai, On the Quantization of the Dissipative Systems. Prog. Theor. Phys. 3, 440--442 (1948). doi:10.1143/ptp/3.4.440.
-\bibitem{nuccitamizhmani} M. C. Nucci, K. M. Tamizhmani, Lagrangians for Dissipative Nonlinear Oscillators: The Method of Jacobi Last Multiplier. J. Nonlinear Math. Phys. 17, 167--178 (2010). doi:10.1142/S1402925110000696.
-\bibitem{caldeiraleggett} A. O. Caldeira, A. J. Leggett, Path integral approach to quantum Brownian motion. Physica A 121, 587--616 (1983). doi:10.1016/0378-4371(83)90013-4.
-\bibitem{lazo} M. J. Lazo, J. Paiva, J. T. S. Amaral, G. S. F. Frederico, An Action Principle for Action-dependent Lagrangians: toward an Action Principle to non-conservative systems. J. Math. Phys. 59, 032902 (2018). doi:10.1063/1.5019936.
-\bibitem{mclachlan} R. McLachlan, M. Perlmutter, Conformal Hamiltonian systems. J. Geom. Phys. 39, 276--300 (2001). doi:10.1016/S0393-0440(01)00020-1.
-\bibitem{generic} M. Grmela, H. C. \"Ottinger, Dynamics and thermodynamics of complex fluids. I. Development of a general formalism. Phys. Rev. E 56, 6620--6632 (1997). doi:10.1103/PhysRevE.56.6620.
-\bibitem{porthamiltonian} A. J. van der Schaft, B. M. Maschke, Port-Hamiltonian systems on graphs. arXiv:1107.2006 (2011).
-\bibitem{paisuhlenbeck} A. Pais, G. E. Uhlenbeck, On Field Theories with Non-Localized Action. Phys. Rev. 79, 145--165 (1950). doi:10.1103/PhysRev.79.145.
-\bibitem{riewe} F. Riewe, Nonconservative Lagrangian and Hamiltonian mechanics. Phys. Rev. E 53, 1890--1899 (1996). doi:10.1103/PhysRevE.53.1890.
-\bibitem{almeidamalinowska} R. Almeida, A. B. Malinowska, Fractional variational principle of Herglotz. Discrete Contin. Dyn. Syst. B 19, 2367--2381 (2014). doi:10.3934/dcdsb.2014.19.2367.
-\bibitem{bateman} H. Bateman, On Dissipative Systems and Related Variational Principles. Phys. Rev. 38, 815--819 (1931). doi:10.1103/PhysRev.38.815.
-\bibitem{galley} C. R. Galley, Classical Mechanics of Nonconservative Systems. Phys. Rev. Lett. 110, 174301 (2013). doi:10.1103/PhysRevLett.110.174301.
-\bibitem{galleytsangstein} C. R. Galley, D. Tsang, L. C. Stein, The principle of stationary nonconservative action for classical mechanics and field theories. arXiv:1412.3082 (2014).
-\bibitem{martindiego} D. Mart\'in de Diego, R. Sato Mart\'in de Almagro, Variational order for forced Lagrangian systems. arXiv:1712.09377 (2017).
-\bibitem{bravetti} A. Bravetti, H. Cruz, D. Tapias, Contact Hamiltonian mechanics. Ann. Phys. 376, 17--39 (2017). doi:10.1016/j.aop.2016.11.003.
-\bibitem{cocontact} M. de Le\'on, J. Gaset, X. Gr\`acia, M. C. Mu\~noz-Lecanda, X. Rivas, Time-dependent contact mechanics. arXiv:2205.09454 (2022).
-\bibitem{gaybalmaz} F. Gay-Balmaz, H. Yoshimura, A Lagrangian variational formulation for nonequilibrium thermodynamics. Part I: Discrete systems. J. Geom. Phys. 111, 169--193 (2017). doi:10.1016/j.geomphys.2016.08.018.
-\bibitem{gaybalmazopen} F. Gay-Balmaz, H. Yoshimura, A Variational Formulation of Nonequilibrium Thermodynamics for Discrete Open Systems with Mass and Heat Transfer. arXiv:1811.11665 (2018).
-\bibitem{kochanstrings} D. Kochan, Direct quantization of equations of motion: from classical dynamics to transition amplitudes via strings. arXiv:hep-th/0703073 (2007).
-\bibitem{kochan} D. Kochan, Functional integral for non-Lagrangian systems. arXiv:1001.1863 (2010).
-\bibitem{geoact} G. Carcassi, C. A. Aidala, Geometric and physical interpretation of the action principle. Sci Rep 13, 12138 (2023).
-\bibitem{hodge} G. Schwartz, Hodge Decomposition - A Method for Solving Boundary Value Problems, Lecture Notes in Mathematics, Springer-Verlag Berlin Heidelberg, 1995.
-\end{thebibliography}
+\section{Summary}
+\label{sec:summary}
+\textcolor{red}{CAA: A quick first draft---to revisit/revise.} We have derived from first principles a completely general, unified variational framework for both conservative and nonconservative dynamics of classical systems, defining a surface variational principle in classical phase space extended by time.  This framework can be used for systems described either by dynamic or kinematic variables.  Using reverse physics methodology, we have identified various relevant physical and mathematical conditions and established logical relationships among them, such that the physical commitments and assumptions entailed by different mathematical structures and expressions can be clearly understood.  [Close with a comment on the wide/universal applicability of the framework?]
+
+\bibliography{FluxPrinciple}
+
+%\begin{thebibliography}{100}
+%\bibitem{minguzzi} E. Minguzzi, A unifying mechanical equation with applications to non-holonomic constraints and dissipative phenomena. J. Geom. Mech. 7, 473--482 (2015). doi:10.3934/jgm.2015.7.473.
+%\bibitem{kanai} E. Kanai, On the Quantization of the Dissipative Systems. Prog. Theor. Phys. 3, 440--442 (1948). doi:10.1143/ptp/3.4.440.
+%\bibitem{nuccitamizhmani} M. C. Nucci, K. M. Tamizhmani, Lagrangians for Dissipative Nonlinear Oscillators: The Method of Jacobi Last Multiplier. J. Nonlinear Math. Phys. 17, 167--178 (2010). doi:10.1142/S1402925110000696.
+%\bibitem{caldeiraleggett} A. O. Caldeira, A. J. Leggett, Path integral approach to quantum Brownian motion. Physica A 121, 587--616 (1983). doi:10.1016/0378-4371(83)90013-4.
+%\bibitem{lazo} M. J. Lazo, J. Paiva, J. T. S. Amaral, G. S. F. Frederico, An Action Principle for Action-dependent Lagrangians: toward an Action Principle to non-conservative systems. J. Math. Phys. 59, 032902 (2018). doi:10.1063/1.5019936.
+%\bibitem{mclachlan} R. McLachlan, M. Perlmutter, Conformal Hamiltonian systems. J. Geom. Phys. 39, 276--300 (2001). doi:10.1016/S0393-0440(01)00020-1.
+%\bibitem{generic} M. Grmela, H. C. \"Ottinger, Dynamics and thermodynamics of complex fluids. I. Development of a general formalism. Phys. Rev. E 56, 6620--6632 (1997). doi:10.1103/PhysRevE.56.6620.
+%\bibitem{porthamiltonian} A. J. van der Schaft, B. M. Maschke, Port-Hamiltonian systems on graphs. arXiv:1107.2006 (2011).
+%\bibitem{paisuhlenbeck} A. Pais, G. E. Uhlenbeck, On Field Theories with Non-Localized Action. Phys. Rev. 79, 145--165 (1950). doi:10.1103/PhysRev.79.145.
+%\bibitem{riewe} F. Riewe, Nonconservative Lagrangian and Hamiltonian mechanics. Phys. Rev. E 53, 1890--1899 (1996). doi:10.1103/PhysRevE.53.1890.
+%\bibitem{almeidamalinowska} R. Almeida, A. B. Malinowska, Fractional variational principle of Herglotz. Discrete Contin. Dyn. Syst. B 19, 2367--2381 (2014). doi:10.3934/dcdsb.2014.19.2367.
+%\bibitem{bateman} H. Bateman, On Dissipative Systems and Related Variational Principles. Phys. Rev. 38, 815--819 (1931). doi:10.1103/PhysRev.38.815.
+%\bibitem{galley} C. R. Galley, Classical Mechanics of Nonconservative Systems. Phys. Rev. Lett. 110, 174301 (2013). doi:10.1103/PhysRevLett.110.174301.
+%\bibitem{galleytsangstein} C. R. Galley, D. Tsang, L. C. Stein, The principle of stationary nonconservative action for classical mechanics and field theories. arXiv:1412.3082 (2014).
+%\bibitem{martindiego} D. Mart\'in de Diego, R. Sato Mart\'in de Almagro, Variational order for forced Lagrangian systems. arXiv:1712.09377 (2017).
+%\bibitem{bravetti} A. Bravetti, H. Cruz, D. Tapias, Contact Hamiltonian mechanics. Ann. Phys. 376, 17--39 (2017). doi:10.1016/j.aop.2016.11.003.
+%\bibitem{cocontact} M. de Le\'on, J. Gaset, X. Gr\`acia, M. C. Mu\~noz-Lecanda, X. Rivas, Time-dependent contact mechanics. arXiv:2205.09454 (2022).
+%\bibitem{gaybalmaz} F. Gay-Balmaz, H. Yoshimura, A Lagrangian variational formulation for nonequilibrium thermodynamics. Part I: Discrete systems. J. Geom. Phys. 111, 169--193 (2017). doi:10.1016/j.geomphys.2016.08.018.
+%\bibitem{gaybalmazopen} F. Gay-Balmaz, H. Yoshimura, A Variational Formulation of Nonequilibrium Thermodynamics for Discrete Open Systems with Mass and Heat Transfer. arXiv:1811.11665 (2018).
+%\bibitem{kochanstrings} D. Kochan, Direct quantization of equations of motion: from classical dynamics to transition amplitudes via strings. arXiv:hep-th/0703073 (2007).
+%\bibitem{kochan} D. Kochan, Functional integral for non-Lagrangian systems. arXiv:1001.1863 (2010).
+%\bibitem{geoact} G. Carcassi, C. A. Aidala, Geometric and physical interpretation of the action principle. Sci Rep 13, 12138 (2023).
+%\bibitem{hodge} G. Schwartz, Hodge Decomposition - A Method for Solving Boundary Value Problems, Lecture Notes in Mathematics, Springer-Verlag Berlin Heidelberg, 1995.
+%\bibitem{aop-book} G. Carcassi and C. A. Aidala, Assumptions of Physics, Michigan Publishing, 2021. doi:10.3998/mpub.12204707
+%\bibitem{aop-rpqm} G. Carcassi, T. Thrien, C. A. Aidala, Reverse Physics for quantum mechanics. arXiv:2608.27543 (2026).
+
+
+%\end{thebibliography}
 
 
 \end{document}
